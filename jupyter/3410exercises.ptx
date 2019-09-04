@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+
+
+<pretext>
+  <article xml:id="linalg_jupyter">
+    <title>Computational Exercises for Math 3410</title>
+
+    <frontmatter>
+
+      <titlepage>
+          <author>
+              <personname>Sean Fitzpatrick</personname>
+              <institution>University of Lethbridge</institution>
+          </author>
+          <date><today /></date>
+      </titlepage>
+
+      <abstract>
+          <p>
+            An introduction to computational tools for Math 3410 Linear Algebra,
+            focused on the Python language.
+          </p>
+      </abstract>
+
+    </frontmatter>
+
+    <introduction>
+      <p>
+        Linear algebra is a mature, rich subject, full of both fascinating theory and useful applications.
+        One of the things you might have taken away from a first course in the subject is that there's a lot of tedious calculation involved.
+        This is true, if you're a human. But the algorithms you learn in a course like Math 1410 are easily implemented on a computer.
+        If we want to be able to discuss any of the interesting applications of linear algebra,
+        we're going to need to learn how to do linear algebra on a computer.
+      </p>
+      <p>
+        There are many good mathematical software products that can deal with linear algebra,
+        like Maple, Mathematica, and MatLab. But all of these are proprietary, and expensive.
+        Sage is a popular open source system for mathematics,
+        and students considering further studies in mathematics would do well to learn Sage.
+        Since most people in Math 3410 are probably not considering a career as a mathematician,
+        we'll try to do everything in Python.
+      </p>
+      <p>
+        Python is a very poplular programming language, partly because of its ease of use.
+        Those of you enrolled in Education may find yourself teaching Python to your students one day.
+        Also, if you do want to use Sage, you're in luck: Sage is an amalamation of many different software tools,
+        including Python. So any Python code you encouter in this course can also be run on Sage.
+      </p>
+    </introduction>
+
+    <section xml:id="section-jupyter">
+      <title>Jupyter</title>
+      <p>
+        The first thing you need to know about doing linear algebra in Python is how to access a Python environment.
+        Fortunately, you do not need to install any software for this.
+        The University of Lethbridge has access to the <term>Syzygy Jupyter Hub</term> service,
+        provided by <init>PIMS</init> (the Pacific Institute for Mathematical Sciences), Cybera, and Compute Canada.
+        To access Syzygy, go to <url href="https://uleth.syzygy.ca">uleth.syzygy.ca</url>
+        and log in with your ULeth credentials.
+      </p>
+
+      <p>
+        Note: if you click the login button and nothing happens, click the back button and try again.
+        Sometimes there's a problem with our single sign-on service.
+      </p>
+
+      <p>
+        The primary type of document you'll encounter on Syzygy is the <term>Jupyter notebook</term>.
+        Content in a Juypter notebook is organized into <term>cells</term>.
+        Some cells contain text, which can be in either <init>HTML</init> or <term>Markdown</term>.
+        Markdown is a simple markup language. It's not as versatile as HTML, but it's easier to use.
+        On Jupyter, markdown supports the LaTeX language for mathematical expressions.
+        Use single dollar signs for inline math: <c>$\frac{d}{dx}\sin(x)=\cos(x)$</c>
+        produces <m>\frac{d}{dx}\sin(x)=\cos(x)</m>, for example.
+      </p>
+
+      <p>
+        If you want <q>display math</q>, use double dollar signs.
+        Unfortunately, entering matrices is a bit tedious.
+        For example, <c>$$A = \begin{bmatrix}1 &amp; 2 &amp; 3\\4 &amp; 5 &amp; 6 &amp;\end{bmatrix}$$</c>
+        produces
+        <me>
+          A = \begin{bmatrix}1\amp 2\amp 3\\4\amp 5\amp 6\end{bmatrix}
+        </me>.
+        Later we'll see how to enter things like matrices in Python.
+      </p>
+
+      <p>
+        It's also possible to use markdown to add <em>emphasis</em>, images, URLs, <etc />.
+        For details, see the following <url href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet">Markdown cheatsheet</url>,
+        or this <url href="https://callysto.ca/wp-content/uploads/2018/12/Callysto-Cheatsheet_12.19.18_web.pdf">quick reference</url>
+        from <url href="https://callysto.ca/">callysto.ca</url>.
+      </p>
+
+      <p>
+        What's cool about a Jupyter notebook is that in addition to markdown cells,
+        which can present content and provide explanation,
+        we can also include <em>code cells</em>. Jupyter supports many different programming languages,
+        but we will stick mainly to Python.
+      </p>
+    </section>
+
+    <section xml:id="sec-python-basics">
+      <title>Python basics</title>
+      <p>
+        OK, so you've logged into Syzygy and you're ready to write some code.
+        What does basic code look like in Python?
+        The good news is that you don't need to be a programmer to do linear algebra in Python.
+        Python includes many different <em>libraries</em> that keep most of the code under the hood,
+        so all you have to remember is what command you need to use to accomplish a task.
+        That said, it won't hurt to learn a little bit of basic coding.
+      </p>
+
+      <p>
+        Basic arithmetic operations are understood, and you can simply type them in.
+        Hit <c>shift+enter</c> in a code cell to execute the code and see the result.
+      </p>
+
+      <sage>
+        <input>
+          3+4
+        </input>
+      </sage>
+
+      <sage>
+        <input>
+          3*4
+        </input>
+      </sage>
+
+      <sage>
+        <input>
+          3**4
+        </input>
+      </sage>
+
+        <p>
+          OK, great. But sometimes we want to do calculations with more than one step.
+          For that, we can assign variables.
+        </p>
+
+        <sage>
+          <input>
+            a = 14
+            b = -9
+            c = a+b
+            print(a, b, c)
+          </input>
+        </sage>
+
+        <p>
+          Sometimes you might need input that's a string, rather than a number.
+          We can do that, too.
+        </p>
+
+        <sage>
+          <input>
+            string_var = "Hey, look at my string!"
+            print(string_var)
+          </input>
+        </sage>
+
+        <p>
+          Another basic construction is a list.
+          Getting the hang of lists is useful, because in a sense,
+          matrices are just really fancy lists.
+        </p>
+
+        <sage>
+          <input>
+            empty_list = list()
+            this_too = []
+            list_of_zeros = [0]*7
+            print(list_of_zeros)
+          </input>
+        </sage>
+
+        <p>
+          Once you have an empty list, you might want to add something to it.
+          This can be done with the <c>append</c> command.
+        </p>
+
+        <sage>
+          <input>
+            empty_list.append(3)
+            print(empty_list)
+            print(len(empty_list))
+          </input>
+        </sage>
+
+        <p>
+          Go back and re-run the above code cell two or three more times.
+          What happens? Probably you can guess what the <c>len</c> command is for.
+          Now let's get really carried away and do some <q>for real</q> coding, like loops!
+        </p>
+
+        <sage>
+          <input>
+            for i in range(10):
+                empty_list.append(i)
+            print(empty_list)
+          </input>
+        </sage>
+
+        <p>
+          Notice the indentation in the second line.
+          This is how Python handles things like for loops, with indentation rather than bracketing.
+          We could say more about lists but perhaps it's time to talk about matrices.
+          For further reading, you can <url href="https://developers.google.com/edu/python/lists">start here</url>.
+        </p>
+    </section>
+
+    <section xml:id="sec-sympy">
+      <title>SymPy for linear algebra</title>
+      <introduction>
+        <p>
+          <term>SymPy</term> is a Python library for symbolic algebra.
+          On its own, it's not as powerful as programs like Maple,
+          but it handles a lot of basic manipulations in a fairly simple fashion,
+          and when we need more power, it can interface with other Python libraries.
+        </p>
+
+        <p>
+          Another advantage of SymPy is sophisticated <q>pretty-printing</q>.
+          In fact, we can enable MathJax within SymPy,
+          so that output is rendered in the same way as when LaTeX is entered in a markdown cell.
+        </p>
+      </introduction>
+
+      <subsection xml:id="subsec-sympy-basics">
+        <title>SymPy basics</title>
+        <p>
+          Running the following Sage cell will load the SymPy library and turn on MathJax.
+        </p>
+
+        <sage>
+          <input>
+            from sympy import *
+            init_printing()
+          </input>
+        </sage>
+
+        <p>
+          <alert>Note:</alert> if you are going to be working with multiple libraries,
+          and more than one of them defines a certain command,
+          instead of <c>from sympy import all</c> you can do <c>import sympy as sy</c>.
+          If you do this, each SymPy command will need to be appended with <c>sy</c>; for example,
+          you might write <c>sy.Matrix</c> instead of simply <c>Matrix</c>.
+          Let's use SymPy to create a <m>2\times 3</m> matrix.
+        </p>
+
+        <sage>
+          <input>
+            A = Matrix(2,3,[1,2,3,4,5,6])
+            A
+          </input>
+        </sage>
+
+        <p>
+          The <c>A</c> on the second line asks Python to print the matrix using SymPy's printing support.
+          If we use Python's <c>print</c> command, we get something different:
+        </p>
+
+        <sage>
+          <input>
+            print(A)
+          </input>
+        </sage>
+
+        <p>
+          We'll have more on matrices in <xref ref="subsec-sympy-matrix"/>.
+          For now, let's look at some more basic constructions.
+          One basic thing to be mindful of is the type of numbers we're working with.
+          For example, if we enter <c>2/7</c> in a code cell,
+          Python will interpret this as a floating point number (essentially, a division).
+        </p>
+        <p>
+          (If you are using Sage cells in HTML rather than Jupyter, this will automatically be interpreted as a fraction.)
+        </p>
+
+        <sage>
+          <input>
+            2/7
+          </input>
+        </sage>
+
+        <p>
+          But we often do linear algebra over the rational numbers,
+          and so SymPy will let you specify this:
+        </p>
+
+        <sage>
+          <input>
+            Rational(2,7)
+          </input>
+        </sage>
+
+        <p>
+          You might not think to add the comma above, because you're used to writing fractions like <m>2/7</m>.
+          Fortunately, the SymPy authors thought of that:
+        </p>
+
+        <sage>
+          <input>
+            Rational(2/7)
+          </input>
+        </sage>
+
+        <p>
+          Another cool command is the <c>sympify</c> command, which can be called with the shortcut <c>S</c>.
+          The input <c>2</c> is interpreted as an <c>int</c> by Python, but <c>S(2)</c> is a <q>SymPy <c>Integer</c></q>:
+        </p>
+
+        <sage>
+          <input>
+            S(2)/7
+          </input>
+        </sage>
+
+        <p>
+          Of course, sometimes you <em>do</em> want to use floating point, and you can specify this, too:
+        </p>
+
+        <sage>
+          <input>
+            2.5
+          </input>
+        </sage>
+
+        <sage>
+          <input>
+            Float(2.5)
+          </input>
+        </sage>
+
+        <sage>
+          <input>
+            Float(2.5e10)
+          </input>
+        </sage>
+
+        <p>
+          One note of caution: <c>Float</c> is part of SymPy, and not the same as the core Python <c>float</c> command.
+          You can also put decimals into the Rational command and get the corresponding fraction:
+        </p>
+
+        <sage>
+          <input>
+            Rational(0.75)
+          </input>
+        </sage>
+
+        <p>
+          The only thing to beware of is that computers convert from decimal to binary and then back again,
+          and sometimes weird things can happen:
+        </p>
+
+        <sage>
+          <input>
+            Rational(0.2)
+          </input>
+        </sage>
+
+        <p>
+          Of course, there are workarounds. One way is to enter <m>0.2</m> as a string:
+        </p>
+
+        <sage>
+          <input>
+            Rational('0.2')
+          </input>
+        </sage>
+
+        <p>
+          Another is to limit the size of the denominator:
+        </p>
+
+        <sage>
+          <input>
+            Rational(0.2).limit_denominator(10**12)
+          </input>
+        </sage>
+
+        <p>
+          Try some other examples above. Some inputs to try are <c>1.23</c> and <c>23e-10</c>
+        </p>
+
+        <p>
+          We can also deal with repeating decimals. These are entered as strings, with square brackets around the repeating part.
+          Then we can <q>sympify</q>:
+        </p>
+
+        <sage>
+          <input>
+            S('0.[1]')
+          </input>
+        </sage>
+
+        <p>
+          Finally, SymPy knows about mathematical constants like <m>e, \pi, i</m>,
+          which you'll need from time to time in linear algebra.
+          If you ever need <m>\infty</m>, this is entered as <c>oo</c>.
+        </p>
+
+        <sage>
+          <input>
+            I*I
+          </input>
+        </sage>
+        <sage>
+          <input>
+            I-sqrt(-1)
+          </input>
+        </sage>
+        <sage>
+          <input>
+            pu.is_irrational
+          </input>
+        </sage>
+      </subsection>
+      <subsection xml:id="subsec-sympy-matrix">
+        <title>Matrices in SymPy</title>
+        <p>
+          (more to come)
+        </p>
+      </subsection>
+    </section>
+  </article>
+</pretext>
