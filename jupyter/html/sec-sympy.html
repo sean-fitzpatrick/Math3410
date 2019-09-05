@@ -1,7 +1,7 @@
-<!DOCTYPE html SYSTEM "about:legacy-compat">
+<!DOCTYPE html>
 <!--**************************************-->
 <!--*    Generated from PreTeXt source   *-->
-<!--*    on 2019-09-04T16:21:58-06:00    *-->
+<!--*    on 2019-09-04T22:15:46-06:00    *-->
 <!--*                                    *-->
 <!--*      https://pretextbook.org       *-->
 <!--*                                    *-->
@@ -125,42 +125,43 @@ A
 <p id="p-27">You might not think to add the comma above, because you're used to writing fractions like \(2/7\text{.}\) Fortunately, the SymPy authors thought of that:</p>
 <div class="sagecell-sage" id="sage-14"><script type="text/x-sage">Rational(2/7)
 </script></div>
-<p id="p-28">Another cool command is the <code class="code-inline tex2jax_ignore">sympify</code> command, which can be called with the shortcut <code class="code-inline tex2jax_ignore">S</code>. The input <code class="code-inline tex2jax_ignore">2</code> is interpreted as an <code class="code-inline tex2jax_ignore">int</code> by Python, but <code class="code-inline tex2jax_ignore">S(2)</code> is a “SymPy <code class="code-inline tex2jax_ignore">Integer</code>”:</p>
+<p id="p-28">Hmm... You might have got the output you expected in the cell above, but maybe not. If you got a much worse looking fraction, read on.</p>
+<p id="p-29">Another cool command is the <code class="code-inline tex2jax_ignore">sympify</code> command, which can be called with the shortcut <code class="code-inline tex2jax_ignore">S</code>. The input <code class="code-inline tex2jax_ignore">2</code> is interpreted as an <code class="code-inline tex2jax_ignore">int</code> by Python, but <code class="code-inline tex2jax_ignore">S(2)</code> is a “SymPy <code class="code-inline tex2jax_ignore">Integer</code>”:</p>
 <div class="sagecell-sage" id="sage-15"><script type="text/x-sage">S(2)/7
 </script></div>
-<p id="p-29">Of course, sometimes you <em class="emphasis">do</em> want to use floating point, and you can specify this, too:</p>
+<p id="p-30">Of course, sometimes you <em class="emphasis">do</em> want to use floating point, and you can specify this, too:</p>
 <div class="sagecell-sage" id="sage-16"><script type="text/x-sage">2.5
 </script></div>
 <div class="sagecell-sage" id="sage-17"><script type="text/x-sage">Float(2.5)
 </script></div>
 <div class="sagecell-sage" id="sage-18"><script type="text/x-sage">Float(2.5e10)
 </script></div>
-<p id="p-30">One note of caution: <code class="code-inline tex2jax_ignore">Float</code> is part of SymPy, and not the same as the core Python <code class="code-inline tex2jax_ignore">float</code> command. You can also put decimals into the Rational command and get the corresponding fraction:</p>
+<p id="p-31">One note of caution: <code class="code-inline tex2jax_ignore">Float</code> is part of SymPy, and not the same as the core Python <code class="code-inline tex2jax_ignore">float</code> command. You can also put decimals into the Rational command and get the corresponding fraction:</p>
 <div class="sagecell-sage" id="sage-19"><script type="text/x-sage">Rational(0.75)
 </script></div>
-<p id="p-31">The only thing to beware of is that computers convert from decimal to binary and then back again, and sometimes weird things can happen:</p>
+<p id="p-32">The only thing to beware of is that computers convert from decimal to binary and then back again, and sometimes weird things can happen:</p>
 <div class="sagecell-sage" id="sage-20"><script type="text/x-sage">Rational(0.2)
 </script></div>
-<p id="p-32">Of course, there are workarounds. One way is to enter \(0.2\) as a string:</p>
+<p id="p-33">Of course, there are workarounds. One way is to enter \(0.2\) as a string:</p>
 <div class="sagecell-sage" id="sage-21"><script type="text/x-sage">Rational('0.2')
 </script></div>
-<p id="p-33">Another is to limit the size of the denominator:</p>
+<p id="p-34">Another is to limit the size of the denominator:</p>
 <div class="sagecell-sage" id="sage-22"><script type="text/x-sage">Rational(0.2).limit_denominator(10**12)
 </script></div>
-<p id="p-34">Try some other examples above. Some inputs to try are <code class="code-inline tex2jax_ignore">1.23</code> and <code class="code-inline tex2jax_ignore">23e-10</code></p>
-<p id="p-35">We can also deal with repeating decimals. These are entered as strings, with square brackets around the repeating part. Then we can “sympify”:</p>
+<p id="p-35">Try some other examples above. Some inputs to try are <code class="code-inline tex2jax_ignore">1.23</code> and <code class="code-inline tex2jax_ignore">23e-10</code></p>
+<p id="p-36">We can also deal with repeating decimals. These are entered as strings, with square brackets around the repeating part. Then we can “sympify”:</p>
 <div class="sagecell-sage" id="sage-23"><script type="text/x-sage">S('0.[1]')
 </script></div>
-<p id="p-36">Finally, SymPy knows about mathematical constants like \(e, \pi, i\text{,}\) which you'll need from time to time in linear algebra. If you ever need \(\infty\text{,}\) this is entered as <code class="code-inline tex2jax_ignore">oo</code>.</p>
+<p id="p-37">Finally, SymPy knows about mathematical constants like \(e, \pi, i\text{,}\) which you'll need from time to time in linear algebra. If you ever need \(\infty\text{,}\) this is entered as <code class="code-inline tex2jax_ignore">oo</code>.</p>
 <div class="sagecell-sage" id="sage-24"><script type="text/x-sage">I*I
 </script></div>
 <div class="sagecell-sage" id="sage-25"><script type="text/x-sage">I-sqrt(-1)
 </script></div>
-<div class="sagecell-sage" id="sage-26"><script type="text/x-sage">pu.is_irrational
+<div class="sagecell-sage" id="sage-26"><script type="text/x-sage">pi.is_irrational
 </script></div></section><section class="subsection" id="subsec-sympy-matrix"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">3.2</span> <span class="title">Matrices in SymPy</span>
 </h3>
-<a href="sec-sympy.html#subsec-sympy-matrix" class="permalink">¶</a><p id="p-37">(more to come)</p></section></section></div></main>
+<a href="sec-sympy.html#subsec-sympy-matrix" class="permalink">¶</a><p id="p-38">(more to come)</p></section></section></div></main>
 </div>
 <div class="login-link"><span id="loginlogout" class="login">login</span></div>
 <script src="https://pretextbook.org/js/0.12/login.js"></script>
