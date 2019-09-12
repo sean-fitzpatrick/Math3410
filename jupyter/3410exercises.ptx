@@ -3,6 +3,13 @@
 
 
 <pretext>
+  <docinfo>
+    <macros>
+      \newcommand{\spn}[1]{\operatorname{span}\mathopen{}\left\{#1\mathclose{}\right\}}
+      \newcommand{\bbm}{\begin{bmatrix}}
+      \newcommand{\ebm}{\end{bmatrix}}
+    </macros>
+  </docinfo>
   <article xml:id="linalg_jupyter">
     <title>Computational Exercises for Math 3410</title>
 
@@ -430,6 +437,154 @@
           (more to come)
         </p>
       </subsection>
+    </section>
+
+    <section xml:id="sec-span">
+      <title>Some calculations involving span</title>
+      <p>
+        Recall that a <term>linear combination</term> of a set of vectors
+        <m>\vec{v}_1,\ldots, \vec{v}_k</m> is a vector expression of the form
+        <me>
+          \vec{w}=c_1\vec{v}_1+c_2\vec{v}_2+\cdots +c_k\vec{v}_k,
+        </me>
+        where <m>c_1,\ldots, c_k</m> are scalars.
+      </p>
+
+      <p>
+        The <term>span</term> of those same vectors is the set of all possible linear combinations:
+        <me>
+          \spn{\vec{v}_1,\ldots, \vec{v}_k} = \{c_1\vec{v}_1+ \cdots + c_k\vec{v}_k \,|\, c_1,\ldots, c_k \in \mathbb{F}\}.
+        </me>
+        Therefore, the questions <q>Is the vector <m>\vec{w}</m> in <m>\spn{\vec{v}_1,\ldots, \vec{v}_k}</m>?</q>
+        is really asking, <q>Can <m>\vec{w}</m> be written as a linear combination of <m>\vec{v}_1,\ldots, \vec{v}_k</m>?</q>
+      </p>
+
+      <p>
+        With the appropriate setup, all such questions become questions about solving systems of equations.
+        Here, we will look at a few such examples.
+      </p>
+
+      <example>
+        <statement>
+          <p>
+            Determine whether the vector <m>\bbm 2\\3\ebm</m> is in the span of the vectors <m>\bbm 1\\1\ebm,\bbm -1\\2\ebm</m>.
+          </p>
+        </statement>
+        <solution>
+          <p>
+            This is really asking: are there scalars <m>s,t</m> such that
+            <me>
+              s\bbm 1\\1\ebm + t\bbm -1\\2\ebm = \bbm 2\\3\ebm
+            </me>?
+            And this, in turn, is equivalent to the system
+            <md>
+              <mrow>s -t \amp=2 </mrow>
+              <mrow>s+2t \amp=3 </mrow>
+            </md>,
+            which is the same as the matrix equation
+            <me>
+              \bbm 1\amp -1\\1\amp 2\ebm\bbm s\\t\ebm = \bbm 2\\3\ebm.
+            </me>
+            Solving the system confirms that there is indeed a solution, so the answer to our original question is yes.
+          </p>
+        </solution>
+      </example>
+
+      <p>
+        To confirm the above example (and see what the solution is), we can use the computer.
+      </p>
+      <sage>
+        <input>
+          from sympy import *
+          init_printing()
+        </input>
+      </sage>
+
+      <sage>
+        <input>
+          A = Matrix(2,3,[1,-1,2,1,2,3])
+          A.rref()
+        </input>
+      </sage>
+
+      <p>
+        The above code produces the reduced row-echelon form of the augmented matrix for our system.
+        Do you remember how to get the answer from here?
+      </p>
+
+      Here's another approach.
+
+      <sage>
+        <input>
+          B = Matrix(2,2,[1,-1,1,2])
+          B
+        </input>
+      </sage>
+
+      <sage>
+        <input>
+          C = Matrix(2,1,[2,3])
+          X = (B**-1)*C
+          X
+        </input>
+      </sage>
+
+      <p>
+        Our next example involves polynomials.
+        At first this looks like a different problem,
+        but it's essentially the same once we set it up.
+      </p>
+
+      <example>
+        <statement>
+          <p>
+            Determine whether <m>p(x)=1+x+4x^2</m> belongs to
+            <m>\spn{1+2x-x^2,3+5x+2x^2}</m>.
+          </p>
+        </statement>
+        <solution>
+          <p>
+            We seek scalars <m>s,t</m> such that
+            <me>
+              s(1+2x-2x^2)+t(3+5x+2x^2)=1+x+4x^2
+            </me>.
+            On the left-hand side, we expand and gather terms:
+            <me>
+              (s+3t)+(2s+5t)x+(-2s+2t)x^2 = 1+x+4x^2
+            </me>.
+            These two polynomials are equal if and only if we can solve the system
+            <md>
+              <mrow>s+3t \amp = 1 </mrow>
+              <mrow>2s+5t \amp =1</mrow>
+              <mrow> -2s+2t \amp =4</mrow>
+            </md>.
+          </p>
+        </solution>
+      </example>
+      <p>
+        We can solve this computationally using matrices again.
+      </p>
+      <sage>
+        <input>
+          M = Matrix(3,3,[1,3,1,2,5,1,-2,2,4])
+          M.rref()
+        </input>
+      </sage>
+      <p>
+        So, what's the answer? Is <m>p(x)</m> in the span?
+        Can we determine what polynomials are in the span?
+        Let's consider a general polynomial <m>q(x)=a+bx+cx^2</m>.
+        A bit of thought tells us that the coefficients <m>a,b,c</m>
+        should replace the constants <m>1,1,4</m> above.
+      </p>
+
+      <sage>
+        <input>
+          a, b, c = symbols('a b c', real = True, constant = True)
+          N = Matrix(3,3,[1,3,a,2,5,b,-2,2,c])
+          N.rref()
+        </input>
+      </sage>
     </section>
   </article>
 </pretext>
