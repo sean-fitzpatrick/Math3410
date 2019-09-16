@@ -464,31 +464,30 @@
         Here, we will look at a few such examples.
       </p>
 
-      <example>
+      <exercise>
         <statement>
           <p>
             Determine whether the vector <m>\bbm 2\\3\ebm</m> is in the span of the vectors <m>\bbm 1\\1\ebm,\bbm -1\\2\ebm</m>.
           </p>
         </statement>
-        <solution>
-          <p>
-            This is really asking: are there scalars <m>s,t</m> such that
-            <me>
-              s\bbm 1\\1\ebm + t\bbm -1\\2\ebm = \bbm 2\\3\ebm
-            </me>?
-            And this, in turn, is equivalent to the system
-            <md>
-              <mrow>s -t \amp=2 </mrow>
-              <mrow>s+2t \amp=3 </mrow>
-            </md>,
-            which is the same as the matrix equation
-            <me>
-              \bbm 1\amp -1\\1\amp 2\ebm\bbm s\\t\ebm = \bbm 2\\3\ebm.
-            </me>
-            Solving the system confirms that there is indeed a solution, so the answer to our original question is yes.
-          </p>
-        </solution>
-      </example>
+      </exercise>
+
+      <p>
+        This is really asking: are there scalars <m>s,t</m> such that
+        <me>
+          s\bbm 1\\1\ebm + t\bbm -1\\2\ebm = \bbm 2\\3\ebm
+        </me>?
+        And this, in turn, is equivalent to the system
+        <md>
+          <mrow>s -t \amp=2 </mrow>
+          <mrow>s+2t \amp=3 </mrow>
+        </md>,
+        which is the same as the matrix equation
+        <me>
+          \bbm 1\amp -1\\1\amp 2\ebm\bbm s\\t\ebm = \bbm 2\\3\ebm.
+        </me>
+        Solving the system confirms that there is indeed a solution, so the answer to our original question is yes.
+      </p>
 
       <p>
         To confirm the above example (and see what the solution is), we can use the computer.
@@ -510,7 +509,7 @@
       <p>
         The above code produces the reduced row-echelon form of the augmented matrix for our system.
         Do you remember how to get the answer from here? Here's another approach.
-      </p>      
+      </p>
 
       <sage>
         <input>
@@ -533,32 +532,32 @@
         but it's essentially the same once we set it up.
       </p>
 
-      <example>
+      <exercise>
         <statement>
           <p>
             Determine whether <m>p(x)=1+x+4x^2</m> belongs to
             <m>\spn{1+2x-x^2,3+5x+2x^2}</m>.
           </p>
         </statement>
-        <solution>
-          <p>
-            We seek scalars <m>s,t</m> such that
-            <me>
-              s(1+2x-2x^2)+t(3+5x+2x^2)=1+x+4x^2
-            </me>.
-            On the left-hand side, we expand and gather terms:
-            <me>
-              (s+3t)+(2s+5t)x+(-2s+2t)x^2 = 1+x+4x^2
-            </me>.
-            These two polynomials are equal if and only if we can solve the system
-            <md>
-              <mrow>s+3t \amp = 1 </mrow>
-              <mrow>2s+5t \amp =1</mrow>
-              <mrow> -2s+2t \amp =4</mrow>
-            </md>.
-          </p>
-        </solution>
-      </example>
+      </exercise>
+
+      <p>
+        We seek scalars <m>s,t</m> such that
+        <me>
+          s(1+2x-2x^2)+t(3+5x+2x^2)=1+x+4x^2
+        </me>.
+        On the left-hand side, we expand and gather terms:
+        <me>
+          (s+3t)+(2s+5t)x+(-2s+2t)x^2 = 1+x+4x^2
+        </me>.
+        These two polynomials are equal if and only if we can solve the system
+        <md>
+          <mrow>s+3t \amp = 1 </mrow>
+          <mrow>2s+5t \amp =1</mrow>
+          <mrow> -2s+2t \amp =4</mrow>
+        </md>.
+      </p>
+
       <p>
         We can solve this computationally using matrices again.
       </p>
@@ -580,9 +579,107 @@
         <input>
           a, b, c = symbols('a b c', real = True, constant = True)
           N = Matrix(3,3,[1,3,a,2,5,b,-2,2,c])
-          N.rref()
+          N
         </input>
       </sage>
+
+      <p>
+        Asking the computer to reduce this matrix won't produce the desired result.
+        (Maybe someone can figure out how to define the constants in a way that works?)
+        But we can always specify row operations.
+      </p>
+
+      <sage>
+        <input>
+          N1 = N.elementary_row_operation(op='n->n+km',row1=1,row2=0,k=-2)
+          N1
+        </input>
+      </sage>
+
+      <p>
+        Now we repeat. Here are two more empty cells to work with:
+      </p>
+
+      <sage>
+
+      </sage>
+      <sage>
+
+      </sage>
+    </section>
+
+    <section xml:id="sec-independence">
+      <title>Linear Independence</title>
+
+      <p>
+        In any vector space <m>V</m>, we say that a set of vectors
+        <me>
+          \{\vec{v}_1,\ldots,\vec{v}_2\}
+        </me>
+        is <term>linearly independent</term> if for any scalars <m>c_1,\ldots, c_k</m>
+        <me>
+          c_1\vec{v}_1+\cdots + c_k\vec{v}_k = \vec{0} \quad\Rightarrow\quad c_1=\cdots = c_k=0
+        </me>.
+      </p>
+
+      <p>
+        Computationally, questions about linear independence are just questions
+        about homogeneous systems of linear equations.
+        For example, suppose we want to know if the vectors
+        <me>
+          \vec{u}=\bbm 1\\-1\\4\ebm, \vec{v}=\bbm 0\\2\\-3\ebm, \vec{w}=\bbm 4\\0\\-3\ebm
+        </me>
+        are linearly independent in <m>\mathbb{R}^3</m>.
+        This question leads to the vector equation
+        <me>
+          x\vec{u}+y\vec{v}+z\vec{w}=\vec{0}
+        </me>,
+        which becomes the matrix equation
+        <me>
+          \bbm 1&0&4\\-1&2&0\\4&-3&-3\ebm\bbm x\\y\\z\ebm = \bbm 0\\0\\0\ebm
+        </me>.
+      </p>
+
+      <p>
+        We now apply some basic theory from linear algebra.
+        A unique (and therefore, trivial) solution to this system is guaranteed if the matrix
+        <m>A = \bbm 1&0&4\\-1&2&0\\4&-3&-3\ebm</m> is invertible,
+        since in that case we have <m>\bbm x\\y\\z\ebm = A^{-1}\vec{0} = \vec{0}</m>.
+      </p>
+
+      <p>
+        This approach is problematic, however, since it won't work if we have 2 vectors, or 4.
+        Instead, we look at the reduced row-echelon form.
+        A unique solution corresponds to having a leading 1 in each column of <m>A</m>.
+        Let's check this condition.
+      </p>
+
+      <sage>
+        <input>
+          from sympy import *
+          init_printing()
+        </input>
+      </sage>
+
+      <sage>
+        <input>
+          A = Matrix(3,3,[1,0,4,-1,2,0,4,-3,-3])
+          A.rref()
+        </input>
+      </sage>
+
+      <p>
+        One observation is useful here, and will lead to a better understanding of independence.
+        First, it would be impossible to have 4 or more linearly independent vectors in <m>\mathbb{R}^3</m>.
+        Why? (How many leading ones can you have in a <m>3\times 4</m> matrix?)
+        Second, having two or fewer vectors makes it more likely that the set is independent.
+      </p>
+
+      <p>
+        The largest set of linearly independent vectors possible in <m>\mathbb{R}^3</m> contains three vectors.
+        You might have also observed that the smallest number of vectors needed to span <m>\mathbb{R}^3</m> is 3.
+        Hmm. Seems like there's something interesting going on here.
+      </p>
     </section>
   </article>
 </pretext>
