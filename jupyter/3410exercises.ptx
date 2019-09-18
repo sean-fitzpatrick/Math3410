@@ -9,6 +9,7 @@
       \newcommand{\spn}[1]{\operatorname{span}\mathopen{}\left\{#1\mathclose{}\right\}}
       \newcommand{\bbm}{\begin{bmatrix}}
       \newcommand{\ebm}{\end{bmatrix}}
+      \newcommand{\R}{\mathbb{R}}
     </macros>
   </docinfo>
   <article xml:id="linalg_jupyter">
@@ -607,6 +608,50 @@
       <sage>
 
       </sage>
+
+      <p>
+        We end this section with a few non-computational, but useful results,
+        which will be left as exercises to be done in class, or by the reader.
+      </p>
+
+      <exercise>
+        <statement>
+          <p>
+            Let <m>V</m> be a vector space, and let <m>X,Y\subseteq V</m>.
+            Show that if <m>X\subseteq Y</m>, then <m>\spn X \subseteq \spn Y</m>.
+          </p>
+        </statement>
+      </exercise>
+
+      <exercise>
+        <statement>
+          <p>
+            Can <m>\{(1,2,0), (1,1,1)</m> span <m>\{(a,b,0)\,|\, a,b \in\R\}</m>?
+          </p>
+        </statement>
+      </exercise>
+
+      <theorem xml:id="theorem-surplus-span">
+        <statement>
+          <p>
+            Let <m>V</m> be a vector space, and let <m>\vec{v}_1,\ldots, \vec{v}_k\in V</m>.
+            If <m>\vec{u}\in \spn\{\vec{v}_1,\ldots, \vec{v}_k\}</m>, then
+            <me>
+              \spn\{\vec{u},\vec{v}_1,\ldots, \vec{v}_k\} = \spn\{\vec{v}_1,\ldots, \vec{v}_k\}
+            </me>.
+          </p>
+        </statement>
+      </theorem>
+
+      <p>
+        The moral of <xref ref="theorem-surplus=span">Theorem</xref>
+        is that one vector in a set is a linear combination of the others,
+        we can remove it from the set without affecting the span.
+        This suggests that we might want to look for the most <q>efficient</q>
+        spanning sets <ndash /> those in which no vector in the set can be written in terms of the others.
+        Such sets are called <term>linearly independent</term>,
+        and they are the subject of <xref ref="sec-independence">Section</xref>.
+      </p>
     </section>
 
     <section xml:id="sec-independence">
@@ -621,6 +666,44 @@
         <me>
           c_1\vec{v}_1+\cdots + c_k\vec{v}_k = \vec{0} \quad\Rightarrow\quad c_1=\cdots = c_k=0
         </me>.
+      </p>
+
+      <p>
+        This means that no vector in the set can be written as a linear combination of the other vectors in that set.
+        We will soon see that when looking for vectors that span a subspace,
+        it is especially useful to find a spanning set that is also linearly independent.
+        The following lemma establishes some basic properties of independent sets.
+      </p>
+
+      <lemma>
+        <statement>
+          <p>
+            In any vector space <m>V</m>:
+            <ol>
+              <li>
+                <p>
+                  If <m>\vec{v}\neq\vec{0}</m>, then <m>\{\vec{v}\}</m> is indenpendent.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If <m>S\subseteq V</m> contains the zero vector, then <m>S</m> is dependent.
+                </p>
+              </li>
+            </ol>
+          </p>
+        </statement>
+      </lemma>
+
+      <p>
+        The definition of linear independence tells us that if <m>\{\vec{v}_1,\ldots, \vec{v}_k\}</m>
+        is an independent set of vectors, then there is only one way to write <m>\vec{0}</m>
+        as a linear combination of these vectors; namely,
+        <me>
+          \vec{0} = 0\vec{v}_1+0\vec{v}_2+\cdots +0\vec{v_k}
+        </me>.
+        In fact, more is true: <em>any</em> vector in the span of a linearly independent set
+        can be written in only one way as a linear combination of those vectors.
       </p>
 
       <p>
@@ -680,6 +763,33 @@
         The largest set of linearly independent vectors possible in <m>\mathbb{R}^3</m> contains three vectors.
         You might have also observed that the smallest number of vectors needed to span <m>\mathbb{R}^3</m> is 3.
         Hmm. Seems like there's something interesting going on here. But first, some more computation.
+      </p>
+
+      <exercise>
+        <statement>
+          <p>
+            Determine whether the set <m>\left\{\bbm 1\\2\\0\ebm, \bbm -1\\0\\3\ebm,\bbm -1\\4\\9\ebm\right\}</m>
+            is linearly independent in <m>\R^3</m>.
+          </p>
+        </statement>
+      </exercise>
+
+      <p>
+        Again, we set up a matrix and reduce:
+      </p>
+
+      <sage>
+        <input>
+          A = Matrix(3,3,[1,-1,-1,2,0,4,0,3,9])
+          A.rref()
+        </input>
+      </sage>
+
+      <p>
+        Notice that this time we don't get a unique solution, so we can conclude that these vectors are <em>not</em> independent.
+        Furthermore, you can probably deduce from the above that we have <m>2\vec{v}_1+3\vec{v}_2-\vec{v}_3=\vec{0}</m>.
+        Now suppose that <m>\vec{w}\in\spn\{\vec{v}_1,\vec{v}_2,\vec{v}_3\}</m>.
+        In how many ways can we write <m>\vec{w}</m> as a linear combination of these vectors?
       </p>
 
       <exercise>
@@ -758,9 +868,88 @@
           <mrow>\bbm -a+b+c\amp -b+c-d\\-b+c-d\amp -a+b+c\ebm = \bbm 0\amp 0\\0\amp 0\ebm</mrow>
         </md>.
       </p>
-      We could proceed, but we might instead notice right away that equations 1 and 4 are identical,
-      and so are equations 2 and 3.
-      With only two distinct equations and 4 unknowns, we're certain to find nontrivial solutions.
+
+      <p>
+        We could proceed, but we might instead notice right away that equations 1 and 4 are identical,
+        and so are equations 2 and 3.
+        With only two distinct equations and 4 unknowns, we're certain to find nontrivial solutions.
+      </p>
+
+      <p>
+        Next, we establish an important result, sometimes known as the <q>Fundamental Theorem</q>:
+      </p>
+
+      <theorem xml:id="theorem-steinitz">
+        <title>Steinitz Exchange Lemma</title>
+        <statement>
+          <p>
+            Suppose <m>V = \spn\{\vec{v}_1,\ldots, \vec{v}_n\}</m>.
+            If <m>\{\vec{w}_1,\ldots, \vec{w}_m\}</m> is a linearly independent set of vectors in <m>V</m>,
+            then <m>m\leq n</m>.
+          </p>
+        </statement>
+      </theorem>
+
+      <p>
+        If a set of vectors spans a vector space <m>V</m>, and it is not independent,
+        we observed that it is possible to remove a vector from the set and still span <m>V</m>.
+        This suggests that spanning sets that are also linearly independent are of particular importance,
+        and indeed, they are important enough to have a name.
+      </p>
+
+      <definition xml:id="def-basis">
+        <statement>
+          <p>
+            Let <m>V</m> be a vector space. A set <m>\mathcal{B}=\{\vec{e}_1,\ldots, \vec{e}_n\}</m>
+            is called a <term>basis</term> of <m>V</m> if <m>\mathcal{B}</m> is linearly independent,
+            and <m>\spn\mathcal{B} = V</m>.
+          </p>
+        </statement>
+      </definition>
+
+      <p>
+        The importance of a basis is that vector vector <m>\vec{v}\in V</m> can be written in terms of the basis,
+        and this expression as a linear combination of basis vectors is <em>unique</em>.
+        Another important fact is that every basis has the same number of elements.
+      </p>
+
+      <theorem xml:id="thm-invariance">
+        <title>Invariance Theorem</title>
+
+        <statement>
+          <p>
+            If <m>\{\vec{e}_1,\ldots, \vec{e}_n\}</m> and <m>\{\vec{f}_1,\ldots, \vec{f}_m\}</m>
+            are both bases of a vector space <m>V</m>, then <m>m=n</m>.
+          </p>
+        </statement>
+      </theorem>
+
+      <p>
+        Suppose <m>V=\spn\{\vec{v}_1,\ldots,\vec{v}_n\}</m>.
+        If this set is not linearly independent, <xref ref="theorem-surplus-span">Theorem</xref>
+        tells us that we can remove a vector from the set, and still span <m>V</m>.
+        We can repeat this procedure until we have a linearly independent set of vectors, which will then be a basis.
+        These results let us make a definition.
+      </p>
+
+      <definition xml:id="def-dimension">
+        <statement>
+          <p>
+            Let <m>V</m> be a vector space.
+            If <m>V</m> can be spanned by a finite number of vectors,
+            then we call <m>V</m> a <term>finite-dimensional</term> vector space.
+            If <m>V</m> is finite-dimensional (and non-trivial), and <m>\{\vec{e}_1,\ldots, \vec{e}_n\}</m>
+            is a basis of <m>V</m>, we say that <m>V</m> has <term>dimension</term> <m>n</m>,
+            and write
+            <me>
+              \dim V = n
+            </me>.
+            If <m>V</m> cannot be spanned by finitely many vectors, we say that <m>V</m>
+            is <term>infinite-dimensional</term>.
+          </p>
+        </statement>
+      </definition>
+
     </section>
   </article>
 </pretext>
