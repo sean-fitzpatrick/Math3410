@@ -4,7 +4,7 @@
 
 <pretext>
   <docinfo>
-    <rename element="inlineexercise">Example</rename>
+    <rename element="inlineexercise">Exercise</rename>
     <macros>
       \newcommand{\spn}[1]{\operatorname{span}\mathopen{}\left\{#1\mathclose{}\right\}}
       \newcommand{\bbm}{\begin{bmatrix}}
@@ -635,16 +635,16 @@
         <statement>
           <p>
             Let <m>V</m> be a vector space, and let <m>\vec{v}_1,\ldots, \vec{v}_k\in V</m>.
-            If <m>\vec{u}\in \spn\{\vec{v}_1,\ldots, \vec{v}_k\}</m>, then
+            If <m>\vec{u}\in \spn{\vec{v}_1,\ldots, \vec{v}_k}</m>, then
             <me>
-              \spn\{\vec{u},\vec{v}_1,\ldots, \vec{v}_k\} = \spn\{\vec{v}_1,\ldots, \vec{v}_k\}
+              \spn{\vec{u},\vec{v}_1,\ldots, \vec{v}_k} = \spn{\vec{v}_1,\ldots, \vec{v}_k}
             </me>.
           </p>
         </statement>
       </theorem>
 
       <p>
-        The moral of <xref ref="theorem-surplus=span">Theorem</xref>
+        The moral of <xref ref="theorem-surplus-span">Theorem</xref>
         is that one vector in a set is a linear combination of the others,
         we can remove it from the set without affecting the span.
         This suggests that we might want to look for the most <q>efficient</q>
@@ -788,7 +788,7 @@
       <p>
         Notice that this time we don't get a unique solution, so we can conclude that these vectors are <em>not</em> independent.
         Furthermore, you can probably deduce from the above that we have <m>2\vec{v}_1+3\vec{v}_2-\vec{v}_3=\vec{0}</m>.
-        Now suppose that <m>\vec{w}\in\spn\{\vec{v}_1,\vec{v}_2,\vec{v}_3\}</m>.
+        Now suppose that <m>\vec{w}\in\spn{\vec{v}_1,\vec{v}_2,\vec{v}_3}</m>.
         In how many ways can we write <m>\vec{w}</m> as a linear combination of these vectors?
       </p>
 
@@ -883,7 +883,7 @@
         <title>Steinitz Exchange Lemma</title>
         <statement>
           <p>
-            Suppose <m>V = \spn\{\vec{v}_1,\ldots, \vec{v}_n\}</m>.
+            Suppose <m>V = \spn{\vec{v}_1,\ldots, \vec{v}_n}</m>.
             If <m>\{\vec{w}_1,\ldots, \vec{w}_m\}</m> is a linearly independent set of vectors in <m>V</m>,
             then <m>m\leq n</m>.
           </p>
@@ -902,7 +902,7 @@
           <p>
             Let <m>V</m> be a vector space. A set <m>\mathcal{B}=\{\vec{e}_1,\ldots, \vec{e}_n\}</m>
             is called a <term>basis</term> of <m>V</m> if <m>\mathcal{B}</m> is linearly independent,
-            and <m>\spn\mathcal{B} = V</m>.
+            and <m>\operatorname{span}\mathcal{B} = V</m>.
           </p>
         </statement>
       </definition>
@@ -925,7 +925,7 @@
       </theorem>
 
       <p>
-        Suppose <m>V=\spn\{\vec{v}_1,\ldots,\vec{v}_n\}</m>.
+        Suppose <m>V=\spn{\vec{v}_1,\ldots,\vec{v}_n}</m>.
         If this set is not linearly independent, <xref ref="theorem-surplus-span">Theorem</xref>
         tells us that we can remove a vector from the set, and still span <m>V</m>.
         We can repeat this procedure until we have a linearly independent set of vectors, which will then be a basis.
@@ -950,6 +950,63 @@
         </statement>
       </definition>
 
+      <exercise>
+        <statement>
+          <p>
+            Find a basis for <m>U=\{X\in M_{22} \,|\, XA = AX\}</m>, if <m>A = \bbm 1\amp 1\\0\amp 0\ebm</m>
+          </p>
+        </statement>
+      </exercise>
+
+      <exercise>
+        <statement>
+          <p>
+            Show that the following are bases of <m>\R^3</m>:
+            <ul>
+              <li><m>\{(1,1,0),(1,0,1),(0,1,1)\}</m></li>
+              <li><m>\{(-1,1,1),(1,-1,1),(1,1,,-1)</m></li>
+            </ul>
+          </p>
+        </statement>
+      </exercise>
+
+      <exercise>
+        <statement>
+          <p>
+            Show that the following is a basis of <m>M_{22}</m>:
+            <me>
+              \left\{\bbm 1\amp 0\\0\amp 1\ebm, \bbm 0\amp 1\\1\amp 0\ebm, \bbm 1\amp 1\\0\amp 1\ebm, \bbm 1\amp 0\\0\amp 0\ebm\right\}
+            </me>.
+          </p>
+        </statement>
+      </exercise>
+
+      <exercise>
+        <statement>
+          <p>
+            Show that <m>\{1+x,x+x^2,x^2+x^3,x^3\}</m> is a basis for <m>P_3</m>.
+          </p>
+        </statement>
+      </exercise>
+
+      <exercise>
+        <statement>
+          <p>
+            Find a basis and dimension for the following subpaces of <m>P_2</m>:
+            <ol label='a'>
+              <li>
+                <m>U_1 = \{a(1+x)+b(x+x^2)\,|\, a,b\in\R\}</m>
+              </li>
+              <li>
+                <m>U_2=\{p(x)\in P_2 \,|\, p(1)=0\}</m>
+              </li>
+              <li>
+                <m>U_3 = \{p(x)\in P_2 \,|\, p(x)=p(-x)\}</m>
+              </li>
+            </ol>
+          </p>
+        </statement>
+      </exercise>
     </section>
   </article>
 </pretext>
