@@ -1076,6 +1076,7 @@
                   letting us conclude that <m>\dim U_3=2</m>.
                 </p>
               </li>
+            </ol>
           </p>
         </solution>
       </exercise>
@@ -1388,12 +1389,120 @@
               </me>.
             </p>
           </statement>
-          </proof>
+
         </theorem>
 
         <p>
           If the sum is direct, then we have simply <m>\dim(U\oplus W) = \dim U + \dim W</m>.
+          The other reason why direct sums are preferable, is that any <m>\vec{v}\in U\oplus W</m>
+          can be written <em>uniquely</em> as <m>\vec{v}=\vec{u}+\vec{w}</m>
+          where <m>\vec{U}\in U</m> and <m>\vec{w}\in W</m>.
         </p>
+
+        <theorem xml:id="thm-direct-sum">
+          <statement>
+            <p>
+              For any subspaces <m>U,W</m> of a vector space <m>V</m>,
+              <m>U\cap W = \{\vec{0}\}</m> if and only if for every <m>\vec{v}\in U+W</m>
+              there exist unique <m>\vec{u}\in U, \vec{w}\in W</m> such that <m>\vec{v}=\vec{u}+\vec{w}</m>.
+            </p>
+          </statement>
+          <proof>
+            <p>
+              Suppose that <m>U\cap W = \{\vec{0}\}</m>, and suppose that we have
+              <m>\vec{v} = \vec{u}_1+\vec{w}_1 = \vec{u}_2+\vec{w}_2</m>,
+              for <m>\vec{u}_1,\vec{u}_2\in U,\vec{w}_1,\vec{w}_2\in W</m>.
+              Then <m>\vec{0}=(\vec{u}_1-\vec{u}_2)+(\vec{w}_1-\vec{w}_2)</m>,
+              which implies that
+              <me>
+                \vec{w}_1-\vec{w}_2 = -(\vec{u}_1-\vec{u}_2)
+              </me>.
+              Now, <m>\vec{u}=\vec{u}_1-\vec{u}_2\in U</m>,
+              since <m>U</m> is a subspace, and similarly,
+              <m>\vec{w}=\vec{w}_1-\vec{w}_2\in W</m>.
+              But we also have <m>\vec{w}=-\vec{u}</m>, which implies that <m>\vec{w}\in U</m>.
+              Therefore, <m>\vec{w}\in U\cap W</m>, which implies that <m>\vec{w}=\vec{0}</m>,
+              so <m>\vec{w}_1=\vec{w}_2</m>.
+              But we must also then have <m>\vec{u}=\vec{0}</m>, so <m>\vec{u}_1=\vec{u}_2</m>.
+            </p>
+
+            <p>
+              Conversely, suppose that every <m>\vec{v}\in U+W</m> can be written uniquely as <m>\vec{v}=vec{u}+\vec{w}</m>,
+              with <m>\vec{u}\in U</m> and <m>\vec{w}\in W</m>. Suppose that <m>\vec{a}\in U\cap W</m>.
+              Then <m>\vec{a}\in U</m> and <m>\vec{a}\in W</m>, so we also have <m>-\vec{a}\in W</m>,
+              since <m>W</m> is a subspace.
+              But then <m>\vec{0}=\vec{a}+(-\vec{a})</m>, where <m>\vec{a}\in U</m> and <m>-\vec{a}\in W</m>.
+              On the other hand, <m>\vec{0}=\vec{0}+\vec{0}</m>,
+              and <m>\vec{0}</m> belongs to both <m>U</m> and <m>W</m>. It follows that <m>\vec{a}=\vec{0}</m>.
+              Since <m>\vec{a}</m> was arbitrary, <m>U\cap W = \{\vec{0}\}</m>.
+            </p>
+          </proof>
+
+        </theorem>
+
+        <p>
+          We end with one last application of the theory we've developed on the existence of a basis for a finite-dimensional vector space.
+          As we continue on to later topics, we'll find that it is often useful to be able to decompose a vector space into a direct sum of subspaces.
+          Using bases, we can show that this is always possible.
+        </p>
+
+        <theorem xml:id="thm-construct-complement">
+          <statement>
+            <p>
+              Let <m>V</m> be a finite-dimensonal vector space, and let <m>U</m> be any subspace of <m>V</m>.
+              Then there exists a subspace <m>W\subseteq V</m> such that <m>U\oplus W = V</m>.
+            </p>
+          </statement>
+          <proof>
+            <p>
+              Let <m>\{\vec{u}_1,\ldots, \vec{u}_m\}</m> be a basis of <m>U</m>.
+              Since <m>U\subseteq W</m>, the set <m>\{\vec{u}_1,\ldots, \vec{u}_m\}</m>
+              is a linearly independent subset of <m>V</m>.
+              Since any linearly independent set can be extended to a basis of <m>V</m>,
+              there exist vectors <m>\vec{w}_1,\ldots,\vec{w}_n</m> such that
+              <me>
+                \{\vec{u}_1,\ldots, \vec{u}_m,\vec{w}_1,\ldots, \vec{w}_n\}
+              </me>
+              is a basis of <m>V</m>.
+            </p>
+
+            <p>
+              Now, let <m>W = \spn\{\vec{w}_1,\ldots, \vec{w}_n\}</m>.
+              Then <m>W</m> is a subspace, and <m>\{\vec{w}_1,\ldots, \vec{w}_n\}</m>
+              is a basis for <m>W</m>. (It spans, and must be independent since it's a subset of an independent set.)
+            </p>
+
+            <p>
+              Clearly, <m>U+W=V</m>, since <m>U+W</m> contains the basis for <m>V</m> we've constructed.
+              To show the sum is direct, it suffices to show that <m>U\cap W = \{\vec{0}\}</m>.
+              To that end, suppose that <m>\vec{v}\in U\cap W</m>.
+              Since <m>\vec{v}\in U</m>, we have
+              <me>
+                \vec{v}=a_1\vec{u}_1+\cdots +a_m\vec{u}_m
+              </me>
+              for scalars <m>a_1,\ldots, a_m</m>. Since <m>\vec{v}\in W</m>, we can write
+              <me>
+                \vec{v}=b_1\vec{w}_1+\cdots + b_n\vec{w}_n
+              </me>
+              for scalars <m>b_1,\ldots, b_n</m>. But then
+              <me>
+                \vec{0}=\vec{v}-\vec{v}=a_1\vec{u}_1+\cdots a_m\vec{u}_m-b_1\vec{w}_1-\cdots -b_n\vec{w}_n.
+              </me>
+              Since <m>\{\vec{u}_1,\ldots, \vec{u}_m,\vec{w}_1,\ldots, \vec{w}_n\}</m> is a basis for <m>V</m>,
+              it's independent, and therefore, all of the <m>a_i,b_j</m> must be zero, and therefore, <m>\vec{v}=\vec{0}</m>.
+
+            </p>
+          </proof>
+
+          <p>
+            The subspace <m>W</m> constructed in the theorem above is called a <term>complement</term> of <m>U</m>.
+            It is not unique; indeed, it depends on the choice of basis vectors.
+            For example, if <m>U</m> is a one-dimensional subspace of <m>\R^2</m>; that is, a line,
+            then any other non-parallel line through the origin provides a complement of <m>U</m>.
+            Later we will see that an especially useful choice of complement is the <term>orthogonal complement</term>.
+          </p>
+        </theorem>
+
       </paragraphs>
 
 
