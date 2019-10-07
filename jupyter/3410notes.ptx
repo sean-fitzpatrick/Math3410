@@ -10,6 +10,7 @@
       \newcommand{\bbm}{\begin{bmatrix}}
       \newcommand{\ebm}{\end{bmatrix}}
       \newcommand{\R}{\mathbb{R}}
+      \newcommand{\Img}{\operatorname{im}}
     </macros>
   </docinfo>
   <book xml:id="linalg-notes-with-computations">
@@ -446,7 +447,9 @@
     <section xml:id="sec-vec-sp">
       <title>Abstract vector spaces</title>
 
-      (To Do)
+      <p>
+        (To Do)
+      </p>
     </section>
 
     <section xml:id="sec-span">
@@ -1502,14 +1505,16 @@
             </p>
           </proof>
 
-          <p>
-            The subspace <m>W</m> constructed in the theorem above is called a <term>complement</term> of <m>U</m>.
-            It is not unique; indeed, it depends on the choice of basis vectors.
-            For example, if <m>U</m> is a one-dimensional subspace of <m>\R^2</m>; that is, a line,
-            then any other non-parallel line through the origin provides a complement of <m>U</m>.
-            Later we will see that an especially useful choice of complement is the <term>orthogonal complement</term>.
-          </p>
+
         </theorem>
+
+        <p>
+          The subspace <m>W</m> constructed in the theorem above is called a <term>complement</term> of <m>U</m>.
+          It is not unique; indeed, it depends on the choice of basis vectors.
+          For example, if <m>U</m> is a one-dimensional subspace of <m>\R^2</m>; that is, a line,
+          then any other non-parallel line through the origin provides a complement of <m>U</m>.
+          Later we will see that an especially useful choice of complement is the <term>orthogonal complement</term>.
+        </p>
 
       </paragraphs>
 
@@ -1542,6 +1547,7 @@
       </introduction>
       <section xml:id="sec-lin-tran-intro">
         <title>Definition and examples</title>
+
         <p>
           Let <m>V</m> and <m>W</m> be vector spaces. At their most basic,
           all vector spaces are sets. Given any two sets, we can consider functions from one to the other.
@@ -1641,7 +1647,7 @@
         </theorem>
 
 
-        <example>
+        <example xml:id="ex-matrix-trans">
           <statement>
             <p>
               Let <m>V=\R^n</m> and let <m>W=\R^m</m>.
@@ -1680,6 +1686,327 @@
             </p>
           </statement>
         </example>
+
+        <p>
+          Let's look at some other examples of linear transformations.
+          <ul>
+            <li>
+              <p>
+                For any vector spaces <m>V,W</m> we can define the <term>zero transformation</term> <m>0:V\to W</m>
+                by <m>0(\vec{v})=\vec{0}</m> for all <m>\vec{v}\in V</m>.
+              </p>
+            </li>
+            <li>
+              <p>
+                On any vector space <m>V</m> we have the <term>identity transformation</term>
+                <m>1_V:V\to V</m> defined by <m>1_V(\vec{v})=\vec{v}</m> for all <m>\vec{v}\in V</m>.
+              </p>
+            </li>
+            <li>
+              <p>
+                Let <m>V = F[a,b]</m> be the space of all functions <m>f:[a,b]\to \R</m>.
+                For any <m>c\in [a,b]</m> we have the <term>evaluation map</term>
+                <m>E_a: V\to \R</m> defined by <m>E_a(f) = f(a)</m>.
+              </p>
+
+              <p>
+                To see that this is linear, note that <m>E_a(0)=\mathbf{0}(a)=0</m>,
+                where <m>mathbf{0}</m> denotes the zero function;
+                for any <m>f,g\in V</m>,
+                <me>
+                  E_a(f+g)=(f+g)(a)=f(a)+g(a)=E_a(f)+E_a(g)
+                </me>,
+                 and for any scalar <m>c\in \R</m>,
+                 <me>
+                   E_a(cf) = (cf)(a) = c(f(a))=cE_a(f)
+                 </me>.
+              </p>
+
+              <p>
+                Note that the evaluation map can similarly be defined as a linear transformation on any vector space of polynomials.
+              </p>
+            </li>
+
+            <li>
+              <p>
+                On the vector space <m>C[a,b]</m> of all <em>continuous</em> functions on <m>[a,b]</m>,
+                we have the integration map <m>I:C[a,b]\to \R</m> defined by
+                <m>I(f)=\int_a^b f(x)\,dx</m>. The fact that this is a linear map follows from properties of integrals proved in a calculus class.
+              </p>
+            </li>
+
+            <li>
+              <p>
+                On the vector space <m>C^1(a,b)</m> of continuously differentiable functions on <m>(a,b)</m>,
+                we have the differentiation map <m>D: C^1(a,b)\to C(a,b)</m> defined by
+                <m>D(f) = f'</m>. Again, linearity follows from properties of the derivative.
+              </p>
+            </li>
+
+            <li>
+              <p>
+                Let <m>\R^\infty</m> denote the set of sequences <m>(a_1,a_2,a_3,\ldots)</m> of real numbers,
+                with term-by-term addition and scalar multiplication.
+                The shift operators
+                <md>
+                  <mrow>S_L(a_1,a_2,a_3,\ldots)  \amp = (a_2,a_3,a_4,\ldots) </mrow>
+                  <mrow>S_R(a_1,a_2,a_3,\ldots) \amp = (0,a_1,a_2,\ldots)</mrow>
+                </md>
+                are both linear.
+              </p>
+            </li>
+
+            <li>
+              <p>
+                On the space <m>M_{mn}(\R)</m> of <m>m\times n</m> matrices,
+                the trace defines a linear map <m>\operatorname{tr}:M_{mn}(\R)\to \R</m>,
+                and the transpose defines a linear map <m>T:M_{mn}(\R)\to M_{nm}(\R)</m>.
+                The determinant and inverse operations on <m>M_{nn}</m> are <em>not</em> linear.
+              </p>
+            </li>
+          </ul>
+        </p>
+
+        <p>
+          For finite-dimensional vector spaces, it is often convenient to work in terms of a basis.
+          The properties of a linear transformation tell us that we can completely define any linear transformation by giving its values on a basis.
+          In fact, it's enough to know the value of a transformation on a spanning set.
+          The argument given in <xref ref="ex-matrix-trans"/> can be applied to any linear transformation, to obtain the following result.
+        </p>
+
+        <theorem xml:id="thm-agree-span">
+          <statement>
+            <p>
+              Let <m>T:V\to W</m> and <m>S:V\to W</m> be two linear transformations.
+              If <m>V = \spn\{\vec{v}_1,\ldots, \vec{v}_n</m> and <m>T(\vec{v}_i)=S(\vec{v}_i)</m>
+              for each <m>i=1,2,\ldots, n</m>, then <m>T=S</m>.
+            </p>
+          </statement>
+        </theorem>
+
+        <p>
+          If the above spanning set is not also independent,
+          then one might be concerned about the fact that there will be more than one way to express a vector as linear combination of vectors in that set.
+          If we define <m>T</m> by giving its values on a spanning set, will it be well-defined?
+          Suppose that we have scalars <m>a_1,\ldots, a_n, b_1,\ldots, b_n</m> such that
+          <md>
+            <mrow>\vec{v} \amp a_1\vec{v_1}+\cdots + a_n\vec{v}_n</mrow>
+            <mrow> \amp b_1\vec{v}_1+\cdots + b_n\vec{v}_n</mrow>
+          </md>
+          We then have
+          <md>
+            <mrow>a_1T(\vec{v}_1)+\cdots + a_nT(\vec{v}_n) \amp T(a_1\vec{v}_1+\cdots + a_n\vec{v}_n) </mrow>
+            <mrow> \amp T(b_1\vec{v}_1+\cdots +b_n\vec{v}_n)</mrow>
+            <mrow>  \amp b_1T(\vec{v}_1)+\cdots +b_nT(\vec{v}_n)</mrow>
+          </md>.
+          The next theorem seems like an obvious consequence of the above,
+          and indeed, one might wonder where the assumption of a basis is needed.
+          The distinction here is that the vectors <m>\vec{w}_1,\ldots, \vec{w}_n\in W</m>
+          are chosen in advance, and then we set <m>T(vec{b}_i)=\vec{w}_i</m>,
+          rather than simply defining each <m>\vec{w}_i</m> as <m>T(\vec{b}_i)</m>.
+        </p>
+
+        <theorem xml:id="thm-define-using-basis">
+          <statement>
+            <p>
+              Let <m>V,W</m> be vector spaces. Let <m>B=\{\vec{b}_1,\ldots, \vec{b}_n\}</m>
+              be a basis of <m>V</m>, and let <m>\vec{w}_1,\ldots, \vec{w}_n</m> be any vectors in <m>W</m>.
+              (These vectors need not be distinct.)
+              Then there exists a unique linear transformation <m>T:V\to W</m> such that
+              <m>T(\vec{b}_i)=\vec{w}_i</m> for each <m>i=1,2,\ldots, n</m>; indeed,
+              we can define <m>T</m> as follows:
+              given <m>\vec{v}\in V</m>, write <m>\vec{v}=c_1\vec{v}_1+\cdots +c_n\vec{v}_n</m>. Then
+              <me>
+                T(\vec{v})=T(c_1\vec{v}_1+\cdots + c_n\vec{v}_n) = c_1\vec{w}_1+\cdots +c_n\vec{v}_n
+              </me>.
+            </p>
+          </statement>
+        </theorem>
+
+        <p>
+          With the basic theory out of the way, let's look at a few basic examples.
+        </p>
+
+        <exercise>
+          <statement>
+            <p>
+              Suppose <m>T:\R^2\to \R^2</m> is a linear transformation.
+              If <m>T\bbm 1\\0\ebm = \bbm 3\\-4\ebm</m> and <m>T\bbm 0\\1\ebm =\bbm 5\\2\ebm</m>,
+              find <m>T=\bbm -2\\4\ebm</m>.
+            </p>
+          </statement>
+          <solution>
+            <p>
+              Since we know the value of <m>T</m> on the standard basis,
+              we can use properties of linear transformations to immediately obtain the answer:
+              <md>
+                <mrow>T\bbm -2\\4\ebm \amp= T\left(-2\bbm 1\\0\ebm +4\bbm 0\\1\ebm\right)</mrow>
+                <mrow> \amp = -2T\bbm1\\0\ebm+4T\bbm 0\\1\ebm</mrow>
+                <mrow> \amp = -2\bbm 3\\-4\ebm +4\bbm 5\\2\ebm</mrow>
+                <mrow> \amp = \bbm 14\\16\ebm</mrow>
+              </md>.
+            </p>
+          </solution>
+        </exercise>
+
+        <exercise>
+          <statement>
+            <p>
+              Suppose <m>T:\R^2\to \R^2</m> is a linear tranasformation.
+              Given that <m>T\bbm 3\\1\ebm = \bbm 1\\4\ebm</m>
+              and <m>T\bbm 2\\-5\ebm = \bbm 2\\-1\ebm</m>,
+              find <m>T\bbm 4\\3\ebm</m>.
+            </p>
+          </statement>
+          <solution>
+            <p>
+              At first, this example looks the same as the one above,
+              and to some extent, it is. The difference is that this time,
+              we're given the values of <m>T</m> on a basis that is not the standard one.
+              This means we first have to do some work to determine how to write the given vector in terms of the given basis.
+            </p>
+
+            <p>
+              Suppose we have <m>a\bbm 3\\1\ebm+b\bbm 2\\-5\ebm = \bbm 4\\3\ebm</m>
+              for scalars <m>a,b</m>. This is equivalent to the matrix equation
+              <me>
+                \bbm 3\amp 2\\1\amp -5\ebm\bbm a\\b\ebm = \bbm 4\\3\ebm.
+              </me>
+              Solving (perhaps using the code cell below), we get <m>a=\frac{26}{17}, b = -\frac{5}{17}</m>.
+              Therefore,
+              <me>
+                T\bbm 3\\4\ebm = \frac{26}{17}\bbm 1\\4\ebm -\frac{5}{17}\bbm 2\\-1\ebm = \bbm 16/17\\109/17\ebm
+              </me>.
+            </p>
+          </solution>
+        </exercise>
+
+        <sage>
+          <input>
+            from sympy import *
+            init_printing()
+            A = Matrix(2,2,[3,2,1,-5])
+            B = Matrix(2,1,[4,3])
+            (A**-1)*B
+          </input>
+        </sage>
+
+        <exercise>
+          <statement>
+            <p>
+              Suppose <m>T:P_2(\R)\to \R</m> is defined by
+              <me>
+                T(x+2)=1, T(1)=5, T(x^2+x)=0.
+              </me>
+              Find <m>T(2-x+3x^2)</m>.
+            </p>
+          </statement>
+          <solution>
+            <p>
+              We need to find scalars <m>a,b,c</m> such that
+              <me>
+                2-x+3x^2 = a(x+2)+b(1)+c(x^2+x)
+              </me>.
+              We could set up a system and solve, but this time it's easy enough to just work our way through.
+              We must have <m>c=3</m>, to get the correct coefficient for <m>x^2</m>. This gives
+              <me>
+                2-x+3x^2=a(x+2)+b(1)+3x^2+3x
+              </me>.
+              Now, we have to have <m>3x+ax=-x</m>, so <m>a=-4</m>.
+              Putting this in, we get
+              <me>
+                2-x+3x^2=-4x-8+b+3x^2+3x
+              </me>.
+              Simiplifying this leaves us with <m>b=10</m>. Finally, we find:
+              <md>
+                <mrow>T(2-x+3x^2) \amp = T(-4(x+2)+10(1)+3(x^2+x)) </mrow>
+                <mrow> \amp = -4T(x+2)+10T(1)+3T(x^2+x)</mrow>
+                <mrow> \amp = -4(1)+10(5)+3(0) = 46</mrow>
+              </md>.
+            </p>
+          </solution>
+        </exercise>
+
+        <exercise>
+          <statement>
+            <p>
+              Find a linear transformation <m>T:\R^2\to \R^3</m> such that
+              <me>
+                T(1,2)=(1,1,0) \quad \text{ and } \quad T(-1,1) = (0,2,-1)
+              </me>.
+              Then, determine the value of <m>T(3,2)</m>.
+            </p>
+          </statement>
+          <solution>
+            <p>
+              Since <m>\{(1,2),(-1,1)\}</m> forms a basis of <m>\R^2</m>
+              (the vectors are not parallel and there are two of them),
+              it suffices to determine how to write a general vector in terms of this basis.
+              suppose
+              <me>
+                x(1,2)+y(-1,1)=(a,b)
+              </me>
+              for a general element <m>(a,b)\in \R^2</m>.
+              This is equivalent to the matrix equation <m>\bbm 1\amp -1\\2\amp 1\ebm\bbm x\\y\ebm = \bbm a\\b\ebm</m>.
+              We find:
+              <me>
+                (a,b) = \frac13(a+b)(1,2)+\frac13(-2a+b)(-1,1).
+              </me>
+              Thus,
+              <md>
+                <mrow>T(a,b) \amp = \frac13(a+b)T(1,2)+\frac13(-2a+b)T(-1,1) </mrow>
+                <mrow> \amp = \frac13(a+b)(1,1,0)+\frac13(-2a+b)(0,2,-1)</mrow>
+                <mrow> \amp = \left(\frac{a+b}{3}, -a+b, \frac{2a-b}{3}\right)</mrow>
+              </md>.
+              Therefore,
+              <me>
+                T(3,2) = \left(\frac53, -1, \frac43\right)
+              </me>.
+            </p>
+          </solution>
+        </exercise>
+
+        <sage>
+          <input>
+            a, b = symbols('a b', real = True, constant = True)
+            A = Matrix(2,2,[1,-1,2,1])
+            B = Matrix(2,1,[a,b])
+            (A**-1)*B
+          </input>
+        </sage>
+
+      </section>
+
+
+      <section xml:id="sec-kernel-image">
+        <title>Kernel and Image</title>
+
+        <p>
+          Given any linear transformation <m>T:V\to W</m> we can associate two important subspaces:
+          the <term>kernel</term> of <m>T</m> (also known as the <term>nullspace</term>),
+          and the <term>image</term> of <m>T</m> (also known as the <term>range</term>).
+        </p>
+
+        <definition xml:id="def-kernel-image">
+          <statement>
+            <p>
+              Let <m>T:V\to W</m> be a linear transformation. The <term>kernel</term> of <m>T</m>,
+              denoted <m>\ker T</m>, is defined by
+              <me>
+                \ker T = \{\vec{v}\in V \,|\, T(\vec{v}=\vec{0})\}
+              </me>.
+              The <term>image</term> of <m>T</m>, denoted <m>\Img T</m>, is defined by
+              <me>
+                \Img T = \{(T\vec{v}) \,|\, \vec{v}\in V\}
+              </me>.
+            </p>
+          </statement>
+        </definition>
+
+        <p>
+          Note that the kernel of <m>T</m> is just the set of all vectors <m>T</m> sends to zero.
+          The image of <m>T</m> is the range of <m>T</m> in the usual sense of the range of a function.
+        </p>
       </section>
     </chapter>
   </book>

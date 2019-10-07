@@ -1,0 +1,1413 @@
+%**************************************%
+%*    Generated from PreTeXt source   *%
+%*    on 2019-10-06T11:35:09-06:00    *%
+%*                                    *%
+%*      https://pretextbook.org       *%
+%*                                    *%
+%**************************************%
+\documentclass[oneside,10pt,]{book}
+%% Custom Preamble Entries, early (use latex.preamble.early)
+%% Default LaTeX packages
+%%   1.  always employed (or nearly so) for some purpose, or
+%%   2.  a stylewriter may assume their presence
+\usepackage{geometry}
+%% Some aspects of the preamble are conditional,
+%% the LaTeX engine is one such determinant
+\usepackage{ifthen}
+%% etoolbox has a variety of modern conveniences
+\usepackage{etoolbox}
+\usepackage{ifxetex,ifluatex}
+%% Raster graphics inclusion
+\usepackage{graphicx}
+%% Color support, xcolor package
+%% Always loaded, for: add/delete text, author tools
+%% Here, since tcolorbox loads tikz, and tikz loads xcolor
+\PassOptionsToPackage{usenames,dvipsnames,svgnames,table}{xcolor}
+\usepackage{xcolor}
+%% Colored boxes, and much more, though mostly styling
+%% skins library provides "enhanced" skin, employing tikzpicture
+%% boxes may be configured as "breakable" or "unbreakable"
+%% "raster" controls grids of boxes, aka side-by-side
+\usepackage{tcolorbox}
+\tcbuselibrary{skins}
+\tcbuselibrary{breakable}
+\tcbuselibrary{raster}
+%% We load some "stock" tcolorbox styles that we use a lot
+%% Placement here is provisional, there will be some color work also
+%% First, black on white, no border, transparent, but no assumption about titles
+\tcbset{ bwminimalstyle/.style={size=minimal, boxrule=-0.3pt, frame empty,
+colback=white, colbacktitle=white, coltitle=black, opacityfill=0.0} }
+%% Second, bold title, run-in to text/paragraph/heading
+%% Space afterwards will be controlled by environment,
+%% dependent of constructions of the tcb title
+\tcbset{ runintitlestyle/.style={fonttitle=\normalfont\bfseries, attach title to upper} }
+%% Spacing prior to each exercise, anywhere
+\tcbset{ exercisespacingstyle/.style={before skip={1.5ex plus 0.5ex}} }
+%% Spacing prior to each block
+\tcbset{ blockspacingstyle/.style={before skip={2.0ex plus 0.5ex}} }
+%% xparse allows the construction of more robust commands,
+%% this is a necessity for isolating styling and behavior
+%% The tcolorbox library of the same name loads the base library
+\tcbuselibrary{xparse}
+%% Hyperref should be here, but likes to be loaded late
+%%
+%% Inline math delimiters, \(, \), need to be robust
+%% 2016-01-31:  latexrelease.sty  supersedes  fixltx2e.sty
+%% If  latexrelease.sty  exists, bugfix is in kernel
+%% If not, bugfix is in  fixltx2e.sty
+%% See:  https://tug.org/TUGboat/tb36-3/tb114ltnews22.pdf
+%% and read "Fewer fragile commands" in distribution's  latexchanges.pdf
+\IfFileExists{latexrelease.sty}{}{\usepackage{fixltx2e}}
+%% Text height identically 9 inches, text width varies on point size
+%% See Bringhurst 2.1.1 on measure for recommendations
+%% 75 characters per line (count spaces, punctuation) is target
+%% which is the upper limit of Bringhurst's recommendations
+\geometry{letterpaper,total={340pt,9.0in}}
+%% Custom Page Layout Adjustments (use latex.geometry)
+%% This LaTeX file may be compiled with pdflatex, xelatex, or lualatex executables
+%% LuaTeX is not explicitly supported, but we do accept additions from knowledgeable users
+%% The conditional below provides  pdflatex  specific configuration last
+%% The following provides engine-specific capabilities
+%% Generally, xelatex is necessary non-Western fonts
+\ifthenelse{\boolean{xetex} \or \boolean{luatex}}{%
+%% begin: xelatex and lualatex-specific configuration
+\ifxetex\usepackage{xltxtra}\fi
+%% realscripts is the only part of xltxtra relevant to lualatex 
+\ifluatex\usepackage{realscripts}\fi
+%% fontspec package provides extensive control of system fonts,
+%% meaning *.otf (OpenType), and apparently *.ttf (TrueType)
+%% that live *outside* your TeX/MF tree, and are controlled by your *system*
+%% fontspec will make Latin Modern (lmodern) the default font
+\usepackage{fontspec}
+%% 
+%% Extensive support for other languages
+\usepackage{polyglossia}
+%% Set main/default language based on pretext/@xml:lang value
+%% document language code is "en-US", US English
+%% usmax variant has extra hypenation
+\setmainlanguage[variant=usmax]{english}
+%% Enable secondary languages based on discovery of @xml:lang values
+%% Enable fonts/scripts based on discovery of @xml:lang values
+%% Western languages should be ably covered by Latin Modern Roman
+%% end: xelatex and lualatex-specific configuration
+}{%
+%% begin: pdflatex-specific configuration
+\usepackage[utf8]{inputenc}
+%% PreTeXt will create a UTF-8 encoded file
+%% begin: font setup and configuration for use with pdflatex
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+%% end: font setup and configuration for use with pdflatex
+%% end: pdflatex-specific configuration
+}
+%% Monospace font: Inconsolata (zi4)
+%% Sponsored by TUG: http://levien.com/type/myfonts/inconsolata.html
+%% Loaded for documents with intentional objects requiring monospace
+%% See package documentation for excellent instructions
+%% One caveat, seem to need full file name to locate OTF files
+%% Loads the "upquote" package as needed, so we don't have to
+%% Upright quotes might come from the  textcomp  package, which we also use
+%% We employ the shapely \ell to match Google Font version
+%% pdflatex: "varqu" option produces best upright quotes
+%% xelatex,lualatex: add StylisticSet 1 for shapely \ell
+%% xelatex,lualatex: add StylisticSet 2 for plain zero
+%% xelatex,lualatex: we add StylisticSet 3 for upright quotes
+%% 
+\ifthenelse{\boolean{xetex} \or \boolean{luatex}}{%
+%% begin: xelatex and lualatex-specific monospace font
+\usepackage{zi4}
+\setmonofont[BoldFont=Inconsolatazi4-Bold.otf,StylisticSet={1,3}]{Inconsolatazi4-Regular.otf}
+%% end: xelatex and lualatex-specific monospace font
+}{%
+%% begin: pdflatex-specific monospace font
+%% "varqu" option provides textcomp \textquotedbl glyph
+%% "varl"  option provides shapely "ell"
+\usepackage[varqu,varl]{zi4}
+%% end: pdflatex-specific monospace font
+}
+%% Symbols, align environment, bracket-matrix
+\usepackage{amsmath}
+\usepackage{amssymb}
+%% allow page breaks within display mathematics anywhere
+%% level 4 is maximally permissive
+%% this is exactly the opposite of AMSmath package philosophy
+%% there are per-display, and per-equation options to control this
+%% split, aligned, gathered, and alignedat are not affected
+\allowdisplaybreaks[4]
+%% allow more columns to a matrix
+%% can make this even bigger by overriding with  latex.preamble.late  processing option
+\setcounter{MaxMatrixCols}{30}
+%%
+%%
+%% Division Titles, and Page Headers/Footers
+%% titlesec package, loading "titleps" package cooperatively
+%% See code comments about the necessity and purpose of "explicit" option
+\usepackage[explicit, pagestyles]{titlesec}
+\newtitlemark{\chaptertitlename}
+%% Set global/default page style for document due
+%% to potential re-definitions after documentclass
+\pagestyle{headings}
+%%
+%% Create globally-available macros to be provided for style writers
+%% These are redefined for each occurence of each division
+\newcommand{\divisionnameptx}{\relax}%
+\newcommand{\titleptx}{\relax}%
+\newcommand{\subtitleptx}{\relax}%
+\newcommand{\shortitleptx}{\relax}%
+\newcommand{\authorsptx}{\relax}%
+\newcommand{\epigraphptx}{\relax}%
+%% Create environments for possible occurences of each division
+%% Environment for a PTX "preface" at the level of a LaTeX "chapter"
+\NewDocumentEnvironment{preface}{mmmmmm}
+{%
+\renewcommand{\divisionnameptx}{Preface}%
+\renewcommand{\titleptx}{#1}%
+\renewcommand{\subtitleptx}{#2}%
+\renewcommand{\shortitleptx}{#3}%
+\renewcommand{\authorsptx}{#4}%
+\renewcommand{\epigraphptx}{#5}%
+\chapter*{#1}%
+\addcontentsline{toc}{chapter}{#3}
+\label{#6}%
+}{}%
+%% Environment for a PTX "chapter" at the level of a LaTeX "chapter"
+\NewDocumentEnvironment{chapterptx}{mmmmmm}
+{%
+\renewcommand{\divisionnameptx}{Chapter}%
+\renewcommand{\titleptx}{#1}%
+\renewcommand{\subtitleptx}{#2}%
+\renewcommand{\shortitleptx}{#3}%
+\renewcommand{\authorsptx}{#4}%
+\renewcommand{\epigraphptx}{#5}%
+\chapter[{#3}]{#1}%
+\label{#6}%
+}{}%
+%% Environment for a PTX "section" at the level of a LaTeX "section"
+\NewDocumentEnvironment{sectionptx}{mmmmmm}
+{%
+\renewcommand{\divisionnameptx}{Section}%
+\renewcommand{\titleptx}{#1}%
+\renewcommand{\subtitleptx}{#2}%
+\renewcommand{\shortitleptx}{#3}%
+\renewcommand{\authorsptx}{#4}%
+\renewcommand{\epigraphptx}{#5}%
+\section[{#3}]{#1}%
+\label{#6}%
+}{}%
+%% Environment for a PTX "subsection" at the level of a LaTeX "subsection"
+\NewDocumentEnvironment{subsectionptx}{mmmmmm}
+{%
+\renewcommand{\divisionnameptx}{Subsection}%
+\renewcommand{\titleptx}{#1}%
+\renewcommand{\subtitleptx}{#2}%
+\renewcommand{\shortitleptx}{#3}%
+\renewcommand{\authorsptx}{#4}%
+\renewcommand{\epigraphptx}{#5}%
+\subsection[{#3}]{#1}%
+\label{#6}%
+}{}%
+%%
+%% Styles for six traditional LaTeX divisions
+\titleformat{\chapter}[display]
+{\normalfont\huge\bfseries}{\divisionnameptx\space\thechapter}{20pt}{\Huge#1}
+[{\Large\authorsptx}]
+\titleformat{name=\chapter,numberless}[display]
+{\normalfont\huge\bfseries}{}{0pt}{#1}
+[{\Large\authorsptx}]
+\titlespacing*{\chapter}{0pt}{50pt}{40pt}
+\titleformat{\section}[hang]
+{\normalfont\Large\bfseries}{\thesection}{1ex}{#1}
+[{\large\authorsptx}]
+\titleformat{name=\section,numberless}[block]
+{\normalfont\Large\bfseries}{}{0pt}{#1}
+[{\large\authorsptx}]
+\titlespacing*{\section}{0pt}{3.5ex plus 1ex minus .2ex}{2.3ex plus .2ex}
+\titleformat{\subsection}[hang]
+{\normalfont\large\bfseries}{\thesubsection}{1ex}{#1}
+[{\normalsize\authorsptx}]
+\titleformat{name=\subsection,numberless}[block]
+{\normalfont\large\bfseries}{}{0pt}{#1}
+[{\normalsize\authorsptx}]
+\titlespacing*{\subsection}{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+\titleformat{\subsubsection}[hang]
+{\normalfont\normalsize\bfseries}{\thesubsubsection}{1em}{#1}
+[{\small\authorsptx}]
+\titleformat{name=\subsubsection,numberless}[block]
+{\normalfont\normalsize\bfseries}{}{0pt}{#1}
+[{\normalsize\authorsptx}]
+\titlespacing*{\subsubsection}{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+\titleformat{\paragraph}[hang]
+{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{#1}
+[{\small\authorsptx}]
+\titleformat{name=\paragraph,numberless}[block]
+{\normalfont\normalsize\bfseries}{}{0pt}{#1}
+[{\normalsize\authorsptx}]
+\titlespacing*{\paragraph}{0pt}{3.25ex plus 1ex minus .2ex}{1.5em}
+%%
+%% Semantic Macros
+%% To preserve meaning in a LaTeX file
+%%
+%% \mono macro for content of "c", "cd", "tag", etc elements
+%% Also used automatically in other constructions
+%% Simply an alias for \texttt
+%% Always defined, even if there is no need, or if a specific tt font is not loaded
+\newcommand{\mono}[1]{\texttt{#1}}
+%%
+%% Following semantic macros are only defined here if their
+%% use is required only in this specific document
+%%
+%% Used to markup initialisms, text or titles
+\newcommand{\initialism}[1]{\textsc{\MakeLowercase{#1}}}
+\DeclareRobustCommand{\initialismintitle}[1]{\texorpdfstring{#1}{#1}}
+%% Used for warnings, typically bold and italic
+\newcommand{\alert}[1]{\textbf{\textit{#1}}}
+%% Used for inline definitions of terms
+\newcommand{\terminology}[1]{\textbf{#1}}
+%% Division Numbering: Chapters, Sections, Subsections, etc
+%% Division numbers may be turned off at some level ("depth")
+%% A section *always* has depth 1, contrary to us counting from the document root
+%% The latex default is 3.  If a larger number is present here, then
+%% removing this command may make some cross-references ambiguous
+%% The precursor variable $numbering-maxlevel is checked for consistency in the common XSL file
+\setcounter{secnumdepth}{3}
+%%
+%% AMS "proof" environment is no longer used, but we leave previously
+%% implemented \qedhere in place, should the LaTeX be recycled
+\newcommand{\qedhere}{\relax}
+%%
+%% A faux tcolorbox whose only purpose is to provide common numbering
+%% facilities for most blocks (possibly not projects, 2D displays)
+%% Controlled by  numbering.theorems.level  processing parameter
+\newtcolorbox[auto counter, number within=section]{block}{}
+%%
+%% This document is set to number PROJECT-LIKE on a separate numbering scheme
+%% So, a faux tcolorbox whose only purpose is to provide this numbering
+%% Controlled by  numbering.projects.level  processing parameter
+\newtcolorbox[auto counter, number within=section]{project-distinct}{}
+%% A faux tcolorbox whose only purpose is to provide common numbering
+%% facilities for 2D displays which are subnumbered as part of a "sidebyside"
+\newtcolorbox[auto counter, number within=tcb@cnt@block, number freestyle={\noexpand\thetcb@cnt@block(\noexpand\alph{\tcbcounter})}]{subdisplay}{}
+%%
+%% tcolorbox, with styles, for THEOREM-LIKE
+%%
+%% theorem: fairly simple numbered block/structure
+\tcbset{ theoremstyle/.style={bwminimalstyle, runintitlestyle, blockspacingstyle, after title={\space}, } }
+\newtcolorbox[use counter from=block]{theorem}[3]{title={{Theorem~\thetcbcounter\notblank{#1#2}{\space}{}\notblank{#1}{\space#1}{}\notblank{#2}{\space(#2)}{}}}, phantomlabel={#3}, breakable, parbox=false, after={\par}, fontupper=\itshape, theoremstyle, }
+%% lemma: fairly simple numbered block/structure
+\tcbset{ lemmastyle/.style={bwminimalstyle, runintitlestyle, blockspacingstyle, after title={\space}, } }
+\newtcolorbox[use counter from=block]{lemma}[3]{title={{Lemma~\thetcbcounter\notblank{#1#2}{\space}{}\notblank{#1}{\space#1}{}\notblank{#2}{\space(#2)}{}}}, phantomlabel={#3}, breakable, parbox=false, after={\par}, fontupper=\itshape, lemmastyle, }
+%%
+%% tcolorbox, with styles, for DEFINITION-LIKE
+%%
+%% definition: fairly simple numbered block/structure
+\tcbset{ definitionstyle/.style={bwminimalstyle, runintitlestyle, blockspacingstyle, after title={\space}, after upper={\space\space\hspace*{\stretch{1}}\(\lozenge\)}, } }
+\newtcolorbox[use counter from=block]{definition}[2]{title={{Definition~\thetcbcounter\notblank{#1}{\space\space#1}{}}}, phantomlabel={#2}, breakable, parbox=false, after={\par}, definitionstyle, }
+%%
+%% tcolorbox, with styles, for EXAMPLE-LIKE
+%%
+%% example: fairly simple numbered block/structure
+\tcbset{ examplestyle/.style={bwminimalstyle, runintitlestyle, blockspacingstyle, after title={\space}, after upper={\space\space\hspace*{\stretch{1}}\(\square\)}, } }
+\newtcolorbox[use counter from=block]{example}[2]{title={{Example~\thetcbcounter\notblank{#1}{\space\space#1}{}}}, phantomlabel={#2}, breakable, parbox=false, after={\par}, examplestyle, }
+%%
+%% tcolorbox, with styles, for inline exercises
+%%
+%% inlineexercise: fairly simple numbered block/structure
+\tcbset{ inlineexercisestyle/.style={bwminimalstyle, runintitlestyle, blockspacingstyle, after title={\space}, } }
+\newtcolorbox[use counter from=block]{inlineexercise}[2]{title={{Exercise~\thetcbcounter\notblank{#1}{\space\space#1}{}}}, phantomlabel={#2}, breakable, parbox=false, after={\par}, inlineexercisestyle, }
+%%
+%% xparse environments for introductions and conclusions of divisions
+%%
+%% introduction: in a structured division
+\NewDocumentEnvironment{introduction}{m}
+{\notblank{#1}{\noindent\textbf{#1}\space}{}}{\par\medskip}
+%%
+%% tcolorbox, with styles, for miscellaneous environments
+%%
+%% proof: title is a replacement
+\tcbset{ proofstyle/.style={bwminimalstyle, fonttitle=\normalfont\itshape, attach title to upper, after title={\space}, after upper={\space\space\hspace*{\stretch{1}}\(\blacksquare\)},
+} }
+\newtcolorbox{proofptx}[2]{title={\notblank{#1}{#1}{Proof.}}, phantom={\hypertarget{#2}{}}, breakable, parbox=false, after={\par}, proofstyle }
+%% paragraphs: the terminal, pseudo-division
+%% We use the lowest LaTeX traditional division
+\titleformat{\subparagraph}[runin]{\normalfont\normalsize\bfseries}{\thesubparagraph}{1em}{#1}
+\titlespacing*{\subparagraph}{0pt}{3.25ex plus 1ex minus .2ex}{1em}
+\NewDocumentEnvironment{paragraphs}{mm}
+{\subparagraph*{#1}\hypertarget{#2}{}}{}
+%% Localize LaTeX supplied names (possibly none)
+\renewcommand*{\chaptername}{Chapter}
+%% Equation Numbering
+%% Controlled by  numbering.equations.level  processing parameter
+%% No adjustment here implies document-wide numbering
+\numberwithin{equation}{section}
+%% Program listing support: for listings, programs, consoles, and Sage code
+\ifthenelse{\boolean{xetex} \or \boolean{luatex}}%
+  {\tcbuselibrary{listings}}%
+  {\tcbuselibrary{listingsutf8}}%
+%% We define the listings font style to be the default "ttfamily"
+%% To fix hyphens/dashes rendered in PDF as fancy minus signs by listing
+%% http://tex.stackexchange.com/questions/33185/listings-package-changes-hyphens-to-minus-signs
+\makeatletter
+\lst@CCPutMacro\lst@ProcessOther {"2D}{\lst@ttfamily{-{}}{-{}}}
+\@empty\z@\@empty
+\makeatother
+%% We define a null language, free of any formatting or style
+%% for use when a language is not supported, or pseudo-code, or consoles
+%% Not necessary for Sage code, so in limited cases included unnecessarily
+\lstdefinelanguage{none}{identifierstyle=,commentstyle=,stringstyle=,keywordstyle=}
+\ifthenelse{\boolean{xetex}}{}{%
+%% begin: pdflatex-specific listings configuration
+%% translate U+0080 - U+00F0 to their textmode LaTeX equivalents
+%% Data originally from https://www.w3.org/Math/characters/unicode.xml, 2016-07-23
+%% Lines marked in XSL with "$" were converted from mathmode to textmode
+\lstset{extendedchars=true}
+\lstset{literate={ }{{~}}{1}{¡}{{\textexclamdown }}{1}{¢}{{\textcent }}{1}{£}{{\textsterling }}{1}{¤}{{\textcurrency }}{1}{¥}{{\textyen }}{1}{¦}{{\textbrokenbar }}{1}{§}{{\textsection }}{1}{¨}{{\textasciidieresis }}{1}{©}{{\textcopyright }}{1}{ª}{{\textordfeminine }}{1}{«}{{\guillemotleft }}{1}{¬}{{\textlnot }}{1}{­}{{\-}}{1}{®}{{\textregistered }}{1}{¯}{{\textasciimacron }}{1}{°}{{\textdegree }}{1}{±}{{\textpm }}{1}{²}{{\texttwosuperior }}{1}{³}{{\textthreesuperior }}{1}{´}{{\textasciiacute }}{1}{µ}{{\textmu }}{1}{¶}{{\textparagraph }}{1}{·}{{\textperiodcentered }}{1}{¸}{{\c{}}}{1}{¹}{{\textonesuperior }}{1}{º}{{\textordmasculine }}{1}{»}{{\guillemotright }}{1}{¼}{{\textonequarter }}{1}{½}{{\textonehalf }}{1}{¾}{{\textthreequarters }}{1}{¿}{{\textquestiondown }}{1}{À}{{\`{A}}}{1}{Á}{{\'{A}}}{1}{Â}{{\^{A}}}{1}{Ã}{{\~{A}}}{1}{Ä}{{\"{A}}}{1}{Å}{{\AA }}{1}{Æ}{{\AE }}{1}{Ç}{{\c{C}}}{1}{È}{{\`{E}}}{1}{É}{{\'{E}}}{1}{Ê}{{\^{E}}}{1}{Ë}{{\"{E}}}{1}{Ì}{{\`{I}}}{1}{Í}{{\'{I}}}{1}{Î}{{\^{I}}}{1}{Ï}{{\"{I}}}{1}{Ð}{{\DH }}{1}{Ñ}{{\~{N}}}{1}{Ò}{{\`{O}}}{1}{Ó}{{\'{O}}}{1}{Ô}{{\^{O}}}{1}{Õ}{{\~{O}}}{1}{Ö}{{\"{O}}}{1}{×}{{\texttimes }}{1}{Ø}{{\O }}{1}{Ù}{{\`{U}}}{1}{Ú}{{\'{U}}}{1}{Û}{{\^{U}}}{1}{Ü}{{\"{U}}}{1}{Ý}{{\'{Y}}}{1}{Þ}{{\TH }}{1}{ß}{{\ss }}{1}{à}{{\`{a}}}{1}{á}{{\'{a}}}{1}{â}{{\^{a}}}{1}{ã}{{\~{a}}}{1}{ä}{{\"{a}}}{1}{å}{{\aa }}{1}{æ}{{\ae }}{1}{ç}{{\c{c}}}{1}{è}{{\`{e}}}{1}{é}{{\'{e}}}{1}{ê}{{\^{e}}}{1}{ë}{{\"{e}}}{1}{ì}{{\`{\i}}}{1}{í}{{\'{\i}}}{1}{î}{{\^{\i}}}{1}{ï}{{\"{\i}}}{1}{ð}{{\dh }}{1}{ñ}{{\~{n}}}{1}{ò}{{\`{o}}}{1}{ó}{{\'{o}}}{1}{ô}{{\^{o}}}{1}{õ}{{\~{o}}}{1}{ö}{{\"{o}}}{1}{÷}{{\textdiv }}{1}{ø}{{\o }}{1}{ù}{{\`{u}}}{1}{ú}{{\'{u}}}{1}{û}{{\^{u}}}{1}{ü}{{\"{u}}}{1}{ý}{{\'{y}}}{1}{þ}{{\th }}{1}{ÿ}{{\"{y}}}{1}}
+%% end: pdflatex-specific listings configuration
+}
+%% End of generic listing adjustments
+%% The listings package as tcolorbox for Sage code
+%% We do as much styling as possible with tcolorbox, not listings
+%% Sage's blue is 50%, we go way lighter (blue!05 would also work)
+%% Note that we defuse listings' default "aboveskip" and "belowskip"
+\definecolor{sageblue}{rgb}{0.95,0.95,1}
+\tcbset{ sagestyle/.style={left=0pt, right=0pt, top=0ex, bottom=0ex, middle=0pt, toptitle=0pt, bottomtitle=0pt,
+boxsep=4pt, listing only, fontupper=\small\ttfamily,
+breakable, parbox=false, 
+listing options={language=Python,breaklines=true,breakatwhitespace=true, extendedchars=true, aboveskip=0pt, belowskip=0pt}} }
+\newtcblisting{sageinput}{sagestyle, colback=sageblue, sharp corners, boxrule=0.5pt, toprule at break=-0.3pt, bottomrule at break=-0.3pt, }
+\newtcblisting{sageoutput}{sagestyle, colback=white, colframe=white, frame empty, before skip=0pt, after skip=0pt, }
+%% More flexible list management, esp. for references
+%% But also for specifying labels (i.e. custom order) on nested lists
+\usepackage{enumitem}
+%% hyperref driver does not need to be specified, it will be detected
+%% Footnote marks in tcolorbox have broken linking under
+%% hyperref, so it is necessary to turn off all linking
+%% It *must* be given as a package option, not with \hypersetup
+\usepackage[hyperfootnotes=false]{hyperref}
+%% configure hyperref's  \url  to match listings' inline verbatim
+\renewcommand\UrlFont{\small\ttfamily}
+%% Hyperlinking active in electronic PDFs, all links solid and blue
+\hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,filecolor=blue,urlcolor=blue}
+\hypersetup{pdftitle={Lecture Notes for Math 3410, with Computational Examples}}
+%% If you manually remove hyperref, leave in this next command
+\providecommand\phantomsection{}
+%% If tikz has been loaded, replace ampersand with \amp macro
+%% extpfeil package for certain extensible arrows,
+%% as also provided by MathJax extension of the same name
+%% NB: this package loads mtools, which loads calc, which redefines
+%%     \setlength, so it can be removed if it seems to be in the 
+%%     way and your math does not use:
+%%     
+%%     \xtwoheadrightarrow, \xtwoheadleftarrow, \xmapsto, \xlongequal, \xtofrom
+%%     
+%%     we have had to be extra careful with variable thickness
+%%     lines in tables, and so also load this package late
+\usepackage{extpfeil}
+%% Custom Preamble Entries, late (use latex.preamble.late)
+%% Begin: Author-provided packages
+%% (From  docinfo/latex-preamble/package  elements)
+%% End: Author-provided packages
+%% Begin: Author-provided macros
+%% (From  docinfo/macros  element)
+%% Plus three from MBX for XML characters
+\newcommand{\spn}{\operatorname{span}}
+\newcommand{\bbm}{\begin{bmatrix}}
+\newcommand{\ebm}{\end{bmatrix}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Img}{\operatorname{im}}
+\newcommand{\lt}{<}
+\newcommand{\gt}{>}
+\newcommand{\amp}{&}
+%% End: Author-provided macros
+\begin{document}
+\frontmatter
+%% begin: half-title
+\thispagestyle{empty}
+{\centering
+\vspace*{0.28\textheight}
+{\Huge Lecture Notes for Math 3410, with Computational Examples}\\}
+\clearpage
+%% end:   half-title
+%% begin: adcard
+\thispagestyle{empty}
+\null%
+\clearpage
+%% end:   adcard
+%% begin: title page
+%% Inspired by Peter Wilson's "titleDB" in "titlepages" CTAN package
+\thispagestyle{empty}
+{\centering
+\vspace*{0.14\textheight}
+%% Target for xref to top-level element is ToC
+\addtocontents{toc}{\protect\hypertarget{x:book:linalg-notes-with-computations}{}}
+{\Huge Lecture Notes for Math 3410, with Computational Examples}\\[3\baselineskip]
+{\Large Sean Fitzpatrick}\\[0.5\baselineskip]
+{\Large University of Lethbridge}\\[3\baselineskip]
+{\Large October 6, 2019}\\}
+\clearpage
+%% end:   title page
+%% begin: copyright-page
+\thispagestyle{empty}
+\vspace*{\stretch{2}}
+\vspace*{\stretch{1}}
+\null\clearpage
+%% end:   copyright-page
+%
+%
+\typeout{************************************************}
+\typeout{Preface  Preface}
+\typeout{************************************************}
+%
+\begin{preface}{Preface}{}{Preface}{}{}{g:preface:id321658}
+Linear algebra is a mature, rich subject, full of both fascinating theory and useful applications. One of the things you might have taken away from a first course in the subject is that there's a lot of tedious calculation involved. This is true, if you're a human. But the algorithms you learn in a course like Math 1410 are easily implemented on a computer. If we want to be able to discuss any of the interesting applications of linear algebra, we're going to need to learn how to do linear algebra on a computer.%
+\par
+There are many good mathematical software products that can deal with linear algebra, like Maple, Mathematica, and MatLab. But all of these are proprietary, and expensive. Sage is a popular open source system for mathematics, and students considering further studies in mathematics would do well to learn Sage. Since most people in Math 3410 are probably not considering a career as a mathematician, we'll try to do everything in Python.%
+\par
+Python is a very poplular programming language, partly because of its ease of use. Those of you enrolled in Education may find yourself teaching Python to your students one day. Also, if you do want to use Sage, you're in luck: Sage is an amalamation of many different software tools, including Python. So any Python code you encouter in this course can also be run on Sage.%
+\end{preface}
+%% begin: table of contents
+%% Adjust Table of Contents
+\setcounter{tocdepth}{1}
+\renewcommand*\contentsname{Contents}
+\tableofcontents
+%% end:   table of contents
+\mainmatter
+%
+%
+\typeout{************************************************}
+\typeout{Chapter 1 Computational Tools}
+\typeout{************************************************}
+%
+\begin{chapterptx}{Computational Tools}{}{Computational Tools}{}{}{x:chapter:ch-computation}
+%
+%
+\typeout{************************************************}
+\typeout{Section 1.1 Jupyter}
+\typeout{************************************************}
+%
+\begin{sectionptx}{Jupyter}{}{Jupyter}{}{}{x:section:section-jupyter}
+The first thing you need to know about doing linear algebra in Python is how to access a Python environment. Fortunately, you do not need to install any software for this. The University of Lethbridge has access to the \terminology{Syzygy Jupyter Hub} service, provided by \initialism{PIMS} (the Pacific Institute for Mathematical Sciences), Cybera, and Compute Canada. To access Syzygy, go to \href{https://uleth.syzygy.ca}{uleth.syzygy.ca} and log in with your ULeth credentials.%
+\par
+Note: if you click the login button and nothing happens, click the back button and try again. Sometimes there's a problem with our single sign-on service.%
+\par
+The primary type of document you'll encounter on Syzygy is the \terminology{Jupyter notebook}. Content in a Juypter notebook is organized into \terminology{cells}. Some cells contain text, which can be in either \initialism{HTML} or \terminology{Markdown}. Markdown is a simple markup language. It's not as versatile as HTML, but it's easier to use. On Jupyter, markdown supports the LaTeX language for mathematical expressions. Use single dollar signs for inline math: \mono{\$\textbackslash{}frac\{d\}\{dx\}\textbackslash{}sin(x)=\textbackslash{}cos(x)\$} produces \(\frac{d}{dx}\sin(x)=\cos(x)\), for example.%
+\par
+If you want ``display math'', use double dollar signs. Unfortunately, entering matrices is a bit tedious. For example, \mono{\$\$A = \textbackslash{}begin\{bmatrix\}1 \& 2 \& 3\textbackslash{}\textbackslash{}4 \& 5 \& 6 \&\textbackslash{}end\{bmatrix\}\$\$} produces%
+\begin{equation*}
+A = \begin{bmatrix}1\amp 2\amp 3\\4\amp 5\amp 6\end{bmatrix}\text{.}
+\end{equation*}
+Later we'll see how to enter things like matrices in Python.%
+\par
+It's also possible to use markdown to add \emph{emphasis}, images, URLs, etc.\@. For details, see the following \href{https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet}{Markdown cheatsheet}, or this \href{https://callysto.ca/wp-content/uploads/2018/12/Callysto-Cheatsheet_12.19.18_web.pdf}{quick reference} from \href{https://callysto.ca/}{callysto.ca}.%
+\par
+What's cool about a Jupyter notebook is that in addition to markdown cells, which can present content and provide explanation, we can also include \emph{code cells}. Jupyter supports many different programming languages, but we will stick mainly to Python.%
+\end{sectionptx}
+%
+%
+\typeout{************************************************}
+\typeout{Section 1.2 Python basics}
+\typeout{************************************************}
+%
+\begin{sectionptx}{Python basics}{}{Python basics}{}{}{x:section:sec-python-basics}
+OK, so you've logged into Syzygy and you're ready to write some code. What does basic code look like in Python? The good news is that you don't need to be a programmer to do linear algebra in Python. Python includes many different \emph{libraries} that keep most of the code under the hood, so all you have to remember is what command you need to use to accomplish a task. That said, it won't hurt to learn a little bit of basic coding.%
+\par
+Basic arithmetic operations are understood, and you can simply type them in. Hit \mono{shift+enter} in a code cell to execute the code and see the result.%
+\begin{sageinput}
+3+4
+\end{sageinput}
+\begin{sageinput}
+3*4
+\end{sageinput}
+\begin{sageinput}
+3**4
+\end{sageinput}
+OK, great. But sometimes we want to do calculations with more than one step. For that, we can assign variables.%
+\begin{sageinput}
+a = 14
+b = -9
+c = a+b
+print(a, b, c)
+\end{sageinput}
+Sometimes you might need input that's a string, rather than a number. We can do that, too.%
+\begin{sageinput}
+string_var = "Hey, look at my string!"
+print(string_var)
+\end{sageinput}
+Another basic construction is a list. Getting the hang of lists is useful, because in a sense, matrices are just really fancy lists.%
+\begin{sageinput}
+empty_list = list()
+this_too = []
+list_of_zeros = [0]*7
+print(list_of_zeros)
+\end{sageinput}
+Once you have an empty list, you might want to add something to it. This can be done with the \mono{append} command.%
+\begin{sageinput}
+empty_list.append(3)
+print(empty_list)
+print(len(empty_list))
+\end{sageinput}
+Go back and re-run the above code cell two or three more times. What happens? Probably you can guess what the \mono{len} command is for. Now let's get really carried away and do some ``for real'' coding, like loops!%
+\begin{sageinput}
+for i in range(10):
+    empty_list.append(i)
+print(empty_list)
+\end{sageinput}
+Notice the indentation in the second line. This is how Python handles things like for loops, with indentation rather than bracketing. We could say more about lists but perhaps it's time to talk about matrices. For further reading, you can \href{https://developers.google.com/edu/python/lists}{start here}.%
+\end{sectionptx}
+%
+%
+\typeout{************************************************}
+\typeout{Section 1.3 SymPy for linear algebra}
+\typeout{************************************************}
+%
+\begin{sectionptx}{SymPy for linear algebra}{}{SymPy for linear algebra}{}{}{x:section:sec-sympy}
+\begin{introduction}{}%
+\terminology{SymPy} is a Python library for symbolic algebra. On its own, it's not as powerful as programs like Maple, but it handles a lot of basic manipulations in a fairly simple fashion, and when we need more power, it can interface with other Python libraries.%
+\par
+Another advantage of SymPy is sophisticated ``pretty-printing''. In fact, we can enable MathJax within SymPy, so that output is rendered in the same way as when LaTeX is entered in a markdown cell.%
+\end{introduction}%
+%
+%
+\typeout{************************************************}
+\typeout{Subsection 1.3.1 SymPy basics}
+\typeout{************************************************}
+%
+\begin{subsectionptx}{SymPy basics}{}{SymPy basics}{}{}{x:subsection:subsec-sympy-basics}
+Running the following Sage cell will load the SymPy library and turn on MathJax.%
+\begin{sageinput}
+from sympy import *
+init_printing()
+\end{sageinput}
+\alert{Note:} if you are going to be working with multiple libraries, and more than one of them defines a certain command, instead of \mono{from sympy import all} you can do \mono{import sympy as sy}. If you do this, each SymPy command will need to be appended with \mono{sy}; for example, you might write \mono{sy.Matrix} instead of simply \mono{Matrix}. Let's use SymPy to create a \(2\times 3\) matrix.%
+\begin{sageinput}
+A = Matrix(2,3,[1,2,3,4,5,6])
+A
+\end{sageinput}
+The \mono{A} on the second line asks Python to print the matrix using SymPy's printing support. If we use Python's \mono{print} command, we get something different:%
+\begin{sageinput}
+print(A)
+\end{sageinput}
+We'll have more on matrices in \hyperref[x:subsection:subsec-sympy-matrix]{Subsection~\ref{x:subsection:subsec-sympy-matrix}}. For now, let's look at some more basic constructions. One basic thing to be mindful of is the type of numbers we're working with. For example, if we enter \mono{2/7} in a code cell, Python will interpret this as a floating point number (essentially, a division).%
+\par
+(If you are using Sage cells in HTML rather than Jupyter, this will automatically be interpreted as a fraction.)%
+\begin{sageinput}
+2/7
+\end{sageinput}
+But we often do linear algebra over the rational numbers, and so SymPy will let you specify this:%
+\begin{sageinput}
+Rational(2,7)
+\end{sageinput}
+You might not think to add the comma above, because you're used to writing fractions like \(2/7\). Fortunately, the SymPy authors thought of that:%
+\begin{sageinput}
+Rational(2/7)
+\end{sageinput}
+Hmm... You might have got the output you expected in the cell above, but maybe not. If you got a much worse looking fraction, read on.%
+\par
+Another cool command is the \mono{sympify} command, which can be called with the shortcut \mono{S}. The input \mono{2} is interpreted as an \mono{int} by Python, but \mono{S(2)} is a ``SymPy \mono{Integer}'':%
+\begin{sageinput}
+S(2)/7
+\end{sageinput}
+Of course, sometimes you \emph{do} want to use floating point, and you can specify this, too:%
+\begin{sageinput}
+2.5
+\end{sageinput}
+\begin{sageinput}
+Float(2.5)
+\end{sageinput}
+\begin{sageinput}
+Float(2.5e10)
+\end{sageinput}
+One note of caution: \mono{Float} is part of SymPy, and not the same as the core Python \mono{float} command. You can also put decimals into the Rational command and get the corresponding fraction:%
+\begin{sageinput}
+Rational(0.75)
+\end{sageinput}
+The only thing to beware of is that computers convert from decimal to binary and then back again, and sometimes weird things can happen:%
+\begin{sageinput}
+Rational(0.2)
+\end{sageinput}
+Of course, there are workarounds. One way is to enter \(0.2\) as a string:%
+\begin{sageinput}
+Rational('0.2')
+\end{sageinput}
+Another is to limit the size of the denominator:%
+\begin{sageinput}
+Rational(0.2).limit_denominator(10**12)
+\end{sageinput}
+Try some other examples above. Some inputs to try are \mono{1.23} and \mono{23e-10}%
+\par
+We can also deal with repeating decimals. These are entered as strings, with square brackets around the repeating part. Then we can ``sympify'':%
+\begin{sageinput}
+S('0.[1]')
+\end{sageinput}
+Finally, SymPy knows about mathematical constants like \(e, \pi, i\), which you'll need from time to time in linear algebra. If you ever need \(\infty\), this is entered as \mono{oo}.%
+\begin{sageinput}
+I*I
+\end{sageinput}
+\begin{sageinput}
+I-sqrt(-1)
+\end{sageinput}
+\begin{sageinput}
+pi.is_irrational
+\end{sageinput}
+\end{subsectionptx}
+%
+%
+\typeout{************************************************}
+\typeout{Subsection 1.3.2 Matrices in SymPy}
+\typeout{************************************************}
+%
+\begin{subsectionptx}{Matrices in SymPy}{}{Matrices in SymPy}{}{}{x:subsection:subsec-sympy-matrix}
+(more to come)%
+\end{subsectionptx}
+\end{sectionptx}
+\end{chapterptx}
+%
+%
+\typeout{************************************************}
+\typeout{Chapter 2 Vector spaces}
+\typeout{************************************************}
+%
+\begin{chapterptx}{Vector spaces}{}{Vector spaces}{}{}{x:chapter:ch-vector-space}
+%
+%
+\typeout{************************************************}
+\typeout{Section 2.1 Abstract vector spaces}
+\typeout{************************************************}
+%
+\begin{sectionptx}{Abstract vector spaces}{}{Abstract vector spaces}{}{}{x:section:sec-vec-sp}
+(To Do)%
+\end{sectionptx}
+%
+%
+\typeout{************************************************}
+\typeout{Section 2.2 Span}
+\typeout{************************************************}
+%
+\begin{sectionptx}{Span}{}{Span}{}{}{x:section:sec-span}
+Recall that a \terminology{linear combination} of a set of vectors \(\vec{v}_1,\ldots, \vec{v}_k\) is a vector expression of the form%
+\begin{equation*}
+\vec{w}=c_1\vec{v}_1+c_2\vec{v}_2+\cdots +c_k\vec{v}_k,
+\end{equation*}
+where \(c_1,\ldots, c_k\) are scalars.%
+\par
+The \terminology{span} of those same vectors is the set of all possible linear combinations:%
+\begin{equation*}
+\spn\{\vec{v}_1,\ldots, \vec{v}_k\} = \{c_1\vec{v}_1+ \cdots + c_k\vec{v}_k \,|\, c_1,\ldots, c_k \in \mathbb{F}\}.
+\end{equation*}
+Therefore, the questions ``Is the vector \(\vec{w}\) in \(\spn\{\vec{v}_1,\ldots, \vec{v}_k\}\)?'' is really asking, ``Can \(\vec{w}\) be written as a linear combination of \(\vec{v}_1,\ldots, \vec{v}_k\)?''%
+\par
+With the appropriate setup, all such questions become questions about solving systems of equations. Here, we will look at a few such examples.%
+\begin{inlineexercise}{}{g:exercise:id223010}%
+Determine whether the vector \(\bbm 2\\3\ebm\) is in the span of the vectors \(\bbm 1\\1\ebm,\bbm -1\\2\ebm\).%
+\end{inlineexercise}
+This is really asking: are there scalars \(s,t\) such that%
+\begin{equation*}
+s\bbm 1\\1\ebm + t\bbm -1\\2\ebm = \bbm 2\\3\ebm\text{?}
+\end{equation*}
+And this, in turn, is equivalent to the system%
+\begin{align*}
+s -t \amp=2 \\
+s+2t \amp=3 \text{,}
+\end{align*}
+which is the same as the matrix equation%
+\begin{equation*}
+\bbm 1\amp -1\\1\amp 2\ebm\bbm s\\t\ebm = \bbm 2\\3\ebm.
+\end{equation*}
+Solving the system confirms that there is indeed a solution, so the answer to our original question is yes.%
+\par
+To confirm the above example (and see what the solution is), we can use the computer.%
+\begin{sageinput}
+from sympy import *
+init_printing()
+\end{sageinput}
+\begin{sageinput}
+A = Matrix(2,3,[1,-1,2,1,2,3])
+A.rref()
+\end{sageinput}
+The above code produces the reduced row-echelon form of the augmented matrix for our system. Do you remember how to get the answer from here? Here's another approach.%
+\begin{sageinput}
+B = Matrix(2,2,[1,-1,1,2])
+B
+\end{sageinput}
+\begin{sageinput}
+C = Matrix(2,1,[2,3])
+X = (B**-1)*C
+X
+\end{sageinput}
+Our next example involves polynomials. At first this looks like a different problem, but it's essentially the same once we set it up.%
+\begin{inlineexercise}{}{g:exercise:id223290}%
+Determine whether \(p(x)=1+x+4x^2\) belongs to \(\spn\{1+2x-x^2,3+5x+2x^2\}\).%
+\end{inlineexercise}
+We seek scalars \(s,t\) such that%
+\begin{equation*}
+s(1+2x-2x^2)+t(3+5x+2x^2)=1+x+4x^2\text{.}
+\end{equation*}
+On the left-hand side, we expand and gather terms:%
+\begin{equation*}
+(s+3t)+(2s+5t)x+(-2s+2t)x^2 = 1+x+4x^2\text{.}
+\end{equation*}
+These two polynomials are equal if and only if we can solve the system%
+\begin{align*}
+s+3t \amp = 1 \\
+2s+5t \amp =1\\
+-2s+2t \amp =4\text{.}
+\end{align*}
+%
+\par
+We can solve this computationally using matrices again.%
+\begin{sageinput}
+M = Matrix(3,3,[1,3,1,2,5,1,-2,2,4])
+M.rref()
+\end{sageinput}
+So, what's the answer? Is \(p(x)\) in the span? Can we determine what polynomials are in the span? Let's consider a general polynomial \(q(x)=a+bx+cx^2\). A bit of thought tells us that the coefficients \(a,b,c\) should replace the constants \(1,1,4\) above.%
+\begin{sageinput}
+a, b, c = symbols('a b c', real = True, constant = True)
+N = Matrix(3,3,[1,3,a,2,5,b,-2,2,c])
+N
+\end{sageinput}
+Asking the computer to reduce this matrix won't produce the desired result. (Maybe someone can figure out how to define the constants in a way that works?) But we can always specify row operations.%
+\begin{sageinput}
+N1 = N.elementary_row_operation(op='n->n+km',row1=1,row2=0,k=-2)
+N1
+\end{sageinput}
+Now we repeat. Here are two more empty cells to work with:%
+We end this section with a few non-computational, but useful results, which will be left as exercises to be done in class, or by the reader.%
+\begin{inlineexercise}{}{g:exercise:id223478}%
+Let \(V\) be a vector space, and let \(X,Y\subseteq V\). Show that if \(X\subseteq Y\), then \(\spn X \subseteq \spn Y\).%
+\end{inlineexercise}
+\begin{inlineexercise}{}{g:exercise:id223534}%
+Can \(\{(1,2,0), (1,1,1)\) span \(\{(a,b,0)\,|\, a,b \in\R\}\)?%
+\end{inlineexercise}
+\begin{theorem}{}{}{x:theorem:theorem-surplus-span}%
+Let \(V\) be a vector space, and let \(\vec{v}_1,\ldots, \vec{v}_k\in V\). If \(\vec{u}\in \spn\{\vec{v}_1,\ldots, \vec{v}_k\}\), then%
+\begin{equation*}
+\spn\{\vec{u},\vec{v}_1,\ldots, \vec{v}_k\} = \spn\{\vec{v}_1,\ldots, \vec{v}_k\}\text{.}
+\end{equation*}
+%
+\end{theorem}
+The moral of \hyperref[x:theorem:theorem-surplus-span]{Theorem~\ref{x:theorem:theorem-surplus-span}} is that one vector in a set is a linear combination of the others, we can remove it from the set without affecting the span. This suggests that we might want to look for the most ``efficient'' spanning sets \textendash{} those in which no vector in the set can be written in terms of the others. Such sets are called \terminology{linearly independent}, and they are the subject of \hyperref[x:section:sec-independence]{Section~\ref{x:section:sec-independence}}.%
+\end{sectionptx}
+%
+%
+\typeout{************************************************}
+\typeout{Section 2.3 Linear Independence}
+\typeout{************************************************}
+%
+\begin{sectionptx}{Linear Independence}{}{Linear Independence}{}{}{x:section:sec-independence}
+In any vector space \(V\), we say that a set of vectors%
+\begin{equation*}
+\{\vec{v}_1,\ldots,\vec{v}_2\}
+\end{equation*}
+is \terminology{linearly independent} if for any scalars \(c_1,\ldots, c_k\)%
+\begin{equation*}
+c_1\vec{v}_1+\cdots + c_k\vec{v}_k = \vec{0} \quad\Rightarrow\quad c_1=\cdots = c_k=0\text{.}
+\end{equation*}
+%
+\par
+This means that no vector in the set can be written as a linear combination of the other vectors in that set. We will soon see that when looking for vectors that span a subspace, it is especially useful to find a spanning set that is also linearly independent. The following lemma establishes some basic properties of independent sets.%
+\begin{lemma}{}{}{g:lemma:id223704}%
+In any vector space \(V\):%
+\begin{enumerate}
+\item{}If \(\vec{v}\neq\vec{0}\), then \(\{\vec{v}\}\) is indenpendent.%
+\item{}If \(S\subseteq V\) contains the zero vector, then \(S\) is dependent.%
+\end{enumerate}
+%
+\end{lemma}
+The definition of linear independence tells us that if \(\{\vec{v}_1,\ldots, \vec{v}_k\}\) is an independent set of vectors, then there is only one way to write \(\vec{0}\) as a linear combination of these vectors; namely,%
+\begin{equation*}
+\vec{0} = 0\vec{v}_1+0\vec{v}_2+\cdots +0\vec{v_k}\text{.}
+\end{equation*}
+In fact, more is true: \emph{any} vector in the span of a linearly independent set can be written in only one way as a linear combination of those vectors.%
+\par
+Computationally, questions about linear independence are just questions about homogeneous systems of linear equations. For example, suppose we want to know if the vectors%
+\begin{equation*}
+\vec{u}=\bbm 1\\-1\\4\ebm, \vec{v}=\bbm 0\\2\\-3\ebm, \vec{w}=\bbm 4\\0\\-3\ebm
+\end{equation*}
+are linearly independent in \(\mathbb{R}^3\). This question leads to the vector equation%
+\begin{equation*}
+x\vec{u}+y\vec{v}+z\vec{w}=\vec{0}\text{,}
+\end{equation*}
+which becomes the matrix equation%
+\begin{equation*}
+\bbm 1\amp0\amp4\\-1\amp2\amp0\\4\amp-3\amp-3\ebm\bbm x\\y\\z\ebm = \bbm 0\\0\\0\ebm\text{.}
+\end{equation*}
+%
+\par
+We now apply some basic theory from linear algebra. A unique (and therefore, trivial) solution to this system is guaranteed if the matrix \(A = \bbm 1\amp0\amp4\\-1\amp2\amp0\\4\amp-3\amp-3\ebm\) is invertible, since in that case we have \(\bbm x\\y\\z\ebm = A^{-1}\vec{0} = \vec{0}\).%
+\par
+This approach is problematic, however, since it won't work if we have 2 vectors, or 4. Instead, we look at the reduced row-echelon form. A unique solution corresponds to having a leading 1 in each column of \(A\). Let's check this condition.%
+\begin{sageinput}
+from sympy import *
+init_printing()
+\end{sageinput}
+\begin{sageinput}
+A = Matrix(3,3,[1,0,4,-1,2,0,4,-3,-3])
+A.rref()
+\end{sageinput}
+One observation is useful here, and will lead to a better understanding of independence. First, it would be impossible to have 4 or more linearly independent vectors in \(\mathbb{R}^3\). Why? (How many leading ones can you have in a \(3\times 4\) matrix?) Second, having two or fewer vectors makes it more likely that the set is independent.%
+\par
+The largest set of linearly independent vectors possible in \(\mathbb{R}^3\) contains three vectors. You might have also observed that the smallest number of vectors needed to span \(\mathbb{R}^3\) is 3. Hmm. Seems like there's something interesting going on here. But first, some more computation.%
+\begin{inlineexercise}{}{g:exercise:id224017}%
+Determine whether the set \(\left\{\bbm 1\\2\\0\ebm, \bbm -1\\0\\3\ebm,\bbm -1\\4\\9\ebm\right\}\) is linearly independent in \(\R^3\).%
+\end{inlineexercise}
+Again, we set up a matrix and reduce:%
+\begin{sageinput}
+A = Matrix(3,3,[1,-1,-1,2,0,4,0,3,9])
+A.rref()
+\end{sageinput}
+Notice that this time we don't get a unique solution, so we can conclude that these vectors are \emph{not} independent. Furthermore, you can probably deduce from the above that we have \(2\vec{v}_1+3\vec{v}_2-\vec{v}_3=\vec{0}\). Now suppose that \(\vec{w}\in\spn\{\vec{v}_1,\vec{v}_2,\vec{v}_3\}\). In how many ways can we write \(\vec{w}\) as a linear combination of these vectors?%
+\begin{inlineexercise}{}{g:exercise:id224134}%
+Which of the following subsets of \(P_2(\mathbb{R})\) are independent?%
+\begin{gather*}
+\text{(a) } S_1 = \{x^2+1, x+1, x\}\\
+\text{(b) } S_2 = \{x^2-x+3, 2x^2+x+5, x^2+5x+1\}
+\end{gather*}
+%
+\end{inlineexercise}
+In each case, we set up the defining equation for independence, collect terms, and then analyze the resulting system of equations. (If you work with polynomials often enough, you can probably jump straight to the matrix. For now, let's work out the details.)%
+\par
+Suppose%
+\begin{equation*}
+r(x^2+1)+s(x+1)+tx = 0\text{.}
+\end{equation*}
+Then \(rx^2+(s+t)x+(r+s)=0=0x^2+0x+0\), so%
+\begin{align*}
+r \amp =0\\
+s+t \amp =0\\
+r+s\amp =0\text{.}
+\end{align*}
+And in this case, we don't even need to ask the computer. The first equation gives \(r=0\) right away, and putting that into the third equation gives \(s=0\), and the second equation then gives \(t=0\).%
+\par
+Since \(r=s=t=0\) is the only solution, the set is independent.%
+\par
+Repeating for \(S_2\) leads to the equation%
+\begin{equation*}
+(r+2s+t)x^2+(-r+s+5t)x+(3r+5s+t)1=0.
+\end{equation*}
+This gives us:%
+\begin{sageinput}
+A = Matrix(3,3,[1,2,1,-1,1,5,3,5,1])
+A.rref()
+\end{sageinput}
+\begin{inlineexercise}{}{g:exercise:id224314}%
+Determine whether or not the set%
+\begin{equation*}
+\left\{\bbm -1\amp 0\\0\amp -1\ebm, \bbm 1\amp -1\\ -1\amp 1\ebm,
+\bbm 1\amp 1\\1\amp 1\ebm, \bbm 0\amp -1\\-1\amp 0\ebm\right\}
+\end{equation*}
+is linearly independent in \(M_2(\mathbb{R})\).%
+\end{inlineexercise}
+Again, we set a linear combination equal to the zero vector, and combine:%
+\begin{align*}
+a\bbm -1\amp 0\\0\amp -1\ebm +b\bbm 1\amp -1\\ -1\amp 1\ebm
++c\bbm 1\amp 1\\1\amp 1\ebm +d \bbm 0\amp -1\\-1\amp 0\ebm = \bbm 0\amp 0\\ 0\amp 0\ebm\\
+\bbm -a+b+c\amp -b+c-d\\-b+c-d\amp -a+b+c\ebm = \bbm 0\amp 0\\0\amp 0\ebm\text{.}
+\end{align*}
+%
+\par
+We could proceed, but we might instead notice right away that equations 1 and 4 are identical, and so are equations 2 and 3. With only two distinct equations and 4 unknowns, we're certain to find nontrivial solutions.%
+\end{sectionptx}
+%
+%
+\typeout{************************************************}
+\typeout{Section 2.4 Basis and dimension}
+\typeout{************************************************}
+%
+\begin{sectionptx}{Basis and dimension}{}{Basis and dimension}{}{}{x:section:sec-dimension}
+Next, we begin with an important result, sometimes known as the ``Fundamental Theorem'':%
+\begin{theorem}{Fundamental Theorem (Steinitz Exchange Lemma).}{}{x:theorem:theorem-steinitz}%
+Suppose \(V = \spn\{\vec{v}_1,\ldots, \vec{v}_n\}\). If \(\{\vec{w}_1,\ldots, \vec{w}_m\}\) is a linearly independent set of vectors in \(V\), then \(m\leq n\).%
+\end{theorem}
+If a set of vectors spans a vector space \(V\), and it is not independent, we observed that it is possible to remove a vector from the set and still span \(V\). This suggests that spanning sets that are also linearly independent are of particular importance, and indeed, they are important enough to have a name.%
+\begin{definition}{}{x:definition:def-basis}%
+Let \(V\) be a vector space. A set \(\mathcal{B}=\{\vec{e}_1,\ldots, \vec{e}_n\}\) is called a \terminology{basis} of \(V\) if \(\mathcal{B}\) is linearly independent, and \(\operatorname{span}\mathcal{B} = V\).%
+\end{definition}
+The importance of a basis is that vector vector \(\vec{v}\in V\) can be written in terms of the basis, and this expression as a linear combination of basis vectors is \emph{unique}. Another important fact is that every basis has the same number of elements.%
+\begin{theorem}{Invariance Theorem.}{}{x:theorem:thm-invariance}%
+If \(\{\vec{e}_1,\ldots, \vec{e}_n\}\) and \(\{\vec{f}_1,\ldots, \vec{f}_m\}\) are both bases of a vector space \(V\), then \(m=n\).%
+\end{theorem}
+Suppose \(V=\spn\{\vec{v}_1,\ldots,\vec{v}_n\}\). If this set is not linearly independent, \hyperref[x:theorem:theorem-surplus-span]{Theorem~\ref{x:theorem:theorem-surplus-span}} tells us that we can remove a vector from the set, and still span \(V\). We can repeat this procedure until we have a linearly independent set of vectors, which will then be a basis. These results let us make a definition.%
+\begin{definition}{}{x:definition:def-dimension}%
+Let \(V\) be a vector space. If \(V\) can be spanned by a finite number of vectors, then we call \(V\) a \terminology{finite-dimensional} vector space. If \(V\) is finite-dimensional (and non-trivial), and \(\{\vec{e}_1,\ldots, \vec{e}_n\}\) is a basis of \(V\), we say that \(V\) has \terminology{dimension} \(n\), and write%
+\begin{equation*}
+\dim V = n\text{.}
+\end{equation*}
+If \(V\) cannot be spanned by finitely many vectors, we say that \(V\) is \terminology{infinite-dimensional}.%
+\end{definition}
+\begin{inlineexercise}{}{g:exercise:id224906}%
+Find a basis for \(U=\{X\in M_{22} \,|\, XA = AX\}\), if \(A = \bbm 1\amp 1\\0\amp 0\ebm\)%
+\end{inlineexercise}
+\begin{inlineexercise}{}{g:exercise:id224947}%
+Show that the following are bases of \(\R^3\):%
+\begin{itemize}[label=\textbullet]
+\item{}\(\{(1,1,0),(1,0,1),(0,1,1)\}\)%
+\item{}\(\{(-1,1,1),(1,-1,1),(1,1,,-1)\)%
+\end{itemize}
+%
+\end{inlineexercise}
+\begin{sageinput}
+from sympy import *
+init_printing()
+\end{sageinput}
+\begin{inlineexercise}{}{g:exercise:id225020}%
+Show that the following is a basis of \(M_{22}\):%
+\begin{equation*}
+\left\{\bbm 1\amp 0\\0\amp 1\ebm, \bbm 0\amp 1\\1\amp 0\ebm, \bbm 1\amp 1\\0\amp 1\ebm, \bbm 1\amp 0\\0\amp 0\ebm\right\}\text{.}
+\end{equation*}
+%
+\end{inlineexercise}
+\begin{inlineexercise}{}{g:exercise:id225111}%
+Show that \(\{1+x,x+x^2,x^2+x^3,x^3\}\) is a basis for \(P_3\).%
+\end{inlineexercise}
+\begin{inlineexercise}{}{g:exercise:id225076}%
+Find a basis and dimension for the following subpaces of \(P_2\):%
+\begin{enumerate}[label=\alph*]
+\item{}\(U_1 = \{a(1+x)+b(x+x^2)\,|\, a,b\in\R\}\)%
+\item{}\(U_2=\{p(x)\in P_2 \,|\, p(1)=0\}\)%
+\item{}\(U_3 = \{p(x)\in P_2 \,|\, p(x)=p(-x)\}\)%
+\end{enumerate}
+%
+\par\smallskip%
+\noindent\textbf{Solution}.\hypertarget{g:solution:id225182}{}\quad{}%
+\begin{enumerate}[label=\alph*]
+\item{}By definition, \(U_1 = \spn \{1+x,x+x^2\}\), and these vectors are independent, since neither is a scalar multiple of the other. Since there are two vectors in this basis, \(\dim U_1 = 2\).%
+\item{}If \(p(1)=0\), then \(p(x)=(x-1)q(x)\) for some polynomial \(q\). Since \(U_2\) is a subspace of \(P_2\), the degree of \(q\) is at most 2. Therefore, \(q(x)=ax+b\) for some \(a,b\in\R\), and%
+\begin{equation*}
+p(x) = (x-1)(ax+b) = a(x^2-x)+b(x-1)\text{.}
+\end{equation*}
+Since \(p\) was arbitrary, this shows that \(U_2 = \spn\{x^2-x,x-1\}\).%
+\par
+The set \(\{x^2-x,x-1\}\) is also independent, since neither vector is a scalar multiple of the other. Therefore, this set is a basis, and \(\dim U_2=2\).%
+\item{}If \(p(x)=p(-x)\), then \(p(x)\) is an even polynomial, and therefore \(p(x)=a+bx^2\) for \(a,b\in\R\). (If you didn't know this it's easily verified: if%
+\begin{equation*}
+a+bx+cx^2 = a+b(-x)+c(-x)^2\text{,}
+\end{equation*}
+we can immediately cancel \(a\) from each side, and since \((-x)^2=x^2\), we can cancel \(cx^2\) as well. This leaves \(bx=-bx\), or \(2bx=0\), which implies that \(b=0\).)%
+\par
+It follows that the set \(\{1,x^2\}\) spans \(U_3\), and since this is a subset of the standard basis \(\{1,x,x^2\}\) of \(P_2\), it must be independent, and is therefore a basis of \(U_3\), letting us conclude that \(\dim U_3=2\).%
+\end{enumerate}
+%
+\end{inlineexercise}
+We've noted a few times now that if \(\vec{w}\in\spn\{\vec{v}_1,\ldots, \vec{v}_n\}\), then%
+\begin{equation*}
+\spn\{\vec{w},\vec{v}_1,\ldots, \vec{v}_n\}=\spn\{\vec{v}_1,\ldots, \vec{v}_n\}
+\end{equation*}
+If \(\vec{w}\) is not in the span, we can make another useful observation:%
+\begin{lemma}{Independent Lemma.}{}{x:lemma:lemma-independent}%
+Suppose \(\{\vec{v}_1,\ldots, \vec{v}_n\}\) is a linearly independent set of vectors in a vector space \(V\). If \(\vec{u}\in V\) but \(\vec{u}\notin \spn\{\vec{v}_1,\ldots, \vec{v}_n\}\), then \(\{\vec{u},\vec{v}_1,\ldots, \vec{v}_n\}\) is independent.%
+\end{lemma}
+\begin{proofptx}{}{g:proof:id317148}
+Suppose \(S=\{\vec{v}_1,\ldots, \vec{v}_n\}\) is independent, and that \(\vec{u}\notin\spn S\). Suppose we have%
+\begin{equation*}
+a\vec{u}+c_1\vec{v}_1+c_2\vec{v}_2+\cdots +c_n\vec{b}_n=\vec{0}
+\end{equation*}
+for scalars \(a,c_1,\ldots, c_n\). We must have \(a=0\); otherwise, we can multiply by \(\frac1a\) and rearrange to obtain%
+\begin{equation*}
+\vec{u} = -\frac{c_1}{a}\vec{v}_1-\cdots -\frac{c_n}{a}\vec{v}_n\text{,}
+\end{equation*}
+but this would mean that \(\vec{u}\in \spn S\), contradicting our assumption.%
+\par
+With \(a=0\) we're left with%
+\begin{equation*}
+c_1\vec{v}_1+c_2\vec{v}_2+\cdots +c_n\vec{b}_n=\vec{0}\text{,}
+\end{equation*}
+and since we assumed that the set \(S\) is independent, we must have \(c_1=c_2=\cdots=c_n=0\). Since we already showed \(a=0\), this shows that \(\{\vec{u},\vec{v}_1,\ldots, \vec{v}_n\}\) is independent.%
+\end{proofptx}
+This is, in fact, an ``if and only if'' result. If \(\vec{u}\in\spn\{\vec{v}_1,\ldots, \vec{v}_n\}\), then \(\{\vec{u},\vec{v}_1,\ldots, \vec{v}_n\}\) is not independent. Above, we argued that if \(V\) is finite dimensional, then any spanning set for \(V\) can be reduced to a basis. It probably won't surprise you that the following is also true.%
+\begin{lemma}{}{}{x:lemma:lem-enlarge-independent}%
+Let \(V\) be a finite-dimensional vector space, and let \(U\) be any subspace of \(V\). Then any independent set of vectors \(\{\vec{u}_1,\ldots, \vec{u}_k\}\) in \(U\) can be enlarged to a basis of \(U\).%
+\end{lemma}
+\begin{proofptx}{}{g:proof:id317412}
+This follows from \hyperref[x:lemma:lemma-independent]{Lemma~\ref{x:lemma:lemma-independent}}. If our independent set of vectors spans \(U\), then it's a basis and we're done. If not, we can find some vector not in the span, and add it to our set to obtain a larger set that is still independent. We can continue adding vectors in this fashion until we obtain a spanning set.%
+\par
+Note that this process \emph{must} terminate: \(V\) is finite-dimensional, so there is a finite spanning set for \(V\), and therefore for \(U\). By the Steinitz Exchange lemma, our independent set cannot get larger than this spanning set.%
+\end{proofptx}
+\begin{theorem}{}{}{x:theorem:thm-basis-exist}%
+Any finite-dimensional vector space \(V\) has a basis. Moreover:%
+\begin{enumerate}
+\item{}If \(V\) can be spanned by \(m\) vectors, then \(\dim V\leq m\).%
+\item{}Given an independent set \(I\) in \(V\), and a basis \(\mathcal{B}\) of \(V\), we can enlarge \(I\) to a basis of \(V\) by adding elements of \(\mathcal{B}\).%
+\end{enumerate}
+%
+\par
+If \(U\) is a subspace of \(V\), then:%
+\begin{enumerate}
+\item{}\(U\) is finite-dimensional, and \(\dim U\leq \dim V\).%
+\item{}If \(\dim U = \dim V\), then \(U=V\).%
+\end{enumerate}
+%
+\end{theorem}
+\begin{inlineexercise}{}{g:exercise:id317740}%
+Find a basis of \(M_{22}(\R)\) that contains the vectors%
+\begin{equation*}
+\vec{v}=\bbm 1\amp 1\\0\amp 0\ebm, \vec{w}=\bbm 0\amp 1\\0\amp 1\ebm\text{.}
+\end{equation*}
+%
+\par\smallskip%
+\noindent\textbf{Solution}.\hypertarget{g:solution:id317786}{}\quad{}By the previous theorem, we can form a basis by adding vectors from the standard basis%
+\begin{equation*}
+\left\{\bbm 1\amp 0\\0\amp 0\ebm, \bbm 0\amp 1\\0\amp 0\ebm, \bbm 0\amp 0\\1\amp 0\ebm, \bbm 0\amp 0\\0\amp 1\ebm\right\}\text{.}
+\end{equation*}
+It's easy to check that \(\bbm 1\amp 0\\0\amp 0\ebm\) is not in the span of \(\{\vec{v},\vec{w}\}\). To get a basis, we need one more vector. Observe that all three of our vectors so far have a zero in the \((2,1)\)-entry. Thus, \(\bbm 0\amp 0\\1\amp 0\ebm\) cannot be in the span of the first three vectors, and adding it gives us our basis.%
+\end{inlineexercise}
+\begin{inlineexercise}{}{g:exercise:id317845}%
+Extend the set \(\{1+x,x+x^2,x-x^3\}\) to a basis of \(P_3(\R)\).%
+\par\smallskip%
+\noindent\textbf{Solution}.\hypertarget{g:solution:id317898}{}\quad{}Again, we only need to add one vector from the standard basis \(\{1,x,x^2,x^3\}\), and it's not too hard to check that any of them will do.%
+\end{inlineexercise}
+\begin{inlineexercise}{}{g:exercise:id317933}%
+Give two examples of infinite-dimensional vector spaces. Support your answer.%
+\end{inlineexercise}
+Let's recap our results so far:%
+\begin{itemize}[label=\textbullet]
+\item{}A basis for a vector space \(V\) is an independent set of vectors that spans \(V\).%
+\item{}The number of vectors in any basis of \(V\) is a constant, called the dimension of \(V\).%
+\item{}The number of vectors in any independent set is always less than or equal to the number of vectors in a spanning set.%
+\item{}In a finite-dimensional vector space, any independent set can be enlarged to a basis, and any spanning set can be cut down to a basis by deleting vectors that are in the span of the remaining vectors.%
+\end{itemize}
+Another important aspect of dimension is that it reduces many problems, such as determining equality of subspaces, to counting problems.%
+\begin{theorem}{}{}{x:theorem:thm-subspace-dim}%
+Let \(U\) and \(W\) be subspaces of a finite-dimensional vector space \(V\).%
+\begin{enumerate}
+\item{}If \(U\subseteq W\), then \(\dim U\leq \dim W\).%
+\item{}If \(U\subseteq W\) and \(\dim U=\dim W\), then \(U=W\).%
+\end{enumerate}
+%
+\end{theorem}
+\begin{proofptx}{}{g:proof:id318178}
+%
+\begin{enumerate}
+\item{}Suppose \(U\subseteq W\), and let \(B=\{\vec{u}_1,\ldots, \vec{u}_k\}\) be a basis for \(U\). Since \(B\) is a basis, it's independent. And since \(B\subseteq U\) and \(U\subseteq W\), \(B\subseteq W\). Thus, \(B\) is an independent subset of \(W\), and since any basis of \(W\) spans \(W\), we know that \(\dim U = k \leq \dim W\), by \hyperref[x:theorem:theorem-steinitz]{Theorem~\ref{x:theorem:theorem-steinitz}}.%
+\item{}Suppose \(U\subseteq W\) and \(\dim U = \dim W\). Let \(B\) be a basis for \(U\). As above, \(B\) is an independent subset of \(W\). If \(W\neq U\), then there is some \(\vec{w}\in W\) with \(\vec{w}\notin U\). But \(U=\spn B\), so that would mean that \(B\cup \{\vec{w}\}\) is a linearly independent set containing \(\dim U+1\) vectors. This is impossible, since \(\dim W=\dim U\), so no independent set can contain more than \(\dim U\) vectors.%
+\end{enumerate}
+%
+\end{proofptx}
+An even more useful counting result is the following:%
+\begin{theorem}{}{}{x:theorem:thm-half-the-work}%
+Let \(V\) be an \(n\)-dimensional vector space. If the set \(S\) contains \(n\) vectors, then \(S\) is independent if and only if \(\spn S=V\).%
+\end{theorem}
+\begin{proofptx}{}{g:proof:id318514}
+If \(S\) is independent, then it can be extended to a basis \(B\) with \(S\subseteq B\). But \(S\) and \(B\) both contain \(n\) vectors (since \(\dim V=n\)), so we must have \(S=B\).%
+\par
+If \(S\) spans \(V\), then \(S\) must contain a basis \(B\), and as above, since \(S\) and \(B\) contain the same number of vectors, they must be equal.%
+\end{proofptx}
+\begin{paragraphs}{New subspaces from old.}{x:paragraphs:pars-subspace-combine}%
+On your first assignment, you showed that if \(U\) and \(W\) are subspaces of a vector space \(V\), then the intersection \(U\cap W\) is also a subspace of \(V\). You also showed that the union \(U\cup W\) is generally not a subspace, unless one subspace is contained in the other (in which case the union is just the larger of the two subspaces we already have).%
+\par
+In class, we discussed the fact that the right way to define a subspace containing both \(U\) and \(W\) is using their \terminology{sum}: we define the sum \(U+W\) of two subspaces by%
+\begin{equation*}
+U+W = \{\vec{u}+\vec{w} \,|\, \vec{u}\in U \text{ and } \vec{w}\in W\}\text{.}
+\end{equation*}
+We proved that \(U+W\) is again a subspace of \(V\).%
+\par
+If \(U\cap W = \{\vec{0}\}\), we say that the sum is a \terminology{direct sum}, and write it as \(U\oplus W\). The following theorem might help us understand why direct sums are singled out for special attention:%
+\begin{theorem}{}{}{x:theorem:thm-sum-dimension}%
+Let \(U\) and \(W\) be subspaces of a finite-dimensional vector space \(V\). Then \(U+W\) is finite-dimensional, and%
+\begin{equation*}
+\dim(U+W)=\dim U + \dim W - \dim(U\cap W)\text{.}
+\end{equation*}
+%
+\end{theorem}
+If the sum is direct, then we have simply \(\dim(U\oplus W) = \dim U + \dim W\). The other reason why direct sums are preferable, is that any \(\vec{v}\in U\oplus W\) can be written \emph{uniquely} as \(\vec{v}=\vec{u}+\vec{w}\) where \(\vec{U}\in U\) and \(\vec{w}\in W\).%
+\begin{theorem}{}{}{x:theorem:thm-direct-sum}%
+For any subspaces \(U,W\) of a vector space \(V\), \(U\cap W = \{\vec{0}\}\) if and only if for every \(\vec{v}\in U+W\) there exist unique \(\vec{u}\in U, \vec{w}\in W\) such that \(\vec{v}=\vec{u}+\vec{w}\).%
+\end{theorem}
+\begin{proofptx}{}{g:proof:id318950}
+Suppose that \(U\cap W = \{\vec{0}\}\), and suppose that we have \(\vec{v} = \vec{u}_1+\vec{w}_1 = \vec{u}_2+\vec{w}_2\), for \(\vec{u}_1,\vec{u}_2\in U,\vec{w}_1,\vec{w}_2\in W\). Then \(\vec{0}=(\vec{u}_1-\vec{u}_2)+(\vec{w}_1-\vec{w}_2)\), which implies that%
+\begin{equation*}
+\vec{w}_1-\vec{w}_2 = -(\vec{u}_1-\vec{u}_2)\text{.}
+\end{equation*}
+Now, \(\vec{u}=\vec{u}_1-\vec{u}_2\in U\), since \(U\) is a subspace, and similarly, \(\vec{w}=\vec{w}_1-\vec{w}_2\in W\). But we also have \(\vec{w}=-\vec{u}\), which implies that \(\vec{w}\in U\). Therefore, \(\vec{w}\in U\cap W\), which implies that \(\vec{w}=\vec{0}\), so \(\vec{w}_1=\vec{w}_2\). But we must also then have \(\vec{u}=\vec{0}\), so \(\vec{u}_1=\vec{u}_2\).%
+\par
+Conversely, suppose that every \(\vec{v}\in U+W\) can be written uniquely as \(\vec{v}=vec{u}+\vec{w}\), with \(\vec{u}\in U\) and \(\vec{w}\in W\). Suppose that \(\vec{a}\in U\cap W\). Then \(\vec{a}\in U\) and \(\vec{a}\in W\), so we also have \(-\vec{a}\in W\), since \(W\) is a subspace. But then \(\vec{0}=\vec{a}+(-\vec{a})\), where \(\vec{a}\in U\) and \(-\vec{a}\in W\). On the other hand, \(\vec{0}=\vec{0}+\vec{0}\), and \(\vec{0}\) belongs to both \(U\) and \(W\). It follows that \(\vec{a}=\vec{0}\). Since \(\vec{a}\) was arbitrary, \(U\cap W = \{\vec{0}\}\).%
+\end{proofptx}
+We end with one last application of the theory we've developed on the existence of a basis for a finite-dimensional vector space. As we continue on to later topics, we'll find that it is often useful to be able to decompose a vector space into a direct sum of subspaces. Using bases, we can show that this is always possible.%
+\begin{theorem}{}{}{x:theorem:thm-construct-complement}%
+Let \(V\) be a finite-dimensonal vector space, and let \(U\) be any subspace of \(V\). Then there exists a subspace \(W\subseteq V\) such that \(U\oplus W = V\).%
+\end{theorem}
+\begin{proofptx}{}{g:proof:id314428}
+Let \(\{\vec{u}_1,\ldots, \vec{u}_m\}\) be a basis of \(U\). Since \(U\subseteq W\), the set \(\{\vec{u}_1,\ldots, \vec{u}_m\}\) is a linearly independent subset of \(V\). Since any linearly independent set can be extended to a basis of \(V\), there exist vectors \(\vec{w}_1,\ldots,\vec{w}_n\) such that%
+\begin{equation*}
+\{\vec{u}_1,\ldots, \vec{u}_m,\vec{w}_1,\ldots, \vec{w}_n\}
+\end{equation*}
+is a basis of \(V\).%
+\par
+Now, let \(W = \spn\{\vec{w}_1,\ldots, \vec{w}_n\}\). Then \(W\) is a subspace, and \(\{\vec{w}_1,\ldots, \vec{w}_n\}\) is a basis for \(W\). (It spans, and must be independent since it's a subset of an independent set.)%
+\par
+Clearly, \(U+W=V\), since \(U+W\) contains the basis for \(V\) we've constructed. To show the sum is direct, it suffices to show that \(U\cap W = \{\vec{0}\}\). To that end, suppose that \(\vec{v}\in U\cap W\). Since \(\vec{v}\in U\), we have%
+\begin{equation*}
+\vec{v}=a_1\vec{u}_1+\cdots +a_m\vec{u}_m
+\end{equation*}
+for scalars \(a_1,\ldots, a_m\). Since \(\vec{v}\in W\), we can write%
+\begin{equation*}
+\vec{v}=b_1\vec{w}_1+\cdots + b_n\vec{w}_n
+\end{equation*}
+for scalars \(b_1,\ldots, b_n\). But then%
+\begin{equation*}
+\vec{0}=\vec{v}-\vec{v}=a_1\vec{u}_1+\cdots a_m\vec{u}_m-b_1\vec{w}_1-\cdots -b_n\vec{w}_n.
+\end{equation*}
+Since \(\{\vec{u}_1,\ldots, \vec{u}_m,\vec{w}_1,\ldots, \vec{w}_n\}\) is a basis for \(V\), it's independent, and therefore, all of the \(a_i,b_j\) must be zero, and therefore, \(\vec{v}=\vec{0}\).%
+\end{proofptx}
+The subspace \(W\) constructed in the theorem above is called a \terminology{complement} of \(U\). It is not unique; indeed, it depends on the choice of basis vectors. For example, if \(U\) is a one-dimensional subspace of \(\R^2\); that is, a line, then any other non-parallel line through the origin provides a complement of \(U\). Later we will see that an especially useful choice of complement is the \terminology{orthogonal complement}.%
+\end{paragraphs}%
+\end{sectionptx}
+\end{chapterptx}
+%
+%
+\typeout{************************************************}
+\typeout{Chapter 3 Linear Transformations}
+\typeout{************************************************}
+%
+\begin{chapterptx}{Linear Transformations}{}{Linear Transformations}{}{}{x:chapter:ch-linear-trans}
+\begin{introduction}{}%
+At an elementary level, Linear Algebra is the study of vectors (in \(\R^n\)) and matrices. Of course, much of that study revolves around systems of equations. Recall that if \(\vec{x}\) is a vector in \(\R^n\) (viewed as an \(n\times 1\) column matrix), and \(A\) is an \(m\times n\) matrix, then \(\vec{y}=A\vec{x}\) is a vector in \(\R^m\). Thus, multiplication by \(A\) produces a function from \(\R^n\) to \(\R^m\).%
+\par
+This example motivates the definition of a \emph{linear transformation}, and as we'll see, provides the archetype for all linear transformations in the finite-dimensional setting. Many areas of mathematics can be viewed at some fundamental level as the study of sets with certain properties, and the functions between them. Linear algebra is no different. The sets in this context are, of course, vector spaces. Since we care about the linear algebraic structure of vector spaces, it should come as no surprise that we're most interested in functions that preserve this structure. That is precisely the idea behind linear transformations.%
+\end{introduction}%
+%
+%
+\typeout{************************************************}
+\typeout{Section 3.1 Definition and examples}
+\typeout{************************************************}
+%
+\begin{sectionptx}{Definition and examples}{}{Definition and examples}{}{}{x:section:sec-lin-tran-intro}
+Let \(V\) and \(W\) be vector spaces. At their most basic, all vector spaces are sets. Given any two sets, we can consider functions from one to the other. The functions of interest in linear algebra are those that respect the vector space structure of the sets.%
+\begin{definition}{}{x:definition:def-lin-trans}%
+Let \(V\) and \(W\) be vector spaces. A function \(T:V\to W\) is called a \terminology{linear transformation} if:%
+\begin{enumerate}
+\item{}For all \(\vec{v}_1,\vec{v}_2\in V\), \(T(\vec{v}_1+\vec{v}_2)=T(\vec{v}_1)+T(\vec{v}_2)\).%
+\item{}For all \(\vec{v}\in V\) and scalars \(c\), \(T(c\vec{v})=cT(\vec{v})\).%
+\end{enumerate}
+We often use the term \terminology{linear operator} to refer to a linear transformation \(T:V\to V\) from a vector space to itself.%
+\end{definition}
+Note on notation: it is common useage to drop the usual parentheses of function notation when working with linear transformations, as long as this does not cause confusion. That is, one might write \(T\vec{v}\) instead of \(T(\vec{v})\), but one should never write \(T\vec{v}+\vec{w}\) in place of \(T(\vec{v}+\vec{w})\), for the same reason that one should never write \(2x+y\) in place of \(2(x+y)\). Mathematicians often think of linear transformations in terms of matrix multiplication, which probably explains this notation to some extent.%
+\par
+The properties of a linear transformation tell us that a linear map \(T\) \emph{preserves} the operations of addition and scalar multiplication. (When the domain and codomain are different vector spaces, we might say that \(T\) \emph{intertwines} the operations of the two vector spaces.) In particular, any linear transformation \(T\) must preserve the zero vector, and respect linear combinations.%
+\begin{theorem}{}{}{x:theorem:thm-lt-props}%
+Let \(T:V\to W\) be a linear transformation. Then%
+\begin{enumerate}
+\item{}\(T(\vec{0}_V) = \vec{0}_W\), and%
+\item{}For any scalars \(c_1,\ldots, c_n\) and vectors \(\vec{v}_1,\ldots, \vec{v}_n\in V\),%
+\begin{equation*}
+T(c_1\vec{v}_1+c_2\vec{v}_2+\cdots + c_n\vec{v}_n) = c_1T(\vec{v}_1)+c_2T(\vec{v}_2)+\cdots + c_nT(\vec{v}_n)\text{.}
+\end{equation*}
+%
+\end{enumerate}
+%
+\end{theorem}
+\begin{proofptx}{}{g:proof:id315136}
+%
+\begin{enumerate}
+\item{}Since \(\vec{0}_V+\vec{0}_V = \vec{0}_V\), we have%
+\begin{equation*}
+T(\vec{0}_V) = T(\vec{0}_V+\vec{0}_V) = T(\vec{0}_V)+T(\vec{0}_V)\text{.}
+\end{equation*}
+Adding \(-T(\vec{0}_V)\) to both sides of the above gives us \(\vec{0}_W = T(\vec{0}_V)\).%
+\item{}The addition property of a linear transformation can be extended to sums of three or more vectors using associativity. Therefore, we have%
+\begin{align*}
+T(c_1\vec{v}_1+\cdots + c_n\vec{v}_n) \amp = T(c_1\vec{v}_1)+ \cdots T(c_n\vec{v}_n)\\
+\amp = c_1T(\vec{v}_1)+\cdots +c_nT(\vec{v}_n)\text{,}
+\end{align*}
+where the second line follows from the scalar multiplication property.%
+\end{enumerate}
+%
+\end{proofptx}
+\begin{example}{}{x:example:ex-matrix-trans}%
+Let \(V=\R^n\) and let \(W=\R^m\). For any \(m\times n\) matrix \(A\), the map \(T_A:\R^n\to \R^m\) defined by%
+\begin{equation*}
+T_A(\vec{x}) = A\vec{x}
+\end{equation*}
+is a linear transformation. (This follows immediately from properties of matrix multiplication.)%
+\par
+Let \(B = \{\vec{e}_1,\ldots, \vec{e}_n\}\) denote the standard basis of \(\R^n\). Recall that \(A\vec{e}_i\) is equal to the \(i\)th column of \(A\). Thus, if we know the value of a linear transformation \(T:\R^n\to \R^m\) on each basis vector, we can immediately determine the matrix \(A\) such that \(T=T_A\):%
+\begin{equation*}
+A = \bbm T(\vec{e}_1) \amp T(\vec{e}_2) \amp \cdots \amp T(\vec{e}_n)\ebm\text{.}
+\end{equation*}
+This is true because \(T\) and \(T_A\) agree on the standard basis: for each \(i=1,2,\ldots, n\),%
+\begin{equation*}
+T_A(\vec{e_i}) = A\vec{e_i} = T(\vec{e}_i)\text{.}
+\end{equation*}
+Moreover, if two linear transformations agree on a basis, they must be equal. Given any \(\vec{x}\in \R^n\), we can write \(\vec{x}\) uniquely as a linear combination%
+\begin{equation*}
+\vec{x}=c_1\vec{e}_1+c_2\vec{e}_2+\cdots + c_n\vec{e}_n.
+\end{equation*}
+If \(T(\vec{e}_i)=T_A(\vec{e}_i)\) for each \(i\), then by \hyperref[x:theorem:thm-lt-props]{Theorem~\ref{x:theorem:thm-lt-props}} we have%
+\begin{align*}
+T(\vec{x}) \amp = T(c_1\vec{e}_1+c_2\vec{e}_2+\cdots + c_n\vec{e}_n) \\
+\amp = c_1T(\vec{e}_1)+c_2T(\vec{e}_2)+\cdots + c_nT(\vec{e}_n)\\
+\amp = c_1T_A(\vec{e}_1)+c_2T_A(\vec{e}_2)+\cdots + c_nT_A(\vec{e}_n)\\
+\amp = T_A(c_1\vec{e}_1+c_2\vec{e}_2+\cdots + c_n\vec{e}_n) \\
+\amp = T_A(\vec{x})\text{.}
+\end{align*}
+%
+\end{example}
+Let's look at some other examples of linear transformations.%
+\begin{itemize}[label=\textbullet]
+\item{}For any vector spaces \(V,W\) we can define the \terminology{zero transformation} \(0:V\to W\) by \(0(\vec{v})=\vec{0}\) for all \(\vec{v}\in V\).%
+\item{}On any vector space \(V\) we have the \terminology{identity transformation} \(1_V:V\to V\) defined by \(1_V(\vec{v})=\vec{v}\) for all \(\vec{v}\in V\).%
+\item{}Let \(V = F[a,b]\) be the space of all functions \(f:[a,b]\to \R\). For any \(c\in [a,b]\) we have the \terminology{evaluation map} \(E_a: V\to \R\) defined by \(E_a(f) = f(a)\).%
+\par
+To see that this is linear, note that \(E_a(0)=\mathbf{0}(a)=0\), where \(mathbf{0}\) denotes the zero function; for any \(f,g\in V\),%
+\begin{equation*}
+E_a(f+g)=(f+g)(a)=f(a)+g(a)=E_a(f)+E_a(g)\text{,}
+\end{equation*}
+and for any scalar \(c\in \R\),%
+\begin{equation*}
+E_a(cf) = (cf)(a) = c(f(a))=cE_a(f)\text{.}
+\end{equation*}
+%
+\par
+Note that the evaluation map can similarly be defined as a linear transformation on any vector space of polynomials.%
+\item{}On the vector space \(C[a,b]\) of all \emph{continuous} functions on \([a,b]\), we have the integration map \(I:C[a,b]\to \R\) defined by \(I(f)=\int_a^b f(x)\,dx\). The fact that this is a linear map follows from properties of integrals proved in a calculus class.%
+\item{}On the vector space \(C^1(a,b)\) of continuously differentiable functions on \((a,b)\), we have the differentiation map \(D: C^1(a,b)\to C(a,b)\) defined by \(D(f) = f'\). Again, linearity follows from properties of the derivative.%
+\item{}Let \(\R^\infty\) denote the set of sequences \((a_1,a_2,a_3,\ldots)\) of real numbers, with term-by-term addition and scalar multiplication. The shift operators%
+\begin{align*}
+S_L(a_1,a_2,a_3,\ldots)  \amp = (a_2,a_3,a_4,\ldots) \\
+S_R(a_1,a_2,a_3,\ldots) \amp = (0,a_1,a_2,\ldots)
+\end{align*}
+are both linear.%
+\item{}On the space \(M_{mn}(\R)\) of \(m\times n\) matrices, the trace defines a linear map \(\operatorname{tr}:M_{mn}(\R)\to \R\), and the transpose defines a linear map \(T:M_{mn}(\R)\to M_{nm}(\R)\). The determinant and inverse operations on \(M_{nn}\) are \emph{not} linear.%
+\end{itemize}
+%
+\par
+For finite-dimensional vector spaces, it is often convenient to work in terms of a basis. The properties of a linear transformation tell us that we can completely define any linear transformation by giving its values on a basis. In fact, it's enough to know the value of a transformation on a spanning set. The argument given in \hyperref[x:example:ex-matrix-trans]{Example~\ref{x:example:ex-matrix-trans}} can be applied to any linear transformation, to obtain the following result.%
+\begin{theorem}{}{}{x:theorem:thm-agree-span}%
+Let \(T:V\to W\) and \(S:V\to W\) be two linear transformations. If \(V = \spn\{\vec{v}_1,\ldots, \vec{v}_n\) and \(T(\vec{v}_i)=S(\vec{v}_i)\) for each \(i=1,2,\ldots, n\), then \(T=S\).%
+\end{theorem}
+If the above spanning set is not also independent, then one might be concerned about the fact that there will be more than one way to express a vector as linear combination of vectors in that set. If we define \(T\) by giving its values on a spanning set, will it be well-defined? Suppose that we have scalars \(a_1,\ldots, a_n, b_1,\ldots, b_n\) such that%
+\begin{align*}
+\vec{v} \amp a_1\vec{v_1}+\cdots + a_n\vec{v}_n\\
+\amp b_1\vec{v}_1+\cdots + b_n\vec{v}_n
+\end{align*}
+We then have%
+\begin{align*}
+a_1T(\vec{v}_1)+\cdots + a_nT(\vec{v}_n) \amp T(a_1\vec{v}_1+\cdots + a_n\vec{v}_n) \\
+\amp T(b_1\vec{v}_1+\cdots +b_n\vec{v}_n)\\
+\amp b_1T(\vec{v}_1)+\cdots +b_nT(\vec{v}_n)\text{.}
+\end{align*}
+The next theorem seems like an obvious consequence of the above, and indeed, one might wonder where the assumption of a basis is needed. The distinction here is that the vectors \(\vec{w}_1,\ldots, \vec{w}_n\in W\) are chosen in advance, and then we set \(T(vec{b}_i)=\vec{w}_i\), rather than simply defining each \(\vec{w}_i\) as \(T(\vec{b}_i)\).%
+\begin{theorem}{}{}{x:theorem:thm-define-using-basis}%
+Let \(V,W\) be vector spaces. Let \(B=\{\vec{b}_1,\ldots, \vec{b}_n\}\) be a basis of \(V\), and let \(\vec{w}_1,\ldots, \vec{w}_n\) be any vectors in \(W\). (These vectors need not be distinct.) Then there exists a unique linear transformation \(T:V\to W\) such that \(T(\vec{b}_i)=\vec{w}_i\) for each \(i=1,2,\ldots, n\); indeed, we can define \(T\) as follows: given \(\vec{v}\in V\), write \(\vec{v}=c_1\vec{v}_1+\cdots +c_n\vec{v}_n\). Then%
+\begin{equation*}
+T(\vec{v})=T(c_1\vec{v}_1+\cdots + c_n\vec{v}_n) = c_1\vec{w}_1+\cdots +c_n\vec{v}_n\text{.}
+\end{equation*}
+%
+\end{theorem}
+With the basic theory out of the way, let's look at a few basic examples.%
+\begin{inlineexercise}{}{g:exercise:id316049}%
+Suppose \(T:\R^2\to \R^2\) is a linear transformation. If \(T\bbm 1\\0\ebm = \bbm 3\\-4\ebm\) and \(T\bbm 0\\1\ebm =\bbm 5\\2\ebm\), find \(T=\bbm -2\\4\ebm\).%
+\par\smallskip%
+\noindent\textbf{Solution}.\hypertarget{g:solution:id316092}{}\quad{}Since we know the value of \(T\) on the standard basis, we can use properties of linear transformations to immediately obtain the answer:%
+\begin{align*}
+T\bbm -2\\4\ebm \amp= T\left(-2\bbm 1\\0\ebm +4\bbm 0\\1\ebm\right)\\
+\amp = -2T\bbm 1\\0\ebm+4T\bbm 0\\1\ebm\\
+\amp = -2\bbm 3\\-4\ebm +4\bbm 5\\2\ebm\\
+\amp = \bbm 14\\16\ebm\text{.}
+\end{align*}
+%
+\end{inlineexercise}
+\begin{inlineexercise}{}{g:exercise:id316156}%
+Suppose \(T:\R^2\to \R^2\) is a linear tranasformation. Given that \(T\bbm 3\\1\ebm = \bbm 1\\4\ebm\) and \(T\bbm 2\\-5\ebm = \bbm 2\\-1\ebm\), find \(T\bbm 4\\3\ebm\).%
+\par\smallskip%
+\noindent\textbf{Solution}.\hypertarget{g:solution:id316183}{}\quad{}At first, this example looks the same as the one above, and to some extent, it is. The difference is that this time, we're given the values of \(T\) on a basis that is not the standard one. This means we first have to do some work to determine how to write the given vector in terms of the given basis.%
+\par
+Suppose we have \(a\bbm 3\\1\ebm+b\bbm 2\\-5\ebm = \bbm 4\\3\ebm\) for scalars \(a,b\). This is equivalent to the matrix equation%
+\begin{equation*}
+\bbm 3\amp 2\\1\amp -5\ebm\bbm a\\b\ebm = \bbm 4\\3\ebm.
+\end{equation*}
+Solving (perhaps using the code cell below), we get \(a=\frac{26}{17}, b = -\frac{5}{17}\). Therefore,%
+\begin{equation*}
+T\bbm 3\\4\ebm = \frac{26}{17}\bbm 1\\4\ebm -\frac{5}{17}\bbm 2\\-1\ebm = \bbm 16/17\\109/17\ebm\text{.}
+\end{equation*}
+%
+\end{inlineexercise}
+\begin{sageinput}
+from sympy import *
+init_printing()
+A = Matrix(2,2,[3,2,1,-5])
+B = Matrix(2,1,[4,3])
+(A**-1)*B
+\end{sageinput}
+\begin{inlineexercise}{}{g:exercise:id316224}%
+Suppose \(T:P_2(\R)\to \R\) is defined by%
+\begin{equation*}
+T(x+2)=1, T(1)=5, T(x^2+x)=0.
+\end{equation*}
+Find \(T(2-x+3x^2)\).%
+\par\smallskip%
+\noindent\textbf{Solution}.\hypertarget{g:solution:id316262}{}\quad{}We need to find scalars \(a,b,c\) such that%
+\begin{equation*}
+2-x+3x^2 = a(x+2)+b(1)+c(x^2+x)\text{.}
+\end{equation*}
+We could set up a system and solve, but this time it's easy enough to just work our way through. We must have \(c=3\), to get the correct coefficient for \(x^2\). This gives%
+\begin{equation*}
+2-x+3x^2=a(x+2)+b(1)+3x^2+3x\text{.}
+\end{equation*}
+Now, we have to have \(3x+ax=-x\), so \(a=-4\). Putting this in, we get%
+\begin{equation*}
+2-x+3x^2=-4x-8+b+3x^2+3x\text{.}
+\end{equation*}
+Simiplifying this leaves us with \(b=10\). Finally, we find:%
+\begin{align*}
+T(2-x+3x^2) \amp = T(-4(x+2)+10(1)+3(x^2+x)) \\
+\amp = -4T(x+2)+10T(1)+3T(x^2+x)\\
+\amp = -4(1)+10(5)+3(0) = 46\text{.}
+\end{align*}
+%
+\end{inlineexercise}
+\begin{inlineexercise}{}{g:exercise:id316384}%
+Find a linear transformation \(T:\R^2\to \R^3\) such that%
+\begin{equation*}
+T(1,2)=(1,1,0) \quad \text{ and } \quad T(-1,1) = (0,2,-1)\text{.}
+\end{equation*}
+Then, determine the value of \(T(3,2)\).%
+\par\smallskip%
+\noindent\textbf{Solution}.\hypertarget{g:solution:id312615}{}\quad{}Since \(\{(1,2),(-1,1)\}\) forms a basis of \(\R^2\) (the vectors are not parallel and there are two of them), it suffices to determine how to write a general vector in terms of this basis. suppose%
+\begin{equation*}
+x(1,2)+y(-1,1)=(a,b)
+\end{equation*}
+for a general element \((a,b)\in \R^2\). This is equivalent to the matrix equation \(\bbm 1\amp -1\\2\amp 1\ebm\bbm x\\y\ebm = \bbm a\\b\ebm\). We find:%
+\begin{equation*}
+(a,b) = \frac13(a+b)(1,2)+\frac13(-2a+b)(-1,1).
+\end{equation*}
+Thus,%
+\begin{align*}
+T(a,b) \amp = \frac13(a+b)T(1,2)+\frac13(-2a+b)T(-1,1) \\
+\amp = \frac13(a+b)(1,1,0)+\frac13(-2a+b)(0,2,-1)\\
+\amp = \left(\frac{a+b}{3}, -a+b, \frac{2a-b}{3}\right)\text{.}
+\end{align*}
+Therefore,%
+\begin{equation*}
+T(3,2) = \left(\frac53, -1, \frac43\right)\text{.}
+\end{equation*}
+%
+\end{inlineexercise}
+\begin{sageinput}
+a, b = symbols('a b', real = True, constant = True)
+A = Matrix(2,2,[1,-1,2,1])
+B = Matrix(2,1,[a,b])
+(A**-1)*B
+\end{sageinput}
+\end{sectionptx}
+%
+%
+\typeout{************************************************}
+\typeout{Section 3.2 Kernel and Image}
+\typeout{************************************************}
+%
+\begin{sectionptx}{Kernel and Image}{}{Kernel and Image}{}{}{x:section:sec-kernel-image}
+Given any linear transformation \(T:V\to W\) we can associate two important subspaces: the \terminology{kernel} of \(T\) (also known as the \terminology{nullspace}), and the \terminology{image} of \(T\) (also known as the \terminology{range}).%
+\begin{definition}{}{x:definition:def-kernel-image}%
+Let \(T:V\to W\) be a linear transformation. The \terminology{kernel} of \(T\), denoted \(\ker T\), is defined by%
+\begin{equation*}
+\ker T = \{\vec{v}\in V \,|\, T(\vec{v}=\vec{0})\}\text{.}
+\end{equation*}
+The \terminology{image} of \(T\), denoted \(\Img T\), is defined by%
+\begin{equation*}
+\Img T = \{(T\vec{v}) \,|\, \vec{v}\in V\}\text{.}
+\end{equation*}
+%
+\end{definition}
+Note that the kernel of \(T\) is just the set of all vectors \(T\) sends to zero. The image of \(T\) is the range of \(T\) in the usual sense of the range of a function.%
+\end{sectionptx}
+\end{chapterptx}
+\end{document}
