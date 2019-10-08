@@ -1,0 +1,233 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<!--**************************************-->
+<!--*    Generated from PreTeXt source   *-->
+<!--*    on 2019-10-07T23:53:41-06:00    *-->
+<!--*                                    *-->
+<!--*      https://pretextbook.org       *-->
+<!--*                                    *-->
+<!--**************************************-->
+<html lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Span</title>
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width,  initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script><script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [['\\(','\\)']]
+    },
+    asciimath2jax: {
+        ignoreClass: ".*",
+        processClass: "has_am"
+    },
+    jax: ["input/AsciiMath"],
+    extensions: ["asciimath2jax.js"],
+    TeX: {
+        extensions: ["extpfeil.js", "autobold.js", "https://pretextbook.org/js/lib/mathjaxknowl.js", ],
+        // scrolling to fragment identifiers is controlled by other Javascript
+        positionToHash: false,
+        equationNumbers: { autoNumber: "none", useLabelIds: true, },
+        TagSide: "right",
+        TagIndent: ".8em",
+    },
+    // HTML-CSS output Jax to be dropped for MathJax 3.0
+    "HTML-CSS": {
+        scale: 88,
+        mtextFontInherit: true,
+    },
+    CommonHTML: {
+        scale: 88,
+        mtextFontInherit: true,
+    },
+});
+</script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_CHTML-full"></script><script>$(function () {
+    // Make *any* div with class 'sagecell-sage' an executable Sage cell
+    // Their results will be linked, only within language type
+    sagecell.makeSagecell({inputLocation: 'div.sagecell-sage',
+                           linked: true,
+                           languages: ['sage'],
+                           evalButtonText: 'Evaluate (Sage)'});
+});
+</script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.12/pretext.js"></script><script src="https://pretextbook.org/js/0.12/pretext_add_on.js"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/pretext.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/toc.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/colors_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/setcolors.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/features.css" rel="stylesheet" type="text/css">
+<script>var logged_in = false;
+var role = 'student';
+var guest_access = true;
+var login_required = false;
+var js_version = 0.12;
+</script>
+</head>
+<body class="mathbook-book has-toc has-sidebar-left">
+<a class="assistive" href="#content">Skip to main content</a><div class="hidden-content" style="display:none">\(\newcommand{\spn}{\operatorname{span}}
+\newcommand{\bbm}{\begin{bmatrix}}
+\newcommand{\ebm}{\end{bmatrix}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Img}{\operatorname{im}}
+\newcommand{\nll}{\operatorname{null}}
+\newcommand{\csp}{\operatorname{col}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\)</div>
+<header id="masthead" class="smallbuttons"><div class="banner"><div class="container">
+<a id="logo-link" href=""></a><div class="title-container">
+<h1 class="heading"><a href="linalg-notes-with-computations.html"><span class="title">Lecture Notes for Math 3410, with Computational Examples</span></a></h1>
+<p class="byline">Sean Fitzpatrick</p>
+</div>
+</div></div>
+<nav id="primary-navbar" class="navbar"><div class="container">
+<div class="navbar-top-buttons">
+<button class="sidebar-left-toggle-button button active" aria-label="Show or hide table of contents sidebar">Contents</button><div class="tree-nav toolbar toolbar-divisor-3"><span class="threebuttons"><a id="previousbutton" class="previous-button toolbar-item button" href="sec-vec-sp.html" title="Previous">Prev</a><a id="upbutton" class="up-button button toolbar-item" href="ch-vector-space.html" title="Up">Up</a><a id="nextbutton" class="next-button button toolbar-item" href="sec-independence.html" title="Next">Next</a></span></div>
+</div>
+<div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="sec-vec-sp.html" title="Previous">Prev</a><a class="up-button button toolbar-item" href="ch-vector-space.html" title="Up">Up</a><a class="next-button button toolbar-item" href="sec-independence.html" title="Next">Next</a>
+</div>
+</div></nav></header><div class="page">
+<div id="sidebar-left" class="sidebar" role="navigation"><div class="sidebar-content">
+<nav id="toc"><ul>
+<li class="link">
+<a href="frontmatter-1.html" data-scroll="frontmatter-1"><span class="title">Front Matter</span></a><ul><li><a href="preface-1.html" data-scroll="preface-1">Preface</a></li></ul>
+</li>
+<li class="link">
+<a href="ch-computation.html" data-scroll="ch-computation"><span class="codenumber">1</span> <span class="title">Computational Tools</span></a><ul>
+<li><a href="section-jupyter.html" data-scroll="section-jupyter">Jupyter</a></li>
+<li><a href="sec-python-basics.html" data-scroll="sec-python-basics">Python basics</a></li>
+<li><a href="sec-sympy.html" data-scroll="sec-sympy">SymPy for linear algebra</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="ch-vector-space.html" data-scroll="ch-vector-space"><span class="codenumber">2</span> <span class="title">Vector spaces</span></a><ul>
+<li><a href="sec-vec-sp.html" data-scroll="sec-vec-sp">Abstract vector spaces</a></li>
+<li><a href="sec-span.html" data-scroll="sec-span" class="active">Span</a></li>
+<li><a href="sec-independence.html" data-scroll="sec-independence">Linear Independence</a></li>
+<li><a href="sec-dimension.html" data-scroll="sec-dimension">Basis and dimension</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="ch-linear-trans.html" data-scroll="ch-linear-trans"><span class="codenumber">3</span> <span class="title">Linear Transformations</span></a><ul>
+<li><a href="sec-lin-tran-intro.html" data-scroll="sec-lin-tran-intro">Definition and examples</a></li>
+<li><a href="sec-kernel-image.html" data-scroll="sec-kernel-image">Kernel and Image</a></li>
+</ul>
+</li>
+</ul></nav><div class="extras"><nav><a class="mathbook-link" href="https://pretextbook.org">Authored in PreTeXt</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a></nav></div>
+</div></div>
+<main class="main"><div id="content" class="pretext-content"><section class="section" id="sec-span"><h2 class="heading hide-type">
+<span class="type">Section</span> <span class="codenumber">2.2</span> <span class="title">Span</span>
+</h2>
+<a href="sec-span.html" class="permalink">¶</a><p id="p-39">Recall that a <dfn class="terminology">linear combination</dfn> of a set of vectors \(\vec{v}_1,\ldots, \vec{v}_k\) is a vector expression of the form</p>
+<div class="displaymath">
+\begin{equation*}
+\vec{w}=c_1\vec{v}_1+c_2\vec{v}_2+\cdots +c_k\vec{v}_k,
+\end{equation*}
+</div>
+<p>where \(c_1,\ldots, c_k\) are scalars.</p>
+<p id="p-40">The <dfn class="terminology">span</dfn> of those same vectors is the set of all possible linear combinations:</p>
+<div class="displaymath">
+\begin{equation*}
+\spn\{\vec{v}_1,\ldots, \vec{v}_k\} = \{c_1\vec{v}_1+ \cdots + c_k\vec{v}_k \,|\, c_1,\ldots, c_k \in \mathbb{F}\}.
+\end{equation*}
+</div>
+<p>Therefore, the questions “Is the vector \(\vec{w}\) in \(\spn\{\vec{v}_1,\ldots, \vec{v}_k\}\text{?}\)” is really asking, “Can \(\vec{w}\) be written as a linear combination of \(\vec{v}_1,\ldots, \vec{v}_k\text{?}\)”</p>
+<p id="p-41">With the appropriate setup, all such questions become questions about solving systems of equations. Here, we will look at a few such examples.</p>
+<article class="exercise-like" id="exercise-1"><h6 class="heading">
+<span class="type">Exercise</span> <span class="codenumber">2.2.1</span>.</h6>
+<p id="p-42">Determine whether the vector \(\bbm 2\\3\ebm\) is in the span of the vectors \(\bbm 1\\1\ebm,\bbm -1\\2\ebm\text{.}\)</p></article><p id="p-43">This is really asking: are there scalars \(s,t\) such that</p>
+<div class="displaymath">
+\begin{equation*}
+s\bbm 1\\1\ebm + t\bbm -1\\2\ebm = \bbm 2\\3\ebm\text{?}
+\end{equation*}
+</div>
+<p>And this, in turn, is equivalent to the system</p>
+<div class="displaymath">
+\begin{align*}
+s -t \amp=2 \\
+s+2t \amp=3 \text{,}
+\end{align*}
+</div>
+<p>which is the same as the matrix equation</p>
+<div class="displaymath">
+\begin{equation*}
+\bbm 1\amp -1\\1\amp 2\ebm\bbm s\\t\ebm = \bbm 2\\3\ebm.
+\end{equation*}
+</div>
+<p>Solving the system confirms that there is indeed a solution, so the answer to our original question is yes.</p>
+<p id="p-44">To confirm the above example (and see what the solution is), we can use the computer.</p>
+<div class="sagecell-sage" id="sage-27"><script type="text/x-sage">from sympy import *
+init_printing()
+</script></div>
+<div class="sagecell-sage" id="sage-28"><script type="text/x-sage">A = Matrix(2,3,[1,-1,2,1,2,3])
+A.rref()
+</script></div>
+<p id="p-45">The above code produces the reduced row-echelon form of the augmented matrix for our system. Do you remember how to get the answer from here? Here's another approach.</p>
+<div class="sagecell-sage" id="sage-29"><script type="text/x-sage">B = Matrix(2,2,[1,-1,1,2])
+B
+</script></div>
+<div class="sagecell-sage" id="sage-30"><script type="text/x-sage">C = Matrix(2,1,[2,3])
+X = (B**-1)*C
+X
+</script></div>
+<p id="p-46">Our next example involves polynomials. At first this looks like a different problem, but it's essentially the same once we set it up.</p>
+<article class="exercise-like" id="exercise-2"><h6 class="heading">
+<span class="type">Exercise</span> <span class="codenumber">2.2.2</span>.</h6>
+<p id="p-47">Determine whether \(p(x)=1+x+4x^2\) belongs to \(\spn\{1+2x-x^2,3+5x+2x^2\}\text{.}\)</p></article><p id="p-48">We seek scalars \(s,t\) such that</p>
+<div class="displaymath">
+\begin{equation*}
+s(1+2x-2x^2)+t(3+5x+2x^2)=1+x+4x^2\text{.}
+\end{equation*}
+</div>
+<p>On the left-hand side, we expand and gather terms:</p>
+<div class="displaymath">
+\begin{equation*}
+(s+3t)+(2s+5t)x+(-2s+2t)x^2 = 1+x+4x^2\text{.}
+\end{equation*}
+</div>
+<p>These two polynomials are equal if and only if we can solve the system</p>
+<div class="displaymath">
+\begin{align*}
+s+3t \amp = 1 \\
+2s+5t \amp =1\\
+-2s+2t \amp =4\text{.}
+\end{align*}
+</div>
+<p id="p-49">We can solve this computationally using matrices again.</p>
+<div class="sagecell-sage" id="sage-31"><script type="text/x-sage">M = Matrix(3,3,[1,3,1,2,5,1,-2,2,4])
+M.rref()
+</script></div>
+<p id="p-50">So, what's the answer? Is \(p(x)\) in the span? Can we determine what polynomials are in the span? Let's consider a general polynomial \(q(x)=a+bx+cx^2\text{.}\) A bit of thought tells us that the coefficients \(a,b,c\) should replace the constants \(1,1,4\) above.</p>
+<div class="sagecell-sage" id="sage-32"><script type="text/x-sage">a, b, c = symbols('a b c', real = True, constant = True)
+N = Matrix(3,3,[1,3,a,2,5,b,-2,2,c])
+N
+</script></div>
+<p id="p-51">Asking the computer to reduce this matrix won't produce the desired result. (Maybe someone can figure out how to define the constants in a way that works?) But we can always specify row operations.</p>
+<div class="sagecell-sage" id="sage-33"><script type="text/x-sage">N1 = N.elementary_row_operation(op='n->n+km',row1=1,row2=0,k=-2)
+N1
+</script></div>
+<p id="p-52">Now we repeat. Here are two more empty cells to work with:</p>
+<div class="sagecell-sage" id="sage-34"><script type="text/x-sage"></script></div>
+<div class="sagecell-sage" id="sage-35"><script type="text/x-sage"></script></div>
+<p id="p-53">We end this section with a few non-computational, but useful results, which will be left as exercises to be done in class, or by the reader.</p>
+<article class="exercise-like" id="exercise-3"><h6 class="heading">
+<span class="type">Exercise</span> <span class="codenumber">2.2.3</span>.</h6>
+<p id="p-54">Let \(V\) be a vector space, and let \(X,Y\subseteq V\text{.}\) Show that if \(X\subseteq Y\text{,}\) then \(\spn X \subseteq \spn Y\text{.}\)</p></article><article class="exercise-like" id="exercise-4"><h6 class="heading">
+<span class="type">Exercise</span> <span class="codenumber">2.2.4</span>.</h6>
+<p id="p-55">Can \(\{(1,2,0), (1,1,1)\) span \(\{(a,b,0)\,|\, a,b \in\R\}\text{?}\)</p></article><article class="theorem-like" id="theorem-surplus-span"><h6 class="heading">
+<span class="type">Theorem</span> <span class="codenumber">2.2.5</span>.</h6>
+<p id="p-56">Let \(V\) be a vector space, and let \(\vec{v}_1,\ldots, \vec{v}_k\in V\text{.}\) If \(\vec{u}\in \spn\{\vec{v}_1,\ldots, \vec{v}_k\}\text{,}\) then</p>
+<div class="displaymath">
+\begin{equation*}
+\spn\{\vec{u},\vec{v}_1,\ldots, \vec{v}_k\} = \spn\{\vec{v}_1,\ldots, \vec{v}_k\}\text{.}
+\end{equation*}
+</div></article><p id="p-57">The moral of <a data-knowl="./knowl/theorem-surplus-span.html" title="Theorem 2.2.5">Theorem 2.2.5</a> is that one vector in a set is a linear combination of the others, we can remove it from the set without affecting the span. This suggests that we might want to look for the most “efficient” spanning sets – those in which no vector in the set can be written in terms of the others. Such sets are called <dfn class="terminology">linearly independent</dfn>, and they are the subject of <a href="sec-independence.html" class="internal" title="Section 2.3: Linear Independence">Section 2.3</a>.</p></section></div></main>
+</div>
+<div class="login-link"><span id="loginlogout" class="login">login</span></div>
+<script src="https://pretextbook.org/js/0.12/login.js"></script>
+</body>
+</html>

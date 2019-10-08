@@ -1,0 +1,53 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US">
+<!--**************************************-->
+<!--*    Generated from PreTeXt source   *-->
+<!--*    on 2019-10-07T23:53:47-06:00    *-->
+<!--*                                    *-->
+<!--*      https://pretextbook.org       *-->
+<!--*                                    *-->
+<!--**************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body>
+<article class="example-like"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">3.1.3</span>.</h6>
+<p>Let \(V=\R^n\) and let \(W=\R^m\text{.}\) For any \(m\times n\) matrix \(A\text{,}\) the map \(T_A:\R^n\to \R^m\) defined by</p>
+<div class="displaymath">
+\begin{equation*}
+T_A(\vec{x}) = A\vec{x}
+\end{equation*}
+</div>
+<p>is a linear transformation. (This follows immediately from properties of matrix multiplication.)</p>
+<p>Let \(B = \{\vec{e}_1,\ldots, \vec{e}_n\}\) denote the standard basis of \(\R^n\text{.}\) Recall that \(A\vec{e}_i\) is equal to the \(i\)th column of \(A\text{.}\) Thus, if we know the value of a linear transformation \(T:\R^n\to \R^m\) on each basis vector, we can immediately determine the matrix \(A\) such that \(T=T_A\text{:}\)</p>
+<div class="displaymath">
+\begin{equation*}
+A = \bbm T(\vec{e}_1) \amp T(\vec{e}_2) \amp \cdots \amp T(\vec{e}_n)\ebm\text{.}
+\end{equation*}
+</div>
+<p>This is true because \(T\) and \(T_A\) agree on the standard basis: for each \(i=1,2,\ldots, n\text{,}\)</p>
+<div class="displaymath">
+\begin{equation*}
+T_A(\vec{e_i}) = A\vec{e_i} = T(\vec{e}_i)\text{.}
+\end{equation*}
+</div>
+<p>Moreover, if two linear transformations agree on a basis, they must be equal. Given any \(\vec{x}\in \R^n\text{,}\) we can write \(\vec{x}\) uniquely as a linear combination</p>
+<div class="displaymath">
+\begin{equation*}
+\vec{x}=c_1\vec{e}_1+c_2\vec{e}_2+\cdots + c_n\vec{e}_n.
+\end{equation*}
+</div>
+<p>If \(T(\vec{e}_i)=T_A(\vec{e}_i)\) for each \(i\text{,}\) then by <a data-knowl="./knowl/thm-lt-props.html" title="Theorem 3.1.2">Theorem 3.1.2</a> we have</p>
+<div class="displaymath">
+\begin{align*}
+T(\vec{x}) \amp = T(c_1\vec{e}_1+c_2\vec{e}_2+\cdots + c_n\vec{e}_n) \\
+\amp = c_1T(\vec{e}_1)+c_2T(\vec{e}_2)+\cdots + c_nT(\vec{e}_n)\\
+\amp = c_1T_A(\vec{e}_1)+c_2T_A(\vec{e}_2)+\cdots + c_nT_A(\vec{e}_n)\\
+\amp = T_A(c_1\vec{e}_1+c_2\vec{e}_2+\cdots + c_n\vec{e}_n) \\
+\amp = T_A(\vec{x})\text{.}
+\end{align*}
+</div></article><span class="incontext"><a href="sec-lin-tran-intro.html#ex-matrix-trans">in-context</a></span>
+</body>
+</html>
