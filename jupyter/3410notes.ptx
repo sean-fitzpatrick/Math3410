@@ -11,6 +11,9 @@
       \newcommand{\ebm}{\end{bmatrix}}
       \newcommand{\R}{\mathbb{R}}
       \newcommand{\Img}{\operatorname{im}}
+      \newcommand{\nll}{\operatorname{null}}
+      \newcommand{\csp}{\operatorname{col}}
+      \newcommand{\rank}{\operatorname{rank}}
     </macros>
   </docinfo>
   <book xml:id="linalg-notes-with-computations">
@@ -2006,6 +2009,436 @@
         <p>
           Note that the kernel of <m>T</m> is just the set of all vectors <m>T</m> sends to zero.
           The image of <m>T</m> is the range of <m>T</m> in the usual sense of the range of a function.
+        </p>
+
+        <theorem xml:id="thm-ker-img-subspace">
+          <statement>
+            <p>
+              For any linear transformation <m>T:V\to W</m>,
+              <ol>
+                <li>
+                  <p>
+                    <m>\ker T</m> is a subspace of <m>V</m>.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <m>\Img T</m> is a subspace of <m>W</m>.
+                  </p>
+                </li>
+              </ol>
+            </p>
+          </statement>
+
+          <proof>
+            <p>
+              <ol>
+                <li>
+                  <p>
+                    To show that <m>\ker T</m> is a subspace, first note that <m>\vec{0}\in \ker T</m>,
+                    since <m>T(\vec{0})=\vec{0}</m> for any linear transformation <m>T</m>.
+                    If <m>\vec{v},\vec{w}\in \ker T</m>, then <m>T(\vec{v})=\vec{0}</m>
+                    and <m>T(\vec{w})=0</m>, and therefore,
+                    <me>
+                      T(\vec{v}+\vec{w})=T(\vec{v})+T(\vec{w})=\vec{0}+\vec{0}=\vec{0}
+                    </me>.
+                    Similarly, for any scalar <m>c</m> and <m>\vec{v}\in \ker T</m>,
+                    <me>
+                      T(c\vec{v})=cT(\vec{v})=c\vec{0}=\vec{0}
+                    </me>.
+                    By the subspace test, <m>\ker T</m> is a subspace.
+                  </p>
+                </li>
+
+                <li>
+                  <p>
+                    Again, since <m>T(\vec{0})=\vec{0}</m>, we see that <m>\vec{0}\in \Img T</m>,
+                    so <m>\Img T</m> is nonempty.
+                    If <m>\vec{w}_1,\vec{w}_2\in \Img T</m>, then there exist <m>\vec{v}_1,\vec{v}_2\in V</m>
+                    such that <m>T(\vec{v}_1)=\vec{w}_1</m> and <m>T(\vec{v}_2)=\vec{w}_2</m>.
+                    It follows that
+                    <me>
+                      \vec{w}_1+\vec{w}_2 = T(\vec{v}_1)+T(\vec{v}_2) = T(\vec{v}_1+\vec{v}_2)
+                    </me>,
+                    so <m>\vec{w}_1+\vec{w}_2\in \Img T</m>.
+                    Similarly, if <m>c</m> is any scalar and <m>\vec{w}=T(\vec{v})\in\Img T</m>,
+                    then
+                    <me>
+                      c\vec{w}=cT(\vec{v})=T(c\vec{v})
+                    </me>,
+                    so <m>c\vec{w}\in \Img T</m>.
+                  </p>
+                </li>
+              </ol>
+            </p>
+          </proof>
+
+        </theorem>
+
+        <p>
+          A familiar setting that you may already have encontered in a previous linear algebra course is that of a matrix transformation.
+          Let <m>A</m> be an <m>m\times n</m> matrix. Then we can define <m>T:\R^n\to \R^m</m>
+          by <m>T(\vec{x})=A\vec{x}</m>, where elements of <m>\R^n,\R^m</m> are considered as column vectors.
+          We then have
+          <me>
+            \ker T = \nll(A) = \{\vec{x}\in \R^n \,|\, A\vec{x}=\vec{0}\}
+          </me>
+          and
+          <me>
+            \Img T = \csp(A) = \{A\vec{x}\,|\, \vec{x|\in \R^n}
+          </me>,
+          where <m>\csp(A)</m> denotes the <term>column space</term> of <m>A</m>.
+          Recall further that if we write <m>A</m> in terms of its columns as
+          <me>
+            A = \bbm C_1 \amp C_2 \amp \cdots \amp C_n\ebm
+          </me>
+          and a vector <m>\vec{x}\in \R^n</m> as <m>\vec{x}=\bbm x_1\\x_2\\\vodts \\x_n\ebm</m>,
+          then
+          <me>
+            A\vec{x} = x_1C_1+x_2C_2+\cdots +x_nC_n
+          </me>.
+          Thus, any element of <m>\csp(A)</m> is a linear combination of its columns,
+          explaining the name <em>column space</em>.
+        </p>
+
+        <p>
+          Determining <m>\nll(A)</m> and <m>\csp(A)</m> for a given matrix <m>A</m> is,
+          unsurprisingly, a matter of reducing <m>A</m> to row-echelon form.
+          Finding <m>\nll(A)</m> is simply a matter of describing the set of all solutions to the homogeneous system <m>A\vec{x}=\vec{0}</m>.
+          Finding <m>\csp(A)</m> relies on the following theorem.
+        </p>
+
+        <theorem xml:id="thm-colspace">
+          <statement>
+            <p>
+              Let <m>A</m> be an <m>m\times n</m> matrix with columns <m>C_1,C_2,\ldots, C_n</m>.
+              If the reduced row-echelon form of <m>A</m> has leading ones in columns <m>j_1,j_2,\ldots, j_k</m>,
+              then <m>\{C_{j_1},C_{j_2},\ldots, c_{j_k}\}</m> is a basis for <m>\csp(A)</m>.
+            </p>
+          </statement>
+        </theorem>
+
+        <p>
+          The truth of this theorem is demonstrated in Section 5.4 of the text by Nicholson.
+          To see why it works, we need to remember a few basic facts from elementary linear algebra.
+          First, recall that performing an elementary row operation on a matrix <m>A</m>
+          is equivalent to multiplying on the left by an elementary matrix <m>E</m>
+          defined using the same row operation.
+        </p>
+
+        <p>
+          Since every elementary matrix is invertible, and any product of invertible matrices is invertible,
+          and we can transform <m>A</m> into a row-echelon matrix <m>R</m> using elementary row operations,
+          it follows that <m>R = UA</m> for an invertible matrix <m>U</m>; indeed,
+          we have <m>U = E_kE_{k-1}\cdots E_2E_1</m>, where <m>E_1,\ldots, E_k</m>
+          are the elemetnary matrices corresponding to the row operations used to carry <m>A</m> to <m>R</m>.
+        </p>
+
+        <p>
+          A basis for <m>\csp(R)</m> is given by the columns of <m>R</m> containing the leading ones.
+          The reason for this is as follows. First, recall that each nonzero row begins with a leading one.
+          So if the leading ones of <m>R</m> are in columns <m>i_1,\ldots, i_k</m>,
+          then there are <m>k</m> nonzero rows.
+          Since all rows of zeros go at the bottom, each column in <m>R</m> has its last <m>m-k</m> entries identically zero.
+          Thus,
+          <me>
+            \csp(R)\subseteq \left\{\bbm a_1\\\vdots \\a_k\\0\\\vdots 0\ebm\in \R^m \,|\, a_1,\ldots, a_k\in\R\right\}
+          </me>,
+          so <m>\dim \csp(R)\leq k</m>. But the columns containing leading ones are easily shown to be independent,
+          so they form a basis of <m>\csp(R)</m>, which therefore has dimension <m>k=\operatorname{rank}(A)</m>.
+        </p>
+
+        <p>
+          Next, since <m>R=UA</m>, where <m>U</m> is invertible, if <m>R=\bbm Y_1\amp Y_2\amp \cdots \amp Y_n\ebm</m>
+          and <m>A = \bbm C_1\amp C_2\amp \cdots \amp C_n\ebm</m>, then <m>C_i = U^{-1}Y_i</m> for each <m>i</m>.
+          It follows from the fact that <m>U</m> is invertible and that the columns containing leading ones in <m>R</m>
+          form a basis for <m>\csp(R)</m> that the corresponding columns in <m>A</m> form a basis for <m>\csp(A)</m>.
+          (For details, see Section 5.4 in Nicholson.)
+        </p>
+
+        <p>
+          For example, consider the linear transformation <m>T:\R^4\to \R^3</m> defined by the matrix
+          <me>
+            A = \bbm 1 \amp 3 \amp 0 \amp -2\\
+                    -2 \amp -1 \amp 2 \amp 0\\
+                     1 \amp 8 \amp 2 \amp -6\ebm
+          </me>.
+          Let's determine the RREF of <m>A</m>:
+        </p>
+
+        <sage>
+          <input>
+            from sympy import *
+            init_printing()
+            A=Matrix(3,4,[1,3,0,-2,-2,-1,2,0,1,8,2,-6])
+            A.rref()
+          </input>
+          <output>
+            Matrix(3,4,[1,0,-6/5,2/5,0,1,2/5,-4/5,0,0,0,0])
+          </output>
+        </sage>
+
+        <p>
+          We see that there are leading ones in the first and second column.
+          Therefore, <m>\csp(A) = \Img(T) = \spn\left\{\bbm 1\\-2\\1\ebm, \bbm 3\\-1\\8\ebm\right\}</m>.
+          Indeed, note that
+          <me>
+            \bbm 0\\2\\2\ebm = -\frac65\bbm 1\\-2\\1\ebm + \frac25\bbm 3\\-1\\8\ebm
+          </me>
+          and
+          <me>
+            \bbm -2\\0\\-6\ebm = \frac25\bbm 1\\-2\1\ebm -\frac45\bbm 3\\-1\\8\ebm
+          </me>,
+          so that indeed, the third and fourth columns are in the span of the first and second.
+        </p>
+
+        <p>
+          Furthermore, we can determine the nullspace: if <m>A\vec{x}=\vec{0}</m> where
+          <m>\vec{x}=\bbm x_1\\x_2\\x_3\\x_4\ebm</m>, then we must have
+          <md>
+            <mrow>x_1 \amp =\frac65 x_3-\frac25 x_4</mrow>
+            <mrow>x_2 \amp =-\frac25 x_3+\frac 45 x_4</mrow>
+          </md>,
+          so
+          <me>
+            \vec{x} = \bbm \frac65x_3-\frac25x_4\\ -\frac25x_3+\frac45x_4\\x_3\\x_4\ebm = \frac{x_3}{5}\bbm 6\\-2\\5\\0\ebm + \frac{x_4}{5}\bbm -2\\4\\0\\5\ebm
+          </me>.
+          It follows that a basis for <m>\nll(A)=\ker T</m> is <m>\left\{\bbm 6\\-2\\5\\0\ebm, \bbm -2\\4\\0\\5\ebm\right\}</m>.
+        </p>
+
+        <p>
+          Incidentally, the SymPy library for Python has built-in functions for computing nullspace and column space.
+          But it's probably worth your while to know how to determine these from the RREF of a matrix,
+          without additional help from the computer.
+          That said, let's see how the computer's output compares to what we found:
+        </p>
+
+        <sage>
+          <input>
+            A.nullspace()
+          </input>
+        </sage>
+
+        <sage>
+          <input>
+            A.columnspace()
+          </input>
+        </sage>
+
+        <p>
+          Note that the output from the computer simply states the basis for each space.
+          Of course, for computational purposes, this is typically good enough.
+        </p>
+
+        <p>
+          An important result that comes out while trying to show that the <q>pivot columns</q>
+          of a matrix (the ones that end up with leading ones in the RREF) are a basis for the column space
+          is that the column rank (defined as the dimesion of <m>\csp(A)</m>) and the row rank
+          (the dimension of the space spanned by the columns of <m>A</m>) are equal.
+          One can therefore speak unabmiguously about the <term>rank</term> of a matrix <m>A</m>,
+          and it is just as it's defined in a first course in linear algebra: the number of leading ones in the RREF of <m>A</m>.
+        </p>
+
+        <p>
+          For a general linear transformation, we can't necessarily speak in terms of rows and columns,
+          but if <m>T:V\to W</m> is linear, and either <m>V</m> or <m>W</m> is finite-dimensional,
+          then we can define the rank of <m>T</m> as follows.
+        </p>
+
+        <definition xml:id="def-rank-transformation">
+          <statement>
+            <p>
+              Let <m>T:V\to W</m> be a linear transformation.
+              Then the <term>rank</term> of <m>T</m> is defined by
+              <me>
+                \operatorname{rank} T = \dim \Img T
+              </me>,
+              and the <term>nullity</term> of <m>T</m> is defined by
+              <me>
+                \operatorname{nullity} T = \dim \ker T
+              </me>.
+
+            </p>
+          </statement>
+        </definition>
+
+        <p>
+          Note that if <m>W</m> is finite-dimensional, then so is <m>\Img T</m>,
+          since it's a subspace of <m>W</m>.
+          On the other hand, if <m>V</m> is finite-dimensional,
+          then we can find a basis <m>\{\vec{v}_1,\ldots, \vec{v}_n}}</m> of <m>V</m>,
+          and the set <m>\{T(\vec{v}_1),\ldots, T(\vec{v}_n\})\}</m> will span <m>\Img T</m>,
+          so again the image is finite-dimensional, so the rank of <m>T</m> is finite.
+          It is possible for either the rank or the nullity of a transformation to be infinite.
+        </p>
+
+        <p>
+          Knowing that the kernel and image of an operator are subspaces gives us an easy way to define subspaces.
+          From the textbook, we have the following nice example.
+        </p>
+
+        <example>
+          <statement>
+            <p>
+              Let <m>T:M_{nn}\to M_{nn}</m> be defined by <m>T(A)=A-A^T</m>. Then
+              <ol>
+                <li>
+                  <p>
+                    <m>T</m> is a linear map.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <m>\ker T</m> is equal to the set of all symmetric matrices.
+                  </p>
+                </li>
+
+                <li>
+                  <p>
+                    <m>\Img T</m> is equal to the set of all skew-symmetric matrices.
+                  </p>
+                </li>
+              </ol>
+            </p>
+          </statement>
+          <solution>
+            <p>
+              <ol>
+                <li>
+                  <p>
+                    We have <m>T(0)=0</m> since <m>0^T=0</m>.
+                    Using proerties of the transpose and matrix algebra, we have
+                    <me>
+                      T(A+B) = (A+B)-(A+B)^T = (A-A^T)+(B-B^T) = T(A)+T(B)
+                    </me>
+                    and
+                    <me>
+                      T(kA) = (kA) - (kA)^T = kA-kA^T = k(A-A^T) = kT(A)
+                    </me>.
+                  </p>
+                </li>
+
+                <li>
+                  <p>
+                    It's clear that if <m>A^T=A</m>, then <m>T(A)=0</m>.
+                    On the other hand, if <m>T(A)=0</m>, then <m>A-A^T=0</m>, so <m>A=A^T</m>.
+                    Thus, the kernel consists of all symmetric matrices.
+                  </p>
+                </li>
+
+                <li>
+                  <p>
+                    If <m>B=T(A)=A-A^T</m>, then
+                    <me>
+                      B^T = (A-A^T)^T = A^T-A = -B
+                    </me>,
+                    so certainly every matrix in <m>\Img A</m> is skew-symmetric.
+                    On the other hand, if <m>B</m> is skew-symmetric, then <m>B=T(\frac12 B)</m>,
+                    since
+                    <me>
+                      T\Bigl(\frac12 B\Bigr) = \frac12 T(B) = \frac12(B-B^T) = \frac12(B-(-B))= B
+                    </me>.
+                  </p>
+                </li>
+              </ol>
+            </p>
+          </solution>
+        </example>
+
+        <p>
+          You'll recall from a course like Math 2000 that in the study of functions,
+          the properties of being injective (one-to-one) and surjective (onto)
+          are important. They're important for linear transformations as well,
+          and defined in exactly the same way.
+        </p>
+
+        <p>
+          It's clear that being surjective is closely tied to image.
+          Indeed, by definition, <m>T:V\to W</m> is onto if <m>\Img T = W</m>.
+          What might not be immediately obvious is that the kernel tells us if a linear map is injective.
+        </p>
+
+        <theorem xml:id="thm-injective-kernel">
+          <statement>
+            <p>
+              Let <m>T:V\to W</m> be a linear transformation.
+              Then <m>T</m> is injective if and only if <m>\ker T = \{\vec{0}\}</m>.
+            </p>
+          </statement>
+
+          <proof>
+            <p>
+              Suppose <m>T</m> is injective, and let <m>\vec{v}\in \ker T</m>.
+              Then <m>T(\vec{v})=\vec{0}</m>. On the other hand, we know that <m>T(\vec{0})=\vec{0}</m>,
+              and since <m>T</m> is injective, we must have <m>\vec{v}=\vec{0}</m>.
+
+              Conversely, suppose that <m>\ker T = \{0\}</m> and that <m>T(\vec{v}_1)=T(\vec{v}_2)</m>
+              for some <m>\vec{v}_1,\vec{v}_2\in V</m>. Then
+              <me>
+                \vec{0} = T(\vec{v}_1)-T(\vec{v}_2) = T(\vec{v}_1-\vec{v}_2)
+              </me>,
+              so <m>\vec{v}_1-\vec{v}_2\in \ker T</m>.
+              Therefore, we must have <m>\vec{v}_1-\vec{v}_2=\vec{0}</m>,
+              so <m>\vec{v}_1=\vec{v}_2</m>, and it follows that <m>T</m> is injective.
+            </p>
+          </proof>
+
+        </theorem>
+
+        <p>
+          Let us return to the case of a matrix transformation <m>T_A:\R^n\to \R^m</m>.
+          Notice that <m>\ker T_A</m> is simply the set of all solutions to <m>A\vec{x}=\vec{0}</m>,
+          while <m>\Img T_A</m> is the set of all <m>\vec{y}\in\R^m</m> for which <m>A\vec{x}=\vec{y}</m>
+          <em>has</em> a solution.
+        </p>
+
+        <p>
+          Recall from the discussion above that <m>\rank A = \dim \csp(A) = \dim \Img T_A</m>.
+          It follows that <m>T_A</m> is surjective if and only if <m>\rank A = m</m>.
+          On the other hand, <m>T_A</m> is injective if and only if <m>\rank A = n</m>,
+          because we know that the system <m>A\vec{x}=\vec{0}</m> has a unique solution if and only if each column of <m>A</m> contains a leading one.
+        </p>
+
+        <p>
+          This has some interesting consequences. If <m>m=n</m> (that is, if <m>A</m> is square),
+          then each increase in <m>\dim \nll(A)</m> produces a corresponding decrease in <m>\dim \csp(A)</m>,
+          since both correspond to the <q>loss</q> of a leading one. Moreover, if <m>\rank A = n</m>,
+          then <m>T_A</m> is both injective and surjective.
+          Recall that a function is invertible if and only if it is both injective and surjective.
+          It should come as no surprise that invertibility of <m>T_A</m> (as a function)
+          is equivalent to invertibility of <m>A</m> (as a matrix).
+        </p>
+
+        <p>
+          Also, note that if <m>m<n</m>, then <m>\rank A\leq m<n</m>,
+          so <m>T_A</m> could be surjective, but can't possibly be injective.
+          On the other hand, if <m>m>n</m>, then <m>\rank A\leq n<m</m>,
+          so <m>T_A</m> could be injective, but can't possibly be surjective.
+          These results generalize to linear transformations between any finite-dimensional vector spaces.
+          The first step towards this is the following fundamental theorem.
+        </p>
+
+        <theorem xml:id="thm-dimension-lintrans">
+          <title>Dimension Theorem (Fundamental Theorem of Linear Transformations)</title>
+          <statement>
+            <p>
+              Let <m>T:V\to W</m> be any linear transformation such that
+              <m>\ker T</m> and <m>\Img T</m> are finite-dimensional.
+              Then <m>V</m> is finite-dimensional, and
+              <me>
+                \dim V = \dim \ker T + \dim \Img T
+              </me>.
+            </p>
+          </statement>
+        </theorem>
+
+        <p>
+          This is sometimes known as the <em>Rank-Nullity Theorem</em>,
+          since it can be stated in the form
+          <me>
+            \dim V = \rank T + \operatorname{nullity} T
+          </me>.
+          
         </p>
       </section>
     </chapter>
