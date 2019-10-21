@@ -15,6 +15,9 @@
       \newcommand{\csp}{\operatorname{col}}
       \newcommand{\rank}{\operatorname{rank}}
     </macros>
+    <latex-image-preamble>
+      \usetikzlibrary{positioning,matrix,arrows,arrows.meta}
+    </latex-image-preamble>
   </docinfo>
   <book xml:id="linalg-notes-with-computations">
     <title>Lecture Notes for Math 3410, with Computational Examples</title>
@@ -1978,6 +1981,42 @@
           </input>
         </sage>
 
+        <exercise xml:id="ex_lintrans-indep">
+          <statement>
+            <p>
+              Let <m>T:V\to W</m> be a linear transformation.
+              Prove that for any vectors <m>\vec{v}_1,\ldots, \vec{v}_n\in V</m>,
+              if <m>\{T(\vec{v}_1),\ldots, T(\vec_{v}_n)\}</m> is linearly independent in <m>W</m>,
+              then <m>\{\vec{v}_1,\ldots, \vec{v}_n\}</m> is linearly independent in <m>V</m>.
+            </p>
+          </statement>
+          <solution>
+            <p>
+              Let us suppose that <m>\{T(\vec{v}_1),\ldots, T(\vec_{v}_n)\}</m> is linearly independent.
+              We want to show that the set <m>\{\vec{v}_1,\ldots, \vec{v}_n\}</m>
+              is linearly independent. To that end, suppose that we have
+              <me>
+                c_1\vec{v}_1+\cdots + c_n\vec{v}_n=\vec{0}
+              </me>
+              for some scalars <m>c_1,\ldots, c_n</m> (that we want to show must all equal zero).
+            </p>
+
+            <p>
+              We want to make use of our hypothesis, so we need to bring the linear map <m>T</m> into the picture.
+              We apply <m>T</m> to both sides of the equation above, giving us:
+              <me>
+                T(c_1\vec{v}_1+\cdots + c_n\vec{v}_n)=T(\vec{0})
+              </me>.
+              Now we make use of both parts of <xref ref="thm-lt-props">Theorem</xref> to get
+              <me>
+                c_1T(\vec{v}_1)+\cdots +c_nT(\vec{v}_n) = \vec{0}
+              </me>.
+              By our hypothesis that the <m>T(\vec{v}_i)</m> are independent,
+              we must conclude that all the scalars are zero, and we're done.
+            </p>
+          </solution>
+        </exercise>
+
       </section>
 
 
@@ -2430,6 +2469,82 @@
               </me>.
             </p>
           </statement>
+          <proof>
+            <p>
+              The trick with this proof is that we aren't assuming <m>V</m> is finite-dimensional,
+              so we can't start with a basis of <m>V</m>. But we do know that <m>\Img T</m>
+              is finite-dimensional, so we start with a basis <m>\{\vec{w}_1,\ldots, \vec{w}_m\}</m>
+              of <m>\Img T</m>.
+              Of course, every vector in <m>\Img T</m> is the image of some vector in <m>V</m>,
+              so we can write <m>\vec{w}_i =T(\vec{v}_i)</m>, where <m>\vec{v}_i\in V</m>,
+              for <m>i=1,2,\ldots, m</m>.
+            </p>
+
+            <p>
+              Since <m>\{T(\vec{v}_1),\ldots, T(\vec{v}_m)\}</m> is a basis,
+              it is linearly independent. The results of <xref ref="ex_lintrans-indep">Exercise</xref>
+              tell us that the set <m>\{\vec{v}_1,\ldots, \vec{v}_m\}</m> must therefore be independent.
+            </p>
+
+            <p>
+              We now introduce a basis <m>\{\vec{u}_1,\ldots, \vec{u}_n\}</m>
+              of <m>\ker T</m>, which we also know to be finite-dimensional.
+              If we can show that the set <m>\{\vec{u}_1,\ldots, \vec{u}_n,\vec{v}_1,\ldots, \vec{v}_m\}</m>
+              is a basis for <m>V</m>, we'd be done, since the number of vectors in this basis
+              is <m>\dim\ker T + \dim \Img T</m>. We must therefore show that this set is independent,
+              and that it spans <m>V</m>.
+            </p>
+
+            <p>
+              To see that it's independent, suppose that
+              <me>
+                a_\vec{u}_1+\cdots + a_n\vec{u}_n+b_1\vec{v}_1+\cdots +\b_m\vec{v}_m=\vec{0}
+              </me>.
+              Applying <m>T</m> to this equation, and noting that <m>T(\vec{u}_i)=\vec{0}</m>
+              for each <m>i</m>, by definition of the <m>\vec{u}_i</m>, we get
+              <me>
+                b_1T(\vec{v}_1)+\cdots +b_mT(\vec{v}_m)=\vec{0}
+              </me>.
+              We assumed that the vectors <m>T(\vec{v}_i)</m> were independent,
+              so all the <m>b_i</m> must be zero. But then we get
+              <me>
+                a_1\vec{u}_1+\cdots +a_n\vec{u}_n=\vec{0}
+              </me>,
+              and since the <m>\vec{u}_i</m> are indepdented, all the <m>a_i</m> must be zero.
+            </p>
+
+            <p>
+              To see that these vectors span, choose any <m>\vec{x}\in V</m>.
+              Since <m>T(\vec{x})\in \Img T</m>, there exist scalars <m>c_1,\ldots, c_m</m>
+              such that
+              <men xml:id="eqn-almost-span">
+                T(\vec{x})=c_1T(\vec{v_1})+\cdots +c_mT(\vec{v}_m)
+              </men>.
+              We'd like to be able to conclude from this that <m>\vec{x}=c_1\vec{v}_1+\cdots +c_m\vec{v}_m</m>,
+              but this would be false, unless <m>T</m> was known to be injective (which it isn't).
+              Failure to be injective involves the kernel -- how do we bring that into the picture?
+            </p>
+
+            <p>
+              The trick is to realize that the reason we might have <m>\vec{x}\neq c_1\vec{v}_1+\cdots +c_m\vec{v}_m</m>
+              is that we're off by something in the kernel.
+              Indeed, <xref ref="eqn-almost-span"/> can be re-written as
+              <me>
+                T(\vec{x}-c_1\vec{v}_1-\cdots -c_m\vec{v}_m) = \vec{0}
+              </me>,
+              so <m>\vec{x}-c_1\vec{v}_1-\cdots -c_m\vec{v}_m\in\ker T</m>.
+              But we have a basis for <m>\ker T</m>, so we can write
+              <me>
+                \vec{x}-c_1\vec{v}_1-\cdots -c_m\vec{v}_m=t_1\vec{u}_1+\cdots +t_n\vec{u}_n
+              </me>
+              for some scalars <m>t_1,\ldots, t_n</m>, and this can be rearanged to give
+              <me>
+                \vec{x}=t_1\vec{u}_1+\cdots +t_n\vec{u}_n+c_1\vec{v}_1+\cdots + c_m\vec{v}_m
+              </me>,
+              which completes the proof.
+            </p>
+          </proof>
+
         </theorem>
 
         <p>
@@ -2438,8 +2553,344 @@
           <me>
             \dim V = \rank T + \operatorname{nullity} T
           </me>.
-
+          We will see that this result is frequently useful for providing simple arguments that establish otherwise difficult results.
+          A basic situation where the theorem is useful is as follows:
+          we are given <m>T:V\to W$</m>, where the dimensions of <m>V</m> and <m>W</m> are known.
+          Since <m>\Img T</m> is a subspace of <m>W</m>, we know from <xref ref="thm-subspace-dim">Theorem</xref>
+          that <m>T</m> is onto if and only if <m>\dim \Img T = \dim W</m>.
+          In many cases it is easier to compute <m>\ker T</m> than it is <m>\Img T</m>,
+          and the Dimension Theorem lets us determine <m>\dim\Img T</m> if we know <m>\dim V</m> and <m>\dim \ker T</m>.
         </p>
+
+        <p>
+          A useful consequence of this result is that if we know <m>V</m> is finite-dimensional,
+          we can order any basis such that the first vectors in the list are a basis of <m>\ker T</m>,
+          and the images of the remaining vectors produce a basis of <m>\Img T</m>.
+        </p>
+
+        <p>
+          Note that one consequence of the dimension theorem is that we must have
+          <me>
+            \dim \ker T\leq \dim V \quad \text{ and } \quad \dim \Img T\leq \dim V
+          </me>.
+          Of course, we must also have <m>\dim\Img T\leq \dim W</m>,
+          since <m>\Img T</m> is a subspace of <m>W</m>.
+          In the case of a matrix transformation <m>T_A</m>,
+          this means that the rank of <m>T_A</m> is at most the minimum of <m>\dim V</m> and <m>\dim W</m>.
+          This once again has consequences for the existence and uniqueness of solutions for linear systems with the coefficient matrix <m>A</m>.
+        </p>
+
+        <exercise xml:id="ex-dimension-injection-surjection">
+          <statement>
+            <p>
+              Let <m>V</m> and <m>W</m> be finite-dimensional vector spaces. Prove the following:
+              <ol>
+                <li>
+                  <p>
+                    <m>\dim V\leq \dim W</m> if and only if there exists an injection <m>T:V\to W</m>.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <m>\dim V\geq \dim W</m> if and only if there exists a surjection <m>T:V\to W</m>.
+                  </p>
+                </li>
+              </ol>
+            </p>
+          </statement>
+          <solution>
+            <p>
+              <ol>
+                <li>
+                  <p>
+                    Suppose <m>T:V\to W</m> is injective. Then <m>\ker T = \{0\}</m>, so
+                    <me>
+                      \dim V = 0 + \dim \Img T \leq \dim W
+                    </me>,
+                    since <m>\Img T</m> is a subspace of <m>W</m>.
+                  </p>
+
+                  <p>
+                    Conversely, suppose <m>\dim V\leq \dim W</m>.
+                    Choose a basis <m>\{\vec{v}_1,\ldots, \vec{v}_m\}</m> of <m>V</m>,
+                    and a basis <m>\{\vec{w}_1\,ldots, \vec{w}_n\}</m> of <m>W</m>, where <m>m\leq n</m>.
+                    By <xref ref="thm-define-using-basis">Theorem</xref>, there exists a linear transformation
+                    <m>T:V\to W</m> with <m>T(\vec{v}_i)=\vec{w}_i</m> for <m>i=1,\ldots, m</m>.
+                    (The main point here is that we run out of basis vectors for <m>V</m> before we run out of basis vectors for <m>W</m>.)
+                    This map is injective: if <m>T(\vec{v})=\vec{0}</m>,
+                    write <m>\vec{v}=c_1\vec{v}_1+\cdots + c_m\vec{v}_m</m>.
+                    Then
+                    <md>
+                      <mrow>\vec{0} \amp = T(\vec{v})</mrow>
+                      <mrow> \amp = T(c_1\vec{v}_1+\cdots + c_m\vec{v}_m)</mrow>
+                      <mrow>  \amp = c_1T(\vec{v}_1)+\cdots + c_mT(\vec{v}_m)</mrow>
+                      <mrow>  \amp = c_1\vec{w}_1+\cdots +c_m\vec{w}_m</mrow>
+                    </md>.
+                    Since <m>\{\vec{w}_1,\ldots, \vec{w}_m\}</m> is a subset of a basis, it's indendependent.
+                    Therefore, the scalars <m>c_i</m> must all be zero, and therefore <m>\vec{v}=\vec{0}</m>.
+                  </p>
+                </li>
+
+                <li>
+                  <p>
+                    Suppose <m>T:V\to W</m> is surjective. Then <m>\dim \Img T = \dim W</m>, so
+                    <me>
+                      \dim W = \dim V - \dim \ker T\geq \dim V
+                    </me>.
+                    Conversely, suppose <m>\dim V\geq \dim W</m>. Again,
+                    choose a basis <m>\{\vec{v}_1,\ldots, \vec{v}_m\}</m> of <m>V</m>,
+                    and a basis <m>\{\vec{w}_1\,ldots, \vec{w}_n\}</m> of <m>W</m>,
+                    where this time, <m>m\geq n</m>.
+                    We can define a linear transformation as follows:
+                    <me>
+                      T(\vec{v}_1)=\vec{w}_1,\ldots, T(\vec{v}_n)=\vec{w}_n, \text{ and } T(\vec{v}_j) = \vec{0} \text{ for } j>n.
+                    </me>
+                    It's easy to check that this map is a surjection:
+                    given <m>\vec{w}\in W</m>, we can write it in terms of our basis as <m>\vec{w}=c_1\vec{w}_1+\cdots + c_n\vec{w}_n</m>.
+                    Using these same scalars, we can define <m>\vec{v}=c_1\vec{v}_1+\cdots + c_n\vec{v}_n\in V</m> such that <m>T(\vec{v})=\vec{w}</m>.
+                  </p>
+
+                  <p>
+                    Note that it's not important how we define <m>T(\vec{v}_j)</m> when <m>j>n</m>.
+                    The point is that this time, we run out of basis vectors for <m>W</m> before we run out of basis vectors for <m>V</m>.
+                    Once each vector in the basis of <m>W</m> is in the image of <m>T</m>, we're guaranteed that <m>T</m> is surjective,
+                    and we can define the value of <m>T</m> on any remaining basis vectors however we want.
+                  </p>
+                </li>
+              </ol>
+            </p>
+          </solution>
+        </exercise>
+      </section>
+
+      <section xml:id="sec-isomorphism">
+        <title>Isomorphisms (a.k.a. invertible linear maps)</title>
+        <p>
+          We ended the last section with an important result.
+          <xref ref="ex-dimension-injection-surjection">Exercise</xref>
+          showed that existence of an injective linear map <m>T:V\to W</m>
+          is equivalent to <m>\dim V\leq \dim W</m>,
+          and that existence of a surjective linear map is equivalent to <m>\dim V\geq \dim W</m>.
+          It's probably not surprising than that existence of a <em>bijective</em> linear map <m>T:V\to W</m>
+          is equivalent to <m>\dim V = \dim W</m>.
+        </p>
+
+        <definition xml:id="def-isomorphism">
+          <statement>
+            <p>
+              A bijective linear transformation <m>T:V\to W</m> is called an <term>isomorphism</term>.
+              If such a map exists, we say that <m>V</m> and <m>W</m> are <term>isomorphic</term>, and write <m>V\cong W</m>.
+            </p>
+          </statement>
+        </definition>
+
+        <theorem xml:id="thm-iso-dimension">
+          <statement>
+            <p>
+              For any finite-dimensional vector spaces <m>V</m> and <m>W</m>,
+              <m>V\cong W</m> if any only if <m>\dim V = \dim W</m>.
+            </p>
+          </statement>
+          <proof>
+            <p>
+              If <m>T:V\to W</m> is a bijection, then it is both injective and surjective.
+              Since <m>T</m> is injective, <m>\dim V\leq \dim W</m>,
+              by <xref ref="ex-dimension-injection-surjection">Exercise</xref>.
+              By this same exercise,  since <m>T</m> is surjective, we must have <m>\dim V\geq \dim W</m>.
+              It follows that <m>\dim V=\dim W</m>.
+            </p>
+
+            <p>
+              Suppose now that <m>\dim V =\dim W</m>.
+              Then we can choose bases <m>\{\vec{v}_1,\ldots, \vec{v}_n\}</m> of <m>V</m>,
+              and <m>\{\vec{w}_1\,ldots, \vec{w}_n\}</m> of <m>W</m>.
+              <xref ref="thm-define-using-basis">Theorem</xref> then guarantees the existence of a linear map <m>T:V\to W</m>
+              such that <m>T(\vec{v}_i)=\vec{w}_i</m> for each <m>i=1,2,\ldots, n</m>.
+              Repeating the arguments of <xref ref="ex-dimension-injection-surjection">Exercise</xref> shows that <m>T</m> is a bijection.
+            </p>
+          </proof>
+
+        </theorem>
+
+        <p>
+          Note that buried in the theorem above is the following useful fact:
+          <em>an isomorphism <m>T:V\to W</m> takes any basis of <m>V</m> to a basis of <m>W</m></em>.
+          Another remarkable result of the above theorem is that <em>any two vector spaces of the same dimension are isomorphic</em>!
+          In particular, we have the following theorem.
+        </p>
+
+        <theorem xml:id="thm-iso-rn">
+          <statement>
+            <p>
+              If <m>\dim V=n</m>, then <m>V\cong \R^n</m>.
+            </p>
+          </statement>
+        </theorem>
+        <p>
+          This theorem is a direct consequence of <xref ref="thm-iso-dimension"/>.
+          But it's useful to understand how it works in practice.
+        </p>
+
+        <definition xml:id="def-coefficient-iso">
+          <statement>
+            <p>
+              Let <m>V</m> be a finite-dimensional vector space,
+              and let <m>B=\{\vec{e}_1,\ldots, \vec{e}_n\}</m> be a basis for <m>V</m>.
+              The <term>coefficient isomorphism</term> associated to <m>B</m>
+              is the map <m>C_B:V\to \R^n</m> defined by
+              <me>
+                C_B(c_1\vec{e}_1+c_2\vec{e}_2+\cdots +c_n\vec{e}_n)=\bbm c_1\\c_2\\\vdots \\c_n\ebm
+              </me>.
+
+            </p>
+          </statement>
+        </definition>
+        <p>
+          Note that this is a well-defined map since every vector in <m>V</m> can be written uniquely in terms of the basis <m>B</m>.
+        </p>
+
+        <p>
+          The coefficient isomorphism is especially useful when we want to analyze a linear map computationally.
+          Suppose we're given <m>T:V\to W</m> where <m>V, W</m> are finite-dimensional.
+          Let us choose bases <m>B=\{\vec{v}_1,\ldots, \vec{v}_n\}</m> of <m>V</m>
+          and <m>B' = \{\vec{w}_1,\ldots, \vec{w}_m\}</m> of <m>W</m>.
+          The choice of these two bases determines scalars <m>a_{ij}, 1\leq i\leq n, 1\leq j\leq m</m>, such that
+          <me>
+            T(\vec{v}_j) = a_{1j}\vec{w}_1+a_{2j}\vec{w}_2+\cdots + a_{mj}\vec{w}_j,
+          </me>
+          for each <m>i=1,2,\ldots, n</m>. The resulting matrix <m>A=[a_{ij}]</m>
+          defines a matrix transformation <m>T_A:\R^n\to \R^m</m> such that
+          <me>
+            T_A\circ C_B = C_{B'}\circ T
+          </me>.
+          The relationship among the four maps used here is best captured by the following <q>commutative diagram</q>:
+        </p>
+
+        <figure xml:id="fig_transformation_matrix">
+          <caption>Defining the matrix of a linear map with respect to choices of basis.</caption>
+          <image xml:id="img_trans_matrix" width="47%">
+            <latex-image>
+              \begin{tikzpicture}
+              \matrix (m) [matrix of math nodes,row sep=3em,column sep=4em,minimum width=2em]
+              {
+              V & W \\
+              \R^n & \R^m \\};
+              \path[-stealth]
+              (m-1-1) edge node [left] {$C_B$} (m-2-1)
+                      edge node [below] {$T$} (m-1-2)
+              (m-2-1) edge node [below] {$T_A$} (m-2-2)
+              (m-1-2) edge node [right] {$C_{B'}$} (m-2-2)
+              \end{tikzpicture}
+            </latex-image>
+          </image>
+        </figure>
+
+        <p>
+          With this connection between linear maps (in general) and matrices,
+          it can be worthwhile to pause and consider invertibility in the context of matrices.
+          Recall that an <m>n\times n</m> matrix <m>A</m> is <em>invertible</em> if there exists a matrix <m>A^{-1}</m>
+          such that <m>AA^{-1}=I_n</m> and <m>A^{-1}A=I_n</m>.
+        </p>
+
+        <p>
+          The same definition can be made for linear maps.
+          We've defined what it means for a map <m>T:V\to W</m> to be invertible as a <em>function</em>.
+          In particular, we relied on the fact that any bijection has an inverse.
+        </p>
+
+        <p>
+          First, a note on notation. Given linear maps <m>U\xrightarrow{T} V\xrightarrow{S} W</m>,
+          we typically write the composition <m>S\circ T:U\to W</m> as a <q>product</q> <m>ST</m>.
+          The reason for this is again to mimic the case of matrices. Let <m>A</m> be an <m>m\times n</m>
+          matrix, and let <m>B</m> be an <m>n\times k</m> matrix. Then we have linear maps
+          <me>
+            \R^k \xrightarrow{T_B} \R^n\xrightarrow{T_A} \R^m
+          </me>,
+          and the composition <m>T_A\circ T_B:\R^k\to \R^m</m> satisfies
+          <me>
+            T_A\circ T_B(\vec{x}) = T_A(T_B(\vec{x})) = T_A(B\vec{x})=A(B\vec{x})=(AB)\vec{x}=T_{AB}(\vec{x})
+          </me>.
+          Note that the rules given in elementary linear algebra, for the relative sizes of matrices that can be multiplied,
+          are simply a manifestation of the fact that to compose functions,
+          the range of the first must be contained in the domain of the second.
+        </p>
+
+        <exercise>
+          <statement>
+            <p>
+              Show that the composition of two linear maps is again a linear map.
+            </p>
+          </statement>
+          <solution>
+            <p>
+              Suppose we have linear maps <m>U\xrightarrow{T} V\xrightarrow{S} W</m>,
+              and let <m>\vec{u}_1,\vec{u}_2\in U</m>. Then
+              <md>
+                <mrow>ST(\vec{u}_1+\vec{u}_2) \amp = S(T(\vec{u}_1+\vec{u}_2})) </mrow>
+                <mrow> \amp = S(T(\vec{u}_1)+T(\vec{u}_2))</mrow>
+                <mrow>  \amp = S(T(\vec{u}_1))+S(t(\vec{u}_2)) </mrow>
+                <mrow>  \amp = ST(\vec{u}_1)+ST(\vec{u_2})</mrow>
+              </md>,
+              and for any scalar <m>c</m>,
+              <me>
+                ST(c\vec{u}_1) = S(T(c\vec{u}_1))=S(cT(\vec{u}_1)) = cS(T(\vec{u}_1))=c(ST()\vec{u}_1))
+              </me>.
+
+            </p>
+          </solution>
+        </exercise>
+        <p>
+          Moreover, <xref ref="thm-iso-dimension"/> tells us why we can only consider invertibility for square matrices:
+          we know that invertible linear maps are only defined between spaces of equal dimension.
+          In analogy with matrices, some texts will define a linear map <m>T:V\to W</m>
+          to be invertible if there exists a linear map <m>S:W\to V</m> such that
+          <me>
+            ST = 1_V \quad \text{ and } \quad TS = 1_W
+          </me>.
+          From this definition, one can show that <m>S</m> and <m>T</m> must be bijections,
+          and of course, if <m>T</m> is a bijection (as in our definition) then we know it has an inverse.
+          What remains to be seen is that this inverse is also a linear map.
+        </p>
+
+        <exercise>
+          <statement>
+            <p>
+              Let <m>T:V\to W</m> be a bijective linear transformation.
+              Show that <m>T^{-1}:W\to V</m> is a linear transformation.
+            </p>
+          </statement>
+          <solution>
+            <p>
+              Let <m>\vec{w}_1,\vec{w}_2\in W</m>.
+              Then there exist <m>\vec{v}_1,\vec{v}_2\in V</m>  with <m>\vec{w}_1=T(\vec{v}_1), \vec{w}_2=T(\vec{v}_2)</m>.
+              We then have
+              <md>
+                <mrow>T^{-1}(\vec{w}_1+\vec{w}_2) \amp = T^{-1}(T(\vec{v}_1)+T(\vec{v}_2)) </mrow>
+                <mrow> \amp = T^{-1}(T(\vec{v}_1+\vec{v}_2))</mrow>
+                <mrow>  \amp = \vec{v}_1+\vec{v}_2</mrow>
+                <mrow>  \amp = T^{-1}(\vec{w}_1)+T^{-1}(\vec{w}_2)</mrow>
+              </md>.
+              For any scalar <m>c</m>, we similarly have
+              <me>
+                T^{-1}(c\vec{w}_1) = T^{-1}(cT(\vec{v}_1))=T^{-1}(T(c\vec{v}_1)) = c\vec{v}_1 = cT^{-1}(\vec{w}_1)
+              </me>.
+            </p>
+          </solution>
+        </exercise>
+
+        <exercise>
+          <statement>
+            <p>
+              Show that if <m>ST=1_V</m>, then <m>S</m> is surjective and <m>T</m> is injective.
+              Conclude that if <m>ST=1_V</m> and <m>TS=1_w</m>, then <m>S</m> and <m>T</m> are both bijections.
+            </p>
+          </statement>
+          <hint>
+            <p>
+              This is really a Math 2000 problem.
+            </p>
+          </hint>
+        </exercise>
       </section>
     </chapter>
   </book>
