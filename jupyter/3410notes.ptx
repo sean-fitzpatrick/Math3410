@@ -17,9 +17,9 @@
       \newcommand{\dotp}{\boldsymbol{\cdot}}
       \newcommand{\len}[1]{\lVert #1\rVert}
     </macros>
-    <latex-image-preamble>
+    <latex-image-preamble><![CDATA[
       \usetikzlibrary{positioning,matrix,arrows,arrows.meta}
-    </latex-image-preamble>
+    ]]></latex-image-preamble>
   </docinfo>
   <book xml:id="linalg-notes-with-computations">
     <title>Lecture Notes for Math 3410, with Computational Examples</title>
@@ -2705,7 +2705,7 @@
             <p>
               Suppose now that <m>\dim V =\dim W</m>.
               Then we can choose bases <m>\{\vec{v}_1,\ldots, \vec{v}_n\}</m> of <m>V</m>,
-              and <m>\{\vec{w}_1\,ldots, \vec{w}_n\}</m> of <m>W</m>.
+              and <m>\{\vec{w}_1,\ldots, \vec{w}_n\}</m> of <m>W</m>.
               <xref ref="thm-define-using-basis">Theorem</xref> then guarantees the existence of a linear map <m>T:V\to W</m>
               such that <m>T(\vec{v}_i)=\vec{w}_i</m> for each <m>i=1,2,\ldots, n</m>.
               Repeating the arguments of <xref ref="ex-dimension-injection-surjection">Exercise</xref> shows that <m>T</m> is a bijection.
@@ -2830,12 +2830,12 @@
               <md>
                 <mrow>ST(\vec{u}_1+\vec{u}_2) \amp = S(T(\vec{u}_1+\vec{u}_2})) </mrow>
                 <mrow> \amp = S(T(\vec{u}_1)+T(\vec{u}_2))</mrow>
-                <mrow>  \amp = S(T(\vec{u}_1))+S(t(\vec{u}_2)) </mrow>
-                <mrow>  \amp = ST(\vec{u}_1)+ST(\vec{u_2})</mrow>
+                <mrow>  \amp = S(T(\vec{u}_1))+S(T(\vec{u}_2)) </mrow>
+                <mrow>  \amp = ST(\vec{u}_1)+ST(\vec{u}_2)</mrow>
               </md>,
               and for any scalar <m>c</m>,
               <me>
-                ST(c\vec{u}_1) = S(T(c\vec{u}_1))=S(cT(\vec{u}_1)) = cS(T(\vec{u}_1))=c(ST()\vec{u}_1))
+                ST(c\vec{u}_1) = S(T(c\vec{u}_1))=S(cT(\vec{u}_1)) = cS(T(\vec{u}_1))=c(ST(\vec{u}_1))
               </me>.
 
             </p>
@@ -2918,7 +2918,7 @@
             After all, you probably encountered the following result, perhaps as a consequence of the law of cosines:
             for any two vectors <m>\vec{u},\vec{v}\in\R^2</m>,
             <me>
-              \vec{u}\dotp\vec{v} = \len{\vec{u}}\,\len\vec{v}\cos\theta
+              \vec{u}\dotp\vec{v} = \len{\vec{u}}\,\len{}\vec{v}}\cos\theta
             </me>,
             where <m>\theta</m> is the angle between <m>\vec{u}</m> and <m>\vec{v}</m>.
             Here we see both magnitude and direction (encoded by the angle) defined in terms of the dot product.
@@ -2980,7 +2980,7 @@
           <theorem xml:id="thm-dot-props">
             <statement>
               <p>
-                For any vectors <m>\vec{x},\vec{y},\vec{z}\i\R^n</m>,
+                For any vectors <m>\vec{x},\vec{y},\vec{z}\in\R^n</m>,
                 <ol>
                   <li><m>\vec{x}\dotp\vec{y} = \vec{y}\dotp\vec{x}</m></li>
                   <li><m>\vec{x}\dotp(\vec{y}+\vec{z})=\vec{x}\dotp\vec{y}+\vec{x}\dotp\vec{z}</m></li>
@@ -3036,7 +3036,7 @@
           <exercise>
             <statement>
               <p>
-                Suppose <m>\vec{R}^n=\spn\{\vec{v}_1,\vec{v}_2,\ldots, \vec{v}_k\}</m>.
+                Suppose <m>\mathbb{R}^n=\spn\{\vec{v}_1,\vec{v}_2,\ldots, \vec{v}_k\}</m>.
                 Prove that <m>\vec{x}=\vec{0}</m> if and only if <m>\vec{x}\dotp \vec{v}_i=0</m> for each <m>i=1,2,\ldots, k</m>.
               </p>
             </statement>
@@ -3067,7 +3067,7 @@
                 Then
                 <ol>
                   <li>
-                    <m>\lvert \vec{x}\dotp \vec{y}\leq \len{\vec{x}}\len{\vec{y}}</m>
+                    <m>\lvert \vec{x}\dotp \vec{y}\rvert \leq \len{\vec{x}}\len{\vec{y}}</m>
                   </li>
                   <li>
                     <m>\len{\vec{x}+\vec{y}}\leq \len{\vec{x}}\len{\vec{y}}</m>
@@ -3093,7 +3093,7 @@
             </me>.
             Since the left-hand side is non-negative, we must have
             <me>
-              \vec{x}\vec{y}\leq \len{vec{x}}\len{\vec{y}} \quad \text{ and } -\len{vec{x}}\len{\vec{y}}\leq \vec{x}\dotp\vec{y}
+              \vec{x}\vec{y}\leq \len{\vec{x}}\len{\vec{y}} \quad \text{ and } -\len{vec{x}}\len{\vec{y}}\leq \vec{x}\dotp\vec{y}
             </me>,
             and the result follows.
           </p>
@@ -3174,7 +3174,7 @@
                   </li>
                   <li>
                     <p>
-                      <m>\vec{v}_i\dotp\veC{v}_j = 0</m> for all <m>i\neq j</m>
+                      <m>\vec{v}_i\dotp\vec{v}_j = 0</m> for all <m>i\neq j</m>
                     </p>
                   </li>
                 </ul>
@@ -3202,7 +3202,7 @@
                 for scalars <m>c_1,c_2,\ldots, c_k</m>.
                 Taking the dot product of both sides of the above equation with <m>\vec{v}_1</m> gives
                 <md>
-                  <mrow>c_1(\vec{v}_1\dotp vec{v}_1)+c_2(\vec{v}_1\dotp \vec{v}_2)+\cdots +c_k(\vec{v}_1\dotp \vec{v}_k) \amp =\vec{v}_1\dotp \vec{0}</mrow>
+                  <mrow>c_1(\vec{v}_1\dotp \vec{v}_1)+c_2(\vec{v}_1\dotp \vec{v}_2)+\cdots +c_k(\vec{v}_1\dotp \vec{v}_k) \amp =\vec{v}_1\dotp \vec{0}</mrow>
                   <mrow> c_1\len{\vec{v}_1}^2+0+\cdots + 0\amp = 0 </mrow>
                 </md>.
                 Since <m>\len{\vec{v}_1}^2\neq 0</m>, we must have <m>c_1=0</m>.
