@@ -14,6 +14,8 @@
       \newcommand{\nll}{\operatorname{null}}
       \newcommand{\csp}{\operatorname{col}}
       \newcommand{\rank}{\operatorname{rank}}
+      \newcommand{\dotp}{\boldsymbol{\cdot}}
+      \newcommand{\len}[1]{\lVert #1\rVert}
     </macros>
     <latex-image-preamble>
       \usetikzlibrary{positioning,matrix,arrows,arrows.meta}
@@ -2891,6 +2893,381 @@
             </p>
           </hint>
         </exercise>
+      </section>
+    </chapter>
+
+    <chapter xml:id="ch-orthogonality">
+      <title>Orthogonality and Applications</title>
+      <section xml:id="sec-orthogonal-sets">
+        <title>Orthogonal sets of vectors</title>
+        <introduction>
+          <p>
+            You may recall from elementary linear algebra, or a calculus class,
+            that vectors in <m>\R^2</m> or <m>\R^3</m> are considered to be quantities with both <em>magnitude</em> and <em>direction</em>.
+            Interestingly enough, neither of these properties is inherent to a general vector space.
+            The vector space axioms specify only algebra; they say nothing about geometry.
+            (What, for example, should be the <q>angle</q> between two polynomials?)
+          </p>
+
+          <p>
+            Because vector algebra is often introduced as a consequence of geometry (like the <q>tip-to-tail</q> rule),
+            you may not have thought all that carefully about what, exactly,
+            is responsible for making the connection between algebra and geometry.
+            It turns out that the missing link is the humble dot product.
+            This should be plausible after a bit of thought.
+            After all, you probably encountered the following result, perhaps as a consequence of the law of cosines:
+            for any two vectors <m>\vec{u},\vec{v}\in\R^2</m>,
+            <me>
+              \vec{u}\dotp\vec{v} = \len{\vec{u}}\,\len\vec{v}\cos\theta
+            </me>,
+            where <m>\theta</m> is the angle between <m>\vec{u}</m> and <m>\vec{v}</m>.
+            Here we see both magnitude and direction (encoded by the angle) defined in terms of the dot product.
+          </p>
+
+          <p>
+            While it is possible to generalize the idea of the dot product to something called an <em>inner product</em>,
+            we will first focus on the basic dot product in <m>\R^n</m>.
+            Once we have a good understanding of things in that setting, we can move on to consider the abstract counterpart.
+          </p>
+        </introduction>
+
+        <subsection xml:id="subsec-dot-basics">
+          <title>Basic definitions and properties</title>
+          <p>
+            For most of this chapter (primarily for typographical reasons) we will denote elements of <m>\R^n</m>
+            as ordered <m>n</m>-tuples <m>(x_1,\ldots, x_n)</m> rather than as column vectors.
+          </p>
+
+          <definition xml:id="def-dot-prod-norm">
+            <statement>
+              <p>
+                Let <m>\vec{x}=(x_1,x_2,\ldots, x_n)</m> and <m>\vec{y}=(y_1,y_2,\ldots, y_n)</m>
+                be vectors in <m>\R^n</m>. The <term>dot product</term> of <m>\vec{x}</m> and <m>\vec{y}</m>,
+                denoted by <m>\vec{x}\dotp\vec{y}</m> is the scalar defined by
+                <me>
+                  \vec{x}\dotp \vec{y} = x_1y_1+x_2y_2+\cdots + x_ny_n
+                </me>.
+                The <term>norm</term> of a vector <m>\vec{x}</m> is denoted <m>\len{\vec{x}}</m> and defined by
+                <me>
+                  \len{\vec{x}} = \sqrt{x_1^2+x_2^2+\cdots + x_n^2}
+                </me>.
+              </p>
+            </statement>
+          </definition>
+
+          <p>
+            Note that both the dot product and the norm produce <em>scalars</em>.
+            Through the Pythagorean Theorem, we recognize the norm as the length of <m>\vec{x}</m>.
+            The dot product can still be thought of as measuring the angle between vectors,
+            although the simple geometric proof used in two dimensions is not that easily translated to <m>n</m> dimensions.
+            At the very least, the dot product lets us extend the notion of right angles to higher dimensions.
+          </p>
+
+          <definition xml:id="def-orthogonal">
+            <statement>
+              <p>
+                We say that two vectors <m>\vec{x},\vec{y}\in\R^n</m>
+                are <term>orthogonal</term> if <m>\vec{x}\dotp\vec{y} = 0</m>.
+              </p>
+            </statement>
+          </definition>
+
+          <p>
+            It should be no surprise that all the familiar properties of the dot product work just as well in any dimension.
+            The folowing properties are all easily confirmed by routine computation.
+          </p>
+
+          <theorem xml:id="thm-dot-props">
+            <statement>
+              <p>
+                For any vectors <m>\vec{x},\vec{y},\vec{z}\i\R^n</m>,
+                <ol>
+                  <li><m>\vec{x}\dotp\vec{y} = \vec{y}\dotp\vec{x}</m></li>
+                  <li><m>\vec{x}\dotp(\vec{y}+\vec{z})=\vec{x}\dotp\vec{y}+\vec{x}\dotp\vec{z}</m></li>
+                  <li>
+                    <p>
+                      For any scalar <m>c</m>, <m>\vec{x}\dotp(c\vec{y}) = (c\vec{x})\dotp\vec{y}=c(\vec{x}\dotp\vec{y})</m>
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      <m>\vec{x}\dotp\vec{x}\geq 0</m>, and <m>\vec{x}\dotp\vec{x}=0</m> if and only if <m>\vec{x}=\vec{0}</m>
+                    </p>
+                  </li>
+                </ol>
+              </p>
+            </statement>
+          </theorem>
+
+          <p>
+            The above properties, when properly abstracted, become the defining properties of a (real) inner product.
+            (A complex inner product also involves complex conjugates.)
+            For a general inner product, the requirement <m>\vec{x}\dotp\vec{x}\geq 0</m>
+            is referred to as being <em>positive-definite</em>,
+            and the property that only the zero vector produces zero when dotted with itself is called <em>nondegenerate</em>.
+            Note that we have the following connection between norm and dot product:
+            <me>
+              \len{\vec{x}}^2 = \vec{x}\dotp \vec{x}
+            </me>.
+            For a general inner product, this can be used as a <em>definition</em> of the norm associated to an inner product.
+          </p>
+
+          <exercise xml:id="ex-norm-sum-square">
+            <statement>
+              <p>
+                Show that for any vectors <m>\vec{x},\vec{y}\in\R^n</m>, we have
+                <me>
+                  \len{\vec{x}+\vec{y}}^2 = \len{\vec{x}}^2+2\vec{x}\dotp\vec{y}+\len{\vec{y}}^2
+                </me>.
+              </p>
+            </statement>
+            <solution>
+              <p>
+                This is simply an exercise in properties of the dot product. We have
+                <md>
+                  <mrow>\len{\vec{x}+\vec{y}}^2 \amp = (\vec{x}+\vec{y})\dotp (\vec{x}+\vec{y}) </mrow>
+                  <mrow> \amp = \vec{x}\dotp \vec{x}+\vec{x}\dotp\vec{y}+\vec{y}\dotp\vec{x}+\vec{y}\dotp\vec{y}</mrow>
+                  <mrow>  \amp =\len{\vec{x}}^2+2\vec{x}\dotp\vec{y}+\len{\vec{y}}^2</mrow>
+                </md>.
+              </p>
+            </solution>
+          </exercise>
+
+          <exercise>
+            <statement>
+              <p>
+                Suppose <m>\vec{R}^n=\spn\{\vec{v}_1,\vec{v}_2,\ldots, \vec{v}_k\}</m>.
+                Prove that <m>\vec{x}=\vec{0}</m> if and only if <m>\vec{x}\dotp \vec{v}_i=0</m> for each <m>i=1,2,\ldots, k</m>.
+              </p>
+            </statement>
+            <solution>
+              <p>
+                If <m>\vec{x}=\vec{0}</m>, then the result follows immediately from the dot product formula in <xref ref="def-dot-prod-norm"/>.
+                Conversely, suppose <m>\vec{x}\dotp \vec{v}_i=0</m> for each <m>i</m>.
+                Since the <m>\vec{v}_i</m> span <m>\R^n</m>, there must exist scalars <m>c_1,c_2,\ldots, c_k</m>
+                such that <m>\vec{x}=c_1\vec{v}_1+c_2\vec{v}_2+\cdots+c_k\vec{v}_k</m>. But then
+                <md>
+                  <mrow>\vec{x}\dotp\vec{x} \amp = \vec{x}\dotp (c_1\vec{v}_1+c_2\vec{v}_2+\cdots+c_k\vec{v}_k) </mrow>
+                  <mrow> \amp = c_1(\vec{x}\dotp \vec{v}_1)+ c_2(\vec{x}\dotp \vec{v}_2)+\cdots +c_k(\vec{x}\dotp \vec{v}_k)</mrow>
+                  <mrow>  \amp = c_1(0)+c_2(0)+\cdots + c_k(0)=0</mrow>
+                </md>.
+              </p>
+            </solution>
+          </exercise>
+
+          <p>
+            There are two important inequalities associated to the dot product and norm.
+            We state them both in the following theorem.
+          </p>
+
+          <theorem xml:id="thm-cauchy-triangle">
+            <statement>
+              <p>
+                Let <m>\vec{x},\vec{y}</m> be any vectors in <m>\R^n</m>.
+                Then
+                <ol>
+                  <li>
+                    <m>\lvert \vec{x}\dotp \vec{y}\leq \len{\vec{x}}\len{\vec{y}}</m>
+                  </li>
+                  <li>
+                    <m>\len{\vec{x}+\vec{y}}\leq \len{\vec{x}}\len{\vec{y}}</m>
+                  </li>
+                </ol>
+              </p>
+            </statement>
+          </theorem>
+
+          <p>
+            The first of the above inequalities is called the <em>Cauchy-Schwarz inequality</em>, which be viewed as a manifestation of the formula
+            <me>
+              \vec{x}\dotp \vec{y} = \len{\vec{x}}\len{\vec{y}}\cos\theta
+            </me>,
+            since after all, <m>\lvert \cos\theta\rvert\leq 1</m> for any angle <m>\theta</m>.
+            For a direct proof, we note that for any scalars <m>r,s</m> we have
+            <me>
+              \len{r\vec{x}\pm s\vec{y}}^2 = r^2\len{\vec{x}}^2\pm 2rs\vec{x}\dotp\vec{y}+s^2\len{\vec{y}}^2
+            </me>.
+            Putting <m>r=\len{\vec{y}}, s=\len{\vec{x}}</m> gives
+            <me>
+              \len{\len{\vec{y}}\vec{x}\pm \len{\vec{x}}\vec{y}}^2 = 2\len{\vec{x}}\len{\vec{y}}(\len{vec{x}}\len{\vec{y}}\pm\vec{x}\dotp\vec{y})
+            </me>.
+            Since the left-hand side is non-negative, we must have
+            <me>
+              \vec{x}\vec{y}\leq \len{vec{x}}\len{\vec{y}} \quad \text{ and } -\len{vec{x}}\len{\vec{y}}\leq \vec{x}\dotp\vec{y}
+            </me>,
+            and the result follows.
+          </p>
+
+          <p>
+            The second result, called the  <em>triangle inequality</em>,
+            follows immediately from the Cauchy-Scwarz inequality and <xref ref="ex-norm-sum-square"/>.
+            The triangle inequality gets its name from the <q>tip-to-tail</q> picture for vector addition.
+            Essentially, it tells us that the length of any side of a triangle must be less than the sum of the lengths of the other two sides.
+            The importance of the triangle inequality is that it tells us that the norm can be used to define distance.
+          </p>
+
+          <definition xml:id="def-vector-distance">
+            <statement>
+              <p>
+                For any vectors <m>\vec{x},\vec{y}\in \R^n</m>, the <term>distance</term>
+                from <m>\vec{x}</m> to <m>\vec{y}</m> is denoted <m>d(\vec{x}y,\vec{y})</m>, and defined as
+                <me>
+                  d(\vec{x},\vec{y}) = \len{\vec{x}-\vec{y}}
+                </me>.
+              </p>
+            </statement>
+          </definition>
+
+          <p>
+            Using properties of the norm, we can show that this distance function meets the criteria of what's called a <em>metric</em>.
+            A metric is any function that takes a pair of vectors (or points) as input, and returns a number as output,
+            with the following properties:
+            <ol>
+              <li>
+                <p>
+                  <m>d(\vec{x},\vec{y})=d(\vec{y},\vec{x})</m> for any <m>\vec{x},\vec{y}</m>
+                </p>
+              </li>
+              <li>
+                <p>
+                  <m>d(\vec{x},\vec{y})\geq 0</m>, and <m>d(\vec{x},\vec{y})=0</m> if and only if <m>\vec{x}=\vec{y}</m>
+                </p>
+              </li>
+              <li>
+                <p>
+                  <m>d(\vec{x},\vec{y})\leq d(\vec{x},\vec{z})+d(\vec{z},\vec{y})</m> for any <m>\vec{x},\vec{y},\vec{z}</m>
+                </p>
+              </li>
+            </ol>
+            We leave it as an exericse to confirm that the distance function defined above is a metric.
+          </p>
+
+          <p>
+            In more advanced courses (<eg/> topology or analysis) you might go into detailed study of these structures.
+            There are three interrelated structures: inner products, norms, and metrics.
+            You might consider questions like: does every norm come from an inner product? Does every metric come from a norm?
+            (No.) Things get even more interesting for infinite-dimensional spaces.
+            Of special interest are spaces such as <em>Hilbert spaces</em> (a special type of infinite-dimensional inner product space)
+            and <em>Banach spaces</em> (a special type of infinite-dimensional normed space).
+          </p>
+        </subsection>
+
+        <subsection xml:id="subsec-ortho-sets">
+          <title>Orthogonal sets of vectors</title>
+          <p>
+            In earlier chapters, we've seen that among different sets of vectors one could consider,
+            independent sets and spanning sets are both worthy of study.
+            One of the main themes of this chapter is that <em>orthogonal</em> sets are equally worthy,
+            and in many cases, easier to work with.
+          </p>
+
+          <definition xml:id="def-ortho-set">
+            <statement>
+              <p>
+                A set of vectors <m>\{\vec{v}_1,\vec{v}_2,\ldots, \vec{v}_k\}</m> in <m>\R^n</m>
+                is called <term>orthogonal</term> if:
+                <ul>
+                  <li>
+                    <p>
+                      <m>\vec{v}_i\neq \vec{0}</m> for each <m>i=1,2\ldots, n</m>
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      <m>\vec{v}_i\dotp\veC{v}_j = 0</m> for all <m>i\neq j</m>
+                    </p>
+                  </li>
+                </ul>
+              </p>
+            </statement>
+          </definition>
+
+          <p>
+            The requirement that the vectors in an orthogonal set be nonzero is partly because the alternative would be boring,
+            and partly because it lets us state the following theorem.
+          </p>
+
+          <theorem xml:id="thm-ortho-independent">
+            <statement>
+              <p>
+                Any orthogonal set of vectors is linearly independent.
+              </p>
+            </statement>
+            <proof>
+              <p>
+                Suppose <m>S=\{\vec{v}_1,\vec{v}_2,\ldots, \vec{v}_k\}</m> is orthogonal, and suppose
+                <me>
+                  c_1\vec{v}_1+c_2\vec{v}_2+\cdots + c_k\vec{v}_k = \vec{0}
+                </me>
+                for scalars <m>c_1,c_2,\ldots, c_k</m>.
+                Taking the dot product of both sides of the above equation with <m>\vec{v}_1</m> gives
+                <md>
+                  <mrow>c_1(\vec{v}_1\dotp vec{v}_1)+c_2(\vec{v}_1\dotp \vec{v}_2)+\cdots +c_k(\vec{v}_1\dotp \vec{v}_k) \amp =\vec{v}_1\dotp \vec{0}</mrow>
+                  <mrow> c_1\len{\vec{v}_1}^2+0+\cdots + 0\amp = 0 </mrow>
+                </md>.
+                Since <m>\len{\vec{v}_1}^2\neq 0</m>, we must have <m>c_1=0</m>.
+                We similarly find that all the remaining scalars are zero by taking the dot product with <m>\vec{v}_2,\ldots, \vec{v}_k</m>.
+              </p>
+            </proof>
+          </theorem>
+
+          <p>
+            Another useful consequence of orthogonality: recall that in two dimensions,
+            we have the Pythagorean Theorem for right-angled triangles,
+            but have to settle for the Law of Cosines otherwise.
+            In <m>n</m> dimensions, we have the following, which follows from the fact that all <q>cross terms</q>
+            (dot products of different vectors) will vanish.
+          </p>
+
+          <theorem xml:id="thm-pythagoras">
+            <statement>
+              <p>
+                For any orthogonal set of vectors <m>\{vec{x}_1,\ldots, \vec{x}_k\}</m> we have
+                <me>
+                  \len{\vec{x}_1+\cdots +\vec{x}_k}^2 = \len{\vec{x}_1}^2+\cdots + \len{\vec{x}_k}^2
+                </me>.
+              </p>
+            </statement>
+          </theorem>
+
+          <p>
+            Our final initial result about orthogonal sets of vectors relates to span.
+            In general, we know that if <m>\vec{y}\in\spn\{\vec{x}_1,\ldots, \vec{x}_k\}</m>,
+            then it is possible to solve for scalars <m>c_1,\ldots, c_k</m>
+            such that <m>\vec{y}=c_1\vec{x}_1+\cdots+ c_k\vec{x}_k</m>.
+            The trouble is that finding these scalars generally involves setting up,
+            and then solving, a system of linear equations.
+            The great thing about orthogonal sets of vectors is that we can provide explicit formulas for the scalars.
+          </p>
+
+          <theorem xml:id="thm-fourier-expansion">
+            <title>Fourier expansion theorem</title>
+            <statement>
+              <p>
+                Let <m>=\{\vec{v}_1,\vec{v}_2,\ldots, \vec{v}_k\}</m> be an orthogonal set of vectors.
+                For any <m>\vec{y}\in \spn S</m>, we have
+                <me>
+                  \vec{y} = \left(\frac{\vec{y}\dotp\vec{v_1}}{\vec{v}_1\dotp\vec{v}_1}\right)\vec{v}_1+
+                  \left(\frac{\vec{y}\dotp\vec{v_2}}{\vec{v}_2\dotp\vec{v}_2}\right)\vec{v}_2+\cdots +
+                  \left(\frac{\vec{y}\dotp\vec{v_k}}{\vec{v}_k\dotp\vec{v}_k}\right)\vec{v}_k
+                </me>.
+              </p>
+            </statement>
+            <proof>
+              <p>
+                Let <m>\vec{y}=c_1\vec{v}_1+\cdots + c_k\vec{v}_k</m>.
+                Taking the dot product of both sides of this equation with <m>\vec{v}_i</m>
+                gives
+                <me>
+                  \vec{v}_i\dotp\vec{y} = c_i(\vec{v}_i\dotp\vec{v}_i)
+                </me>,
+                since the dot product of <m>\vec{v}_i</m> with <m>\vec{v}_j</m> for <m>i\neq j</m> is zero.                
+              </p>
+            </proof>
+
+          </theorem>
+
+        </subsection>
       </section>
     </chapter>
   </book>
