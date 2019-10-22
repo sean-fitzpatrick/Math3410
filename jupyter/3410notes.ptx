@@ -14,7 +14,7 @@
       \newcommand{\nll}{\operatorname{null}}
       \newcommand{\csp}{\operatorname{col}}
       \newcommand{\rank}{\operatorname{rank}}
-      \newcommand{\dotp}{\boldsymbol{\cdot}}
+      \newcommand{\dotp}{\!\boldsymbol{\cdot}\!}
       \newcommand{\len}[1]{\lVert #1\rVert}
       \newcommand{\proj}[2]{\operatorname{proj}_{#2}#1}
     </macros>
@@ -2311,8 +2311,8 @@
           Note that if <m>W</m> is finite-dimensional, then so is <m>\Img T</m>,
           since it's a subspace of <m>W</m>.
           On the other hand, if <m>V</m> is finite-dimensional,
-          then we can find a basis <m>\{\vec{v}_1,\ldots, \vec{v}_n}\}</m> of <m>V</m>,
-          and the set <m>\{T(\vec{v}_1),\ldots, T(\vec{v}_n\})\}</m> will span <m>\Img T</m>,
+          then we can find a basis <m>\{\vec{v}_1,\ldots, \vec{v}_n\}</m> of <m>V</m>,
+          and the set <m>\{T(\vec{v}_1),\ldots, T(\vec{v}_n)\}</m> will span <m>\Img T</m>,
           so again the image is finite-dimensional, so the rank of <m>T</m> is finite.
           It is possible for either the rank or the nullity of a transformation to be infinite.
         </p>
@@ -2504,7 +2504,7 @@
             <p>
               To see that it's independent, suppose that
               <me>
-                a_\vec{u}_1+\cdots + a_n\vec{u}_n+b_1\vec{v}_1+\cdots +\b_m\vec{v}_m=\vec{0}
+                a_1\vec{u}_1+\cdots + a_n\vec{u}_n+b_1\vec{v}_1+\cdots +\b_m\vec{v}_m=\vec{0}
               </me>.
               Applying <m>T</m> to this equation, and noting that <m>T(\vec{u}_i)=\vec{0}</m>
               for each <m>i</m>, by definition of the <m>\vec{u}_i</m>, we get
@@ -2561,7 +2561,7 @@
           </me>.
           We will see that this result is frequently useful for providing simple arguments that establish otherwise difficult results.
           A basic situation where the theorem is useful is as follows:
-          we are given <m>T:V\to W$</m>, where the dimensions of <m>V</m> and <m>W</m> are known.
+          we are given <m>T:V\to W</m>, where the dimensions of <m>V</m> and <m>W</m> are known.
           Since <m>\Img T</m> is a subspace of <m>W</m>, we know from <xref ref="thm-subspace-dim">Theorem</xref>
           that <m>T</m> is onto if and only if <m>\dim \Img T = \dim W</m>.
           In many cases it is easier to compute <m>\ker T</m> than it is <m>\Img T</m>,
@@ -2774,7 +2774,7 @@
 
         <figure xml:id="fig_transformation_matrix">
           <caption>Defining the matrix of a linear map with respect to choices of basis.</caption>
-          <image xml:id="img_trans_matrix" width="47%">
+          <image xml:id="img_trans_matrix" width="30%">
             <latex-image>
               \begin{tikzpicture}
               \matrix (m) [matrix of math nodes,row sep=3em,column sep=4em,minimum width=2em]
@@ -3031,8 +3031,8 @@
                   <mrow> (4\vec{x}-3\vec{y})\dotp (\vec{x}+5\vec{y})\amp = (4\vec{x})\dotp \vec{x}+(4\vec{x})\dotp(5\vec{y})+(-3\vec{y})\dotp \vec{x}+(-3\vec{y})\dotp(5\vec{y})</mrow>
                   <mrow> \amp = 4(\vec{x}\dotp\vec{x})+(4\cdot 5)(\vec{x}\dotp \vec{y})-3(\vec{y}\dot \vec{x})+(-3\cdot 5)(\vec{y}\dotp\vec{y})</mrow>
                   <mrow> \amp = 4\len{\vec{x}}^2+20\vec{x}\dotp\vec{y}-3\vec{x}\dotp\vec{y}-15\len{\vec{y}}^2</mrow>
-                  <mrow> \amp = 4(9)+17(-2)-15(1) = -13.
-                </md>
+                  <mrow> \amp = 4(9)+17(-2)-15(1) = -13</mrow>
+                </md>.
               </p>
             </solution>
           </exercise>
@@ -3114,7 +3114,7 @@
             </me>.
             Putting <m>r=\len{\vec{y}}, s=\len{\vec{x}}</m> gives
             <me>
-              \len{\len{\vec{y}}\vec{x}\pm \len{\vec{x}}\vec{y}}^2 = 2\len{\vec{x}}\len{\vec{y}}(\len{vec{x}}\len{\vec{y}}\pm\vec{x}\dotp\vec{y})
+              \len{\len{\vec{y}}\vec{x}\pm \len{\vec{x}}\vec{y}}^2 = 2rs(rs\pm\vec{x}\dotp\vec{y})
             </me>.
             Since the left-hand side is non-negative, we must have
             <me>
@@ -3207,7 +3207,7 @@
             </statement>
           </definition>
 
-          <exercise xml:id="ex-orthongonal-set">
+          <exercise xml:id="ex-orthogonal-set">
             <statement>
               <p>
                 Show that the following is an orthogonal subset of <m>\R^4</m>.
@@ -3234,7 +3234,7 @@
                 <md>
                   <mrow>(a,b,c,d)\dotp (1,0,1,0) \amp = a+c=0 </mrow>
                   <mrow>(a,b,c,d)\dotp (-1,0,1,1) \amp = -a+c+d=0 </mrow>
-                  <mrow>(a,b,c,d)\dotp (1,1,-1,2) \amp = a+b-c+2d=0
+                  <mrow>(a,b,c,d)\dotp (1,1,-1,2) \amp = a+b-c+2d=0</mrow>
                 </md>.
                 This is simply a homogeneous system of three equations in four variables.
                 Using the Sage cell below, we find that our vector must satisfy
@@ -3357,10 +3357,11 @@
                 We compute
                 <md>
                   <mrow>\left(\frac{\vec{v}\dotp\vec{x}_1}{\len{\vec{x}_1}^2}\right)\vec{x_1}
-                    +\left(\frac{\vec{v}\dotp\vec{x}_2}{\len{\vec{x}_2}^2}\right)\vec{x_2}
-                    +\left(\frac{\vec{v}\dotp\vec{x}_3}{\len{\vec{x}_3}^2}\right)\vec{x_3} \amp = \frac{4}{2}\vec{x}_1+\frac{-9}{3}\vec{x}_2+\frac{-28}{7}</mrow>
+                    \amp +\left(\frac{\vec{v}\dotp\vec{x}_2}{\len{\vec{x}_2}^2}\right)\vec{x_2}
+                    +\left(\frac{\vec{v}\dotp\vec{x}_3}{\len{\vec{x}_3}^2}\right)\vec{x_3}</mrow>
+                  <mrow> \amp = \frac{4}{2}\vec{x}_1+\frac{-9}{3}\vec{x}_2+\frac{-28}{7}</mrow>
                   <mrow> \amp = 2(1,0,1,0)-3(-1,0,1,1)-4(1,1,-1,2)</mrow>
-                  <mrow> \amp = (1,-4,3,-11) = \vec{v}
+                  <mrow> \amp = (1,-4,3,-11) = \vec{v}</mrow>
                 </md>,
                 so <m>\vec{v}\in\spn\{\vec{x}_1,\vec{x}_2,\vec{x}_3\}</m>.
               </p>
@@ -3369,8 +3370,9 @@
                 On the other hand, repeating the same calculation with <m>\vec{w}</m>, we find
                 <md>
                   <mrow>\left(\frac{\vec{v}\dotp\vec{x}_1}{\len{\vec{x}_1}^2}\right)\vec{x_1}
-                    +\left(\frac{\vec{v}\dotp\vec{x}_2}{\len{\vec{x}_2}^2}\right)\vec{x_2}
-                    +\left(\frac{\vec{v}\dotp\vec{x}_3}{\len{\vec{x}_3}^2}\right)\vec{x_3} \amp -\frac12 (1,0,1,0)-\frac53 (-1,0,1,1) +\frac47 (1,1,-1,2)</mrow>
+                    \amp +\left(\frac{\vec{v}\dotp\vec{x}_2}{\len{\vec{x}_2}^2}\right)\vec{x_2}
+                    +\left(\frac{\vec{v}\dotp\vec{x}_3}{\len{\vec{x}_3}^2}\right)\vec{x_3}</mrow>
+                  <mrow> \amp =\frac12 (1,0,1,0)-\frac53 (-1,0,1,1) +\frac47 (1,1,-1,2)</mrow>
                   <mrow> \amp = \left(\frac{73}{42},\frac47,-\frac{115}{42},-\frac{11}{21}\right)\neq \vec{w}</mrow>
                 </md>,
                 so <m>\vec{w}\notin\spn\{\vec{x}_1,\vec{x}_2,\vec{x}_3\}</m>.
@@ -3449,9 +3451,9 @@
         <title>Orthgonal Projection</title>
         <p>
           In <xref ref="ex-test-span">Exercise</xref>, we saw that <xref ref="thm-fourier-expansion" text="title"/>
-          gives us an efficient way of testing whether or not a given vector belongs to the span of an orthgonal set.
+          gives us an efficient way of testing whether or not a given vector belongs to the span of an orthogonal set.
           When the answer is <q>no</q>, the quantity we compute while testing turns out to be very useful:
-          it gives the <em>orthgonal projection</em> of that vector onto the span of our orthogonal set.
+          it gives the <em>orthogonal projection</em> of that vector onto the span of our orthogonal set.
           This turns out to be exactly the ingredient needed to solve certain minimum distance problems.
         </p>
 
@@ -3474,7 +3476,7 @@
               Let <m>\{\vec{v}_1,\vec{v}_2,\ldots, \vec{v}_m\}</m> be an orthogonal set of vectors in <m>\R^n</m>,
               and let <m>\vec{x}</m> be any vector in <m>\R^n</m>. Define the vector <m>\vec{v}_{m+1}</m> by
               <me>
-                \vec{v}_{m+1} = \vec{x}-\left(\frac{\vec{x}\dotp\vec{v}_1}{\len{\vec{v}_1}^2}\vec{v}_1+\cdots + \frac{\vec{x}\dotp\vec{v}_m}{\len{\vec{v}_m}^2}\vec{v}_m)
+                \vec{v}_{m+1} = \vec{x}-\left(\frac{\vec{x}\dotp\vec{v}_1}{\len{\vec{v}_1}^2}\vec{v}_1+\cdots + \frac{\vec{x}\dotp\vec{v}_m}{\len{\vec{v}_m}^2}\vec{v}_m\right)
               </me>.
               Then:
               <ol>
@@ -3487,7 +3489,7 @@
                   <p>
                     If <m>\vec{x}\notin\spn\{\vec{v}_1,\ldots, \vec{v}_m\}</m>,
                     then <m>\vec{v}_{m+1}\neq \vec{0}</m>,
-                    and therefore, <m>\{\vec{v}_1,\ldots, \vec{v}_m,\vec{v}_{m+1}\}</m> is an orthgonal set.
+                    and therefore, <m>\{\vec{v}_1,\ldots, \vec{v}_m,\vec{v}_{m+1}\}</m> is an orthogonal set.
                   </p>
                 </li>
               </ol>
@@ -3500,7 +3502,7 @@
                   <p>
                     For any <m>i=1,\ldots m</m>, we have
                     <me>
-                      \vec{v}_{m+1}\dotp\vec{v}_i \amp = \vec{x}\dotp\vec{v}_i - \frac{\vec{x}\dotp\vec{v}_i}{\len{\vec{v}_i}^2}(\vec{v}_i\dotp\vec{v}_i)=0
+                      \vec{v}_{m+1}\dotp\vec{v}_i = \vec{x}\dotp\vec{v}_i - \frac{\vec{x}\dotp\vec{v}_i}{\len{\vec{v}_i}^2}(\vec{v}_i\dotp\vec{v}_i)=0
                     </me>,
                     since <m>\vec{v}_i\dotp\vec{v}_j = 0</m> for <m>i\neq j</m>.
                   </p>
@@ -3508,10 +3510,10 @@
 
                 <li>
                   <p>
-                    It follows from the <xref ref="thm-fourier-expansion" text="title"/> that <m>\vec{v}_{m+1}=\veC{0}</m>
+                    It follows from the <xref ref="thm-fourier-expansion" text="title"/> that <m>\vec{v}_{m+1}=\vec{0}</m>
                     if and only if <m>\vec{x}\in\spn\{\vec{v}_1,\ldots, \vec{v}_m\}</m>,
                     and the fact that <m>\{\vec{v}_1,\ldots, \vec{v}_m,\vec{v}_{m+1}\}</m>
-                    is an orthgonal set then follows from the first part.
+                    is an orthogonal set then follows from the first part.
                   </p>
                 </li>
               </ol>
@@ -3521,9 +3523,9 @@
 
         <p>
           It follows from the <xref ref="thm-orthogonal-lemma" text="title"/> that for any subspace <m>U\subseteq \R^n</m>,
-          any set of orthogonal vectors in <m>U</m> can be extended to an orthgonal basis of <m>U</m>.
+          any set of orthogonal vectors in <m>U</m> can be extended to an orthogonal basis of <m>U</m>.
           Since any set containing a single nonzero vector is orthogonal,
-          it follows that every subspace has an orthgonal basis.
+          it follows that every subspace has an orthogonal basis.
           (If <m>U=\{\vec{0}\}</m>, we consider the empty basis to be orthogonal.)
         </p>
 
@@ -3531,14 +3533,14 @@
           The procedure for creating an orthogonal basis is clear.
           Start with a single nonzero vector <m>\vec{v}_1\in U</m>.
           If <m>U\neq \spn\{\vec{v}_1\}</m>, choose a vector <m>\vec{x}_1\in U</m> with <m>\vec{x}_1\notin\spn\{\vec{v}_1\}</m>.
-          The <xref ref="thm-orthgonal-lemma" text="title"/> then provides us with a vector
+          The <xref ref="thm-orthogonal-lemma" text="title"/> then provides us with a vector
           <me>
             \vec{v}_2 = \vec{x}_1-\frac{\vec{x}_1\dotp\vec{v}_1}{\len{\vec{v}_1}^2}\vec{v}_1
           </me>
           such that <m>\{\vec{v}_1,\vec{v}_2\}</m> is orthogonal.
-          If <m>U=\spn\{vec{v}_1,\vec{v}_2\}</m>, we're done.
+          If <m>U=\spn\{\vec{v}_1,\vec{v}_2\}</m>, we're done.
           Otherwise, we repeat the process, choosing <m>\vec{x}_2\notin\spn\{\vec{v}_1,\vec{v}_2\}</m>,
-          and then using the <xref ref="thm-orthgonal-lemma" text="title"/> to obtain <m>\vec{v}_3</m>,
+          and then using the <xref ref="thm-orthogonal-lemma" text="title"/> to obtain <m>\vec{v}_3</m>,
           and so on, until an orthogonal basis is obtained.
         </p>
 
@@ -3550,6 +3552,7 @@
         </p>
 
         <theorem xml:id="thm-gram-schmidt">
+          <title>Gram-Schmidt Orthonormalization Algorithm</title>
           <statement>
             <p>
               Let <m>U</m> be a subspace of <m>\R^n</m>, and let <m>\{\vec{x}_1,\ldots, \vec{x}_m\}</m> be a basis of <m>U</m>.
@@ -3557,15 +3560,15 @@
               <md>
                 <mrow>\vec{v}_1 \amp = \vec{x}_1 </mrow>
                 <mrow>\vec{v}_2 \amp = \vec{x}_2 - \frac{\vec{x}_2\dotp\vec{v}_1}{\len{\vec{v}_1}^2}\vec{v}_1</mrow>
-                <mrow>\vec{v}_3 \amp = \vec{x}_3 -\frac{\vec{x}_3\dotp\vec{v}_1}{\len{\vec{v}_1}^2}\vec{v}_1-\frac{\vec{x}_3\dotp\vec{v}_2}{\len{\vec{v}_2}^2}\vec{v}_2</mrow>
+                <mrow>\vec{v}_3 \amp = \vec{x}_3 - \frac{\vec{x}_3\dotp\vec{v}_1}{\len{\vec{v}_1}^2}\vec{v}_1-\frac{\vec{x}_3\dotp\vec{v}_2}{\len{\vec{v}_2}^2}\vec{v}_2</mrow>
                 <mrow>\vdots \amp </mrow>
-                <mrow>\vec{v}_m \amp = \vec{x}_m -\frac{\vec{x}_m\dotp\vec{v}_1}{\len{\vec{v}_1}^2}\vec{v}_1-\cdots - \frac{\vec{x}_m\dotp\vec{v}_{m-1}}}{\len{\vec{v}_{m-1}}}^2}\vec{v}_{m-1}</mrow>
+                <mrow>\vec{v}_m \amp = \vec{x}_m - \frac{\vec{x}_m\dotp\vec{v}_1}{\len{\vec{v}_1}^2}\vec{v}_1-\cdots - \frac{\vec{x}_m\dotp\vec{v}_{m-1}}{\len{\vec{v}_{m-1}}^2}\vec{v}_{m-1}</mrow>
               </md>.
               Then <m>\{\vec{v}_1,\ldots, \vec{v}_m\}</m> is an orthogonal basis for <m>U</m>.
               Moreover, for each <m>k=1,2,\ldots, m</m>, we have
               <me>
                 \spn\{\vec{v}_1,\ldots, \vec{v}_k\} = \spn\{\vec{x}_1,\ldots, \vec{x}_k\}
-              </me>.              
+              </me>.
             </p>
           </statement>
         </theorem>
