@@ -16,8 +16,10 @@
       \newcommand{\rank}{\operatorname{rank}}
       \newcommand{\dotp}{\boldsymbol{\cdot}}
       \newcommand{\len}[1]{\lVert #1\rVert}
+      \newcommand{\proj}[2]{\operatorname{proj}_{#2}#1}
     </macros>
     <latex-image-preamble><![CDATA[
+      \usepackage{pgfplots}
       \usetikzlibrary{positioning,matrix,arrows,arrows.meta}
     ]]></latex-image-preamble>
   </docinfo>
@@ -608,6 +610,8 @@
         Asking the computer to reduce this matrix won't produce the desired result.
         (Maybe someone can figure out how to define the constants in a way that works?)
         But we can always specify row operations.
+        (Note: the following code doesn't work well in a Sage cell.
+        In Python it might work.)
       </p>
 
       <sage>
@@ -987,7 +991,7 @@
             Show that the following are bases of <m>\R^3</m>:
             <ul>
               <li><m>\{(1,1,0),(1,0,1),(0,1,1)\}</m></li>
-              <li><m>\{(-1,1,1),(1,-1,1),(1,1,,-1)</m></li>
+              <li><m>\{(-1,1,1),(1,-1,1),(1,1,-1)</m></li>
             </ul>
           </p>
         </statement>
@@ -1719,7 +1723,7 @@
 
               <p>
                 To see that this is linear, note that <m>E_a(0)=\mathbf{0}(a)=0</m>,
-                where <m>mathbf{0}</m> denotes the zero function;
+                where <m>\mathbf{0}</m> denotes the zero function;
                 for any <m>f,g\in V</m>,
                 <me>
                   E_a(f+g)=(f+g)(a)=f(a)+g(a)=E_a(f)+E_a(g)
@@ -1786,7 +1790,7 @@
           <statement>
             <p>
               Let <m>T:V\to W</m> and <m>S:V\to W</m> be two linear transformations.
-              If <m>V = \spn\{\vec{v}_1,\ldots, \vec{v}_n</m> and <m>T(\vec{v}_i)=S(\vec{v}_i)</m>
+              If <m>V = \spn\{\vec{v}_1,\ldots, \vec{v}_n\}</m> and <m>T(\vec{v}_i)=S(\vec{v}_i)</m>
               for each <m>i=1,2,\ldots, n</m>, then <m>T=S</m>.
             </p>
           </statement>
@@ -1803,9 +1807,9 @@
           </md>
           We then have
           <md>
-            <mrow>a_1T(\vec{v}_1)+\cdots + a_nT(\vec{v}_n) \amp T(a_1\vec{v}_1+\cdots + a_n\vec{v}_n) </mrow>
-            <mrow> \amp T(b_1\vec{v}_1+\cdots +b_n\vec{v}_n)</mrow>
-            <mrow>  \amp b_1T(\vec{v}_1)+\cdots +b_nT(\vec{v}_n)</mrow>
+            <mrow>a_1T(\vec{v}_1)+\cdots + a_nT(\vec{v}_n) \amp =T(a_1\vec{v}_1+\cdots + a_n\vec{v}_n) </mrow>
+            <mrow> \amp =T(b_1\vec{v}_1+\cdots +b_n\vec{v}_n)</mrow>
+            <mrow>  \amp =b_1T(\vec{v}_1)+\cdots +b_nT(\vec{v}_n)</mrow>
           </md>.
           The next theorem seems like an obvious consequence of the above,
           and indeed, one might wonder where the assumption of a basis is needed.
@@ -2037,11 +2041,11 @@
               Let <m>T:V\to W</m> be a linear transformation. The <term>kernel</term> of <m>T</m>,
               denoted <m>\ker T</m>, is defined by
               <me>
-                \ker T = \{\vec{v}\in V \,|\, T(\vec{v}=\vec{0})\}
+                \ker T = \{\vec{v}\in V \,|\, T(\vec{v})=\vec{0}\}
               </me>.
               The <term>image</term> of <m>T</m>, denoted <m>\Img T</m>, is defined by
               <me>
-                \Img T = \{(T\vec{v}) \,|\, \vec{v}\in V\}
+                \Img T = \{T(\vec{v}) \,|\, \vec{v}\in V\}
               </me>.
             </p>
           </statement>
@@ -2126,14 +2130,14 @@
           </me>
           and
           <me>
-            \Img T = \csp(A) = \{A\vec{x}\,|\, \vec{x|\in \R^n}
+            \Img T = \csp(A) = \{A\vec{x}\,|\, \vec{x}\in \R^n\}
           </me>,
           where <m>\csp(A)</m> denotes the <term>column space</term> of <m>A</m>.
           Recall further that if we write <m>A</m> in terms of its columns as
           <me>
             A = \bbm C_1 \amp C_2 \amp \cdots \amp C_n\ebm
           </me>
-          and a vector <m>\vec{x}\in \R^n</m> as <m>\vec{x}=\bbm x_1\\x_2\\\vodts \\x_n\ebm</m>,
+          and a vector <m>\vec{x}\in \R^n</m> as <m>\vec{x}=\bbm x_1\\x_2\\\vdots \\x_n\ebm</m>,
           then
           <me>
             A\vec{x} = x_1C_1+x_2C_2+\cdots +x_nC_n
@@ -2154,7 +2158,7 @@
             <p>
               Let <m>A</m> be an <m>m\times n</m> matrix with columns <m>C_1,C_2,\ldots, C_n</m>.
               If the reduced row-echelon form of <m>A</m> has leading ones in columns <m>j_1,j_2,\ldots, j_k</m>,
-              then <m>\{C_{j_1},C_{j_2},\ldots, c_{j_k}\}</m> is a basis for <m>\csp(A)</m>.
+              then <m>\{C_{j_1},C_{j_2},\ldots, C_{j_k}\}</m> is a basis for <m>\csp(A)</m>.
             </p>
           </statement>
         </theorem>
@@ -2228,7 +2232,7 @@
           </me>
           and
           <me>
-            \bbm -2\\0\\-6\ebm = \frac25\bbm 1\\-2\1\ebm -\frac45\bbm 3\\-1\\8\ebm
+            \bbm -2\\0\\-6\ebm = \frac25\bbm 1\\-2\\1\ebm -\frac45\bbm 3\\-1\\8\ebm
           </me>,
           so that indeed, the third and fourth columns are in the span of the first and second.
         </p>
@@ -2307,7 +2311,7 @@
           Note that if <m>W</m> is finite-dimensional, then so is <m>\Img T</m>,
           since it's a subspace of <m>W</m>.
           On the other hand, if <m>V</m> is finite-dimensional,
-          then we can find a basis <m>\{\vec{v}_1,\ldots, \vec{v}_n}}</m> of <m>V</m>,
+          then we can find a basis <m>\{\vec{v}_1,\ldots, \vec{v}_n}\}</m> of <m>V</m>,
           and the set <m>\{T(\vec{v}_1),\ldots, T(\vec{v}_n\})\}</m> will span <m>\Img T</m>,
           so again the image is finite-dimensional, so the rank of <m>T</m> is finite.
           It is possible for either the rank or the nullity of a transformation to be infinite.
@@ -2779,9 +2783,9 @@
               \R^n \amp \R^m \\};
               \path[-stealth]
               (m-1-1) edge node [left] {$C_B$} (m-2-1)
-                      edge node [below] {$T$} (m-1-2)
-              (m-2-1) edge node [below] {$T_A$} (m-2-2)
-              (m-1-2) edge node [right] {$C_{B'}$} (m-2-2)
+                      edge node [above] {$T$} (m-1-2)
+              (m-2-1) edge node [above] {$T_A$} (m-2-2)
+              (m-1-2) edge node [right] {$C_{B'}$} (m-2-2);
               \end{tikzpicture}
             </latex-image>
           </image>
@@ -3012,6 +3016,27 @@
             For a general inner product, this can be used as a <em>definition</em> of the norm associated to an inner product.
           </p>
 
+          <exercise>
+            <statement>
+              <p>
+                Given that <m>\len{\vec{x}}=3, \len{\vec{y}}=1</m>, and <m>\vec{x}\dotp\vec{y}=-2</m>,
+                compute <m>(4\vec{x}-3\vec{y})\dotp (\vec{x}+5\vec{y})</m>.
+              </p>
+            </statement>
+            <solution>
+              <p>
+                Note that the distributive property, together with symmetry,
+                let us handle this dot product using what is essentially <q><init>FOIL</init></q>:
+                <md>
+                  <mrow> (4\vec{x}-3\vec{y})\dotp (\vec{x}+5\vec{y})\amp = (4\vec{x})\dotp \vec{x}+(4\vec{x})\dotp(5\vec{y})+(-3\vec{y})\dotp \vec{x}+(-3\vec{y})\dotp(5\vec{y})</mrow>
+                  <mrow> \amp = 4(\vec{x}\dotp\vec{x})+(4\cdot 5)(\vec{x}\dotp \vec{y})-3(\vec{y}\dot \vec{x})+(-3\cdot 5)(\vec{y}\dotp\vec{y})</mrow>
+                  <mrow> \amp = 4\len{\vec{x}}^2+20\vec{x}\dotp\vec{y}-3\vec{x}\dotp\vec{y}-15\len{\vec{y}}^2</mrow>
+                  <mrow> \amp = 4(9)+17(-2)-15(1) = -13.
+                </md>
+              </p>
+            </solution>
+          </exercise>
+
           <exercise xml:id="ex-norm-sum-square">
             <statement>
               <p>
@@ -3182,6 +3207,53 @@
             </statement>
           </definition>
 
+          <exercise xml:id="ex-orthongonal-set">
+            <statement>
+              <p>
+                Show that the following is an orthogonal subset of <m>\R^4</m>.
+                <me>
+                  \{(1,0,1,0), (-1,0,1,1), (1,1,-1,2)\}
+                </me>
+                Can you find a fourth vector that is orthogonal to each vector in this set?
+              </p>
+            </statement>
+            <solution>
+              <p>
+                Clearly, all three vectors are nonzero. To confirm the set is orthogonal, we simply compute dot products:
+                <md>
+                  <mrow> (1,0,1,0)\dotp (-1,0,1,1)\amp =-1+0+1+0=0</mrow>
+                  <mrow> (-1,0,1,1)\dotp (1,1,-1,2)\amp =-1+0-1+2=0</mrow>
+                  <mrow> (1,0,1,0)\dotp (1,1,-1,2) \amp = 1+0-1+0=0</mrow>
+                </md>.
+              </p>
+
+              <p>
+                To find a fourth vector, we proceed as follows. Let <m>\vec{x}=(a,b,c,d)</m>.
+                We want <m>\vec{x}</m> to be orthogonal to the three vectors in our set.
+                Computing dot products, we must have:
+                <md>
+                  <mrow>(a,b,c,d)\dotp (1,0,1,0) \amp = a+c=0 </mrow>
+                  <mrow>(a,b,c,d)\dotp (-1,0,1,1) \amp = -a+c+d=0 </mrow>
+                  <mrow>(a,b,c,d)\dotp (1,1,-1,2) \amp = a+b-c+2d=0
+                </md>.
+                This is simply a homogeneous system of three equations in four variables.
+                Using the Sage cell below, we find that our vector must satisfy
+                <m>a=\frac12 d, b = -3d, c=-\frac12 d</m>.
+                One possible nonzero solution is to take <m>d=2</m>, giving <m>\vec{x}=(1,-6,-1,2)</m>.
+                We'll leave the verification that this vector works as an easy exercise.
+              </p>
+            </solution>
+          </exercise>
+
+          <sage>
+            <input>
+              from sympy import *
+              init_printing()
+              A=Matrix(3,4,[1,0,1,0,-1,0,1,1,1,1,-1,2])
+              A.rref()
+            </input>
+          </sage>
+
           <p>
             The requirement that the vectors in an orthogonal set be nonzero is partly because the alternative would be boring,
             and partly because it lets us state the following theorem.
@@ -3264,10 +3336,240 @@
                 since the dot product of <m>\vec{v}_i</m> with <m>\vec{v}_j</m> for <m>i\neq j</m> is zero.
               </p>
             </proof>
-
           </theorem>
 
+          <p>
+            One use of <xref ref="thm-fourier-expansion"/> is determining whether or not a given vector is in the span of an orthogonal set.
+            If it is in the span, then its coefficients must satisfy the Fourier expansion formula.
+            Therefore, if we compute the right hand side of the above formula and do not get our original vector, then that vector must not be in the span.
+          </p>
+
+          <exercise xml:id="ex-test-span">
+            <statement>
+              <p>
+                Determine whether or not the vectors <m>\vec{v}=(1,-4,3,-11), \vec{w}=(3,1,-4,2)</m>
+                belong to the span of the vectors <m>\vec{x}_1=(1,0,1,0), \vec{x}_2=(-1,0,1,1), \vec{x}_3=(1,1,-1,2)</m>.
+                (We confirmed that these vectors form an orthogonal set in <xref ref="ex-orthogonal-set"/>.)
+              </p>
+            </statement>
+            <solution>
+              <p>
+                We compute
+                <md>
+                  <mrow>\left(\frac{\vec{v}\dotp\vec{x}_1}{\len{\vec{x}_1}^2}\right)\vec{x_1}
+                    +\left(\frac{\vec{v}\dotp\vec{x}_2}{\len{\vec{x}_2}^2}\right)\vec{x_2}
+                    +\left(\frac{\vec{v}\dotp\vec{x}_3}{\len{\vec{x}_3}^2}\right)\vec{x_3} \amp = \frac{4}{2}\vec{x}_1+\frac{-9}{3}\vec{x}_2+\frac{-28}{7}</mrow>
+                  <mrow> \amp = 2(1,0,1,0)-3(-1,0,1,1)-4(1,1,-1,2)</mrow>
+                  <mrow> \amp = (1,-4,3,-11) = \vec{v}
+                </md>,
+                so <m>\vec{v}\in\spn\{\vec{x}_1,\vec{x}_2,\vec{x}_3\}</m>.
+              </p>
+
+              <p>
+                On the other hand, repeating the same calculation with <m>\vec{w}</m>, we find
+                <md>
+                  <mrow>\left(\frac{\vec{v}\dotp\vec{x}_1}{\len{\vec{x}_1}^2}\right)\vec{x_1}
+                    +\left(\frac{\vec{v}\dotp\vec{x}_2}{\len{\vec{x}_2}^2}\right)\vec{x_2}
+                    +\left(\frac{\vec{v}\dotp\vec{x}_3}{\len{\vec{x}_3}^2}\right)\vec{x_3} \amp -\frac12 (1,0,1,0)-\frac53 (-1,0,1,1) +\frac47 (1,1,-1,2)</mrow>
+                  <mrow> \amp = \left(\frac{73}{42},\frac47,-\frac{115}{42},-\frac{11}{21}\right)\neq \vec{w}</mrow>
+                </md>,
+                so <m>\vec{w}\notin\spn\{\vec{x}_1,\vec{x}_2,\vec{x}_3\}</m>.
+              </p>
+
+              <p>
+                Soon, we'll see that the quantity we computed when showing that <m>\vec{w}\notin\spn\{\vec{x}_1,\vec{x}_2,\vec{x}_3\}</m>
+                is, in fact, the <em>orthogonal projection</em> of <m>\vec{w}</m> onto the subspace <m>\spn\{\vec{x}_1,\vec{x}_2,\vec{x}_3\}</m>.
+              </p>
+            </solution>
+          </exercise>
+
+          <p>
+            The Fourier expansion is especially simple if our basis vectors have norm one,
+            since the demoninators in each coefficient disappear.
+            Recall (from elementary linear algebra) that for any nonzero vector <m>\vec{v}</m>,
+            a <em>unit vector</em> (that is, a vector of norm one) in the direction of <m>\vec{v}</m> is given by
+            <me>
+              \hat{u} = \frac{1}{\len{\vec{v}}}\vec{v}
+            </me>.
+            We often say that the vector <m>\vec{u}</m> is <em>normalized</em>.
+            (The convention of using a <q>hat</q> for unit vectors is common but not universal.)
+          </p>
+
+          <definition xml:id="def-onb">
+            <statement>
+              <p>
+                A basis <m>B</m> of <m>\R^n</m> is called an <term>orthonormal basis</term>
+                if <m>B</m> is orthogonal, and all the vectors in <m>B</m> are unit vectors.
+              </p>
+            </statement>
+          </definition>
+
+          <example>
+            <statement>
+              <p>
+                In <xref ref="ex-orthogonal-set"/> we saw that the set
+                <me>
+                  \{(1,0,1,0), (-1,0,1,1), (1,1,-1,2),(1,-6,-1,2)\}
+                </me>
+                is orthogonal. Since it's orthogonal, it must be independent,
+                and since it's a set of four independent vectors in <m>\R^4</m>,
+                it must be a basis. To get an orthonormal basis, we normalize each vector:
+                <md>
+                  <mrow>\hat{u}_1 \amp = \frac{1}{\sqrt{1^2+0^2+1^2+0^2}}(1,0,1,0) = \frac{1}{\sqrt{2}}(1,0,1,0)</mrow>
+                  <mrow>\hat{u}_2 \amp = \frac{1}{\sqrt{(-1)^2+0^2+1^2+1^2}}(-1,0,1,1,) = \frac{1}{\sqrt{3}}(-1,0,1,1)</mrow>
+                  <mrow>\hat{u}_3 \amp = \frac{1}{\sqrt{1^2+1^2+(-1)^2+2^2}}(1,1,-1,2) = \frac{1}{\sqrt{7}}(1,1,-1,2)</mrow>
+                  <mrow>\hat{u}_4 \amp = \frac{1}{\sqrt{1^2+(-6)^2+(-1)^2+2^2}}(1,-6,-1,2) = \frac{1}{\sqrt{42}}(1,-6,-1,2)</mrow>
+                </md>.
+                The set <m>\{\hat{u}_1,\hat{u}_2,\hat{u}_3,\hat{u}_4\}</m> is then an orthonormal basis of <m>\R^4</m>.
+              </p>
+            </statement>
+          </example>
+
+          <p>
+            The process of creating unit vectors does typically introduce square root coefficients in our vectors.
+            This can seem undesirable, but there remains value in having an orthonormal basis.
+            For example, suppose we wanted to write the vector <m>\vec{v}=(3,5,-1,2)</m> in terms of our basis.
+            We can quickly compute
+            <md>
+              <mrow>\vec{v}\dotp\hat{u}_1 \amp = \frac{3}{\sqrt{2}}-\frac{1}{\sqrt{2}}=\sqrt{2}</mrow>
+              <mrow>\vec{v}\dotp\hat{u}_2 \amp = -\frac{3}{\sqrt{3}}-\frac{1}{\sqrt{3}}+\frac{2}{\sqrt{3}}=-\frac{2}{\sqrt{3}}</mrow>
+              <mrow>\vec{v}\dotp\hat{u}_3 \amp = \frac{3}{\sqrt{7}}+\frac{5}{\sqrt{7}}+\frac{1}{\sqrt{7}}+\frac{4}{\sqrt{7}} = \frac{11}{\sqrt{7}}</mrow>
+              <mrow>\vec{v}\dotp\hat{u}_4 \amp = \frac{3}{\sqrt{42}}-\frac{30}{\sqrt{42}}+\frac{1}{\sqrt{42}}+\frac{4}{\sqrt{42}} = -\frac{22}{\sqrt{42}}</mrow>
+            </md>,
+            and so
+            <me>
+              \vec{v} = \sqrt{2}\hat{u}_1-\frac{2}{\sqrt{3}}\hat{u}_2+\frac{11}{\sqrt{7}}\hat{u}_3-\frac{22}{\sqrt{42}}\hat{u}_4
+            </me>.
+            There's still work to be done, but it is comparatively simpler than solving the corresponding system of equations.
+          </p>
         </subsection>
+      </section>
+
+      <section xml:id="sec-ortho-projection">
+        <title>Orthgonal Projection</title>
+        <p>
+          In <xref ref="ex-test-span">Exercise</xref>, we saw that <xref ref="thm-fourier-expansion" text="title"/>
+          gives us an efficient way of testing whether or not a given vector belongs to the span of an orthgonal set.
+          When the answer is <q>no</q>, the quantity we compute while testing turns out to be very useful:
+          it gives the <em>orthgonal projection</em> of that vector onto the span of our orthogonal set.
+          This turns out to be exactly the ingredient needed to solve certain minimum distance problems.
+        </p>
+
+        <p>
+          You may recall the following from elementary linear algebra, or vector calculus.
+          Given an nonzer vector <m>\vec{u}</m> and a vector <m>\vec{v}</m>,
+          the <em>projection</em> of <m>\vec{v}</m> onto <m>\vec{u}</m> is given by
+          <me>
+            \proj{\vec{u}}{\vec{v}} = \left(\frac{\vec{v}\dotp\vec{u}}{\len{\vec{u}^2}\right)\vec{u}
+          </me>.
+          Note that this looks just like one of the terms in <xref ref="thm-fourier-expansion" text="title"/>.
+          Recall also that the vector <m>\vec{v}-\proj{\vec{u}}{\vec{v}}</m> is orthogonal to <m>\vec{u}</m>.
+          Our next result is a generalization of this observation.
+        </p>
+
+        <theorem xml:id="thm-orthogonal-lemma">
+          <title>Orthogonal Lemma</title>
+          <statement>
+            <p>
+              Let <m>\{\vec{v}_1,\vec{v}_2,\ldots, \vec{v}_m\}</m> be an orthogonal set of vectors in <m>\R^n</m>,
+              and let <m>\vec{x}</m> be any vector in <m>\R^n</m>. Define the vector <m>\vec{v}_{m+1}</m> by
+              <me>
+                \vec{v}_{m+1} = \vec{x}-\left(\frac{\vec{x}\dotp\vec{v}_1}{\len{\vec{v}_1}^2}\vec{v}_1+\cdots + \frac{\vec{x}\dotp\vec{v}_m}{\len{\vec{v}_m}^2}\vec{v}_m)
+              </me>.
+              Then:
+              <ol>
+                <li>
+                  <p>
+                    <m>\vec{v}_{m+1}\dotp \vec{v}_i = 0</m> for each <m>i=1,\ldots, m</m>.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    If <m>\vec{x}\notin\spn\{\vec{v}_1,\ldots, \vec{v}_m\}</m>,
+                    then <m>\vec{v}_{m+1}\neq \vec{0}</m>,
+                    and therefore, <m>\{\vec{v}_1,\ldots, \vec{v}_m,\vec{v}_{m+1}\}</m> is an orthgonal set.
+                  </p>
+                </li>
+              </ol>
+            </p>
+          </statement>
+          <proof>
+            <p>
+              <ol>
+                <li>
+                  <p>
+                    For any <m>i=1,\ldots m</m>, we have
+                    <me>
+                      \vec{v}_{m+1}\dotp\vec{v}_i \amp = \vec{x}\dotp\vec{v}_i - \frac{\vec{x}\dotp\vec{v}_i}{\len{\vec{v}_i}^2}(\vec{v}_i\dotp\vec{v}_i)=0
+                    </me>,
+                    since <m>\vec{v}_i\dotp\vec{v}_j = 0</m> for <m>i\neq j</m>.
+                  </p>
+                </li>
+
+                <li>
+                  <p>
+                    It follows from the <xref ref="thm-fourier-expansion" text="title"/> that <m>\vec{v}_{m+1}=\veC{0}</m>
+                    if and only if <m>\vec{x}\in\spn\{\vec{v}_1,\ldots, \vec{v}_m\}</m>,
+                    and the fact that <m>\{\vec{v}_1,\ldots, \vec{v}_m,\vec{v}_{m+1}\}</m>
+                    is an orthgonal set then follows from the first part.
+                  </p>
+                </li>
+              </ol>
+            </p>
+          </proof>
+        </theorem>
+
+        <p>
+          It follows from the <xref ref="thm-orthogonal-lemma" text="title"/> that for any subspace <m>U\subseteq \R^n</m>,
+          any set of orthogonal vectors in <m>U</m> can be extended to an orthgonal basis of <m>U</m>.
+          Since any set containing a single nonzero vector is orthogonal,
+          it follows that every subspace has an orthgonal basis.
+          (If <m>U=\{\vec{0}\}</m>, we consider the empty basis to be orthogonal.)
+        </p>
+
+        <p>
+          The procedure for creating an orthogonal basis is clear.
+          Start with a single nonzero vector <m>\vec{v}_1\in U</m>.
+          If <m>U\neq \spn\{\vec{v}_1\}</m>, choose a vector <m>\vec{x}_1\in U</m> with <m>\vec{x}_1\notin\spn\{\vec{v}_1\}</m>.
+          The <xref ref="thm-orthgonal-lemma" text="title"/> then provides us with a vector
+          <me>
+            \vec{v}_2 = \vec{x}_1-\frac{\vec{x}_1\dotp\vec{v}_1}{\len{\vec{v}_1}^2}\vec{v}_1
+          </me>
+          such that <m>\{\vec{v}_1,\vec{v}_2\}</m> is orthogonal.
+          If <m>U=\spn\{vec{v}_1,\vec{v}_2\}</m>, we're done.
+          Otherwise, we repeat the process, choosing <m>\vec{x}_2\notin\spn\{\vec{v}_1,\vec{v}_2\}</m>,
+          and then using the <xref ref="thm-orthgonal-lemma" text="title"/> to obtain <m>\vec{v}_3</m>,
+          and so on, until an orthogonal basis is obtained.
+        </p>
+
+        <p>
+          With one minor modification, the above procedure provides us with a major result.
+          Suppose <m>U</m> is a subspace of <m>\R^n</m>, and start with <em>any</em> basis <m>\{\vec{x}_1,\ldots, \vec{x}_m\}</m> of <m>U</m>.
+          By choosing our <m>\vec{x}_i</m> in the procedure above to be these basis vectors, we obtain the
+          <em>Gram-Schmidt algorithm</em> for constructing an orthogonal basis.
+        </p>
+
+        <theorem xml:id="thm-gram-schmidt">
+          <statement>
+            <p>
+              Let <m>U</m> be a subspace of <m>\R^n</m>, and let <m>\{\vec{x}_1,\ldots, \vec{x}_m\}</m> be a basis of <m>U</m>.
+              Define vectors <m>\vec{v}_1,\ldots, \vec{v}_m</m> in <m>U</m> as follows:
+              <md>
+                <mrow>\vec{v}_1 \amp = \vec{x}_1 </mrow>
+                <mrow>\vec{v}_2 \amp = \vec{x}_2 - \frac{\vec{x}_2\dotp\vec{v}_1}{\len{\vec{v}_1}^2}\vec{v}_1</mrow>
+                <mrow>\vec{v}_3 \amp = \vec{x}_3 -\frac{\vec{x}_3\dotp\vec{v}_1}{\len{\vec{v}_1}^2}\vec{v}_1-\frac{\vec{x}_3\dotp\vec{v}_2}{\len{\vec{v}_2}^2}\vec{v}_2</mrow>
+                <mrow>\vdots \amp </mrow>
+                <mrow>\vec{v}_m \amp = \vec{x}_m -\frac{\vec{x}_m\dotp\vec{v}_1}{\len{\vec{v}_1}^2}\vec{v}_1-\cdots - \frac{\vec{x}_m\dotp\vec{v}_{m-1}}}{\len{\vec{v}_{m-1}}}^2}\vec{v}_{m-1}</mrow>
+              </md>.
+              Then <m>\{\vec{v}_1,\ldots, \vec{v}_m\}</m> is an orthogonal basis for <m>U</m>.
+              Moreover, for each <m>k=1,2,\ldots, m</m>, we have
+              <me>
+                \spn\{\vec{v}_1,\ldots, \vec{v}_k\} = \spn\{\vec{x}_1,\ldots, \vec{x}_k\}
+              </me>.              
+            </p>
+          </statement>
+        </theorem>
+
       </section>
     </chapter>
   </book>
