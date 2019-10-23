@@ -16,7 +16,7 @@
       \newcommand{\rank}{\operatorname{rank}}
       \newcommand{\dotp}{\!\boldsymbol{\cdot}\!}
       \newcommand{\len}[1]{\lVert #1\rVert}
-      \newcommand{\proj}[2]{\operatorname{proj}_{#2}#1}
+      \newcommand{\proj}[2]{\operatorname{proj}_{#1}{#2}}
     </macros>
     <latex-image-preamble><![CDATA[
       \usepackage{pgfplots}
@@ -3029,7 +3029,7 @@
                 let us handle this dot product using what is essentially <q><init>FOIL</init></q>:
                 <md>
                   <mrow> (4\vec{x}-3\vec{y})\dotp (\vec{x}+5\vec{y})\amp = (4\vec{x})\dotp \vec{x}+(4\vec{x})\dotp(5\vec{y})+(-3\vec{y})\dotp \vec{x}+(-3\vec{y})\dotp(5\vec{y})</mrow>
-                  <mrow> \amp = 4(\vec{x}\dotp\vec{x})+(4\cdot 5)(\vec{x}\dotp \vec{y})-3(\vec{y}\dot \vec{x})+(-3\cdot 5)(\vec{y}\dotp\vec{y})</mrow>
+                  <mrow> \amp = 4(\vec{x}\dotp\vec{x})+(4\cdot 5)(\vec{x}\dotp \vec{y})-3(\vec{y}\dotp \vec{x})+(-3\cdot 5)(\vec{y}\dotp\vec{y})</mrow>
                   <mrow> \amp = 4\len{\vec{x}}^2+20\vec{x}\dotp\vec{y}-3\vec{x}\dotp\vec{y}-15\len{\vec{y}}^2</mrow>
                   <mrow> \amp = 4(9)+17(-2)-15(1) = -13</mrow>
                 </md>.
@@ -3095,7 +3095,7 @@
                     <m>\lvert \vec{x}\dotp \vec{y}\rvert \leq \len{\vec{x}}\len{\vec{y}}</m>
                   </li>
                   <li>
-                    <m>\len{\vec{x}+\vec{y}}\leq \len{\vec{x}}\len{\vec{y}}</m>
+                    <m>\len{\vec{x}+\vec{y}}\leq \len{\vec{x}}+\len{\vec{y}}</m>
                   </li>
                 </ol>
               </p>
@@ -3114,11 +3114,11 @@
             </me>.
             Putting <m>r=\len{\vec{y}}, s=\len{\vec{x}}</m> gives
             <me>
-              \len{\len{\vec{y}}\vec{x}\pm \len{\vec{x}}\vec{y}}^2 = 2rs(rs\pm\vec{x}\dotp\vec{y})
+              \len{s\vec{x}\pm r\vec{y}}^2 = 2rs(rs\pm\vec{x}\dotp\vec{y})
             </me>.
             Since the left-hand side is non-negative, we must have
             <me>
-              \vec{x}\vec{y}\leq \len{\vec{x}}\len{\vec{y}} \quad \text{ and } -\len{vec{x}}\len{\vec{y}}\leq \vec{x}\dotp\vec{y}
+              \vec{x}\vec{y}\leq \len{\vec{x}}\len{\vec{y}} \quad \text{ and } -\len{\vec{x}}\len{\vec{y}}\leq \vec{x}\dotp\vec{y}
             </me>,
             and the result follows.
           </p>
@@ -3135,7 +3135,7 @@
             <statement>
               <p>
                 For any vectors <m>\vec{x},\vec{y}\in \R^n</m>, the <term>distance</term>
-                from <m>\vec{x}</m> to <m>\vec{y}</m> is denoted <m>d(\vec{x}y,\vec{y})</m>, and defined as
+                from <m>\vec{x}</m> to <m>\vec{y}</m> is denoted <m>d(\vec{x},\vec{y})</m>, and defined as
                 <me>
                   d(\vec{x},\vec{y}) = \len{\vec{x}-\vec{y}}
                 </me>.
@@ -3294,7 +3294,7 @@
           <theorem xml:id="thm-pythagoras">
             <statement>
               <p>
-                For any orthogonal set of vectors <m>\{vec{x}_1,\ldots, \vec{x}_k\}</m> we have
+                For any orthogonal set of vectors <m>\{\vec{x}_1,\ldots, \vec{x}_k\}</m> we have
                 <me>
                   \len{\vec{x}_1+\cdots +\vec{x}_k}^2 = \len{\vec{x}_1}^2+\cdots + \len{\vec{x}_k}^2
                 </me>.
@@ -3459,10 +3459,10 @@
 
         <p>
           You may recall the following from elementary linear algebra, or vector calculus.
-          Given an nonzer vector <m>\vec{u}</m> and a vector <m>\vec{v}</m>,
+          Given an nonzero vector <m>\vec{u}</m> and a vector <m>\vec{v}</m>,
           the <em>projection</em> of <m>\vec{v}</m> onto <m>\vec{u}</m> is given by
           <me>
-            \proj{\vec{u}}{\vec{v}} = \left(\frac{\vec{v}\dotp\vec{u}}{\len{\vec{u}^2}\right)\vec{u}
+            \proj{\vec{u}}{\vec{v}} = \left(\frac{\vec{v}\dotp\vec{u}}{\len{\vec{u}}^2}\right)\vec{u}
           </me>.
           Note that this looks just like one of the terms in <xref ref="thm-fourier-expansion" text="title"/>.
           Recall also that the vector <m>\vec{v}-\proj{\vec{u}}{\vec{v}}</m> is orthogonal to <m>\vec{u}</m>.
