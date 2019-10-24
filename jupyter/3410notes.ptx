@@ -2460,11 +2460,12 @@
           On the other hand, if <m>m\gt n</m>, then <m>\rank A\leq n \lt m</m>,
           so <m>T_A</m> could be injective, but can't possibly be surjective.
           These results generalize to linear transformations between any finite-dimensional vector spaces.
-          The first step towards this is the following fundamental theorem.
+          The first step towards this is the following theorem,
+          which is sometimes known as the Fundamental Theorem of Linear Transformations.
         </p>
 
         <theorem xml:id="thm-dimension-lintrans">
-          <title>Dimension Theorem (Fundamental Theorem of Linear Transformations)</title>
+          <title>Dimension Theorem</title>
           <statement>
             <p>
               Let <m>T:V\to W</m> be any linear transformation such that
@@ -3597,17 +3598,16 @@
         <p>
           Let's make that basis look a little nicer by using some scalar multiplication to clear fractions.
           <me>
-            B=\left\{\vec{x}_1=\bbm 3\\-6\\-4\\0\\0\ebm, \vec{x}_2=\bbm 1\\2\\0\\-4\\0\ebm, \vec{x}_3=\bbm 7\\4\\0\\0\\-4\ebm\right\}
+            B=\left\{\vec{x}_1=\bbm 3\\-6\\-4\\0\\0\ebm, \vec{x}_2=\bbm 1\\2\\0\\-4\\0\ebm, \vec{x}_3=\bbm 7\\4\\0\\0\\-2\ebm\right\}
           </me>
           Defnitely not an orthogonal basis. So we take <m>\vec{v}_1=\vec{x}_1</m>, and
           <md>
-            <mrow>\vec{v}_2 \amp = \vec{x}_2-\left(\frac{\vec{x}_2\dotp\vec{v}_1\right)}{\len{\vec{v}_1}^2}\vec{v}_1</mrow>
-            <mrow> \amp = \bbm 1\\2\\0\\-4\\0\ebm -\frac{-9}{21}\bbm 3\\-6\\-4\\-0\\0\ebm </mrow>
-            <mrow> \amp \frac17\left(\bbm 7\\14\\0\\-28\\0\ebm + \bbm 9\\-18\\-12\\-0\\0\ebm) = \frac17\bbm 16\\20\\-4\\-12\\-28\\0\ebm = \bbm 16/7\\20/7\\-4/7\\-12/7\\-4\\0\ebm</mrow>
-          </md>.
-          Finally, we find
+            <mrow>\vec{v}_2 \amp = \vec{x}_2-\left(\frac{\vec{x}_2\dotp\vec{v}_1}{\len{\vec{v}_1}^2}\right)\vec{v}_1</mrow>
+            <mrow> \amp = \bbm 1\\2\\0\\-4\\0\ebm -\frac{-9}{61}\bbm 3\\-6\\-4\\-0\\0\ebm </mrow>
+          </md>,
+          which equals something I'm not sure I want to try to simplify. Finally, we find
           <me>
-            \vec{v}_3 = \vec{x}_3-\left(\frac{x}_3\dotp \vec{v}_1}{\len{\vec{v}_1}^2}\right)\vec{v}_1-\left(\frac{\vec{x}_3\dotp\vec{v}_2}{\len{\vec{v}_2}^2}\right)\vec{v}_2
+            \vec{v}_3 = \vec{x}_3-\left(\frac{\vec{x}_3\dotp \vec{v}_1}{\len{\vec{v}_1}^2}\right)\vec{v}_1-\left(\frac{\vec{x}_3\dotp\vec{v}_2}{\len{\vec{v}_2}^2}\right)\vec{v}_2
           </me>.
           And now you probably get about five minutes into the fractions and say something that shouldn't appear in print.
           This sounds like a job for the computer.
@@ -3696,7 +3696,7 @@
                 For any vector <m>\vec{v}\in \R^n</m>, we define the <term>orthogonal projection</term>
                 of <m>\vec{v}</m> onto <m>U</m> by
                 <me>
-                  \proj{U}{\vec{v}} = \sum_{i=1}^k\left(\frac{\vec{u}_i\dotp\vec{v}}{\len{\vec{u}_i}}\right)\vec{u}_i
+                  \proj{U}{\vec{v}} = \sum_{i=1}^k\left(\frac{\vec{u}_i\dotp\vec{v}}{\len{\vec{u}_i}^2}\right)\vec{u}_i
                 </me>.
               </p>
             </statement>
@@ -3709,8 +3709,8 @@
           </p>
 
           <p>
-            Before we can properly state the utility of orthogonal projection,
-            we need one more definition.
+            The only problem with the above definition is that it appears to depend on the choice of orthogonal basis.
+            To see that it doesn't, we need one more definition.
           </p>
 
           <definition xml:id="def-ortho-comp">
@@ -3745,6 +3745,7 @@
             </statement>
           </exercise>
 
+
           <theorem xml:id="thm-projection">
             <title>Projection Theorem</title>
             <statement>
@@ -3772,6 +3773,51 @@
             </statement>
           </theorem>
 
+          <exercise>
+            <statement>
+              <p>
+                Show that <m>U\cap U^\bot = \{\vec{0}\}</m>.
+                Use this fact to show that <xref ref="def-ortho-projection"/> does not depend on the choice orthogonal basis.
+              </p>
+            </statement>
+            <hint>
+              <p>
+                Suppose we find vectors <m>\vec{p}</m> and <m>\vec{p}'</m> using basis <m>B</m> and <m>B'</m>.
+                Note that <m>\vec{p}-\vec{p}'\in U</m>, but also that
+                <me>
+                  \vec{p}-\vec{p}' = (\vec{p}-\vec{x})-(\vec{p}'-\vec{x})
+                </me>
+                Now use <xref ref="thm-projection"/>
+              </p>
+            </hint>
+          </exercise>
+
+
+          <p>
+            Finally, we note one more useful fact. The process of sending a vector to its orthogonal projection defines an operator on <m>\R^n</m>,
+            and yes, it's linear.
+          </p>
+
+          <theorem xml:id="thm-proj-operator">
+            <statement>
+              <p>
+                Let <m>U</m> be a subspace of <m>\R^n</m>, and define a function <m>P_U:\R^n\to \R^n</m> by
+                <me>
+                  P_U(\vec{x}) = \proj{U}{\vec{x}} \text{ for any } \vec{x}\in\R^n
+                </me>.
+                Then <m>T</m> is a linear operator such that <m>U=\Img P_U</m> and <m>U^\bot = \ker P_U</m>.
+              </p>
+            </statement>
+          </theorem>
+
+          <p>
+            Note: it follows from this result and the <xref ref="thm-dimension-lintrans" text="title"/> that
+            <me>
+              \dim U + \dim U^\bot = n
+            </me>,
+            and since <m>U\cap U^\bot = \{\vec{0}\}</m>, <m>U^\bot</m> is indeed a complement of <m>U</m>
+            in the sense introduced in <xref ref="thm-construct-complement">Theorem</xref>.
+          </p>
         </paragraphs>
       </section>
     </chapter>
