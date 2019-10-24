@@ -3665,8 +3665,73 @@
         </sage>
 
         <p>
-          Boom.
+          Boom. Let's try another example. This time we'll keep the vectors a little smaller in case you want to try it by hand.
         </p>
+
+        <exercise>
+          <statement>
+            <p>
+              Confirm that the set <m>B=\{(1,-2,1), (3,0,-2), (-1,1,2)\}</m> is a basis for <m>\R^3</m>,
+              and use the <xref ref="thm-gram-schmidt" text="title"/> to find an orthonormal basis.
+            </p>
+          </statement>
+          <solution>
+            <p>
+              First, note that we can actually jump right into the Gram-Schmidt procedure.
+              If the set <m>B</m> is not a basis, then it won't be independent,
+              and when we attempt to construct the third vector in our orthonormal basis,
+              its projection on the the subspace spanned by the first two will be the same as the original vector,
+              and we'll get zero when we subtract the two.
+            </p>
+
+            <p>
+              We let <m>\vec{x}_1=(1,-2,1), \vec{x}_2=(3,0,-2), \vec{x}_3=(-1,1,2)</m>,
+              and set <m>\vec{v}_1=\vec{x}_1</m>. Then we have
+              <md>
+                <mrow>\vec{v}_2 \amp = \vec{x}_2-\left(\frac{\vec{x}_2\dotp \vec{v}_1}{\len{\vec{v}_1}^2}\right)\vec{v}_1 </mrow>
+                <mrow> \amp = (3,0,-2)-\frac{1}{6}(1,-2,1)</mrow>
+                <mrow> \amp = \frac16(17,2,-3) </mrow>
+              </md>.
+            </p>
+            <p>
+              Next, we compute <m>\vec{v}_3</m>.
+              <md>
+                <mrow>\vec{v}_3 \amp = \vec{x}_3-\left(\frac{\vec{x}_3\dotp \vec{v}_1}{\len{\vec{v}_1}^2}\right)\vec{v}_1 - \left(\frac{\vec{x}_3\dotp \vec{v}_2}{\len{\vec{v}_2}^2}\right)\vec{v}_2</mrow>
+                <mrow> \amp = (-1,1,2)-\frac{-1}{6}(1,-2,1)-\cdot \frac{-21}{303}(17,2,-3)</mrow>
+                <mrow> \amp = (-1,1,2)+\frac16(1,-2,1)+\frac{7}{101}(17,2,-3)</mrow>
+                <mrow> \amp = \frac{1}{606}\bigl((-606,606,1212)+(101,-202,101)+(782,84,-126)\bigr)</mrow>
+                <mrow> \amp = \frac{1}{606}(277,488,1187)</mrow>
+              </md>.
+            </p>
+          </solution>
+        </exercise>
+
+        <aside>
+          <p>
+            You'll notice that I used <m>6\vec{v}_2</m> rather than <m>\vec{v}_2</m>
+            in the calculation of <m>\vec{v}_3</m>.
+            This lets me avoid fractions (momentarily), and doesn't affect the answer,
+            since for any nonzero scalar <m>c</m>,
+            <me>
+              \left(\frac{c\vec{v}\dotp \vec{x}}{\len{c\vec{v}}^2}\right)(c\vec{v}) = \left(\frac{c(\vec{v}\dotp\vec{x})}{c^2\len{\vec{v}}^2}\right)(c\vec{v})
+              = \left(\frac{\vec{v}\dotp\vec{x}}{\len{\vec{v}^2}}\right)\vec{v}
+            </me>.
+          </p>
+        </aside>
+
+        <p>
+          OK. Now, given the frequency with which typos occur in this text,
+          and the fact that I tried to do the above problem in my head while typing
+          (with an occasional calculator check),
+          there's a good chance there's a mistake somewhere. Let's check our work.
+        </p>
+
+        <sage>
+          <input>
+            L=(Matrix([1,-2,1]),Matrix([3,0,-2]),Matrix([-1,1,2]))
+            GramSchmidt(L)
+          </input>
+        </sage>
 
         <paragraphs xml:id="pars-projections">
           <title>Projections</title>
@@ -3680,7 +3745,7 @@
             can be viewed as the orthogonal projection of the vector <m>\vec{v}</m>,
             not onto the vector <m>\vec{u}</m>, but onto the subspace <m>\spn\{\vec{u}\}</m>.
             This is, after all, how we viewed projections in elementary linear algebra:
-            we drop the perpendicuar from the tip of <m>\vec{v}</m> onto the <em>line</em> in the direction of <m>\vec{u}</m>.
+            we drop the perpendicular from the tip of <m>\vec{v}</m> onto the <em>line</em> in the direction of <m>\vec{u}</m>.
           </p>
 
           <p>
@@ -3709,7 +3774,71 @@
           </p>
 
           <p>
-            The only problem with the above definition is that it appears to depend on the choice of orthogonal basis.
+            Let's see how this might be put to use.
+            Suppose we want to know the distance from the point <m>(3,1,-2)</m> to the plane <m>P</m>
+            defined by <m>x-2y+4z=0</m>.
+          </p>
+
+          <aside>
+            <p>
+              One limitation of this approach to projection is that we must project onto a <em>subspace</em>.
+              Given a plane like <m>x-2y+4z=4</m>, we would need to modify our approach.
+              One way to do it would be to find a point on the plane,
+              and then try to translate everything to the origin.
+              It's interesting to think about how this might be accomplished
+              (in particular, in what direction would the tranlation have to be performed?)
+              but someone external to the questions we're interested in here.
+            </p>
+          </aside>
+
+          <p>
+            In an elementary linear algebra (or calculus) course, we would solve this problem as follows.
+            First, we would need two vectors parallel to the plane.
+            If <m>\bbm x\\y\\z\ebm</m> lies in the plane, then <m>x-2y+4z=0</m>, so <m>x=2y-4z</m>, and
+            <me>
+              \bbm x\\y\\z\ebm = \bbm 2y-4z\\y\\z\ebm = y\bbm 2\\1\\0\ebm + z\bbm -4\\0\\1\ebm
+            </me>,
+            so <m>\vec{u}=\bbm 2\\1\\0\ebm</m> and <m>\vec{v}\bbm -4\\0\\1\ebm</m> are parallel to the plane.
+            We then compute the normal vector
+            <me>
+              \vec{n}=\vec{u}\times\vec{v}=\bbm 1\\-2\\4\ebm
+            </me>,
+            and compute the projection of the position vector <m>\vec{p}=\bbm 3,1,-2\ebm</m> for the point <m>P=(3,1,-2)</m> onto <m>\vec{n}</m>.
+            This gives the vector
+            <me>
+              \vec{x} = \left(\frac{\vec{p}\dotp\vec{n}}{\len{\vec{n}}^2}\right)\vec{n} = \frac{-7}{21}\bbm 1\\-2\\4\ebm =\bbm-1/3\\2\3\\-4/3\ebm
+            </me>.
+          </p>
+
+          <p>
+            Now, this vector is <em>parallel</em> to <m>\vec{n}</m>, so it's perpendicular to the plane.
+            Subtracting it from <m>\vec{p}</m> gives a vector parallel to the plane, and this is the position vector for the point we seek.
+            <me>
+              \vec{q}=\vec{p}-\vec{x}=\bbm 3\\1\\-2\ebm-\bbm -1/3\\-2\3\\-4/3\ebm = \bbm 10/3\\1/3\\-2/3\ebm
+            </me>
+            so the closest point is <m>Q=\bigl(\frac{10}{3},\frac13,-\frac{2}{3}\bigr)</m>.
+            We weren't asked for it, but note that if we wanted the distance from the point <m>P</m> to the plane,
+            this is given by <m>\len{\vec{x}}=\frac13\sqrt{21}</m>.
+          </p>
+
+          <p>
+            Let's solve the same problem using orthogonal projection.
+            First, we have to deal with the fact that the vectors <m>\vec{u}</m> and <m>\vec{v}</m> are probably not orthogonal.
+            To get around this, we replace <m>\vec{v}</m> with
+            <me>
+              \vec{w} = \vec{v}-\left(\frac{\vec{v}\dotp\vec{u}}{\len{\vec{u}}^2}\right)\vec{u} = \bbm -4\\0\\1\ebm+\frac 85\bbm 2\\1\\0\ebm = \bbm -4/5\\8/5\\1\ebm
+            </me>.
+            We now set
+            <md>
+              <mrow>\vec{q} \amp =\left(\frac{\vec{p}\dotp\vec{u}}{\len{\vec{u}}^2}\right)\vec{u}-\left(\frac{\vec{p}\dotp\vec{w}}{\len{\vec{w}}^2}\right)\vec{w}</mrow>
+              <mrow> \amp = \frac{7}{5}\bbm 2\\1\\0\ebm +\frac{-14}{105}\bbm -4\\8\\5\ebm </mrow>
+              <mrow> \amp = \bbm 10/3\\1/3\\-2/3\ebm</mrow>
+            </md>.
+            Lo and behold, we get the same answer as before.
+          </p>
+
+          <p>
+            The only problem with <xref ref="def-ortho-projection"/> is that it appears to depend on the choice of orthogonal basis.
             To see that it doesn't, we need one more definition.
           </p>
 
