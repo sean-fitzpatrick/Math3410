@@ -3573,6 +3573,206 @@
           </statement>
         </theorem>
 
+        <p>
+          Of course, once we've used Gram-Schmidt to find an orthogonal basis,
+          we can normalize each vector to get an orthonormal basis.
+          The Gram-Schmidt algorithm is ideal when we know how to find <em>a</em> basis for a subspace,
+          but we need to know an orthogonal basis.
+          For example, suppose we want an orthonormal basis for the nullspace of the matrix
+          <me>
+            A = \bbm 2 & -1 & 3 & 0 & 5\\0 & 2 & -3  & 1 & 4\\ -4 & 2 & -6 & 0 & -10\\ 2 & 1 & 0 1 & 9\ebm
+          </me>.
+          First, we find <em>any</em> basis for the nullspace.
+        </p>
+
+        <sage>
+          <input>
+            from sympy import *
+            init_printing()
+            A = Matrix(4,5,[2,-1,3,0,5,0,2,-3,1,4,-4,2,-6,0,-10,2,1,0,1,9])
+            A.nullspace()
+          </input>
+        </sage>
+
+        <p>
+          Let's make that basis look a little nicer by using some scalar multiplication to clear fractions.
+          <me>
+            B=\left\{\vec{x}_1=\bbm 3\\-6\\-4\\0\\0\ebm, \vec{x}_2=\bbm 1\\2\\0\\-4\\0\ebm, \vec{x}_3=\bbm 7\\4\\0\\0\\-4\ebm\right\}
+          </me>
+          Defnitely not an orthogonal basis. So we take <m>\vec{v}_1=\vec{x}_1</m>, and
+          <md>
+            <mrow>\vec{v}_2 \amp = \vec{x}_2-\left(\frac{\vec{x}_2\dotp\vec{v}_1\right)}{\len{\vec{v}_1}^2}\vec{v}_1</mrow>
+            <mrow> \amp = \bbm 1\\2\\0\\-4\\0\ebm -\frac{-9}{21}\bbm 3\\-6\\-4\\-0\\0\ebm </mrow>
+            <mrow> \amp \frac17\left(\bbm 7\\14\\0\\-28\\0\ebm + \bbm 9\\-18\\-12\\-0\\0\ebm) = \frac17\bbm 16\\20\\-4\\-12\\-28\\0\ebm = \bbm 16/7\\20/7\\-4/7\\-12/7\\-4\\0\ebm</mrow>
+          </md>.
+          Finally, we find
+          <me>
+            \vec{v}_3 = \vec{x}_3-\left(\frac{x}_3\dotp \vec{v}_1}{\len{\vec{v}_1}^2}\right)\vec{v}_1-\left(\frac{\vec{x}_3\dotp\vec{v}_2}{\len{\vec{v}_2}^2}\right)\vec{v}_2
+          </me>.
+          And now you probably get about five minutes into the fractions and say something that shouldn't appear in print.
+          This sounds like a job for the computer.
+        </p>
+
+        <sage>
+          <input>
+            B = A.nullspace()
+            GramSchmidt(B)
+          </input>
+        </sage>
+
+        <p>
+          Oh wait, you wanted that normalized?
+          Turns out the GramSchmidt function has an optional argument of true or false.
+          The default is false, which is to not normalize. Setting it to true gives an orthonormal basis:
+        </p>
+
+        <sage>
+          <input>
+            GramSchmidt(B,true)
+          </input>
+        </sage>
+
+        <p>
+          OK, so that's nice, and fairly intimidating looking.
+          Did it work? We can specify the vectors in our list by giving their positions, which are 0, 1, and 2, resepctively.
+        </p>
+
+        <sage>
+          <input>
+            L=GramSchmidt(B)
+            L[0],L[1]
+          </input>
+        </sage>
+
+        <p>
+          Let's compute dot products:
+        </p>
+
+        <sage>
+          <input>
+            L[0].dot(L[1]),L[1].dot(L[2]),L[0].dot(L[2])
+          </input>
+        </sage>
+
+        <p>
+          Let's also confirm that these are indeed in the nullspace.
+        </p>
+
+        <sage>
+          <input>
+            A*L[0],A*L[1],A*L[2]
+          </input>
+        </sage>
+
+        <p>
+          Boom.
+        </p>
+
+        <paragraphs xml:id="pars-projections">
+          <title>Projections</title>
+          <p>
+            We hinted above that the calculations we've been doing have a lot to do with projection.
+            Since any single nonzero vector forms an orthogonal basis for its span,
+            the projection
+            <me>
+              \proj{\vec{u}}{\vec{v}}=\left(\frac{\vec{u}\dotp\vec{v}}{\len{\vec{u}}^2}\right)\vec{u}
+            </me>
+            can be viewed as the orthogonal projection of the vector <m>\vec{v}</m>,
+            not onto the vector <m>\vec{u}</m>, but onto the subspace <m>\spn\{\vec{u}\}</m>.
+            This is, after all, how we viewed projections in elementary linear algebra:
+            we drop the perpendicuar from the tip of <m>\vec{v}</m> onto the <em>line</em> in the direction of <m>\vec{u}</m>.
+          </p>
+
+          <p>
+            Now that we know how to define an orthogonal basis for a subspace,
+            we can define orthogonal projection onto subspaces of dimension greater than one.
+          </p>
+
+          <definition xml:id="def-ortho-projection">
+            <statement>
+              <p>
+                Let <m>U</m> be a subspace of <m>\R^n</m> with orthogonal basis
+                <m>\{\vec{u}_1,\ldots, \vec{u}_k\}</m>.
+                For any vector <m>\vec{v}\in \R^n</m>, we define the <term>orthogonal projection</term>
+                of <m>\vec{v}</m> onto <m>U</m> by
+                <me>
+                  \proj{U}{\vec{v}} = \sum_{i=1}^k\left(\frac{\vec{u}_i\dotp\vec{v}}{\len{\vec{u}_i}}\right)\vec{u}_i
+                </me>.
+              </p>
+            </statement>
+          </definition>
+
+          <p>
+            Note that <m>\proj{U}{\vec{v}}</m> is indeed an element of <m>U</m>, since it's a linear combination of its basis vectors.
+            In the case of the trivial subspace <m>U=\{\vec{0}\}</m>, we define orthogonal projection of any vector to be <m>\vec{0}</m>,
+            since really, what other choice do we have? (This case isn't really of any interest, we just like being thorogh.)
+          </p>
+
+          <p>
+            Before we can properly state the utility of orthogonal projection,
+            we need one more definition.
+          </p>
+
+          <definition xml:id="def-ortho-comp">
+            <statement>
+              <p>
+                For any subspace <m>U</m> of <m>\R^n</m>,
+                we define the <term>orthogonal complement</term> of <m>U</m>, denoted <m>U^\bot</m>,
+                by
+                <me>
+                  U^\bot = \{\vec{x}\in\R^n \,|\, \vec{x}\dotp\vec{y} = 0 \text{ for all } \vec{y}\in U\}
+                </me>.
+              </p>
+            </statement>
+          </definition>
+
+          <p>
+            The term <q>complement</q> comes from terminology we mentioned early on,
+            but didn't spend much time on. <xref ref="thm-construct-complement">Theorem</xref>
+            told us that for any subspace <m>U</m> of a vector space <m>V</m>,
+            it is possible to construct another subspace <m>W</m> of <m>V</m>
+            such that <m>V = U\oplus W</m>.
+            The subspace <m>W</m> is known as a complement of <m>U</m>.
+            A complement is not unique, but the orthogonal complement is.
+            As you might guess from the name, <m>U^\bot</m> is also a subspace of <m>\R^n</m>.
+          </p>
+
+          <exercise>
+            <statement>
+              <p>
+                Show that <m>U^\bot</m> is a subspace of <m>\R^n</m>.
+              </p>
+            </statement>
+          </exercise>
+
+          <theorem xml:id="thm-projection">
+            <title>Projection Theorem</title>
+            <statement>
+              <p>
+                Let <m>U</m> be a subspace of <m>\R^n</m>, let <m>\vec{x}</m> be any vector in <m>\R^n</m>,
+                and let <m>\vec{p}=\proj{U}{\vec{x}}</m>. Then:
+                <ol>
+                  <li>
+                    <p>
+                      <m>\vec{p}\in U</m>, and <m>\vec{x}-\vec{p}\in U^\bot</m>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      <m>\vec{p}</m> is the <em>closest</em> vector in <m>U</m> to the vector <m>\vec{x}</m>,
+                      in the sense that the distance <m>d(\vec{p},\vec{x})</m> is minimal among all vectors in <m>U</m>.
+                      That is, for all <m>\vec{u}\neq \vec{p}\in U</m>, we have
+                      <me>
+                        \len{\vec{x}-\vec{p}}<\len{\vec{x}-\vec{y}}
+                      </me>.                      
+                    </p>
+                  </li>
+                </ol>
+              </p>
+            </statement>
+          </theorem>
+
+        </paragraphs>
       </section>
     </chapter>
   </book>
