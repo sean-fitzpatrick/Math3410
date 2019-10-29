@@ -14,6 +14,7 @@
       \newcommand{\nll}{\operatorname{null}}
       \newcommand{\csp}{\operatorname{col}}
       \newcommand{\rank}{\operatorname{rank}}
+      \newcommand{\tr}{\operatorname{tr}}
       \newcommand{\dotp}{\!\boldsymbol{\cdot}\!}
       \newcommand{\len}[1]{\lVert #1\rVert}
       \newcommand{\proj}[2]{\operatorname{proj}_{#1}{#2}}
@@ -2517,7 +2518,7 @@
               <me>
                 a_1\vec{u}_1+\cdots +a_n\vec{u}_n=\vec{0}
               </me>,
-              and since the <m>\vec{u}_i</m> are indepdented, all the <m>a_i</m> must be zero.
+              and since the <m>\vec{u}_i</m> are independent, all the <m>a_i</m> must be zero.
             </p>
 
             <p>
@@ -3449,7 +3450,7 @@
       </section>
 
       <section xml:id="sec-ortho-projection">
-        <title>Orthgonal Projection</title>
+        <title>Orthogonal Projection</title>
         <p>
           In <xref ref="ex-test-span">Exercise</xref>, we saw that <xref ref="thm-fourier-expansion" text="title"/>
           gives us an efficient way of testing whether or not a given vector belongs to the span of an orthogonal set.
@@ -3946,8 +3947,580 @@
             </me>,
             and since <m>U\cap U^\bot = \{\vec{0}\}</m>, <m>U^\bot</m> is indeed a complement of <m>U</m>
             in the sense introduced in <xref ref="thm-construct-complement">Theorem</xref>.
+            It's also fairly easy to see that <m>\dim U + \dim U^\bot = n</m> directly.
+            If <m>\vec{w}\in U^\bot</m>, and <m>\{\vec{u}_1,\ldots, \vec{u}_k\}</m>
+            is a basis for <m>U</m>, then we have
+            <me>
+              \vec{w}\dotp \vec{u}_1= 0, \ldots, \vec{w}\dotp \vec{u}_k=0
+            </me>,
+            and for an unknown <m>\vec{w}</m>, this is simply a homogeneous system of <m>k</m> equations with <m>n</m> variables.
+            Moverer, they are <em>independent</em> equations, since the <m>\vec{u}_i</m> form a basis.
+            We thus expect <m>n-k</m> free parameters in the general solution.
           </p>
+
+          <exercise>
+            <statement>
+              <p>
+                Let <m>U = \{(a-b+3c, 2a+b, 3c, 4a-b+3c,a-4c)\,|\, a,b,c\in\R\}\subseteq \R^5</m>.
+                Determine a basis for <m>U^\bot</m>.
+              </p>
+            </statement>
+            <solution>
+              <p>
+                First, we note that for a general element of <m>U</m>, we have
+                <me>
+                  (a-b+3c, 2a+b, 3c, 4a-b+3c,a-4c) = a(1,2,0,4,1)+b(-1,1,0,-1,0)+c(3,0,3,3,-4)
+                </me>.
+                If <m>\vec{w} = (x_1,x_2,x_3,x_4,x_5)\in U^\bot</m>, then we must have
+                <md>
+                  <mrow>\vec{w}\dotp (1,2,0,4,1) \amp = x_1+2x_2+4x_4+x_5=0 </mrow>
+                  <mrow>\vec{w}\dotp (-1,1,0,-1,0) \amp =-x_1+x_2-x_4=0</mrow>
+                  <mrow>\vec{w}\dotp (3,0,3,3,-4) \amp =3x_1+3x_3+3x_4-4x_5 = 0</mrow>
+                </md>.
+                To find a basis for <m>U^\bot</m>, we simply need to find the nullspace of the coefficient matrix for this system,
+                which we do below.
+              </p>
+            </solution>
+          </exercise>
+
+          <sage>
+            <input>
+              A = Matrix(3,5,[1,2,0,4,1,-1,1,0,-1,0,3,0,3,3,-4])
+              A.nullspace()
+            </input>
+          </sage>
         </paragraphs>
+      </section>
+
+      <section xml:id="sec-spectral">
+        <title>The Real Spectral Theorem (Orthogonal Diagronalization)</title>
+        <introduction>
+          <p>
+            In this section we look at the diagonalization problem for real symmetric matrices.
+            You probably saw how to compute eigenvalues and eigenvectors in your elementary linear algebra course.
+            You may have also seen that in some cases, the number of independent eigenvectors associated to an
+            <m>n\times n</m> matrix <m>A</m> is <m>n</m>, in which case it is possible to <q>diagonalize</q> <m>A</m>.
+            In other cases, we don't get <q>enough</q> eigenvectors for diagonalization.
+          </p>
+
+          <p>
+            In the first part of this section, we review some basic facts about eigenvalues and eigenvectors.
+            We will then move on to look at the special case of symmetric matrices,
+            where we will see that it is always possible to diagonalize,
+            and moreover, that it is possible to do so using an orthonormal basis of eigenvectors.
+          </p>
+        </introduction>
+
+        <subsection xml:id="subsec-eigen-basics">
+          <title>Review of Eigenvalues and Eigenvectors</title>
+          <definition xml:id="def-eigenvalue">
+            <statement>
+              <p>
+                Let <m>A</m> be an <m>n\times n</m> matrix.
+                A number <m>\lambda</m> is called an <term>eigenvalue</term> of <m>A</m>
+                if there exists a nonzero vector <m>\vec{x}</m> such that
+                <me>
+                  A\vec{x} = \lambda\vec{x}
+                </me>.
+                Any such vector <m>\vec{x}</m> is called an <term>eigenvector</term>
+                associated to the eigenvalue <m>\lambda</m>.
+              </p>
+            </statement>
+          </definition>
+
+          <p>
+            Note that eigenvalues and eigenvectors can just as easily be defined for a general linear operator <m>T:V\to V</m>.
+            In this context, and eigenvector <m>\vec{x}</m> is sometimes referred to as a <em>characteristic vector</em> (or characteristic direction)
+            for <m>T</m>, since the property <m>T(\vec{x})=\lambda \vec{x}</m>
+            simply states that the transformed vector <m>T(\vec{x})</m> is parallel to the original vector <m>\vec{x}</m>.
+            Some linear algebra textbooks that focus more on general linear transformations frame this topic in the context of
+            <em>invariant subspaces</em> for a linear operator.
+          </p>
+
+          <p>
+            A subspace <m>U\subseteq V</m> is <em>invariant</em> with respect to <m>T</m> if <m>T(\vec{u})\in U</m> for all <m>\vec{u}\in U</m>.
+            Note that if <m>\vec{x}</m> is an eigenvector of <m>T</m>, then <m>\spn\{\vec{x}\}</m> is an invariant subspace.
+            To see this, note that if <m>T(\vec{x})=\lambda \vec{x}</m> and <m>y=k\vec{x}</m>, then
+            <me>
+              T(\vec{y})=T(k\vec{x})=kT(\vec{x})=k(\lambda \vec{x})=\lambda(k\vec{x}_=\lambda\vec{y})
+            </me>.
+          </p>
+
+          <p>
+            Note that if <m>\vec{x}</m> is an eigenvector of the matrix <m>A</m>, then we have
+            <men xml:id="eq-eigen-null">
+              (A-\lambda I_n)\vec{x}=\vec{0}
+            </men>,
+            where <m>I_n</m> denotes the <m>n\times n</m> identity matrix.
+            Thus, if <m>\lambda</m> is an eigenvalue of <m>A</m>,
+            any corresponding eigenvector is an element of <m>\nll(A-\lambda I_n)</m>.
+          </p>
+
+          <definition xml:id="def-eigenspace">
+            <statement>
+              <p>
+                For any real number <m>\lambda</m> and matrix <m>A</m>,
+                we define the <term>eigenspace</term> <m>E_\lambda(A)</m> by
+                <me>
+                  E_\lambda(A) = \nll (A-\lambda I_n)
+                </me>.
+              </p>
+            </statement>
+          </definition>
+
+          <p>
+            Note that <m>E_\lambda(A)</m> can be defined for any real number <m>\lambda</m>,
+            whether or not <m>\lambda</m> is an eigenvalue.
+            However, the eigenvalues of <m>A</m> are distinguished by the property that there is a
+            <em>nonzero</em> solution to <xref ref="eq-eigen-null"/>.
+            Furthermore, we know that <xref ref="eq-eigen-null"/> can only have nontrivial solutions if the matrix <m>A-\lambda I_n</m>
+            is not invertible. We also know that <m>A-\lambda I_n</m> is non-invertible if and only if <m>\det (A-\lambda I_n) = 0</m>.
+            This gives us the following theorem.
+          </p>
+
+          <theorem xml:id="thm-eigenspace-nonzero">
+            <statement>
+              <p>
+                The following are equivalent for any <m>n\times n</m> matrix <m>A</m> and real number <m>\lambda</m>:
+                <ol>
+                  <li>
+                    <p>
+                      <m>\lambda</m> is an eigenvalue of <m>A</m>.
+                    </p>
+                  </li>
+                  <li>
+                    <m>E_\lambda(A)\neq \{\vec{0}\}</m>
+                  </li>
+
+                  <li>
+                    <m>\det(A-\lambda I_n) = 0</m>
+                  </li>
+                </ol>
+              </p>
+            </statement>
+          </theorem>
+
+          <p>
+            The polynomial <m>p_A(x)=\det(xI_n -A)</m> is called the <term>characteristic polynomial</term> of <m>A</m>.
+            (Note that <m>\det(x I_n-A) = (-1)^n\det(A-x I_n)</m>. We choose this order so that the coefficient of <m>x^n</m> is always 1.)
+            The equation
+            <men xml:id="eq-characteristic">
+              \det(xI_n - A) = 0
+            </men>
+            is called the <term>characteristic equation</term> of <m>A</m>.
+            The solutions to this equation are precisely the eigenvalues of <m>A</m>.
+          </p>
+
+          <p>
+            Recall that a matrix <m>B</m> is said to be <term>similar</term> to a matrix <m>A</m>
+            if there exists an invertible matrix <m>P</m> such that <m>B = P^{-1}AP</m>.
+            Much of what follows concerns the question of whether or not a given <m>n\times n</m>
+            matrix <m>A</m> is <term>diagonalizable</term>.
+          </p>
+
+          <definition xml:id="def-diagonalizable">
+            <statement>
+              <p>
+                An <m>n\times n</m> matrix <m>A</m> is said to be <term>diagonalizable</term>
+                if <m>A</m> is similar to a diagonal matrix.
+              </p>
+            </statement>
+          </definition>
+
+          <p>
+            The following results will frequently be useful.
+          </p>
+
+          <theorem xml:id="thm-similar-properties">
+            <statement>
+              <p>
+                The relation <m>A\sim B</m> if and only if <m>A</m> is simlar to <m>B</m> is an equivalence relation.
+                Moreover, if <m>A\sim B</m>, then:
+                <ul>
+                  <li>
+                    <m>\det A = \det B</m>
+                  </li>
+                  <li>
+                    <m>\tr A = \tr B</m>
+                  </li>
+
+                  <li>
+                    <m>c_A(x) = c_B(x)</m>
+                  </li>
+                </ul>
+                In other words, <m>A</m> and <m>B</m> have the same determinant, trace, and characteristic polynomial
+                (and thus, the same eigenvalues).
+              </p>
+            </statement>
+            <proof>
+              <p>
+                The first two follow directly from properties of the determinant and trace.
+                For the last, note that if <m>B = P^{-1}AP</m>, then
+                <me>
+                  P^{-1}(xI_n-A)P = P^{-1}(xI_n)P-P^{-1}AP = xI_n B
+                </me>,
+                so <m>xI_n-B\sim xI_n-A</m>, and therefore <m>\det(xI_n-B)=\det(xI_n-A)</m>.
+              </p>
+            </proof>
+
+          </theorem>
+
+
+          <example>
+            <statement>
+              <p>
+                Determine the eigenvalues and eigenvectors of <m>A = \bbm 0\amp 1\amp 1\\1\amp 0\amp 1\\1\amp 1\amp 0\ebm</m>.
+              </p>
+            </statement>
+            <solution>
+              <p>
+                We begin with the characteristic polynomial. We have
+                <md>
+                  <mrow>\det(xI_n - A) \amp =\det\bbm x \amp -1\amp -1\\-1\amp x \amp -1\\-1\amp -1\amp x</mrow>
+                  <mrow> \amp = x \begin{vmatrix}x \amp -1\\-1\amp x\end{vmatrix}
+                     +1\begin{vmatrix}-1\amp -1\\-1\amp x\end{vmatrix}
+                     -1\begin{vmatrix}-1\amp x\\-1\amp -1\end{vmatrix}</mrow>
+                  <mrow> \amp = x(x^2-1)+(-x-1)-(1+x)</mrow>
+                  <mrow> \amp x(x-1)(x+1)-2(x+1)</mrow>
+                  <mrow> \amp (x+1)[x^2-x-2]</mrow>
+                  <mrow> \amp (x+1)^2(x-2)</mrow>
+                </md>.
+              </p>
+
+              <p>
+                The roots of the characteristic polynomial are our eigenvalues,
+                so we have <m>\lambda_1=-1</m> and <m>\lambda_2=2</m>.
+                Note that the first eigenvalue comes from a repeated root.
+                This is typicaly where things get interesting.
+                If an eigenvalue does not come from a repeated root,
+                then there will only be one (independent) eigenvector that corresponds to it.
+                (That is, <m>\dim E_\lambda(A)=1</m>.)
+                If an eigenvalue is repeated, it could have more than one eigenvector,
+                but this is not guaranteed.
+              </p>
+
+              <p>
+                We find that <m>A-(-1)I_n = \bbm 1\amp 1\amp 1\\1\amp 1\amp 1\\1\amp 1\amp 1\ebm</m>,
+                which has reduced row-echelon form <m>\bbm 1\amp 1\amp 1\\0\amp 0\amp 0\\0\amp 0\amp 0\ebm</m>.
+                Solving for the nullspace, we find that there are two independent eigenvectors:
+                <me>
+                  \vec{x}_{1,1}=\bbm 1\\-1\\0\ebm, \quad \text{ and } \quad \vec{x}_{1,2}=\bbm 1\\0\\-1\ebm
+                </me>,
+                so
+                <me>
+                  E_{-1}(A) = \spn\left\{\bbm 1\\-1\\0\ebm, \bbm 1\\0\\-1\ebm\right\}
+                </me>.
+              </p>
+
+              <p>
+                For the second eigenvector, we have <m>A-2I = \bbm -2\amp 1\amp 1\\1\amp -2\amp 1\\1\amp 1\amp -2\ebm</m>,
+                which has reduced row-echelon form <m>\bbm 1\amp 0\amp -1\\0\amp 1\amp -1\\0\amp 0\amp 0\ebm</m>.
+                An eigenvector in this case is given by
+                <me>
+                  \vec{x}_2 = \bbm 1\\1\\1\ebm
+                </me>.
+              </p>
+            </solution>
+          </example>
+
+          <p>
+            In general, if the characteristic polynomial can be factored as <m>p_A(x)=(x-\lambda)^mq(x)</m>,
+            where <m>q(x)</m> is not divisible by <m>x-\lambda</m>, then we say that <m>\lambda</m>
+            is an eigenvalue of <term>multiplicity</term> <m>m</m>. A main result is the following.
+          </p>
+
+          <theorem xml:id="thm-multiplicity">
+            <statement>
+              <p>
+                Let <m>\lambda</m> be an eigenvalue of <m>A</m> of multiplicity <m>m</m>.
+                Then <m>\dim E_\lambda(A)\leq m</m>.
+              </p>
+            </statement>
+          </theorem>
+
+          <p>
+            Some textbooks refer to the multiplicity <m>m</m> of an eigenvalue as the
+            <em>algebraic multiplicity</em> of <m>\lambda</m>, and the number <m>\dim E_\lambda(A)</m>
+            as the <em>geometric multiplicity</em> of <m>\lambda</m>.
+          </p>
+
+          <p>
+            To prove <xref ref="thm-multiplicity"/> we need the following lemma,
+            from Section 5.5 of Nicholson's textbook.
+          </p>
+
+          <lemma xml:id="lem-block-eigen">
+            <statement>
+              <p>
+                Let <m>\{\vec{x}_1,\ldots, \vec{x}_k\}</m> be a set of linearly independent eigenvectors of a matrix <m>A</m>,
+                with corresponding eigenvalues <m>\lambda_1,\ldots, \lambda_k</m> (not necessarily distinct).
+                Extend this set to a basis <m>\{\vec{x}_1,\ldots, \vec{x}_k,\vec{x}_{k+1},\ldots, \vec{x}_n\}</m>,
+                and let <m>P=\bbm \vec{x}_1\amp \cdots \amp \vec{x}_n\ebm</m>
+                be the matrix whose columns are the basis vectors. (Note that <m>P</m> is necessarily invertible.)
+                Then
+                <me>
+                  P^{-1}AP = \bbm \diag(\lambda_1,\ldots, \lambda_k) \amp B\\0\amp A_1\ebm
+                </me>,
+                where <m>B</m> has size <m>k\times (n-k)</m>, and <m>A_1</m> has size <m>(n-k)\times (n-k)</m>.
+              </p>
+            </statement>
+            <proof>
+              <p>
+                We have
+                <md>
+                  <mrow>P^{-1}AP \amp = P^{-1}A\bbm \vec{x}_1\amp \cdots \amp \vec{x}_n\ebm</mrow>
+                  <mrow> \amp =\bbm (P^{-1}A)\vec{x}_1\amp \cdots \amp (P^{-1}A)\vec{x}_n\ebm</mrow>
+                </md>.
+              </p>
+              For <m>1\leq i\leq k</m>, we have
+              <me>
+                (P^{-1}A)(\vec{x}_i) = P^{-1}(A\vec{x}_i) = P^{-1}(\lambda_i\vec{x}_i)=\lambda_i(P^{-1}\vec{x}_i)
+              </me>.
+              But <m>P^{-1}\vec{x}_i</m> is the <m>i</m>th column of <m>P^{-1}P = I_n</m>,
+              which proves the result.
+            </proof>
+          </lemma>
+
+          <p>
+            We can use <xref ref="lem-block-eigen"/> to prove that <m>\dim E_\lambda(A)\leq m</m> as follows.
+            Suppose <m>\{\vec{x}_1,\ldots, \vec{x}_k\}</m> is a basis for <m>E_\lambda(A)</m>.
+            Then this is a linearly independent set of eigenvectors, so our lemma guarantees the existence of a matrix <m>P</m>
+             such that
+             <me>
+               P^{-1}AP = \bbm \lambda I_k \amp B\\0\amp A_1\ebm
+             </me>.
+             Let <m>\tilde{A}=P^{-1}AP</m>. On the one hand, since <m>\tilde{A}\sim A</m>,
+             we have <m>c_A(x)=c_{\tilde{A}}(x)</m>.
+             On the other hand,
+             <me>
+               \det(xI_n-\tilde{A}) = \det\bbm (x-\lambda)I_k \amp -B\\0 \amp xI_{n-k}-A_1\ebm = (x-\lambda)^k\det(xI_{n-k}A_1)
+             </me>.
+             This shows that <m>c_A(x)</m> is divisible by <m>(x-\lambda)^k</m>.
+             Since <m>m</m> is the largest integer such that <m>c_A(x)</m> is divisible by <m>(x-\lambda)^m</m>,
+             we must have <m>\dim E_\lambda(A)=k\leq m</m>.
+          </p>
+
+          <p>
+            <xref ref="thm-multiplicity"/> provides an initial criterion for diagonalization:
+            if the dimension of each eigenspace <m>E_\lambda(A)</m> is equal to the multiplicity of <m>\lambda</m>,
+            then <m>A</m> is diagonalizable.
+            The truth of this statement relies on one additional fact:
+            any set of eigenvectors corresponding to <em>distinct</em> eigenvalues is linearly independent.
+            The proof of this fact is a relatively straightforward proof by induction.
+            It can be found in Section 5.5 of Nicholson for those who are interested.
+            However, our focus for the remainder of the section will be on diagonalization of <em>symmetric</em>
+            matrices, and soon we will see that for such matrices, eigenvectors corresponding to different eigenvalues are,
+            in fact, <em>orthogonal</em>.
+          </p>
+        </subsection>
+
+        <subsection xml:id="subsec-ortho-diag">
+          <title>Diagonalization of symmetric matrices</title>
+          <p>
+            Recall that an <m>n\times n</m> matrix <m>A</m> is <em>symmertric</em> if <m>A^T=A</m>.
+            Symmetry of <m>A</m> is equivalent to the following:
+            for any vectors <m>\vec{x},\vec{y}\in\R^n</m>,
+            <me>
+              \vec{x}\dotp (A\vec{y}) = (A\vec{x})\dotp \vec{y}
+            </me>.
+            To see that this is implied by the symmetry of <m>A</m>, note that
+            <me>
+              \vec{x}\dotp (A\vec{y}) = \vec{x}^T(A\vec{y})=(\vec{x}^TA^T)\vec{y} = (A\vec{x})^T\vec{y}=(A\vec{x})\dotp\vec{y}
+            </me>.
+            For inner product spaces, the above is taken as the <em>definition</em> of what it means for an operator to be symmetric.
+          </p>
+
+          <exercise>
+            <statement>
+              <p>
+                Prove that if <m>\vec{x}\dotp(A\vec{y})=(A\vec{x})\dotp \vec{y}</m> for any <m>\vec{x},\vec{y}\in\R^n</m>,
+                then <m>A</m> is symmetric.
+              </p>
+            </statement>
+            <solution>
+              <p>
+                Take <m>\vec{x}=\vec{e}_i</m> and <m>\vec{y}=\vec{e}_j</m>,
+                where <m>\{\vec{e}_1,\ldots, \vec{e}_n\}</m> is the standard basis for <m>\R^n</m>.
+                Then with <m>A = [a_{ij}]</m> we have
+                <me>
+                  a_{ij} =\vec{e}_i\dotp(A\vec{e_j}) = (A\vec{e_i})\dotp \vec{e_j} = a_{ji}
+                </me>,
+                which shows that <m>A^T=A</m>.
+              </p>
+            </solution>
+          </exercise>
+
+          <p>
+            A useful property of symmetric matrices, mentioned earlier,
+            is that eigenvectors corresponding to distinct eigenvalues are orthogonal.
+          </p>
+
+          <theorem xml:id="thm-ortho-eigen-symm">
+            <statement>
+              <p>
+                If <m>A</m> is a symmetric matrix, then eigenvectors corresponding to <em>distinct</em> eigenvalues are orthogonal.
+              </p>
+            </statement>
+            <proof>
+              <p>
+                To see this, suppose <m>A</m> is symmetric, and that we have
+                <me>
+                  A\vec{x}_1=\lambda_1\vec{x}_1\quad \text{ and } A\vec{x}_2=\lambda_2\vec{x}_2
+                </me>,
+                with <m>\vec{x}_1\neq\vec{0},\vec{x}_2\neq \vec{0}</m>, and <m>\lambda_1\neq \lambda_2</m>.
+                We then have, since <m>A</m> is symmetric, and using the result above,
+                <me>
+                  \lambda_1(\vec{x}_1\dotp \vec{x}_2) = (\lambda_1\vec{x}_1)\dotp \vec{x}_2 = (A\vec{x}_1)\dotp \vec{x}_2 = \vec{x}_1\dotp(A\vec{x}_2) = \vec{x}_1(\lambda_2\vec{x}_2) = \lambda_2(\vec{x}_1\dotp\vec{x}_2)
+                </me>.
+                It follows that <m>(\lambda_1-\lambda_2)(\vec{x}_1\dotp \vec{x}_2)=0</m>,
+                and since <m>\lambda_1\neq \lambda_2</m>,
+                we must have <m>\vec{x}_1\dotp \vec{x}_2=0</m>.
+              </p>
+            </proof>
+
+          </theorem>
+
+          <p>
+            The procedure for diagonalizing a matrix is as follows:
+            assuming that <m>\dim E_\lambda(A)</m> is equal to the multiplicity of <m>\lambda</m>
+            for each distinct eigenvalue <m>\lambda</m>, we find a basis for <m>E_\lambda(A)</m>.
+            The union of the bases for each eigenspace is then a basis of eigenvectors for <m>\R^n</m>,
+            and the matrix <m>P</m> whose columns are those eigenvectors will satisfy <m>P^{-1}AP = D</m>,
+            where <m>D</m> is a diagonal matrix whose diagonal entires are the eigenvalues of <m>A</m>.
+          </p>
+
+          <p>
+            If <m>A</m> is symmetric, we know that eigenvectors from <em>different</em> eigenspaces will be orthogonal to each other.
+            If we futher choose an orthogonal basis of eigenvectors for each eigenspace (which is possible via the Gram-Schmidt procedure),
+            then we can construct an orthogonal basis of eigenvectors for <m>\R^n</m>.
+            Furthermore, if we normalize each vector, then we'll have an orthonormal basis.
+            The matrix <m>P</m> whose columns consist of these orthonormal basis vectors has a name.
+          </p>
+
+          <definition xml:id="def-orthogonal-matrix">
+            <statement>
+              <p>
+                A matrix <m>P</m> is called <term>orthogonal</term> if <m>P^T = P^{-1}</m>.
+              </p>
+            </statement>
+          </definition>
+
+          <theorem xml:id="thm-ortho-matrix">
+            <statement>
+              <p>
+                A matrix <m>P</m> is orthogonal if and only if the columns of <m>P</m> form an orthonormal basis for <m>\R^n</m>.
+              </p>
+            </statement>
+          </theorem>
+
+          <p>
+            A fun fact is that if the columns of <m>P</m> are orthonormal, then so are the rows.
+            But this is not true if we ask for the columns to be merely orthogonal.
+            For example, the columns of <m>A = \bbm 1\amp 0\amp 5\\-2\amp 1\amp 2\\1\amp 2\amp -1\ebm </m> are orthogonal,
+            but the rows certainly are not. But if we normalize the columns, we get
+            <me>
+              P = \bbm 1/\sqrt{6}\amp 0 \amp 1/\sqrt{30}\\-2/\sqrt{6}\amp 1/\sqrt{5}\amp 2/\sqrt{30}\\1/\sqrt{6}\amp 2/\sqrt{5}\amp -1/\sqrt{30}\ebm
+            </me>,
+            which, as you can confirm, is an orthogonal matrix.
+          </p>
+
+          <definition xml:id="def-ortho-diag">
+            <statement>
+              <p>
+                An <m>n\times n</m> matrix <m>A</m> is said to be <em>orthogonally diagonalizable</em>
+                if there exists an orthogonal matrix <m>P</m> such that <m>P^TAP</m> is diagonal.
+              </p>
+            </statement>
+          </definition>
+
+          <p>
+            The above definition leads to the following result, also known as the Principal Axes Theorem.
+          </p>
+          <theorem xml:id="thm-real-spectral">
+            <title>Real Spectral Theorem</title>
+
+            <statement>
+              <p>
+                The following are equivalent for a real <m>n\times n</m> matrix <m>A</m>:
+                <ol>
+                  <li>
+                    <p>
+                      <m>A</m> is symmetric.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      There is an orthonormal basis for <m>\R^n</m> consisting of eigenvectors of <m>A</m>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      <m>A</m> is orthogonally diagonalizable.
+                    </p>
+                  </li>
+                </ol>
+              </p>
+            </statement>
+          </theorem>
+
+          <exercise>
+            <statement>
+              <p>
+                Determine the eigenvalues of <m>A=\bbm 5\amp -2\amp -4\\-2\amp 8\amp -2\\-4\amp -2\amp 5\ebm</m>,
+                and find an orthogonal matrix <m>P</m> such that <m>P^TAP</m> is diagonal.
+              </p>
+            </statement>
+          </exercise>
+
+          <p>
+            We'll solve this problem with the help of the computer.
+          </p>
+
+          <sage>
+            <input>
+              from sympy import *
+              init_printing()
+              A = Matrix(3,3,[5,-2,-4,-2,8,-2,-4,-2,5])
+              p=A.charpoly().as_expr()
+              factor(p)
+            </input>
+          </sage>
+
+          <p>
+            We get <m>c_A(x)=x(x-9)^2</m>, so our eigenvalues are <m>0</m> and <m>9</m>.
+            For <m>0</m> we have <m>E_0(A) = \nll(A)</m>:
+          </p>
+
+          <sage>
+            <input>
+              A.nullspace()
+            </input>
+          </sage>
+
+          <p>
+            For <m>9</m> we have <m>E_9(A) = \nll(A-9I)</m>.
+          </p>
+
+          <sage>
+            <input>
+              B=A-9*eye(3)
+              B.nullspace()
+            </input>
+          </sage>
+
+          <p>
+            But we need an orthogonal basis, so we apply Gram-Schmidt:
+          </p>
+
+          <sage>
+            <input>
+              L=B.nullspace()
+              GramSchmidt(L)
+            </input>
+          </sage>
+
+          
+        </subsection>
       </section>
     </chapter>
   </book>
