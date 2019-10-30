@@ -14,6 +14,7 @@
       \newcommand{\nll}{\operatorname{null}}
       \newcommand{\csp}{\operatorname{col}}
       \newcommand{\rank}{\operatorname{rank}}
+      \newcommand{\diag}{\operatorname{diag}}
       \newcommand{\tr}{\operatorname{tr}}
       \newcommand{\dotp}{\!\boldsymbol{\cdot}\!}
       \newcommand{\len}[1]{\lVert #1\rVert}
@@ -4041,9 +4042,9 @@
         <p>
           A subspace <m>U\subseteq V</m> is <em>invariant</em> with respect to <m>T</m> if <m>T(\vec{u})\in U</m> for all <m>\vec{u}\in U</m>.
           Note that if <m>\vec{x}</m> is an eigenvector of <m>T</m>, then <m>\spn\{\vec{x}\}</m> is an invariant subspace.
-          To see this, note that if <m>T(\vec{x})=\lambda \vec{x}</m> and <m>y=k\vec{x}</m>, then
+          To see this, note that if <m>T(\vec{x})=\lambda \vec{x}</m> and <m>\vec{y}=k\vec{x}</m>, then
           <me>
-            T(\vec{y})=T(k\vec{x})=kT(\vec{x})=k(\lambda \vec{x})=\lambda(k\vec{x}_=\lambda\vec{y})
+            T(\vec{y})=T(k\vec{x})=kT(\vec{x})=k(\lambda \vec{x})=\lambda(k\vec{x})=\lambda\vec{y})
           </me>.
         </p>
 
@@ -4177,7 +4178,7 @@
             <p>
               We begin with the characteristic polynomial. We have
               <md>
-                <mrow>\det(xI_n - A) \amp =\det\bbm x \amp -1\amp -1\\-1\amp x \amp -1\\-1\amp -1\amp x</mrow>
+                <mrow>\det(xI_n - A) \amp =\det\bbm x \amp -1\amp -1\\-1\amp x \amp -1\\-1\amp -1\amp x\ebm</mrow>
                 <mrow> \amp = x \begin{vmatrix}x \amp -1\\-1\amp x\end{vmatrix}
                    +1\begin{vmatrix}-1\amp -1\\-1\amp x\end{vmatrix}
                    -1\begin{vmatrix}-1\amp x\\-1\amp -1\end{vmatrix}</mrow>
@@ -4560,7 +4561,7 @@
           <me>
             B = \left\{\frac{1}{3}\bbm 2\\1\\2\ebm, \frac{1}{\sqrt{2}}\bbm -1\\0\\1\ebm, \frac{1}{\sqrt{18}}\bbm 1\\-4\\1\ebm\right\}
           </me>.
-          This gives us the matrix <m>P=\bbm 2/3\amp -1/\sqrt{2}\amp 1/\sqrt{18}\\1/3\amp 0 \amp -4/\sqrt{18}\\2/3\amp 1/\sqrt{2}\\1/\sqrt{18}</m>.
+          This gives us the matrix <m>P=\bbm 2/3\amp -1/\sqrt{2}\amp 1/\sqrt{18}\\1/3\amp 0 \amp -4/\sqrt{18}\\2/3\amp 1/\sqrt{2}\amp 1/\sqrt{18}\ebm</m>.
           Let's confirm that <m>P</m> is orthogonal.
         </p>
 
@@ -4634,7 +4635,7 @@
           First, a definition.
         </p>
 
-        <definition xml:id="def-quadratic-from">
+        <definition xml:id="def-quadratic-form">
           <statement>
             <p>
               A <term>quadratic form</term> on variables <m>x_1, x_2,\ldots, x_n</m>
@@ -4700,7 +4701,7 @@
           The resulting orthogonal matrix is <m>P=\frac{1}{\sqrt{2}}\bbm 1\amp -1\\1\amp 1\ebm</m>,
           and we find
           <me>
-            P^TAP = \bbm 2\amp 0\\0\amp 6, \text{ or } A = PDP^T,
+            P^TAP = \bbm 2\amp 0\\0\amp 6\ebm, \text{ or } A = PDP^T,
           </me>
           where <m>D = \bbm 2\amp 0\\0\amp 6\ebm</m>. If we define new variables <m>y_1,y_2</m> by
           <me>
@@ -4709,7 +4710,7 @@
           then we find that
           <md>
             <mrow>\bbm x_1\amp x_2\ebm A\bbm x_1\\x_2\ebm \amp = (\bbm x_1\amp x_2\ebm P)D\left(P^T\bbm x_1\\x_2\ebm\right) </mrow>
-            <mrow> \amp = \bbm y_1 \amp y_2\ebm\bbm 2\amp 0\\0\amp \ebm\bbm y_1\\y_2\ebm</mrow>
+            <mrow> \amp = \bbm y_1 \amp y_2\ebm\bbm 2\amp 0\\0\amp 6\ebm\bbm y_1\\y_2\ebm</mrow>
             <mrow> \amp = 2y_1^2+6y_2^2</mrow>
           </md>.
           Note that there is no longer any cross term.
