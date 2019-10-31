@@ -22,6 +22,8 @@
       \newcommand{\abs}[1]{\lvert #1\rvert}
       \newcommand{\proj}[2]{\operatorname{proj}_{#1}{#2}}
       \newcommand{\bz}{\overline{z}}
+      \newcommand{\zz}{\mathbf{z}}
+      \newcommand{\ww}{\mathbf{w}}
     </macros>
     <latex-image-preamble><![CDATA[
       \usepackage{pgfplots}
@@ -4884,6 +4886,17 @@
           </p>
 
           <p>
+            We'll write elements of <m>\C^n</m> as <m>\zz = (z_1,z_2,\ldots, z_n)</m>.
+            Notice that we've dropped the arrow notation for vectors in favour of a bold font.
+            The reason is that we'll want to consider complex conjugates,
+            and things get cluttered if we try to fit an arrow and a bar over our vector.
+            The complex conjugate of <m>\zz</m> is given by
+            <me>
+              \bar{\zz} = (\bz_1,\bz_2,\ldots, \bz_n)
+            </me>.
+          </p>
+
+          <p>
             Linear transformations are defined in exactly the same way,
             and a complex matrix is simply a matrix whose entries are complex numbers.
             There are two important operations defined on complex matrices:
@@ -4952,10 +4965,139 @@
               </p>
             </solution>
           </exercise>
+
+          <p>
+            When using SymPy, the hermitial conjugate of a matrix <c>A</c> is executed using <c>A.H</c>.
+            (There appears to also be an equivalent operation named <c>Dagger</c> coming from <c>sympy.physics.quantum</c>,
+            but I've had more success with <c>.H</c>.) The complex unit is entered as <c>I</c>.
+            So for the exercise above, we can do the following.
+          </p>
+
+          <sage>
+            <input>
+              from sympy import *
+              init_printing()
+              A = Matrix(3,3,[4,1-I,-2+3*I,1+I,5,7*I,-2-3*I,-7*I,-4])
+              A == H
+            </input>
+          </sage>
+
+          <p>
+            The last line verifies that <m>A=A^\dagger</m>.
+            We could also replace it with <c>A,A.H</c> to explicitly see the two matrices side by side.
+            Now, let's confirm that <m>B</m> is unitary.
+          </p>
+
+          <sage>
+            <input>
+              B = Matrix(2,2,[1/2+1/2*I, sqrt(2)/2,1/2-1/2*I,(sqrt(2)/2)*I])
+              B,B*B.H
+            </input>
+          </sage>
+
+          <p>
+            Hmm... That doesn't look like the identity. Maybe try replacing <c>B*B.H</c> with <c>simplify(B*B.H)</c>.
+            Or you could try <c>B.H, B**-1</c> to compare results.
+            Actually, what's interesting is that in a Sage cell, <c>B.H == B**-1</c> yields <c>False</c>,
+            but <c>B.H == simplify(B**-1)</c> yields <c>True</c>!
+          </p>
         </subsection>
 
         <subsection xml:id="subsec-complex-dot">
           <title>The standard complex inner product</title>
+          <p>
+            The standard inner product on <m>\C^n</m> looks a lot like the dot product on <m>\R^n</m>,
+            with one important difference: we apply a complex conjugate to the second vector.
+          </p>
+
+          <definition xml:id="def-complex-inner">
+            <statement>
+              <p>
+                The <term>standard inner product</term> on <m>\C^n</m> is defined as follows:
+                given <m>\zz=(z_1,z_2,\ldots, z_n)</m> and <m>\ww=(w_1,w_2,\ldots, w_n)</m>,
+                <me>
+                  \langle \zz,\ww\rangle = \vec{z}\dotp\bar{\ww} = z_1\bar{w}_1+z_2\bar{w}_2+\cdots + z_n\bar{w}_n
+                </me>.
+              </p>
+            </statement>
+          </definition>
+
+          <p>
+            If <m>\zz,\ww</m> are real, this is just the usual dot product.
+            The reason for using the complex conjugate is to ensure that we still have a positive-definite inner product on <m>\C^n</m>:
+            <me>
+              \langle \zz,\zz\rangle = z_1\bz_1+z_2\bz_2+\cdots + z_n\bz_n = \abs{z_1}^2+\abs{z_2}^2+\cdots + \abs{z_n}^2
+            </me>,
+            which shows that <m>\langle \zz,\zz\rangle \geq 0</m>,
+            and <m>\langle \zz,\zz\rangle = 0</m> if and only if <m>\zz=\mathbf{0}</m>.
+          </p>
+
+          <exercise>
+            <statement>
+              <p>
+                Compute the dot product of <m>\zz = (2-i, 3i, 4+2i)</m> and <m>\ww = (3i,4-5i,-2+2i)</m>.
+              </p>
+            </statement>
+          </exercise>
+
+          <p>
+            This isn't hard to do by hand, but it's useful to know how to ask the computer to do it, too.
+            Unfortunately, the dot product in SymPy does not include the complex conjugate.
+            One likely reason for this is that while most mathematicians take the complex conjugate of the <em>second</em> vector,
+            some mathematicians, and most physicists, put the conjugate on the first vector.
+            So they may have decided to remain agnostic about this choice.
+            We can manually apply the conjugate, using <c>Z.dot(W.H)</c>.
+          </p>
+
+          <sage>
+            <input>
+              Z = Matrix([2-I,3*I,4+2*I])
+              W = Matrix([3*I,4-5*I,-2+2*I])
+              Z, W, Z.dot(W.H)
+            </input>
+          </sage>
+
+          <p>
+            Again, you might want to wrap that last term in <c>simplify()</c>.
+            Above, we saw that the complex inner product is designed to be positive definite, like the real inner product.
+            The remaining properties of the complex inner product are given as follows.
+          </p>
+
+          <theorem xml:id="thm-complex-inner-props">
+            <statement>
+              <p>
+                For any vectors <m>\zz_1,\zz_2,\zz_3</m> and any complex number <m>\alpha</m>,
+                <ol>
+                  <li>
+                    <p>
+                      <m>\langle \zz_1+\zz_2,\zz_3\rangle = \langle \zz_1,\zz_3\rangle + \langle zz_2,\zz_3\rangle</m> and
+                      <m>\langle \zz_1,\zz_2+\zz_3\rangle = \langle \zz_1,\zz_2\rangle + \langle zz_1,\zz_3\rangle</m>.
+                    </p>
+                  </li>
+
+                  <li>
+                    <p>
+                      <m>\langle \alpha\zz_1,\zz_2\rangle = \alpha\langle\zz_1,\zz_2\rangle</m>
+                      and <m>\langle \zz_1,\alpha\zz_2\rangle=\bar{\alpha}\langle \zz_1,\zz_2\rangle</m>.
+                    </p>
+                  </li>
+
+                  <li>
+                    <p>
+                      <m>\langle \zz_2,\zz_1\rangle = \overline{\langle \zz_1,\zz_2\rangle}</m>
+                    </p>
+                  </li>
+
+                  <li>
+                    <p>
+                      <m>\langle \zz_1,\zz_1\rangle\geq 0</m>, and <m>\langle \zz_1,\zz_1\rangle =0</m> if and only if <m>\zz_1=\mathbf{0}</m>.
+                    </p>
+                  </li>
+                </ol>
+              </p>
+            </statement>
+          </theorem>
+
 
         </subsection>
       </section>
