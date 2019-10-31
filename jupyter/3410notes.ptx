@@ -10,6 +10,7 @@
       \newcommand{\bbm}{\begin{bmatrix}}
       \newcommand{\ebm}{\end{bmatrix}}
       \newcommand{\R}{\mathbb{R}}
+      \newcommand{\C}{\mathbb{C}}
       \newcommand{\Img}{\operatorname{im}}
       \newcommand{\nll}{\operatorname{null}}
       \newcommand{\csp}{\operatorname{col}}
@@ -18,7 +19,9 @@
       \newcommand{\tr}{\operatorname{tr}}
       \newcommand{\dotp}{\!\boldsymbol{\cdot}\!}
       \newcommand{\len}[1]{\lVert #1\rVert}
+      \newcommand{\abs}[1]{\lvert #1\rvert}
       \newcommand{\proj}[2]{\operatorname{proj}_{#1}{#2}}
+      \newcommand{\bz}{\overline{z}}
     </macros>
     <latex-image-preamble><![CDATA[
       \usepackage{pgfplots}
@@ -4731,6 +4734,230 @@
           This lets us see that our new coordinate axes are simply a rotation (by <m>\pi/4</m>) of the old coordinate axes,
           and our conic section is, accordingly, an ellipse that has been rotated by the same angle.
         </p>
+      </section>
+
+      <section xml:id="sec-complex">
+        <title>Diagonalization of complex matrices</title>
+        <introduction>
+          <p>
+            Recall that when we first defined vector spaces,
+            we mentioned that a vector space can be defined over any <em>field</em> <m>\mathbb{F}</m>.
+            To keep things simple, we've mostly assumed <m>\mathbb{F}=\mathbb{R}</m>.
+            But most of the theorems and proofs we've encountered go through unchanged if we work over a general field.
+            (This is not quite true: over a <em>finite</em> field things can get more complicated.
+            For example, if <m>\mathbb{F}=\mathbb{Z}_2=\{0,1\}</m>,
+            then we get weird results like <m>\vec{v}+\vec{v}=\vec{0}</m>, since <m>1+1=0</m>.)
+          </p>
+
+          <p>
+            In fact, if we replace <m>\R</m> by <m>\C</m>,
+            about the only thing we'd have to go back and change is the definition of the dot product.
+            The reason for this is that although the complex numbers seem computationally more complicated,
+            (which might mostly be because you don't use them often enough)
+            they follow the exact same algebraic rules as the real numbers.
+            In other words, the <em>arithmetic</em> might be different, but the <em>algebra</em> is the same.
+            There is one key difference between the two fields: over the complex numbers,
+            every polynomial can be factored. This is important if you're interested in finding eigenvalues.
+          </p>
+        </introduction>
+
+        <subsection xml:id="subsec-complex-review">
+          <title>Review of complex numbers</title>
+          <p>
+            Let's quickly review some basic facts about complex numbers that are typically covered in an earlier course.
+            First, we define the set of complex numbers by
+            <me>
+              \C = \{x+iy \,|\, x,y\in \R\},
+            </me>
+            where <m>i=\sqrt{-1}</m>. We have a bijection <m>\C \to \R^2</m> given by <m>x+iy\mapsto (x,y)</m>;
+            because of this, we often picture <m>\C</m> as the <em>complex plane</em>, with a <q>real</q> <m>x</m> axis,
+            and an <q>imaginary</q> <m>y</m> axis.
+          </p>
+
+          <p>
+            Arithmetic with complex numbers is defined by
+            <md>
+              <mrow>(x_1+iy_1)+(x_2+iy_2) \amp = (x_1+x_2)+i(y_1+y_2) </mrow>
+              <mrow>(x_1+iy_1)(x_2+iy_2) \amp = (x_1x_2-y_1y_2)+i(x_1y_2+x_2y_1)</mrow>
+            </md>.
+            The multiplication rule looks complicated, but it's really just <q><init>FOIL</init></q>,
+            along with the fact that <m>i^2=-1</m>.
+            Note that if <m>c=c+i0</m> is real, we have <m>c(x+iy)=(cx)+i(cy)</m>,
+            so that <m>\C</m> has the structure of a two dimensional vector space over <m>\R</m> (isomorphic to <m>\R^2</m>).
+          </p>
+
+          <p>
+            Subtraction is defined in the obvious way. Division is less obvious.
+            To define division, it helps to first introduce the <term>complex conjugate</term>.
+            Given a complex number <m>z=x+iy</m>, we define <m>\overline{z}=x-iy</m>.
+            The importance of the conjugate is that we have the identity
+            <me>
+              z\bz = (x+iy)(x-iy)=x^2+y^2
+            </me>.
+            So <m>z\bz</m> is <em>real</em>, and <em>non-negative</em>.
+            This lets us define the <term>modulus</term> of <m>z</m> by
+            <me>
+              \abs{z} = \sqrt{z\bz} = \sqrt{x^2+y^2}
+            </me>.
+            This gives a measure of the magnitude of a complex number,
+            in the same way as the vector norm on <m>\R^2</m>.
+          </p>
+
+          <p>
+            Now, given <m>z=x+iy</m> and <m>w=s+it</m>, we have
+            <me>
+              \frac{z}{w}=\frac{z\bar{w}}{w\bar{w}} = \frac{(x+iy)(s-it)}{s^2+t^2} = \frac{xs-yt}{s^2+t^2}+i\frac{xt+ys}{s^2+t^2}
+            </me>.
+            And of course, we have <m>w\bar{w}\neq 0</m> unless <m>w=0</m>, and as usual, we don't divide by zero.
+          </p>
+
+          <p>
+            An important thing to keep in mind when working with complex numbers is that they follow the same algebraic rules as real numbers.
+            For example, given <m>a,b,z,w</m> all complex, and <m>a\neq 0</m>, where <m>az+b=w</m>,
+            if we want to solve for <m>z</m>, the answer is <m>z=\frac1a(w-b)</m>, as it would be in <m>\R</m>.
+            The difference between <m>\R</m> and <m>\C</m> only really materializes when we want to <em>compute</em>
+            <m>z</m>, by plugging in values for <m>a,b</m> and <m>w</m>.
+          </p>
+
+          <p>
+            One place where <m>\C</m> is <em>computationally</em> more complicated is finding powers and roots.
+            For this, it is often more convenient to write our complex numbers in <term>polar form</term>.
+            The key to the polar form for complex numbers is <em>Euler's identity</em>.
+            For a <em>unit</em> complex number <m>z</m> (that is with <m>\abs{z}=1</m>),
+            we can think of <m>z</m> as a point on the unit circle, and write
+            <me>
+              z = \cos(\theta)+i\sin(\theta)
+            </me>.
+            If <m>\abs{z}=r</m>, we simply change the radius of our circle,
+            so in general, <m>z = r(\cos(\theta)+i\sin(\theta))</m>.
+            Euler's identity states that
+            <men xml:id="eq-euler">
+              \cos(\theta)+i\sin(\theta)=e^{i\theta}
+            </men>.
+          </p>
+
+          <p>
+            This idea of putting a complex number in an exponential function seems odd at first.
+            If you take a course in complex variables, you'll get a better understanding of why this makes sense.
+            But for now, we can take it as a convenient piece of notation.
+            The reason it's convenient is that the rules for complex arithmetic turn out to align quite nicely with properties of the exponential function.
+            For example, de Moivre's Theorem states that
+            <me>
+              (\cos(\theta)+i\sin(\theta))^n = \cos(n\theta)+i\sin(n\theta)
+            </me>.
+            This can be proved by induction (and the proof is not even all that bad),
+            but it seems perfectly obvious in exponential notation:
+            <me>
+              (e^{i\theta})^n = e^{in\theta}
+            </me>,
+            since you multiply exponents when you raise a power to a power.
+          </p>
+
+          <p>
+            Similarly, if we want to multiply two unit complex numbers, we have
+            <md>
+              <mrow>(\cos\alpha+i\sin\alpha)(\cos\beta+i\sin\beta) \amp = (\cos\alpha\cos\beta-\sin\alpha\sin\beta)</mrow>
+              <mrow> \amp \quad\quad +i(\sin\alpha\cos\beta+\cos\alpha\sin\beta)</mrow>
+              <mrow> \amp = \cos(\alpha+\beta)+i\sin(\alpha+\beta)</mrow>
+            </md>.
+            But in exponential notation, this is simply
+            <me>
+              e^{i\alpha}e^{i\beta} = e^{i(\alpha+\beta)}
+            </me>,
+            which makes sense, since when you multiply exponentials, you add the exponents.
+          </p>
+
+          <p>
+            Generally, problems involving addition and subtraction are best handled in <q>rectangular</q> (<m>x+iy</m>)
+            form, while problems involving multiplication and powers are best handled in polar form.
+          </p>
+        </subsection>
+
+        <subsection xml:id="subsec-complex-matrix">
+          <title>Complex matrices</title>
+          <p>
+            A complex vector space is simply a vector space where the scalars are elements of <m>\C</m> rather than <m>\R</m>.
+            Examples include polynomials with complex coefficients, complex-valued functions, and <m>\C^n</m>,
+            which is defined exactly how you think it should be.
+            In fact, one way to obtain <m>\C^n</m> is to start with the exact same standard basis we use for <m>\R^n</m>,
+            and then take linear combinations using complex scalars.
+          </p>
+
+          <p>
+            Linear transformations are defined in exactly the same way,
+            and a complex matrix is simply a matrix whose entries are complex numbers.
+            There are two important operations defined on complex matrices:
+            the conjugate, and the conjugate transpose (also known as the hermitian transpose).
+          </p>
+
+          <definition xml:id="def-conjugate-transpose">
+            <statement>
+              <p>
+                The <term>conjugate</term> of a matrix <m>A=[a_{ij}]\in M_{mn}(\C)</m>
+                is the matrix <m>\bar{A}=[\bar{a}_{ij}]</m>.
+                The <term>conjugate transpose</term> of <m>A</m> is the matrix <m>A^\dagger</m>
+                defined by
+                <me>
+                  A^\dagger = (\bar{A})^T=\overline{(A^T)}
+                </me>.
+              </p>
+            </statement>
+          </definition>
+
+          <p>
+            Note that Nicholson's textbook uses the notation <m>A^H</m> for the conjugate transpose.
+            The conjugate transpose lets use define two special types of complex matrix.
+          </p>
+
+          <definition xml:id="def-hermitian-unitary">
+            <statement>
+              <p>
+                An <m>n\times n</m> matrix <m>A\in M_{nn}(\C)</m> is called <term>hermitian</term>
+                if <m>A^\dagger = A</m>, and <term>unitary</term> if <m>A\dagger = A^{-1}</m>.
+                (A matrix is <term>skew-hermitian</term> if <m>A^\dagger=-A</m>.)
+              </p>
+            </statement>
+          </definition>
+
+          <p>
+            Hermitian and unitary matrices (or more accurately, linear operators) are very important in quantum mechanics.
+            Indeed, hermitian matrices represent <q>observable</q> quantities,
+            in part because their eigenvalues are real, as we'll soon see.
+            For us, hermitian and unitary matrices can simply be viewed as the complex counterparts of symmetric and orthogonal matrices,
+            respectively. In fact, a real symmetric matrix <em>is</em> hermitian,
+            since the conjugate has no effect on it, and similarly, a real orthogonal matrix is technically unitary.
+          </p>
+
+          <exercise>
+            <statement>
+              <p>
+                Show that the matrix <m>A = \bbm 4\amp 1-i\amp -2+3i\\1+i\amp 5 \amp 7i\\-2-3i\amp -7i\amp -4\ebm</m> is hermitian,
+                and that the matrix <m>B = \frac12\bbm 1+i\amp \sqrt{2}\\1-i\amp\sqrt{2}i\ebm</m> is unitary.
+              </p>
+            </statement>
+            <solution>
+              <p>
+                We have <m>\bar{A}=\bbm 4\amp 1+i\amp -2-3i\\1-i\amp 5 \amp -7i\\-2+3i\amp 7i\amp -4\ebm</m>,
+                so
+                <me>
+                  A^\dagger = (\bar{A})^T = \bbm 4\amp 1-i\amp -2+3i\\1+i\amp 5\amp 7i\\-2-3i\amp -7i\amp -4\ebm = A
+                </me>,
+                and
+                <md>
+                  <mrow>BB^\dagger \amp =\frac14\bbm 1+i\amp \sqrt{2}\\1-i\amp\sqrt{2}i\ebm\bbm 1-i\amp 1+i\\\sqrt{2}\amp-\sqrt{2}i\ebm </mrow>
+                  <mrow> \amp =\frac14\bbm (1+i)(1-i)+2\amp (1+i)(1+i)-2i\\(1-i)(1-i)+2i\amp (1-i)(1+i)+2\ebm</mrow>
+                  <mrow> \amp =\frac14\bbm 4\amp 0\\0\amp 4\ebm = \bbm 1\amp 0\\0\amp 1\ebm</mrow>
+                </md>,
+                so that <m>B^\dagger = B^{-1}</m>.
+              </p>
+            </solution>
+          </exercise>
+        </subsection>
+
+        <subsection xml:id="subsec-complex-dot">
+          <title>The standard complex inner product</title>
+
+        </subsection>
       </section>
     </chapter>
   </book>
