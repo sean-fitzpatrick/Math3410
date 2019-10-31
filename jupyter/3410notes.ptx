@@ -4908,26 +4908,25 @@
               <p>
                 The <term>conjugate</term> of a matrix <m>A=[a_{ij}]\in M_{mn}(\C)</m>
                 is the matrix <m>\bar{A}=[\bar{a}_{ij}]</m>.
-                The <term>conjugate transpose</term> of <m>A</m> is the matrix <m>A^\dagger</m>
+                The <term>conjugate transpose</term> of <m>A</m> is the matrix <m>A^H</m>
                 defined by
                 <me>
-                  A^\dagger = (\bar{A})^T=\overline{(A^T)}
+                  A^H = (\bar{A})^T=\overline{(A^T)}
                 </me>.
               </p>
             </statement>
           </definition>
 
           <p>
-            Note that Nicholson's textbook uses the notation <m>A^H</m> for the conjugate transpose.
-            The conjugate transpose lets use define two special types of complex matrix.
+            Note that many textbooks use the notation <m>A^\dagger</m> for the conjugate transpose.
           </p>
 
           <definition xml:id="def-hermitian-unitary">
             <statement>
               <p>
                 An <m>n\times n</m> matrix <m>A\in M_{nn}(\C)</m> is called <term>hermitian</term>
-                if <m>A^\dagger = A</m>, and <term>unitary</term> if <m>A\dagger = A^{-1}</m>.
-                (A matrix is <term>skew-hermitian</term> if <m>A^\dagger=-A</m>.)
+                if <m>A^H = A</m>, and <term>unitary</term> if <m>A^H = A^{-1}</m>.
+                (A matrix is <term>skew-hermitian</term> if <m>A^H=-A</m>.)
               </p>
             </statement>
           </definition>
@@ -4953,15 +4952,15 @@
                 We have <m>\bar{A}=\bbm 4\amp 1+i\amp -2-3i\\1-i\amp 5 \amp -7i\\-2+3i\amp 7i\amp -4\ebm</m>,
                 so
                 <me>
-                  A^\dagger = (\bar{A})^T = \bbm 4\amp 1-i\amp -2+3i\\1+i\amp 5\amp 7i\\-2-3i\amp -7i\amp -4\ebm = A
+                  A^H = (\bar{A})^T = \bbm 4\amp 1-i\amp -2+3i\\1+i\amp 5\amp 7i\\-2-3i\amp -7i\amp -4\ebm = A
                 </me>,
                 and
                 <md>
-                  <mrow>BB^\dagger \amp =\frac14\bbm 1+i\amp \sqrt{2}\\1-i\amp\sqrt{2}i\ebm\bbm 1-i\amp 1+i\\\sqrt{2}\amp-\sqrt{2}i\ebm </mrow>
+                  <mrow>BB^H \amp =\frac14\bbm 1+i\amp \sqrt{2}\\1-i\amp\sqrt{2}i\ebm\bbm 1-i\amp 1+i\\\sqrt{2}\amp-\sqrt{2}i\ebm </mrow>
                   <mrow> \amp =\frac14\bbm (1+i)(1-i)+2\amp (1+i)(1+i)-2i\\(1-i)(1-i)+2i\amp (1-i)(1+i)+2\ebm</mrow>
                   <mrow> \amp =\frac14\bbm 4\amp 0\\0\amp 4\ebm = \bbm 1\amp 0\\0\amp 1\ebm</mrow>
                 </md>,
-                so that <m>B^\dagger = B^{-1}</m>.
+                so that <m>B^H = B^{-1}</m>.
               </p>
             </solution>
           </exercise>
@@ -4983,7 +4982,7 @@
           </sage>
 
           <p>
-            The last line verifies that <m>A=A^\dagger</m>.
+            The last line verifies that <m>A=A^H</m>.
             We could also replace it with <c>A,A.H</c> to explicitly see the two matrices side by side.
             Now, let's confirm that <m>B</m> is unitary.
           </p>
