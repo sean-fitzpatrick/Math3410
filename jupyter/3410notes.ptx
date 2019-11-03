@@ -24,6 +24,7 @@
       \newcommand{\bz}{\overline{z}}
       \newcommand{\zz}{\mathbf{z}}
       \newcommand{\ww}{\mathbf{w}}
+      \newcommand{\basis}[2]{\{\mathbf{#1}_1,\mathbf{#1}_2,\ldots,\mathbf{#1}_{#2}\}}
     </macros>
     <latex-image-preamble><![CDATA[
       \usepackage{pgfplots}
@@ -3719,10 +3720,11 @@
             in the calculation of <m>\vec{v}_3</m>.
             This lets me avoid fractions (momentarily), and doesn't affect the answer,
             since for any nonzero scalar <m>c</m>,
-            <me>
-              \left(\frac{c\vec{v}\dotp \vec{x}}{\len{c\vec{v}}^2}\right)(c\vec{v}) = \left(\frac{c(\vec{v}\dotp\vec{x})}{c^2\len{\vec{v}}^2}\right)(c\vec{v})
-              = \left(\frac{\vec{v}\dotp\vec{x}}{\len{\vec{v}^2}}\right)\vec{v}
-            </me>.
+            <md>
+              <mrow>\left(\frac{c\vec{v}\dotp \vec{x}}{\len{c\vec{v}}^2}\right)\amp(c\vec{v})=</mrow>
+              <mrow>\amp \left(\frac{c(\vec{v}\dotp\vec{x})}{c^2\len{\vec{v}}^2}\right)(c\vec{v})=</mrow>
+              <mrow>\amp\left(\frac{\vec{v}\dotp\vec{x}}{\len{\vec{v}^2}}\right)\vec{v}</mrow>
+            </md>.
           </p>
         </aside>
 
@@ -3781,9 +3783,7 @@
           </p>
 
           <p>
-            Let's see how this might be put to use.
-            Suppose we want to know the distance from the point <m>(3,1,-2)</m> to the plane <m>P</m>
-            defined by <m>x-2y+4z=0</m>.
+            Let's see how this might be put to use in a classic problem: finding the distance from a point to a plane.
           </p>
 
           <aside>
@@ -3798,51 +3798,66 @@
             </p>
           </aside>
 
-          <p>
-            In an elementary linear algebra (or calculus) course, we would solve this problem as follows.
-            First, we would need two vectors parallel to the plane.
-            If <m>\bbm x\\y\\z\ebm</m> lies in the plane, then <m>x-2y+4z=0</m>, so <m>x=2y-4z</m>, and
-            <me>
-              \bbm x\\y\\z\ebm = \bbm 2y-4z\\y\\z\ebm = y\bbm 2\\1\\0\ebm + z\bbm -4\\0\\1\ebm
-            </me>,
-            so <m>\vec{u}=\bbm 2\\1\\0\ebm</m> and <m>\vec{v}\bbm -4\\0\\1\ebm</m> are parallel to the plane.
-            We then compute the normal vector
-            <me>
-              \vec{n}=\vec{u}\times\vec{v}=\bbm 1\\-2\\4\ebm
-            </me>,
-            and compute the projection of the position vector <m>\vec{p}=\bbm 3,1,-2\ebm</m> for the point <m>P=(3,1,-2)</m> onto <m>\vec{n}</m>.
-            This gives the vector
-            <me>
-              \vec{x} = \left(\frac{\vec{p}\dotp\vec{n}}{\len{\vec{n}}^2}\right)\vec{n} = \frac{-7}{21}\bbm 1\\-2\\4\ebm =\bbm-1/3\\2/3\\-4/3\ebm
-            </me>.
-          </p>
+          <example>
+            <statement>
+              <p>
+                Find the distance from the point <m>(3,1,-2)</m> to the plane <m>P</m>
+                defined by <m>x-2y+4z=0</m>.
+              </p>
+            </statement>
+            <solution>
+              <title>Using projection onto a normal vector</title>
 
-          <p>
-            Now, this vector is <em>parallel</em> to <m>\vec{n}</m>, so it's perpendicular to the plane.
-            Subtracting it from <m>\vec{p}</m> gives a vector parallel to the plane, and this is the position vector for the point we seek.
-            <me>
-              \vec{q}=\vec{p}-\vec{x}=\bbm 3\\1\\-2\ebm-\bbm -1/3\\-2/3\\-4/3\ebm = \bbm 10/3\\1/3\\-2/3\ebm
-            </me>
-            so the closest point is <m>Q=\bigl(\frac{10}{3},\frac13,-\frac{2}{3}\bigr)</m>.
-            We weren't asked for it, but note that if we wanted the distance from the point <m>P</m> to the plane,
-            this is given by <m>\len{\vec{x}}=\frac13\sqrt{21}</m>.
-          </p>
+              <p>
+                In an elementary linear algebra (or calculus) course, we would solve this problem as follows.
+                First, we would need two vectors parallel to the plane.
+                If <m>\bbm x\\y\\z\ebm</m> lies in the plane, then <m>x-2y+4z=0</m>, so <m>x=2y-4z</m>, and
+                <me>
+                  \bbm x\\y\\z\ebm = \bbm 2y-4z\\y\\z\ebm = y\bbm 2\\1\\0\ebm + z\bbm -4\\0\\1\ebm
+                </me>,
+                so <m>\vec{u}=\bbm 2\\1\\0\ebm</m> and <m>\vec{v}\bbm -4\\0\\1\ebm</m> are parallel to the plane.
+                We then compute the normal vector
+                <me>
+                  \vec{n}=\vec{u}\times\vec{v}=\bbm 1\\-2\\4\ebm
+                </me>,
+                and compute the projection of the position vector <m>\vec{p}=\bbm 3,1,-2\ebm</m> for the point <m>P=(3,1,-2)</m> onto <m>\vec{n}</m>.
+                This gives the vector
+                <me>
+                  \vec{x} = \left(\frac{\vec{p}\dotp\vec{n}}{\len{\vec{n}}^2}\right)\vec{n} = \frac{-7}{21}\bbm 1\\-2\\4\ebm =\bbm-1/3\\2/3\\-4/3\ebm
+                </me>.
+              </p>
 
-          <p>
-            Let's solve the same problem using orthogonal projection.
-            First, we have to deal with the fact that the vectors <m>\vec{u}</m> and <m>\vec{v}</m> are probably not orthogonal.
-            To get around this, we replace <m>\vec{v}</m> with
-            <me>
-              \vec{w} = \vec{v}-\left(\frac{\vec{v}\dotp\vec{u}}{\len{\vec{u}}^2}\right)\vec{u} = \bbm -4\\0\\1\ebm+\frac 85\bbm 2\\1\\0\ebm = \bbm -4/5\\8/5\\1\ebm
-            </me>.
-            We now set
-            <md>
-              <mrow>\vec{q} \amp =\left(\frac{\vec{p}\dotp\vec{u}}{\len{\vec{u}}^2}\right)\vec{u}-\left(\frac{\vec{p}\dotp\vec{w}}{\len{\vec{w}}^2}\right)\vec{w}</mrow>
-              <mrow> \amp = \frac{7}{5}\bbm 2\\1\\0\ebm +\frac{-14}{105}\bbm -4\\8\\5\ebm </mrow>
-              <mrow> \amp = \bbm 10/3\\1/3\\-2/3\ebm</mrow>
-            </md>.
-            Lo and behold, we get the same answer as before.
-          </p>
+              <p>
+                Now, this vector is <em>parallel</em> to <m>\vec{n}</m>, so it's perpendicular to the plane.
+                Subtracting it from <m>\vec{p}</m> gives a vector parallel to the plane, and this is the position vector for the point we seek.
+                <me>
+                  \vec{q}=\vec{p}-\vec{x}=\bbm 3\\1\\-2\ebm-\bbm -1/3\\-2/3\\-4/3\ebm = \bbm 10/3\\1/3\\-2/3\ebm
+                </me>
+                so the closest point is <m>Q=\bigl(\frac{10}{3},\frac13,-\frac{2}{3}\bigr)</m>.
+                We weren't asked for it, but note that if we wanted the distance from the point <m>P</m> to the plane,
+                this is given by <m>\len{\vec{x}}=\frac13\sqrt{21}</m>.
+              </p>
+            </solution>
+            <solution>
+              <title>Using orthogonal projection</title>
+
+              <p>
+                Let's solve the same problem using orthogonal projection.
+                First, we have to deal with the fact that the vectors <m>\vec{u}</m> and <m>\vec{v}</m> are probably not orthogonal.
+                To get around this, we replace <m>\vec{v}</m> with
+                <me>
+                  \vec{w} = \vec{v}-\left(\frac{\vec{v}\dotp\vec{u}}{\len{\vec{u}}^2}\right)\vec{u} = \bbm -4\\0\\1\ebm+\frac 85\bbm 2\\1\\0\ebm = \bbm -4/5\\8/5\\1\ebm
+                </me>.
+                We now set
+                <md>
+                  <mrow>\vec{q} \amp =\left(\frac{\vec{p}\dotp\vec{u}}{\len{\vec{u}}^2}\right)\vec{u}-\left(\frac{\vec{p}\dotp\vec{w}}{\len{\vec{w}}^2}\right)\vec{w}</mrow>
+                  <mrow> \amp = \frac{7}{5}\bbm 2\\1\\0\ebm +\frac{-14}{105}\bbm -4\\8\\5\ebm </mrow>
+                  <mrow> \amp = \bbm 10/3\\1/3\\-2/3\ebm</mrow>
+                </md>.
+                Lo and behold, we get the same answer as before.
+              </p>
+            </solution>
+          </example>
 
           <p>
             The only problem with <xref ref="def-ortho-projection"/> is that it appears to depend on the choice of orthogonal basis.
@@ -4875,8 +4890,8 @@
           </p>
         </subsection>
 
-        <subsection xml:id="subsec-complex-matrix">
-          <title>Complex matrices</title>
+        <subsection xml:id="subsec-complex-vector">
+          <title>Complex vectors</title>
           <p>
             A complex vector space is simply a vector space where the scalars are elements of <m>\C</m> rather than <m>\R</m>.
             Examples include polynomials with complex coefficients, complex-valued functions, and <m>\C^n</m>,
@@ -4896,114 +4911,6 @@
             </me>.
           </p>
 
-          <p>
-            Linear transformations are defined in exactly the same way,
-            and a complex matrix is simply a matrix whose entries are complex numbers.
-            There are two important operations defined on complex matrices:
-            the conjugate, and the conjugate transpose (also known as the hermitian transpose).
-          </p>
-
-          <definition xml:id="def-conjugate-transpose">
-            <statement>
-              <p>
-                The <term>conjugate</term> of a matrix <m>A=[a_{ij}]\in M_{mn}(\C)</m>
-                is the matrix <m>\bar{A}=[\bar{a}_{ij}]</m>.
-                The <term>conjugate transpose</term> of <m>A</m> is the matrix <m>A^H</m>
-                defined by
-                <me>
-                  A^H = (\bar{A})^T=\overline{(A^T)}
-                </me>.
-              </p>
-            </statement>
-          </definition>
-
-          <p>
-            Note that many textbooks use the notation <m>A^\dagger</m> for the conjugate transpose.
-          </p>
-
-          <definition xml:id="def-hermitian-unitary">
-            <statement>
-              <p>
-                An <m>n\times n</m> matrix <m>A\in M_{nn}(\C)</m> is called <term>hermitian</term>
-                if <m>A^H = A</m>, and <term>unitary</term> if <m>A^H = A^{-1}</m>.
-                (A matrix is <term>skew-hermitian</term> if <m>A^H=-A</m>.)
-              </p>
-            </statement>
-          </definition>
-
-          <p>
-            Hermitian and unitary matrices (or more accurately, linear operators) are very important in quantum mechanics.
-            Indeed, hermitian matrices represent <q>observable</q> quantities,
-            in part because their eigenvalues are real, as we'll soon see.
-            For us, hermitian and unitary matrices can simply be viewed as the complex counterparts of symmetric and orthogonal matrices,
-            respectively. In fact, a real symmetric matrix <em>is</em> hermitian,
-            since the conjugate has no effect on it, and similarly, a real orthogonal matrix is technically unitary.
-          </p>
-
-          <exercise>
-            <statement>
-              <p>
-                Show that the matrix <m>A = \bbm 4\amp 1-i\amp -2+3i\\1+i\amp 5 \amp 7i\\-2-3i\amp -7i\amp -4\ebm</m> is hermitian,
-                and that the matrix <m>B = \frac12\bbm 1+i\amp \sqrt{2}\\1-i\amp\sqrt{2}i\ebm</m> is unitary.
-              </p>
-            </statement>
-            <solution>
-              <p>
-                We have <m>\bar{A}=\bbm 4\amp 1+i\amp -2-3i\\1-i\amp 5 \amp -7i\\-2+3i\amp 7i\amp -4\ebm</m>,
-                so
-                <me>
-                  A^H = (\bar{A})^T = \bbm 4\amp 1-i\amp -2+3i\\1+i\amp 5\amp 7i\\-2-3i\amp -7i\amp -4\ebm = A
-                </me>,
-                and
-                <md>
-                  <mrow>BB^H \amp =\frac14\bbm 1+i\amp \sqrt{2}\\1-i\amp\sqrt{2}i\ebm\bbm 1-i\amp 1+i\\\sqrt{2}\amp-\sqrt{2}i\ebm </mrow>
-                  <mrow> \amp =\frac14\bbm (1+i)(1-i)+2\amp (1+i)(1+i)-2i\\(1-i)(1-i)+2i\amp (1-i)(1+i)+2\ebm</mrow>
-                  <mrow> \amp =\frac14\bbm 4\amp 0\\0\amp 4\ebm = \bbm 1\amp 0\\0\amp 1\ebm</mrow>
-                </md>,
-                so that <m>B^H = B^{-1}</m>.
-              </p>
-            </solution>
-          </exercise>
-
-          <p>
-            When using SymPy, the hermitial conjugate of a matrix <c>A</c> is executed using <c>A.H</c>.
-            (There appears to also be an equivalent operation named <c>Dagger</c> coming from <c>sympy.physics.quantum</c>,
-            but I've had more success with <c>.H</c>.) The complex unit is entered as <c>I</c>.
-            So for the exercise above, we can do the following.
-          </p>
-
-          <sage>
-            <input>
-              from sympy import *
-              init_printing()
-              A = Matrix(3,3,[4,1-I,-2+3*I,1+I,5,7*I,-2-3*I,-7*I,-4])
-              A == H
-            </input>
-          </sage>
-
-          <p>
-            The last line verifies that <m>A=A^H</m>.
-            We could also replace it with <c>A,A.H</c> to explicitly see the two matrices side by side.
-            Now, let's confirm that <m>B</m> is unitary.
-          </p>
-
-          <sage>
-            <input>
-              B = Matrix(2,2,[1/2+1/2*I, sqrt(2)/2,1/2-1/2*I,(sqrt(2)/2)*I])
-              B,B*B.H
-            </input>
-          </sage>
-
-          <p>
-            Hmm... That doesn't look like the identity. Maybe try replacing <c>B*B.H</c> with <c>simplify(B*B.H)</c>.
-            Or you could try <c>B.H, B**-1</c> to compare results.
-            Actually, what's interesting is that in a Sage cell, <c>B.H == B**-1</c> yields <c>False</c>,
-            but <c>B.H == simplify(B**-1)</c> yields <c>True</c>!
-          </p>
-        </subsection>
-
-        <subsection xml:id="subsec-complex-dot">
-          <title>The standard complex inner product</title>
           <p>
             The standard inner product on <m>\C^n</m> looks a lot like the dot product on <m>\R^n</m>,
             with one important difference: we apply a complex conjugate to the second vector.
@@ -5095,8 +5002,565 @@
                 </ol>
               </p>
             </statement>
+            <proof>
+              <p>
+                <ol>
+                  <li>
+                    <p>
+                      Using the distributive properties of matrix multiplication and the transpose,
+                      <md>
+                        <mrow>\langle \zz_1+\zz_2,\zz_3\rangle \amp= (\zz_1+\zz_2)^T\bar{\zz_3}</mrow>
+                        <mrow> \amp =(\zz_1^T+\zz_2^T)\bar{\zz_3}</mrow>
+                        <mrow> \amp =\zz_1^T\bar{\zz_3}+\zz_2^T\bar{\zz_3}</mrow>
+                        <mrow> \amp =\langle \zz_1,\zz_3\rangle + \langle \zz_2,\zz_3\rangle</mrow>
+                      </md>.
+                      The proof is similar when addition is in the second component.
+                      (But not identical -- you'll need the fact that the complex conjugate is distributive, rather than the transpose.)
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      These again follow from writing the inner product as a matrix product.
+                      <me>
+                        \langle \alpha\zz_1,\zz_2\rangle = (\alpha \zz_1)^T\bar{\zz_2} = \alpha(\zz_1^T\bar{\zz_2}) = \alpha\langle\zz_1,\zz_2\rangle
+                      </me>,
+                      and
+                      <me>
+                        \langle \zz_1,\alpha\zz_2\rangle = \zz_1^T\overline{\alpha \zz_2} = \zz_1^T(\bar{\alpha}\bar{\zz_2}) = \bar{\alpha}(\zz_1^T\zz_2)=\alpha\langle \zz_1,\zz_2\rangle
+                      </me>.
+                    </p>
+                  </li>
+
+                  <li>
+                    <p>
+                      Note that for any vectors <m>\zz,\ww</m>, <m>\zz^T\ww</m> is a number,
+                      and therefore equal to its own transpose.
+                      Thus, we have <m>\zz^T\ww = (\zz^T\ww)^T=\ww^T\zz</m>, and
+                      <me>
+                        \overline{\langle \zz_1,\zz_2\rangle} = \overline{\zz_1^T\bar{\zz_2}} = \overline{\bar{\zz_2}^T\zz_1} = \zz_2^T\overline{\zz_1}=\langle \zz_2,\zz_1
+                      </me>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      This was already demonstrated above.
+                    </p>
+                  </li>
+                </ol>
+              </p>
+            </proof>
+
           </theorem>
 
+          <definition xml:id="def-complex-norm">
+            <statement>
+              <p>
+                The <term>norm</term> of a vector <m>\zz = (z_1,z_2,\ldots, z_n)</m> in <m>\C^n</m> is given by
+                <me>
+                  \len{\zz} = \sqrt{\langle \zz,\zz\rangle} = \sqrt{\abs{z_1}^2+\abs{z_2}^2+\cdots +\abs{z}_n}^2}
+                </me>.
+              </p>
+            </statement>
+          </definition>
+
+          <p>
+            Note that much like the real norm, the complex norm satisfies <m>\len{\alpha\zz}=\abs{\alpha}\len{\zz}</m>
+            for any (complex) scalar <m>\alpha</m>.
+          </p>
+        </subsection>
+
+        <subsection xml:id="subsec-complex-matrix">
+          <title>Complex matrices</title>
+          <p>
+            Linear transformations are defined in exactly the same way,
+            and a complex matrix is simply a matrix whose entries are complex numbers.
+            There are two important operations defined on complex matrices:
+            the conjugate, and the conjugate transpose (also known as the hermitian transpose).
+          </p>
+
+          <definition xml:id="def-conjugate-transpose">
+            <statement>
+              <p>
+                The <term>conjugate</term> of a matrix <m>A=[a_{ij}]\in M_{mn}(\C)</m>
+                is the matrix <m>\bar{A}=[\bar{a}_{ij}]</m>.
+                The <term>conjugate transpose</term> of <m>A</m> is the matrix <m>A^H</m>
+                defined by
+                <me>
+                  A^H = (\bar{A})^T=\overline{(A^T)}
+                </me>.
+              </p>
+            </statement>
+          </definition>
+
+          <p>
+            Note that many textbooks use the notation <m>A^\dagger</m> for the conjugate transpose.
+          </p>
+
+          <definition xml:id="def-hermitian-unitary">
+            <statement>
+              <p>
+                An <m>n\times n</m> matrix <m>A\in M_{nn}(\C)</m> is called <term>hermitian</term>
+                if <m>A^H = A</m>, and <term>unitary</term> if <m>A^H = A^{-1}</m>.
+                (A matrix is <term>skew-hermitian</term> if <m>A^H=-A</m>.)
+              </p>
+            </statement>
+          </definition>
+
+          <p>
+            Hermitian and unitary matrices (or more accurately, linear operators) are very important in quantum mechanics.
+            Indeed, hermitian matrices represent <q>observable</q> quantities,
+            in part because their eigenvalues are real, as we'll soon see.
+            For us, hermitian and unitary matrices can simply be viewed as the complex counterparts of symmetric and orthogonal matrices,
+            respectively. In fact, a real symmetric matrix <em>is</em> hermitian,
+            since the conjugate has no effect on it, and similarly, a real orthogonal matrix is technically unitary.
+            As with orthogonal matrices, a unitary matrix can also be characterized by the property that its rows and columns both form orthonormal bases.
+          </p>
+
+          <exercise>
+            <statement>
+              <p>
+                Show that the matrix <m>A = \bbm 4\amp 1-i\amp -2+3i\\1+i\amp 5 \amp 7i\\-2-3i\amp -7i\amp -4\ebm</m> is hermitian,
+                and that the matrix <m>B = \frac12\bbm 1+i\amp \sqrt{2}\\1-i\amp\sqrt{2}i\ebm</m> is unitary.
+              </p>
+            </statement>
+            <solution>
+              <p>
+                We have <m>\bar{A}=\bbm 4\amp 1+i\amp -2-3i\\1-i\amp 5 \amp -7i\\-2+3i\amp 7i\amp -4\ebm</m>,
+                so
+                <me>
+                  A^H = (\bar{A})^T = \bbm 4\amp 1-i\amp -2+3i\\1+i\amp 5\amp 7i\\-2-3i\amp -7i\amp -4\ebm = A
+                </me>,
+                and
+                <md>
+                  <mrow>BB^H \amp =\frac14\bbm 1+i\amp \sqrt{2}\\1-i\amp\sqrt{2}i\ebm\bbm 1-i\amp 1+i\\\sqrt{2}\amp-\sqrt{2}i\ebm </mrow>
+                  <mrow> \amp =\frac14\bbm (1+i)(1-i)+2\amp (1+i)(1+i)-2i\\(1-i)(1-i)+2i\amp (1-i)(1+i)+2\ebm</mrow>
+                  <mrow> \amp =\frac14\bbm 4\amp 0\\0\amp 4\ebm = \bbm 1\amp 0\\0\amp 1\ebm</mrow>
+                </md>,
+                so that <m>B^H = B^{-1}</m>.
+              </p>
+            </solution>
+          </exercise>
+
+          <p>
+            When using SymPy, the hermitian conjugate of a matrix <c>A</c> is executed using <c>A.H</c>.
+            (There appears to also be an equivalent operation named <c>Dagger</c> coming from <c>sympy.physics.quantum</c>,
+            but I've had more success with <c>.H</c>.) The complex unit is entered as <c>I</c>.
+            So for the exercise above, we can do the following.
+          </p>
+
+          <sage>
+            <input>
+              from sympy import *
+              init_printing()
+              A = Matrix(3,3,[4,1-I,-2+3*I,1+I,5,7*I,-2-3*I,-7*I,-4])
+              A == H
+            </input>
+          </sage>
+
+          <p>
+            The last line verifies that <m>A=A^H</m>.
+            We could also replace it with <c>A,A.H</c> to explicitly see the two matrices side by side.
+            Now, let's confirm that <m>B</m> is unitary.
+          </p>
+
+          <sage>
+            <input>
+              B = Matrix(2,2,[1/2+1/2*I, sqrt(2)/2,1/2-1/2*I,(sqrt(2)/2)*I])
+              B,B*B.H
+            </input>
+          </sage>
+
+          <p>
+            Hmm... That doesn't look like the identity. Maybe try replacing <c>B*B.H</c> with <c>simplify(B*B.H)</c>.
+            Or you could try <c>B.H, B**-1</c> to compare results.
+            Actually, what's interesting is that in a Sage cell, <c>B.H == B**-1</c> yields <c>False</c>,
+            but <c>B.H == simplify(B**-1)</c> yields <c>True</c>!
+          </p>
+
+          <p>
+            As mentioned above, hermitian matrices are the complex analogue of symmetric matrices.
+            Recall that a key property of a symmetric matrix is its symmetry with respect to the dot product.
+            For a symmetric matrix <m>A</m>, we had <m>\mathbf{x}\dotp (A\mathbf{y})=(A\mathbf{x})\dotp \mathbf{y}</m>.
+            Hermtian matrices exhibit the same behaviour with respect to the complex inner product.
+          </p>
+
+          <theorem xml:id="thm-hermitian-symmetry">
+            <statement>
+              <p>
+                An <m>n\times n</m> complex matrix <m>A</m> is Hermitian if and only if
+                <me>
+                  \langle A\zz,\ww\rangle = \langle \zz, A\ww\rangle
+                </me>
+                for any <m>\zz,\ww\in\C^n</m>
+              </p>
+            </statement>
+            <proof>
+              <p>
+                Note that the property <m>A^H=A</m> is equivalent to <m>A^T=\bar{A}</m>.
+                This gives us
+                <me>
+                  \langle A\zz,\ww\rangle = (A\zz)^T\bar{\ww} = (\zz^TA^T)\bar{\ww} = (\zz^T\bar{A})\bar{\ww}=\zz^T(\overline{A\ww}) = \langle \zz,\ww\rangle
+                </me>.
+                Conversely, suppose <m>\langle A\zz,\ww\rangle = \langle \zz, A\ww\rangle</m> for all <m>\zz,\ww\in \C^n</m>,
+                and let <m>\basis{e}{n}</m> denote the standard basis for <m>\C^n</m>. Then
+                <me>
+                  a_{ji}=\langle A\mathbf{e}_i,\mathbf{e}_j\rangle = \langle \mathbf{e}_i,A\mathbf{e}_j\rangle = \overline{a_{ij}}
+                </me>,
+                which shows that <m>A^T=\bar{A}</m>.
+              </p>
+            </proof>
+          </theorem>
+
+          <p>
+            Next, we've noted that one advantage of doing linear algebra over <m>\C</m> is that every polynomial can be completely factored,
+            including the characteristic polynomial. This means that we can always find eigenvalues for a matrix.
+            When that matrix is Hermitian, we get a surprising result.
+          </p>
+
+          <theorem xml:id="thm-hermitian-eigen-real">
+            <statement>
+              <p>
+                For any hermitian matrix <m>A</m>,
+                <ol>
+                  <li>
+                    <p>
+                      The eigenvalues of <m>A</m> are real.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Eigenvectors corresponding to distinct eigenvalues are orthogonal.
+                    </p>
+                  </li>
+                </ol>
+              </p>
+            </statement>
+            <proof>
+              <p>
+                <ol>
+                  <li>
+                    <p>
+                      Suppose <m>A\zz = \lambda\zz</m> for some <m>\lambda\in\C</m> and <m>\zz\neq \mathbf{0}</m>.
+                      Then
+                      <me>
+                        \lambda \langle \zz,\zz\rangle  = \langle \lambda\zz,\zz\rangle = \langle A\zz,\zz \rangle = \langle \zz, A\zz\rangle = \langle \zz,\lambda,\zz\rangle = \bar{\lambda}\langle \zz,\zz\rangle
+                      </me>.
+                      Thus, <m>(\lambda-\bar{\lambda})\len{\zz}^2=0</m>, and since <m>\len{z}\neq 0</m>, we must have <m>\bar{\lambda}=\lambda</m>, which means <m>\lambda\in\R</m>.
+                    </p>
+                  </li>
+
+                  <li>
+                    <p>
+                      Similarly, suppose <m>\lambda_1,\lambda_2</m> are eigenvalues of <m>A</m>,
+                      with corresonding eigenvectors <m>\zz,\ww</m>. Then
+                      <me>
+                        \lambda_1\langle \zz,\ww\rangle = \langle \lambda_1\zz,\ww\rangle = \langle A\zz,\ww\rangle =\langle \zz,A\ww\rangle = \langle \zz,\lambda_2\ww\rangle = \bar{\lambda_2}\langle\zz,\ww\rangle
+                      </me>.
+                      This gives us <m>(\lambda_1-\bar{\lambda_2})\langle \zz,\ww\rangle=0</m>.
+                      And since we already know <m>\lambda_2</m> must be real,
+                      and <m>\lambda_1\neq \lambda_2</m>, we must have <m>\langle, \zz,\ww\rangle = 0</m>.
+                    </p>
+                  </li>
+                </ol>
+              </p>
+            </proof>
+
+          </theorem>
+
+          <p>
+            In light of <xref ref="thm-hermitian-eigen-real"/>,
+            we realize that diagonalization of hermitian matrices will follow the same script as for symmetric matrices.
+            Indeed, <xref ref="thm-gram-schmidt" text="title"/> applies equally well in <m>\C^n</m>,
+            as long as we replace the dot product with the complex inner product.
+            This suggests the following.
+          </p>
+
+          <theorem xml:id="thm-complex-spectral">
+            <title>Spectral Theorem</title>
+
+            <statement>
+              <p>
+                If <m>A</m> is an <m>n\times n</m> hermitian matrix,
+                then there exists an orthonormal basis of <m>\C^n</m> consisting of eigenvectors of <m>A</m>.
+                Moreover, the matrix <m>U</m> whose columns consist of those eigenvectors is unitary,
+                and the matrix <m>U^HAU</m> is diagonal.
+              </p>
+            </statement>
+          </theorem>
+
+          <exercise>
+            <statement>
+              <p>
+                Confirm that the matrix <m>A = \bbm 4 \amp 3-i\\3+i\amp 1\ebm</m> is hermitian.
+                Then, find the eigenvalues of <m>A</m>, and a unitary matrix <m>U</m> such that <m>U^HAU</m> is diagonal.
+              </p>
+            </statement>
+            <solution>
+              <p>
+                Confirming that <m>A^H=A</m> is almost immediate.
+                We will use the computer below to compute the eigenvalues and eigenvectors of <m>A</m>,
+                but it's useful to attempt this at least once by hand. We have
+                <md>
+                  <mrow>\det(zI-A) \amp = \det\bbm z-4 \amp -3+i\\-3-i\amp z-1\ebm</mrow>
+                  <mrow> \amp (z-4)(z-1)-(-3-i)(-3+i)</mrow>
+                  <mrow> \amp z^2-5z+4-10</mrow>
+                  <mrow> \amp (z+1)(z-6)</mrow>
+                </md>,
+                so the eigenvalues are <m>\lambda_1=-1</m> and <m>\lambda_2=6</m>,
+                which are both real, as expected.
+              </p>
+
+              <p>
+                Finding eigenvectors can seem trickier than with real numbers,
+                mostly because it is no longer immediately apparent when one row or a matrix is a multiple of another.
+                But we know that the rows of <m>A-\lambda I</m> must be parallel for a <m>2\times 2</m> matrix,
+                which lets proceed nonetheless.
+              </p>
+
+              <p>
+                For <m>\lambda_1=-1</m>, we have
+                <me>
+                  A + I =\bbm 5 \amp 3-i\\3+i\amp 2\ebm
+                </me>.
+                There are two ways one can proceed from here.
+                We could use row operations to get to the reduced row-echelon form of <m>A</m>.
+                If we take this approach, we multiply row 1 by <m>\frac15</m>,
+                and then take <m>-3-i</m> times the new row 1 and add it to row 2, to create a zero, and so on.
+              </p>
+
+              <p>
+                Easier is to realize that if we haven't made a mistake calculating our eigenvalues,
+                then the above matrix can't be invertible, so there must be some nonzero vector in the kernel.
+                If <m>(A+I)\bbm a\\b\ebm=\bbm0\\0\ebm</m>, then we must have
+                <me>
+                  5a+(3-i)b=0
+                </me>,
+                when we mutliply by the first row of <m>A</m>.
+                This suggests that we take <m>a=3-i</m> and <m>b=-5</m>,
+                to get <m>\zz = \bbm 3-i\\-5\ebm</m> as our first eigenvector.
+                To make sure we've done things correctly, we multiply by the second row of <m>A+I</m>:
+                <me>
+                  (3+i)(3-i)+2(-5) = 10-10 = 0
+                </me>.
+                Success! Now we move onto the second eigenvalue.
+              </p>
+
+              <p>
+                For <m>\lambda_2=6</m>, we get
+                <me>
+                  A-6I = \bbm -2\amp 3-i\\3+i\amp -5\ebm
+                </me>.
+                If we attempt to read off the answer like last time,
+                the first row of <m>A-6I</m> suggests the vector <m>\ww = \bbm 3-i\\2\ebm</m>.
+                Checking the second row to confirm, we find:
+                <me>
+                  (3+i)(3-i)-5(2) = 10-10=0
+                </me>,
+                as before.
+              </p>
+
+              <p>
+                Finally, we note that
+                <me>
+                  \langle \zz, \ww\rangle = (3-i)\overline{(3-i)}+(-5)(2) = (3-i)(3+i)-10 = 0
+                </me>,
+                so the two eigenvectors are orthogonal, as expected. We have
+                <me>
+                  \len{\zz}=\sqrt{10+25}=\sqrt{35} \quad \text{ and } \quad \len{\ww}=\sqrt{10+4}=\sqrt{14}
+                </me>,
+                so our orthogonal matrix is
+                <me>
+                  U = \bbm \frac{3-i}{\sqrt{35}}\amp \frac{3-i}{\sqrt{14}}\\-\frac{5}{\sqrt{35}}\amp \frac{2}{\sqrt{35}}\ebm
+                </me>.
+                With a bit of effort, we can finally confirm that
+                <me>
+                  U^HAU = \bbm -1\amp 0\\0\amp 6\ebm
+                </me>,
+                as expected.
+              </p>
+            </solution>
+          </exercise>
+
+          <p>
+            To do the above exercise using SymPy, we first define <m>A</m> and ask for the eigenvectors.
+          </p>
+
+          <sage>
+            <input>
+              from sympy import *
+              init_printing()
+              A = Matrix(2,2,[4,3-I,3+I,1])
+              A.eigenvects()
+            </input>
+          </sage>
+
+          <p>
+            We can now manually determine the matrix <m>U</m>, as we did above, and input it:
+          </p>
+
+          <sage>
+            <input>
+              U = Matrix(2,2,[(3-I)/sqrt(35),(3-I)/sqrt(14),-5/sqrt(35),2/sqrt(35)])
+            </input>
+          </sage>
+
+          <p>
+            To confirm it's unitary, add the line <c>U*U.H</c> to the above,
+            and confirm that you get the identity matrix as output.
+            You might need to use <c>simplify(U*U.H)</c> if the result is not clear.
+            Now, to confirm that <m>U^HAU</m> really is diagonal, go back to the cell above, and enter it.
+            Try <c>(U.H)*A*U</c>, just to remind yourself that adding the <c>simplify</c> command is often a good idea.
+          </p>
+
+          <p>
+            If you want to cut down on the manual labour involved, we can make use of some of the other tools SymPy provides.
+            In the next cell, we're going to assign the output of <c>A.eigenvects()</c> to a list.
+            The only trouble is that the output of the eigenvector command is a list of lists.
+            Each list item is a list <c>(eigenvalue, multiplicity, [eigenvectors])</c>.
+          </p>
+
+          <sage>
+            <input>
+              L = A.eigenvects()
+              L
+            </input>
+          </sage>
+
+          <p>
+            Try the above modifications, in sequence.
+            First, replacing the second line by <c>L[0]</c> will give the first list item, which is another list:
+            <me>
+              \left(-1,1,\left[\bbm -\frac35+\frac{i}{5}\ebm\right])
+            </me>.
+            We want the third item in the list, so try <c>(L[0])[2]</c>.
+            But note the extra set of brackets! There could (in theory) be more than one eigenvector,
+            so this is a list with one item. To finally get the vector out, try <c>((L[0])[2])[0]</c>.
+            (There is probably a better way to do this. Someone who is more fluent in Python is welcome to advise.)
+          </p>
+
+          <p>
+            Now that we know how to extract the eigenvectors, we can normalize them, and join them to make a matrix.
+            The norm of a vector is simnply <c>v.norm()</c>, and to join column vectors <c>u1</c> and <c>u2</c> to make a matrix,
+            we can use the command <c>u1.row_join(u2)</c>. We already defined the matrix <c>A</c> and list <c>L</c> above,
+            but here is the whole routine in one cell, in case you didn't run all the cells above.
+          </p>
+
+          <sage>
+            <input>
+              from sympy import *
+              init_printing()
+              A = Matrix(2,2,[4,3-I,3+I,1])
+              L = A.eigenvects()
+              v = ((L[0])[2])[0]
+              w = ((L[1])[2])[0]
+              u1 = (1/v.norm())*v
+              u2 = (1/w.norm())*w
+              U = u1.row_join(u2)
+              u1, u2, U, simplify(U.H*A*U)
+            </input>
+          </sage>
+
+          <p>
+            Believe me, you want the simplify command on that last matrix.
+          </p>
+
+          <p>
+            While <xref ref="thm-complex-spectral"/> guarantees that any hermitian matrix can be <q>unitarily diagaonalizaed</q>,
+            there are also non-hermitial matrices for which this can be done as well.
+            A classic example of this is given in Nicholson's book, so we do not repeat the details here:
+            the matrix <m>\bbm 0\amp 1\\-1\amp 0\ebm</m> is a real matrix with complex eigenvalues <m>\pm i</m>,
+            and while it is neither symmetric nor hermitian, it can be orthogonally diagonalized.
+            This should be contrasted with the real spectral theroem,
+            where any matrix that can be orthogonally diagonalized is necessarily symmetric.
+          </p>
+
+          <p>
+            This suggests that perhaps hermitian matrices are not quite the correct class of matrix for which the spectral theorem should be stated.
+            Indeed, it turns out there is a somewhat more general class of matrix: the <em>normal</em> matrices.
+          </p>
+
+          <definition xml:id="def-normal-matrix">
+            <statement>
+              <p>
+                An <m>n\times n</m> matrix <m>A</m> is <term>normal</term> if <m>A^HA = AA^H</m>.
+              </p>
+            </statement>
+          </definition>
+
+          <p>
+            It turns out that a matrix <m>A</m> is normal if and only if <m>A=UDU^H</m> for some unitary matrix <m>U</m> and diagonal matrix <m>D</m>.
+            A further generalization is known as <em>Schur's Theorem</em>.
+          </p>
+
+          <theorem xml:id="thm-schurr">
+            <statement>
+              <p>
+                For <em>any</em> complex <m>n\times n</m> matrix <m>A</m>,
+                there exists a unitary matrix <m>U</m> such that <m>U^HAU = T</m> is upper-triangular,
+                and such that the diagonal entires of <m>T</m> are the eigenvalues of <m>A</m>.
+              </p>
+            </statement>
+          </theorem>
+
+          <p>
+            Using Schur's Theorem, we can obtain a famous result, known as the Cayley-Hamilton Theorem,
+            for the case of complex matrices. (It is true for real matrices as well, but we don't yet have the tools to prove it.)
+            The Cayley-Hamilton Theorem states that substituting any matrix into its characteristic polynomial results in the zero matrix.
+            To understand this result, we should first explain how to define a polynomial of a matrix.
+          </p>
+
+          <p>
+            Given a polynomial <m>p(x) = a_0+a_1x+\cdots + a_nx_n</m>, we define <m>p(A)</m> as
+            <me>
+              p(A) = a_0I+a_1A+\cdots + a_nA^n
+            </me>.
+            (Note the presence of the identity matrix in the first term, since it does not make sense to add a scalar to a matrix.)
+            Note further that since <m>(P^{-1}AP)^n = P^{-1}A^nP</m> for any invertible matrix <m>P</m> and positive integer <m>n</m>,
+            we have <m>p(U^HAU)=U^Hp(A)U</m> for any polynomial <m>p</m> and unitary matrix <m>U</m>.
+          </p>
+
+          <theorem xml:id="thm-cayley-hamilton-c">
+            <statement>
+              <p>
+                Let <m>A</m> be an <m>n\times n</m> complex matrix,
+                and let <m>c_A(x)</m> denote the characteristic polynomial of <m>A</m>.
+                Then we have <m>c_A(A)=0</m>.
+              </p>
+            </statement>
+            <proof>
+              <p>
+                By <xref ref="thm-schurr"/>, there exists a unitary matrix <m>U</m> such that <m>A = UTU^H</m>,
+                where <m>T</m> is upper triangular, and has the eigenvalues of <m>A</m> as diagonal entries.
+                Since <m>c_A(A)=c_A(UTU^H)=Uc_A(T)U^H</m>, and <m>c_A(x)=c_T(x)</m> (since <m>A</m> and <m>T</m> are similar)
+                it suffices to show that <m>c_A(A)=0</m> when <m>A</m> is upper-triangular.
+                (If you like, we are showing that <m>C_T(T)=0</m>, and deducing that <m>c_A(A)=0</m>.)
+                But if <m>A</m> is upper-triangular, so is <m>xI_A</m>,
+                and therefore, <m>\det(xI-A)</m> is just the product of the diagaonal entries. That is,
+                <me>
+                  c_A(x) = (x-\lambda_1)(x-\lambda_2)\cdots (x-\lambda_n)
+                </me>,
+                so
+                <me>
+                  c_A(A) = (A-\lambda_1I)(A-\lambda_2I)\cdots (A-\lambda_nI)
+                </me>.
+              </p>
+
+              <p>
+                Since the first column of <m>A</m> is <m>\bbm \lambda_1\amp 0 \amp \cdots \amp 0\ebm^T</m>,
+                the first column of <m>A-\lambda_1I</m> is identically zero.
+                The second column of <m>A-\lambda_2I</m> similarly has the form <m>\bbm k\amp 0\amp\cdots\amp 0\ebm</m>
+                for some number <m>k</m>.
+              </p>
+
+              <p>
+                It follows that the first two columns of <m>(A-\lambda_1I)(A-\lambda_2I)</m> are identically zero.
+                Since only the first two entries in the third column of <m>(A-\lambda_3I)</m> can be nonzero,
+                we find that the first three columns of <m>(A-\lambda_1I)(A-\lambda_2I)(A-\lambda_3I)</m> are zero,
+                and so on.
+              </p>
+            </proof>
+
+          </theorem>
 
         </subsection>
       </section>
