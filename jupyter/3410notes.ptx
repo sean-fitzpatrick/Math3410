@@ -3721,9 +3721,9 @@
             This lets me avoid fractions (momentarily), and doesn't affect the answer,
             since for any nonzero scalar <m>c</m>,
             <md>
-              <mrow>\left(\frac{c\vec{v}\dotp \vec{x}}{\len{c\vec{v}}^2}\right)\amp(c\vec{v})=</mrow>
-              <mrow>\amp \left(\frac{c(\vec{v}\dotp\vec{x})}{c^2\len{\vec{v}}^2}\right)(c\vec{v})=</mrow>
-              <mrow>\amp\left(\frac{\vec{v}\dotp\vec{x}}{\len{\vec{v}^2}}\right)\vec{v}</mrow>
+              <mrow>\left(\frac{c\vec{v}\dotp \vec{x}}{\len{c\vec{v}}^2}\right)\amp(c\vec{v})</mrow>
+              <mrow>\amp= \left(\frac{c(\vec{v}\dotp\vec{x})}{c^2\len{\vec{v}}^2}\right)(c\vec{v})</mrow>
+              <mrow>\amp=\left(\frac{\vec{v}\dotp\vec{x}}{\len{\vec{v}^2}}\right)\vec{v}</mrow>
             </md>.
           </p>
         </aside>
@@ -5037,7 +5037,7 @@
                       and therefore equal to its own transpose.
                       Thus, we have <m>\zz^T\ww = (\zz^T\ww)^T=\ww^T\zz</m>, and
                       <me>
-                        \overline{\langle \zz_1,\zz_2\rangle} = \overline{\zz_1^T\bar{\zz_2}} = \overline{\bar{\zz_2}^T\zz_1} = \zz_2^T\overline{\zz_1}=\langle \zz_2,\zz_1
+                        \overline{\langle \zz_1,\zz_2\rangle} = \overline{\zz_1^T\bar{\zz_2}} = \overline{\bar{\zz_2}^T\zz_1} = \zz_2^T\overline{\zz_1}=\langle \zz_2,\zz_1\rangle
                       </me>.
                     </p>
                   </li>
@@ -5057,7 +5057,7 @@
               <p>
                 The <term>norm</term> of a vector <m>\zz = (z_1,z_2,\ldots, z_n)</m> in <m>\C^n</m> is given by
                 <me>
-                  \len{\zz} = \sqrt{\langle \zz,\zz\rangle} = \sqrt{\abs{z_1}^2+\abs{z_2}^2+\cdots +\abs{z}_n}^2}
+                  \len{\zz} = \sqrt{\langle \zz,\zz\rangle} = \sqrt{\abs{z_1}^2+\abs{z_2}^2+\cdots +\abs{z_n}^2}
                 </me>.
               </p>
             </statement>
@@ -5430,7 +5430,7 @@
             Try the above modifications, in sequence.
             First, replacing the second line by <c>L[0]</c> will give the first list item, which is another list:
             <me>
-              \left(-1,1,\left[\bbm -\frac35+\frac{i}{5}\ebm\right])
+              \left(-1,1,\left[\bbm -\frac35+\frac{i}{5}\ebm\right]\right)
             </me>.
             We want the third item in the list, so try <c>(L[0])[2]</c>.
             But note the extra set of brackets! There could (in theory) be more than one eigenvector,
