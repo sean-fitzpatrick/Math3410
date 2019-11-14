@@ -10,11 +10,26 @@
       \newcommand{\bbm}{\begin{bmatrix}}
       \newcommand{\ebm}{\end{bmatrix}}
       \newcommand{\R}{\mathbb{R}}
+      \newcommand{\C}{\mathbb{C}}
       \newcommand{\Img}{\operatorname{im}}
       \newcommand{\nll}{\operatorname{null}}
       \newcommand{\csp}{\operatorname{col}}
       \newcommand{\rank}{\operatorname{rank}}
+      \newcommand{\diag}{\operatorname{diag}}
+      \newcommand{\tr}{\operatorname{tr}}
+      \newcommand{\dotp}{\!\boldsymbol{\cdot}\!}
+      \newcommand{\len}[1]{\lVert #1\rVert}
+      \newcommand{\abs}[1]{\lvert #1\rvert}
+      \newcommand{\proj}[2]{\operatorname{proj}_{#1}{#2}}
+      \newcommand{\bz}{\overline{z}}
+      \newcommand{\zz}{\mathbf{z}}
+      \newcommand{\ww}{\mathbf{w}}
+      \newcommand{\basis}[2]{\{\mathbf{#1}_1,\mathbf{#1}_2,\ldots,\mathbf{#1}_{#2}\}}
     </macros>
+    <latex-image-preamble><![CDATA[
+      \usepackage{pgfplots}
+      \usetikzlibrary{positioning,matrix,arrows,arrows.meta}
+    ]]></latex-image-preamble>
   </docinfo>
   <book xml:id="linalg-notes-with-computations">
     <title>Lecture Notes for Math 3410, with Computational Examples</title>
@@ -603,6 +618,8 @@
         Asking the computer to reduce this matrix won't produce the desired result.
         (Maybe someone can figure out how to define the constants in a way that works?)
         But we can always specify row operations.
+        (Note: the following code doesn't work well in a Sage cell.
+        In Python it might work.)
       </p>
 
       <sage>
@@ -982,7 +999,7 @@
             Show that the following are bases of <m>\R^3</m>:
             <ul>
               <li><m>\{(1,1,0),(1,0,1),(0,1,1)\}</m></li>
-              <li><m>\{(-1,1,1),(1,-1,1),(1,1,,-1)</m></li>
+              <li><m>\{(-1,1,1),(1,-1,1),(1,1,-1)</m></li>
             </ul>
           </p>
         </statement>
@@ -1714,7 +1731,7 @@
 
               <p>
                 To see that this is linear, note that <m>E_a(0)=\mathbf{0}(a)=0</m>,
-                where <m>mathbf{0}</m> denotes the zero function;
+                where <m>\mathbf{0}</m> denotes the zero function;
                 for any <m>f,g\in V</m>,
                 <me>
                   E_a(f+g)=(f+g)(a)=f(a)+g(a)=E_a(f)+E_a(g)
@@ -1781,7 +1798,7 @@
           <statement>
             <p>
               Let <m>T:V\to W</m> and <m>S:V\to W</m> be two linear transformations.
-              If <m>V = \spn\{\vec{v}_1,\ldots, \vec{v}_n</m> and <m>T(\vec{v}_i)=S(\vec{v}_i)</m>
+              If <m>V = \spn\{\vec{v}_1,\ldots, \vec{v}_n\}</m> and <m>T(\vec{v}_i)=S(\vec{v}_i)</m>
               for each <m>i=1,2,\ldots, n</m>, then <m>T=S</m>.
             </p>
           </statement>
@@ -1798,9 +1815,9 @@
           </md>
           We then have
           <md>
-            <mrow>a_1T(\vec{v}_1)+\cdots + a_nT(\vec{v}_n) \amp T(a_1\vec{v}_1+\cdots + a_n\vec{v}_n) </mrow>
-            <mrow> \amp T(b_1\vec{v}_1+\cdots +b_n\vec{v}_n)</mrow>
-            <mrow>  \amp b_1T(\vec{v}_1)+\cdots +b_nT(\vec{v}_n)</mrow>
+            <mrow>a_1T(\vec{v}_1)+\cdots + a_nT(\vec{v}_n) \amp =T(a_1\vec{v}_1+\cdots + a_n\vec{v}_n) </mrow>
+            <mrow> \amp =T(b_1\vec{v}_1+\cdots +b_n\vec{v}_n)</mrow>
+            <mrow>  \amp =b_1T(\vec{v}_1)+\cdots +b_nT(\vec{v}_n)</mrow>
           </md>.
           The next theorem seems like an obvious consequence of the above,
           and indeed, one might wonder where the assumption of a basis is needed.
@@ -1978,6 +1995,42 @@
           </input>
         </sage>
 
+        <exercise xml:id="ex_lintrans-indep">
+          <statement>
+            <p>
+              Let <m>T:V\to W</m> be a linear transformation.
+              Prove that for any vectors <m>\vec{v}_1,\ldots, \vec{v}_n\in V</m>,
+              if <m>\{T(\vec{v}_1),\ldots, T(\vec_{v}_n)\}</m> is linearly independent in <m>W</m>,
+              then <m>\{\vec{v}_1,\ldots, \vec{v}_n\}</m> is linearly independent in <m>V</m>.
+            </p>
+          </statement>
+          <solution>
+            <p>
+              Let us suppose that <m>\{T(\vec{v}_1),\ldots, T(\vec_{v}_n)\}</m> is linearly independent.
+              We want to show that the set <m>\{\vec{v}_1,\ldots, \vec{v}_n\}</m>
+              is linearly independent. To that end, suppose that we have
+              <me>
+                c_1\vec{v}_1+\cdots + c_n\vec{v}_n=\vec{0}
+              </me>
+              for some scalars <m>c_1,\ldots, c_n</m> (that we want to show must all equal zero).
+            </p>
+
+            <p>
+              We want to make use of our hypothesis, so we need to bring the linear map <m>T</m> into the picture.
+              We apply <m>T</m> to both sides of the equation above, giving us:
+              <me>
+                T(c_1\vec{v}_1+\cdots + c_n\vec{v}_n)=T(\vec{0})
+              </me>.
+              Now we make use of both parts of <xref ref="thm-lt-props">Theorem</xref> to get
+              <me>
+                c_1T(\vec{v}_1)+\cdots +c_nT(\vec{v}_n) = \vec{0}
+              </me>.
+              By our hypothesis that the <m>T(\vec{v}_i)</m> are independent,
+              we must conclude that all the scalars are zero, and we're done.
+            </p>
+          </solution>
+        </exercise>
+
       </section>
 
 
@@ -1996,11 +2049,11 @@
               Let <m>T:V\to W</m> be a linear transformation. The <term>kernel</term> of <m>T</m>,
               denoted <m>\ker T</m>, is defined by
               <me>
-                \ker T = \{\vec{v}\in V \,|\, T(\vec{v}=\vec{0})\}
+                \ker T = \{\vec{v}\in V \,|\, T(\vec{v})=\vec{0}\}
               </me>.
               The <term>image</term> of <m>T</m>, denoted <m>\Img T</m>, is defined by
               <me>
-                \Img T = \{(T\vec{v}) \,|\, \vec{v}\in V\}
+                \Img T = \{T(\vec{v}) \,|\, \vec{v}\in V\}
               </me>.
             </p>
           </statement>
@@ -2085,14 +2138,14 @@
           </me>
           and
           <me>
-            \Img T = \csp(A) = \{A\vec{x}\,|\, \vec{x|\in \R^n}
+            \Img T = \csp(A) = \{A\vec{x}\,|\, \vec{x}\in \R^n\}
           </me>,
           where <m>\csp(A)</m> denotes the <term>column space</term> of <m>A</m>.
           Recall further that if we write <m>A</m> in terms of its columns as
           <me>
             A = \bbm C_1 \amp C_2 \amp \cdots \amp C_n\ebm
           </me>
-          and a vector <m>\vec{x}\in \R^n</m> as <m>\vec{x}=\bbm x_1\\x_2\\\vodts \\x_n\ebm</m>,
+          and a vector <m>\vec{x}\in \R^n</m> as <m>\vec{x}=\bbm x_1\\x_2\\\vdots \\x_n\ebm</m>,
           then
           <me>
             A\vec{x} = x_1C_1+x_2C_2+\cdots +x_nC_n
@@ -2113,7 +2166,7 @@
             <p>
               Let <m>A</m> be an <m>m\times n</m> matrix with columns <m>C_1,C_2,\ldots, C_n</m>.
               If the reduced row-echelon form of <m>A</m> has leading ones in columns <m>j_1,j_2,\ldots, j_k</m>,
-              then <m>\{C_{j_1},C_{j_2},\ldots, c_{j_k}\}</m> is a basis for <m>\csp(A)</m>.
+              then <m>\{C_{j_1},C_{j_2},\ldots, C_{j_k}\}</m> is a basis for <m>\csp(A)</m>.
             </p>
           </statement>
         </theorem>
@@ -2187,7 +2240,7 @@
           </me>
           and
           <me>
-            \bbm -2\\0\\-6\ebm = \frac25\bbm 1\\-2\1\ebm -\frac45\bbm 3\\-1\\8\ebm
+            \bbm -2\\0\\-6\ebm = \frac25\bbm 1\\-2\\1\ebm -\frac45\bbm 3\\-1\\8\ebm
           </me>,
           so that indeed, the third and fourth columns are in the span of the first and second.
         </p>
@@ -2266,8 +2319,8 @@
           Note that if <m>W</m> is finite-dimensional, then so is <m>\Img T</m>,
           since it's a subspace of <m>W</m>.
           On the other hand, if <m>V</m> is finite-dimensional,
-          then we can find a basis <m>\{\vec{v}_1,\ldots, \vec{v}_n}}</m> of <m>V</m>,
-          and the set <m>\{T(\vec{v}_1),\ldots, T(\vec{v}_n\})\}</m> will span <m>\Img T</m>,
+          then we can find a basis <m>\{\vec{v}_1,\ldots, \vec{v}_n\}</m> of <m>V</m>,
+          and the set <m>\{T(\vec{v}_1),\ldots, T(\vec{v}_n)\}</m> will span <m>\Img T</m>,
           so again the image is finite-dimensional, so the rank of <m>T</m> is finite.
           It is possible for either the rank or the nullity of a transformation to be infinite.
         </p>
@@ -2415,11 +2468,12 @@
           On the other hand, if <m>m\gt n</m>, then <m>\rank A\leq n \lt m</m>,
           so <m>T_A</m> could be injective, but can't possibly be surjective.
           These results generalize to linear transformations between any finite-dimensional vector spaces.
-          The first step towards this is the following fundamental theorem.
+          The first step towards this is the following theorem,
+          which is sometimes known as the Fundamental Theorem of Linear Transformations.
         </p>
 
         <theorem xml:id="thm-dimension-lintrans">
-          <title>Dimension Theorem (Fundamental Theorem of Linear Transformations)</title>
+          <title>Dimension Theorem</title>
           <statement>
             <p>
               Let <m>T:V\to W</m> be any linear transformation such that
@@ -2430,6 +2484,82 @@
               </me>.
             </p>
           </statement>
+          <proof>
+            <p>
+              The trick with this proof is that we aren't assuming <m>V</m> is finite-dimensional,
+              so we can't start with a basis of <m>V</m>. But we do know that <m>\Img T</m>
+              is finite-dimensional, so we start with a basis <m>\{\vec{w}_1,\ldots, \vec{w}_m\}</m>
+              of <m>\Img T</m>.
+              Of course, every vector in <m>\Img T</m> is the image of some vector in <m>V</m>,
+              so we can write <m>\vec{w}_i =T(\vec{v}_i)</m>, where <m>\vec{v}_i\in V</m>,
+              for <m>i=1,2,\ldots, m</m>.
+            </p>
+
+            <p>
+              Since <m>\{T(\vec{v}_1),\ldots, T(\vec{v}_m)\}</m> is a basis,
+              it is linearly independent. The results of <xref ref="ex_lintrans-indep">Exercise</xref>
+              tell us that the set <m>\{\vec{v}_1,\ldots, \vec{v}_m\}</m> must therefore be independent.
+            </p>
+
+            <p>
+              We now introduce a basis <m>\{\vec{u}_1,\ldots, \vec{u}_n\}</m>
+              of <m>\ker T</m>, which we also know to be finite-dimensional.
+              If we can show that the set <m>\{\vec{u}_1,\ldots, \vec{u}_n,\vec{v}_1,\ldots, \vec{v}_m\}</m>
+              is a basis for <m>V</m>, we'd be done, since the number of vectors in this basis
+              is <m>\dim\ker T + \dim \Img T</m>. We must therefore show that this set is independent,
+              and that it spans <m>V</m>.
+            </p>
+
+            <p>
+              To see that it's independent, suppose that
+              <me>
+                a_1\vec{u}_1+\cdots + a_n\vec{u}_n+b_1\vec{v}_1+\cdots +\b_m\vec{v}_m=\vec{0}
+              </me>.
+              Applying <m>T</m> to this equation, and noting that <m>T(\vec{u}_i)=\vec{0}</m>
+              for each <m>i</m>, by definition of the <m>\vec{u}_i</m>, we get
+              <me>
+                b_1T(\vec{v}_1)+\cdots +b_mT(\vec{v}_m)=\vec{0}
+              </me>.
+              We assumed that the vectors <m>T(\vec{v}_i)</m> were independent,
+              so all the <m>b_i</m> must be zero. But then we get
+              <me>
+                a_1\vec{u}_1+\cdots +a_n\vec{u}_n=\vec{0}
+              </me>,
+              and since the <m>\vec{u}_i</m> are independent, all the <m>a_i</m> must be zero.
+            </p>
+
+            <p>
+              To see that these vectors span, choose any <m>\vec{x}\in V</m>.
+              Since <m>T(\vec{x})\in \Img T</m>, there exist scalars <m>c_1,\ldots, c_m</m>
+              such that
+              <men xml:id="eqn-almost-span">
+                T(\vec{x})=c_1T(\vec{v_1})+\cdots +c_mT(\vec{v}_m)
+              </men>.
+              We'd like to be able to conclude from this that <m>\vec{x}=c_1\vec{v}_1+\cdots +c_m\vec{v}_m</m>,
+              but this would be false, unless <m>T</m> was known to be injective (which it isn't).
+              Failure to be injective involves the kernel -- how do we bring that into the picture?
+            </p>
+
+            <p>
+              The trick is to realize that the reason we might have <m>\vec{x}\neq c_1\vec{v}_1+\cdots +c_m\vec{v}_m</m>
+              is that we're off by something in the kernel.
+              Indeed, <xref ref="eqn-almost-span"/> can be re-written as
+              <me>
+                T(\vec{x}-c_1\vec{v}_1-\cdots -c_m\vec{v}_m) = \vec{0}
+              </me>,
+              so <m>\vec{x}-c_1\vec{v}_1-\cdots -c_m\vec{v}_m\in\ker T</m>.
+              But we have a basis for <m>\ker T</m>, so we can write
+              <me>
+                \vec{x}-c_1\vec{v}_1-\cdots -c_m\vec{v}_m=t_1\vec{u}_1+\cdots +t_n\vec{u}_n
+              </me>
+              for some scalars <m>t_1,\ldots, t_n</m>, and this can be rearanged to give
+              <me>
+                \vec{x}=t_1\vec{u}_1+\cdots +t_n\vec{u}_n+c_1\vec{v}_1+\cdots + c_m\vec{v}_m
+              </me>,
+              which completes the proof.
+            </p>
+          </proof>
+
         </theorem>
 
         <p>
@@ -2438,8 +2568,3001 @@
           <me>
             \dim V = \rank T + \operatorname{nullity} T
           </me>.
-
+          We will see that this result is frequently useful for providing simple arguments that establish otherwise difficult results.
+          A basic situation where the theorem is useful is as follows:
+          we are given <m>T:V\to W</m>, where the dimensions of <m>V</m> and <m>W</m> are known.
+          Since <m>\Img T</m> is a subspace of <m>W</m>, we know from <xref ref="thm-subspace-dim">Theorem</xref>
+          that <m>T</m> is onto if and only if <m>\dim \Img T = \dim W</m>.
+          In many cases it is easier to compute <m>\ker T</m> than it is <m>\Img T</m>,
+          and the Dimension Theorem lets us determine <m>\dim\Img T</m> if we know <m>\dim V</m> and <m>\dim \ker T</m>.
         </p>
+
+        <p>
+          A useful consequence of this result is that if we know <m>V</m> is finite-dimensional,
+          we can order any basis such that the first vectors in the list are a basis of <m>\ker T</m>,
+          and the images of the remaining vectors produce a basis of <m>\Img T</m>.
+        </p>
+
+        <p>
+          Note that one consequence of the dimension theorem is that we must have
+          <me>
+            \dim \ker T\leq \dim V \quad \text{ and } \quad \dim \Img T\leq \dim V
+          </me>.
+          Of course, we must also have <m>\dim\Img T\leq \dim W</m>,
+          since <m>\Img T</m> is a subspace of <m>W</m>.
+          In the case of a matrix transformation <m>T_A</m>,
+          this means that the rank of <m>T_A</m> is at most the minimum of <m>\dim V</m> and <m>\dim W</m>.
+          This once again has consequences for the existence and uniqueness of solutions for linear systems with the coefficient matrix <m>A</m>.
+        </p>
+
+        <exercise xml:id="ex-dimension-injection-surjection">
+          <statement>
+            <p>
+              Let <m>V</m> and <m>W</m> be finite-dimensional vector spaces. Prove the following:
+              <ol>
+                <li>
+                  <p>
+                    <m>\dim V\leq \dim W</m> if and only if there exists an injection <m>T:V\to W</m>.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <m>\dim V\geq \dim W</m> if and only if there exists a surjection <m>T:V\to W</m>.
+                  </p>
+                </li>
+              </ol>
+            </p>
+          </statement>
+          <solution>
+            <p>
+              <ol>
+                <li>
+                  <p>
+                    Suppose <m>T:V\to W</m> is injective. Then <m>\ker T = \{0\}</m>, so
+                    <me>
+                      \dim V = 0 + \dim \Img T \leq \dim W
+                    </me>,
+                    since <m>\Img T</m> is a subspace of <m>W</m>.
+                  </p>
+
+                  <p>
+                    Conversely, suppose <m>\dim V\leq \dim W</m>.
+                    Choose a basis <m>\{\vec{v}_1,\ldots, \vec{v}_m\}</m> of <m>V</m>,
+                    and a basis <m>\{\vec{w}_1\,ldots, \vec{w}_n\}</m> of <m>W</m>, where <m>m\leq n</m>.
+                    By <xref ref="thm-define-using-basis">Theorem</xref>, there exists a linear transformation
+                    <m>T:V\to W</m> with <m>T(\vec{v}_i)=\vec{w}_i</m> for <m>i=1,\ldots, m</m>.
+                    (The main point here is that we run out of basis vectors for <m>V</m> before we run out of basis vectors for <m>W</m>.)
+                    This map is injective: if <m>T(\vec{v})=\vec{0}</m>,
+                    write <m>\vec{v}=c_1\vec{v}_1+\cdots + c_m\vec{v}_m</m>.
+                    Then
+                    <md>
+                      <mrow>\vec{0} \amp = T(\vec{v})</mrow>
+                      <mrow> \amp = T(c_1\vec{v}_1+\cdots + c_m\vec{v}_m)</mrow>
+                      <mrow>  \amp = c_1T(\vec{v}_1)+\cdots + c_mT(\vec{v}_m)</mrow>
+                      <mrow>  \amp = c_1\vec{w}_1+\cdots +c_m\vec{w}_m</mrow>
+                    </md>.
+                    Since <m>\{\vec{w}_1,\ldots, \vec{w}_m\}</m> is a subset of a basis, it's indendependent.
+                    Therefore, the scalars <m>c_i</m> must all be zero, and therefore <m>\vec{v}=\vec{0}</m>.
+                  </p>
+                </li>
+
+                <li>
+                  <p>
+                    Suppose <m>T:V\to W</m> is surjective. Then <m>\dim \Img T = \dim W</m>, so
+                    <me>
+                      \dim W = \dim V - \dim \ker T\geq \dim V
+                    </me>.
+                    Conversely, suppose <m>\dim V\geq \dim W</m>. Again,
+                    choose a basis <m>\{\vec{v}_1,\ldots, \vec{v}_m\}</m> of <m>V</m>,
+                    and a basis <m>\{\vec{w}_1\,ldots, \vec{w}_n\}</m> of <m>W</m>,
+                    where this time, <m>m\geq n</m>.
+                    We can define a linear transformation as follows:
+                    <me>
+                      T(\vec{v}_1)=\vec{w}_1,\ldots, T(\vec{v}_n)=\vec{w}_n, \text{ and } T(\vec{v}_j) = \vec{0} \text{ for } j>n.
+                    </me>
+                    It's easy to check that this map is a surjection:
+                    given <m>\vec{w}\in W</m>, we can write it in terms of our basis as <m>\vec{w}=c_1\vec{w}_1+\cdots + c_n\vec{w}_n</m>.
+                    Using these same scalars, we can define <m>\vec{v}=c_1\vec{v}_1+\cdots + c_n\vec{v}_n\in V</m> such that <m>T(\vec{v})=\vec{w}</m>.
+                  </p>
+
+                  <p>
+                    Note that it's not important how we define <m>T(\vec{v}_j)</m> when <m>j>n</m>.
+                    The point is that this time, we run out of basis vectors for <m>W</m> before we run out of basis vectors for <m>V</m>.
+                    Once each vector in the basis of <m>W</m> is in the image of <m>T</m>, we're guaranteed that <m>T</m> is surjective,
+                    and we can define the value of <m>T</m> on any remaining basis vectors however we want.
+                  </p>
+                </li>
+              </ol>
+            </p>
+          </solution>
+        </exercise>
+      </section>
+
+      <section xml:id="sec-isomorphism">
+        <title>Isomorphisms (a.k.a. invertible linear maps)</title>
+        <p>
+          We ended the last section with an important result.
+          <xref ref="ex-dimension-injection-surjection">Exercise</xref>
+          showed that existence of an injective linear map <m>T:V\to W</m>
+          is equivalent to <m>\dim V\leq \dim W</m>,
+          and that existence of a surjective linear map is equivalent to <m>\dim V\geq \dim W</m>.
+          It's probably not surprising than that existence of a <em>bijective</em> linear map <m>T:V\to W</m>
+          is equivalent to <m>\dim V = \dim W</m>.
+        </p>
+
+        <definition xml:id="def-isomorphism">
+          <statement>
+            <p>
+              A bijective linear transformation <m>T:V\to W</m> is called an <term>isomorphism</term>.
+              If such a map exists, we say that <m>V</m> and <m>W</m> are <term>isomorphic</term>, and write <m>V\cong W</m>.
+            </p>
+          </statement>
+        </definition>
+
+        <theorem xml:id="thm-iso-dimension">
+          <statement>
+            <p>
+              For any finite-dimensional vector spaces <m>V</m> and <m>W</m>,
+              <m>V\cong W</m> if any only if <m>\dim V = \dim W</m>.
+            </p>
+          </statement>
+          <proof>
+            <p>
+              If <m>T:V\to W</m> is a bijection, then it is both injective and surjective.
+              Since <m>T</m> is injective, <m>\dim V\leq \dim W</m>,
+              by <xref ref="ex-dimension-injection-surjection">Exercise</xref>.
+              By this same exercise,  since <m>T</m> is surjective, we must have <m>\dim V\geq \dim W</m>.
+              It follows that <m>\dim V=\dim W</m>.
+            </p>
+
+            <p>
+              Suppose now that <m>\dim V =\dim W</m>.
+              Then we can choose bases <m>\{\vec{v}_1,\ldots, \vec{v}_n\}</m> of <m>V</m>,
+              and <m>\{\vec{w}_1,\ldots, \vec{w}_n\}</m> of <m>W</m>.
+              <xref ref="thm-define-using-basis">Theorem</xref> then guarantees the existence of a linear map <m>T:V\to W</m>
+              such that <m>T(\vec{v}_i)=\vec{w}_i</m> for each <m>i=1,2,\ldots, n</m>.
+              Repeating the arguments of <xref ref="ex-dimension-injection-surjection">Exercise</xref> shows that <m>T</m> is a bijection.
+            </p>
+          </proof>
+
+        </theorem>
+
+        <p>
+          Note that buried in the theorem above is the following useful fact:
+          <em>an isomorphism <m>T:V\to W</m> takes any basis of <m>V</m> to a basis of <m>W</m></em>.
+          Another remarkable result of the above theorem is that <em>any two vector spaces of the same dimension are isomorphic</em>!
+          In particular, we have the following theorem.
+        </p>
+
+        <theorem xml:id="thm-iso-rn">
+          <statement>
+            <p>
+              If <m>\dim V=n</m>, then <m>V\cong \R^n</m>.
+            </p>
+          </statement>
+        </theorem>
+        <p>
+          This theorem is a direct consequence of <xref ref="thm-iso-dimension"/>.
+          But it's useful to understand how it works in practice.
+        </p>
+
+        <definition xml:id="def-coefficient-iso">
+          <statement>
+            <p>
+              Let <m>V</m> be a finite-dimensional vector space,
+              and let <m>B=\{\vec{e}_1,\ldots, \vec{e}_n\}</m> be a basis for <m>V</m>.
+              The <term>coefficient isomorphism</term> associated to <m>B</m>
+              is the map <m>C_B:V\to \R^n</m> defined by
+              <me>
+                C_B(c_1\vec{e}_1+c_2\vec{e}_2+\cdots +c_n\vec{e}_n)=\bbm c_1\\c_2\\\vdots \\c_n\ebm
+              </me>.
+
+            </p>
+          </statement>
+        </definition>
+        <p>
+          Note that this is a well-defined map since every vector in <m>V</m> can be written uniquely in terms of the basis <m>B</m>.
+        </p>
+
+        <p>
+          The coefficient isomorphism is especially useful when we want to analyze a linear map computationally.
+          Suppose we're given <m>T:V\to W</m> where <m>V, W</m> are finite-dimensional.
+          Let us choose bases <m>B=\{\vec{v}_1,\ldots, \vec{v}_n\}</m> of <m>V</m>
+          and <m>B' = \{\vec{w}_1,\ldots, \vec{w}_m\}</m> of <m>W</m>.
+          The choice of these two bases determines scalars <m>a_{ij}, 1\leq i\leq n, 1\leq j\leq m</m>, such that
+          <me>
+            T(\vec{v}_j) = a_{1j}\vec{w}_1+a_{2j}\vec{w}_2+\cdots + a_{mj}\vec{w}_j,
+          </me>
+          for each <m>i=1,2,\ldots, n</m>. The resulting matrix <m>A=[a_{ij}]</m>
+          defines a matrix transformation <m>T_A:\R^n\to \R^m</m> such that
+          <me>
+            T_A\circ C_B = C_{B'}\circ T
+          </me>.
+          The relationship among the four maps used here is best captured by the following <q>commutative diagram</q>:
+        </p>
+
+        <figure xml:id="fig_transformation_matrix">
+          <caption>Defining the matrix of a linear map with respect to choices of basis.</caption>
+          <image xml:id="img_trans_matrix" width="30%">
+            <latex-image>
+              \begin{tikzpicture}
+              \matrix (m) [matrix of math nodes,row sep=3em,column sep=4em,minimum width=2em]
+              {
+              V \amp W \\
+              \R^n \amp \R^m \\};
+              \path[-stealth]
+              (m-1-1) edge node [left] {$C_B$} (m-2-1)
+                      edge node [above] {$T$} (m-1-2)
+              (m-2-1) edge node [above] {$T_A$} (m-2-2)
+              (m-1-2) edge node [right] {$C_{B'}$} (m-2-2);
+              \end{tikzpicture}
+            </latex-image>
+          </image>
+        </figure>
+
+        <p>
+          With this connection between linear maps (in general) and matrices,
+          it can be worthwhile to pause and consider invertibility in the context of matrices.
+          Recall that an <m>n\times n</m> matrix <m>A</m> is <em>invertible</em> if there exists a matrix <m>A^{-1}</m>
+          such that <m>AA^{-1}=I_n</m> and <m>A^{-1}A=I_n</m>.
+        </p>
+
+        <p>
+          The same definition can be made for linear maps.
+          We've defined what it means for a map <m>T:V\to W</m> to be invertible as a <em>function</em>.
+          In particular, we relied on the fact that any bijection has an inverse.
+        </p>
+
+        <p>
+          First, a note on notation. Given linear maps <m>U\xrightarrow{T} V\xrightarrow{S} W</m>,
+          we typically write the composition <m>S\circ T:U\to W</m> as a <q>product</q> <m>ST</m>.
+          The reason for this is again to mimic the case of matrices. Let <m>A</m> be an <m>m\times n</m>
+          matrix, and let <m>B</m> be an <m>n\times k</m> matrix. Then we have linear maps
+          <me>
+            \R^k \xrightarrow{T_B} \R^n\xrightarrow{T_A} \R^m
+          </me>,
+          and the composition <m>T_A\circ T_B:\R^k\to \R^m</m> satisfies
+          <me>
+            T_A\circ T_B(\vec{x}) = T_A(T_B(\vec{x})) = T_A(B\vec{x})=A(B\vec{x})=(AB)\vec{x}=T_{AB}(\vec{x})
+          </me>.
+          Note that the rules given in elementary linear algebra, for the relative sizes of matrices that can be multiplied,
+          are simply a manifestation of the fact that to compose functions,
+          the range of the first must be contained in the domain of the second.
+        </p>
+
+        <exercise>
+          <statement>
+            <p>
+              Show that the composition of two linear maps is again a linear map.
+            </p>
+          </statement>
+          <solution>
+            <p>
+              Suppose we have linear maps <m>U\xrightarrow{T} V\xrightarrow{S} W</m>,
+              and let <m>\vec{u}_1,\vec{u}_2\in U</m>. Then
+              <md>
+                <mrow>ST(\vec{u}_1+\vec{u}_2) \amp = S(T(\vec{u}_1+\vec{u}_2)) </mrow>
+                <mrow> \amp = S(T(\vec{u}_1)+T(\vec{u}_2))</mrow>
+                <mrow>  \amp = S(T(\vec{u}_1))+S(T(\vec{u}_2)) </mrow>
+                <mrow>  \amp = ST(\vec{u}_1)+ST(\vec{u}_2)</mrow>
+              </md>,
+              and for any scalar <m>c</m>,
+              <me>
+                ST(c\vec{u}_1) = S(T(c\vec{u}_1))=S(cT(\vec{u}_1)) = cS(T(\vec{u}_1))=c(ST(\vec{u}_1))
+              </me>.
+
+            </p>
+          </solution>
+        </exercise>
+        <p>
+          Moreover, <xref ref="thm-iso-dimension"/> tells us why we can only consider invertibility for square matrices:
+          we know that invertible linear maps are only defined between spaces of equal dimension.
+          In analogy with matrices, some texts will define a linear map <m>T:V\to W</m>
+          to be invertible if there exists a linear map <m>S:W\to V</m> such that
+          <me>
+            ST = 1_V \quad \text{ and } \quad TS = 1_W
+          </me>.
+          From this definition, one can show that <m>S</m> and <m>T</m> must be bijections,
+          and of course, if <m>T</m> is a bijection (as in our definition) then we know it has an inverse.
+          What remains to be seen is that this inverse is also a linear map.
+        </p>
+
+        <exercise>
+          <statement>
+            <p>
+              Let <m>T:V\to W</m> be a bijective linear transformation.
+              Show that <m>T^{-1}:W\to V</m> is a linear transformation.
+            </p>
+          </statement>
+          <solution>
+            <p>
+              Let <m>\vec{w}_1,\vec{w}_2\in W</m>.
+              Then there exist <m>\vec{v}_1,\vec{v}_2\in V</m>  with <m>\vec{w}_1=T(\vec{v}_1), \vec{w}_2=T(\vec{v}_2)</m>.
+              We then have
+              <md>
+                <mrow>T^{-1}(\vec{w}_1+\vec{w}_2) \amp = T^{-1}(T(\vec{v}_1)+T(\vec{v}_2)) </mrow>
+                <mrow> \amp = T^{-1}(T(\vec{v}_1+\vec{v}_2))</mrow>
+                <mrow>  \amp = \vec{v}_1+\vec{v}_2</mrow>
+                <mrow>  \amp = T^{-1}(\vec{w}_1)+T^{-1}(\vec{w}_2)</mrow>
+              </md>.
+              For any scalar <m>c</m>, we similarly have
+              <me>
+                T^{-1}(c\vec{w}_1) = T^{-1}(cT(\vec{v}_1))=T^{-1}(T(c\vec{v}_1)) = c\vec{v}_1 = cT^{-1}(\vec{w}_1)
+              </me>.
+            </p>
+          </solution>
+        </exercise>
+
+        <exercise>
+          <statement>
+            <p>
+              Show that if <m>ST=1_V</m>, then <m>S</m> is surjective and <m>T</m> is injective.
+              Conclude that if <m>ST=1_V</m> and <m>TS=1_w</m>, then <m>S</m> and <m>T</m> are both bijections.
+            </p>
+          </statement>
+          <hint>
+            <p>
+              This is really a Math 2000 problem.
+            </p>
+          </hint>
+        </exercise>
+      </section>
+    </chapter>
+
+    <chapter xml:id="ch-orthogonality">
+      <title>Orthogonality and Applications</title>
+      <section xml:id="sec-orthogonal-sets">
+        <title>Orthogonal sets of vectors</title>
+        <introduction>
+          <p>
+            You may recall from elementary linear algebra, or a calculus class,
+            that vectors in <m>\R^2</m> or <m>\R^3</m> are considered to be quantities with both <em>magnitude</em> and <em>direction</em>.
+            Interestingly enough, neither of these properties is inherent to a general vector space.
+            The vector space axioms specify only algebra; they say nothing about geometry.
+            (What, for example, should be the <q>angle</q> between two polynomials?)
+          </p>
+
+          <p>
+            Because vector algebra is often introduced as a consequence of geometry (like the <q>tip-to-tail</q> rule),
+            you may not have thought all that carefully about what, exactly,
+            is responsible for making the connection between algebra and geometry.
+            It turns out that the missing link is the humble dot product.
+            This should be plausible after a bit of thought.
+            After all, you probably encountered the following result, perhaps as a consequence of the law of cosines:
+            for any two vectors <m>\vec{u},\vec{v}\in\R^2</m>,
+            <me>
+              \vec{u}\dotp\vec{v} = \len{\vec{u}}\,\len{\vec{v}}\cos\theta
+            </me>,
+            where <m>\theta</m> is the angle between <m>\vec{u}</m> and <m>\vec{v}</m>.
+            Here we see both magnitude and direction (encoded by the angle) defined in terms of the dot product.
+          </p>
+
+          <p>
+            While it is possible to generalize the idea of the dot product to something called an <em>inner product</em>,
+            we will first focus on the basic dot product in <m>\R^n</m>.
+            Once we have a good understanding of things in that setting, we can move on to consider the abstract counterpart.
+          </p>
+        </introduction>
+
+        <subsection xml:id="subsec-dot-basics">
+          <title>Basic definitions and properties</title>
+          <p>
+            For most of this chapter (primarily for typographical reasons) we will denote elements of <m>\R^n</m>
+            as ordered <m>n</m>-tuples <m>(x_1,\ldots, x_n)</m> rather than as column vectors.
+          </p>
+
+          <definition xml:id="def-dot-prod-norm">
+            <statement>
+              <p>
+                Let <m>\vec{x}=(x_1,x_2,\ldots, x_n)</m> and <m>\vec{y}=(y_1,y_2,\ldots, y_n)</m>
+                be vectors in <m>\R^n</m>. The <term>dot product</term> of <m>\vec{x}</m> and <m>\vec{y}</m>,
+                denoted by <m>\vec{x}\dotp\vec{y}</m> is the scalar defined by
+                <me>
+                  \vec{x}\dotp \vec{y} = x_1y_1+x_2y_2+\cdots + x_ny_n
+                </me>.
+                The <term>norm</term> of a vector <m>\vec{x}</m> is denoted <m>\len{\vec{x}}</m> and defined by
+                <me>
+                  \len{\vec{x}} = \sqrt{x_1^2+x_2^2+\cdots + x_n^2}
+                </me>.
+              </p>
+            </statement>
+          </definition>
+
+          <p>
+            Note that both the dot product and the norm produce <em>scalars</em>.
+            Through the Pythagorean Theorem, we recognize the norm as the length of <m>\vec{x}</m>.
+            The dot product can still be thought of as measuring the angle between vectors,
+            although the simple geometric proof used in two dimensions is not that easily translated to <m>n</m> dimensions.
+            At the very least, the dot product lets us extend the notion of right angles to higher dimensions.
+          </p>
+
+          <definition xml:id="def-orthogonal">
+            <statement>
+              <p>
+                We say that two vectors <m>\vec{x},\vec{y}\in\R^n</m>
+                are <term>orthogonal</term> if <m>\vec{x}\dotp\vec{y} = 0</m>.
+              </p>
+            </statement>
+          </definition>
+
+          <p>
+            It should be no surprise that all the familiar properties of the dot product work just as well in any dimension.
+            The folowing properties are all easily confirmed by routine computation.
+          </p>
+
+          <theorem xml:id="thm-dot-props">
+            <statement>
+              <p>
+                For any vectors <m>\vec{x},\vec{y},\vec{z}\in\R^n</m>,
+                <ol>
+                  <li><m>\vec{x}\dotp\vec{y} = \vec{y}\dotp\vec{x}</m></li>
+                  <li><m>\vec{x}\dotp(\vec{y}+\vec{z})=\vec{x}\dotp\vec{y}+\vec{x}\dotp\vec{z}</m></li>
+                  <li>
+                    <p>
+                      For any scalar <m>c</m>, <m>\vec{x}\dotp(c\vec{y}) = (c\vec{x})\dotp\vec{y}=c(\vec{x}\dotp\vec{y})</m>
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      <m>\vec{x}\dotp\vec{x}\geq 0</m>, and <m>\vec{x}\dotp\vec{x}=0</m> if and only if <m>\vec{x}=\vec{0}</m>
+                    </p>
+                  </li>
+                </ol>
+              </p>
+            </statement>
+          </theorem>
+
+          <p>
+            The above properties, when properly abstracted, become the defining properties of a (real) inner product.
+            (A complex inner product also involves complex conjugates.)
+            For a general inner product, the requirement <m>\vec{x}\dotp\vec{x}\geq 0</m>
+            is referred to as being <em>positive-definite</em>,
+            and the property that only the zero vector produces zero when dotted with itself is called <em>nondegenerate</em>.
+            Note that we have the following connection between norm and dot product:
+            <me>
+              \len{\vec{x}}^2 = \vec{x}\dotp \vec{x}
+            </me>.
+            For a general inner product, this can be used as a <em>definition</em> of the norm associated to an inner product.
+          </p>
+
+          <exercise>
+            <statement>
+              <p>
+                Given that <m>\len{\vec{x}}=3, \len{\vec{y}}=1</m>, and <m>\vec{x}\dotp\vec{y}=-2</m>,
+                compute <m>(4\vec{x}-3\vec{y})\dotp (\vec{x}+5\vec{y})</m>.
+              </p>
+            </statement>
+            <solution>
+              <p>
+                Note that the distributive property, together with symmetry,
+                let us handle this dot product using what is essentially <q><init>FOIL</init></q>:
+                <md>
+                  <mrow> (4\vec{x}-3\vec{y})\dotp (\vec{x}+5\vec{y})\amp = (4\vec{x})\dotp \vec{x}+(4\vec{x})\dotp(5\vec{y})+(-3\vec{y})\dotp \vec{x}+(-3\vec{y})\dotp(5\vec{y})</mrow>
+                  <mrow> \amp = 4(\vec{x}\dotp\vec{x})+(4\cdot 5)(\vec{x}\dotp \vec{y})-3(\vec{y}\dotp \vec{x})+(-3\cdot 5)(\vec{y}\dotp\vec{y})</mrow>
+                  <mrow> \amp = 4\len{\vec{x}}^2+20\vec{x}\dotp\vec{y}-3\vec{x}\dotp\vec{y}-15\len{\vec{y}}^2</mrow>
+                  <mrow> \amp = 4(9)+17(-2)-15(1) = -13</mrow>
+                </md>.
+              </p>
+            </solution>
+          </exercise>
+
+          <exercise xml:id="ex-norm-sum-square">
+            <statement>
+              <p>
+                Show that for any vectors <m>\vec{x},\vec{y}\in\R^n</m>, we have
+                <me>
+                  \len{\vec{x}+\vec{y}}^2 = \len{\vec{x}}^2+2\vec{x}\dotp\vec{y}+\len{\vec{y}}^2
+                </me>.
+              </p>
+            </statement>
+            <solution>
+              <p>
+                This is simply an exercise in properties of the dot product. We have
+                <md>
+                  <mrow>\len{\vec{x}+\vec{y}}^2 \amp = (\vec{x}+\vec{y})\dotp (\vec{x}+\vec{y}) </mrow>
+                  <mrow> \amp = \vec{x}\dotp \vec{x}+\vec{x}\dotp\vec{y}+\vec{y}\dotp\vec{x}+\vec{y}\dotp\vec{y}</mrow>
+                  <mrow>  \amp =\len{\vec{x}}^2+2\vec{x}\dotp\vec{y}+\len{\vec{y}}^2</mrow>
+                </md>.
+              </p>
+            </solution>
+          </exercise>
+
+          <exercise>
+            <statement>
+              <p>
+                Suppose <m>\mathbb{R}^n=\spn\{\vec{v}_1,\vec{v}_2,\ldots, \vec{v}_k\}</m>.
+                Prove that <m>\vec{x}=\vec{0}</m> if and only if <m>\vec{x}\dotp \vec{v}_i=0</m> for each <m>i=1,2,\ldots, k</m>.
+              </p>
+            </statement>
+            <solution>
+              <p>
+                If <m>\vec{x}=\vec{0}</m>, then the result follows immediately from the dot product formula in <xref ref="def-dot-prod-norm"/>.
+                Conversely, suppose <m>\vec{x}\dotp \vec{v}_i=0</m> for each <m>i</m>.
+                Since the <m>\vec{v}_i</m> span <m>\R^n</m>, there must exist scalars <m>c_1,c_2,\ldots, c_k</m>
+                such that <m>\vec{x}=c_1\vec{v}_1+c_2\vec{v}_2+\cdots+c_k\vec{v}_k</m>. But then
+                <md>
+                  <mrow>\vec{x}\dotp\vec{x} \amp = \vec{x}\dotp (c_1\vec{v}_1+c_2\vec{v}_2+\cdots+c_k\vec{v}_k) </mrow>
+                  <mrow> \amp = c_1(\vec{x}\dotp \vec{v}_1)+ c_2(\vec{x}\dotp \vec{v}_2)+\cdots +c_k(\vec{x}\dotp \vec{v}_k)</mrow>
+                  <mrow>  \amp = c_1(0)+c_2(0)+\cdots + c_k(0)=0</mrow>
+                </md>.
+              </p>
+            </solution>
+          </exercise>
+
+          <p>
+            There are two important inequalities associated to the dot product and norm.
+            We state them both in the following theorem.
+          </p>
+
+          <theorem xml:id="thm-cauchy-triangle">
+            <statement>
+              <p>
+                Let <m>\vec{x},\vec{y}</m> be any vectors in <m>\R^n</m>.
+                Then
+                <ol>
+                  <li>
+                    <m>\lvert \vec{x}\dotp \vec{y}\rvert \leq \len{\vec{x}}\len{\vec{y}}</m>
+                  </li>
+                  <li>
+                    <m>\len{\vec{x}+\vec{y}}\leq \len{\vec{x}}+\len{\vec{y}}</m>
+                  </li>
+                </ol>
+              </p>
+            </statement>
+          </theorem>
+
+          <p>
+            The first of the above inequalities is called the <em>Cauchy-Schwarz inequality</em>, which be viewed as a manifestation of the formula
+            <me>
+              \vec{x}\dotp \vec{y} = \len{\vec{x}}\len{\vec{y}}\cos\theta
+            </me>,
+            since after all, <m>\lvert \cos\theta\rvert\leq 1</m> for any angle <m>\theta</m>.
+            For a direct proof, we note that for any scalars <m>r,s</m> we have
+            <me>
+              \len{r\vec{x}\pm s\vec{y}}^2 = r^2\len{\vec{x}}^2\pm 2rs\vec{x}\dotp\vec{y}+s^2\len{\vec{y}}^2
+            </me>.
+            Putting <m>r=\len{\vec{y}}, s=\len{\vec{x}}</m> gives
+            <me>
+              \len{s\vec{x}\pm r\vec{y}}^2 = 2rs(rs\pm\vec{x}\dotp\vec{y})
+            </me>.
+            Since the left-hand side is non-negative, we must have
+            <me>
+              \vec{x}\vec{y}\leq \len{\vec{x}}\len{\vec{y}} \quad \text{ and } -\len{\vec{x}}\len{\vec{y}}\leq \vec{x}\dotp\vec{y}
+            </me>,
+            and the result follows.
+          </p>
+
+          <p>
+            The second result, called the  <em>triangle inequality</em>,
+            follows immediately from the Cauchy-Scwarz inequality and <xref ref="ex-norm-sum-square"/>.
+            The triangle inequality gets its name from the <q>tip-to-tail</q> picture for vector addition.
+            Essentially, it tells us that the length of any side of a triangle must be less than the sum of the lengths of the other two sides.
+            The importance of the triangle inequality is that it tells us that the norm can be used to define distance.
+          </p>
+
+          <definition xml:id="def-vector-distance">
+            <statement>
+              <p>
+                For any vectors <m>\vec{x},\vec{y}\in \R^n</m>, the <term>distance</term>
+                from <m>\vec{x}</m> to <m>\vec{y}</m> is denoted <m>d(\vec{x},\vec{y})</m>, and defined as
+                <me>
+                  d(\vec{x},\vec{y}) = \len{\vec{x}-\vec{y}}
+                </me>.
+              </p>
+            </statement>
+          </definition>
+
+          <p>
+            Using properties of the norm, we can show that this distance function meets the criteria of what's called a <em>metric</em>.
+            A metric is any function that takes a pair of vectors (or points) as input, and returns a number as output,
+            with the following properties:
+            <ol>
+              <li>
+                <p>
+                  <m>d(\vec{x},\vec{y})=d(\vec{y},\vec{x})</m> for any <m>\vec{x},\vec{y}</m>
+                </p>
+              </li>
+              <li>
+                <p>
+                  <m>d(\vec{x},\vec{y})\geq 0</m>, and <m>d(\vec{x},\vec{y})=0</m> if and only if <m>\vec{x}=\vec{y}</m>
+                </p>
+              </li>
+              <li>
+                <p>
+                  <m>d(\vec{x},\vec{y})\leq d(\vec{x},\vec{z})+d(\vec{z},\vec{y})</m> for any <m>\vec{x},\vec{y},\vec{z}</m>
+                </p>
+              </li>
+            </ol>
+            We leave it as an exericse to confirm that the distance function defined above is a metric.
+          </p>
+
+          <p>
+            In more advanced courses (<eg/> topology or analysis) you might go into detailed study of these structures.
+            There are three interrelated structures: inner products, norms, and metrics.
+            You might consider questions like: does every norm come from an inner product? Does every metric come from a norm?
+            (No.) Things get even more interesting for infinite-dimensional spaces.
+            Of special interest are spaces such as <em>Hilbert spaces</em> (a special type of infinite-dimensional inner product space)
+            and <em>Banach spaces</em> (a special type of infinite-dimensional normed space).
+          </p>
+        </subsection>
+
+        <subsection xml:id="subsec-ortho-sets">
+          <title>Orthogonal sets of vectors</title>
+          <p>
+            In earlier chapters, we've seen that among different sets of vectors one could consider,
+            independent sets and spanning sets are both worthy of study.
+            One of the main themes of this chapter is that <em>orthogonal</em> sets are equally worthy,
+            and in many cases, easier to work with.
+          </p>
+
+          <definition xml:id="def-ortho-set">
+            <statement>
+              <p>
+                A set of vectors <m>\{\vec{v}_1,\vec{v}_2,\ldots, \vec{v}_k\}</m> in <m>\R^n</m>
+                is called <term>orthogonal</term> if:
+                <ul>
+                  <li>
+                    <p>
+                      <m>\vec{v}_i\neq \vec{0}</m> for each <m>i=1,2\ldots, n</m>
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      <m>\vec{v}_i\dotp\vec{v}_j = 0</m> for all <m>i\neq j</m>
+                    </p>
+                  </li>
+                </ul>
+              </p>
+            </statement>
+          </definition>
+
+          <exercise xml:id="ex-orthogonal-set">
+            <statement>
+              <p>
+                Show that the following is an orthogonal subset of <m>\R^4</m>.
+                <me>
+                  \{(1,0,1,0), (-1,0,1,1), (1,1,-1,2)\}
+                </me>
+                Can you find a fourth vector that is orthogonal to each vector in this set?
+              </p>
+            </statement>
+            <solution>
+              <p>
+                Clearly, all three vectors are nonzero. To confirm the set is orthogonal, we simply compute dot products:
+                <md>
+                  <mrow> (1,0,1,0)\dotp (-1,0,1,1)\amp =-1+0+1+0=0</mrow>
+                  <mrow> (-1,0,1,1)\dotp (1,1,-1,2)\amp =-1+0-1+2=0</mrow>
+                  <mrow> (1,0,1,0)\dotp (1,1,-1,2) \amp = 1+0-1+0=0</mrow>
+                </md>.
+              </p>
+
+              <p>
+                To find a fourth vector, we proceed as follows. Let <m>\vec{x}=(a,b,c,d)</m>.
+                We want <m>\vec{x}</m> to be orthogonal to the three vectors in our set.
+                Computing dot products, we must have:
+                <md>
+                  <mrow>(a,b,c,d)\dotp (1,0,1,0) \amp = a+c=0 </mrow>
+                  <mrow>(a,b,c,d)\dotp (-1,0,1,1) \amp = -a+c+d=0 </mrow>
+                  <mrow>(a,b,c,d)\dotp (1,1,-1,2) \amp = a+b-c+2d=0</mrow>
+                </md>.
+                This is simply a homogeneous system of three equations in four variables.
+                Using the Sage cell below, we find that our vector must satisfy
+                <m>a=\frac12 d, b = -3d, c=-\frac12 d</m>.
+                One possible nonzero solution is to take <m>d=2</m>, giving <m>\vec{x}=(1,-6,-1,2)</m>.
+                We'll leave the verification that this vector works as an easy exercise.
+              </p>
+            </solution>
+          </exercise>
+
+          <sage>
+            <input>
+              from sympy import *
+              init_printing()
+              A=Matrix(3,4,[1,0,1,0,-1,0,1,1,1,1,-1,2])
+              A.rref()
+            </input>
+          </sage>
+
+          <p>
+            The requirement that the vectors in an orthogonal set be nonzero is partly because the alternative would be boring,
+            and partly because it lets us state the following theorem.
+          </p>
+
+          <theorem xml:id="thm-ortho-independent">
+            <statement>
+              <p>
+                Any orthogonal set of vectors is linearly independent.
+              </p>
+            </statement>
+            <proof>
+              <p>
+                Suppose <m>S=\{\vec{v}_1,\vec{v}_2,\ldots, \vec{v}_k\}</m> is orthogonal, and suppose
+                <me>
+                  c_1\vec{v}_1+c_2\vec{v}_2+\cdots + c_k\vec{v}_k = \vec{0}
+                </me>
+                for scalars <m>c_1,c_2,\ldots, c_k</m>.
+                Taking the dot product of both sides of the above equation with <m>\vec{v}_1</m> gives
+                <md>
+                  <mrow>c_1(\vec{v}_1\dotp \vec{v}_1)+c_2(\vec{v}_1\dotp \vec{v}_2)+\cdots +c_k(\vec{v}_1\dotp \vec{v}_k) \amp =\vec{v}_1\dotp \vec{0}</mrow>
+                  <mrow> c_1\len{\vec{v}_1}^2+0+\cdots + 0\amp = 0 </mrow>
+                </md>.
+                Since <m>\len{\vec{v}_1}^2\neq 0</m>, we must have <m>c_1=0</m>.
+                We similarly find that all the remaining scalars are zero by taking the dot product with <m>\vec{v}_2,\ldots, \vec{v}_k</m>.
+              </p>
+            </proof>
+          </theorem>
+
+          <p>
+            Another useful consequence of orthogonality: recall that in two dimensions,
+            we have the Pythagorean Theorem for right-angled triangles,
+            but have to settle for the Law of Cosines otherwise.
+            In <m>n</m> dimensions, we have the following, which follows from the fact that all <q>cross terms</q>
+            (dot products of different vectors) will vanish.
+          </p>
+
+          <theorem xml:id="thm-pythagoras">
+            <statement>
+              <p>
+                For any orthogonal set of vectors <m>\{\vec{x}_1,\ldots, \vec{x}_k\}</m> we have
+                <me>
+                  \len{\vec{x}_1+\cdots +\vec{x}_k}^2 = \len{\vec{x}_1}^2+\cdots + \len{\vec{x}_k}^2
+                </me>.
+              </p>
+            </statement>
+          </theorem>
+
+          <p>
+            Our final initial result about orthogonal sets of vectors relates to span.
+            In general, we know that if <m>\vec{y}\in\spn\{\vec{x}_1,\ldots, \vec{x}_k\}</m>,
+            then it is possible to solve for scalars <m>c_1,\ldots, c_k</m>
+            such that <m>\vec{y}=c_1\vec{x}_1+\cdots+ c_k\vec{x}_k</m>.
+            The trouble is that finding these scalars generally involves setting up,
+            and then solving, a system of linear equations.
+            The great thing about orthogonal sets of vectors is that we can provide explicit formulas for the scalars.
+          </p>
+
+          <theorem xml:id="thm-fourier-expansion">
+            <title>Fourier expansion theorem</title>
+            <statement>
+              <p>
+                Let <m>=\{\vec{v}_1,\vec{v}_2,\ldots, \vec{v}_k\}</m> be an orthogonal set of vectors.
+                For any <m>\vec{y}\in \spn S</m>, we have
+                <me>
+                  \vec{y} = \left(\frac{\vec{y}\dotp\vec{v_1}}{\vec{v}_1\dotp\vec{v}_1}\right)\vec{v}_1+
+                  \left(\frac{\vec{y}\dotp\vec{v_2}}{\vec{v}_2\dotp\vec{v}_2}\right)\vec{v}_2+\cdots +
+                  \left(\frac{\vec{y}\dotp\vec{v_k}}{\vec{v}_k\dotp\vec{v}_k}\right)\vec{v}_k
+                </me>.
+              </p>
+            </statement>
+            <proof>
+              <p>
+                Let <m>\vec{y}=c_1\vec{v}_1+\cdots + c_k\vec{v}_k</m>.
+                Taking the dot product of both sides of this equation with <m>\vec{v}_i</m>
+                gives
+                <me>
+                  \vec{v}_i\dotp\vec{y} = c_i(\vec{v}_i\dotp\vec{v}_i)
+                </me>,
+                since the dot product of <m>\vec{v}_i</m> with <m>\vec{v}_j</m> for <m>i\neq j</m> is zero.
+              </p>
+            </proof>
+          </theorem>
+
+          <p>
+            One use of <xref ref="thm-fourier-expansion"/> is determining whether or not a given vector is in the span of an orthogonal set.
+            If it is in the span, then its coefficients must satisfy the Fourier expansion formula.
+            Therefore, if we compute the right hand side of the above formula and do not get our original vector, then that vector must not be in the span.
+          </p>
+
+          <exercise xml:id="ex-test-span">
+            <statement>
+              <p>
+                Determine whether or not the vectors <m>\vec{v}=(1,-4,3,-11), \vec{w}=(3,1,-4,2)</m>
+                belong to the span of the vectors <m>\vec{x}_1=(1,0,1,0), \vec{x}_2=(-1,0,1,1), \vec{x}_3=(1,1,-1,2)</m>.
+                (We confirmed that these vectors form an orthogonal set in <xref ref="ex-orthogonal-set"/>.)
+              </p>
+            </statement>
+            <solution>
+              <p>
+                We compute
+                <md>
+                  <mrow>\left(\frac{\vec{v}\dotp\vec{x}_1}{\len{\vec{x}_1}^2}\right)\vec{x_1}
+                    \amp +\left(\frac{\vec{v}\dotp\vec{x}_2}{\len{\vec{x}_2}^2}\right)\vec{x_2}
+                    +\left(\frac{\vec{v}\dotp\vec{x}_3}{\len{\vec{x}_3}^2}\right)\vec{x_3}</mrow>
+                  <mrow> \amp = \frac{4}{2}\vec{x}_1+\frac{-9}{3}\vec{x}_2+\frac{-28}{7}</mrow>
+                  <mrow> \amp = 2(1,0,1,0)-3(-1,0,1,1)-4(1,1,-1,2)</mrow>
+                  <mrow> \amp = (1,-4,3,-11) = \vec{v}</mrow>
+                </md>,
+                so <m>\vec{v}\in\spn\{\vec{x}_1,\vec{x}_2,\vec{x}_3\}</m>.
+              </p>
+
+              <p>
+                On the other hand, repeating the same calculation with <m>\vec{w}</m>, we find
+                <md>
+                  <mrow>\left(\frac{\vec{v}\dotp\vec{x}_1}{\len{\vec{x}_1}^2}\right)\vec{x_1}
+                    \amp +\left(\frac{\vec{v}\dotp\vec{x}_2}{\len{\vec{x}_2}^2}\right)\vec{x_2}
+                    +\left(\frac{\vec{v}\dotp\vec{x}_3}{\len{\vec{x}_3}^2}\right)\vec{x_3}</mrow>
+                  <mrow> \amp =\frac12 (1,0,1,0)-\frac53 (-1,0,1,1) +\frac47 (1,1,-1,2)</mrow>
+                  <mrow> \amp = \left(\frac{73}{42},\frac47,-\frac{115}{42},-\frac{11}{21}\right)\neq \vec{w}</mrow>
+                </md>,
+                so <m>\vec{w}\notin\spn\{\vec{x}_1,\vec{x}_2,\vec{x}_3\}</m>.
+              </p>
+
+              <p>
+                Soon, we'll see that the quantity we computed when showing that <m>\vec{w}\notin\spn\{\vec{x}_1,\vec{x}_2,\vec{x}_3\}</m>
+                is, in fact, the <em>orthogonal projection</em> of <m>\vec{w}</m> onto the subspace <m>\spn\{\vec{x}_1,\vec{x}_2,\vec{x}_3\}</m>.
+              </p>
+            </solution>
+          </exercise>
+
+          <p>
+            The Fourier expansion is especially simple if our basis vectors have norm one,
+            since the demoninators in each coefficient disappear.
+            Recall (from elementary linear algebra) that for any nonzero vector <m>\vec{v}</m>,
+            a <em>unit vector</em> (that is, a vector of norm one) in the direction of <m>\vec{v}</m> is given by
+            <me>
+              \hat{u} = \frac{1}{\len{\vec{v}}}\vec{v}
+            </me>.
+            We often say that the vector <m>\vec{u}</m> is <em>normalized</em>.
+            (The convention of using a <q>hat</q> for unit vectors is common but not universal.)
+          </p>
+
+          <definition xml:id="def-onb">
+            <statement>
+              <p>
+                A basis <m>B</m> of <m>\R^n</m> is called an <term>orthonormal basis</term>
+                if <m>B</m> is orthogonal, and all the vectors in <m>B</m> are unit vectors.
+              </p>
+            </statement>
+          </definition>
+
+          <example>
+            <statement>
+              <p>
+                In <xref ref="ex-orthogonal-set"/> we saw that the set
+                <me>
+                  \{(1,0,1,0), (-1,0,1,1), (1,1,-1,2),(1,-6,-1,2)\}
+                </me>
+                is orthogonal. Since it's orthogonal, it must be independent,
+                and since it's a set of four independent vectors in <m>\R^4</m>,
+                it must be a basis. To get an orthonormal basis, we normalize each vector:
+                <md>
+                  <mrow>\hat{u}_1 \amp = \frac{1}{\sqrt{1^2+0^2+1^2+0^2}}(1,0,1,0) = \frac{1}{\sqrt{2}}(1,0,1,0)</mrow>
+                  <mrow>\hat{u}_2 \amp = \frac{1}{\sqrt{(-1)^2+0^2+1^2+1^2}}(-1,0,1,1,) = \frac{1}{\sqrt{3}}(-1,0,1,1)</mrow>
+                  <mrow>\hat{u}_3 \amp = \frac{1}{\sqrt{1^2+1^2+(-1)^2+2^2}}(1,1,-1,2) = \frac{1}{\sqrt{7}}(1,1,-1,2)</mrow>
+                  <mrow>\hat{u}_4 \amp = \frac{1}{\sqrt{1^2+(-6)^2+(-1)^2+2^2}}(1,-6,-1,2) = \frac{1}{\sqrt{42}}(1,-6,-1,2)</mrow>
+                </md>.
+                The set <m>\{\hat{u}_1,\hat{u}_2,\hat{u}_3,\hat{u}_4\}</m> is then an orthonormal basis of <m>\R^4</m>.
+              </p>
+            </statement>
+          </example>
+
+          <p>
+            The process of creating unit vectors does typically introduce square root coefficients in our vectors.
+            This can seem undesirable, but there remains value in having an orthonormal basis.
+            For example, suppose we wanted to write the vector <m>\vec{v}=(3,5,-1,2)</m> in terms of our basis.
+            We can quickly compute
+            <md>
+              <mrow>\vec{v}\dotp\hat{u}_1 \amp = \frac{3}{\sqrt{2}}-\frac{1}{\sqrt{2}}=\sqrt{2}</mrow>
+              <mrow>\vec{v}\dotp\hat{u}_2 \amp = -\frac{3}{\sqrt{3}}-\frac{1}{\sqrt{3}}+\frac{2}{\sqrt{3}}=-\frac{2}{\sqrt{3}}</mrow>
+              <mrow>\vec{v}\dotp\hat{u}_3 \amp = \frac{3}{\sqrt{7}}+\frac{5}{\sqrt{7}}+\frac{1}{\sqrt{7}}+\frac{4}{\sqrt{7}} = \frac{11}{\sqrt{7}}</mrow>
+              <mrow>\vec{v}\dotp\hat{u}_4 \amp = \frac{3}{\sqrt{42}}-\frac{30}{\sqrt{42}}+\frac{1}{\sqrt{42}}+\frac{4}{\sqrt{42}} = -\frac{22}{\sqrt{42}}</mrow>
+            </md>,
+            and so
+            <me>
+              \vec{v} = \sqrt{2}\hat{u}_1-\frac{2}{\sqrt{3}}\hat{u}_2+\frac{11}{\sqrt{7}}\hat{u}_3-\frac{22}{\sqrt{42}}\hat{u}_4
+            </me>.
+            There's still work to be done, but it is comparatively simpler than solving the corresponding system of equations.
+          </p>
+        </subsection>
+      </section>
+
+      <section xml:id="sec-ortho-projection">
+        <title>Orthogonal Projection</title>
+        <p>
+          In <xref ref="ex-test-span">Exercise</xref>, we saw that <xref ref="thm-fourier-expansion" text="title"/>
+          gives us an efficient way of testing whether or not a given vector belongs to the span of an orthogonal set.
+          When the answer is <q>no</q>, the quantity we compute while testing turns out to be very useful:
+          it gives the <em>orthogonal projection</em> of that vector onto the span of our orthogonal set.
+          This turns out to be exactly the ingredient needed to solve certain minimum distance problems.
+        </p>
+
+        <p>
+          You may recall the following from elementary linear algebra, or vector calculus.
+          Given an nonzero vector <m>\vec{u}</m> and a vector <m>\vec{v}</m>,
+          the <em>projection</em> of <m>\vec{v}</m> onto <m>\vec{u}</m> is given by
+          <me>
+            \proj{\vec{u}}{\vec{v}} = \left(\frac{\vec{v}\dotp\vec{u}}{\len{\vec{u}}^2}\right)\vec{u}
+          </me>.
+          Note that this looks just like one of the terms in <xref ref="thm-fourier-expansion" text="title"/>.
+          Recall also that the vector <m>\vec{v}-\proj{\vec{u}}{\vec{v}}</m> is orthogonal to <m>\vec{u}</m>.
+          Our next result is a generalization of this observation.
+        </p>
+
+        <theorem xml:id="thm-orthogonal-lemma">
+          <title>Orthogonal Lemma</title>
+          <statement>
+            <p>
+              Let <m>\{\vec{v}_1,\vec{v}_2,\ldots, \vec{v}_m\}</m> be an orthogonal set of vectors in <m>\R^n</m>,
+              and let <m>\vec{x}</m> be any vector in <m>\R^n</m>. Define the vector <m>\vec{v}_{m+1}</m> by
+              <me>
+                \vec{v}_{m+1} = \vec{x}-\left(\frac{\vec{x}\dotp\vec{v}_1}{\len{\vec{v}_1}^2}\vec{v}_1+\cdots + \frac{\vec{x}\dotp\vec{v}_m}{\len{\vec{v}_m}^2}\vec{v}_m\right)
+              </me>.
+              Then:
+              <ol>
+                <li>
+                  <p>
+                    <m>\vec{v}_{m+1}\dotp \vec{v}_i = 0</m> for each <m>i=1,\ldots, m</m>.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    If <m>\vec{x}\notin\spn\{\vec{v}_1,\ldots, \vec{v}_m\}</m>,
+                    then <m>\vec{v}_{m+1}\neq \vec{0}</m>,
+                    and therefore, <m>\{\vec{v}_1,\ldots, \vec{v}_m,\vec{v}_{m+1}\}</m> is an orthogonal set.
+                  </p>
+                </li>
+              </ol>
+            </p>
+          </statement>
+          <proof>
+            <p>
+              <ol>
+                <li>
+                  <p>
+                    For any <m>i=1,\ldots m</m>, we have
+                    <me>
+                      \vec{v}_{m+1}\dotp\vec{v}_i = \vec{x}\dotp\vec{v}_i - \frac{\vec{x}\dotp\vec{v}_i}{\len{\vec{v}_i}^2}(\vec{v}_i\dotp\vec{v}_i)=0
+                    </me>,
+                    since <m>\vec{v}_i\dotp\vec{v}_j = 0</m> for <m>i\neq j</m>.
+                  </p>
+                </li>
+
+                <li>
+                  <p>
+                    It follows from the <xref ref="thm-fourier-expansion" text="title"/> that <m>\vec{v}_{m+1}=\vec{0}</m>
+                    if and only if <m>\vec{x}\in\spn\{\vec{v}_1,\ldots, \vec{v}_m\}</m>,
+                    and the fact that <m>\{\vec{v}_1,\ldots, \vec{v}_m,\vec{v}_{m+1}\}</m>
+                    is an orthogonal set then follows from the first part.
+                  </p>
+                </li>
+              </ol>
+            </p>
+          </proof>
+        </theorem>
+
+        <p>
+          It follows from the <xref ref="thm-orthogonal-lemma" text="title"/> that for any subspace <m>U\subseteq \R^n</m>,
+          any set of orthogonal vectors in <m>U</m> can be extended to an orthogonal basis of <m>U</m>.
+          Since any set containing a single nonzero vector is orthogonal,
+          it follows that every subspace has an orthogonal basis.
+          (If <m>U=\{\vec{0}\}</m>, we consider the empty basis to be orthogonal.)
+        </p>
+
+        <p>
+          The procedure for creating an orthogonal basis is clear.
+          Start with a single nonzero vector <m>\vec{v}_1\in U</m>.
+          If <m>U\neq \spn\{\vec{v}_1\}</m>, choose a vector <m>\vec{x}_1\in U</m> with <m>\vec{x}_1\notin\spn\{\vec{v}_1\}</m>.
+          The <xref ref="thm-orthogonal-lemma" text="title"/> then provides us with a vector
+          <me>
+            \vec{v}_2 = \vec{x}_1-\frac{\vec{x}_1\dotp\vec{v}_1}{\len{\vec{v}_1}^2}\vec{v}_1
+          </me>
+          such that <m>\{\vec{v}_1,\vec{v}_2\}</m> is orthogonal.
+          If <m>U=\spn\{\vec{v}_1,\vec{v}_2\}</m>, we're done.
+          Otherwise, we repeat the process, choosing <m>\vec{x}_2\notin\spn\{\vec{v}_1,\vec{v}_2\}</m>,
+          and then using the <xref ref="thm-orthogonal-lemma" text="title"/> to obtain <m>\vec{v}_3</m>,
+          and so on, until an orthogonal basis is obtained.
+        </p>
+
+        <p>
+          With one minor modification, the above procedure provides us with a major result.
+          Suppose <m>U</m> is a subspace of <m>\R^n</m>, and start with <em>any</em> basis <m>\{\vec{x}_1,\ldots, \vec{x}_m\}</m> of <m>U</m>.
+          By choosing our <m>\vec{x}_i</m> in the procedure above to be these basis vectors, we obtain the
+          <em>Gram-Schmidt algorithm</em> for constructing an orthogonal basis.
+        </p>
+
+        <theorem xml:id="thm-gram-schmidt">
+          <title>Gram-Schmidt Orthonormalization Algorithm</title>
+          <statement>
+            <p>
+              Let <m>U</m> be a subspace of <m>\R^n</m>, and let <m>\{\vec{x}_1,\ldots, \vec{x}_m\}</m> be a basis of <m>U</m>.
+              Define vectors <m>\vec{v}_1,\ldots, \vec{v}_m</m> in <m>U</m> as follows:
+              <md>
+                <mrow>\vec{v}_1 \amp = \vec{x}_1 </mrow>
+                <mrow>\vec{v}_2 \amp = \vec{x}_2 - \frac{\vec{x}_2\dotp\vec{v}_1}{\len{\vec{v}_1}^2}\vec{v}_1</mrow>
+                <mrow>\vec{v}_3 \amp = \vec{x}_3 - \frac{\vec{x}_3\dotp\vec{v}_1}{\len{\vec{v}_1}^2}\vec{v}_1-\frac{\vec{x}_3\dotp\vec{v}_2}{\len{\vec{v}_2}^2}\vec{v}_2</mrow>
+                <mrow>\vdots \amp </mrow>
+                <mrow>\vec{v}_m \amp = \vec{x}_m - \frac{\vec{x}_m\dotp\vec{v}_1}{\len{\vec{v}_1}^2}\vec{v}_1-\cdots - \frac{\vec{x}_m\dotp\vec{v}_{m-1}}{\len{\vec{v}_{m-1}}^2}\vec{v}_{m-1}</mrow>
+              </md>.
+              Then <m>\{\vec{v}_1,\ldots, \vec{v}_m\}</m> is an orthogonal basis for <m>U</m>.
+              Moreover, for each <m>k=1,2,\ldots, m</m>, we have
+              <me>
+                \spn\{\vec{v}_1,\ldots, \vec{v}_k\} = \spn\{\vec{x}_1,\ldots, \vec{x}_k\}
+              </me>.
+            </p>
+          </statement>
+        </theorem>
+
+        <p>
+          Of course, once we've used Gram-Schmidt to find an orthogonal basis,
+          we can normalize each vector to get an orthonormal basis.
+          The Gram-Schmidt algorithm is ideal when we know how to find <em>a</em> basis for a subspace,
+          but we need to know an orthogonal basis.
+          For example, suppose we want an orthonormal basis for the nullspace of the matrix
+          <me>
+            A = \bbm 2 \amp -1 \amp 3 \amp 0 \amp 5\\0 \amp 2 \amp -3  \amp 1 \amp 4\\ -4 \amp 2 \amp -6 \amp 0 \amp -10\\ 2 \amp 1 \amp 0 \amp 1 \amp 9\ebm
+          </me>.
+          First, we find <em>any</em> basis for the nullspace.
+        </p>
+
+        <sage>
+          <input>
+            from sympy import *
+            init_printing()
+            A = Matrix(4,5,[2,-1,3,0,5,0,2,-3,1,4,-4,2,-6,0,-10,2,1,0,1,9])
+            A.nullspace()
+          </input>
+        </sage>
+
+        <p>
+          Let's make that basis look a little nicer by using some scalar multiplication to clear fractions.
+          <me>
+            B=\left\{\vec{x}_1=\bbm 3\\-6\\-4\\0\\0\ebm, \vec{x}_2=\bbm 1\\2\\0\\-4\\0\ebm, \vec{x}_3=\bbm 7\\4\\0\\0\\-2\ebm\right\}
+          </me>
+          Defnitely not an orthogonal basis. So we take <m>\vec{v}_1=\vec{x}_1</m>, and
+          <md>
+            <mrow>\vec{v}_2 \amp = \vec{x}_2-\left(\frac{\vec{x}_2\dotp\vec{v}_1}{\len{\vec{v}_1}^2}\right)\vec{v}_1</mrow>
+            <mrow> \amp = \bbm 1\\2\\0\\-4\\0\ebm -\frac{-9}{61}\bbm 3\\-6\\-4\\-0\\0\ebm </mrow>
+          </md>,
+          which equals something I'm not sure I want to try to simplify. Finally, we find
+          <me>
+            \vec{v}_3 = \vec{x}_3-\left(\frac{\vec{x}_3\dotp \vec{v}_1}{\len{\vec{v}_1}^2}\right)\vec{v}_1-\left(\frac{\vec{x}_3\dotp\vec{v}_2}{\len{\vec{v}_2}^2}\right)\vec{v}_2
+          </me>.
+          And now you probably get about five minutes into the fractions and say something that shouldn't appear in print.
+          This sounds like a job for the computer.
+        </p>
+
+        <sage>
+          <input>
+            B = A.nullspace()
+            GramSchmidt(B)
+          </input>
+        </sage>
+
+        <p>
+          Oh wait, you wanted that normalized?
+          Turns out the GramSchmidt function has an optional argument of true or false.
+          The default is false, which is to not normalize. Setting it to true gives an orthonormal basis:
+        </p>
+
+        <sage>
+          <input>
+            GramSchmidt(B,true)
+          </input>
+        </sage>
+
+        <p>
+          OK, so that's nice, and fairly intimidating looking.
+          Did it work? We can specify the vectors in our list by giving their positions, which are 0, 1, and 2, resepctively.
+        </p>
+
+        <sage>
+          <input>
+            L=GramSchmidt(B)
+            L[0],L[1]
+          </input>
+        </sage>
+
+        <p>
+          Let's compute dot products:
+        </p>
+
+        <sage>
+          <input>
+            L[0].dot(L[1]),L[1].dot(L[2]),L[0].dot(L[2])
+          </input>
+        </sage>
+
+        <p>
+          Let's also confirm that these are indeed in the nullspace.
+        </p>
+
+        <sage>
+          <input>
+            A*L[0],A*L[1],A*L[2]
+          </input>
+        </sage>
+
+        <p>
+          Boom. Let's try another example. This time we'll keep the vectors a little smaller in case you want to try it by hand.
+        </p>
+
+        <exercise>
+          <statement>
+            <p>
+              Confirm that the set <m>B=\{(1,-2,1), (3,0,-2), (-1,1,2)\}</m> is a basis for <m>\R^3</m>,
+              and use the <xref ref="thm-gram-schmidt" text="title"/> to find an orthonormal basis.
+            </p>
+          </statement>
+          <solution>
+            <p>
+              First, note that we can actually jump right into the Gram-Schmidt procedure.
+              If the set <m>B</m> is not a basis, then it won't be independent,
+              and when we attempt to construct the third vector in our orthonormal basis,
+              its projection on the the subspace spanned by the first two will be the same as the original vector,
+              and we'll get zero when we subtract the two.
+            </p>
+
+            <p>
+              We let <m>\vec{x}_1=(1,-2,1), \vec{x}_2=(3,0,-2), \vec{x}_3=(-1,1,2)</m>,
+              and set <m>\vec{v}_1=\vec{x}_1</m>. Then we have
+              <md>
+                <mrow>\vec{v}_2 \amp = \vec{x}_2-\left(\frac{\vec{x}_2\dotp \vec{v}_1}{\len{\vec{v}_1}^2}\right)\vec{v}_1 </mrow>
+                <mrow> \amp = (3,0,-2)-\frac{1}{6}(1,-2,1)</mrow>
+                <mrow> \amp = \frac16(17,2,-3) </mrow>
+              </md>.
+            </p>
+            <p>
+              Next, we compute <m>\vec{v}_3</m>.
+              <md>
+                <mrow>\vec{v}_3 \amp = \vec{x}_3-\left(\frac{\vec{x}_3\dotp \vec{v}_1}{\len{\vec{v}_1}^2}\right)\vec{v}_1 - \left(\frac{\vec{x}_3\dotp \vec{v}_2}{\len{\vec{v}_2}^2}\right)\vec{v}_2</mrow>
+                <mrow> \amp = (-1,1,2)-\frac{-1}{6}(1,-2,1)-\cdot \frac{-21}{303}(17,2,-3)</mrow>
+                <mrow> \amp = (-1,1,2)+\frac16(1,-2,1)+\frac{7}{101}(17,2,-3)</mrow>
+                <mrow> \amp = \frac{1}{606}\bigl((-606,606,1212)+(101,-202,101)+(782,84,-126)\bigr)</mrow>
+                <mrow> \amp = \frac{1}{606}(277,488,1187)</mrow>
+              </md>.
+            </p>
+          </solution>
+        </exercise>
+
+        <aside>
+          <p>
+            You'll notice that I used <m>6\vec{v}_2</m> rather than <m>\vec{v}_2</m>
+            in the calculation of <m>\vec{v}_3</m>.
+            This lets me avoid fractions (momentarily), and doesn't affect the answer,
+            since for any nonzero scalar <m>c</m>,
+            <md>
+              <mrow>\left(\frac{c\vec{v}\dotp \vec{x}}{\len{c\vec{v}}^2}\right)\amp(c\vec{v})</mrow>
+              <mrow>\amp= \left(\frac{c(\vec{v}\dotp\vec{x})}{c^2\len{\vec{v}}^2}\right)(c\vec{v})</mrow>
+              <mrow>\amp=\left(\frac{\vec{v}\dotp\vec{x}}{\len{\vec{v}^2}}\right)\vec{v}</mrow>
+            </md>.
+          </p>
+        </aside>
+
+        <p>
+          OK. Now, given the frequency with which typos occur in this text,
+          and the fact that I tried to do the above problem in my head while typing
+          (with an occasional calculator check),
+          there's a good chance there's a mistake somewhere. Let's check our work.
+        </p>
+
+        <sage>
+          <input>
+            L=(Matrix([1,-2,1]),Matrix([3,0,-2]),Matrix([-1,1,2]))
+            GramSchmidt(L)
+          </input>
+        </sage>
+
+        <paragraphs xml:id="pars-projections">
+          <title>Projections</title>
+          <p>
+            We hinted above that the calculations we've been doing have a lot to do with projection.
+            Since any single nonzero vector forms an orthogonal basis for its span,
+            the projection
+            <me>
+              \proj{\vec{u}}{\vec{v}}=\left(\frac{\vec{u}\dotp\vec{v}}{\len{\vec{u}}^2}\right)\vec{u}
+            </me>
+            can be viewed as the orthogonal projection of the vector <m>\vec{v}</m>,
+            not onto the vector <m>\vec{u}</m>, but onto the subspace <m>\spn\{\vec{u}\}</m>.
+            This is, after all, how we viewed projections in elementary linear algebra:
+            we drop the perpendicular from the tip of <m>\vec{v}</m> onto the <em>line</em> in the direction of <m>\vec{u}</m>.
+          </p>
+
+          <p>
+            Now that we know how to define an orthogonal basis for a subspace,
+            we can define orthogonal projection onto subspaces of dimension greater than one.
+          </p>
+
+          <definition xml:id="def-ortho-projection">
+            <statement>
+              <p>
+                Let <m>U</m> be a subspace of <m>\R^n</m> with orthogonal basis
+                <m>\{\vec{u}_1,\ldots, \vec{u}_k\}</m>.
+                For any vector <m>\vec{v}\in \R^n</m>, we define the <term>orthogonal projection</term>
+                of <m>\vec{v}</m> onto <m>U</m> by
+                <me>
+                  \proj{U}{\vec{v}} = \sum_{i=1}^k\left(\frac{\vec{u}_i\dotp\vec{v}}{\len{\vec{u}_i}^2}\right)\vec{u}_i
+                </me>.
+              </p>
+            </statement>
+          </definition>
+
+          <p>
+            Note that <m>\proj{U}{\vec{v}}</m> is indeed an element of <m>U</m>, since it's a linear combination of its basis vectors.
+            In the case of the trivial subspace <m>U=\{\vec{0}\}</m>, we define orthogonal projection of any vector to be <m>\vec{0}</m>,
+            since really, what other choice do we have? (This case isn't really of any interest, we just like being thorogh.)
+          </p>
+
+          <p>
+            Let's see how this might be put to use in a classic problem: finding the distance from a point to a plane.
+          </p>
+
+          <aside>
+            <p>
+              One limitation of this approach to projection is that we must project onto a <em>subspace</em>.
+              Given a plane like <m>x-2y+4z=4</m>, we would need to modify our approach.
+              One way to do it would be to find a point on the plane,
+              and then try to translate everything to the origin.
+              It's interesting to think about how this might be accomplished
+              (in particular, in what direction would the tranlation have to be performed?)
+              but someone external to the questions we're interested in here.
+            </p>
+          </aside>
+
+          <example>
+            <statement>
+              <p>
+                Find the distance from the point <m>(3,1,-2)</m> to the plane <m>P</m>
+                defined by <m>x-2y+4z=0</m>.
+              </p>
+            </statement>
+            <solution>
+              <title>Using projection onto a normal vector</title>
+
+              <p>
+                In an elementary linear algebra (or calculus) course, we would solve this problem as follows.
+                First, we would need two vectors parallel to the plane.
+                If <m>\bbm x\\y\\z\ebm</m> lies in the plane, then <m>x-2y+4z=0</m>, so <m>x=2y-4z</m>, and
+                <me>
+                  \bbm x\\y\\z\ebm = \bbm 2y-4z\\y\\z\ebm = y\bbm 2\\1\\0\ebm + z\bbm -4\\0\\1\ebm
+                </me>,
+                so <m>\vec{u}=\bbm 2\\1\\0\ebm</m> and <m>\vec{v}\bbm -4\\0\\1\ebm</m> are parallel to the plane.
+                We then compute the normal vector
+                <me>
+                  \vec{n}=\vec{u}\times\vec{v}=\bbm 1\\-2\\4\ebm
+                </me>,
+                and compute the projection of the position vector <m>\vec{p}=\bbm 3,1,-2\ebm</m> for the point <m>P=(3,1,-2)</m> onto <m>\vec{n}</m>.
+                This gives the vector
+                <me>
+                  \vec{x} = \left(\frac{\vec{p}\dotp\vec{n}}{\len{\vec{n}}^2}\right)\vec{n} = \frac{-7}{21}\bbm 1\\-2\\4\ebm =\bbm-1/3\\2/3\\-4/3\ebm
+                </me>.
+              </p>
+
+              <p>
+                Now, this vector is <em>parallel</em> to <m>\vec{n}</m>, so it's perpendicular to the plane.
+                Subtracting it from <m>\vec{p}</m> gives a vector parallel to the plane, and this is the position vector for the point we seek.
+                <me>
+                  \vec{q}=\vec{p}-\vec{x}=\bbm 3\\1\\-2\ebm-\bbm -1/3\\-2/3\\-4/3\ebm = \bbm 10/3\\1/3\\-2/3\ebm
+                </me>
+                so the closest point is <m>Q=\bigl(\frac{10}{3},\frac13,-\frac{2}{3}\bigr)</m>.
+                We weren't asked for it, but note that if we wanted the distance from the point <m>P</m> to the plane,
+                this is given by <m>\len{\vec{x}}=\frac13\sqrt{21}</m>.
+              </p>
+            </solution>
+            <solution>
+              <title>Using orthogonal projection</title>
+
+              <p>
+                Let's solve the same problem using orthogonal projection.
+                First, we have to deal with the fact that the vectors <m>\vec{u}</m> and <m>\vec{v}</m> are probably not orthogonal.
+                To get around this, we replace <m>\vec{v}</m> with
+                <me>
+                  \vec{w} = \vec{v}-\left(\frac{\vec{v}\dotp\vec{u}}{\len{\vec{u}}^2}\right)\vec{u} = \bbm -4\\0\\1\ebm+\frac 85\bbm 2\\1\\0\ebm = \bbm -4/5\\8/5\\1\ebm
+                </me>.
+                We now set
+                <md>
+                  <mrow>\vec{q} \amp =\left(\frac{\vec{p}\dotp\vec{u}}{\len{\vec{u}}^2}\right)\vec{u}-\left(\frac{\vec{p}\dotp\vec{w}}{\len{\vec{w}}^2}\right)\vec{w}</mrow>
+                  <mrow> \amp = \frac{7}{5}\bbm 2\\1\\0\ebm +\frac{-14}{105}\bbm -4\\8\\5\ebm </mrow>
+                  <mrow> \amp = \bbm 10/3\\1/3\\-2/3\ebm</mrow>
+                </md>.
+                Lo and behold, we get the same answer as before.
+              </p>
+            </solution>
+          </example>
+
+          <p>
+            The only problem with <xref ref="def-ortho-projection"/> is that it appears to depend on the choice of orthogonal basis.
+            To see that it doesn't, we need one more definition.
+          </p>
+
+          <definition xml:id="def-ortho-comp">
+            <statement>
+              <p>
+                For any subspace <m>U</m> of <m>\R^n</m>,
+                we define the <term>orthogonal complement</term> of <m>U</m>, denoted <m>U^\bot</m>,
+                by
+                <me>
+                  U^\bot = \{\vec{x}\in\R^n \,|\, \vec{x}\dotp\vec{y} = 0 \text{ for all } \vec{y}\in U\}
+                </me>.
+              </p>
+            </statement>
+          </definition>
+
+          <p>
+            The term <q>complement</q> comes from terminology we mentioned early on,
+            but didn't spend much time on. <xref ref="thm-construct-complement">Theorem</xref>
+            told us that for any subspace <m>U</m> of a vector space <m>V</m>,
+            it is possible to construct another subspace <m>W</m> of <m>V</m>
+            such that <m>V = U\oplus W</m>.
+            The subspace <m>W</m> is known as a complement of <m>U</m>.
+            A complement is not unique, but the orthogonal complement is.
+            As you might guess from the name, <m>U^\bot</m> is also a subspace of <m>\R^n</m>.
+          </p>
+
+          <exercise>
+            <statement>
+              <p>
+                Show that <m>U^\bot</m> is a subspace of <m>\R^n</m>.
+              </p>
+            </statement>
+          </exercise>
+
+
+          <theorem xml:id="thm-projection">
+            <title>Projection Theorem</title>
+            <statement>
+              <p>
+                Let <m>U</m> be a subspace of <m>\R^n</m>, let <m>\vec{x}</m> be any vector in <m>\R^n</m>,
+                and let <m>\vec{p}=\proj{U}{\vec{x}}</m>. Then:
+                <ol>
+                  <li>
+                    <p>
+                      <m>\vec{p}\in U</m>, and <m>\vec{x}-\vec{p}\in U^\bot</m>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      <m>\vec{p}</m> is the <em>closest</em> vector in <m>U</m> to the vector <m>\vec{x}</m>,
+                      in the sense that the distance <m>d(\vec{p},\vec{x})</m> is minimal among all vectors in <m>U</m>.
+                      That is, for all <m>\vec{u}\neq \vec{p}\in U</m>, we have
+                      <me>
+                        \len{\vec{x}-\vec{p}}\lt\len{\vec{x}-\vec{y}}
+                      </me>.
+                    </p>
+                  </li>
+                </ol>
+              </p>
+            </statement>
+          </theorem>
+
+          <exercise>
+            <statement>
+              <p>
+                Show that <m>U\cap U^\bot = \{\vec{0}\}</m>.
+                Use this fact to show that <xref ref="def-ortho-projection"/> does not depend on the choice orthogonal basis.
+              </p>
+            </statement>
+            <hint>
+              <p>
+                Suppose we find vectors <m>\vec{p}</m> and <m>\vec{p}'</m> using basis <m>B</m> and <m>B'</m>.
+                Note that <m>\vec{p}-\vec{p}'\in U</m>, but also that
+                <me>
+                  \vec{p}-\vec{p}' = (\vec{p}-\vec{x})-(\vec{p}'-\vec{x})
+                </me>
+                Now use <xref ref="thm-projection"/>
+              </p>
+            </hint>
+          </exercise>
+
+
+          <p>
+            Finally, we note one more useful fact. The process of sending a vector to its orthogonal projection defines an operator on <m>\R^n</m>,
+            and yes, it's linear.
+          </p>
+
+          <theorem xml:id="thm-proj-operator">
+            <statement>
+              <p>
+                Let <m>U</m> be a subspace of <m>\R^n</m>, and define a function <m>P_U:\R^n\to \R^n</m> by
+                <me>
+                  P_U(\vec{x}) = \proj{U}{\vec{x}} \text{ for any } \vec{x}\in\R^n
+                </me>.
+                Then <m>T</m> is a linear operator such that <m>U=\Img P_U</m> and <m>U^\bot = \ker P_U</m>.
+              </p>
+            </statement>
+          </theorem>
+
+          <p>
+            Note: it follows from this result and the <xref ref="thm-dimension-lintrans" text="title"/> that
+            <me>
+              \dim U + \dim U^\bot = n
+            </me>,
+            and since <m>U\cap U^\bot = \{\vec{0}\}</m>, <m>U^\bot</m> is indeed a complement of <m>U</m>
+            in the sense introduced in <xref ref="thm-construct-complement">Theorem</xref>.
+            It's also fairly easy to see that <m>\dim U + \dim U^\bot = n</m> directly.
+            If <m>\vec{w}\in U^\bot</m>, and <m>\{\vec{u}_1,\ldots, \vec{u}_k\}</m>
+            is a basis for <m>U</m>, then we have
+            <me>
+              \vec{w}\dotp \vec{u}_1= 0, \ldots, \vec{w}\dotp \vec{u}_k=0
+            </me>,
+            and for an unknown <m>\vec{w}</m>, this is simply a homogeneous system of <m>k</m> equations with <m>n</m> variables.
+            Moverer, they are <em>independent</em> equations, since the <m>\vec{u}_i</m> form a basis.
+            We thus expect <m>n-k</m> free parameters in the general solution.
+          </p>
+
+          <exercise>
+            <statement>
+              <p>
+                Let <m>U = \{(a-b+3c, 2a+b, 3c, 4a-b+3c,a-4c)\,|\, a,b,c\in\R\}\subseteq \R^5</m>.
+                Determine a basis for <m>U^\bot</m>.
+              </p>
+            </statement>
+            <solution>
+              <p>
+                First, we note that for a general element of <m>U</m>, we have
+                <me>
+                  (a-b+3c, 2a+b, 3c, 4a-b+3c,a-4c) = a(1,2,0,4,1)+b(-1,1,0,-1,0)+c(3,0,3,3,-4)
+                </me>.
+                If <m>\vec{w} = (x_1,x_2,x_3,x_4,x_5)\in U^\bot</m>, then we must have
+                <md>
+                  <mrow>\vec{w}\dotp (1,2,0,4,1) \amp = x_1+2x_2+4x_4+x_5=0 </mrow>
+                  <mrow>\vec{w}\dotp (-1,1,0,-1,0) \amp =-x_1+x_2-x_4=0</mrow>
+                  <mrow>\vec{w}\dotp (3,0,3,3,-4) \amp =3x_1+3x_3+3x_4-4x_5 = 0</mrow>
+                </md>.
+                To find a basis for <m>U^\bot</m>, we simply need to find the nullspace of the coefficient matrix for this system,
+                which we do below.
+              </p>
+            </solution>
+          </exercise>
+
+          <sage>
+            <input>
+              A = Matrix(3,5,[1,2,0,4,1,-1,1,0,-1,0,3,0,3,3,-4])
+              A.nullspace()
+            </input>
+          </sage>
+        </paragraphs>
+      </section>
+    </chapter>
+
+    <chapter xml:id="ch-diagonalization">
+      <title>Diagonalization</title>
+      <introduction>
+        <p>
+          In this chapter we look at the diagonalization problem for real symmetric matrices.
+          You probably saw how to compute eigenvalues and eigenvectors in your elementary linear algebra course.
+          You may have also seen that in some cases, the number of independent eigenvectors associated to an
+          <m>n\times n</m> matrix <m>A</m> is <m>n</m>, in which case it is possible to <q>diagonalize</q> <m>A</m>.
+          In other cases, we don't get <q>enough</q> eigenvectors for diagonalization.
+        </p>
+
+        <p>
+          In the first part of this section, we review some basic facts about eigenvalues and eigenvectors.
+          We will then move on to look at the special case of symmetric matrices,
+          where we will see that it is always possible to diagonalize,
+          and moreover, that it is possible to do so using an orthonormal basis of eigenvectors.
+        </p>
+      </introduction>
+
+      <section xml:id="subsec-eigen-basics">
+        <title>Eigenvalues and Eigenvectors</title>
+        <definition xml:id="def-eigenvalue">
+          <statement>
+            <p>
+              Let <m>A</m> be an <m>n\times n</m> matrix.
+              A number <m>\lambda</m> is called an <term>eigenvalue</term> of <m>A</m>
+              if there exists a nonzero vector <m>\vec{x}</m> such that
+              <me>
+                A\vec{x} = \lambda\vec{x}
+              </me>.
+              Any such vector <m>\vec{x}</m> is called an <term>eigenvector</term>
+              associated to the eigenvalue <m>\lambda</m>.
+            </p>
+          </statement>
+        </definition>
+
+        <p>
+          Note that eigenvalues and eigenvectors can just as easily be defined for a general linear operator <m>T:V\to V</m>.
+          In this context, and eigenvector <m>\vec{x}</m> is sometimes referred to as a <em>characteristic vector</em> (or characteristic direction)
+          for <m>T</m>, since the property <m>T(\vec{x})=\lambda \vec{x}</m>
+          simply states that the transformed vector <m>T(\vec{x})</m> is parallel to the original vector <m>\vec{x}</m>.
+          Some linear algebra textbooks that focus more on general linear transformations frame this topic in the context of
+          <em>invariant subspaces</em> for a linear operator.
+        </p>
+
+        <p>
+          A subspace <m>U\subseteq V</m> is <em>invariant</em> with respect to <m>T</m> if <m>T(\vec{u})\in U</m> for all <m>\vec{u}\in U</m>.
+          Note that if <m>\vec{x}</m> is an eigenvector of <m>T</m>, then <m>\spn\{\vec{x}\}</m> is an invariant subspace.
+          To see this, note that if <m>T(\vec{x})=\lambda \vec{x}</m> and <m>\vec{y}=k\vec{x}</m>, then
+          <me>
+            T(\vec{y})=T(k\vec{x})=kT(\vec{x})=k(\lambda \vec{x})=\lambda(k\vec{x})=\lambda\vec{y})
+          </me>.
+        </p>
+
+        <p>
+          Note that if <m>\vec{x}</m> is an eigenvector of the matrix <m>A</m>, then we have
+          <men xml:id="eq-eigen-null">
+            (A-\lambda I_n)\vec{x}=\vec{0}
+          </men>,
+          where <m>I_n</m> denotes the <m>n\times n</m> identity matrix.
+          Thus, if <m>\lambda</m> is an eigenvalue of <m>A</m>,
+          any corresponding eigenvector is an element of <m>\nll(A-\lambda I_n)</m>.
+        </p>
+
+        <definition xml:id="def-eigenspace">
+          <statement>
+            <p>
+              For any real number <m>\lambda</m> and matrix <m>A</m>,
+              we define the <term>eigenspace</term> <m>E_\lambda(A)</m> by
+              <me>
+                E_\lambda(A) = \nll (A-\lambda I_n)
+              </me>.
+            </p>
+          </statement>
+        </definition>
+
+        <p>
+          Note that <m>E_\lambda(A)</m> can be defined for any real number <m>\lambda</m>,
+          whether or not <m>\lambda</m> is an eigenvalue.
+          However, the eigenvalues of <m>A</m> are distinguished by the property that there is a
+          <em>nonzero</em> solution to <xref ref="eq-eigen-null"/>.
+          Furthermore, we know that <xref ref="eq-eigen-null"/> can only have nontrivial solutions if the matrix <m>A-\lambda I_n</m>
+          is not invertible. We also know that <m>A-\lambda I_n</m> is non-invertible if and only if <m>\det (A-\lambda I_n) = 0</m>.
+          This gives us the following theorem.
+        </p>
+
+        <theorem xml:id="thm-eigenspace-nonzero">
+          <statement>
+            <p>
+              The following are equivalent for any <m>n\times n</m> matrix <m>A</m> and real number <m>\lambda</m>:
+              <ol>
+                <li>
+                  <p>
+                    <m>\lambda</m> is an eigenvalue of <m>A</m>.
+                  </p>
+                </li>
+                <li>
+                  <m>E_\lambda(A)\neq \{\vec{0}\}</m>
+                </li>
+
+                <li>
+                  <m>\det(A-\lambda I_n) = 0</m>
+                </li>
+              </ol>
+            </p>
+          </statement>
+        </theorem>
+
+        <p>
+          The polynomial <m>p_A(x)=\det(xI_n -A)</m> is called the <term>characteristic polynomial</term> of <m>A</m>.
+          (Note that <m>\det(x I_n-A) = (-1)^n\det(A-x I_n)</m>. We choose this order so that the coefficient of <m>x^n</m> is always 1.)
+          The equation
+          <men xml:id="eq-characteristic">
+            \det(xI_n - A) = 0
+          </men>
+          is called the <term>characteristic equation</term> of <m>A</m>.
+          The solutions to this equation are precisely the eigenvalues of <m>A</m>.
+        </p>
+
+        <p>
+          Recall that a matrix <m>B</m> is said to be <term>similar</term> to a matrix <m>A</m>
+          if there exists an invertible matrix <m>P</m> such that <m>B = P^{-1}AP</m>.
+          Much of what follows concerns the question of whether or not a given <m>n\times n</m>
+          matrix <m>A</m> is <term>diagonalizable</term>.
+        </p>
+
+        <definition xml:id="def-diagonalizable">
+          <statement>
+            <p>
+              An <m>n\times n</m> matrix <m>A</m> is said to be <term>diagonalizable</term>
+              if <m>A</m> is similar to a diagonal matrix.
+            </p>
+          </statement>
+        </definition>
+
+        <p>
+          The following results will frequently be useful.
+        </p>
+
+        <theorem xml:id="thm-similar-properties">
+          <statement>
+            <p>
+              The relation <m>A\sim B</m> if and only if <m>A</m> is simlar to <m>B</m> is an equivalence relation.
+              Moreover, if <m>A\sim B</m>, then:
+              <ul>
+                <li>
+                  <m>\det A = \det B</m>
+                </li>
+                <li>
+                  <m>\tr A = \tr B</m>
+                </li>
+
+                <li>
+                  <m>c_A(x) = c_B(x)</m>
+                </li>
+              </ul>
+              In other words, <m>A</m> and <m>B</m> have the same determinant, trace, and characteristic polynomial
+              (and thus, the same eigenvalues).
+            </p>
+          </statement>
+          <proof>
+            <p>
+              The first two follow directly from properties of the determinant and trace.
+              For the last, note that if <m>B = P^{-1}AP</m>, then
+              <me>
+                P^{-1}(xI_n-A)P = P^{-1}(xI_n)P-P^{-1}AP = xI_n B
+              </me>,
+              so <m>xI_n-B\sim xI_n-A</m>, and therefore <m>\det(xI_n-B)=\det(xI_n-A)</m>.
+            </p>
+          </proof>
+
+        </theorem>
+
+
+        <example>
+          <statement>
+            <p>
+              Determine the eigenvalues and eigenvectors of <m>A = \bbm 0\amp 1\amp 1\\1\amp 0\amp 1\\1\amp 1\amp 0\ebm</m>.
+            </p>
+          </statement>
+          <solution>
+            <p>
+              We begin with the characteristic polynomial. We have
+              <md>
+                <mrow>\det(xI_n - A) \amp =\det\bbm x \amp -1\amp -1\\-1\amp x \amp -1\\-1\amp -1\amp x\ebm</mrow>
+                <mrow> \amp = x \begin{vmatrix}x \amp -1\\-1\amp x\end{vmatrix}
+                   +1\begin{vmatrix}-1\amp -1\\-1\amp x\end{vmatrix}
+                   -1\begin{vmatrix}-1\amp x\\-1\amp -1\end{vmatrix}</mrow>
+                <mrow> \amp = x(x^2-1)+(-x-1)-(1+x)</mrow>
+                <mrow> \amp x(x-1)(x+1)-2(x+1)</mrow>
+                <mrow> \amp (x+1)[x^2-x-2]</mrow>
+                <mrow> \amp (x+1)^2(x-2)</mrow>
+              </md>.
+            </p>
+
+            <p>
+              The roots of the characteristic polynomial are our eigenvalues,
+              so we have <m>\lambda_1=-1</m> and <m>\lambda_2=2</m>.
+              Note that the first eigenvalue comes from a repeated root.
+              This is typicaly where things get interesting.
+              If an eigenvalue does not come from a repeated root,
+              then there will only be one (independent) eigenvector that corresponds to it.
+              (That is, <m>\dim E_\lambda(A)=1</m>.)
+              If an eigenvalue is repeated, it could have more than one eigenvector,
+              but this is not guaranteed.
+            </p>
+
+            <p>
+              We find that <m>A-(-1)I_n = \bbm 1\amp 1\amp 1\\1\amp 1\amp 1\\1\amp 1\amp 1\ebm</m>,
+              which has reduced row-echelon form <m>\bbm 1\amp 1\amp 1\\0\amp 0\amp 0\\0\amp 0\amp 0\ebm</m>.
+              Solving for the nullspace, we find that there are two independent eigenvectors:
+              <me>
+                \vec{x}_{1,1}=\bbm 1\\-1\\0\ebm, \quad \text{ and } \quad \vec{x}_{1,2}=\bbm 1\\0\\-1\ebm
+              </me>,
+              so
+              <me>
+                E_{-1}(A) = \spn\left\{\bbm 1\\-1\\0\ebm, \bbm 1\\0\\-1\ebm\right\}
+              </me>.
+            </p>
+
+            <p>
+              For the second eigenvector, we have <m>A-2I = \bbm -2\amp 1\amp 1\\1\amp -2\amp 1\\1\amp 1\amp -2\ebm</m>,
+              which has reduced row-echelon form <m>\bbm 1\amp 0\amp -1\\0\amp 1\amp -1\\0\amp 0\amp 0\ebm</m>.
+              An eigenvector in this case is given by
+              <me>
+                \vec{x}_2 = \bbm 1\\1\\1\ebm
+              </me>.
+            </p>
+          </solution>
+        </example>
+
+        <p>
+          In general, if the characteristic polynomial can be factored as <m>p_A(x)=(x-\lambda)^mq(x)</m>,
+          where <m>q(x)</m> is not divisible by <m>x-\lambda</m>, then we say that <m>\lambda</m>
+          is an eigenvalue of <term>multiplicity</term> <m>m</m>. A main result is the following.
+        </p>
+
+        <theorem xml:id="thm-multiplicity">
+          <statement>
+            <p>
+              Let <m>\lambda</m> be an eigenvalue of <m>A</m> of multiplicity <m>m</m>.
+              Then <m>\dim E_\lambda(A)\leq m</m>.
+            </p>
+          </statement>
+        </theorem>
+
+        <p>
+          Some textbooks refer to the multiplicity <m>m</m> of an eigenvalue as the
+          <em>algebraic multiplicity</em> of <m>\lambda</m>, and the number <m>\dim E_\lambda(A)</m>
+          as the <em>geometric multiplicity</em> of <m>\lambda</m>.
+        </p>
+
+        <p>
+          To prove <xref ref="thm-multiplicity"/> we need the following lemma,
+          from Section 5.5 of Nicholson's textbook.
+        </p>
+
+        <lemma xml:id="lem-block-eigen">
+          <statement>
+            <p>
+              Let <m>\{\vec{x}_1,\ldots, \vec{x}_k\}</m> be a set of linearly independent eigenvectors of a matrix <m>A</m>,
+              with corresponding eigenvalues <m>\lambda_1,\ldots, \lambda_k</m> (not necessarily distinct).
+              Extend this set to a basis <m>\{\vec{x}_1,\ldots, \vec{x}_k,\vec{x}_{k+1},\ldots, \vec{x}_n\}</m>,
+              and let <m>P=\bbm \vec{x}_1\amp \cdots \amp \vec{x}_n\ebm</m>
+              be the matrix whose columns are the basis vectors. (Note that <m>P</m> is necessarily invertible.)
+              Then
+              <me>
+                P^{-1}AP = \bbm \diag(\lambda_1,\ldots, \lambda_k) \amp B\\0\amp A_1\ebm
+              </me>,
+              where <m>B</m> has size <m>k\times (n-k)</m>, and <m>A_1</m> has size <m>(n-k)\times (n-k)</m>.
+            </p>
+          </statement>
+          <proof>
+            <p>
+              We have
+              <md>
+                <mrow>P^{-1}AP \amp = P^{-1}A\bbm \vec{x}_1\amp \cdots \amp \vec{x}_n\ebm</mrow>
+                <mrow> \amp =\bbm (P^{-1}A)\vec{x}_1\amp \cdots \amp (P^{-1}A)\vec{x}_n\ebm</mrow>
+              </md>.
+              For <m>1\leq i\leq k</m>, we have
+              <me>
+                (P^{-1}A)(\vec{x}_i) = P^{-1}(A\vec{x}_i) = P^{-1}(\lambda_i\vec{x}_i)=\lambda_i(P^{-1}\vec{x}_i)
+              </me>.
+              But <m>P^{-1}\vec{x}_i</m> is the <m>i</m>th column of <m>P^{-1}P = I_n</m>,
+              which proves the result.
+            </p>
+          </proof>
+        </lemma>
+
+        <p>
+          We can use <xref ref="lem-block-eigen"/> to prove that <m>\dim E_\lambda(A)\leq m</m> as follows.
+          Suppose <m>\{\vec{x}_1,\ldots, \vec{x}_k\}</m> is a basis for <m>E_\lambda(A)</m>.
+          Then this is a linearly independent set of eigenvectors, so our lemma guarantees the existence of a matrix <m>P</m>
+           such that
+           <me>
+             P^{-1}AP = \bbm \lambda I_k \amp B\\0\amp A_1\ebm
+           </me>.
+           Let <m>\tilde{A}=P^{-1}AP</m>. On the one hand, since <m>\tilde{A}\sim A</m>,
+           we have <m>c_A(x)=c_{\tilde{A}}(x)</m>.
+           On the other hand,
+           <me>
+             \det(xI_n-\tilde{A}) = \det\bbm (x-\lambda)I_k \amp -B\\0 \amp xI_{n-k}-A_1\ebm = (x-\lambda)^k\det(xI_{n-k}A_1)
+           </me>.
+           This shows that <m>c_A(x)</m> is divisible by <m>(x-\lambda)^k</m>.
+           Since <m>m</m> is the largest integer such that <m>c_A(x)</m> is divisible by <m>(x-\lambda)^m</m>,
+           we must have <m>\dim E_\lambda(A)=k\leq m</m>.
+        </p>
+
+        <p>
+          <xref ref="thm-multiplicity"/> provides an initial criterion for diagonalization:
+          if the dimension of each eigenspace <m>E_\lambda(A)</m> is equal to the multiplicity of <m>\lambda</m>,
+          then <m>A</m> is diagonalizable.
+          The truth of this statement relies on one additional fact:
+          any set of eigenvectors corresponding to <em>distinct</em> eigenvalues is linearly independent.
+          The proof of this fact is a relatively straightforward proof by induction.
+          It can be found in Section 5.5 of Nicholson for those who are interested.
+          However, our focus for the remainder of the section will be on diagonalization of <em>symmetric</em>
+          matrices, and soon we will see that for such matrices, eigenvectors corresponding to different eigenvalues are,
+          in fact, <em>orthogonal</em>.
+        </p>
+      </section>
+
+      <section xml:id="subsec-ortho-diag">
+        <title>Diagonalization of symmetric matrices</title>
+        <p>
+          Recall that an <m>n\times n</m> matrix <m>A</m> is <em>symmertric</em> if <m>A^T=A</m>.
+          Symmetry of <m>A</m> is equivalent to the following:
+          for any vectors <m>\vec{x},\vec{y}\in\R^n</m>,
+          <me>
+            \vec{x}\dotp (A\vec{y}) = (A\vec{x})\dotp \vec{y}
+          </me>.
+          To see that this is implied by the symmetry of <m>A</m>, note that
+          <me>
+            \vec{x}\dotp (A\vec{y}) = \vec{x}^T(A\vec{y})=(\vec{x}^TA^T)\vec{y} = (A\vec{x})^T\vec{y}=(A\vec{x})\dotp\vec{y}
+          </me>.
+          For inner product spaces, the above is taken as the <em>definition</em> of what it means for an operator to be symmetric.
+        </p>
+
+        <exercise>
+          <statement>
+            <p>
+              Prove that if <m>\vec{x}\dotp(A\vec{y})=(A\vec{x})\dotp \vec{y}</m> for any <m>\vec{x},\vec{y}\in\R^n</m>,
+              then <m>A</m> is symmetric.
+            </p>
+          </statement>
+          <solution>
+            <p>
+              Take <m>\vec{x}=\vec{e}_i</m> and <m>\vec{y}=\vec{e}_j</m>,
+              where <m>\{\vec{e}_1,\ldots, \vec{e}_n\}</m> is the standard basis for <m>\R^n</m>.
+              Then with <m>A = [a_{ij}]</m> we have
+              <me>
+                a_{ij} =\vec{e}_i\dotp(A\vec{e_j}) = (A\vec{e_i})\dotp \vec{e_j} = a_{ji}
+              </me>,
+              which shows that <m>A^T=A</m>.
+            </p>
+          </solution>
+        </exercise>
+
+        <p>
+          A useful property of symmetric matrices, mentioned earlier,
+          is that eigenvectors corresponding to distinct eigenvalues are orthogonal.
+        </p>
+
+        <theorem xml:id="thm-ortho-eigen-symm">
+          <statement>
+            <p>
+              If <m>A</m> is a symmetric matrix, then eigenvectors corresponding to <em>distinct</em> eigenvalues are orthogonal.
+            </p>
+          </statement>
+          <proof>
+            <p>
+              To see this, suppose <m>A</m> is symmetric, and that we have
+              <me>
+                A\vec{x}_1=\lambda_1\vec{x}_1\quad \text{ and } A\vec{x}_2=\lambda_2\vec{x}_2
+              </me>,
+              with <m>\vec{x}_1\neq\vec{0},\vec{x}_2\neq \vec{0}</m>, and <m>\lambda_1\neq \lambda_2</m>.
+              We then have, since <m>A</m> is symmetric, and using the result above,
+              <me>
+                \lambda_1(\vec{x}_1\dotp \vec{x}_2) = (\lambda_1\vec{x}_1)\dotp \vec{x}_2 = (A\vec{x}_1)\dotp \vec{x}_2 = \vec{x}_1\dotp(A\vec{x}_2) = \vec{x}_1(\lambda_2\vec{x}_2) = \lambda_2(\vec{x}_1\dotp\vec{x}_2)
+              </me>.
+              It follows that <m>(\lambda_1-\lambda_2)(\vec{x}_1\dotp \vec{x}_2)=0</m>,
+              and since <m>\lambda_1\neq \lambda_2</m>,
+              we must have <m>\vec{x}_1\dotp \vec{x}_2=0</m>.
+            </p>
+          </proof>
+
+        </theorem>
+
+        <p>
+          The procedure for diagonalizing a matrix is as follows:
+          assuming that <m>\dim E_\lambda(A)</m> is equal to the multiplicity of <m>\lambda</m>
+          for each distinct eigenvalue <m>\lambda</m>, we find a basis for <m>E_\lambda(A)</m>.
+          The union of the bases for each eigenspace is then a basis of eigenvectors for <m>\R^n</m>,
+          and the matrix <m>P</m> whose columns are those eigenvectors will satisfy <m>P^{-1}AP = D</m>,
+          where <m>D</m> is a diagonal matrix whose diagonal entires are the eigenvalues of <m>A</m>.
+        </p>
+
+        <p>
+          If <m>A</m> is symmetric, we know that eigenvectors from <em>different</em> eigenspaces will be orthogonal to each other.
+          If we futher choose an orthogonal basis of eigenvectors for each eigenspace (which is possible via the Gram-Schmidt procedure),
+          then we can construct an orthogonal basis of eigenvectors for <m>\R^n</m>.
+          Furthermore, if we normalize each vector, then we'll have an orthonormal basis.
+          The matrix <m>P</m> whose columns consist of these orthonormal basis vectors has a name.
+        </p>
+
+        <definition xml:id="def-orthogonal-matrix">
+          <statement>
+            <p>
+              A matrix <m>P</m> is called <term>orthogonal</term> if <m>P^T = P^{-1}</m>.
+            </p>
+          </statement>
+        </definition>
+
+        <theorem xml:id="thm-ortho-matrix">
+          <statement>
+            <p>
+              A matrix <m>P</m> is orthogonal if and only if the columns of <m>P</m> form an orthonormal basis for <m>\R^n</m>.
+            </p>
+          </statement>
+        </theorem>
+
+        <p>
+          A fun fact is that if the columns of <m>P</m> are orthonormal, then so are the rows.
+          But this is not true if we ask for the columns to be merely orthogonal.
+          For example, the columns of <m>A = \bbm 1\amp 0\amp 5\\-2\amp 1\amp 2\\1\amp 2\amp -1\ebm </m> are orthogonal,
+          but the rows certainly are not. But if we normalize the columns, we get
+          <me>
+            P = \bbm 1/\sqrt{6}\amp 0 \amp 1/\sqrt{30}\\-2/\sqrt{6}\amp 1/\sqrt{5}\amp 2/\sqrt{30}\\1/\sqrt{6}\amp 2/\sqrt{5}\amp -1/\sqrt{30}\ebm
+          </me>,
+          which, as you can confirm, is an orthogonal matrix.
+        </p>
+
+        <definition xml:id="def-ortho-diag">
+          <statement>
+            <p>
+              An <m>n\times n</m> matrix <m>A</m> is said to be <em>orthogonally diagonalizable</em>
+              if there exists an orthogonal matrix <m>P</m> such that <m>P^TAP</m> is diagonal.
+            </p>
+          </statement>
+        </definition>
+
+        <p>
+          The above definition leads to the following result, also known as the Principal Axes Theorem.
+        </p>
+        <theorem xml:id="thm-real-spectral">
+          <title>Real Spectral Theorem</title>
+
+          <statement>
+            <p>
+              The following are equivalent for a real <m>n\times n</m> matrix <m>A</m>:
+              <ol>
+                <li>
+                  <p>
+                    <m>A</m> is symmetric.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    There is an orthonormal basis for <m>\R^n</m> consisting of eigenvectors of <m>A</m>.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <m>A</m> is orthogonally diagonalizable.
+                  </p>
+                </li>
+              </ol>
+            </p>
+          </statement>
+        </theorem>
+
+        <exercise>
+          <statement>
+            <p>
+              Determine the eigenvalues of <m>A=\bbm 5\amp -2\amp -4\\-2\amp 8\amp -2\\-4\amp -2\amp 5\ebm</m>,
+              and find an orthogonal matrix <m>P</m> such that <m>P^TAP</m> is diagonal.
+            </p>
+          </statement>
+        </exercise>
+
+        <p>
+          We'll solve this problem with the help of the computer.
+        </p>
+
+        <sage>
+          <input>
+            from sympy import *
+            init_printing()
+            A = Matrix(3,3,[5,-2,-4,-2,8,-2,-4,-2,5])
+            p=A.charpoly().as_expr()
+            factor(p)
+          </input>
+        </sage>
+
+        <p>
+          We get <m>c_A(x)=x(x-9)^2</m>, so our eigenvalues are <m>0</m> and <m>9</m>.
+          For <m>0</m> we have <m>E_0(A) = \nll(A)</m>:
+        </p>
+
+        <sage>
+          <input>
+            A.nullspace()
+          </input>
+        </sage>
+
+        <p>
+          For <m>9</m> we have <m>E_9(A) = \nll(A-9I)</m>.
+        </p>
+
+        <sage>
+          <input>
+            B=A-9*eye(3)
+            B.nullspace()
+          </input>
+        </sage>
+
+        <p>
+          The approach above is useful as we're trying to remind ourselves how eigenvalues and eigenvectors are defined and computed.
+          Eventually we might want to be more efficient. Fortunately, there's a command for that.
+        </p>
+
+        <sage>
+          <input>
+            A.eigenvects()
+          </input>
+        </sage>
+
+        <p>
+          This gives us a basis for <m>\R^3</m> consisting of eigenvalues of <m>A</m>, but we want an orthogonal basis.
+          Note that the eigenvector corresponding to <m>\lambda = 0</m> is orthogonal to both of the eigenvectors corresponding to <m>\lambda =9</m>.
+          But these eigenvectors are not orthogonal to each other.
+          To get an orthogonal basis for <m>E_9(A)</m>, we apply the Gram-Schmidt algorithm.
+        </p>
+
+        <sage>
+          <input>
+            L=B.nullspace()
+            GramSchmidt(L)
+          </input>
+        </sage>
+
+        <p>
+          This gives us an orthogonal basis of eigenvectors. Scaling to clear fractions, we have
+          <me>
+            \left\{\bbm 2\\1\\2\ebm, \bbm -1\\2\\0\ebm, \bbm -4\\-2\\5\ebm\right\}
+          </me>
+          From here, we need to normalize each vector to get the matrix <m>P</m>.
+          But we might not like that the last vector has norm <m>\sqrt{45}</m>.
+          One option to consider is to apply Gram-Schmidt with the vectors in the other order.
+        </p>
+
+        <sage>
+          <input>
+            L=[Matrix([-1,0,1]),Matrix([-1,2,0])]
+            GramSchmidt(L)
+          </input>
+        </sage>
+
+        <p>
+          That gives us the (slightly nicer) basis
+          <me>
+            \left\{\bbm 2\\1\\2\ebm, \bbm -1\\0\\1\ebm, \bbm 1\\-4\\1\ebm\right\}
+          </me>.
+          The corresponding orthonormal basis is
+          <me>
+            B = \left\{\frac{1}{3}\bbm 2\\1\\2\ebm, \frac{1}{\sqrt{2}}\bbm -1\\0\\1\ebm, \frac{1}{\sqrt{18}}\bbm 1\\-4\\1\ebm\right\}
+          </me>.
+          This gives us the matrix <m>P=\bbm 2/3\amp -1/\sqrt{2}\amp 1/\sqrt{18}\\1/3\amp 0 \amp -4/\sqrt{18}\\2/3\amp 1/\sqrt{2}\amp 1/\sqrt{18}\ebm</m>.
+          Let's confirm that <m>P</m> is orthogonal.
+        </p>
+
+        <sage>
+          <input>
+            P=Matrix(3,3,[2/3, -1/sqrt(2),1/sqrt(18), 1/3,0,-4/sqrt(18),2/3,1/sqrt(2),1/sqrt(18)])
+            P,P*P.transpose()
+          </input>
+        </sage>
+
+        <p>
+          Since <m>PP^T=I_3</m>, we can conclude that <m>P^T=P^{-1}</m>, so <m>P</m> is ortohonal, as required.
+          Finally, we diagaonlize <m>A</m>.
+        </p>
+
+        <sage>
+          <input>
+            Q=P.transpose
+            Q*A*P
+          </input>
+        </sage>
+
+        <p>
+          Incidentally, the SymPy library for Python does have a diagaonalization routine;
+          however, it does not do orthogonal diagonalization by default.
+          Here is what it provides for our matrix <m>A</m>.
+        </p>
+
+        <sage>
+          <input>
+            A.diagonalize()
+          </input>
+        </sage>
+      </section>
+
+      <section xml:id="sec-quadratic">
+        <title>Quadratic forms</title>
+        <p>
+          If you've done a couple of calculus courses, you've probably encountered conic sections,
+          like the ellipse <m>\frac{x^2}{a^2}+\frac{y^2}{b^2}=1</m> or the parabola <m>\frac{y}{b}=\frac{x^2}{a^2}</m>.
+          You might also recall that your instructor was careful to avoid conic sections with equations including
+          <q>cross-terms</q> like <m>xy</m>.
+          The reason for this is that sketching a conic section like <m>x^2+4xy+y^2=1</m> requires the techniques of the previous section.
+        </p>
+
+        <p>
+          A basic fact about orthogonal matrices is that they <em>preserve length</em>.
+          Indeed, for any vector <m>\vec{x}</m> in <m>\R^n</m> and any orthogonal matrix <m>P</m>,
+          <me>
+            \len{P\vec{x}}^2 = (P\vec{x})\dotp (P\vec{x}) = (P\vec{x})^T(P\vec{x}) = (\vec{x}^TP^T)(P\vec{x}) = \vec{x}^T\vec{x}=\len{\vec{x}}^2
+          </me>,
+          since <m>P^TP=I_n</m>.
+        </p>
+
+        <p>
+          Note also that since <m>P^TP=I_n</m> and <m>\det P^T=\det P</m>, we have
+          <me>
+            \det(P)^2=\det(P^TP)=\det(I_n)=1
+          </me>,
+          so <m>\det(P)=\pm 1</m>. If <m>\det P=1</m>, we have what is called a <em>special orthogonal matrix</em>.
+          In <m>\R^2</m> or <m>\R^3</m>, multiplication by a special orthgonal matrix is simply a rotation.
+          (If <m>\det P=-1</m>, there is also a reflection.)
+        </p>
+
+        <p>
+          We mentioned in the previous section that the <xref ref="thm-real-spectral" text="title"/>
+          is also referred to as the principal axes theorem.
+          The name comes from the fact that one way to interpret the orthogonal diagonalization of a symmetric matrix is that we are rotating our coordinate system.
+          The original coordinate axes are rotated to new coordinate axes, with respect to which the matrix <m>A</m> is diagonal.
+          This will become more clear once we apply these ideas to the problem of conic sections mentioned above.
+          First, a definition.
+        </p>
+
+        <definition xml:id="def-quadratic-form">
+          <statement>
+            <p>
+              A <term>quadratic form</term> on variables <m>x_1, x_2,\ldots, x_n</m>
+              is any expression of the form
+              <me>
+                q(x_1,\ldots, x_n) = \sum_{i\leq j}a_{ij}x_ix_j
+              </me>.
+            </p>
+          </statement>
+        </definition>
+
+        <p>
+          For example, <m>q_1(x,y)=4 x^2-4xy+4y^2</m> and <m>q_2(x,y,z)=9x^2-4 y^2-4xy-2xz+z^2</m> are quadratic forms.
+          Note that each term in a quadratic form is of degree two.
+          We omit linear terms, since these can be absorbed by completing the square.
+          The important observation is that every quadratic form can be associated to a symmetric matrix.
+          The diagonal entries are the coefficients <m>a_{ii}</m> appearing in <xref ref="def-quadratic-form"/>,
+          while the off-diagonal entries are <em>half</em> the corresponding coefficients <m>a_{ij}</m>.
+        </p>
+
+        <p>
+          For example the two quadratic forms given above have the following associated matrices:
+          <me>
+            A_1 = \bbm 4 \amp -2\\-2\amp 4\ebm \text{ and } A_2 = \bbm 9 \amp -2 \amp -1\\-2\amp 4\amp 0\\-1\amp 0\amp 1\ebm
+          </me>.
+          The reason for this is that we can then write
+          <me>
+            q_1(x,y)=\bbm x\amp y\ebm\bbm 4 \amp -1\\-1\amp 1\ebm\bbm x\\y\ebm
+          </me>
+          and
+          <me>
+            q_2(x,y,z)=\bbm x\amp y\amp z\ebm\bbm 9 \amp -2 \amp -1\\-2\amp 4\amp 0\\-1\amp 0\amp 1\ebm\bbm x\\y\\z\ebm
+          </me>.
+        </p>
+
+        <p>
+          Of course, the reason for wanting to associate a <em>symmetric</em> matrix to a quadratic form is that it can be orthogonally diagonalized.
+          Consider the matrix <m>A_1</m>.
+        </p>
+
+        <sage>
+          <input>
+            from sympy import *
+            init_printing()
+            A1 = Matrix(2,2,[4,-2,-2,4])
+            p = A1.charpoly()
+            factor(p)
+          </input>
+        </sage>
+
+        <p>
+          We find distinct eigenvalues <m>\lambda_1=2</m> and <m>\lambda_2=6</m>.
+          Since <m>A</m> is symmetric, we know the corresponding eigenvectors will be orthgonal.
+        </p>
+
+        <sage>
+          <input>
+            A1.eigenvects()
+          </input>
+        </sage>
+
+        <p>
+          The resulting orthogonal matrix is <m>P=\frac{1}{\sqrt{2}}\bbm 1\amp -1\\1\amp 1\ebm</m>,
+          and we find
+          <me>
+            P^TAP = \bbm 2\amp 0\\0\amp 6\ebm, \text{ or } A = PDP^T,
+          </me>
+          where <m>D = \bbm 2\amp 0\\0\amp 6\ebm</m>. If we define new variables <m>y_1,y_2</m> by
+          <me>
+            \bbm y_1\\y_2\ebm = P^T\bbm x_1\\x_2\ebm
+          </me>,
+          then we find that
+          <md>
+            <mrow>\bbm x_1\amp x_2\ebm A\bbm x_1\\x_2\ebm \amp = (\bbm x_1\amp x_2\ebm P)D\left(P^T\bbm x_1\\x_2\ebm\right) </mrow>
+            <mrow> \amp = \bbm y_1 \amp y_2\ebm\bbm 2\amp 0\\0\amp 6\ebm\bbm y_1\\y_2\ebm</mrow>
+            <mrow> \amp = 2y_1^2+6y_2^2</mrow>
+          </md>.
+          Note that there is no longer any cross term.
+        </p>
+
+        <p>
+          Now, suppose we want to graph the conic <m>4x_1^2-4x_1x_2++4x_2^2=12</m>.
+          By changing to the variables <m>y_1,y_2</m> this becomes <m>2y_1^2+6y_2^2=12</m>, or <m>\frac{y_1^2}{6}+\frac{y_2^2}{2}=1</m>.
+          This is the standard from of an ellipse, but in terms of new variables.
+          How do we graph it? Returning to the definition of our new variables, we find <m>y_1=\frac{1}{\sqrt{2}}(x_1+x_2)</m>
+          and <m>y_2=\frac{1}{\sqrt{2}}(-x_1+x_2)</m>.
+          The <m>y_1</m> axis should be the line <m>y_2=0</m>, or <m>x_1=x_2</m>.
+          (Note that this line points in the direction of the eigenvector <m>\bbm 1\\1\ebm</m>.)
+          The <m>y_2</m> axis should be the line <m>y_1=0</m>, or <m>x_1=-x_2</m>, which is in the direction of the eigenvector <m>\bbm -1\\1\ebm</m>.
+        </p>
+
+        <p>
+          This lets us see that our new coordinate axes are simply a rotation (by <m>\pi/4</m>) of the old coordinate axes,
+          and our conic section is, accordingly, an ellipse that has been rotated by the same angle.
+        </p>
+      </section>
+
+      <section xml:id="sec-complex">
+        <title>Diagonalization of complex matrices</title>
+        <introduction>
+          <p>
+            Recall that when we first defined vector spaces,
+            we mentioned that a vector space can be defined over any <em>field</em> <m>\mathbb{F}</m>.
+            To keep things simple, we've mostly assumed <m>\mathbb{F}=\mathbb{R}</m>.
+            But most of the theorems and proofs we've encountered go through unchanged if we work over a general field.
+            (This is not quite true: over a <em>finite</em> field things can get more complicated.
+            For example, if <m>\mathbb{F}=\mathbb{Z}_2=\{0,1\}</m>,
+            then we get weird results like <m>\vec{v}+\vec{v}=\vec{0}</m>, since <m>1+1=0</m>.)
+          </p>
+
+          <p>
+            In fact, if we replace <m>\R</m> by <m>\C</m>,
+            about the only thing we'd have to go back and change is the definition of the dot product.
+            The reason for this is that although the complex numbers seem computationally more complicated,
+            (which might mostly be because you don't use them often enough)
+            they follow the exact same algebraic rules as the real numbers.
+            In other words, the <em>arithmetic</em> might be different, but the <em>algebra</em> is the same.
+            There is one key difference between the two fields: over the complex numbers,
+            every polynomial can be factored. This is important if you're interested in finding eigenvalues.
+          </p>
+        </introduction>
+
+        <subsection xml:id="subsec-complex-review">
+          <title>Review of complex numbers</title>
+          <p>
+            Let's quickly review some basic facts about complex numbers that are typically covered in an earlier course.
+            First, we define the set of complex numbers by
+            <me>
+              \C = \{x+iy \,|\, x,y\in \R\},
+            </me>
+            where <m>i=\sqrt{-1}</m>. We have a bijection <m>\C \to \R^2</m> given by <m>x+iy\mapsto (x,y)</m>;
+            because of this, we often picture <m>\C</m> as the <em>complex plane</em>, with a <q>real</q> <m>x</m> axis,
+            and an <q>imaginary</q> <m>y</m> axis.
+          </p>
+
+          <p>
+            Arithmetic with complex numbers is defined by
+            <md>
+              <mrow>(x_1+iy_1)+(x_2+iy_2) \amp = (x_1+x_2)+i(y_1+y_2) </mrow>
+              <mrow>(x_1+iy_1)(x_2+iy_2) \amp = (x_1x_2-y_1y_2)+i(x_1y_2+x_2y_1)</mrow>
+            </md>.
+            The multiplication rule looks complicated, but it's really just <q><init>FOIL</init></q>,
+            along with the fact that <m>i^2=-1</m>.
+            Note that if <m>c=c+i0</m> is real, we have <m>c(x+iy)=(cx)+i(cy)</m>,
+            so that <m>\C</m> has the structure of a two dimensional vector space over <m>\R</m> (isomorphic to <m>\R^2</m>).
+          </p>
+
+          <p>
+            Subtraction is defined in the obvious way. Division is less obvious.
+            To define division, it helps to first introduce the <term>complex conjugate</term>.
+            Given a complex number <m>z=x+iy</m>, we define <m>\overline{z}=x-iy</m>.
+            The importance of the conjugate is that we have the identity
+            <me>
+              z\bz = (x+iy)(x-iy)=x^2+y^2
+            </me>.
+            So <m>z\bz</m> is <em>real</em>, and <em>non-negative</em>.
+            This lets us define the <term>modulus</term> of <m>z</m> by
+            <me>
+              \abs{z} = \sqrt{z\bz} = \sqrt{x^2+y^2}
+            </me>.
+            This gives a measure of the magnitude of a complex number,
+            in the same way as the vector norm on <m>\R^2</m>.
+          </p>
+
+          <p>
+            Now, given <m>z=x+iy</m> and <m>w=s+it</m>, we have
+            <me>
+              \frac{z}{w}=\frac{z\bar{w}}{w\bar{w}} = \frac{(x+iy)(s-it)}{s^2+t^2} = \frac{xs-yt}{s^2+t^2}+i\frac{xt+ys}{s^2+t^2}
+            </me>.
+            And of course, we have <m>w\bar{w}\neq 0</m> unless <m>w=0</m>, and as usual, we don't divide by zero.
+          </p>
+
+          <p>
+            An important thing to keep in mind when working with complex numbers is that they follow the same algebraic rules as real numbers.
+            For example, given <m>a,b,z,w</m> all complex, and <m>a\neq 0</m>, where <m>az+b=w</m>,
+            if we want to solve for <m>z</m>, the answer is <m>z=\frac1a(w-b)</m>, as it would be in <m>\R</m>.
+            The difference between <m>\R</m> and <m>\C</m> only really materializes when we want to <em>compute</em>
+            <m>z</m>, by plugging in values for <m>a,b</m> and <m>w</m>.
+          </p>
+
+          <p>
+            One place where <m>\C</m> is <em>computationally</em> more complicated is finding powers and roots.
+            For this, it is often more convenient to write our complex numbers in <term>polar form</term>.
+            The key to the polar form for complex numbers is <em>Euler's identity</em>.
+            For a <em>unit</em> complex number <m>z</m> (that is with <m>\abs{z}=1</m>),
+            we can think of <m>z</m> as a point on the unit circle, and write
+            <me>
+              z = \cos(\theta)+i\sin(\theta)
+            </me>.
+            If <m>\abs{z}=r</m>, we simply change the radius of our circle,
+            so in general, <m>z = r(\cos(\theta)+i\sin(\theta))</m>.
+            Euler's identity states that
+            <men xml:id="eq-euler">
+              \cos(\theta)+i\sin(\theta)=e^{i\theta}
+            </men>.
+          </p>
+
+          <p>
+            This idea of putting a complex number in an exponential function seems odd at first.
+            If you take a course in complex variables, you'll get a better understanding of why this makes sense.
+            But for now, we can take it as a convenient piece of notation.
+            The reason it's convenient is that the rules for complex arithmetic turn out to align quite nicely with properties of the exponential function.
+            For example, de Moivre's Theorem states that
+            <me>
+              (\cos(\theta)+i\sin(\theta))^n = \cos(n\theta)+i\sin(n\theta)
+            </me>.
+            This can be proved by induction (and the proof is not even all that bad),
+            but it seems perfectly obvious in exponential notation:
+            <me>
+              (e^{i\theta})^n = e^{in\theta}
+            </me>,
+            since you multiply exponents when you raise a power to a power.
+          </p>
+
+          <p>
+            Similarly, if we want to multiply two unit complex numbers, we have
+            <md>
+              <mrow>(\cos\alpha+i\sin\alpha)(\cos\beta+i\sin\beta) \amp = (\cos\alpha\cos\beta-\sin\alpha\sin\beta)</mrow>
+              <mrow> \amp \quad\quad +i(\sin\alpha\cos\beta+\cos\alpha\sin\beta)</mrow>
+              <mrow> \amp = \cos(\alpha+\beta)+i\sin(\alpha+\beta)</mrow>
+            </md>.
+            But in exponential notation, this is simply
+            <me>
+              e^{i\alpha}e^{i\beta} = e^{i(\alpha+\beta)}
+            </me>,
+            which makes sense, since when you multiply exponentials, you add the exponents.
+          </p>
+
+          <p>
+            Generally, problems involving addition and subtraction are best handled in <q>rectangular</q> (<m>x+iy</m>)
+            form, while problems involving multiplication and powers are best handled in polar form.
+          </p>
+        </subsection>
+
+        <subsection xml:id="subsec-complex-vector">
+          <title>Complex vectors</title>
+          <p>
+            A complex vector space is simply a vector space where the scalars are elements of <m>\C</m> rather than <m>\R</m>.
+            Examples include polynomials with complex coefficients, complex-valued functions, and <m>\C^n</m>,
+            which is defined exactly how you think it should be.
+            In fact, one way to obtain <m>\C^n</m> is to start with the exact same standard basis we use for <m>\R^n</m>,
+            and then take linear combinations using complex scalars.
+          </p>
+
+          <p>
+            We'll write elements of <m>\C^n</m> as <m>\zz = (z_1,z_2,\ldots, z_n)</m>.
+            Notice that we've dropped the arrow notation for vectors in favour of a bold font.
+            The reason is that we'll want to consider complex conjugates,
+            and things get cluttered if we try to fit an arrow and a bar over our vector.
+            The complex conjugate of <m>\zz</m> is given by
+            <me>
+              \bar{\zz} = (\bz_1,\bz_2,\ldots, \bz_n)
+            </me>.
+          </p>
+
+          <p>
+            The standard inner product on <m>\C^n</m> looks a lot like the dot product on <m>\R^n</m>,
+            with one important difference: we apply a complex conjugate to the second vector.
+          </p>
+
+          <definition xml:id="def-complex-inner">
+            <statement>
+              <p>
+                The <term>standard inner product</term> on <m>\C^n</m> is defined as follows:
+                given <m>\zz=(z_1,z_2,\ldots, z_n)</m> and <m>\ww=(w_1,w_2,\ldots, w_n)</m>,
+                <me>
+                  \langle \zz,\ww\rangle = \vec{z}\dotp\bar{\ww} = z_1\bar{w}_1+z_2\bar{w}_2+\cdots + z_n\bar{w}_n
+                </me>.
+              </p>
+            </statement>
+          </definition>
+
+          <p>
+            If <m>\zz,\ww</m> are real, this is just the usual dot product.
+            The reason for using the complex conjugate is to ensure that we still have a positive-definite inner product on <m>\C^n</m>:
+            <me>
+              \langle \zz,\zz\rangle = z_1\bz_1+z_2\bz_2+\cdots + z_n\bz_n = \abs{z_1}^2+\abs{z_2}^2+\cdots + \abs{z_n}^2
+            </me>,
+            which shows that <m>\langle \zz,\zz\rangle \geq 0</m>,
+            and <m>\langle \zz,\zz\rangle = 0</m> if and only if <m>\zz=\mathbf{0}</m>.
+          </p>
+
+          <exercise>
+            <statement>
+              <p>
+                Compute the dot product of <m>\zz = (2-i, 3i, 4+2i)</m> and <m>\ww = (3i,4-5i,-2+2i)</m>.
+              </p>
+            </statement>
+          </exercise>
+
+          <p>
+            This isn't hard to do by hand, but it's useful to know how to ask the computer to do it, too.
+            Unfortunately, the dot product in SymPy does not include the complex conjugate.
+            One likely reason for this is that while most mathematicians take the complex conjugate of the <em>second</em> vector,
+            some mathematicians, and most physicists, put the conjugate on the first vector.
+            So they may have decided to remain agnostic about this choice.
+            We can manually apply the conjugate, using <c>Z.dot(W.H)</c>.
+          </p>
+
+          <sage>
+            <input>
+              Z = Matrix([2-I,3*I,4+2*I])
+              W = Matrix([3*I,4-5*I,-2+2*I])
+              Z, W, Z.dot(W.H)
+            </input>
+          </sage>
+
+          <p>
+            Again, you might want to wrap that last term in <c>simplify()</c>.
+            Above, we saw that the complex inner product is designed to be positive definite, like the real inner product.
+            The remaining properties of the complex inner product are given as follows.
+          </p>
+
+          <theorem xml:id="thm-complex-inner-props">
+            <statement>
+              <p>
+                For any vectors <m>\zz_1,\zz_2,\zz_3</m> and any complex number <m>\alpha</m>,
+                <ol>
+                  <li>
+                    <p>
+                      <m>\langle \zz_1+\zz_2,\zz_3\rangle = \langle \zz_1,\zz_3\rangle + \langle zz_2,\zz_3\rangle</m> and
+                      <m>\langle \zz_1,\zz_2+\zz_3\rangle = \langle \zz_1,\zz_2\rangle + \langle zz_1,\zz_3\rangle</m>.
+                    </p>
+                  </li>
+
+                  <li>
+                    <p>
+                      <m>\langle \alpha\zz_1,\zz_2\rangle = \alpha\langle\zz_1,\zz_2\rangle</m>
+                      and <m>\langle \zz_1,\alpha\zz_2\rangle=\bar{\alpha}\langle \zz_1,\zz_2\rangle</m>.
+                    </p>
+                  </li>
+
+                  <li>
+                    <p>
+                      <m>\langle \zz_2,\zz_1\rangle = \overline{\langle \zz_1,\zz_2\rangle}</m>
+                    </p>
+                  </li>
+
+                  <li>
+                    <p>
+                      <m>\langle \zz_1,\zz_1\rangle\geq 0</m>, and <m>\langle \zz_1,\zz_1\rangle =0</m> if and only if <m>\zz_1=\mathbf{0}</m>.
+                    </p>
+                  </li>
+                </ol>
+              </p>
+            </statement>
+            <proof>
+              <p>
+                <ol>
+                  <li>
+                    <p>
+                      Using the distributive properties of matrix multiplication and the transpose,
+                      <md>
+                        <mrow>\langle \zz_1+\zz_2,\zz_3\rangle \amp= (\zz_1+\zz_2)^T\bar{\zz_3}</mrow>
+                        <mrow> \amp =(\zz_1^T+\zz_2^T)\bar{\zz_3}</mrow>
+                        <mrow> \amp =\zz_1^T\bar{\zz_3}+\zz_2^T\bar{\zz_3}</mrow>
+                        <mrow> \amp =\langle \zz_1,\zz_3\rangle + \langle \zz_2,\zz_3\rangle</mrow>
+                      </md>.
+                      The proof is similar when addition is in the second component.
+                      (But not identical -- you'll need the fact that the complex conjugate is distributive, rather than the transpose.)
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      These again follow from writing the inner product as a matrix product.
+                      <me>
+                        \langle \alpha\zz_1,\zz_2\rangle = (\alpha \zz_1)^T\bar{\zz_2} = \alpha(\zz_1^T\bar{\zz_2}) = \alpha\langle\zz_1,\zz_2\rangle
+                      </me>,
+                      and
+                      <me>
+                        \langle \zz_1,\alpha\zz_2\rangle = \zz_1^T\overline{\alpha \zz_2} = \zz_1^T(\bar{\alpha}\bar{\zz_2}) = \bar{\alpha}(\zz_1^T\zz_2)=\alpha\langle \zz_1,\zz_2\rangle
+                      </me>.
+                    </p>
+                  </li>
+
+                  <li>
+                    <p>
+                      Note that for any vectors <m>\zz,\ww</m>, <m>\zz^T\ww</m> is a number,
+                      and therefore equal to its own transpose.
+                      Thus, we have <m>\zz^T\ww = (\zz^T\ww)^T=\ww^T\zz</m>, and
+                      <me>
+                        \overline{\langle \zz_1,\zz_2\rangle} = \overline{\zz_1^T\bar{\zz_2}} = \overline{\bar{\zz_2}^T\zz_1} = \zz_2^T\overline{\zz_1}=\langle \zz_2,\zz_1\rangle
+                      </me>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      This was already demonstrated above.
+                    </p>
+                  </li>
+                </ol>
+              </p>
+            </proof>
+
+          </theorem>
+
+          <definition xml:id="def-complex-norm">
+            <statement>
+              <p>
+                The <term>norm</term> of a vector <m>\zz = (z_1,z_2,\ldots, z_n)</m> in <m>\C^n</m> is given by
+                <me>
+                  \len{\zz} = \sqrt{\langle \zz,\zz\rangle} = \sqrt{\abs{z_1}^2+\abs{z_2}^2+\cdots +\abs{z_n}^2}
+                </me>.
+              </p>
+            </statement>
+          </definition>
+
+          <p>
+            Note that much like the real norm, the complex norm satisfies <m>\len{\alpha\zz}=\abs{\alpha}\len{\zz}</m>
+            for any (complex) scalar <m>\alpha</m>.
+          </p>
+        </subsection>
+
+        <subsection xml:id="subsec-complex-matrix">
+          <title>Complex matrices</title>
+          <p>
+            Linear transformations are defined in exactly the same way,
+            and a complex matrix is simply a matrix whose entries are complex numbers.
+            There are two important operations defined on complex matrices:
+            the conjugate, and the conjugate transpose (also known as the hermitian transpose).
+          </p>
+
+          <definition xml:id="def-conjugate-transpose">
+            <statement>
+              <p>
+                The <term>conjugate</term> of a matrix <m>A=[a_{ij}]\in M_{mn}(\C)</m>
+                is the matrix <m>\bar{A}=[\bar{a}_{ij}]</m>.
+                The <term>conjugate transpose</term> of <m>A</m> is the matrix <m>A^H</m>
+                defined by
+                <me>
+                  A^H = (\bar{A})^T=\overline{(A^T)}
+                </me>.
+              </p>
+            </statement>
+          </definition>
+
+          <p>
+            Note that many textbooks use the notation <m>A^\dagger</m> for the conjugate transpose.
+          </p>
+
+          <definition xml:id="def-hermitian-unitary">
+            <statement>
+              <p>
+                An <m>n\times n</m> matrix <m>A\in M_{nn}(\C)</m> is called <term>hermitian</term>
+                if <m>A^H = A</m>, and <term>unitary</term> if <m>A^H = A^{-1}</m>.
+                (A matrix is <term>skew-hermitian</term> if <m>A^H=-A</m>.)
+              </p>
+            </statement>
+          </definition>
+
+          <p>
+            Hermitian and unitary matrices (or more accurately, linear operators) are very important in quantum mechanics.
+            Indeed, hermitian matrices represent <q>observable</q> quantities,
+            in part because their eigenvalues are real, as we'll soon see.
+            For us, hermitian and unitary matrices can simply be viewed as the complex counterparts of symmetric and orthogonal matrices,
+            respectively. In fact, a real symmetric matrix <em>is</em> hermitian,
+            since the conjugate has no effect on it, and similarly, a real orthogonal matrix is technically unitary.
+            As with orthogonal matrices, a unitary matrix can also be characterized by the property that its rows and columns both form orthonormal bases.
+          </p>
+
+          <exercise>
+            <statement>
+              <p>
+                Show that the matrix <m>A = \bbm 4\amp 1-i\amp -2+3i\\1+i\amp 5 \amp 7i\\-2-3i\amp -7i\amp -4\ebm</m> is hermitian,
+                and that the matrix <m>B = \frac12\bbm 1+i\amp \sqrt{2}\\1-i\amp\sqrt{2}i\ebm</m> is unitary.
+              </p>
+            </statement>
+            <solution>
+              <p>
+                We have <m>\bar{A}=\bbm 4\amp 1+i\amp -2-3i\\1-i\amp 5 \amp -7i\\-2+3i\amp 7i\amp -4\ebm</m>,
+                so
+                <me>
+                  A^H = (\bar{A})^T = \bbm 4\amp 1-i\amp -2+3i\\1+i\amp 5\amp 7i\\-2-3i\amp -7i\amp -4\ebm = A
+                </me>,
+                and
+                <md>
+                  <mrow>BB^H \amp =\frac14\bbm 1+i\amp \sqrt{2}\\1-i\amp\sqrt{2}i\ebm\bbm 1-i\amp 1+i\\\sqrt{2}\amp-\sqrt{2}i\ebm </mrow>
+                  <mrow> \amp =\frac14\bbm (1+i)(1-i)+2\amp (1+i)(1+i)-2i\\(1-i)(1-i)+2i\amp (1-i)(1+i)+2\ebm</mrow>
+                  <mrow> \amp =\frac14\bbm 4\amp 0\\0\amp 4\ebm = \bbm 1\amp 0\\0\amp 1\ebm</mrow>
+                </md>,
+                so that <m>B^H = B^{-1}</m>.
+              </p>
+            </solution>
+          </exercise>
+
+          <p>
+            When using SymPy, the hermitian conjugate of a matrix <c>A</c> is executed using <c>A.H</c>.
+            (There appears to also be an equivalent operation named <c>Dagger</c> coming from <c>sympy.physics.quantum</c>,
+            but I've had more success with <c>.H</c>.) The complex unit is entered as <c>I</c>.
+            So for the exercise above, we can do the following.
+          </p>
+
+          <sage>
+            <input>
+              from sympy import *
+              init_printing()
+              A = Matrix(3,3,[4,1-I,-2+3*I,1+I,5,7*I,-2-3*I,-7*I,-4])
+              A == H
+            </input>
+          </sage>
+
+          <p>
+            The last line verifies that <m>A=A^H</m>.
+            We could also replace it with <c>A,A.H</c> to explicitly see the two matrices side by side.
+            Now, let's confirm that <m>B</m> is unitary.
+          </p>
+
+          <sage>
+            <input>
+              B = Matrix(2,2,[1/2+1/2*I, sqrt(2)/2,1/2-1/2*I,(sqrt(2)/2)*I])
+              B,B*B.H
+            </input>
+          </sage>
+
+          <p>
+            Hmm... That doesn't look like the identity. Maybe try replacing <c>B*B.H</c> with <c>simplify(B*B.H)</c>.
+            Or you could try <c>B.H, B**-1</c> to compare results.
+            Actually, what's interesting is that in a Sage cell, <c>B.H == B**-1</c> yields <c>False</c>,
+            but <c>B.H == simplify(B**-1)</c> yields <c>True</c>!
+          </p>
+
+          <p>
+            As mentioned above, hermitian matrices are the complex analogue of symmetric matrices.
+            Recall that a key property of a symmetric matrix is its symmetry with respect to the dot product.
+            For a symmetric matrix <m>A</m>, we had <m>\mathbf{x}\dotp (A\mathbf{y})=(A\mathbf{x})\dotp \mathbf{y}</m>.
+            Hermtian matrices exhibit the same behaviour with respect to the complex inner product.
+          </p>
+
+          <theorem xml:id="thm-hermitian-symmetry">
+            <statement>
+              <p>
+                An <m>n\times n</m> complex matrix <m>A</m> is Hermitian if and only if
+                <me>
+                  \langle A\zz,\ww\rangle = \langle \zz, A\ww\rangle
+                </me>
+                for any <m>\zz,\ww\in\C^n</m>
+              </p>
+            </statement>
+            <proof>
+              <p>
+                Note that the property <m>A^H=A</m> is equivalent to <m>A^T=\bar{A}</m>.
+                This gives us
+                <me>
+                  \langle A\zz,\ww\rangle = (A\zz)^T\bar{\ww} = (\zz^TA^T)\bar{\ww} = (\zz^T\bar{A})\bar{\ww}=\zz^T(\overline{A\ww}) = \langle \zz,\ww\rangle
+                </me>.
+                Conversely, suppose <m>\langle A\zz,\ww\rangle = \langle \zz, A\ww\rangle</m> for all <m>\zz,\ww\in \C^n</m>,
+                and let <m>\basis{e}{n}</m> denote the standard basis for <m>\C^n</m>. Then
+                <me>
+                  a_{ji}=\langle A\mathbf{e}_i,\mathbf{e}_j\rangle = \langle \mathbf{e}_i,A\mathbf{e}_j\rangle = \overline{a_{ij}}
+                </me>,
+                which shows that <m>A^T=\bar{A}</m>.
+              </p>
+            </proof>
+          </theorem>
+
+          <p>
+            Next, we've noted that one advantage of doing linear algebra over <m>\C</m> is that every polynomial can be completely factored,
+            including the characteristic polynomial. This means that we can always find eigenvalues for a matrix.
+            When that matrix is Hermitian, we get a surprising result.
+          </p>
+
+          <theorem xml:id="thm-hermitian-eigen-real">
+            <statement>
+              <p>
+                For any hermitian matrix <m>A</m>,
+                <ol>
+                  <li>
+                    <p>
+                      The eigenvalues of <m>A</m> are real.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Eigenvectors corresponding to distinct eigenvalues are orthogonal.
+                    </p>
+                  </li>
+                </ol>
+              </p>
+            </statement>
+            <proof>
+              <p>
+                <ol>
+                  <li>
+                    <p>
+                      Suppose <m>A\zz = \lambda\zz</m> for some <m>\lambda\in\C</m> and <m>\zz\neq \mathbf{0}</m>.
+                      Then
+                      <me>
+                        \lambda \langle \zz,\zz\rangle  = \langle \lambda\zz,\zz\rangle = \langle A\zz,\zz \rangle = \langle \zz, A\zz\rangle = \langle \zz,\lambda,\zz\rangle = \bar{\lambda}\langle \zz,\zz\rangle
+                      </me>.
+                      Thus, <m>(\lambda-\bar{\lambda})\len{\zz}^2=0</m>, and since <m>\len{z}\neq 0</m>, we must have <m>\bar{\lambda}=\lambda</m>, which means <m>\lambda\in\R</m>.
+                    </p>
+                  </li>
+
+                  <li>
+                    <p>
+                      Similarly, suppose <m>\lambda_1,\lambda_2</m> are eigenvalues of <m>A</m>,
+                      with corresonding eigenvectors <m>\zz,\ww</m>. Then
+                      <me>
+                        \lambda_1\langle \zz,\ww\rangle = \langle \lambda_1\zz,\ww\rangle = \langle A\zz,\ww\rangle =\langle \zz,A\ww\rangle = \langle \zz,\lambda_2\ww\rangle = \bar{\lambda_2}\langle\zz,\ww\rangle
+                      </me>.
+                      This gives us <m>(\lambda_1-\bar{\lambda_2})\langle \zz,\ww\rangle=0</m>.
+                      And since we already know <m>\lambda_2</m> must be real,
+                      and <m>\lambda_1\neq \lambda_2</m>, we must have <m>\langle, \zz,\ww\rangle = 0</m>.
+                    </p>
+                  </li>
+                </ol>
+              </p>
+            </proof>
+
+          </theorem>
+
+          <p>
+            In light of <xref ref="thm-hermitian-eigen-real"/>,
+            we realize that diagonalization of hermitian matrices will follow the same script as for symmetric matrices.
+            Indeed, <xref ref="thm-gram-schmidt" text="title"/> applies equally well in <m>\C^n</m>,
+            as long as we replace the dot product with the complex inner product.
+            This suggests the following.
+          </p>
+
+          <theorem xml:id="thm-complex-spectral">
+            <title>Spectral Theorem</title>
+
+            <statement>
+              <p>
+                If <m>A</m> is an <m>n\times n</m> hermitian matrix,
+                then there exists an orthonormal basis of <m>\C^n</m> consisting of eigenvectors of <m>A</m>.
+                Moreover, the matrix <m>U</m> whose columns consist of those eigenvectors is unitary,
+                and the matrix <m>U^HAU</m> is diagonal.
+              </p>
+            </statement>
+          </theorem>
+
+          <exercise>
+            <statement>
+              <p>
+                Confirm that the matrix <m>A = \bbm 4 \amp 3-i\\3+i\amp 1\ebm</m> is hermitian.
+                Then, find the eigenvalues of <m>A</m>, and a unitary matrix <m>U</m> such that <m>U^HAU</m> is diagonal.
+              </p>
+            </statement>
+            <solution>
+              <p>
+                Confirming that <m>A^H=A</m> is almost immediate.
+                We will use the computer below to compute the eigenvalues and eigenvectors of <m>A</m>,
+                but it's useful to attempt this at least once by hand. We have
+                <md>
+                  <mrow>\det(zI-A) \amp = \det\bbm z-4 \amp -3+i\\-3-i\amp z-1\ebm</mrow>
+                  <mrow> \amp (z-4)(z-1)-(-3-i)(-3+i)</mrow>
+                  <mrow> \amp z^2-5z+4-10</mrow>
+                  <mrow> \amp (z+1)(z-6)</mrow>
+                </md>,
+                so the eigenvalues are <m>\lambda_1=-1</m> and <m>\lambda_2=6</m>,
+                which are both real, as expected.
+              </p>
+
+              <p>
+                Finding eigenvectors can seem trickier than with real numbers,
+                mostly because it is no longer immediately apparent when one row or a matrix is a multiple of another.
+                But we know that the rows of <m>A-\lambda I</m> must be parallel for a <m>2\times 2</m> matrix,
+                which lets proceed nonetheless.
+              </p>
+
+              <p>
+                For <m>\lambda_1=-1</m>, we have
+                <me>
+                  A + I =\bbm 5 \amp 3-i\\3+i\amp 2\ebm
+                </me>.
+                There are two ways one can proceed from here.
+                We could use row operations to get to the reduced row-echelon form of <m>A</m>.
+                If we take this approach, we multiply row 1 by <m>\frac15</m>,
+                and then take <m>-3-i</m> times the new row 1 and add it to row 2, to create a zero, and so on.
+              </p>
+
+              <p>
+                Easier is to realize that if we haven't made a mistake calculating our eigenvalues,
+                then the above matrix can't be invertible, so there must be some nonzero vector in the kernel.
+                If <m>(A+I)\bbm a\\b\ebm=\bbm0\\0\ebm</m>, then we must have
+                <me>
+                  5a+(3-i)b=0
+                </me>,
+                when we mutliply by the first row of <m>A</m>.
+                This suggests that we take <m>a=3-i</m> and <m>b=-5</m>,
+                to get <m>\zz = \bbm 3-i\\-5\ebm</m> as our first eigenvector.
+                To make sure we've done things correctly, we multiply by the second row of <m>A+I</m>:
+                <me>
+                  (3+i)(3-i)+2(-5) = 10-10 = 0
+                </me>.
+                Success! Now we move onto the second eigenvalue.
+              </p>
+
+              <p>
+                For <m>\lambda_2=6</m>, we get
+                <me>
+                  A-6I = \bbm -2\amp 3-i\\3+i\amp -5\ebm
+                </me>.
+                If we attempt to read off the answer like last time,
+                the first row of <m>A-6I</m> suggests the vector <m>\ww = \bbm 3-i\\2\ebm</m>.
+                Checking the second row to confirm, we find:
+                <me>
+                  (3+i)(3-i)-5(2) = 10-10=0
+                </me>,
+                as before.
+              </p>
+
+              <p>
+                Finally, we note that
+                <me>
+                  \langle \zz, \ww\rangle = (3-i)\overline{(3-i)}+(-5)(2) = (3-i)(3+i)-10 = 0
+                </me>,
+                so the two eigenvectors are orthogonal, as expected. We have
+                <me>
+                  \len{\zz}=\sqrt{10+25}=\sqrt{35} \quad \text{ and } \quad \len{\ww}=\sqrt{10+4}=\sqrt{14}
+                </me>,
+                so our orthogonal matrix is
+                <me>
+                  U = \bbm \frac{3-i}{\sqrt{35}}\amp \frac{3-i}{\sqrt{14}}\\-\frac{5}{\sqrt{35}}\amp \frac{2}{\sqrt{35}}\ebm
+                </me>.
+                With a bit of effort, we can finally confirm that
+                <me>
+                  U^HAU = \bbm -1\amp 0\\0\amp 6\ebm
+                </me>,
+                as expected.
+              </p>
+            </solution>
+          </exercise>
+
+          <p>
+            To do the above exercise using SymPy, we first define <m>A</m> and ask for the eigenvectors.
+          </p>
+
+          <sage>
+            <input>
+              from sympy import *
+              init_printing()
+              A = Matrix(2,2,[4,3-I,3+I,1])
+              A.eigenvects()
+            </input>
+          </sage>
+
+          <p>
+            We can now manually determine the matrix <m>U</m>, as we did above, and input it:
+          </p>
+
+          <sage>
+            <input>
+              U = Matrix(2,2,[(3-I)/sqrt(35),(3-I)/sqrt(14),-5/sqrt(35),2/sqrt(35)])
+            </input>
+          </sage>
+
+          <p>
+            To confirm it's unitary, add the line <c>U*U.H</c> to the above,
+            and confirm that you get the identity matrix as output.
+            You might need to use <c>simplify(U*U.H)</c> if the result is not clear.
+            Now, to confirm that <m>U^HAU</m> really is diagonal, go back to the cell above, and enter it.
+            Try <c>(U.H)*A*U</c>, just to remind yourself that adding the <c>simplify</c> command is often a good idea.
+          </p>
+
+          <p>
+            If you want to cut down on the manual labour involved, we can make use of some of the other tools SymPy provides.
+            In the next cell, we're going to assign the output of <c>A.eigenvects()</c> to a list.
+            The only trouble is that the output of the eigenvector command is a list of lists.
+            Each list item is a list <c>(eigenvalue, multiplicity, [eigenvectors])</c>.
+          </p>
+
+          <sage>
+            <input>
+              L = A.eigenvects()
+              L
+            </input>
+          </sage>
+
+          <p>
+            Try the above modifications, in sequence.
+            First, replacing the second line by <c>L[0]</c> will give the first list item, which is another list:
+            <me>
+              \left(-1,1,\left[\bbm -\frac35+\frac{i}{5}\ebm\right]\right)
+            </me>.
+            We want the third item in the list, so try <c>(L[0])[2]</c>.
+            But note the extra set of brackets! There could (in theory) be more than one eigenvector,
+            so this is a list with one item. To finally get the vector out, try <c>((L[0])[2])[0]</c>.
+            (There is probably a better way to do this. Someone who is more fluent in Python is welcome to advise.)
+          </p>
+
+          <p>
+            Now that we know how to extract the eigenvectors, we can normalize them, and join them to make a matrix.
+            The norm of a vector is simnply <c>v.norm()</c>, and to join column vectors <c>u1</c> and <c>u2</c> to make a matrix,
+            we can use the command <c>u1.row_join(u2)</c>. We already defined the matrix <c>A</c> and list <c>L</c> above,
+            but here is the whole routine in one cell, in case you didn't run all the cells above.
+          </p>
+
+          <sage>
+            <input>
+              from sympy import *
+              init_printing()
+              A = Matrix(2,2,[4,3-I,3+I,1])
+              L = A.eigenvects()
+              v = ((L[0])[2])[0]
+              w = ((L[1])[2])[0]
+              u1 = (1/v.norm())*v
+              u2 = (1/w.norm())*w
+              U = u1.row_join(u2)
+              u1, u2, U, simplify(U.H*A*U)
+            </input>
+          </sage>
+
+          <p>
+            Believe me, you want the simplify command on that last matrix.
+          </p>
+
+          <p>
+            While <xref ref="thm-complex-spectral"/> guarantees that any hermitian matrix can be <q>unitarily diagaonalizaed</q>,
+            there are also non-hermitial matrices for which this can be done as well.
+            A classic example of this is given in Nicholson's book, so we do not repeat the details here:
+            the matrix <m>\bbm 0\amp 1\\-1\amp 0\ebm</m> is a real matrix with complex eigenvalues <m>\pm i</m>,
+            and while it is neither symmetric nor hermitian, it can be orthogonally diagonalized.
+            This should be contrasted with the real spectral theroem,
+            where any matrix that can be orthogonally diagonalized is necessarily symmetric.
+          </p>
+
+          <p>
+            This suggests that perhaps hermitian matrices are not quite the correct class of matrix for which the spectral theorem should be stated.
+            Indeed, it turns out there is a somewhat more general class of matrix: the <em>normal</em> matrices.
+          </p>
+
+          <definition xml:id="def-normal-matrix">
+            <statement>
+              <p>
+                An <m>n\times n</m> matrix <m>A</m> is <term>normal</term> if <m>A^HA = AA^H</m>.
+              </p>
+            </statement>
+          </definition>
+
+          <p>
+            It turns out that a matrix <m>A</m> is normal if and only if <m>A=UDU^H</m> for some unitary matrix <m>U</m> and diagonal matrix <m>D</m>.
+            A further generalization is known as <em>Schur's Theorem</em>.
+          </p>
+
+          <theorem xml:id="thm-schurr">
+            <statement>
+              <p>
+                For <em>any</em> complex <m>n\times n</m> matrix <m>A</m>,
+                there exists a unitary matrix <m>U</m> such that <m>U^HAU = T</m> is upper-triangular,
+                and such that the diagonal entires of <m>T</m> are the eigenvalues of <m>A</m>.
+              </p>
+            </statement>
+          </theorem>
+
+          <p>
+            Using Schur's Theorem, we can obtain a famous result, known as the Cayley-Hamilton Theorem,
+            for the case of complex matrices. (It is true for real matrices as well, but we don't yet have the tools to prove it.)
+            The Cayley-Hamilton Theorem states that substituting any matrix into its characteristic polynomial results in the zero matrix.
+            To understand this result, we should first explain how to define a polynomial of a matrix.
+          </p>
+
+          <p>
+            Given a polynomial <m>p(x) = a_0+a_1x+\cdots + a_nx_n</m>, we define <m>p(A)</m> as
+            <me>
+              p(A) = a_0I+a_1A+\cdots + a_nA^n
+            </me>.
+            (Note the presence of the identity matrix in the first term, since it does not make sense to add a scalar to a matrix.)
+            Note further that since <m>(P^{-1}AP)^n = P^{-1}A^nP</m> for any invertible matrix <m>P</m> and positive integer <m>n</m>,
+            we have <m>p(U^HAU)=U^Hp(A)U</m> for any polynomial <m>p</m> and unitary matrix <m>U</m>.
+          </p>
+
+          <theorem xml:id="thm-cayley-hamilton-c">
+            <statement>
+              <p>
+                Let <m>A</m> be an <m>n\times n</m> complex matrix,
+                and let <m>c_A(x)</m> denote the characteristic polynomial of <m>A</m>.
+                Then we have <m>c_A(A)=0</m>.
+              </p>
+            </statement>
+            <proof>
+              <p>
+                By <xref ref="thm-schurr"/>, there exists a unitary matrix <m>U</m> such that <m>A = UTU^H</m>,
+                where <m>T</m> is upper triangular, and has the eigenvalues of <m>A</m> as diagonal entries.
+                Since <m>c_A(A)=c_A(UTU^H)=Uc_A(T)U^H</m>, and <m>c_A(x)=c_T(x)</m> (since <m>A</m> and <m>T</m> are similar)
+                it suffices to show that <m>c_A(A)=0</m> when <m>A</m> is upper-triangular.
+                (If you like, we are showing that <m>C_T(T)=0</m>, and deducing that <m>c_A(A)=0</m>.)
+                But if <m>A</m> is upper-triangular, so is <m>xI_A</m>,
+                and therefore, <m>\det(xI-A)</m> is just the product of the diagaonal entries. That is,
+                <me>
+                  c_A(x) = (x-\lambda_1)(x-\lambda_2)\cdots (x-\lambda_n)
+                </me>,
+                so
+                <me>
+                  c_A(A) = (A-\lambda_1I)(A-\lambda_2I)\cdots (A-\lambda_nI)
+                </me>.
+              </p>
+
+              <p>
+                Since the first column of <m>A</m> is <m>\bbm \lambda_1\amp 0 \amp \cdots \amp 0\ebm^T</m>,
+                the first column of <m>A-\lambda_1I</m> is identically zero.
+                The second column of <m>A-\lambda_2I</m> similarly has the form <m>\bbm k\amp 0\amp\cdots\amp 0\ebm</m>
+                for some number <m>k</m>.
+              </p>
+
+              <p>
+                It follows that the first two columns of <m>(A-\lambda_1I)(A-\lambda_2I)</m> are identically zero.
+                Since only the first two entries in the third column of <m>(A-\lambda_3I)</m> can be nonzero,
+                we find that the first three columns of <m>(A-\lambda_1I)(A-\lambda_2I)(A-\lambda_3I)</m> are zero,
+                and so on.
+              </p>
+            </proof>
+
+          </theorem>
+
+        </subsection>
       </section>
     </chapter>
   </book>
