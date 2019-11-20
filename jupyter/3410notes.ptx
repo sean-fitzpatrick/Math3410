@@ -24,6 +24,8 @@
       \newcommand{\bz}{\overline{z}}
       \newcommand{\zz}{\mathbf{z}}
       \newcommand{\ww}{\mathbf{w}}
+      \newcommand{\xx}{\mathbf{x}}
+      \newcommand{\yy}{\mathbf{y}}
       \newcommand{\basis}[2]{\{\mathbf{#1}_1,\mathbf{#1}_2,\ldots,\mathbf{#1}_{#2}\}}
     </macros>
     <latex-image-preamble><![CDATA[
@@ -2783,7 +2785,7 @@
 
         <figure xml:id="fig_transformation_matrix">
           <caption>Defining the matrix of a linear map with respect to choices of basis.</caption>
-          <image xml:id="img_trans_matrix" width="30%">
+          <image xml:id="img_trans_matrix" width="35%">
             <latex-image>
               \begin{tikzpicture}
               \matrix (m) [matrix of math nodes,row sep=3em,column sep=4em,minimum width=2em]
@@ -4922,7 +4924,7 @@
                 The <term>standard inner product</term> on <m>\C^n</m> is defined as follows:
                 given <m>\zz=(z_1,z_2,\ldots, z_n)</m> and <m>\ww=(w_1,w_2,\ldots, w_n)</m>,
                 <me>
-                  \langle \zz,\ww\rangle = \vec{z}\dotp\bar{\ww} = z_1\bar{w}_1+z_2\bar{w}_2+\cdots + z_n\bar{w}_n
+                  \langle \zz,\ww\rangle = \zz\dotp\bar{\ww} = z_1\bar{w}_1+z_2\bar{w}_2+\cdots + z_n\bar{w}_n
                 </me>.
               </p>
             </statement>
@@ -5564,6 +5566,90 @@
 
         </subsection>
       </section>
+    </chapter>
+
+    <chapter xml:id="ch-change-basis">
+      <title>Change of Basis</title>
+      <section xml:id="sec-matrix-of-transformation">
+        <title>The matrix of a linear transformation</title>
+        <p>
+          Recall from <xref ref="ex-matrix-trans">Example</xref> in <xref ref="ch-linear-trans">Chapter</xref>
+          that given any <m>m\times n</m> matrix <m>A</m>, we can define the matrix transformation
+          <m>T_A:\R^n\to \R^m</m> by <m>T_A(\xx)=A\xx</m>,
+          where we view <m>\xx\in\R^n</m> as an <m>n\times 1</m> column vector.
+        </p>
+
+        <p>
+          Conversely, given any linear map <m>T:\R^n\to \R^m</m>,
+          if we let <m>\basis{e}{n}</m> denote the standard basis of <m>\R^n</m>,
+          then the matrix
+          <me>
+            A = \bbm T(\mathbf{e}_1) \amp T(\mathbf{e}_2) \amp \cdots \amp T(\mathbf{e}_n)\ebm
+          </me>
+          is such that <m>T=T_A</m>.
+        </p>
+
+        <p>
+          We have already discussed the fact that this idea generalizes:
+          given a linear transformation <m>T:V\to W</m>,
+          where <m>V</m> and <m>W</m> are finite-dimensional vector spaces,
+          it is possible to represent <m>T</m> as a matrix transformation.
+        </p>
+
+        <p>
+          The representation depends on choices of bases for both <m>V</m> and <m>W</m>.
+          Recall the definition of the coordinate isomorphism,
+          from <xref ref="def-coordinate-iso">Definition</xref> in <xref ref="sec-isomorphism">Section</xref>.
+          If <m>\dim V=n</m> and <m>\dim W=m</m>,
+          this gives us isomorphisms <m>C_B:V\to \R^n</m> and <m>C_D:W\to \R^m</m>
+          depending on the choice of a basis <m>B</m> for <m>V</m> and a basis <m>D</m> for <m>W</m>.
+          These isomorphisms define a matrix transformation <m>T_A:\R^n\to \R^m</m>
+          according to the diagram we gave in <xref ref="fig_transformation_matrix">Figure</xref>.
+        </p>
+
+        <p>
+          Explicitly, let <m>B = \basis{v}{n}</m> be a basis for <m>V</m>,
+          and let <m>D=\basis{w}{m}</m> be a basis for <m>W</m>.
+          Since <m>T(\vv_i)\in W</m> for each <m>\vv_i\in B</m>,
+          there exist unique scalars <m>a_{ij}</m>, with <m>1\leq i\leq m</m>
+          and <m>1\leq j\leq n</m> such that
+          <me>
+            T(\vv_j) = a_{1j}\ww_1+a_{2j}\ww_2+\cdots + a_{mj}\ww_m
+          </me>
+          for <m>j=1,\ldots, n</m>. This gives us the <m>m\times n</m> matrix <m>A = [a_{ij}]</m>.
+        </p>
+
+        <p>
+          Given <m>\xx\in V</m>, write <m>\xx = c_1\vv_1+\cdots + c_n\vv_n</m>,
+          so that <m>C_B(\xx) = \bbm c_1\\\vdots \\c_n\ebm</m>. Then
+          <me>
+            T_A(C_B(\xx)) = \bbm a_{11}\amp a_{12} \amp \cdots \amp a_{1n}\\
+                                 a_{21}\amp a_{22} \amp \cdots \amp a_{2n}\\
+                                 \vdots \amp \vdots \amp \ddots \amp \vdots\\
+                                 a_{m1}\amp a_{m2} \amp \cdots \amp a_{mn}\ebm\bbm c_1\\c_2\\ \vdots \\c_n\ebm
+                                 = \bbm a_{11}c_1+a_{12}c_2+\cdots +a_{1n}c_n\\
+                                        a_{21}c_1+a_{22}c_2+\cdots +a_{2n}c_n\\
+                                        \vdots
+                                        a_{m1}c_1+a_{m2}c_2+\cdots +a_{mn}c_n\ebm
+          </me>.
+        </p>
+
+        <p>
+          On the other hand,
+          <md>
+            <mrow>T(\xx) \amp = T(c_1\vv_1+\cdots + c_n\vv_n) </mrow>
+            <mrow> \amp = c_1T(\vv_1)+\cdots + c_nT(\vv_n)</mrow>
+            <mrow> \amp = c_1(a_{11}\ww_1+\cdots + a_{m1}\ww_m)+\cdots c_n(a_{1n}\ww_1+\cdots + a_{mn}\ww_m)</mrow>
+            <mrow> \amp = (c_1a_{11}+\cdots + c_na_{1n})\ww_1 + \cdots + (c_1a_{m1}+\cdots + c_na_{mn})\ww_m
+          </md>.
+          Therefore,
+          <me>
+            C_D(T(\xx)) = \bbm c_1a_{11}+\cdots + c_na_{1n}\\ \vdots \\ c_1a_{m1}+\cdots + c_na_{mn}\ebm = T_A(C_B(\xx))
+          </me>.
+        </p>
+
+
+    </section>
     </chapter>
   </book>
 </pretext>
