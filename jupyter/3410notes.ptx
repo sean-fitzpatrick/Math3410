@@ -5608,8 +5608,79 @@
         </p>
 
         <p>
-          Explicitly, let <m>B = \basis{v}{n}</m> be a basis for <m>V</m>,
-          and let <m>D=\basis{w}{m}</m> be a basis for <m>W</m>.
+          We should stress one important point about the coordinate isomorphism, however.
+          It depends on the choice of basis, but also on the <em>order</em> of the basis elements.
+          Thus, we generally will work with an <em>ordered basis</em> in this chapter.
+          That is, rather than simply thinking of our basis as a set,
+          we will think of it as an ordered list.
+          Order matters, since given a basis <m>B=\basis{e}{n}</m>,
+          we rely on the fact that we can write any vector <m>\vv</m> uniquely as
+          <me>
+            \vv = c_1\mathbf{e}_1+\cdots +c_n\mathbf{e}_n
+          </me>
+          in order to make the assignment <m>C_B(\vv) = \bbm c_1\\\vdots \\c_n\ebm</m>.
+        </p>
+
+        <exercise>
+          <statement>
+            <p>
+              Show that the coordinate isomorphism is, indeed,
+              a linear isomorphism from <m>V</m> to <m>\R^n</m>.
+            </p>
+          </statement>
+          <solution>
+            <p>
+              It's clear that <m>C_B(\mathbf{0})=\vec{0}</m>,
+              since the only way to write the zero vector in <m>V</m> in terms of <m>B</m>
+              (or, indeed, any independent set) is to set all the scalars equal to zero.
+            </p>
+
+            <p>
+              If we have two vectors <m>\vv,\ww</m> given by
+              <md>
+                <mrow>\vv \amp = a_1\mathbf{e}_1+\cdots + a_n\mathbf{e}_n </mrow>
+                <mrow>\ww \amp = b_1\mathbf{e}_1+\cdots + b_n\mathbf{e}_n</mrow>
+              </md>,
+              then
+              <me>
+                \vv+\ww = (a_1+b_1)\mathbf{e}_1+\cdots + (a_n+b_n)\mathbf{e}_n
+              </me>,
+              so
+              <md>
+                <mrow>C_B(\vv+\ww) \amp = \bbm a_1+b_1\\vdots \\ a_n+b_n\ebm </mrow>
+                <mrow> \amp = \bbm a_1\\\vdots\\a_n\ebm +\bbm b_1\\\vdots \\b_n\ebm</mrow>
+                <mrow>  \amp = C_B(\vv)+C_B(\ww)</mrow>
+              </md>.
+            </p>
+
+            <p>
+              Finally, for any scalar <m>c</m>, we have
+              <md>
+                <mrow>C_B(c\vv) \amp = C_B((ca_1)\mathbf{e}_1+\cdots +(ca_n)\mathbf{e}_n)</mrow>
+                <mrow> \amp = \bbm ca_1\\\vdots \\ca_n\ebm</mrow>
+                <mrow>  \amp =c\bbm a_1\\\vdots \\a_n\ebm</mrow>
+                <mrow>  \amp =cC_B(\vv)</mrow>
+              </md>.
+            </p>
+
+            <p>
+              This shows that <m>C_B</m> is linear.
+              To see that <m>C_B</m> is an isomorphism, we can simply note that <m>C_B</m>
+              takes the basis <m>B</m> to the standard basis of <m>\R^n</m>.
+              Alternatively, we can give the inverse: <m>C_B^{-1}:\R^n\to V</m> is given by
+              <me>
+                C_B^{-1}\bbm c_1\\\vdots \\c_n\ebm = c_1\mathbf{e}_1+\cdots +c_n\mathbf{e}_n
+              </me>.
+            </p>
+          </solution>
+        </exercise>
+
+        <p>
+          Given <m>T:V\to W</m> and coordinate isomorphisms <m>C_B:V\to \R^n, C_D:W\to \R^m</m>,
+          the map <m>C_DTC_B^{-1}:\R^n\to \R^m</m> is a linear transformation,
+          and the matrix of this transformation gives a representatioon of <m>T</m>.
+          Explicitly, let <m>B = \basis{v}{n}</m> be an ordered basis for <m>V</m>,
+          and let <m>D=\basis{w}{m}</m> be an ordered basis for <m>W</m>.
           Since <m>T(\vv_i)\in W</m> for each <m>\vv_i\in B</m>,
           there exist unique scalars <m>a_{ij}</m>, with <m>1\leq i\leq m</m>
           and <m>1\leq j\leq n</m> such that
@@ -5617,6 +5688,8 @@
             T(\vv_j) = a_{1j}\ww_1+a_{2j}\ww_2+\cdots + a_{mj}\ww_m
           </me>
           for <m>j=1,\ldots, n</m>. This gives us the <m>m\times n</m> matrix <m>A = [a_{ij}]</m>.
+          Notice that the first column of <m>A</m> is <m>C_D(T(\vv_1))</m>,
+          the second column is <m>C_D(T(\vv_2))</m>, and so on.
         </p>
 
         <p>
@@ -5640,15 +5713,191 @@
             <mrow>T(\xx) \amp = T(c_1\vv_1+\cdots + c_n\vv_n) </mrow>
             <mrow> \amp = c_1T(\vv_1)+\cdots + c_nT(\vv_n)</mrow>
             <mrow> \amp = c_1(a_{11}\ww_1+\cdots + a_{m1}\ww_m)+\cdots c_n(a_{1n}\ww_1+\cdots + a_{mn}\ww_m)</mrow>
-            <mrow> \amp = (c_1a_{11}+\cdots + c_na_{1n})\ww_1 + \cdots + (c_1a_{m1}+\cdots + c_na_{mn})\ww_m
+            <mrow> \amp = (c_1a_{11}+\cdots + c_na_{1n})\ww_1 + \cdots + (c_1a_{m1}+\cdots + c_na_{mn})\ww_m</mrow>
           </md>.
           Therefore,
           <me>
             C_D(T(\xx)) = \bbm c_1a_{11}+\cdots + c_na_{1n}\\ \vdots \\ c_1a_{m1}+\cdots + c_na_{mn}\ebm = T_A(C_B(\xx))
           </me>.
+          Thus, we see that <m>C_DT = T_AC_B</m>, or <m>T_A = C_DTC_B^{-1}</m>, as expected.
         </p>
 
+        <definition xml:id="def-transformation-matrix">
+          <title>The matrix <m>M_{DB}(T)</m> of a linear map</title>
 
+          <statement>
+            <p>
+              Let <m>V</m> and <m>W</m> be finite-dimensional vector spaces,
+              and let <m>T:V\to W</m> be a linear map.
+              Let <m>B=\basis{v}{n}</m> and <m>D=\basis{w}{m}</m> be ordered bases for <m>V</m> and <m>W</m>,
+              respectively. Then the <term>matrix</term> <m>M_{DB}(T)</m> of <m>T</m> with respect to the bases <m>B</m> and <m>D</m>
+              is defined by
+              <me>
+                M_{DB}(T) = \bbm C_D(T(\vv_1)) \amp C_D(T(\vv_2)) \amp \cdots \amp C_D(T(\vv_n))\ebm
+              </me>.
+            </p>
+          </statement>
+        </definition>
+
+        <p>
+          In other words, <m>A=M_{DB}(T)</m> is the unique <m>m\times n</m> matrix such that <m>C_DT = T_AC_B</m>.
+          This gives the defining property
+          <me>
+            C_D(T(\vv)) = M_{DB}(T)C_B(\vv)  \text{ for all } \vv\in V
+          </me>,
+          as was demonstrated above.
+        </p>
+
+        <exercise>
+          <statement>
+            <p>
+              Suppose <m>T:P_2(\R)\to \R^2</m> is given by
+              <me>
+                T(a+bx+cx^2) = (a+c,2b)
+              </me>.
+              Compute the matrix of <m>T</m> with respect to the bases
+              <m>B = \{1,1-x,(1-x)^2\}</m> of <m>P_2(\R)</m> and
+              <m>D = \{(1,0),(1,-1)\}</m> of <m>\R^2</m>.
+            </p>
+          </statement>
+          <solution>
+            <p>
+              We have
+              <md>
+                <mrow>T(1) \amp = (1,0) = 1(1,0)+0(1,-1) </mrow>
+                <mrow>T(1-x) \amp= (1,-2) = -1(1,0)+2(1,-1) </mrow>
+                <mrow> T((1-x)^2) = T(1-2+x^2) \amp = (2, -4) = -2(1,0)+4(1,-1)</mrow>
+              </md>.
+              Thus,
+              <me>
+                M_{DB}(T) = \bbm C_D(T(1))\amp C_D(T(1-x)) \amp C_D(T((1-x)^2))\ebm = \bbm 1\amp -1\amp -2\\0\amp 2\amp 4\ebm
+              </me>.
+              To confirm, note that
+              <md>
+                <mrow>M_{DB}(T)C_B(a+bx+cx^2)\amp = M_{DB}(T)C_B((a+b+c)-(b+2c)(1-x)+c(1-x)^2)</mrow>
+                <mrow> \amp = \bbm 1\amp -1\amp -2\\0\amp 2\amp 4\ebm\bbm \bbm a+b+c\\ -b-2c\\c</mrow>
+                <mrow> \amp \bbm (a+b+c)+(b+2c)-2c\\0-2(b+2c)+4c\ebm = \bbm a+2b+c\\-2b\ebm</mrow>
+              </md>,
+              while on the other hand,
+              <me>
+                C_D(T(a+bx+cx^2)) = C_D(a+c,2b) = C_D((a+2b+c)(1,0)-2b(1,-1)) = \bbm a+2b+c\\-2b\ebm
+              </me>.
+
+            </p>
+          </solution>
+        </exercise>
+
+        <exercise>
+          <statement>
+            <p>
+              Suppose <m>T:M_{22}(\R)\to P_2(\R)</m> has the matrix
+              <me>
+                M_{DB}(T) = \bbm 2\amp -1\amp 0\amp 3\\0\amp 4\amp -5\amp 1\\-1\amp 0\amp 3\amp -2\ebm
+              </me>
+              with respect to the bases
+              <me>
+                B = \left\{\bbm 1\amp 0\\0\amp 0\ebm, \bbm 0\amp 1\\0\amp 1\ebm, \bbm 0\amp 1\\1\amp 0\ebm, \bbm 1\amp 0\\0\amp 1\ebm\right\}
+              </me>
+              of <m>M_{22}(\R)</m> and <m>D=\{1,x,x^2\}</m> of <m>P_2(\R)</m>.
+              Determine a formula for <m>T</m> in terms of a general input <m>X=\bbm a\amp b\\c\amp d\ebm</m>.
+            </p>
+          </statement>
+          <solution>
+            <p>
+              We must first write our general input in terms of the given basis.
+              If we write
+              <me>
+                x\bbm 1\amp 0\\0\amp 0\ebm + y\bbm 0\amp 1\\0\amp 1\ebm + z \bbm 0\amp 1\\1\amp 0 + w\bbm 1\amp 0\\0\amp 1\ebm  = \bbm a\amp b\\c\amp d\ebm
+              </me>,
+              then we must have
+              <md>
+                <mrow>x+w \amp =a</mrow>
+                <mrow>y+z \amp b</mrow>
+                <mrow> z \amp =c</mrow>
+                <mrow> y+w \amp =d</mrow>
+              </md>.
+              These equations are easily solved to give
+              <me>
+                x=a+b-c-d, y=b-c, z=c, w = -b+c+d
+              </me>.
+              We can now find
+              <me>
+                M_{DB}(T)C_B(X)=\bbm 2\amp -1\amp 0\amp 3\\0\amp 4\amp -5\amp 1\ebm\bbm a+b-c-d\\b-c\\c\\-b+c+d\ebm =
+                \bbm 2a-2b+2c+d\\3b+d\\-a+b+2c-d\ebm
+              </me>.
+              But this is equal to <m>C_D(T(X))</m>, so
+              <me>
+                T\left(bbm a\amp b\\c\amp d\ebm\right) = C_D^{-1}\bbm 2a-2b+2c+d\\3b+d\\-a+b+2c-d\ebm = (2a-2b+2c+d)+(3b+d)x+(-a+b+2c-d)x^2
+              </me>.
+
+            </p>
+          </solution>
+        </exercise>
+
+        <p>
+          In textbooks such as Sheldon Axler's <em>Linear Algebra Done Right</em> that focus primarily on linear transfomrations,
+          the above construction of the matrix of a transformation with respect to choices of bases can be used as a primary motivation for introducing matrices,
+          and determining their algebraic properties. In particular, the rule for matrix multiplication, which can seem peculiar at first,
+          can be seen as a consequence of the composition of linear maps.
+        </p>
+
+        <theorem xml:id="thm-matrix-multiplication">
+          <statement>
+            <p>
+              Let <m>U,V,W</m> be finite-dimensional vectors spaces,
+              with ordered bases <m>B_1,B_2,B_3</m>, respectively.
+              Let <m>T:U\to V</m> and <m>S:V\to W</m> be linear maps. Then
+              <me>
+                M_{B_3B_1}(ST) = M_{B_3B_2}(S)M_{B_2B_1}(T)
+              </me>.
+            </p>
+          </statement>
+          <proof>
+            <p>
+              Let <m>\xx\in U</m>. Then <m>C_{B_3}(ST(\xx)) = M_{B_3B_1}(ST)C_{B_1}(\xx)</m>.
+              On the other hand,
+              <md>
+                <mrow> M_{B_3B_2}(S)M_{B_2B_1}(T)C_{B_1}(\xx) \amp  = M_{B_3B_2}(S)(C_{B_2}(T(\xx)))</mrow>
+                <mrow> \amp = C_{B_3}(S(T(\xx))) = C_{B_3}(ST(\xx))</mrow>
+              </md>.
+              Since <m>C_{B_3}</m> is invertible, the result follows.
+            </p>
+          </proof>
+
+        </theorem>
+
+        <p>
+          Being able to express a general linear transformation in terms of a matrix is useful,
+          since questions about linear transformations can be converted into questions about matrices that we already know how to solve.
+          In particular,
+          <ul>
+            <li>
+              <p>
+                <m>T:V\to W</m> is an isomorphism if and only if <m>M_{DB}(T)</m> is invertible for some
+                (and hence, all) choice of bases <m>B</m> of <m>V</m> and <m>D</m> of <m>W</m>.
+              </p>
+            </li>
+
+            <li>
+              <p>
+                The rank of <m>T</m>  is equal to the rank of <m>M_{DB}(T)</m> (and this does not depend on the choice of basis).
+              </p>
+            </li>
+
+            <li>
+              <p>
+                The kernel of <m>T</m> is isomorphic to the nullspace of <m>M_{DB}(T)</m>.
+              </p>
+            </li>
+          </ul>
+        </p>
+
+        <p>
+          Next, we will want to look at two topics in particular.
+          First, if <m>T:V\to V</m> is a linear operator, then it makes sense to consider the matrix <m>M_B(T)=M_{BB}(T)</m>
+          obtained by using the same basis for both domain and codomain.
+          Second, we will want to know how this matrix changes if we change the choice of basis.
+        </p>
     </section>
     </chapter>
   </book>
