@@ -201,19 +201,22 @@
             <mrow> T((1-x)^2) = T(1-2+x^2) \amp = (2, -4) = -2(1,0)+4(1,-1)</mrow>
           </md>.
           Thus,
-          <me>
-            M_{DB}(T) = \bbm C_D(T(1))\amp C_D(T(1-x)) \amp C_D(T((1-x)^2))\ebm = \bbm 1\amp -1\amp -2\\0\amp 2\amp 4\ebm
-          </me>.
+          <md>
+            <mrow>M_{DB}(T) \amp = \bbm C_D(T(1))\amp C_D(T(1-x)) \amp C_D(T((1-x)^2))\ebm</mrow>
+            <mrow>\amp = \bbm 1\amp -1\amp -2\\0\amp 2\amp 4\ebm</mrow>
+          </md>.
           To confirm, note that
           <md>
-            <mrow>M_{DB}(T)C_B(a+bx+cx^2)\amp = M_{DB}(T)C_B((a+b+c)-(b+2c)(1-x)+c(1-x)^2)</mrow>
+            <mrow>M_{DB}(T)C_B\amp (a+bx+cx^2)</mrow>
+            <mrow> \amp = M_{DB}(T)C_B((a+b+c)-(b+2c)(1-x)+c(1-x)^2)</mrow>
             <mrow> \amp = \bbm 1\amp -1\amp -2\\0\amp 2\amp 4\ebm\bbm a+b+c\\ -b-2c\\c\ebm</mrow>
             <mrow> \amp \bbm (a+b+c)+(b+2c)-2c\\0-2(b+2c)+4c\ebm = \bbm a+2b+c\\-2b\ebm</mrow>
           </md>,
           while on the other hand,
           <md>
             <mrow>C_D(T(a+bx+cx^2)) \amp= C_D(a+c,2b)</mrow>
-            <mrow>\amp = C_D((a+2b+c)(1,0)-2b(1,-1)) = \bbm a+2b+c\\-2b\ebm</mrow>
+            <mrow>\amp = C_D((a+2b+c)(1,0)-2b(1,-1))</mrow>
+            <mrow>\amp = \bbm a+2b+c\\-2b\ebm</mrow>
           </md>.
 
         </p>
@@ -271,12 +274,12 @@
         <p>
           We get the matrix
           <me>
-            \left[\left. \begin{matrix}1\amp 2\amp 0\\1\amp -1\amp 2\\0\amp 0\amp 1\end{matrix}
-            \right\vert\left.\begin{matrix}1\amp 0\amp 0\\0\amp 1\amp 0\\0\amp 0\amp 1\end{matrix}\right]
+            \left[\begin{matrix}1\amp 2\amp 0\\1\amp -1\amp 2\\0\amp 0\amp 1\end{matrix}
+            \right\rvert\left.\begin{matrix}1\amp 0\amp 0\\0\amp 1\amp 0\\0\amp 0\amp 1\end{matrix}\right]
           </me>.
           But this is exactly the augmented matrix we'd right down if we were trying to find the inverse of the matrix
           <me>
-            P=\bbm\amp 2\amp 0\\1\amp -1\amp 2\\0\amp 0\amp 1\ebm
+            P=\bbm 1\amp 2\amp 0\\1\amp -1\amp 2\\0\amp 0\amp 1\ebm
           </me>
           whose columns are the coefficient representations of our given basis vectors in terms of the standard basis.
         </p>
@@ -314,12 +317,12 @@
           with respect to the standard basis.
           The effect of multiplying by <m>Q</m> is to convert from coefficients with respect to <m>D</m>
           into a coefficient vector with respect to the standard basis.
-          We can then write a new matrix <m>\tilde{M}(T) = QM(T)P^{-1}</m>;
+          We can then write a new matrix <m>\widetilde{M}(T) = QM(T)P^{-1}</m>;
           this new matrix is now the matrix representation of <m>T</m> with respect to the
           <em>standard</em> bases of <m>P_2(\R)</m> and <m>\R^2</m>.
           We check that
           <me>
-            \tilde{M}(T)\bbm 2\\3\\-4\ebm = \bbm 10\\2\ebm
+            \widetilde{M}(T)\bbm 2\\3\\-4\ebm = \bbm 10\\2\ebm
           </me>,
           as before.
         </p>
@@ -328,7 +331,7 @@
           We find that <m>\tilde{M}(T) = \bbm 1\amp 0\amp -2\\0\amp 2\amp 1\ebm</m>.
           This lets us determine that for a general polynomial <m>p(x) = a+bx+cx^2</m>,
           <me>
-            \tilde{M}(T)\bbm a\\b\\c\ebm = \bbm a-2c\\2b+c\ebm
+            \widetilde{M}(T)\bbm a\\b\\c\ebm = \bbm a-2c\\2b+c\ebm
           </me>,
           and therefore, our original transformation must have been
           <me>
@@ -363,6 +366,38 @@
       </input>
     </sage>
 
+    <p>
+      The previous example illustrated some important observations that are true in general.
+      We won't give the general proof, but we sum up the results in a theorem.
+    </p>
+
+    <theorem xml:id="thm-change-basis-transformation">
+      <statement>
+        <p>
+          Suppose <m>T:V\to W</m> is a linear transformation,
+          and suppose <m>M_0 = M_{D_0B_0}(T)</m> is the matrix of <m>T</m> with resepct to bases <m>B_0</m> of <m>V</m> and <m>D_0</m> of <m>W</m>.
+          Let <m>B_1=\basis{v}{n}</m> and <m>D_1\basis{w}{m}</m> be any other choice of basis for <m>V</m> and <m>W</m>, respectively.
+          Let
+          <md>
+            <mrow>P \amp =\bbm C_{B_0}(\vv_1) \amp C_{B_0}(\vv_2) \amp \cdots \amp C_{B_0}(\vv_n)\ebm</mrow>
+            <mrow>Q \amp =\bbm C_{B_0}(\ww_1) \amp C_{B_0}(\ww_2) \amp \cdots \amp C_{B_0}(\ww_n)\ebm</mrow>
+          </md>
+          be matrices whose columns are the coefficient vectors of the vectors in <m>B_1,D_1</m> with respect to <m>B_0,D_0</m>.
+          Then the matrix of <m>T</m> with respect to the bases <m>B_1</m> and <m>D_1</m> is
+          <me>
+            M_{D_1B_1}(T) = QM_{D_0B_0}(T)P^{-1}
+          </me>.
+        </p>
+      </statement>
+    </theorem>
+
+    <p>
+      We generally apply <xref ref="thm-change-basis-transformation"/> in the case that <m>B_0,D_0</m>
+      are the <em>standard</em> bases for <m>V,W</m>, since in this case,
+      the matrices <m>M_0, P, Q</m> are easy to determine,
+      and we can use a computer to calculate <m>P^{-1}</m> and the product <m>QM_0P^{-1}</m>.
+    </p>
+
     <exercise>
       <statement>
         <p>
@@ -385,7 +420,7 @@
           <me>
             B_0 = \left\{\bbm 1\amp 0\\0\amp 0\ebm, \bbm 0\amp 1\\0\amp 0\ebm, \bbm 0\amp 0\\1\amp 0\ebm, \bbm 0\amp 0\\0\amp 1\ebm\right\}
           </me>,
-          we have the matrix <m>P = bbm 1\amp 0\amp 0\amp 1\\0\amp 1\amp 1\amp 0\\0\amp 0\amp 1\amp 0\\0\amp 1\amp 0\amp 1\ebm</m>,
+          we have the matrix <m>P = \bbm 1\amp 0\amp 0\amp 1\\0\amp 1\amp 1\amp 0\\0\amp 0\amp 1\amp 0\\0\amp 1\amp 0\amp 1\ebm</m>,
           representing the change from the basis <m>B</m> the basis <m>B_0</m>.
           The basis <m>D</m> of <m>P_2(\R)</m> is already the standard basis.
           For a matrix <m>X = \bbm a\amp b\\c\amp d\ebm</m> we find
@@ -394,9 +429,10 @@
             \bbm 2a-2b+2c+d\\3b-8c+d\\-a+b+2c-d\ebm
           </me>.
           But this is equal to <m>C_D(T(X))</m>, so
-          <me>
-            T\left(\bbm a\amp b\\c\amp d\ebm\right) = C_D^{-1}\bbm 2a-2b+2c+d\\3b-8c+d\\-a+b+2c-d\ebm = (2a-2b+2c+d)+(3b-8c+d)x+(-a+b+2c-d)x^2
-          </me>.
+          <md>
+            <mrow>T\left(\bbm a\amp b\\c\amp d\ebm\right) \amp = C_D^{-1}\bbm 2a-2b+2c+d\\3b-8c+d\\-a+b+2c-d\ebm</mrow>
+            <mrow>\amp = (2a-2b+2c+d)+(3b-8c+d)x+(-a+b+2c-d)x^2</mrow>
+          </md>.
 
         </p>
       </solution>
@@ -474,5 +510,19 @@
       obtained by using the same basis for both domain and codomain.
       Second, we will want to know how this matrix changes if we change the choice of basis.
     </p>
-</section>
+  </section>
+
+  <section xml:id="sec-matrix-operator">
+    <title>The matrix of a linear operator</title>
+    <p>
+      Recall that a linear transformation <m>T:V\to V</m> is referred to as a <term>linear operator</term>.
+      Recall also that two matrices <m>A</m> and <m>B</m> are <term>similar</term>
+      if there exists an invertible matrix <m>P</m> such that <m>B = PAP^{1-}</m>,
+      and that similar matrices have a lot of properties in common.
+      In particular, if <m>A</m> is similar to <m>B</m>, then <m>A</m> and <m>B</m>
+      have the same trace, determinant, and eigenvalues.
+      One way to understand this is the realization that two matrices are similar if they are representations of the
+      <em>same</em> operator, with respect to <em>different</em> bases.
+    </p>
+  </section>
 </chapter>
