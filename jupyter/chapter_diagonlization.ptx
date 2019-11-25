@@ -1,0 +1,1553 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<chapter xml:id="ch-diagonalization">
+  <title>Diagonalization</title>
+  <introduction>
+    <p>
+      In this chapter we look at the diagonalization problem for real symmetric matrices.
+      You probably saw how to compute eigenvalues and eigenvectors in your elementary linear algebra course.
+      You may have also seen that in some cases, the number of independent eigenvectors associated to an
+      <m>n\times n</m> matrix <m>A</m> is <m>n</m>, in which case it is possible to <q>diagonalize</q> <m>A</m>.
+      In other cases, we don't get <q>enough</q> eigenvectors for diagonalization.
+    </p>
+
+    <p>
+      In the first part of this section, we review some basic facts about eigenvalues and eigenvectors.
+      We will then move on to look at the special case of symmetric matrices,
+      where we will see that it is always possible to diagonalize,
+      and moreover, that it is possible to do so using an orthonormal basis of eigenvectors.
+    </p>
+  </introduction>
+
+  <section xml:id="subsec-eigen-basics">
+    <title>Eigenvalues and Eigenvectors</title>
+    <definition xml:id="def-eigenvalue">
+      <statement>
+        <p>
+          Let <m>A</m> be an <m>n\times n</m> matrix.
+          A number <m>\lambda</m> is called an <term>eigenvalue</term> of <m>A</m>
+          if there exists a nonzero vector <m>\vec{x}</m> such that
+          <me>
+            A\vec{x} = \lambda\vec{x}
+          </me>.
+          Any such vector <m>\vec{x}</m> is called an <term>eigenvector</term>
+          associated to the eigenvalue <m>\lambda</m>.
+        </p>
+      </statement>
+    </definition>
+
+    <p>
+      Note that eigenvalues and eigenvectors can just as easily be defined for a general linear operator <m>T:V\to V</m>.
+      In this context, and eigenvector <m>\vec{x}</m> is sometimes referred to as a <em>characteristic vector</em> (or characteristic direction)
+      for <m>T</m>, since the property <m>T(\vec{x})=\lambda \vec{x}</m>
+      simply states that the transformed vector <m>T(\vec{x})</m> is parallel to the original vector <m>\vec{x}</m>.
+      Some linear algebra textbooks that focus more on general linear transformations frame this topic in the context of
+      <em>invariant subspaces</em> for a linear operator.
+    </p>
+
+    <p>
+      A subspace <m>U\subseteq V</m> is <em>invariant</em> with respect to <m>T</m> if <m>T(\vec{u})\in U</m> for all <m>\vec{u}\in U</m>.
+      Note that if <m>\vec{x}</m> is an eigenvector of <m>T</m>, then <m>\spn\{\vec{x}\}</m> is an invariant subspace.
+      To see this, note that if <m>T(\vec{x})=\lambda \vec{x}</m> and <m>\vec{y}=k\vec{x}</m>, then
+      <me>
+        T(\vec{y})=T(k\vec{x})=kT(\vec{x})=k(\lambda \vec{x})=\lambda(k\vec{x})=\lambda\vec{y})
+      </me>.
+    </p>
+
+    <p>
+      Note that if <m>\vec{x}</m> is an eigenvector of the matrix <m>A</m>, then we have
+      <men xml:id="eq-eigen-null">
+        (A-\lambda I_n)\vec{x}=\vec{0}
+      </men>,
+      where <m>I_n</m> denotes the <m>n\times n</m> identity matrix.
+      Thus, if <m>\lambda</m> is an eigenvalue of <m>A</m>,
+      any corresponding eigenvector is an element of <m>\nll(A-\lambda I_n)</m>.
+    </p>
+
+    <definition xml:id="def-eigenspace">
+      <statement>
+        <p>
+          For any real number <m>\lambda</m> and matrix <m>A</m>,
+          we define the <term>eigenspace</term> <m>E_\lambda(A)</m> by
+          <me>
+            E_\lambda(A) = \nll (A-\lambda I_n)
+          </me>.
+        </p>
+      </statement>
+    </definition>
+
+    <p>
+      Note that <m>E_\lambda(A)</m> can be defined for any real number <m>\lambda</m>,
+      whether or not <m>\lambda</m> is an eigenvalue.
+      However, the eigenvalues of <m>A</m> are distinguished by the property that there is a
+      <em>nonzero</em> solution to <xref ref="eq-eigen-null"/>.
+      Furthermore, we know that <xref ref="eq-eigen-null"/> can only have nontrivial solutions if the matrix <m>A-\lambda I_n</m>
+      is not invertible. We also know that <m>A-\lambda I_n</m> is non-invertible if and only if <m>\det (A-\lambda I_n) = 0</m>.
+      This gives us the following theorem.
+    </p>
+
+    <theorem xml:id="thm-eigenspace-nonzero">
+      <statement>
+        <p>
+          The following are equivalent for any <m>n\times n</m> matrix <m>A</m> and real number <m>\lambda</m>:
+          <ol>
+            <li>
+              <p>
+                <m>\lambda</m> is an eigenvalue of <m>A</m>.
+              </p>
+            </li>
+            <li>
+              <m>E_\lambda(A)\neq \{\vec{0}\}</m>
+            </li>
+
+            <li>
+              <m>\det(A-\lambda I_n) = 0</m>
+            </li>
+          </ol>
+        </p>
+      </statement>
+    </theorem>
+
+    <p>
+      The polynomial <m>p_A(x)=\det(xI_n -A)</m> is called the <term>characteristic polynomial</term> of <m>A</m>.
+      (Note that <m>\det(x I_n-A) = (-1)^n\det(A-x I_n)</m>. We choose this order so that the coefficient of <m>x^n</m> is always 1.)
+      The equation
+      <men xml:id="eq-characteristic">
+        \det(xI_n - A) = 0
+      </men>
+      is called the <term>characteristic equation</term> of <m>A</m>.
+      The solutions to this equation are precisely the eigenvalues of <m>A</m>.
+    </p>
+
+    <p>
+      Recall that a matrix <m>B</m> is said to be <term>similar</term> to a matrix <m>A</m>
+      if there exists an invertible matrix <m>P</m> such that <m>B = P^{-1}AP</m>.
+      Much of what follows concerns the question of whether or not a given <m>n\times n</m>
+      matrix <m>A</m> is <term>diagonalizable</term>.
+    </p>
+
+    <definition xml:id="def-diagonalizable">
+      <statement>
+        <p>
+          An <m>n\times n</m> matrix <m>A</m> is said to be <term>diagonalizable</term>
+          if <m>A</m> is similar to a diagonal matrix.
+        </p>
+      </statement>
+    </definition>
+
+    <p>
+      The following results will frequently be useful.
+    </p>
+
+    <theorem xml:id="thm-similar-properties">
+      <statement>
+        <p>
+          The relation <m>A\sim B</m> if and only if <m>A</m> is simlar to <m>B</m> is an equivalence relation.
+          Moreover, if <m>A\sim B</m>, then:
+          <ul>
+            <li>
+              <m>\det A = \det B</m>
+            </li>
+            <li>
+              <m>\tr A = \tr B</m>
+            </li>
+
+            <li>
+              <m>c_A(x) = c_B(x)</m>
+            </li>
+          </ul>
+          In other words, <m>A</m> and <m>B</m> have the same determinant, trace, and characteristic polynomial
+          (and thus, the same eigenvalues).
+        </p>
+      </statement>
+      <proof>
+        <p>
+          The first two follow directly from properties of the determinant and trace.
+          For the last, note that if <m>B = P^{-1}AP</m>, then
+          <me>
+            P^{-1}(xI_n-A)P = P^{-1}(xI_n)P-P^{-1}AP = xI_n B
+          </me>,
+          so <m>xI_n-B\sim xI_n-A</m>, and therefore <m>\det(xI_n-B)=\det(xI_n-A)</m>.
+        </p>
+      </proof>
+
+    </theorem>
+
+
+    <example>
+      <statement>
+        <p>
+          Determine the eigenvalues and eigenvectors of <m>A = \bbm 0\amp 1\amp 1\\1\amp 0\amp 1\\1\amp 1\amp 0\ebm</m>.
+        </p>
+      </statement>
+      <solution>
+        <p>
+          We begin with the characteristic polynomial. We have
+          <md>
+            <mrow>\det(xI_n - A) \amp =\det\bbm x \amp -1\amp -1\\-1\amp x \amp -1\\-1\amp -1\amp x\ebm</mrow>
+            <mrow> \amp = x \begin{vmatrix}x \amp -1\\-1\amp x\end{vmatrix}
+               +1\begin{vmatrix}-1\amp -1\\-1\amp x\end{vmatrix}
+               -1\begin{vmatrix}-1\amp x\\-1\amp -1\end{vmatrix}</mrow>
+            <mrow> \amp = x(x^2-1)+(-x-1)-(1+x)</mrow>
+            <mrow> \amp x(x-1)(x+1)-2(x+1)</mrow>
+            <mrow> \amp (x+1)[x^2-x-2]</mrow>
+            <mrow> \amp (x+1)^2(x-2)</mrow>
+          </md>.
+        </p>
+
+        <p>
+          The roots of the characteristic polynomial are our eigenvalues,
+          so we have <m>\lambda_1=-1</m> and <m>\lambda_2=2</m>.
+          Note that the first eigenvalue comes from a repeated root.
+          This is typicaly where things get interesting.
+          If an eigenvalue does not come from a repeated root,
+          then there will only be one (independent) eigenvector that corresponds to it.
+          (That is, <m>\dim E_\lambda(A)=1</m>.)
+          If an eigenvalue is repeated, it could have more than one eigenvector,
+          but this is not guaranteed.
+        </p>
+
+        <p>
+          We find that <m>A-(-1)I_n = \bbm 1\amp 1\amp 1\\1\amp 1\amp 1\\1\amp 1\amp 1\ebm</m>,
+          which has reduced row-echelon form <m>\bbm 1\amp 1\amp 1\\0\amp 0\amp 0\\0\amp 0\amp 0\ebm</m>.
+          Solving for the nullspace, we find that there are two independent eigenvectors:
+          <me>
+            \vec{x}_{1,1}=\bbm 1\\-1\\0\ebm, \quad \text{ and } \quad \vec{x}_{1,2}=\bbm 1\\0\\-1\ebm
+          </me>,
+          so
+          <me>
+            E_{-1}(A) = \spn\left\{\bbm 1\\-1\\0\ebm, \bbm 1\\0\\-1\ebm\right\}
+          </me>.
+        </p>
+
+        <p>
+          For the second eigenvector, we have <m>A-2I = \bbm -2\amp 1\amp 1\\1\amp -2\amp 1\\1\amp 1\amp -2\ebm</m>,
+          which has reduced row-echelon form <m>\bbm 1\amp 0\amp -1\\0\amp 1\amp -1\\0\amp 0\amp 0\ebm</m>.
+          An eigenvector in this case is given by
+          <me>
+            \vec{x}_2 = \bbm 1\\1\\1\ebm
+          </me>.
+        </p>
+      </solution>
+    </example>
+
+    <p>
+      In general, if the characteristic polynomial can be factored as <m>p_A(x)=(x-\lambda)^mq(x)</m>,
+      where <m>q(x)</m> is not divisible by <m>x-\lambda</m>, then we say that <m>\lambda</m>
+      is an eigenvalue of <term>multiplicity</term> <m>m</m>. A main result is the following.
+    </p>
+
+    <theorem xml:id="thm-multiplicity">
+      <statement>
+        <p>
+          Let <m>\lambda</m> be an eigenvalue of <m>A</m> of multiplicity <m>m</m>.
+          Then <m>\dim E_\lambda(A)\leq m</m>.
+        </p>
+      </statement>
+    </theorem>
+
+    <p>
+      Some textbooks refer to the multiplicity <m>m</m> of an eigenvalue as the
+      <em>algebraic multiplicity</em> of <m>\lambda</m>, and the number <m>\dim E_\lambda(A)</m>
+      as the <em>geometric multiplicity</em> of <m>\lambda</m>.
+    </p>
+
+    <p>
+      To prove <xref ref="thm-multiplicity"/> we need the following lemma,
+      from Section 5.5 of Nicholson's textbook.
+    </p>
+
+    <lemma xml:id="lem-block-eigen">
+      <statement>
+        <p>
+          Let <m>\{\vec{x}_1,\ldots, \vec{x}_k\}</m> be a set of linearly independent eigenvectors of a matrix <m>A</m>,
+          with corresponding eigenvalues <m>\lambda_1,\ldots, \lambda_k</m> (not necessarily distinct).
+          Extend this set to a basis <m>\{\vec{x}_1,\ldots, \vec{x}_k,\vec{x}_{k+1},\ldots, \vec{x}_n\}</m>,
+          and let <m>P=\bbm \vec{x}_1\amp \cdots \amp \vec{x}_n\ebm</m>
+          be the matrix whose columns are the basis vectors. (Note that <m>P</m> is necessarily invertible.)
+          Then
+          <me>
+            P^{-1}AP = \bbm \diag(\lambda_1,\ldots, \lambda_k) \amp B\\0\amp A_1\ebm
+          </me>,
+          where <m>B</m> has size <m>k\times (n-k)</m>, and <m>A_1</m> has size <m>(n-k)\times (n-k)</m>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          We have
+          <md>
+            <mrow>P^{-1}AP \amp = P^{-1}A\bbm \vec{x}_1\amp \cdots \amp \vec{x}_n\ebm</mrow>
+            <mrow> \amp =\bbm (P^{-1}A)\vec{x}_1\amp \cdots \amp (P^{-1}A)\vec{x}_n\ebm</mrow>
+          </md>.
+          For <m>1\leq i\leq k</m>, we have
+          <me>
+            (P^{-1}A)(\vec{x}_i) = P^{-1}(A\vec{x}_i) = P^{-1}(\lambda_i\vec{x}_i)=\lambda_i(P^{-1}\vec{x}_i)
+          </me>.
+          But <m>P^{-1}\vec{x}_i</m> is the <m>i</m>th column of <m>P^{-1}P = I_n</m>,
+          which proves the result.
+        </p>
+      </proof>
+    </lemma>
+
+    <p>
+      We can use <xref ref="lem-block-eigen"/> to prove that <m>\dim E_\lambda(A)\leq m</m> as follows.
+      Suppose <m>\{\vec{x}_1,\ldots, \vec{x}_k\}</m> is a basis for <m>E_\lambda(A)</m>.
+      Then this is a linearly independent set of eigenvectors, so our lemma guarantees the existence of a matrix <m>P</m>
+       such that
+       <me>
+         P^{-1}AP = \bbm \lambda I_k \amp B\\0\amp A_1\ebm
+       </me>.
+       Let <m>\tilde{A}=P^{-1}AP</m>. On the one hand, since <m>\tilde{A}\sim A</m>,
+       we have <m>c_A(x)=c_{\tilde{A}}(x)</m>.
+       On the other hand,
+       <me>
+         \det(xI_n-\tilde{A}) = \det\bbm (x-\lambda)I_k \amp -B\\0 \amp xI_{n-k}-A_1\ebm = (x-\lambda)^k\det(xI_{n-k}A_1)
+       </me>.
+       This shows that <m>c_A(x)</m> is divisible by <m>(x-\lambda)^k</m>.
+       Since <m>m</m> is the largest integer such that <m>c_A(x)</m> is divisible by <m>(x-\lambda)^m</m>,
+       we must have <m>\dim E_\lambda(A)=k\leq m</m>.
+    </p>
+
+    <p>
+      <xref ref="thm-multiplicity"/> provides an initial criterion for diagonalization:
+      if the dimension of each eigenspace <m>E_\lambda(A)</m> is equal to the multiplicity of <m>\lambda</m>,
+      then <m>A</m> is diagonalizable.
+      The truth of this statement relies on one additional fact:
+      any set of eigenvectors corresponding to <em>distinct</em> eigenvalues is linearly independent.
+      The proof of this fact is a relatively straightforward proof by induction.
+      It can be found in Section 5.5 of Nicholson for those who are interested.
+      However, our focus for the remainder of the section will be on diagonalization of <em>symmetric</em>
+      matrices, and soon we will see that for such matrices, eigenvectors corresponding to different eigenvalues are,
+      in fact, <em>orthogonal</em>.
+    </p>
+  </section>
+
+  <section xml:id="subsec-ortho-diag">
+    <title>Diagonalization of symmetric matrices</title>
+    <p>
+      Recall that an <m>n\times n</m> matrix <m>A</m> is <em>symmertric</em> if <m>A^T=A</m>.
+      Symmetry of <m>A</m> is equivalent to the following:
+      for any vectors <m>\vec{x},\vec{y}\in\R^n</m>,
+      <me>
+        \vec{x}\dotp (A\vec{y}) = (A\vec{x})\dotp \vec{y}
+      </me>.
+      To see that this is implied by the symmetry of <m>A</m>, note that
+      <me>
+        \vec{x}\dotp (A\vec{y}) = \vec{x}^T(A\vec{y})=(\vec{x}^TA^T)\vec{y} = (A\vec{x})^T\vec{y}=(A\vec{x})\dotp\vec{y}
+      </me>.
+      For inner product spaces, the above is taken as the <em>definition</em> of what it means for an operator to be symmetric.
+    </p>
+
+    <exercise>
+      <statement>
+        <p>
+          Prove that if <m>\vec{x}\dotp(A\vec{y})=(A\vec{x})\dotp \vec{y}</m> for any <m>\vec{x},\vec{y}\in\R^n</m>,
+          then <m>A</m> is symmetric.
+        </p>
+      </statement>
+      <solution>
+        <p>
+          Take <m>\vec{x}=\vec{e}_i</m> and <m>\vec{y}=\vec{e}_j</m>,
+          where <m>\{\vec{e}_1,\ldots, \vec{e}_n\}</m> is the standard basis for <m>\R^n</m>.
+          Then with <m>A = [a_{ij}]</m> we have
+          <me>
+            a_{ij} =\vec{e}_i\dotp(A\vec{e_j}) = (A\vec{e_i})\dotp \vec{e_j} = a_{ji}
+          </me>,
+          which shows that <m>A^T=A</m>.
+        </p>
+      </solution>
+    </exercise>
+
+    <p>
+      A useful property of symmetric matrices, mentioned earlier,
+      is that eigenvectors corresponding to distinct eigenvalues are orthogonal.
+    </p>
+
+    <theorem xml:id="thm-ortho-eigen-symm">
+      <statement>
+        <p>
+          If <m>A</m> is a symmetric matrix, then eigenvectors corresponding to <em>distinct</em> eigenvalues are orthogonal.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          To see this, suppose <m>A</m> is symmetric, and that we have
+          <me>
+            A\vec{x}_1=\lambda_1\vec{x}_1\quad \text{ and } A\vec{x}_2=\lambda_2\vec{x}_2
+          </me>,
+          with <m>\vec{x}_1\neq\vec{0},\vec{x}_2\neq \vec{0}</m>, and <m>\lambda_1\neq \lambda_2</m>.
+          We then have, since <m>A</m> is symmetric, and using the result above,
+          <me>
+            \lambda_1(\vec{x}_1\dotp \vec{x}_2) = (\lambda_1\vec{x}_1)\dotp \vec{x}_2 = (A\vec{x}_1)\dotp \vec{x}_2 = \vec{x}_1\dotp(A\vec{x}_2) = \vec{x}_1(\lambda_2\vec{x}_2) = \lambda_2(\vec{x}_1\dotp\vec{x}_2)
+          </me>.
+          It follows that <m>(\lambda_1-\lambda_2)(\vec{x}_1\dotp \vec{x}_2)=0</m>,
+          and since <m>\lambda_1\neq \lambda_2</m>,
+          we must have <m>\vec{x}_1\dotp \vec{x}_2=0</m>.
+        </p>
+      </proof>
+
+    </theorem>
+
+    <p>
+      The procedure for diagonalizing a matrix is as follows:
+      assuming that <m>\dim E_\lambda(A)</m> is equal to the multiplicity of <m>\lambda</m>
+      for each distinct eigenvalue <m>\lambda</m>, we find a basis for <m>E_\lambda(A)</m>.
+      The union of the bases for each eigenspace is then a basis of eigenvectors for <m>\R^n</m>,
+      and the matrix <m>P</m> whose columns are those eigenvectors will satisfy <m>P^{-1}AP = D</m>,
+      where <m>D</m> is a diagonal matrix whose diagonal entires are the eigenvalues of <m>A</m>.
+    </p>
+
+    <p>
+      If <m>A</m> is symmetric, we know that eigenvectors from <em>different</em> eigenspaces will be orthogonal to each other.
+      If we futher choose an orthogonal basis of eigenvectors for each eigenspace (which is possible via the Gram-Schmidt procedure),
+      then we can construct an orthogonal basis of eigenvectors for <m>\R^n</m>.
+      Furthermore, if we normalize each vector, then we'll have an orthonormal basis.
+      The matrix <m>P</m> whose columns consist of these orthonormal basis vectors has a name.
+    </p>
+
+    <definition xml:id="def-orthogonal-matrix">
+      <statement>
+        <p>
+          A matrix <m>P</m> is called <term>orthogonal</term> if <m>P^T = P^{-1}</m>.
+        </p>
+      </statement>
+    </definition>
+
+    <theorem xml:id="thm-ortho-matrix">
+      <statement>
+        <p>
+          A matrix <m>P</m> is orthogonal if and only if the columns of <m>P</m> form an orthonormal basis for <m>\R^n</m>.
+        </p>
+      </statement>
+    </theorem>
+
+    <p>
+      A fun fact is that if the columns of <m>P</m> are orthonormal, then so are the rows.
+      But this is not true if we ask for the columns to be merely orthogonal.
+      For example, the columns of <m>A = \bbm 1\amp 0\amp 5\\-2\amp 1\amp 2\\1\amp 2\amp -1\ebm </m> are orthogonal,
+      but the rows certainly are not. But if we normalize the columns, we get
+      <me>
+        P = \bbm 1/\sqrt{6}\amp 0 \amp 1/\sqrt{30}\\-2/\sqrt{6}\amp 1/\sqrt{5}\amp 2/\sqrt{30}\\1/\sqrt{6}\amp 2/\sqrt{5}\amp -1/\sqrt{30}\ebm
+      </me>,
+      which, as you can confirm, is an orthogonal matrix.
+    </p>
+
+    <definition xml:id="def-ortho-diag">
+      <statement>
+        <p>
+          An <m>n\times n</m> matrix <m>A</m> is said to be <em>orthogonally diagonalizable</em>
+          if there exists an orthogonal matrix <m>P</m> such that <m>P^TAP</m> is diagonal.
+        </p>
+      </statement>
+    </definition>
+
+    <p>
+      The above definition leads to the following result, also known as the Principal Axes Theorem.
+    </p>
+    <theorem xml:id="thm-real-spectral">
+      <title>Real Spectral Theorem</title>
+
+      <statement>
+        <p>
+          The following are equivalent for a real <m>n\times n</m> matrix <m>A</m>:
+          <ol>
+            <li>
+              <p>
+                <m>A</m> is symmetric.
+              </p>
+            </li>
+            <li>
+              <p>
+                There is an orthonormal basis for <m>\R^n</m> consisting of eigenvectors of <m>A</m>.
+              </p>
+            </li>
+            <li>
+              <p>
+                <m>A</m> is orthogonally diagonalizable.
+              </p>
+            </li>
+          </ol>
+        </p>
+      </statement>
+    </theorem>
+
+    <exercise>
+      <statement>
+        <p>
+          Determine the eigenvalues of <m>A=\bbm 5\amp -2\amp -4\\-2\amp 8\amp -2\\-4\amp -2\amp 5\ebm</m>,
+          and find an orthogonal matrix <m>P</m> such that <m>P^TAP</m> is diagonal.
+        </p>
+      </statement>
+    </exercise>
+
+    <p>
+      We'll solve this problem with the help of the computer.
+    </p>
+
+    <sage>
+      <input>
+        from sympy import *
+        init_printing()
+        A = Matrix(3,3,[5,-2,-4,-2,8,-2,-4,-2,5])
+        p=A.charpoly().as_expr()
+        factor(p)
+      </input>
+    </sage>
+
+    <p>
+      We get <m>c_A(x)=x(x-9)^2</m>, so our eigenvalues are <m>0</m> and <m>9</m>.
+      For <m>0</m> we have <m>E_0(A) = \nll(A)</m>:
+    </p>
+
+    <sage>
+      <input>
+        A.nullspace()
+      </input>
+    </sage>
+
+    <p>
+      For <m>9</m> we have <m>E_9(A) = \nll(A-9I)</m>.
+    </p>
+
+    <sage>
+      <input>
+        B=A-9*eye(3)
+        B.nullspace()
+      </input>
+    </sage>
+
+    <p>
+      The approach above is useful as we're trying to remind ourselves how eigenvalues and eigenvectors are defined and computed.
+      Eventually we might want to be more efficient. Fortunately, there's a command for that.
+    </p>
+
+    <sage>
+      <input>
+        A.eigenvects()
+      </input>
+    </sage>
+
+    <p>
+      This gives us a basis for <m>\R^3</m> consisting of eigenvalues of <m>A</m>, but we want an orthogonal basis.
+      Note that the eigenvector corresponding to <m>\lambda = 0</m> is orthogonal to both of the eigenvectors corresponding to <m>\lambda =9</m>.
+      But these eigenvectors are not orthogonal to each other.
+      To get an orthogonal basis for <m>E_9(A)</m>, we apply the Gram-Schmidt algorithm.
+    </p>
+
+    <sage>
+      <input>
+        L=B.nullspace()
+        GramSchmidt(L)
+      </input>
+    </sage>
+
+    <p>
+      This gives us an orthogonal basis of eigenvectors. Scaling to clear fractions, we have
+      <me>
+        \left\{\bbm 2\\1\\2\ebm, \bbm -1\\2\\0\ebm, \bbm -4\\-2\\5\ebm\right\}
+      </me>
+      From here, we need to normalize each vector to get the matrix <m>P</m>.
+      But we might not like that the last vector has norm <m>\sqrt{45}</m>.
+      One option to consider is to apply Gram-Schmidt with the vectors in the other order.
+    </p>
+
+    <sage>
+      <input>
+        L=[Matrix([-1,0,1]),Matrix([-1,2,0])]
+        GramSchmidt(L)
+      </input>
+    </sage>
+
+    <p>
+      That gives us the (slightly nicer) basis
+      <me>
+        \left\{\bbm 2\\1\\2\ebm, \bbm -1\\0\\1\ebm, \bbm 1\\-4\\1\ebm\right\}
+      </me>.
+      The corresponding orthonormal basis is
+      <me>
+        B = \left\{\frac{1}{3}\bbm 2\\1\\2\ebm, \frac{1}{\sqrt{2}}\bbm -1\\0\\1\ebm, \frac{1}{\sqrt{18}}\bbm 1\\-4\\1\ebm\right\}
+      </me>.
+      This gives us the matrix <m>P=\bbm 2/3\amp -1/\sqrt{2}\amp 1/\sqrt{18}\\1/3\amp 0 \amp -4/\sqrt{18}\\2/3\amp 1/\sqrt{2}\amp 1/\sqrt{18}\ebm</m>.
+      Let's confirm that <m>P</m> is orthogonal.
+    </p>
+
+    <sage>
+      <input>
+        P=Matrix(3,3,[2/3, -1/sqrt(2),1/sqrt(18), 1/3,0,-4/sqrt(18),2/3,1/sqrt(2),1/sqrt(18)])
+        P,P*P.transpose()
+      </input>
+    </sage>
+
+    <p>
+      Since <m>PP^T=I_3</m>, we can conclude that <m>P^T=P^{-1}</m>, so <m>P</m> is ortohonal, as required.
+      Finally, we diagaonlize <m>A</m>.
+    </p>
+
+    <sage>
+      <input>
+        Q=P.transpose
+        Q*A*P
+      </input>
+    </sage>
+
+    <p>
+      Incidentally, the SymPy library for Python does have a diagaonalization routine;
+      however, it does not do orthogonal diagonalization by default.
+      Here is what it provides for our matrix <m>A</m>.
+    </p>
+
+    <sage>
+      <input>
+        A.diagonalize()
+      </input>
+    </sage>
+  </section>
+
+  <section xml:id="sec-quadratic">
+    <title>Quadratic forms</title>
+    <p>
+      If you've done a couple of calculus courses, you've probably encountered conic sections,
+      like the ellipse <m>\frac{x^2}{a^2}+\frac{y^2}{b^2}=1</m> or the parabola <m>\frac{y}{b}=\frac{x^2}{a^2}</m>.
+      You might also recall that your instructor was careful to avoid conic sections with equations including
+      <q>cross-terms</q> like <m>xy</m>.
+      The reason for this is that sketching a conic section like <m>x^2+4xy+y^2=1</m> requires the techniques of the previous section.
+    </p>
+
+    <p>
+      A basic fact about orthogonal matrices is that they <em>preserve length</em>.
+      Indeed, for any vector <m>\vec{x}</m> in <m>\R^n</m> and any orthogonal matrix <m>P</m>,
+      <me>
+        \len{P\vec{x}}^2 = (P\vec{x})\dotp (P\vec{x}) = (P\vec{x})^T(P\vec{x}) = (\vec{x}^TP^T)(P\vec{x}) = \vec{x}^T\vec{x}=\len{\vec{x}}^2
+      </me>,
+      since <m>P^TP=I_n</m>.
+    </p>
+
+    <p>
+      Note also that since <m>P^TP=I_n</m> and <m>\det P^T=\det P</m>, we have
+      <me>
+        \det(P)^2=\det(P^TP)=\det(I_n)=1
+      </me>,
+      so <m>\det(P)=\pm 1</m>. If <m>\det P=1</m>, we have what is called a <em>special orthogonal matrix</em>.
+      In <m>\R^2</m> or <m>\R^3</m>, multiplication by a special orthgonal matrix is simply a rotation.
+      (If <m>\det P=-1</m>, there is also a reflection.)
+    </p>
+
+    <p>
+      We mentioned in the previous section that the <xref ref="thm-real-spectral" text="title"/>
+      is also referred to as the principal axes theorem.
+      The name comes from the fact that one way to interpret the orthogonal diagonalization of a symmetric matrix is that we are rotating our coordinate system.
+      The original coordinate axes are rotated to new coordinate axes, with respect to which the matrix <m>A</m> is diagonal.
+      This will become more clear once we apply these ideas to the problem of conic sections mentioned above.
+      First, a definition.
+    </p>
+
+    <definition xml:id="def-quadratic-form">
+      <statement>
+        <p>
+          A <term>quadratic form</term> on variables <m>x_1, x_2,\ldots, x_n</m>
+          is any expression of the form
+          <me>
+            q(x_1,\ldots, x_n) = \sum_{i\leq j}a_{ij}x_ix_j
+          </me>.
+        </p>
+      </statement>
+    </definition>
+
+    <p>
+      For example, <m>q_1(x,y)=4 x^2-4xy+4y^2</m> and <m>q_2(x,y,z)=9x^2-4 y^2-4xy-2xz+z^2</m> are quadratic forms.
+      Note that each term in a quadratic form is of degree two.
+      We omit linear terms, since these can be absorbed by completing the square.
+      The important observation is that every quadratic form can be associated to a symmetric matrix.
+      The diagonal entries are the coefficients <m>a_{ii}</m> appearing in <xref ref="def-quadratic-form"/>,
+      while the off-diagonal entries are <em>half</em> the corresponding coefficients <m>a_{ij}</m>.
+    </p>
+
+    <p>
+      For example the two quadratic forms given above have the following associated matrices:
+      <me>
+        A_1 = \bbm 4 \amp -2\\-2\amp 4\ebm \text{ and } A_2 = \bbm 9 \amp -2 \amp -1\\-2\amp 4\amp 0\\-1\amp 0\amp 1\ebm
+      </me>.
+      The reason for this is that we can then write
+      <me>
+        q_1(x,y)=\bbm x\amp y\ebm\bbm 4 \amp -1\\-1\amp 1\ebm\bbm x\\y\ebm
+      </me>
+      and
+      <me>
+        q_2(x,y,z)=\bbm x\amp y\amp z\ebm\bbm 9 \amp -2 \amp -1\\-2\amp 4\amp 0\\-1\amp 0\amp 1\ebm\bbm x\\y\\z\ebm
+      </me>.
+    </p>
+
+    <p>
+      Of course, the reason for wanting to associate a <em>symmetric</em> matrix to a quadratic form is that it can be orthogonally diagonalized.
+      Consider the matrix <m>A_1</m>.
+    </p>
+
+    <sage>
+      <input>
+        from sympy import *
+        init_printing()
+        A1 = Matrix(2,2,[4,-2,-2,4])
+        p = A1.charpoly()
+        factor(p)
+      </input>
+    </sage>
+
+    <p>
+      We find distinct eigenvalues <m>\lambda_1=2</m> and <m>\lambda_2=6</m>.
+      Since <m>A</m> is symmetric, we know the corresponding eigenvectors will be orthgonal.
+    </p>
+
+    <sage>
+      <input>
+        A1.eigenvects()
+      </input>
+    </sage>
+
+    <p>
+      The resulting orthogonal matrix is <m>P=\frac{1}{\sqrt{2}}\bbm 1\amp -1\\1\amp 1\ebm</m>,
+      and we find
+      <me>
+        P^TAP = \bbm 2\amp 0\\0\amp 6\ebm, \text{ or } A = PDP^T,
+      </me>
+      where <m>D = \bbm 2\amp 0\\0\amp 6\ebm</m>. If we define new variables <m>y_1,y_2</m> by
+      <me>
+        \bbm y_1\\y_2\ebm = P^T\bbm x_1\\x_2\ebm
+      </me>,
+      then we find that
+      <md>
+        <mrow>\bbm x_1\amp x_2\ebm A\bbm x_1\\x_2\ebm \amp = (\bbm x_1\amp x_2\ebm P)D\left(P^T\bbm x_1\\x_2\ebm\right) </mrow>
+        <mrow> \amp = \bbm y_1 \amp y_2\ebm\bbm 2\amp 0\\0\amp 6\ebm\bbm y_1\\y_2\ebm</mrow>
+        <mrow> \amp = 2y_1^2+6y_2^2</mrow>
+      </md>.
+      Note that there is no longer any cross term.
+    </p>
+
+    <p>
+      Now, suppose we want to graph the conic <m>4x_1^2-4x_1x_2++4x_2^2=12</m>.
+      By changing to the variables <m>y_1,y_2</m> this becomes <m>2y_1^2+6y_2^2=12</m>, or <m>\frac{y_1^2}{6}+\frac{y_2^2}{2}=1</m>.
+      This is the standard from of an ellipse, but in terms of new variables.
+      How do we graph it? Returning to the definition of our new variables, we find <m>y_1=\frac{1}{\sqrt{2}}(x_1+x_2)</m>
+      and <m>y_2=\frac{1}{\sqrt{2}}(-x_1+x_2)</m>.
+      The <m>y_1</m> axis should be the line <m>y_2=0</m>, or <m>x_1=x_2</m>.
+      (Note that this line points in the direction of the eigenvector <m>\bbm 1\\1\ebm</m>.)
+      The <m>y_2</m> axis should be the line <m>y_1=0</m>, or <m>x_1=-x_2</m>, which is in the direction of the eigenvector <m>\bbm -1\\1\ebm</m>.
+    </p>
+
+    <p>
+      This lets us see that our new coordinate axes are simply a rotation (by <m>\pi/4</m>) of the old coordinate axes,
+      and our conic section is, accordingly, an ellipse that has been rotated by the same angle.
+    </p>
+  </section>
+
+  <section xml:id="sec-complex">
+    <title>Diagonalization of complex matrices</title>
+    <introduction>
+      <p>
+        Recall that when we first defined vector spaces,
+        we mentioned that a vector space can be defined over any <em>field</em> <m>\mathbb{F}</m>.
+        To keep things simple, we've mostly assumed <m>\mathbb{F}=\mathbb{R}</m>.
+        But most of the theorems and proofs we've encountered go through unchanged if we work over a general field.
+        (This is not quite true: over a <em>finite</em> field things can get more complicated.
+        For example, if <m>\mathbb{F}=\mathbb{Z}_2=\{0,1\}</m>,
+        then we get weird results like <m>\vec{v}+\vec{v}=\vec{0}</m>, since <m>1+1=0</m>.)
+      </p>
+
+      <p>
+        In fact, if we replace <m>\R</m> by <m>\C</m>,
+        about the only thing we'd have to go back and change is the definition of the dot product.
+        The reason for this is that although the complex numbers seem computationally more complicated,
+        (which might mostly be because you don't use them often enough)
+        they follow the exact same algebraic rules as the real numbers.
+        In other words, the <em>arithmetic</em> might be different, but the <em>algebra</em> is the same.
+        There is one key difference between the two fields: over the complex numbers,
+        every polynomial can be factored. This is important if you're interested in finding eigenvalues.
+      </p>
+    </introduction>
+
+    <subsection xml:id="subsec-complex-review">
+      <title>Review of complex numbers</title>
+      <p>
+        Let's quickly review some basic facts about complex numbers that are typically covered in an earlier course.
+        First, we define the set of complex numbers by
+        <me>
+          \C = \{x+iy \,|\, x,y\in \R\},
+        </me>
+        where <m>i=\sqrt{-1}</m>. We have a bijection <m>\C \to \R^2</m> given by <m>x+iy\mapsto (x,y)</m>;
+        because of this, we often picture <m>\C</m> as the <em>complex plane</em>, with a <q>real</q> <m>x</m> axis,
+        and an <q>imaginary</q> <m>y</m> axis.
+      </p>
+
+      <p>
+        Arithmetic with complex numbers is defined by
+        <md>
+          <mrow>(x_1+iy_1)+(x_2+iy_2) \amp = (x_1+x_2)+i(y_1+y_2) </mrow>
+          <mrow>(x_1+iy_1)(x_2+iy_2) \amp = (x_1x_2-y_1y_2)+i(x_1y_2+x_2y_1)</mrow>
+        </md>.
+        The multiplication rule looks complicated, but it's really just <q><init>FOIL</init></q>,
+        along with the fact that <m>i^2=-1</m>.
+        Note that if <m>c=c+i0</m> is real, we have <m>c(x+iy)=(cx)+i(cy)</m>,
+        so that <m>\C</m> has the structure of a two dimensional vector space over <m>\R</m> (isomorphic to <m>\R^2</m>).
+      </p>
+
+      <p>
+        Subtraction is defined in the obvious way. Division is less obvious.
+        To define division, it helps to first introduce the <term>complex conjugate</term>.
+        Given a complex number <m>z=x+iy</m>, we define <m>\overline{z}=x-iy</m>.
+        The importance of the conjugate is that we have the identity
+        <me>
+          z\bz = (x+iy)(x-iy)=x^2+y^2
+        </me>.
+        So <m>z\bz</m> is <em>real</em>, and <em>non-negative</em>.
+        This lets us define the <term>modulus</term> of <m>z</m> by
+        <me>
+          \abs{z} = \sqrt{z\bz} = \sqrt{x^2+y^2}
+        </me>.
+        This gives a measure of the magnitude of a complex number,
+        in the same way as the vector norm on <m>\R^2</m>.
+      </p>
+
+      <p>
+        Now, given <m>z=x+iy</m> and <m>w=s+it</m>, we have
+        <me>
+          \frac{z}{w}=\frac{z\bar{w}}{w\bar{w}} = \frac{(x+iy)(s-it)}{s^2+t^2} = \frac{xs-yt}{s^2+t^2}+i\frac{xt+ys}{s^2+t^2}
+        </me>.
+        And of course, we have <m>w\bar{w}\neq 0</m> unless <m>w=0</m>, and as usual, we don't divide by zero.
+      </p>
+
+      <p>
+        An important thing to keep in mind when working with complex numbers is that they follow the same algebraic rules as real numbers.
+        For example, given <m>a,b,z,w</m> all complex, and <m>a\neq 0</m>, where <m>az+b=w</m>,
+        if we want to solve for <m>z</m>, the answer is <m>z=\frac1a(w-b)</m>, as it would be in <m>\R</m>.
+        The difference between <m>\R</m> and <m>\C</m> only really materializes when we want to <em>compute</em>
+        <m>z</m>, by plugging in values for <m>a,b</m> and <m>w</m>.
+      </p>
+
+      <p>
+        One place where <m>\C</m> is <em>computationally</em> more complicated is finding powers and roots.
+        For this, it is often more convenient to write our complex numbers in <term>polar form</term>.
+        The key to the polar form for complex numbers is <em>Euler's identity</em>.
+        For a <em>unit</em> complex number <m>z</m> (that is with <m>\abs{z}=1</m>),
+        we can think of <m>z</m> as a point on the unit circle, and write
+        <me>
+          z = \cos(\theta)+i\sin(\theta)
+        </me>.
+        If <m>\abs{z}=r</m>, we simply change the radius of our circle,
+        so in general, <m>z = r(\cos(\theta)+i\sin(\theta))</m>.
+        Euler's identity states that
+        <men xml:id="eq-euler">
+          \cos(\theta)+i\sin(\theta)=e^{i\theta}
+        </men>.
+      </p>
+
+      <p>
+        This idea of putting a complex number in an exponential function seems odd at first.
+        If you take a course in complex variables, you'll get a better understanding of why this makes sense.
+        But for now, we can take it as a convenient piece of notation.
+        The reason it's convenient is that the rules for complex arithmetic turn out to align quite nicely with properties of the exponential function.
+        For example, de Moivre's Theorem states that
+        <me>
+          (\cos(\theta)+i\sin(\theta))^n = \cos(n\theta)+i\sin(n\theta)
+        </me>.
+        This can be proved by induction (and the proof is not even all that bad),
+        but it seems perfectly obvious in exponential notation:
+        <me>
+          (e^{i\theta})^n = e^{in\theta}
+        </me>,
+        since you multiply exponents when you raise a power to a power.
+      </p>
+
+      <p>
+        Similarly, if we want to multiply two unit complex numbers, we have
+        <md>
+          <mrow>(\cos\alpha+i\sin\alpha)(\cos\beta+i\sin\beta) \amp = (\cos\alpha\cos\beta-\sin\alpha\sin\beta)</mrow>
+          <mrow> \amp \quad\quad +i(\sin\alpha\cos\beta+\cos\alpha\sin\beta)</mrow>
+          <mrow> \amp = \cos(\alpha+\beta)+i\sin(\alpha+\beta)</mrow>
+        </md>.
+        But in exponential notation, this is simply
+        <me>
+          e^{i\alpha}e^{i\beta} = e^{i(\alpha+\beta)}
+        </me>,
+        which makes sense, since when you multiply exponentials, you add the exponents.
+      </p>
+
+      <p>
+        Generally, problems involving addition and subtraction are best handled in <q>rectangular</q> (<m>x+iy</m>)
+        form, while problems involving multiplication and powers are best handled in polar form.
+      </p>
+    </subsection>
+
+    <subsection xml:id="subsec-complex-vector">
+      <title>Complex vectors</title>
+      <p>
+        A complex vector space is simply a vector space where the scalars are elements of <m>\C</m> rather than <m>\R</m>.
+        Examples include polynomials with complex coefficients, complex-valued functions, and <m>\C^n</m>,
+        which is defined exactly how you think it should be.
+        In fact, one way to obtain <m>\C^n</m> is to start with the exact same standard basis we use for <m>\R^n</m>,
+        and then take linear combinations using complex scalars.
+      </p>
+
+      <p>
+        We'll write elements of <m>\C^n</m> as <m>\zz = (z_1,z_2,\ldots, z_n)</m>.
+        Notice that we've dropped the arrow notation for vectors in favour of a bold font.
+        The reason is that we'll want to consider complex conjugates,
+        and things get cluttered if we try to fit an arrow and a bar over our vector.
+        The complex conjugate of <m>\zz</m> is given by
+        <me>
+          \bar{\zz} = (\bz_1,\bz_2,\ldots, \bz_n)
+        </me>.
+      </p>
+
+      <p>
+        The standard inner product on <m>\C^n</m> looks a lot like the dot product on <m>\R^n</m>,
+        with one important difference: we apply a complex conjugate to the second vector.
+      </p>
+
+      <definition xml:id="def-complex-inner">
+        <statement>
+          <p>
+            The <term>standard inner product</term> on <m>\C^n</m> is defined as follows:
+            given <m>\zz=(z_1,z_2,\ldots, z_n)</m> and <m>\ww=(w_1,w_2,\ldots, w_n)</m>,
+            <me>
+              \langle \zz,\ww\rangle = \zz\dotp\bar{\ww} = z_1\bar{w}_1+z_2\bar{w}_2+\cdots + z_n\bar{w}_n
+            </me>.
+          </p>
+        </statement>
+      </definition>
+
+      <p>
+        If <m>\zz,\ww</m> are real, this is just the usual dot product.
+        The reason for using the complex conjugate is to ensure that we still have a positive-definite inner product on <m>\C^n</m>:
+        <me>
+          \langle \zz,\zz\rangle = z_1\bz_1+z_2\bz_2+\cdots + z_n\bz_n = \abs{z_1}^2+\abs{z_2}^2+\cdots + \abs{z_n}^2
+        </me>,
+        which shows that <m>\langle \zz,\zz\rangle \geq 0</m>,
+        and <m>\langle \zz,\zz\rangle = 0</m> if and only if <m>\zz=\mathbf{0}</m>.
+      </p>
+
+      <exercise>
+        <statement>
+          <p>
+            Compute the dot product of <m>\zz = (2-i, 3i, 4+2i)</m> and <m>\ww = (3i,4-5i,-2+2i)</m>.
+          </p>
+        </statement>
+      </exercise>
+
+      <p>
+        This isn't hard to do by hand, but it's useful to know how to ask the computer to do it, too.
+        Unfortunately, the dot product in SymPy does not include the complex conjugate.
+        One likely reason for this is that while most mathematicians take the complex conjugate of the <em>second</em> vector,
+        some mathematicians, and most physicists, put the conjugate on the first vector.
+        So they may have decided to remain agnostic about this choice.
+        We can manually apply the conjugate, using <c>Z.dot(W.H)</c>.
+      </p>
+
+      <sage>
+        <input>
+          Z = Matrix([2-I,3*I,4+2*I])
+          W = Matrix([3*I,4-5*I,-2+2*I])
+          Z, W, Z.dot(W.H)
+        </input>
+      </sage>
+
+      <p>
+        Again, you might want to wrap that last term in <c>simplify()</c>.
+        Above, we saw that the complex inner product is designed to be positive definite, like the real inner product.
+        The remaining properties of the complex inner product are given as follows.
+      </p>
+
+      <theorem xml:id="thm-complex-inner-props">
+        <statement>
+          <p>
+            For any vectors <m>\zz_1,\zz_2,\zz_3</m> and any complex number <m>\alpha</m>,
+            <ol>
+              <li>
+                <p>
+                  <m>\langle \zz_1+\zz_2,\zz_3\rangle = \langle \zz_1,\zz_3\rangle + \langle zz_2,\zz_3\rangle</m> and
+                  <m>\langle \zz_1,\zz_2+\zz_3\rangle = \langle \zz_1,\zz_2\rangle + \langle zz_1,\zz_3\rangle</m>.
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  <m>\langle \alpha\zz_1,\zz_2\rangle = \alpha\langle\zz_1,\zz_2\rangle</m>
+                  and <m>\langle \zz_1,\alpha\zz_2\rangle=\bar{\alpha}\langle \zz_1,\zz_2\rangle</m>.
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  <m>\langle \zz_2,\zz_1\rangle = \overline{\langle \zz_1,\zz_2\rangle}</m>
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  <m>\langle \zz_1,\zz_1\rangle\geq 0</m>, and <m>\langle \zz_1,\zz_1\rangle =0</m> if and only if <m>\zz_1=\mathbf{0}</m>.
+                </p>
+              </li>
+            </ol>
+          </p>
+        </statement>
+        <proof>
+          <p>
+            <ol>
+              <li>
+                <p>
+                  Using the distributive properties of matrix multiplication and the transpose,
+                  <md>
+                    <mrow>\langle \zz_1+\zz_2,\zz_3\rangle \amp= (\zz_1+\zz_2)^T\bar{\zz_3}</mrow>
+                    <mrow> \amp =(\zz_1^T+\zz_2^T)\bar{\zz_3}</mrow>
+                    <mrow> \amp =\zz_1^T\bar{\zz_3}+\zz_2^T\bar{\zz_3}</mrow>
+                    <mrow> \amp =\langle \zz_1,\zz_3\rangle + \langle \zz_2,\zz_3\rangle</mrow>
+                  </md>.
+                  The proof is similar when addition is in the second component.
+                  (But not identical -- you'll need the fact that the complex conjugate is distributive, rather than the transpose.)
+                </p>
+              </li>
+              <li>
+                <p>
+                  These again follow from writing the inner product as a matrix product.
+                  <me>
+                    \langle \alpha\zz_1,\zz_2\rangle = (\alpha \zz_1)^T\bar{\zz_2} = \alpha(\zz_1^T\bar{\zz_2}) = \alpha\langle\zz_1,\zz_2\rangle
+                  </me>,
+                  and
+                  <me>
+                    \langle \zz_1,\alpha\zz_2\rangle = \zz_1^T\overline{\alpha \zz_2} = \zz_1^T(\bar{\alpha}\bar{\zz_2}) = \bar{\alpha}(\zz_1^T\zz_2)=\alpha\langle \zz_1,\zz_2\rangle
+                  </me>.
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  Note that for any vectors <m>\zz,\ww</m>, <m>\zz^T\ww</m> is a number,
+                  and therefore equal to its own transpose.
+                  Thus, we have <m>\zz^T\ww = (\zz^T\ww)^T=\ww^T\zz</m>, and
+                  <me>
+                    \overline{\langle \zz_1,\zz_2\rangle} = \overline{\zz_1^T\bar{\zz_2}} = \overline{\bar{\zz_2}^T\zz_1} = \zz_2^T\overline{\zz_1}=\langle \zz_2,\zz_1\rangle
+                  </me>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  This was already demonstrated above.
+                </p>
+              </li>
+            </ol>
+          </p>
+        </proof>
+
+      </theorem>
+
+      <definition xml:id="def-complex-norm">
+        <statement>
+          <p>
+            The <term>norm</term> of a vector <m>\zz = (z_1,z_2,\ldots, z_n)</m> in <m>\C^n</m> is given by
+            <me>
+              \len{\zz} = \sqrt{\langle \zz,\zz\rangle} = \sqrt{\abs{z_1}^2+\abs{z_2}^2+\cdots +\abs{z_n}^2}
+            </me>.
+          </p>
+        </statement>
+      </definition>
+
+      <p>
+        Note that much like the real norm, the complex norm satisfies <m>\len{\alpha\zz}=\abs{\alpha}\len{\zz}</m>
+        for any (complex) scalar <m>\alpha</m>.
+      </p>
+    </subsection>
+
+    <subsection xml:id="subsec-complex-matrix">
+      <title>Complex matrices</title>
+      <p>
+        Linear transformations are defined in exactly the same way,
+        and a complex matrix is simply a matrix whose entries are complex numbers.
+        There are two important operations defined on complex matrices:
+        the conjugate, and the conjugate transpose (also known as the hermitian transpose).
+      </p>
+
+      <definition xml:id="def-conjugate-transpose">
+        <statement>
+          <p>
+            The <term>conjugate</term> of a matrix <m>A=[a_{ij}]\in M_{mn}(\C)</m>
+            is the matrix <m>\bar{A}=[\bar{a}_{ij}]</m>.
+            The <term>conjugate transpose</term> of <m>A</m> is the matrix <m>A^H</m>
+            defined by
+            <me>
+              A^H = (\bar{A})^T=\overline{(A^T)}
+            </me>.
+          </p>
+        </statement>
+      </definition>
+
+      <p>
+        Note that many textbooks use the notation <m>A^\dagger</m> for the conjugate transpose.
+      </p>
+
+      <definition xml:id="def-hermitian-unitary">
+        <statement>
+          <p>
+            An <m>n\times n</m> matrix <m>A\in M_{nn}(\C)</m> is called <term>hermitian</term>
+            if <m>A^H = A</m>, and <term>unitary</term> if <m>A^H = A^{-1}</m>.
+            (A matrix is <term>skew-hermitian</term> if <m>A^H=-A</m>.)
+          </p>
+        </statement>
+      </definition>
+
+      <p>
+        Hermitian and unitary matrices (or more accurately, linear operators) are very important in quantum mechanics.
+        Indeed, hermitian matrices represent <q>observable</q> quantities,
+        in part because their eigenvalues are real, as we'll soon see.
+        For us, hermitian and unitary matrices can simply be viewed as the complex counterparts of symmetric and orthogonal matrices,
+        respectively. In fact, a real symmetric matrix <em>is</em> hermitian,
+        since the conjugate has no effect on it, and similarly, a real orthogonal matrix is technically unitary.
+        As with orthogonal matrices, a unitary matrix can also be characterized by the property that its rows and columns both form orthonormal bases.
+      </p>
+
+      <exercise>
+        <statement>
+          <p>
+            Show that the matrix <m>A = \bbm 4\amp 1-i\amp -2+3i\\1+i\amp 5 \amp 7i\\-2-3i\amp -7i\amp -4\ebm</m> is hermitian,
+            and that the matrix <m>B = \frac12\bbm 1+i\amp \sqrt{2}\\1-i\amp\sqrt{2}i\ebm</m> is unitary.
+          </p>
+        </statement>
+        <solution>
+          <p>
+            We have <m>\bar{A}=\bbm 4\amp 1+i\amp -2-3i\\1-i\amp 5 \amp -7i\\-2+3i\amp 7i\amp -4\ebm</m>,
+            so
+            <me>
+              A^H = (\bar{A})^T = \bbm 4\amp 1-i\amp -2+3i\\1+i\amp 5\amp 7i\\-2-3i\amp -7i\amp -4\ebm = A
+            </me>,
+            and
+            <md>
+              <mrow>BB^H \amp =\frac14\bbm 1+i\amp \sqrt{2}\\1-i\amp\sqrt{2}i\ebm\bbm 1-i\amp 1+i\\\sqrt{2}\amp-\sqrt{2}i\ebm </mrow>
+              <mrow> \amp =\frac14\bbm (1+i)(1-i)+2\amp (1+i)(1+i)-2i\\(1-i)(1-i)+2i\amp (1-i)(1+i)+2\ebm</mrow>
+              <mrow> \amp =\frac14\bbm 4\amp 0\\0\amp 4\ebm = \bbm 1\amp 0\\0\amp 1\ebm</mrow>
+            </md>,
+            so that <m>B^H = B^{-1}</m>.
+          </p>
+        </solution>
+      </exercise>
+
+      <p>
+        When using SymPy, the hermitian conjugate of a matrix <c>A</c> is executed using <c>A.H</c>.
+        (There appears to also be an equivalent operation named <c>Dagger</c> coming from <c>sympy.physics.quantum</c>,
+        but I've had more success with <c>.H</c>.) The complex unit is entered as <c>I</c>.
+        So for the exercise above, we can do the following.
+      </p>
+
+      <sage>
+        <input>
+          from sympy import *
+          init_printing()
+          A = Matrix(3,3,[4,1-I,-2+3*I,1+I,5,7*I,-2-3*I,-7*I,-4])
+          A == H
+        </input>
+      </sage>
+
+      <p>
+        The last line verifies that <m>A=A^H</m>.
+        We could also replace it with <c>A,A.H</c> to explicitly see the two matrices side by side.
+        Now, let's confirm that <m>B</m> is unitary.
+      </p>
+
+      <sage>
+        <input>
+          B = Matrix(2,2,[1/2+1/2*I, sqrt(2)/2,1/2-1/2*I,(sqrt(2)/2)*I])
+          B,B*B.H
+        </input>
+      </sage>
+
+      <p>
+        Hmm... That doesn't look like the identity. Maybe try replacing <c>B*B.H</c> with <c>simplify(B*B.H)</c>.
+        Or you could try <c>B.H, B**-1</c> to compare results.
+        Actually, what's interesting is that in a Sage cell, <c>B.H == B**-1</c> yields <c>False</c>,
+        but <c>B.H == simplify(B**-1)</c> yields <c>True</c>!
+      </p>
+
+      <p>
+        As mentioned above, hermitian matrices are the complex analogue of symmetric matrices.
+        Recall that a key property of a symmetric matrix is its symmetry with respect to the dot product.
+        For a symmetric matrix <m>A</m>, we had <m>\mathbf{x}\dotp (A\mathbf{y})=(A\mathbf{x})\dotp \mathbf{y}</m>.
+        Hermtian matrices exhibit the same behaviour with respect to the complex inner product.
+      </p>
+
+      <theorem xml:id="thm-hermitian-symmetry">
+        <statement>
+          <p>
+            An <m>n\times n</m> complex matrix <m>A</m> is Hermitian if and only if
+            <me>
+              \langle A\zz,\ww\rangle = \langle \zz, A\ww\rangle
+            </me>
+            for any <m>\zz,\ww\in\C^n</m>
+          </p>
+        </statement>
+        <proof>
+          <p>
+            Note that the property <m>A^H=A</m> is equivalent to <m>A^T=\bar{A}</m>.
+            This gives us
+            <me>
+              \langle A\zz,\ww\rangle = (A\zz)^T\bar{\ww} = (\zz^TA^T)\bar{\ww} = (\zz^T\bar{A})\bar{\ww}=\zz^T(\overline{A\ww}) = \langle \zz,\ww\rangle
+            </me>.
+            Conversely, suppose <m>\langle A\zz,\ww\rangle = \langle \zz, A\ww\rangle</m> for all <m>\zz,\ww\in \C^n</m>,
+            and let <m>\basis{e}{n}</m> denote the standard basis for <m>\C^n</m>. Then
+            <me>
+              a_{ji}=\langle A\mathbf{e}_i,\mathbf{e}_j\rangle = \langle \mathbf{e}_i,A\mathbf{e}_j\rangle = \overline{a_{ij}}
+            </me>,
+            which shows that <m>A^T=\bar{A}</m>.
+          </p>
+        </proof>
+      </theorem>
+
+      <p>
+        Next, we've noted that one advantage of doing linear algebra over <m>\C</m> is that every polynomial can be completely factored,
+        including the characteristic polynomial. This means that we can always find eigenvalues for a matrix.
+        When that matrix is Hermitian, we get a surprising result.
+      </p>
+
+      <theorem xml:id="thm-hermitian-eigen-real">
+        <statement>
+          <p>
+            For any hermitian matrix <m>A</m>,
+            <ol>
+              <li>
+                <p>
+                  The eigenvalues of <m>A</m> are real.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Eigenvectors corresponding to distinct eigenvalues are orthogonal.
+                </p>
+              </li>
+            </ol>
+          </p>
+        </statement>
+        <proof>
+          <p>
+            <ol>
+              <li>
+                <p>
+                  Suppose <m>A\zz = \lambda\zz</m> for some <m>\lambda\in\C</m> and <m>\zz\neq \mathbf{0}</m>.
+                  Then
+                  <me>
+                    \lambda \langle \zz,\zz\rangle  = \langle \lambda\zz,\zz\rangle = \langle A\zz,\zz \rangle = \langle \zz, A\zz\rangle = \langle \zz,\lambda,\zz\rangle = \bar{\lambda}\langle \zz,\zz\rangle
+                  </me>.
+                  Thus, <m>(\lambda-\bar{\lambda})\len{\zz}^2=0</m>, and since <m>\len{z}\neq 0</m>, we must have <m>\bar{\lambda}=\lambda</m>, which means <m>\lambda\in\R</m>.
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  Similarly, suppose <m>\lambda_1,\lambda_2</m> are eigenvalues of <m>A</m>,
+                  with corresonding eigenvectors <m>\zz,\ww</m>. Then
+                  <me>
+                    \lambda_1\langle \zz,\ww\rangle = \langle \lambda_1\zz,\ww\rangle = \langle A\zz,\ww\rangle =\langle \zz,A\ww\rangle = \langle \zz,\lambda_2\ww\rangle = \bar{\lambda_2}\langle\zz,\ww\rangle
+                  </me>.
+                  This gives us <m>(\lambda_1-\bar{\lambda_2})\langle \zz,\ww\rangle=0</m>.
+                  And since we already know <m>\lambda_2</m> must be real,
+                  and <m>\lambda_1\neq \lambda_2</m>, we must have <m>\langle, \zz,\ww\rangle = 0</m>.
+                </p>
+              </li>
+            </ol>
+          </p>
+        </proof>
+
+      </theorem>
+
+      <p>
+        In light of <xref ref="thm-hermitian-eigen-real"/>,
+        we realize that diagonalization of hermitian matrices will follow the same script as for symmetric matrices.
+        Indeed, <xref ref="thm-gram-schmidt" text="title"/> applies equally well in <m>\C^n</m>,
+        as long as we replace the dot product with the complex inner product.
+        This suggests the following.
+      </p>
+
+      <theorem xml:id="thm-complex-spectral">
+        <title>Spectral Theorem</title>
+
+        <statement>
+          <p>
+            If <m>A</m> is an <m>n\times n</m> hermitian matrix,
+            then there exists an orthonormal basis of <m>\C^n</m> consisting of eigenvectors of <m>A</m>.
+            Moreover, the matrix <m>U</m> whose columns consist of those eigenvectors is unitary,
+            and the matrix <m>U^HAU</m> is diagonal.
+          </p>
+        </statement>
+      </theorem>
+
+      <exercise>
+        <statement>
+          <p>
+            Confirm that the matrix <m>A = \bbm 4 \amp 3-i\\3+i\amp 1\ebm</m> is hermitian.
+            Then, find the eigenvalues of <m>A</m>, and a unitary matrix <m>U</m> such that <m>U^HAU</m> is diagonal.
+          </p>
+        </statement>
+        <solution>
+          <p>
+            Confirming that <m>A^H=A</m> is almost immediate.
+            We will use the computer below to compute the eigenvalues and eigenvectors of <m>A</m>,
+            but it's useful to attempt this at least once by hand. We have
+            <md>
+              <mrow>\det(zI-A) \amp = \det\bbm z-4 \amp -3+i\\-3-i\amp z-1\ebm</mrow>
+              <mrow> \amp (z-4)(z-1)-(-3-i)(-3+i)</mrow>
+              <mrow> \amp z^2-5z+4-10</mrow>
+              <mrow> \amp (z+1)(z-6)</mrow>
+            </md>,
+            so the eigenvalues are <m>\lambda_1=-1</m> and <m>\lambda_2=6</m>,
+            which are both real, as expected.
+          </p>
+
+          <p>
+            Finding eigenvectors can seem trickier than with real numbers,
+            mostly because it is no longer immediately apparent when one row or a matrix is a multiple of another.
+            But we know that the rows of <m>A-\lambda I</m> must be parallel for a <m>2\times 2</m> matrix,
+            which lets proceed nonetheless.
+          </p>
+
+          <p>
+            For <m>\lambda_1=-1</m>, we have
+            <me>
+              A + I =\bbm 5 \amp 3-i\\3+i\amp 2\ebm
+            </me>.
+            There are two ways one can proceed from here.
+            We could use row operations to get to the reduced row-echelon form of <m>A</m>.
+            If we take this approach, we multiply row 1 by <m>\frac15</m>,
+            and then take <m>-3-i</m> times the new row 1 and add it to row 2, to create a zero, and so on.
+          </p>
+
+          <p>
+            Easier is to realize that if we haven't made a mistake calculating our eigenvalues,
+            then the above matrix can't be invertible, so there must be some nonzero vector in the kernel.
+            If <m>(A+I)\bbm a\\b\ebm=\bbm0\\0\ebm</m>, then we must have
+            <me>
+              5a+(3-i)b=0
+            </me>,
+            when we mutliply by the first row of <m>A</m>.
+            This suggests that we take <m>a=3-i</m> and <m>b=-5</m>,
+            to get <m>\zz = \bbm 3-i\\-5\ebm</m> as our first eigenvector.
+            To make sure we've done things correctly, we multiply by the second row of <m>A+I</m>:
+            <me>
+              (3+i)(3-i)+2(-5) = 10-10 = 0
+            </me>.
+            Success! Now we move onto the second eigenvalue.
+          </p>
+
+          <p>
+            For <m>\lambda_2=6</m>, we get
+            <me>
+              A-6I = \bbm -2\amp 3-i\\3+i\amp -5\ebm
+            </me>.
+            If we attempt to read off the answer like last time,
+            the first row of <m>A-6I</m> suggests the vector <m>\ww = \bbm 3-i\\2\ebm</m>.
+            Checking the second row to confirm, we find:
+            <me>
+              (3+i)(3-i)-5(2) = 10-10=0
+            </me>,
+            as before.
+          </p>
+
+          <p>
+            Finally, we note that
+            <me>
+              \langle \zz, \ww\rangle = (3-i)\overline{(3-i)}+(-5)(2) = (3-i)(3+i)-10 = 0
+            </me>,
+            so the two eigenvectors are orthogonal, as expected. We have
+            <me>
+              \len{\zz}=\sqrt{10+25}=\sqrt{35} \quad \text{ and } \quad \len{\ww}=\sqrt{10+4}=\sqrt{14}
+            </me>,
+            so our orthogonal matrix is
+            <me>
+              U = \bbm \frac{3-i}{\sqrt{35}}\amp \frac{3-i}{\sqrt{14}}\\-\frac{5}{\sqrt{35}}\amp \frac{2}{\sqrt{35}}\ebm
+            </me>.
+            With a bit of effort, we can finally confirm that
+            <me>
+              U^HAU = \bbm -1\amp 0\\0\amp 6\ebm
+            </me>,
+            as expected.
+          </p>
+        </solution>
+      </exercise>
+
+      <p>
+        To do the above exercise using SymPy, we first define <m>A</m> and ask for the eigenvectors.
+      </p>
+
+      <sage>
+        <input>
+          from sympy import *
+          init_printing()
+          A = Matrix(2,2,[4,3-I,3+I,1])
+          A.eigenvects()
+        </input>
+      </sage>
+
+      <p>
+        We can now manually determine the matrix <m>U</m>, as we did above, and input it:
+      </p>
+
+      <sage>
+        <input>
+          U = Matrix(2,2,[(3-I)/sqrt(35),(3-I)/sqrt(14),-5/sqrt(35),2/sqrt(35)])
+        </input>
+      </sage>
+
+      <p>
+        To confirm it's unitary, add the line <c>U*U.H</c> to the above,
+        and confirm that you get the identity matrix as output.
+        You might need to use <c>simplify(U*U.H)</c> if the result is not clear.
+        Now, to confirm that <m>U^HAU</m> really is diagonal, go back to the cell above, and enter it.
+        Try <c>(U.H)*A*U</c>, just to remind yourself that adding the <c>simplify</c> command is often a good idea.
+      </p>
+
+      <p>
+        If you want to cut down on the manual labour involved, we can make use of some of the other tools SymPy provides.
+        In the next cell, we're going to assign the output of <c>A.eigenvects()</c> to a list.
+        The only trouble is that the output of the eigenvector command is a list of lists.
+        Each list item is a list <c>(eigenvalue, multiplicity, [eigenvectors])</c>.
+      </p>
+
+      <sage>
+        <input>
+          L = A.eigenvects()
+          L
+        </input>
+      </sage>
+
+      <p>
+        Try the above modifications, in sequence.
+        First, replacing the second line by <c>L[0]</c> will give the first list item, which is another list:
+        <me>
+          \left(-1,1,\left[\bbm -\frac35+\frac{i}{5}\ebm\right]\right)
+        </me>.
+        We want the third item in the list, so try <c>(L[0])[2]</c>.
+        But note the extra set of brackets! There could (in theory) be more than one eigenvector,
+        so this is a list with one item. To finally get the vector out, try <c>((L[0])[2])[0]</c>.
+        (There is probably a better way to do this. Someone who is more fluent in Python is welcome to advise.)
+      </p>
+
+      <p>
+        Now that we know how to extract the eigenvectors, we can normalize them, and join them to make a matrix.
+        The norm of a vector is simnply <c>v.norm()</c>, and to join column vectors <c>u1</c> and <c>u2</c> to make a matrix,
+        we can use the command <c>u1.row_join(u2)</c>. We already defined the matrix <c>A</c> and list <c>L</c> above,
+        but here is the whole routine in one cell, in case you didn't run all the cells above.
+      </p>
+
+      <sage>
+        <input>
+          from sympy import *
+          init_printing()
+          A = Matrix(2,2,[4,3-I,3+I,1])
+          L = A.eigenvects()
+          v = ((L[0])[2])[0]
+          w = ((L[1])[2])[0]
+          u1 = (1/v.norm())*v
+          u2 = (1/w.norm())*w
+          U = u1.row_join(u2)
+          u1, u2, U, simplify(U.H*A*U)
+        </input>
+      </sage>
+
+      <p>
+        Believe me, you want the simplify command on that last matrix.
+      </p>
+
+      <p>
+        While <xref ref="thm-complex-spectral"/> guarantees that any hermitian matrix can be <q>unitarily diagaonalizaed</q>,
+        there are also non-hermitial matrices for which this can be done as well.
+        A classic example of this is given in Nicholson's book, so we do not repeat the details here:
+        the matrix <m>\bbm 0\amp 1\\-1\amp 0\ebm</m> is a real matrix with complex eigenvalues <m>\pm i</m>,
+        and while it is neither symmetric nor hermitian, it can be orthogonally diagonalized.
+        This should be contrasted with the real spectral theroem,
+        where any matrix that can be orthogonally diagonalized is necessarily symmetric.
+      </p>
+
+      <p>
+        This suggests that perhaps hermitian matrices are not quite the correct class of matrix for which the spectral theorem should be stated.
+        Indeed, it turns out there is a somewhat more general class of matrix: the <em>normal</em> matrices.
+      </p>
+
+      <definition xml:id="def-normal-matrix">
+        <statement>
+          <p>
+            An <m>n\times n</m> matrix <m>A</m> is <term>normal</term> if <m>A^HA = AA^H</m>.
+          </p>
+        </statement>
+      </definition>
+
+      <p>
+        It turns out that a matrix <m>A</m> is normal if and only if <m>A=UDU^H</m> for some unitary matrix <m>U</m> and diagonal matrix <m>D</m>.
+        A further generalization is known as <em>Schur's Theorem</em>.
+      </p>
+
+      <theorem xml:id="thm-schurr">
+        <statement>
+          <p>
+            For <em>any</em> complex <m>n\times n</m> matrix <m>A</m>,
+            there exists a unitary matrix <m>U</m> such that <m>U^HAU = T</m> is upper-triangular,
+            and such that the diagonal entires of <m>T</m> are the eigenvalues of <m>A</m>.
+          </p>
+        </statement>
+      </theorem>
+
+      <p>
+        Using Schur's Theorem, we can obtain a famous result, known as the Cayley-Hamilton Theorem,
+        for the case of complex matrices. (It is true for real matrices as well, but we don't yet have the tools to prove it.)
+        The Cayley-Hamilton Theorem states that substituting any matrix into its characteristic polynomial results in the zero matrix.
+        To understand this result, we should first explain how to define a polynomial of a matrix.
+      </p>
+
+      <p>
+        Given a polynomial <m>p(x) = a_0+a_1x+\cdots + a_nx_n</m>, we define <m>p(A)</m> as
+        <me>
+          p(A) = a_0I+a_1A+\cdots + a_nA^n
+        </me>.
+        (Note the presence of the identity matrix in the first term, since it does not make sense to add a scalar to a matrix.)
+        Note further that since <m>(P^{-1}AP)^n = P^{-1}A^nP</m> for any invertible matrix <m>P</m> and positive integer <m>n</m>,
+        we have <m>p(U^HAU)=U^Hp(A)U</m> for any polynomial <m>p</m> and unitary matrix <m>U</m>.
+      </p>
+
+      <theorem xml:id="thm-cayley-hamilton-c">
+        <statement>
+          <p>
+            Let <m>A</m> be an <m>n\times n</m> complex matrix,
+            and let <m>c_A(x)</m> denote the characteristic polynomial of <m>A</m>.
+            Then we have <m>c_A(A)=0</m>.
+          </p>
+        </statement>
+        <proof>
+          <p>
+            By <xref ref="thm-schurr"/>, there exists a unitary matrix <m>U</m> such that <m>A = UTU^H</m>,
+            where <m>T</m> is upper triangular, and has the eigenvalues of <m>A</m> as diagonal entries.
+            Since <m>c_A(A)=c_A(UTU^H)=Uc_A(T)U^H</m>, and <m>c_A(x)=c_T(x)</m> (since <m>A</m> and <m>T</m> are similar)
+            it suffices to show that <m>c_A(A)=0</m> when <m>A</m> is upper-triangular.
+            (If you like, we are showing that <m>C_T(T)=0</m>, and deducing that <m>c_A(A)=0</m>.)
+            But if <m>A</m> is upper-triangular, so is <m>xI_A</m>,
+            and therefore, <m>\det(xI-A)</m> is just the product of the diagaonal entries. That is,
+            <me>
+              c_A(x) = (x-\lambda_1)(x-\lambda_2)\cdots (x-\lambda_n)
+            </me>,
+            so
+            <me>
+              c_A(A) = (A-\lambda_1I)(A-\lambda_2I)\cdots (A-\lambda_nI)
+            </me>.
+          </p>
+
+          <p>
+            Since the first column of <m>A</m> is <m>\bbm \lambda_1\amp 0 \amp \cdots \amp 0\ebm^T</m>,
+            the first column of <m>A-\lambda_1I</m> is identically zero.
+            The second column of <m>A-\lambda_2I</m> similarly has the form <m>\bbm k\amp 0\amp\cdots\amp 0\ebm</m>
+            for some number <m>k</m>.
+          </p>
+
+          <p>
+            It follows that the first two columns of <m>(A-\lambda_1I)(A-\lambda_2I)</m> are identically zero.
+            Since only the first two entries in the third column of <m>(A-\lambda_3I)</m> can be nonzero,
+            we find that the first three columns of <m>(A-\lambda_1I)(A-\lambda_2I)(A-\lambda_3I)</m> are zero,
+            and so on.
+          </p>
+        </proof>
+
+      </theorem>
+
+    </subsection>
+  </section>
+</chapter>

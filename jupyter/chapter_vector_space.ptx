@@ -1,0 +1,1083 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<chapter xml:id="ch-vector-space">
+  <title>Vector spaces</title>
+<section xml:id="sec-vec-sp">
+  <title>Abstract vector spaces</title>
+
+  <p>
+    (To Do)
+  </p>
+</section>
+
+<section xml:id="sec-span">
+  <title>Span</title>
+  <p>
+    Recall that a <term>linear combination</term> of a set of vectors
+    <m>\vec{v}_1,\ldots, \vec{v}_k</m> is a vector expression of the form
+    <me>
+      \vec{w}=c_1\vec{v}_1+c_2\vec{v}_2+\cdots +c_k\vec{v}_k,
+    </me>
+    where <m>c_1,\ldots, c_k</m> are scalars.
+  </p>
+
+  <p>
+    The <term>span</term> of those same vectors is the set of all possible linear combinations:
+    <me>
+      \spn\{\vec{v}_1,\ldots, \vec{v}_k\} = \{c_1\vec{v}_1+ \cdots + c_k\vec{v}_k \,|\, c_1,\ldots, c_k \in \mathbb{F}\}.
+    </me>
+    Therefore, the questions <q>Is the vector <m>\vec{w}</m> in <m>\spn\{\vec{v}_1,\ldots, \vec{v}_k\}</m>?</q>
+    is really asking, <q>Can <m>\vec{w}</m> be written as a linear combination of <m>\vec{v}_1,\ldots, \vec{v}_k</m>?</q>
+  </p>
+
+  <p>
+    With the appropriate setup, all such questions become questions about solving systems of equations.
+    Here, we will look at a few such examples.
+  </p>
+
+  <exercise>
+    <statement>
+      <p>
+        Determine whether the vector <m>\bbm 2\\3\ebm</m> is in the span of the vectors <m>\bbm 1\\1\ebm,\bbm -1\\2\ebm</m>.
+      </p>
+    </statement>
+  </exercise>
+
+  <p>
+    This is really asking: are there scalars <m>s,t</m> such that
+    <me>
+      s\bbm 1\\1\ebm + t\bbm -1\\2\ebm = \bbm 2\\3\ebm
+    </me>?
+    And this, in turn, is equivalent to the system
+    <md>
+      <mrow>s -t \amp=2 </mrow>
+      <mrow>s+2t \amp=3 </mrow>
+    </md>,
+    which is the same as the matrix equation
+    <me>
+      \bbm 1\amp -1\\1\amp 2\ebm\bbm s\\t\ebm = \bbm 2\\3\ebm.
+    </me>
+    Solving the system confirms that there is indeed a solution, so the answer to our original question is yes.
+  </p>
+
+  <p>
+    To confirm the above example (and see what the solution is), we can use the computer.
+  </p>
+  <sage>
+    <input>
+      from sympy import *
+      init_printing()
+    </input>
+  </sage>
+
+  <sage>
+    <input>
+      A = Matrix(2,3,[1,-1,2,1,2,3])
+      A.rref()
+    </input>
+  </sage>
+
+  <p>
+    The above code produces the reduced row-echelon form of the augmented matrix for our system.
+    Do you remember how to get the answer from here? Here's another approach.
+  </p>
+
+  <sage>
+    <input>
+      B = Matrix(2,2,[1,-1,1,2])
+      B
+    </input>
+  </sage>
+
+  <sage>
+    <input>
+      C = Matrix(2,1,[2,3])
+      X = (B**-1)*C
+      X
+    </input>
+  </sage>
+
+  <p>
+    Our next example involves polynomials.
+    At first this looks like a different problem,
+    but it's essentially the same once we set it up.
+  </p>
+
+  <exercise>
+    <statement>
+      <p>
+        Determine whether <m>p(x)=1+x+4x^2</m> belongs to
+        <m>\spn\{1+2x-x^2,3+5x+2x^2\}</m>.
+      </p>
+    </statement>
+  </exercise>
+
+  <p>
+    We seek scalars <m>s,t</m> such that
+    <me>
+      s(1+2x-2x^2)+t(3+5x+2x^2)=1+x+4x^2
+    </me>.
+    On the left-hand side, we expand and gather terms:
+    <me>
+      (s+3t)+(2s+5t)x+(-2s+2t)x^2 = 1+x+4x^2
+    </me>.
+    These two polynomials are equal if and only if we can solve the system
+    <md>
+      <mrow>s+3t \amp = 1 </mrow>
+      <mrow>2s+5t \amp =1</mrow>
+      <mrow> -2s+2t \amp =4</mrow>
+    </md>.
+  </p>
+
+  <p>
+    We can solve this computationally using matrices again.
+  </p>
+  <sage>
+    <input>
+      M = Matrix(3,3,[1,3,1,2,5,1,-2,2,4])
+      M.rref()
+    </input>
+  </sage>
+  <p>
+    So, what's the answer? Is <m>p(x)</m> in the span?
+    Can we determine what polynomials are in the span?
+    Let's consider a general polynomial <m>q(x)=a+bx+cx^2</m>.
+    A bit of thought tells us that the coefficients <m>a,b,c</m>
+    should replace the constants <m>1,1,4</m> above.
+  </p>
+
+  <sage>
+    <input>
+      a, b, c = symbols('a b c', real = True, constant = True)
+      N = Matrix(3,3,[1,3,a,2,5,b,-2,2,c])
+      N
+    </input>
+  </sage>
+
+  <p>
+    Asking the computer to reduce this matrix won't produce the desired result.
+    (Maybe someone can figure out how to define the constants in a way that works?)
+    But we can always specify row operations.
+    (Note: the following code doesn't work well in a Sage cell.
+    In Python it might work.)
+  </p>
+
+  <sage>
+    <input>
+      N1 = N.elementary_row_operation(op='n->n+km',row1=1,row2=0,k=-2)
+      N1
+    </input>
+  </sage>
+
+  <p>
+    Now we repeat. Here are two more empty cells to work with:
+  </p>
+
+  <sage>
+
+  </sage>
+  <sage>
+
+  </sage>
+
+  <p>
+    We end this section with a few non-computational, but useful results,
+    which will be left as exercises to be done in class, or by the reader.
+  </p>
+
+  <exercise>
+    <statement>
+      <p>
+        Let <m>V</m> be a vector space, and let <m>X,Y\subseteq V</m>.
+        Show that if <m>X\subseteq Y</m>, then <m>\spn X \subseteq \spn Y</m>.
+      </p>
+    </statement>
+  </exercise>
+
+  <exercise>
+    <statement>
+      <p>
+        Can <m>\{(1,2,0), (1,1,1)</m> span <m>\{(a,b,0)\,|\, a,b \in\R\}</m>?
+      </p>
+    </statement>
+  </exercise>
+
+  <theorem xml:id="theorem-surplus-span">
+    <statement>
+      <p>
+        Let <m>V</m> be a vector space, and let <m>\vec{v}_1,\ldots, \vec{v}_k\in V</m>.
+        If <m>\vec{u}\in \spn\{\vec{v}_1,\ldots, \vec{v}_k\}</m>, then
+        <me>
+          \spn\{\vec{u},\vec{v}_1,\ldots, \vec{v}_k\} = \spn\{\vec{v}_1,\ldots, \vec{v}_k\}
+        </me>.
+      </p>
+    </statement>
+  </theorem>
+
+  <p>
+    The moral of <xref ref="theorem-surplus-span">Theorem</xref>
+    is that one vector in a set is a linear combination of the others,
+    we can remove it from the set without affecting the span.
+    This suggests that we might want to look for the most <q>efficient</q>
+    spanning sets <ndash /> those in which no vector in the set can be written in terms of the others.
+    Such sets are called <term>linearly independent</term>,
+    and they are the subject of <xref ref="sec-independence">Section</xref>.
+  </p>
+</section>
+
+<section xml:id="sec-independence">
+  <title>Linear Independence</title>
+
+  <p>
+    In any vector space <m>V</m>, we say that a set of vectors
+    <me>
+      \{\vec{v}_1,\ldots,\vec{v}_2\}
+    </me>
+    is <term>linearly independent</term> if for any scalars <m>c_1,\ldots, c_k</m>
+    <me>
+      c_1\vec{v}_1+\cdots + c_k\vec{v}_k = \vec{0} \quad\Rightarrow\quad c_1=\cdots = c_k=0
+    </me>.
+  </p>
+
+  <p>
+    This means that no vector in the set can be written as a linear combination of the other vectors in that set.
+    We will soon see that when looking for vectors that span a subspace,
+    it is especially useful to find a spanning set that is also linearly independent.
+    The following lemma establishes some basic properties of independent sets.
+  </p>
+
+  <lemma>
+    <statement>
+      <p>
+        In any vector space <m>V</m>:
+        <ol>
+          <li>
+            <p>
+              If <m>\vec{v}\neq\vec{0}</m>, then <m>\{\vec{v}\}</m> is indenpendent.
+            </p>
+          </li>
+          <li>
+            <p>
+              If <m>S\subseteq V</m> contains the zero vector, then <m>S</m> is dependent.
+            </p>
+          </li>
+        </ol>
+      </p>
+    </statement>
+  </lemma>
+
+  <p>
+    The definition of linear independence tells us that if <m>\{\vec{v}_1,\ldots, \vec{v}_k\}</m>
+    is an independent set of vectors, then there is only one way to write <m>\vec{0}</m>
+    as a linear combination of these vectors; namely,
+    <me>
+      \vec{0} = 0\vec{v}_1+0\vec{v}_2+\cdots +0\vec{v_k}
+    </me>.
+    In fact, more is true: <em>any</em> vector in the span of a linearly independent set
+    can be written in only one way as a linear combination of those vectors.
+  </p>
+
+  <p>
+    Computationally, questions about linear independence are just questions
+    about homogeneous systems of linear equations.
+    For example, suppose we want to know if the vectors
+    <me>
+      \vec{u}=\bbm 1\\-1\\4\ebm, \vec{v}=\bbm 0\\2\\-3\ebm, \vec{w}=\bbm 4\\0\\-3\ebm
+    </me>
+    are linearly independent in <m>\mathbb{R}^3</m>.
+    This question leads to the vector equation
+    <me>
+      x\vec{u}+y\vec{v}+z\vec{w}=\vec{0}
+    </me>,
+    which becomes the matrix equation
+    <me>
+      \bbm 1\amp0\amp4\\-1\amp2\amp0\\4\amp-3\amp-3\ebm\bbm x\\y\\z\ebm = \bbm 0\\0\\0\ebm
+    </me>.
+  </p>
+
+  <p>
+    We now apply some basic theory from linear algebra.
+    A unique (and therefore, trivial) solution to this system is guaranteed if the matrix
+    <m>A = \bbm 1\amp0\amp4\\-1\amp2\amp0\\4\amp-3\amp-3\ebm</m> is invertible,
+    since in that case we have <m>\bbm x\\y\\z\ebm = A^{-1}\vec{0} = \vec{0}</m>.
+  </p>
+
+  <p>
+    This approach is problematic, however, since it won't work if we have 2 vectors, or 4.
+    Instead, we look at the reduced row-echelon form.
+    A unique solution corresponds to having a leading 1 in each column of <m>A</m>.
+    Let's check this condition.
+  </p>
+
+  <sage>
+    <input>
+      from sympy import *
+      init_printing()
+    </input>
+  </sage>
+
+  <sage>
+    <input>
+      A = Matrix(3,3,[1,0,4,-1,2,0,4,-3,-3])
+      A.rref()
+    </input>
+  </sage>
+
+  <p>
+    One observation is useful here, and will lead to a better understanding of independence.
+    First, it would be impossible to have 4 or more linearly independent vectors in <m>\mathbb{R}^3</m>.
+    Why? (How many leading ones can you have in a <m>3\times 4</m> matrix?)
+    Second, having two or fewer vectors makes it more likely that the set is independent.
+  </p>
+
+  <p>
+    The largest set of linearly independent vectors possible in <m>\mathbb{R}^3</m> contains three vectors.
+    You might have also observed that the smallest number of vectors needed to span <m>\mathbb{R}^3</m> is 3.
+    Hmm. Seems like there's something interesting going on here. But first, some more computation.
+  </p>
+
+  <exercise>
+    <statement>
+      <p>
+        Determine whether the set <m>\left\{\bbm 1\\2\\0\ebm, \bbm -1\\0\\3\ebm,\bbm -1\\4\\9\ebm\right\}</m>
+        is linearly independent in <m>\R^3</m>.
+      </p>
+    </statement>
+  </exercise>
+
+  <p>
+    Again, we set up a matrix and reduce:
+  </p>
+
+  <sage>
+    <input>
+      A = Matrix(3,3,[1,-1,-1,2,0,4,0,3,9])
+      A.rref()
+    </input>
+  </sage>
+
+  <p>
+    Notice that this time we don't get a unique solution, so we can conclude that these vectors are <em>not</em> independent.
+    Furthermore, you can probably deduce from the above that we have <m>2\vec{v}_1+3\vec{v}_2-\vec{v}_3=\vec{0}</m>.
+    Now suppose that <m>\vec{w}\in\spn\{\vec{v}_1,\vec{v}_2,\vec{v}_3\}</m>.
+    In how many ways can we write <m>\vec{w}</m> as a linear combination of these vectors?
+  </p>
+
+  <exercise>
+    <statement>
+      <p>
+        Which of the following subsets of <m>P_2(\mathbb{R})</m> are independent?
+        <md>
+          <mrow>\text{(a) } S_1 = \{x^2+1, x+1, x\}</mrow>
+          <mrow>\text{(b) } S_2 = \{x^2-x+3, 2x^2+x+5, x^2+5x+1\}</mrow>
+        </md>
+      </p>
+    </statement>
+  </exercise>
+
+  <p>
+    In each case, we set up the defining equation for independence, collect terms,
+    and then analyze the resulting system of equations.
+    (If you work with polynomials often enough,
+    you can probably jump straight to the matrix.
+    For now, let's work out the details.)
+  </p>
+
+  <p>Suppose
+    <me>
+      r(x^2+1)+s(x+1)+tx = 0
+    </me>.
+    Then <m>rx^2+(s+t)x+(r+s)=0=0x^2+0x+0</m>, so
+    <md>
+      <mrow>r \amp =0</mrow>
+      <mrow>s+t \amp =0</mrow>
+      <mrow>r+s\amp =0</mrow>
+    </md>.
+    And in this case, we don't even need to ask the computer.
+    The first equation gives <m>r=0</m> right away,
+    and putting that into the third equation gives <m>s=0</m>,
+    and the second equation then gives <m>t=0</m>.
+  </p>
+
+  <p>
+    Since <m>r=s=t=0</m> is the only solution, the set is independent.
+  </p>
+
+  <p>
+    Repeating for <m>S_2</m> leads to the equation
+    <me>
+      (r+2s+t)x^2+(-r+s+5t)x+(3r+5s+t)1=0.
+    </me>
+    This gives us:
+  </p>
+
+  <sage>
+    <input>
+      A = Matrix(3,3,[1,2,1,-1,1,5,3,5,1])
+      A.rref()
+    </input>
+  </sage>
+
+  <exercise>
+    <statement>
+      <p>
+        Determine whether or not the set
+        <me>
+          \left\{\bbm -1\amp 0\\0\amp -1\ebm, \bbm 1\amp -1\\ -1\amp 1\ebm,
+                 \bbm 1\amp 1\\1\amp 1\ebm, \bbm 0\amp -1\\-1\amp 0\ebm\right\}
+        </me>
+        is linearly independent in <m>M_2(\mathbb{R})</m>.
+      </p>
+    </statement>
+  </exercise>
+
+  <p>
+    Again, we set a linear combination equal to the zero vector, and combine:
+    <md>
+      <mrow>a\bbm -1\amp 0\\0\amp -1\ebm +b\bbm 1\amp -1\\ -1\amp 1\ebm
+        +c\bbm 1\amp 1\\1\amp 1\ebm +d \bbm 0\amp -1\\-1\amp 0\ebm = \bbm 0\amp 0\\ 0\amp 0\ebm</mrow>
+      <mrow>\bbm -a+b+c\amp -b+c-d\\-b+c-d\amp -a+b+c\ebm = \bbm 0\amp 0\\0\amp 0\ebm</mrow>
+    </md>.
+  </p>
+
+  <p>
+    We could proceed, but we might instead notice right away that equations 1 and 4 are identical,
+    and so are equations 2 and 3.
+    With only two distinct equations and 4 unknowns, we're certain to find nontrivial solutions.
+  </p>
+</section>
+
+<section xml:id="sec-dimension">
+  <title>Basis and dimension</title>
+
+  <p>
+    Next, we begin with an important result, sometimes known as the <q>Fundamental Theorem</q>:
+  </p>
+
+  <theorem xml:id="theorem-steinitz">
+    <title>Fundamental Theorem (Steinitz Exchange Lemma)</title>
+    <statement>
+      <p>
+        Suppose <m>V = \spn\{\vec{v}_1,\ldots, \vec{v}_n\}</m>.
+        If <m>\{\vec{w}_1,\ldots, \vec{w}_m\}</m> is a linearly independent set of vectors in <m>V</m>,
+        then <m>m\leq n</m>.
+      </p>
+    </statement>
+  </theorem>
+
+  <p>
+    If a set of vectors spans a vector space <m>V</m>, and it is not independent,
+    we observed that it is possible to remove a vector from the set and still span <m>V</m>.
+    This suggests that spanning sets that are also linearly independent are of particular importance,
+    and indeed, they are important enough to have a name.
+  </p>
+
+  <definition xml:id="def-basis">
+    <statement>
+      <p>
+        Let <m>V</m> be a vector space. A set <m>\mathcal{B}=\{\vec{e}_1,\ldots, \vec{e}_n\}</m>
+        is called a <term>basis</term> of <m>V</m> if <m>\mathcal{B}</m> is linearly independent,
+        and <m>\operatorname{span}\mathcal{B} = V</m>.
+      </p>
+    </statement>
+  </definition>
+
+  <p>
+    The importance of a basis is that vector vector <m>\vec{v}\in V</m> can be written in terms of the basis,
+    and this expression as a linear combination of basis vectors is <em>unique</em>.
+    Another important fact is that every basis has the same number of elements.
+  </p>
+
+  <theorem xml:id="thm-invariance">
+    <title>Invariance Theorem</title>
+
+    <statement>
+      <p>
+        If <m>\{\vec{e}_1,\ldots, \vec{e}_n\}</m> and <m>\{\vec{f}_1,\ldots, \vec{f}_m\}</m>
+        are both bases of a vector space <m>V</m>, then <m>m=n</m>.
+      </p>
+    </statement>
+  </theorem>
+
+  <p>
+    Suppose <m>V=\spn\{\vec{v}_1,\ldots,\vec{v}_n\}</m>.
+    If this set is not linearly independent, <xref ref="theorem-surplus-span">Theorem</xref>
+    tells us that we can remove a vector from the set, and still span <m>V</m>.
+    We can repeat this procedure until we have a linearly independent set of vectors, which will then be a basis.
+    These results let us make a definition.
+  </p>
+
+  <definition xml:id="def-dimension">
+    <statement>
+      <p>
+        Let <m>V</m> be a vector space.
+        If <m>V</m> can be spanned by a finite number of vectors,
+        then we call <m>V</m> a <term>finite-dimensional</term> vector space.
+        If <m>V</m> is finite-dimensional (and non-trivial), and <m>\{\vec{e}_1,\ldots, \vec{e}_n\}</m>
+        is a basis of <m>V</m>, we say that <m>V</m> has <term>dimension</term> <m>n</m>,
+        and write
+        <me>
+          \dim V = n
+        </me>.
+        If <m>V</m> cannot be spanned by finitely many vectors, we say that <m>V</m>
+        is <term>infinite-dimensional</term>.
+      </p>
+    </statement>
+  </definition>
+
+  <exercise>
+    <statement>
+      <p>
+        Find a basis for <m>U=\{X\in M_{22} \,|\, XA = AX\}</m>, if <m>A = \bbm 1\amp 1\\0\amp 0\ebm</m>
+      </p>
+    </statement>
+  </exercise>
+
+  <exercise>
+    <statement>
+      <p>
+        Show that the following are bases of <m>\R^3</m>:
+        <ul>
+          <li><m>\{(1,1,0),(1,0,1),(0,1,1)\}</m></li>
+          <li><m>\{(-1,1,1),(1,-1,1),(1,1,-1)</m></li>
+        </ul>
+      </p>
+    </statement>
+  </exercise>
+
+  <sage>
+    <input>
+      from sympy import *
+      init_printing()
+    </input>
+  </sage>
+
+  <sage>
+
+  </sage>
+
+  <exercise>
+    <statement>
+      <p>
+        Show that the following is a basis of <m>M_{22}</m>:
+        <me>
+          \left\{\bbm 1\amp 0\\0\amp 1\ebm, \bbm 0\amp 1\\1\amp 0\ebm, \bbm 1\amp 1\\0\amp 1\ebm, \bbm 1\amp 0\\0\amp 0\ebm\right\}
+        </me>.
+      </p>
+    </statement>
+  </exercise>
+
+  <sage>
+
+  </sage>
+
+  <exercise>
+    <statement>
+      <p>
+        Show that <m>\{1+x,x+x^2,x^2+x^3,x^3\}</m> is a basis for <m>P_3</m>.
+      </p>
+    </statement>
+  </exercise>
+
+  <sage>
+
+  </sage>
+
+  <exercise>
+    <statement>
+      <p>
+        Find a basis and dimension for the following subpaces of <m>P_2</m>:
+        <ol label='a'>
+          <li>
+            <m>U_1 = \{a(1+x)+b(x+x^2)\,|\, a,b\in\R\}</m>
+          </li>
+          <li>
+            <m>U_2=\{p(x)\in P_2 \,|\, p(1)=0\}</m>
+          </li>
+          <li>
+            <m>U_3 = \{p(x)\in P_2 \,|\, p(x)=p(-x)\}</m>
+          </li>
+        </ol>
+      </p>
+    </statement>
+    <solution>
+      <p>
+        <ol label='a'>
+          <li>
+            <p>
+              By definition, <m>U_1 = \spn \{1+x,x+x^2\}</m>,
+              and these vectors are independent, since neither is a scalar multiple of the other.
+              Since there are two vectors in this basis, <m>\dim U_1 = 2</m>.
+            </p>
+          </li>
+          <li>
+            <p>
+              If <m>p(1)=0</m>, then <m>p(x)=(x-1)q(x)</m> for some polynomial <m>q</m>.
+              Since <m>U_2</m> is a subspace of <m>P_2</m>, the degree of <m>q</m> is at most 2.
+              Therefore, <m>q(x)=ax+b</m> for some <m>a,b\in\R</m>, and
+              <me>
+                p(x) = (x-1)(ax+b) = a(x^2-x)+b(x-1)
+              </me>.
+              Since <m>p</m> was arbitrary, this shows that <m>U_2 = \spn\{x^2-x,x-1\}</m>.
+            </p>
+
+            <p>
+              The set <m>\{x^2-x,x-1\}</m> is also independent,
+              since neither vector is a scalar multiple of the other.
+              Therefore, this set is a basis, and <m>\dim U_2=2</m>.
+            </p>
+          </li>
+          <li>
+            <p>
+              If <m>p(x)=p(-x)</m>, then <m>p(x)</m> is an even polynomial,
+              and therefore <m>p(x)=a+bx^2</m> for <m>a,b\in\R</m>.
+              (If you didn't know this it's easily verified: if
+              <me>
+                a+bx+cx^2 = a+b(-x)+c(-x)^2
+              </me>,
+              we can immediately cancel <m>a</m> from each side,
+              and since <m>(-x)^2=x^2</m>, we can cancel <m>cx^2</m> as well.
+              This leaves <m>bx=-bx</m>, or <m>2bx=0</m>, which implies that <m>b=0</m>.)
+            </p>
+
+            <p>
+              It follows that the set <m>\{1,x^2\}</m> spans <m>U_3</m>,
+              and since this is a subset of the standard basis <m>\{1,x,x^2\}</m> of <m>P_2</m>,
+              it must be independent, and is therefore a basis of <m>U_3</m>,
+              letting us conclude that <m>\dim U_3=2</m>.
+            </p>
+          </li>
+        </ol>
+      </p>
+    </solution>
+  </exercise>
+
+  <p>
+    We've noted a few times now that if <m>\vec{w}\in\spn\{\vec{v}_1,\ldots, \vec{v}_n\}</m>,
+    then
+    <me>
+      \spn\{\vec{w},\vec{v}_1,\ldots, \vec{v}_n\}=\spn\{\vec{v}_1,\ldots, \vec{v}_n\}
+    </me>
+    If <m>\vec{w}</m> is not in the span, we can make another useful observation:
+  </p>
+
+  <lemma xml:id="lemma-independent">
+    <title>Independent Lemma</title>
+    <statement>
+      <p>
+        Suppose <m>\{\vec{v}_1,\ldots, \vec{v}_n\}</m> is a linearly independent set of vectors in a vector space <m>V</m>.
+        If <m>\vec{u}\in V</m> but <m>\vec{u}\notin \spn\{\vec{v}_1,\ldots, \vec{v}_n\}</m>,
+        then <m>\{\vec{u},\vec{v}_1,\ldots, \vec{v}_n\}</m> is independent.
+      </p>
+    </statement>
+    <proof>
+      <p>
+        Suppose <m>S=\{\vec{v}_1,\ldots, \vec{v}_n\}</m> is independent,
+        and that <m>\vec{u}\notin\spn S</m>. Suppose we have
+        <me>
+          a\vec{u}+c_1\vec{v}_1+c_2\vec{v}_2+\cdots +c_n\vec{b}_n=\vec{0}
+        </me>
+        for scalars <m>a,c_1,\ldots, c_n</m>. We must have <m>a=0</m>;
+        otherwise, we can multiply by <m>\frac1a</m> and rearrange to obtain
+        <me>
+          \vec{u} = -\frac{c_1}{a}\vec{v}_1-\cdots -\frac{c_n}{a}\vec{v}_n
+        </me>,
+        but this would mean that <m>\vec{u}\in \spn S</m>, contradicting our assumption.
+      </p>
+
+      <p>
+        With <m>a=0</m> we're left with
+        <me>
+          c_1\vec{v}_1+c_2\vec{v}_2+\cdots +c_n\vec{b}_n=\vec{0}
+        </me>,
+        and since we assumed that the set <m>S</m> is independent,
+        we must have <m>c_1=c_2=\cdots=c_n=0</m>. Since we already showed <m>a=0</m>,
+        this shows that <m>\{\vec{u},\vec{v}_1,\ldots, \vec{v}_n\}</m> is independent.
+      </p>
+    </proof>
+
+  </lemma>
+  <p>
+    This is, in fact, an <q>if and only if</q> result.
+    If <m>\vec{u}\in\spn\{\vec{v}_1,\ldots, \vec{v}_n\}</m>, then <m>\{\vec{u},\vec{v}_1,\ldots, \vec{v}_n\}</m> is not independent.
+    Above, we argued that if <m>V</m> is finite dimensional,
+    then any spanning set for <m>V</m> can be reduced to a basis.
+    It probably won't surprise you that the following is also true.
+  </p>
+
+  <lemma xml:id="lem-enlarge-independent">
+    <statement>
+      <p>
+        Let <m>V</m> be a finite-dimensional vector space,
+        and let <m>U</m> be any subspace of <m>V</m>.
+        Then any independent set of vectors <m>\{\vec{u}_1,\ldots, \vec{u}_k\}</m> in <m>U</m>
+        can be enlarged to a basis of <m>U</m>.
+      </p>
+    </statement>
+    <proof>
+      <p>
+        This follows from <xref ref="lemma-independent"/>.
+        If our independent set of vectors spans <m>U</m>, then it's a basis and we're done.
+        If not, we can find some vector not in the span,
+        and add it to our set to obtain a larger set that is still independent.
+        We can continue adding vectors in this fashion until we obtain a spanning set.
+      </p>
+
+      <p>
+        Note that this process <em>must</em> terminate: <m>V</m> is finite-dimensional,
+        so there is a finite spanning set for <m>V</m>, and therefore for <m>U</m>.
+        By the Steinitz Exchange lemma, our independent set cannot get larger than this spanning set.
+      </p>
+    </proof>
+
+  </lemma>
+
+  <theorem xml:id="thm-basis-exist">
+    <statement>
+      <p>
+        Any finite-dimensional vector space <m>V</m> has a basis.
+        Moreover:
+        <ol>
+          <li>
+            <p>
+              If <m>V</m> can be spanned by <m>m</m> vectors,
+              then <m>\dim V\leq m</m>.
+            </p>
+          </li>
+          <li>
+            <p>
+              Given an independent set <m>I</m> in <m>V</m>,
+              and a basis <m>\mathcal{B}</m> of <m>V</m>,
+              we can enlarge <m>I</m> to a basis of <m>V</m> by adding elements of <m>\mathcal{B}</m>.
+            </p>
+          </li>
+        </ol>
+      </p>
+
+      <p>
+        If <m>U</m> is a subspace of <m>V</m>, then:
+        <ol>
+          <li>
+            <p>
+              <m>U</m> is finite-dimensional, and <m>\dim U\leq \dim V</m>.
+            </p>
+          </li>
+          <li>
+            <p>
+              If <m>\dim U = \dim V</m>, then <m>U=V</m>.
+            </p>
+          </li>
+        </ol>
+      </p>
+    </statement>
+  </theorem>
+
+  <exercise>
+    <statement>
+      <p>
+        Find a basis of <m>M_{22}(\R)</m> that contains the vectors
+        <me>
+          \vec{v}=\bbm 1\amp 1\\0\amp 0\ebm, \vec{w}=\bbm 0\amp 1\\0\amp 1\ebm
+        </me>.
+      </p>
+    </statement>
+    <solution>
+      <p>
+        By the previous theorem, we can form a basis by adding vectors from the standard basis
+        <me>
+          \left\{\bbm 1\amp 0\\0\amp 0\ebm, \bbm 0\amp 1\\0\amp 0\ebm, \bbm 0\amp 0\\1\amp 0\ebm, \bbm 0\amp 0\\0\amp 1\ebm\right\}
+        </me>.
+        It's easy to check that <m>\bbm 1\amp 0\\0\amp 0\ebm</m> is not in the span of <m>\{\vec{v},\vec{w}\}</m>.
+        To get a basis, we need one more vector.
+        Observe that all three of our vectors so far have a zero in the <m>(2,1)</m>-entry.
+        Thus, <m>\bbm 0\amp 0\\1\amp 0\ebm</m> cannot be in the span of the first three vectors,
+        and adding it gives us our basis.
+      </p>
+    </solution>
+  </exercise>
+
+  <exercise>
+    <statement>
+      <p>
+        Extend the set <m>\{1+x,x+x^2,x-x^3\}</m> to a basis of <m>P_3(\R)</m>.
+      </p>
+    </statement>
+    <solution>
+      <p>
+        Again, we only need to add one vector from the standard basis
+        <m>\{1,x,x^2,x^3\}</m>, and it's not too hard to check that any of them will do.
+      </p>
+    </solution>
+  </exercise>
+
+  <exercise>
+    <statement>
+      <p>
+        Give two examples of infinite-dimensional vector spaces.
+        Support your answer.
+      </p>
+    </statement>
+  </exercise>
+
+  <p>
+    Let's recap our results so far:
+    <ul>
+      <li>
+        <p>
+          A basis for a vector space <m>V</m> is an independent set of vectors that spans <m>V</m>.
+        </p>
+      </li>
+      <li>
+        <p>
+          The number of vectors in any basis of <m>V</m> is a constant, called the dimension of <m>V</m>.
+        </p>
+      </li>
+      <li>
+        <p>
+          The number of vectors in any independent set is always less than or equal to the number of vectors in a spanning set.
+        </p>
+      </li>
+      <li>
+        <p>
+          In a finite-dimensional vector space, any independent set can be enlarged to a basis,
+          and any spanning set can be cut down to a basis by deleting vectors that are in the span of the remaining vectors.
+        </p>
+      </li>
+    </ul>
+    Another important aspect of dimension is that it reduces many problems,
+    such as determining equality of subspaces, to counting problems.
+  </p>
+
+  <theorem xml:id="thm-subspace-dim">
+    <statement>
+      <p>
+        Let <m>U</m> and <m>W</m> be subspaces of a finite-dimensional vector space <m>V</m>.
+        <ol>
+          <li>
+            <p>
+              If <m>U\subseteq W</m>, then <m>\dim U\leq \dim W</m>.
+            </p>
+          </li>
+          <li>
+            <p>
+              If <m>U\subseteq W</m> and <m>\dim U=\dim W</m>, then <m>U=W</m>.
+            </p>
+          </li>
+        </ol>
+      </p>
+    </statement>
+    <proof>
+      <p>
+        <ol>
+          <li>
+            <p>
+              Suppose <m>U\subseteq W</m>, and let <m>B=\{\vec{u}_1,\ldots, \vec{u}_k\}</m>
+              be a basis for <m>U</m>. Since <m>B</m> is a basis, it's independent.
+              And since <m>B\subseteq U</m> and <m>U\subseteq W</m>, <m>B\subseteq W</m>.
+              Thus, <m>B</m> is an independent subset of <m>W</m>,
+              and since any basis of <m>W</m> spans <m>W</m>,
+              we know that <m>\dim U = k \leq \dim W</m>,
+              by <xref ref="theorem-steinitz">Theorem</xref>.
+            </p>
+          </li>
+          <li>
+            <p>
+              Suppose <m>U\subseteq W</m> and <m>\dim U = \dim W</m>.
+              Let <m>B</m> be a basis for <m>U</m>.
+              As above, <m>B</m> is an independent subset of <m>W</m>.
+              If <m>W\neq U</m>, then there is some <m>\vec{w}\in W</m> with <m>\vec{w}\notin U</m>.
+              But <m>U=\spn B</m>, so that would mean that <m>B\cup \{\vec{w}\}</m>
+              is a linearly independent set containing <m>\dim U+1</m> vectors.
+              This is impossible, since <m>\dim W=\dim U</m>,
+              so no independent set can contain more than <m>\dim U</m> vectors.
+            </p>
+          </li>
+        </ol>
+      </p>
+    </proof>
+
+  </theorem>
+
+  <p>
+    An even more useful counting result is the following:
+  </p>
+
+  <theorem xml:id="thm-half-the-work">
+    <statement>
+      <p>
+        Let <m>V</m> be an <m>n</m>-dimensional vector space.
+        If the set <m>S</m> contains <m>n</m> vectors,
+        then <m>S</m> is independent if and only if <m>\spn S=V</m>.
+      </p>
+    </statement>
+    <proof>
+      <p>
+        If <m>S</m> is independent, then it can be extended to a basis <m>B</m> with <m>S\subseteq B</m>.
+        But <m>S</m> and <m>B</m> both contain <m>n</m> vectors (since <m>\dim V=n</m>),
+        so we must have <m>S=B</m>.
+      </p>
+
+      <p>
+        If <m>S</m> spans <m>V</m>, then <m>S</m> must contain a basis <m>B</m>,
+        and as above, since <m>S</m> and <m>B</m> contain the same number of vectors,
+        they must be equal.
+      </p>
+    </proof>
+
+  </theorem>
+
+  <paragraphs xml:id="pars-subspace-combine">
+    <title>New subspaces from old</title>
+    <p>
+      On your first assignment, you showed that if <m>U</m> and <m>W</m> are subspaces of a vector space <m>V</m>,
+      then the intersection <m>U\cap W</m> is also a subspace of <m>V</m>.
+      You also showed that the union <m>U\cup W</m> is generally not a subspace,
+      unless one subspace is contained in the other
+      (in which case the union is just the larger of the two subspaces we already have).
+    </p>
+
+    <p>
+      In class, we discussed the fact that the right way to define a subspace containing both <m>U</m> and <m>W</m>
+      is using their <term>sum</term>: we define the sum <m>U+W</m> of two subspaces by
+      <me>
+        U+W = \{\vec{u}+\vec{w} \,|\, \vec{u}\in U \text{ and } \vec{w}\in W\}
+      </me>.
+      We proved that <m>U+W</m> is again a subspace of <m>V</m>.
+    </p>
+
+    <p>
+      If <m>U\cap W = \{\vec{0}\}</m>, we say that the sum is a <term>direct sum</term>,
+      and write it as <m>U\oplus W</m>.
+      The following theorem might help us understand why direct sums are singled out for special attention:
+    </p>
+    <theorem xml:id="thm-sum-dimension">
+      <statement>
+        <p>
+          Let <m>U</m> and <m>W</m> be subspaces of a finite-dimensional vector space <m>V</m>.
+          Then <m>U+W</m> is finite-dimensional, and
+          <me>
+            \dim(U+W)=\dim U + \dim W - \dim(U\cap W)
+          </me>.
+        </p>
+      </statement>
+
+    </theorem>
+
+    <p>
+      If the sum is direct, then we have simply <m>\dim(U\oplus W) = \dim U + \dim W</m>.
+      The other reason why direct sums are preferable, is that any <m>\vec{v}\in U\oplus W</m>
+      can be written <em>uniquely</em> as <m>\vec{v}=\vec{u}+\vec{w}</m>
+      where <m>\vec{U}\in U</m> and <m>\vec{w}\in W</m>.
+    </p>
+
+    <theorem xml:id="thm-direct-sum">
+      <statement>
+        <p>
+          For any subspaces <m>U,W</m> of a vector space <m>V</m>,
+          <m>U\cap W = \{\vec{0}\}</m> if and only if for every <m>\vec{v}\in U+W</m>
+          there exist unique <m>\vec{u}\in U, \vec{w}\in W</m> such that <m>\vec{v}=\vec{u}+\vec{w}</m>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          Suppose that <m>U\cap W = \{\vec{0}\}</m>, and suppose that we have
+          <m>\vec{v} = \vec{u}_1+\vec{w}_1 = \vec{u}_2+\vec{w}_2</m>,
+          for <m>\vec{u}_1,\vec{u}_2\in U,\vec{w}_1,\vec{w}_2\in W</m>.
+          Then <m>\vec{0}=(\vec{u}_1-\vec{u}_2)+(\vec{w}_1-\vec{w}_2)</m>,
+          which implies that
+          <me>
+            \vec{w}_1-\vec{w}_2 = -(\vec{u}_1-\vec{u}_2)
+          </me>.
+          Now, <m>\vec{u}=\vec{u}_1-\vec{u}_2\in U</m>,
+          since <m>U</m> is a subspace, and similarly,
+          <m>\vec{w}=\vec{w}_1-\vec{w}_2\in W</m>.
+          But we also have <m>\vec{w}=-\vec{u}</m>, which implies that <m>\vec{w}\in U</m>.
+          Therefore, <m>\vec{w}\in U\cap W</m>, which implies that <m>\vec{w}=\vec{0}</m>,
+          so <m>\vec{w}_1=\vec{w}_2</m>.
+          But we must also then have <m>\vec{u}=\vec{0}</m>, so <m>\vec{u}_1=\vec{u}_2</m>.
+        </p>
+
+        <p>
+          Conversely, suppose that every <m>\vec{v}\in U+W</m> can be written uniquely as <m>\vec{v}=vec{u}+\vec{w}</m>,
+          with <m>\vec{u}\in U</m> and <m>\vec{w}\in W</m>. Suppose that <m>\vec{a}\in U\cap W</m>.
+          Then <m>\vec{a}\in U</m> and <m>\vec{a}\in W</m>, so we also have <m>-\vec{a}\in W</m>,
+          since <m>W</m> is a subspace.
+          But then <m>\vec{0}=\vec{a}+(-\vec{a})</m>, where <m>\vec{a}\in U</m> and <m>-\vec{a}\in W</m>.
+          On the other hand, <m>\vec{0}=\vec{0}+\vec{0}</m>,
+          and <m>\vec{0}</m> belongs to both <m>U</m> and <m>W</m>. It follows that <m>\vec{a}=\vec{0}</m>.
+          Since <m>\vec{a}</m> was arbitrary, <m>U\cap W = \{\vec{0}\}</m>.
+        </p>
+      </proof>
+
+    </theorem>
+
+    <p>
+      We end with one last application of the theory we've developed on the existence of a basis for a finite-dimensional vector space.
+      As we continue on to later topics, we'll find that it is often useful to be able to decompose a vector space into a direct sum of subspaces.
+      Using bases, we can show that this is always possible.
+    </p>
+
+    <theorem xml:id="thm-construct-complement">
+      <statement>
+        <p>
+          Let <m>V</m> be a finite-dimensonal vector space, and let <m>U</m> be any subspace of <m>V</m>.
+          Then there exists a subspace <m>W\subseteq V</m> such that <m>U\oplus W = V</m>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          Let <m>\{\vec{u}_1,\ldots, \vec{u}_m\}</m> be a basis of <m>U</m>.
+          Since <m>U\subseteq W</m>, the set <m>\{\vec{u}_1,\ldots, \vec{u}_m\}</m>
+          is a linearly independent subset of <m>V</m>.
+          Since any linearly independent set can be extended to a basis of <m>V</m>,
+          there exist vectors <m>\vec{w}_1,\ldots,\vec{w}_n</m> such that
+          <me>
+            \{\vec{u}_1,\ldots, \vec{u}_m,\vec{w}_1,\ldots, \vec{w}_n\}
+          </me>
+          is a basis of <m>V</m>.
+        </p>
+
+        <p>
+          Now, let <m>W = \spn\{\vec{w}_1,\ldots, \vec{w}_n\}</m>.
+          Then <m>W</m> is a subspace, and <m>\{\vec{w}_1,\ldots, \vec{w}_n\}</m>
+          is a basis for <m>W</m>. (It spans, and must be independent since it's a subset of an independent set.)
+        </p>
+
+        <p>
+          Clearly, <m>U+W=V</m>, since <m>U+W</m> contains the basis for <m>V</m> we've constructed.
+          To show the sum is direct, it suffices to show that <m>U\cap W = \{\vec{0}\}</m>.
+          To that end, suppose that <m>\vec{v}\in U\cap W</m>.
+          Since <m>\vec{v}\in U</m>, we have
+          <me>
+            \vec{v}=a_1\vec{u}_1+\cdots +a_m\vec{u}_m
+          </me>
+          for scalars <m>a_1,\ldots, a_m</m>. Since <m>\vec{v}\in W</m>, we can write
+          <me>
+            \vec{v}=b_1\vec{w}_1+\cdots + b_n\vec{w}_n
+          </me>
+          for scalars <m>b_1,\ldots, b_n</m>. But then
+          <me>
+            \vec{0}=\vec{v}-\vec{v}=a_1\vec{u}_1+\cdots a_m\vec{u}_m-b_1\vec{w}_1-\cdots -b_n\vec{w}_n.
+          </me>
+          Since <m>\{\vec{u}_1,\ldots, \vec{u}_m,\vec{w}_1,\ldots, \vec{w}_n\}</m> is a basis for <m>V</m>,
+          it's independent, and therefore, all of the <m>a_i,b_j</m> must be zero, and therefore, <m>\vec{v}=\vec{0}</m>.
+
+        </p>
+      </proof>
+
+
+    </theorem>
+
+    <p>
+      The subspace <m>W</m> constructed in the theorem above is called a <term>complement</term> of <m>U</m>.
+      It is not unique; indeed, it depends on the choice of basis vectors.
+      For example, if <m>U</m> is a one-dimensional subspace of <m>\R^2</m>; that is, a line,
+      then any other non-parallel line through the origin provides a complement of <m>U</m>.
+      Later we will see that an especially useful choice of complement is the <term>orthogonal complement</term>.
+    </p>
+
+  </paragraphs>
+
+
+</section>
+</chapter>
