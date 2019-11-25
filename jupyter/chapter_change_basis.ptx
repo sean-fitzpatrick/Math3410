@@ -220,6 +220,149 @@
       </solution>
     </exercise>
 
+    <p>
+      When we compute the matrix of a transformation with respect to a non-standard basis,
+      we don't have to worry about how to write vectors in the domain in terms of that basis.
+      Instead, we simply plug the basis vectors into the transformation,
+      and then determine how to write the output in terms of the basis of the codomain.
+      However, if we want to <em>use</em> this matrix to compute values of <m>T:V\to W</m>,
+      then we need a systematic way of writing elements of <m>V</m> in terms of the given basis.
+    </p>
+
+    <example>
+      <title>Working with the matrix of a transformation</title>
+
+
+      <statement>
+        <p>
+          Let <m>T:P_2(\R)\to \R^2</m> be a linear transformation whose matrix is given by
+          <me>
+            M(T) = \bbm 3\amp 0 \amp 3\\-1\amp -2\amp 2\ebm
+          </me>
+          with respect to the ordered bases <m>B = \{1+x, 2-x, 2x+x^2\}</m> of  <m>P_2(\R)</m>
+          and <m>D = \{(0,1),(-1,1)\}</m> of <m>\R^2</m>. Find the value of <m>T(2+3x-4x^2)</m>.
+        </p>
+      </statement>
+      <solution>
+        <p>
+          We need to write the input <m>2+3x-4x^2</m> in terms of the basis <m>B</m>.
+          This amounts to solving the system of equations given by
+          <me>
+            a(1+x)+b(2-x)+c(2x+x^2)=2+3x-4x^2
+          </me>.
+          Of course, we can easily set up and solve this system,
+          but let's try to be systematic, and obtain a more useful result for future problems.
+          Since we can easily determine how to write any polynomial in terms of the standard basis <m>\{1,x,x^2\}</m>,
+          it suffices to know how to write these three polynomials in terms of our basis.
+        </p>
+
+        <p>
+          At first, this seems like more work. After all, we now have three systems to solve:
+          <md>
+            <mrow>a_1(x+1)+b_1(2-x)+c_1(2x+x^2) \amp =1</mrow>
+            <mrow>a_2(x+1)+b_2(2-x)+c_2(2x+x^2) \amp =x</mrow>
+            <mrow>a_3(x+1)+b_3(2-x)+c_3(2x+x^2) \amp x^2</mrow>
+          </md>.
+          However, all three systems have the same coefficient matrix,
+          so we can solve them simultaneously, by adding three <q>constants</q>
+          columns to our augmented matrix.
+        </p>
+
+        <p>
+          We get the matrix
+          <me>
+            \left[\left. \begin{matrix}1\amp 2\amp 0\\1\amp -1\amp 2\\0\amp 0\amp 1\end{matrix}
+            \right\vert\left.\begin{matrix}1\amp 0\amp 0\\0\amp 1\amp 0\\0\amp 0\amp 1\end{matrix}\right]
+          </me>.
+          But this is exactly the augmented matrix we'd right down if we were trying to find the inverse of the matrix
+          <me>
+            P=\bbm\amp 2\amp 0\\1\amp -1\amp 2\\0\amp 0\amp 1\ebm
+          </me>
+          whose columns are the coefficient representations of our given basis vectors in terms of the standard basis.
+        </p>
+
+        <p>
+          We compute (using the Sage cell below) that
+          <me>
+            P^{-1}=\frac13\bbm 1\amp 2\amp -4\\1\amp -1\amp 2\\0\amp 0\amp 3\ebm
+          </me>,
+          and
+          <me>
+            M(T)P^{-1}=\bbm 1\amp 2\amp -1\\-1\amp 0\amp 2\ebm
+          </me>.
+          This matrix first converts the coefficient vector for a polynomial <m>p(x)</m>
+          with respect to the standard basis into the coefficient vector for our given basis <m>B</m>,
+          and then multiplies by the matrix representing our transformation.
+          The result will be the coefficient vector for <m>T(p(x))</m> with repect to the basis <m>D</m>.
+        </p>
+
+        <p>
+          The polynomial <m>p(x) = 2+3x-4x^2</m> has coefficient vector <m>\bbm 2\\3\\-4\ebm</m>
+          with respect to the standard basis. We find that <m>M(T)P^{-1}\bbm 2\\3\\-4\ebm = \bbm 12\\-10\ebm</m>.
+          The coefficients <m>12</m> and <m>-10</m> are the coefficients of <m>T(p(x))</m>
+          with repsect to the basis <m>D</m>. Thus,
+          <me>
+            T(2+3x-4x^2) = 12(0,1)-10(-1,1) = (10,2)
+          </me>.
+          Note that in the last step we gave the <q>simplified</q> answer <m>(10,2)</m>,
+          which is simplified primarily in that it is expressed with respect to the standard basis.
+        </p>
+
+        <p>
+          Note that we can also introduce the matrix <m>Q = \bbm 0\amp -1\\1\amp 1\ebm</m>
+          whose columns are the coefficient vectors of the vectors in the basis <m>D</m>
+          with respect to the standard basis.
+          The effect of multiplying by <m>Q</m> is to convert from coefficients with respect to <m>D</m>
+          into a coefficient vector with respect to the standard basis.
+          We can then write a new matrix <m>\tilde{M}(T) = QM(T)P^{-1}</m>;
+          this new matrix is now the matrix representation of <m>T</m> with respect to the
+          <em>standard</em> bases of <m>P_2(\R)</m> and <m>\R^2</m>.
+          We check that
+          <me>
+            \tilde{M}(T)\bbm 2\\3\\-4\ebm = \bbm 10\\2\ebm
+          </me>,
+          as before.
+        </p>
+
+        <p>
+          We find that <m>\tilde{M}(T) = \bbm 1\amp 0\amp -2\\0\amp 2\amp 1\ebm</m>.
+          This lets us determine that for a general polynomial <m>p(x) = a+bx+cx^2</m>,
+          <me>
+            \tilde{M}(T)\bbm a\\b\\c\ebm = \bbm a-2c\\2b+c\ebm
+          </me>,
+          and therefore, our original transformation must have been
+          <me>
+            T(a+bx+cx^2)=(a-2c,2b+c)
+          </me>.
+
+        </p>
+      </solution>
+    </example>
+
+    <sage>
+      <input>
+        from sympy import *
+        init_printing()
+        P = Matrix(3,3,[1,2,0,1,-1,2,0,0,1])
+        P**-1
+      </input>
+    </sage>
+
+    <sage>
+      <input>
+        M = Matrix(2,3,[3,0,3,-1,-2,2])
+        v = Matrix([2,3,-4])
+        M*P**-1,v,(M*P**-1)*v
+      </input>
+    </sage>
+
+    <sage>
+      <input>
+        Q = Matrix(2,2,[0,-1,1,1])
+        Q*M*P**-1
+      </input>
+    </sage>
+
     <exercise>
       <statement>
         <p>
@@ -238,34 +381,34 @@
       <solution>
         <p>
           We must first write our general input in terms of the given basis.
-          If we write
+          With respect to the standard basis
           <me>
-            x\bbm 1\amp 0\\0\amp 0\ebm + y\bbm 0\amp 1\\0\amp 1\ebm + z \bbm 0\amp 1\\1\amp 0\ebm + w\bbm 1\amp 0\\0\amp 1\ebm  = \bbm a\amp b\\c\amp d\ebm
+            B_0 = \left\{\bbm 1\amp 0\\0\amp 0\ebm, \bbm 0\amp 1\\0\amp 0\ebm, \bbm 0\amp 0\\1\amp 0\ebm, \bbm 0\amp 0\\0\amp 1\ebm\right\}
           </me>,
-          then we must have
-          <md>
-            <mrow>x+w \amp =a</mrow>
-            <mrow>y+z \amp b</mrow>
-            <mrow> z \amp =c</mrow>
-            <mrow> y+w \amp =d</mrow>
-          </md>.
-          These equations are easily solved to give
+          we have the matrix <m>P = bbm 1\amp 0\amp 0\amp 1\\0\amp 1\amp 1\amp 0\\0\amp 0\amp 1\amp 0\\0\amp 1\amp 0\amp 1\ebm</m>,
+          representing the change from the basis <m>B</m> the basis <m>B_0</m>.
+          The basis <m>D</m> of <m>P_2(\R)</m> is already the standard basis.
+          For a matrix <m>X = \bbm a\amp b\\c\amp d\ebm</m> we find
           <me>
-            x=a+b-c-d, y=b-c, z=c, w = -b+c+d
-          </me>.
-          We can now find
-          <me>
-            M_{DB}(T)C_B(X)=\bbm 2\amp -1\amp 0\amp 3\\0\amp 4\amp -5\amp 1\ebm\bbm a+b-c-d\\b-c\\c\\-b+c+d\ebm =
-            \bbm 2a-2b+2c+d\\3b+d\\-a+b+2c-d\ebm
+            M_{DB}(T)P^{-1}C_{B_0}(X)=\bbm 2\amp -2\amp 2\amp 1\\0\amp 3\amp -8\amp 1\\-1\amp 1\amp 2\amp -1\ebm\bbm a\\b\\c\\d\ebm =
+            \bbm 2a-2b+2c+d\\3b-8c+d\\-a+b+2c-d\ebm
           </me>.
           But this is equal to <m>C_D(T(X))</m>, so
           <me>
-            T\left(\bbm a\amp b\\c\amp d\ebm\right) = C_D^{-1}\bbm 2a-2b+2c+d\\3b+d\\-a+b+2c-d\ebm = (2a-2b+2c+d)+(3b+d)x+(-a+b+2c-d)x^2
+            T\left(\bbm a\amp b\\c\amp d\ebm\right) = C_D^{-1}\bbm 2a-2b+2c+d\\3b-8c+d\\-a+b+2c-d\ebm = (2a-2b+2c+d)+(3b-8c+d)x+(-a+b+2c-d)x^2
           </me>.
 
         </p>
       </solution>
     </exercise>
+
+    <sage>
+      <input>
+        M = Matrix(3,4,[2,-1,0,3,0,4,-5,1,-1,0,3,-2])
+        P = Matrix(4,4,[1,0,0,1,0,1,1,0,0,0,1,0,0,1,0,1])
+        M*P**-1
+      </input>
+    </sage>
 
     <p>
       In textbooks such as Sheldon Axler's <em>Linear Algebra Done Right</em> that focus primarily on linear transfomrations,
