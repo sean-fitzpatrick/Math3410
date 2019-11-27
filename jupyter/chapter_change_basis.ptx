@@ -835,4 +835,172 @@
       and that we can compute eigenvalues of an operator using any matrix representation of that operator.
     </p>
   </section>
+
+  <section xml:id="sec-direct-sum">
+    <title>Direct Sums and Invariant Subspaces</title>
+    <introduction>
+      <p>
+        Much of this section has been mentioned previously in the course (and these notes),
+        but we will follow the organization of Nicholson's textbook,
+        and reprise these concepts in more detail than previously.
+      </p>
+    </introduction>
+
+    <subsection xml:id="subsec-invariant">
+      <title>Invariant subspaces</title>
+      <definition xml:id="def-invariant-subspace">
+        <statement>
+          <p>
+            Given an operator <m>T:V\to V</m>, we say that a subspace <m>U\subseteq V</m>
+            is <m>T</m>-<term>invariant</term> if <m>T(\uu)\in U</m> for all <m>\uu\in U</m>.
+          </p>
+        </statement>
+      </definition>
+
+      <p>
+        In other words, a subspace <m>U</m> is <m>T</m>-invariant if <m>T</m> does not map any vectors in <m>U</m> outside of <m>U</m>.
+        Notice that if we shrink the domain of <m>T</m> to <m>U</m>, then we get an operator from <m>U</m> to <m>U</m>,
+        since the image <m>T(U)</m> is contained in <m>U</m>.
+      </p>
+
+      <p>
+        Given a basis <m>B=\basis{u}{k}</m> of <m>U</m>,
+        note that <m>U</m> is <m>T</m>-invariant if and only if <m>T(\uu_i)\in U</m> for each <m>i=1,2,\ldots, k</m>.
+      </p>
+
+      <p>
+        For any operator <m>T:V\to V</m>, there are four subspaces that are always <m>T</m>-invariant:
+        <me>
+          \{\mathbf{0}\}, V, \ker T, \text{ and } \im T
+        </me>.
+        Of course, some of these subspaces might be the same; for example,
+        if <m>T</m> is invertible, then <m>\ker T = \{\mathbf{0}\}</m> and <m>\im T = V</m>.
+        (We will skip the proof that <m>\ker T</m> and <m>\im T</m> are <m>T</m>-invariant,
+        since this has been assigned as homework!)
+      </p>
+
+      <definition xml:id="def-restriction">
+        <statement>
+          <p>
+            Let <m>T:V\to V</m> be a linear operator, and let <m>U</m> be a <m>T</m>-invariant subspace.
+            The <term>restriction</term> of <m>T</m> to <m>U</m>, denoted <m>T|_U</m>,
+            is the operator <m>T|_U:U\to U</m> defined by <m>T|_U(\uu)=T(\uu)</m> for all <m>\uu\in U</m>.
+          </p>
+        </statement>
+      </definition>
+
+      <p>
+        Notice that the restriction <m>T|_U</m> is defined by the same <q>rule</q> as <m>T</m>,
+        but its domain is the subspace <m>U</m> instead of the entire vector space <m>V</m>.
+      </p>
+
+      <p>
+        A lot can be learned by studying the restrictions of an operator to invariant subspaces.
+        Indeeed, the textbook by Axler does almost everything from this point of view.
+        One reason to study invariant subspaces is that they allow us to put the matrix of <m>T</m> into simpler forms.
+      </p>
+
+      <theorem xml:id="thm-invariant-block-triangular">
+        <statement>
+          <p>
+            Let <m>T:V\to V</m> be a linear operator, and let <m>U</m> be a <m>T</m>-invariant subspace.
+            Let <m>B_U = \basis{u}{k}</m> be a basis of <m>U</m>, and extend this to a basis
+            <me>
+              B = \{\uu_1,\ldots, \uu_k,\ww_1,\ldots, \ww_{n-k}\}
+            </me>
+            of <m>V</m>. Then the matrix <m>M_B(T)</m> with respect to this basis has the block-triangular form
+            <me>
+              M_B(T) \bbm M_{B_U}(T_U) \amp P\\0 \amp Q\ebm
+            </me>
+            for some <m>(n-k)\times (n-k)</m> matrix <m>Z</m>.
+          </p>
+        </statement>
+      </theorem>
+
+      <p>
+        Reducing a matrix to block triangular form is useful,
+        because it simplifies computations such as determinants and eigenvalues
+        (and determinants and eigenvalues are computationally expensive).
+        In particular, if a matrix <m>A</m> has the block form
+        <me>
+          A = \bbm A_{11} \amp A_{12} \amp \cdots A_{1n}\\
+                   0\amp A_{22} \amp \cdots A_{2n}\\
+                   \vdots \amp \vdots \amp \ddots \amp \vdots\\
+                   0 \amp 0 \amp \cdots \amp A_{nn}\ebm
+        </me>,
+        where the diagonal blocks are square matrices,
+        then <m>\det(A) = \det(A_{11})\det(A_{22})\cdots \det(A_{nn})</m>
+        and <m>c_A(x) = c_{A_{11}}(x)c_{A_{22}}(x)\cdots C_{A_{nn}}(x)</m>.
+      </p>
+    </subsection>
+
+    <subsection xml:id="subsec-eigenspace">
+      <title>Eigenspaces</title>
+      <p>
+        An important source of invariant subspaces is eigenspaces.
+        Recall that for any real number <m>\lambda</m>,
+        and any operator <m>T:V\to V</m>, we define
+        <me>
+          E_\lambda(T) = \ker(T-\lambda 1_V) = \{\vv\in V \,|\, T(\vv) = \lambda\vv\}
+        </me>.
+        For most values of <m>\lambda</m>, we'll have <m>E_\lambda(T)=\{\mathbf{0}\}</m>.
+        The values of <m>\lambda</m> for which <m>E_\lambda(T)</m> is non-trivial are precisely the eigenvalues of <m>T</m>.
+        Note that since similar matrices have the same characteristic polynomial any matrix representation <m>M_B(T)</m>
+        will have the same eigenvalues. They do <em>not</em> generally have the same eigenspaces,
+        but we do have the following.
+      </p>
+
+      <theorem xml:id="thm-eigenspace-invariant">
+        <statement>
+          <p>
+            Let <m>T:V\to V</m> be a linear operator. For any scalar <m>\lambda</m>,
+            the eigenspace <m>E_\lambda(T)</m> is <m>T</m>-invariant.
+            Moreover, for any ordered basis <m>B</m> of <m>V</m>,
+            the coefficient isomorphism <m>C_B:V\to \R^n</m> induces an isomorphism
+            <me>
+              C_B|_{E_\lambda(T)}:E_\lambda(T)\to E_{\lambda}(M_B(T))
+            </me>.
+          </p>
+        </statement>
+      </theorem>
+    </subsection>
+
+    <subsection xml:id="subsec-direct-sum">
+      <title>Direct Sums</title>
+      <p>
+        Recall that for any subspaces <m>U,W</m> of a vector space <m>V</m>,
+        the sets
+        <md>
+          <mrow>U+W \amp =\{\uu+\ww \,|\, \uu\in U \text{ and } \ww\in W\}</mrow>
+          <mrow>U\cap W \amp = \{\vv \in V \,|\, \vv\in U \text{ and } \vv\in W\}</mrow>
+        </md>
+        are subspaces of <m>V</m>. Saying that <m>\vv\in U+W</m> means that <m>\vv</m>
+        can be written as a sum of a vector in <m>U</m> and a vector in <m>W</m>.
+        However, this sum may not be unique. If <m>\vv\in U\cap W</m>, <m>\uu\in U</m> and <m>\ww\in W</m>,
+        then we can write <m>(\uu+\vv)+\ww = \uu + (\vv+\ww)</m>,
+        giving two different representations of a vector as an element of <m>U+W</m>.
+      </p>
+
+      <theorem xml:id="thm-unique-sum">
+        <statement>
+          <p>
+            Let <m>U</m> and <m>W</m> be subspaces of a vector space <m>V</m>.
+            Let <m>\vv\in U+W</m>. Then there exist <em>unique</em> vectors
+            <m>\uu\in U, \ww\in W</m> such that <m>\vv = \uu+\ww</m>
+            if and only if <m>U\cap W = \{\mathbf{0}\}</m>.
+          </p>
+        </statement>
+      </theorem>
+
+      <definition xml:id="def-direct-sum">
+        <statement>
+          <p>
+            We say that a sum <m>U+W</m> is a <term>direct sum</term>,
+            and write this sum as <m>U\oplus W</m>, if <m>U\cap W = \{\mathbf{0}\}</m>.
+          </p>
+        </statement>
+      </definition>
+    </subsection>
+
+  </section>
 </chapter>
