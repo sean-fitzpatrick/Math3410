@@ -830,7 +830,8 @@
     </p>
 
     <p>
-      Recall that similar matrices have the same determinant, trace, and eigenvalues.
+      Recall from <xref ref="thm-similar-properties">Theorem</xref>
+      that similar matrices have the same determinant, trace, and eigenvalues.
       This means that we can unambiguously define the determinant and trace of an  <em>operator</em>,
       and that we can compute eigenvalues of an operator using any matrix representation of that operator.
     </p>
@@ -990,6 +991,34 @@
             if and only if <m>U\cap W = \{\mathbf{0}\}</m>.
           </p>
         </statement>
+
+        <proof>
+          <p>
+            Suppose <m>U+W</m> has the property that if <m>\vv\in U+W</m>,
+            then there exist unique <m>\uu\in U,\ww\in W</m> such that <m>\vv=\uu+\ww</m>.
+            Suppose <m>\mathbf{x}\in U\cap W</m>. Then <m>\xx\in U</m> and <m>\xx\in W</m>,
+            which implies that <m>-\xx\in W</m>, since <m>W</m> is a subspace.
+            Then we can write
+            <me>
+              \mathbf{0} = \xx + (-\xx)
+            </me>,
+            with <m>\xx\in U</m> and <m>\-xx\in W</m>. But we also know that <m>\mathbf{0}\in U</m> and <m>\mathbf{0}\in W</m>,
+            so we can also write <m>mathbf{0}=\mathbf{0}+\mathbf{0}</m>.
+            Since we can only write <m>\mathbf{0}</m> in one way as a sum of a vector in <m>U</m> and a vector in <m>W</m>,
+            we must have <m>\xx=\mathbf{0}</m>, showing that <m>U\cap W = \{\mathbf{0}\}</m>.
+          </p>
+
+          <p>
+            Conversely, suppose that <m>U\cap W = \{\zer\}</m>, and let <m>\vv\in U+W</m>.
+            Suppose that there exist vectors <m>\uu_1,\uu_2\in U</m> and <m>\ww_1,\ww_2\in W</m>
+            such that <m>\vv = \uu_1+\ww_1=\uu_2+\ww_2</m>. But then <m>\uu_1-\uu_2=\ww_2-\ww_1</m>,
+            and since <m>\uu_1-\uu_2\in U</m> and <m>\ww_2-\ww_1\in W</m>,
+            we have <m>\uu_1-\uu_2=\ww_2\-ww_1\in U\cap W</m>. Since <m>U\cap W=\{\zer\}</m>,
+            we have <m>\uu_1-\uu_2=\zer</m> and <m>\ww_2-\ww_1=\zer</m>,
+            so <m>\uu_1=\uu_2</m> and <m>\ww_1=\ww_2</m>.
+          </p>
+        </proof>
+
       </theorem>
 
       <definition xml:id="def-direct-sum">
@@ -1000,7 +1029,115 @@
           </p>
         </statement>
       </definition>
+
+      <p>
+        Typically we are interested in the case that the two subspaces sum to <m>V</m>.
+        If <m>V = U\oplus W</m>, we say that <m>W</m> is a <term>complement</term> of <m>U</m>,
+        and that <m>U\oplus W</m> is a direct sum decomposition of <m>V</m>.
+        Of course, the orthogonal complement <m>U^\bot</m> of a subspace <m>U</m>
+        is a complement in this sense, if <m>V</m> is equipped with an inner product.
+        (Without an inner product we have no concept of <q>orthogonal</q>.)
+        But even if we don't have an inner product, finding a complement is not too difficult,
+        as the next example shows.
+      </p>
+
+      <example xml:id="eg-direct-sum-basis">
+        <title>Finding a complement by extending a basis</title>
+
+        <statement>
+          <p>
+            The easiest way to determine a direct sum decomposition (or equivalently, a complement)
+            is through the use of a basis. Suppose <m>U</m> is a subspace of <m>V</m> with basis
+            <m>\basis{e}{k}</m>, and extend this to a basis
+            <me>
+              B = \{\mathbf{e}_1,\ldots, \mathbf{e}_k,\mathbf{e}_{k+1},\ldots, \mathbf{e}_n\}
+            </me>
+            of <m>V</m>. Let <m>W = \spn\{\mathbf{e}_{k+1},\ldots, \mathbf{e}_n\}</m>.
+            Then clearly <m>U+W=V</m>, and <m>U\cap W=\{\zer\}</m>,
+            since if <m>\vv\in U\cap W</m>, then <m>\vv\in U</m> and <m>\vv\in W</m>, so we have
+            <me>
+              \vv = a_1\mathbf{e}_1+\cdots + a_k\mathbf{e_k} = b_1\mathbf{e}_{k+1}+\cdots+b_{n-k}e_{n}
+            </me>,
+            which gives
+            <me>
+              a_1\mathbf{e}_1+\cdots + a_k\mathbf{e}_k-b_1\mathbf{e}_{k+1}-\cdots - b_{n-k}\mathbf{e}_n=\zer
+            </me>,
+            so <m>a_1=\cdots b_{n-k}=0</m> by the linear indpendence of <m>B</m>, showing that <m>\vv=\zer</m>.
+          </p>
+
+          <p>
+            Conversely, if <m>V=U\oplus W</m>, and we have bases <m>\basis{u}{k}</m> of <m>U</m>
+            and <m>\basis{v}{l}</m> of <m>W</m>, then
+            <me>
+              B = \{\uu_1,\ldots, \uu_k,\ww_1,\ldots, \ww_l\}
+            </me>
+            is a basis for <m>V</m>. Indeed, <m>B</m> spans <m>V</m>,
+            since every element of <m>V</m> can be written as <m>\vv=\uu+\ww</m> with <m>\uu\in U,\ww\in W</m>.
+            Independence follows by reversing the argument above: if
+            <me>
+              a_1\uu_1+\cdots + a_k\uu_k+b_1\ww_1+\cdots b_l\ww_l=\zer
+            </me>
+            then <m>a_1\uu_1+\cdots + a_k\uu_k = -b_1\ww_1-\cdots -b_l\ww_l</m>,
+            and equality is only possible if both sides belong to <m>U\cap W = \{\zer\}</m>.
+            Since <m>\basis{u}{k}</m> is independent, the <m>a_i</m> have to be zero,
+            and since <m>\basis{w}{l}</m> is independent, the <m>b_j</m> have to be zero.
+          </p>
+        </statement>
+      </example>
+
+      <p>
+        The argument given in the second part of <xref ref="eg-direct-sum-basis"/> has an immediate,
+        but important consequence.
+      </p>
+
+      <theorem xml:id="thm-direct-sum-dimension">
+        <statement>
+          <p>
+            Suppose <m>V=U\oplus W</m>, where <m>\dim U = m</m> and <m>\dim W = n</m>.
+            Then <m>V</m> is finite-dimensional, and <m>\dim V = m+n</m>.
+          </p>
+        </statement>
+      </theorem>
+
+      <example>
+        <statement>
+          <p>
+            Suppose <m>V=U\oplus W</m>, where <m>U</m> and <m>W</m> are <m>T</m>-invariant subspaces
+            for some operator <m>T:V\to V</m>. Let <m>B_U=\basis{u}{m}</m> and let <m>B_W = \basis{w}{n}</m>
+            be bases for <m>U</m> and <m>W</m>, respectively.
+            Determine the matrix of <m>T</m> with respect to the basis <m>B=B_U\cup B_W</m> of <m>V</m>.
+          </p>
+        </statement>
+        <solution>
+          <p>
+            Since we don't know the map <m>T</m> or anything about the bases <m>B_U,B_W</m>,
+            we're looking for a fairly general statement here.
+            Since <m>U</m> is <m>T</m>-invariant, we must have <m>T(\uu_i)\in U</m> for each <m>i=1,\ldots, m</m>.
+            Similarly, <m>T(\ww_j)\in W</m> for each <m>j=1,\ldots, n</m>. This means that we have
+            <md>
+              <mrow>T(\uu_1) \amp = a_{11}\uu_1 + \cdots + a_{m1}\uu_m + 0\ww_1+\cdots + 0\ww_n</mrow>
+              <mrow>  \amp \vdots </mrow>
+              <mrow>T(\uu_m) \amp = a_{1m}\uu_1 + \cdots + a_{mm}\uu_m+0\ww_1+\cdots + 0\ww_n</mrow>
+              <mrow>T(\ww_1) \amp = 0\uu_1 + \cdots + 0\uu_m+b_{11}\ww_1 + \cdots + b_{n1}\ww_n </mrow>
+              <mrow> \amp \vdots </mrow>
+              <mrow>T(\ww_n) \amp = 0\uu_1 + \cdots + 0\uu_m+b_{1n}\ww_1 + \cdots + b_{nn}\ww_n</mrow>
+            </md>
+            for some scalars <m>a_{ij},b_{ij}</m>. If we set <m>A = [a_{ij}]_{m\times m}</m>
+            and <m>B = [b_{ij}]_{n\times n}</m>, then we have
+            <me>
+              M_B(T) = \bbm A \amp 0\\0\amp B\ebm
+            </me>.
+            Moreover, we can also see that <m>A = M_{B_U}(T|_U)</m>, and <m>B = M_{B_W}(T|_W)</m>.
+          </p>
+        </solution>
+      </example>
+
     </subsection>
 
+  </section>
+
+  <section xml:id="sec-gen-eigen">
+    <title>Generalized eigenspaces</title>
+    Coming soon...
   </section>
 </chapter>
