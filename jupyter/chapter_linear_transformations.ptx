@@ -509,9 +509,9 @@
           <me>
             \ker T = \{\vec{v}\in V \,|\, T(\vec{v})=\vec{0}\}
           </me>.
-          The <term>image</term> of <m>T</m>, denoted <m>\Img T</m>, is defined by
+          The <term>image</term> of <m>T</m>, denoted <m>\im T</m>, is defined by
           <me>
-            \Img T = \{T(\vec{v}) \,|\, \vec{v}\in V\}
+            \im T = \{T(\vec{v}) \,|\, \vec{v}\in V\}
           </me>.
         </p>
       </statement>
@@ -534,7 +534,7 @@
             </li>
             <li>
               <p>
-                <m>\Img T</m> is a subspace of <m>W</m>.
+                <m>\im T</m> is a subspace of <m>W</m>.
               </p>
             </li>
           </ol>
@@ -563,21 +563,21 @@
 
             <li>
               <p>
-                Again, since <m>T(\vec{0})=\vec{0}</m>, we see that <m>\vec{0}\in \Img T</m>,
-                so <m>\Img T</m> is nonempty.
-                If <m>\vec{w}_1,\vec{w}_2\in \Img T</m>, then there exist <m>\vec{v}_1,\vec{v}_2\in V</m>
+                Again, since <m>T(\vec{0})=\vec{0}</m>, we see that <m>\vec{0}\in \im T</m>,
+                so <m>\im T</m> is nonempty.
+                If <m>\vec{w}_1,\vec{w}_2\in \im T</m>, then there exist <m>\vec{v}_1,\vec{v}_2\in V</m>
                 such that <m>T(\vec{v}_1)=\vec{w}_1</m> and <m>T(\vec{v}_2)=\vec{w}_2</m>.
                 It follows that
                 <me>
                   \vec{w}_1+\vec{w}_2 = T(\vec{v}_1)+T(\vec{v}_2) = T(\vec{v}_1+\vec{v}_2)
                 </me>,
-                so <m>\vec{w}_1+\vec{w}_2\in \Img T</m>.
-                Similarly, if <m>c</m> is any scalar and <m>\vec{w}=T(\vec{v})\in\Img T</m>,
+                so <m>\vec{w}_1+\vec{w}_2\in \im T</m>.
+                Similarly, if <m>c</m> is any scalar and <m>\vec{w}=T(\vec{v})\in\im T</m>,
                 then
                 <me>
                   c\vec{w}=cT(\vec{v})=T(c\vec{v})
                 </me>,
-                so <m>c\vec{w}\in \Img T</m>.
+                so <m>c\vec{w}\in \im T</m>.
               </p>
             </li>
           </ol>
@@ -596,7 +596,7 @@
       </me>
       and
       <me>
-        \Img T = \csp(A) = \{A\vec{x}\,|\, \vec{x}\in \R^n\}
+        \im T = \csp(A) = \{A\vec{x}\,|\, \vec{x}\in \R^n\}
       </me>,
       where <m>\csp(A)</m> denotes the <term>column space</term> of <m>A</m>.
       Recall further that if we write <m>A</m> in terms of its columns as
@@ -691,7 +691,7 @@
 
     <p>
       We see that there are leading ones in the first and second column.
-      Therefore, <m>\csp(A) = \Img(T) = \spn\left\{\bbm 1\\-2\\1\ebm, \bbm 3\\-1\\8\ebm\right\}</m>.
+      Therefore, <m>\csp(A) = \im(T) = \spn\left\{\bbm 1\\-2\\1\ebm, \bbm 3\\-1\\8\ebm\right\}</m>.
       Indeed, note that
       <me>
         \bbm 0\\2\\2\ebm = -\frac65\bbm 1\\-2\\1\ebm + \frac25\bbm 3\\-1\\8\ebm
@@ -762,7 +762,7 @@
           Let <m>T:V\to W</m> be a linear transformation.
           Then the <term>rank</term> of <m>T</m> is defined by
           <me>
-            \operatorname{rank} T = \dim \Img T
+            \operatorname{rank} T = \dim \im T
           </me>,
           and the <term>nullity</term> of <m>T</m> is defined by
           <me>
@@ -774,11 +774,11 @@
     </definition>
 
     <p>
-      Note that if <m>W</m> is finite-dimensional, then so is <m>\Img T</m>,
+      Note that if <m>W</m> is finite-dimensional, then so is <m>\im T</m>,
       since it's a subspace of <m>W</m>.
       On the other hand, if <m>V</m> is finite-dimensional,
       then we can find a basis <m>\{\vec{v}_1,\ldots, \vec{v}_n\}</m> of <m>V</m>,
-      and the set <m>\{T(\vec{v}_1),\ldots, T(\vec{v}_n)\}</m> will span <m>\Img T</m>,
+      and the set <m>\{T(\vec{v}_1),\ldots, T(\vec{v}_n)\}</m> will span <m>\im T</m>,
       so again the image is finite-dimensional, so the rank of <m>T</m> is finite.
       It is possible for either the rank or the nullity of a transformation to be infinite.
     </p>
@@ -806,7 +806,7 @@
 
             <li>
               <p>
-                <m>\Img T</m> is equal to the set of all skew-symmetric matrices.
+                <m>\im T</m> is equal to the set of all skew-symmetric matrices.
               </p>
             </li>
           </ol>
@@ -843,7 +843,7 @@
                 <me>
                   B^T = (A-A^T)^T = A^T-A = -B
                 </me>,
-                so certainly every matrix in <m>\Img A</m> is skew-symmetric.
+                so certainly every matrix in <m>\im A</m> is skew-symmetric.
                 On the other hand, if <m>B</m> is skew-symmetric, then <m>B=T(\frac12 B)</m>,
                 since
                 <me>
@@ -865,7 +865,7 @@
 
     <p>
       It's clear that being surjective is closely tied to image.
-      Indeed, by definition, <m>T:V\to W</m> is onto if <m>\Img T = W</m>.
+      Indeed, by definition, <m>T:V\to W</m> is onto if <m>\im T = W</m>.
       What might not be immediately obvious is that the kernel tells us if a linear map is injective.
     </p>
 
@@ -899,12 +899,12 @@
     <p>
       Let us return to the case of a matrix transformation <m>T_A:\R^n\to \R^m</m>.
       Notice that <m>\ker T_A</m> is simply the set of all solutions to <m>A\vec{x}=\vec{0}</m>,
-      while <m>\Img T_A</m> is the set of all <m>\vec{y}\in\R^m</m> for which <m>A\vec{x}=\vec{y}</m>
+      while <m>\im T_A</m> is the set of all <m>\vec{y}\in\R^m</m> for which <m>A\vec{x}=\vec{y}</m>
       <em>has</em> a solution.
     </p>
 
     <p>
-      Recall from the discussion above that <m>\rank A = \dim \csp(A) = \dim \Img T_A</m>.
+      Recall from the discussion above that <m>\rank A = \dim \csp(A) = \dim \im T_A</m>.
       It follows that <m>T_A</m> is surjective if and only if <m>\rank A = m</m>.
       On the other hand, <m>T_A</m> is injective if and only if <m>\rank A = n</m>,
       because we know that the system <m>A\vec{x}=\vec{0}</m> has a unique solution if and only if each column of <m>A</m> contains a leading one.
@@ -935,20 +935,20 @@
       <statement>
         <p>
           Let <m>T:V\to W</m> be any linear transformation such that
-          <m>\ker T</m> and <m>\Img T</m> are finite-dimensional.
+          <m>\ker T</m> and <m>\im T</m> are finite-dimensional.
           Then <m>V</m> is finite-dimensional, and
           <me>
-            \dim V = \dim \ker T + \dim \Img T
+            \dim V = \dim \ker T + \dim \im T
           </me>.
         </p>
       </statement>
       <proof>
         <p>
           The trick with this proof is that we aren't assuming <m>V</m> is finite-dimensional,
-          so we can't start with a basis of <m>V</m>. But we do know that <m>\Img T</m>
+          so we can't start with a basis of <m>V</m>. But we do know that <m>\im T</m>
           is finite-dimensional, so we start with a basis <m>\{\vec{w}_1,\ldots, \vec{w}_m\}</m>
-          of <m>\Img T</m>.
-          Of course, every vector in <m>\Img T</m> is the image of some vector in <m>V</m>,
+          of <m>\im T</m>.
+          Of course, every vector in <m>\im T</m> is the image of some vector in <m>V</m>,
           so we can write <m>\vec{w}_i =T(\vec{v}_i)</m>, where <m>\vec{v}_i\in V</m>,
           for <m>i=1,2,\ldots, m</m>.
         </p>
@@ -964,7 +964,7 @@
           of <m>\ker T</m>, which we also know to be finite-dimensional.
           If we can show that the set <m>\{\vec{u}_1,\ldots, \vec{u}_n,\vec{v}_1,\ldots, \vec{v}_m\}</m>
           is a basis for <m>V</m>, we'd be done, since the number of vectors in this basis
-          is <m>\dim\ker T + \dim \Img T</m>. We must therefore show that this set is independent,
+          is <m>\dim\ker T + \dim \im T</m>. We must therefore show that this set is independent,
           and that it spans <m>V</m>.
         </p>
 
@@ -988,7 +988,7 @@
 
         <p>
           To see that these vectors span, choose any <m>\vec{x}\in V</m>.
-          Since <m>T(\vec{x})\in \Img T</m>, there exist scalars <m>c_1,\ldots, c_m</m>
+          Since <m>T(\vec{x})\in \im T</m>, there exist scalars <m>c_1,\ldots, c_m</m>
           such that
           <men xml:id="eqn-almost-span">
             T(\vec{x})=c_1T(\vec{v_1})+\cdots +c_mT(\vec{v}_m)
@@ -1029,25 +1029,25 @@
       We will see that this result is frequently useful for providing simple arguments that establish otherwise difficult results.
       A basic situation where the theorem is useful is as follows:
       we are given <m>T:V\to W</m>, where the dimensions of <m>V</m> and <m>W</m> are known.
-      Since <m>\Img T</m> is a subspace of <m>W</m>, we know from <xref ref="thm-subspace-dim">Theorem</xref>
-      that <m>T</m> is onto if and only if <m>\dim \Img T = \dim W</m>.
-      In many cases it is easier to compute <m>\ker T</m> than it is <m>\Img T</m>,
-      and the Dimension Theorem lets us determine <m>\dim\Img T</m> if we know <m>\dim V</m> and <m>\dim \ker T</m>.
+      Since <m>\im T</m> is a subspace of <m>W</m>, we know from <xref ref="thm-subspace-dim">Theorem</xref>
+      that <m>T</m> is onto if and only if <m>\dim \im T = \dim W</m>.
+      In many cases it is easier to compute <m>\ker T</m> than it is <m>\im T</m>,
+      and the Dimension Theorem lets us determine <m>\dim\im T</m> if we know <m>\dim V</m> and <m>\dim \ker T</m>.
     </p>
 
     <p>
       A useful consequence of this result is that if we know <m>V</m> is finite-dimensional,
       we can order any basis such that the first vectors in the list are a basis of <m>\ker T</m>,
-      and the images of the remaining vectors produce a basis of <m>\Img T</m>.
+      and the images of the remaining vectors produce a basis of <m>\im T</m>.
     </p>
 
     <p>
       Note that one consequence of the dimension theorem is that we must have
       <me>
-        \dim \ker T\leq \dim V \quad \text{ and } \quad \dim \Img T\leq \dim V
+        \dim \ker T\leq \dim V \quad \text{ and } \quad \dim \im T\leq \dim V
       </me>.
-      Of course, we must also have <m>\dim\Img T\leq \dim W</m>,
-      since <m>\Img T</m> is a subspace of <m>W</m>.
+      Of course, we must also have <m>\dim\im T\leq \dim W</m>,
+      since <m>\im T</m> is a subspace of <m>W</m>.
       In the case of a matrix transformation <m>T_A</m>,
       this means that the rank of <m>T_A</m> is at most the minimum of <m>\dim V</m> and <m>\dim W</m>.
       This once again has consequences for the existence and uniqueness of solutions for linear systems with the coefficient matrix <m>A</m>.
@@ -1078,9 +1078,9 @@
               <p>
                 Suppose <m>T:V\to W</m> is injective. Then <m>\ker T = \{0\}</m>, so
                 <me>
-                  \dim V = 0 + \dim \Img T \leq \dim W
+                  \dim V = 0 + \dim \im T \leq \dim W
                 </me>,
-                since <m>\Img T</m> is a subspace of <m>W</m>.
+                since <m>\im T</m> is a subspace of <m>W</m>.
               </p>
 
               <p>
@@ -1106,7 +1106,7 @@
 
             <li>
               <p>
-                Suppose <m>T:V\to W</m> is surjective. Then <m>\dim \Img T = \dim W</m>, so
+                Suppose <m>T:V\to W</m> is surjective. Then <m>\dim \im T = \dim W</m>, so
                 <me>
                   \dim W = \dim V - \dim \ker T\geq \dim V
                 </me>.
