@@ -1341,7 +1341,7 @@
                 Generalized eigenvectors corresponding to <em>distinct</em> eigenvalues are linearly independent.
               </p>
             </li>
-            <li><m>V = G_{\lambda_1}(T)\opls G_{\lambda_2}(T)\oplus \cdots \oplus G_{\lambda_k}(T)</m></li>
+            <li><m>V = G_{\lambda_1}(T)\oplus G_{\lambda_2}(T)\oplus \cdots \oplus G_{\lambda_k}(T)</m></li>
             <li>
               <p>
                 Each generalize eigenspace <m>G_{\lambda_j}(T)</m> is <m>T</m>-invariant.
@@ -1421,7 +1421,7 @@
         <li>
           <p>
             if <m>l_j</m> is the <em>least</em> integer such that <m>\ker (A-\lambda_j I)^{l_j}=G_{\lambda_j}(T)</m>,
-            then it is possible to choose the basis of <m>G_\lambda_j(T)</m> so that <m>A_j</m> is itself block-diagonal,
+            then it is possible to choose the basis of <m>G_{\lambda_j}(T)</m> so that <m>A_j</m> is itself block-diagonal,
             with the largest block having size <m>l_j\times l_j</m>.
             The remainder of this section is devoted to determining how to choose such a basis.
           </p>
@@ -1458,7 +1458,8 @@
             J(m,\lambda) = \bbm \lambda \amp 1 \amp 0 \amp \cdots \amp 0\\
                                 0 \amp \lambda \amp 1 \amp \cdots \amp 0\\
                                 0 \amp 0 \amp \lambda \amp \ddots \amp 0\\
-                                \vdots \amp \vdots \amp \amp \ddots \amp 1\\
+                                \vdots \amp \vdots \amp \amp \ddots \amp \vdots\\
+                                0 \amp 0 \amp \cdots \amp \lambda \amp 1\\
                                 0 \amp 0 \amp 0 \amp \cdots \amp \lambda\ebm
           </me>.
           That is <m>J(m,\lambda)</m> has each diagaonal entry equal to <m>\lambda</m>,
