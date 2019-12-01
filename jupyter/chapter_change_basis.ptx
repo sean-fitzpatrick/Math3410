@@ -1697,5 +1697,26 @@
         A-3*Z3-2*(E3[0]+E3[1])
       </input>
     </sage>
+
+    <p>
+      Now that we've done all the work required for <xref ref="ex-jordan-form"/>,
+      we should confess that there was an easier way all along:
+    </p>
+
+    <sage>
+      <input>
+        A.jordan_form()
+      </input>
+    </sage>
+
+    <p>
+      The <c>jordan_form()</c> command returns a pair <m>P,J</m>,
+      where <m>J</m> is the Jordan canonical form of <m>A</m>,
+      and <m>P</m> is an invertible matrix such that <m>P^{-1}AP=J</m>.
+      You might find that the computer's answer is not quite the same as ours.
+      This is because the Jordan canonical form is only unique up to permuation of the Jordan blocks.
+      Changing the order of the blocks amounts to changing the order of the columns of <m>P</m>,
+      which are given by a basis of (generalized eigenvectors).
+    </p>
   </section>
 </chapter>
