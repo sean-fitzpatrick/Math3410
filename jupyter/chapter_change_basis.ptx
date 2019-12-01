@@ -1457,8 +1457,7 @@
           <me>
             J(m,\lambda) = \bbm \lambda \amp 1 \amp 0 \amp \cdots \amp 0\\
                                 0 \amp \lambda \amp 1 \amp \cdots \amp 0\\
-                                0 \amp 0 \amp \lambda \amp \ddots \amp 0\\
-                                \vdots \amp \vdots \amp \amp \ddots \amp \vdots\\
+                                \vdots \amp \vdots \amp \ddots \amp \ddots \amp \vdots\\
                                 0 \amp 0 \amp \cdots \amp \lambda \amp 1\\
                                 0 \amp 0 \amp 0 \amp \cdots \amp \lambda\ebm
           </me>.
@@ -1474,7 +1473,7 @@
         <p>
           The following are examples of Jordan blocks:
           <me>
-            J(2,4)=\bbm 4 \amp 1\amp 0\amp 4\ebm, J(3,\sqrt{2})=\bbm \sqrt{2} \amp 1\amp 0\\0\amp \sqrt{2}\amp 1\\0\amp 0\amp \sqrt{2}\ebm,
+            J(2,4)=\bbm 4 \amp 1\\ 0\amp 4\ebm, J(3,\sqrt{2})=\bbm \sqrt{2} \amp 1\amp 0\\0\amp \sqrt{2}\amp 1\\0\amp 0\amp \sqrt{2}\ebm,
             J(4,2i)=\bbm 2i \amp 1\amp 0\amp 0\\0\amp 2i\amp 1\amp 0\\0\amp 0\amp 2i\amp 1\\0\amp 0\amp 0\amp 2i\ebm
           </me>.
         </p>
@@ -1517,8 +1516,186 @@
       </p>
     </insight>
 
+    <example xml:id="ex-jordan-form1">
+      <statement>
+        <p>
+          Determine a Jordan basis for the operator <m>T:\R^5\to \R^5</m>
+          whose matrix with respect to the standard basis is given by
+          <me>
+            A = \bbm 7\amp 1 \amp -3\amp 2\amp 1\\
+                    -6\amp 2\amp 4\amp -2\amp -2\\
+                    0 \amp 1\amp 3 \amp 1\amp -1\\
+                    -8\amp -1\amp 6\amp 0 \amp-3\\
+                    -4\amp 0\amp 3\amp -1\amp 1\ebm
+          </me>
+        </p>
+      </statement>
+      <solution>
+        <p>
+          The characteristic polynomial of <m>A</m> is given by
+          <me>
+            c_A(x)=(x-2)^2(x-3)^3
+          </me>.
+          (See the Sage cell below to confirm this.)
+          We thus have two eigenvalues: <m>2</m>, of multiplicity <m>2</m>,
+          and <m>3</m>, of multiplicity <m>3</m>.
+          We find
+          <me>
+            E_2(A)=\nll(A-2I) = \spn\{\xx_1\}, \text{ where } \xx_1=\bbm -1\\0\\-1\\1\\0\ebm
+          </me>,
+          so we have only one independent eigenvector, which means that <m>G_2(A)=\nll(A-2I)^2</m>.
+        </p>
+
+        <p>
+          Following <xref ref="jordan-chain-basis">, we extend <m>\{\xx_1\}</m>
+          to a basis of <m>G_2(A)</m> by solving the system
+          <me>
+            (A-2I)\xx = \xx_1
+          </me>.
+          Performing Gaussian elimination, we find a general solution
+          <me>
+            \xx = \bbm -t\\-1\\-t\\t\\0\ebm = t\bbm -1\\0\\-1\\1\\0\ebm + \bbm 0\\-1\\0\\0\\0\ebm
+          </me>.
+          Note that our solution is of the form <m>\xx = t\xx_1+\xx_2</m>.
+          We set <m>t=0</m>, and get <m>\xx_2 = \bbm 0\amp -1\amp 0\amp 0\amp 0\ebm^T</m>.
+        </p>
+
+        <p>
+          Next, we consider the eigenvalue <m>\lambda=3</m>. We find
+          <me>
+            E_3(A) = \nll(A-3I) = \spn\{\yy_1,\yy_2\}, \text{ where } \yy_1 = \bbm 1\\-2\\2\\2\\0\ebm, \yy_2 = \bbm -1\\2\\0\\0\\2\ebm
+          </me>.
+          Again, we're one eigenvector short of the multiplicity, so we need to consider <m>G_3(A)=\nll(A-3I)^3</m>.
+          Unfortunately, the systems <m>(A-3I)\yy = \yy_1</m> and <m>(A-3I)\yy=\yy_2</m> are both inconsistent!
+        </p>
+
+        <p>
+          We can salvage the situation by replacing the eigenvector <m>\yy_2</m> by some linear combination
+          <m>\zz_2 = a\yy_1+b\yy_2</m>. We row-reduce, and look for values of <m>a</m> and <m>b</m> that give a consistent system.
+          We find that <m>a=b</m> does the job, so we set
+          <me>
+            \zz_2 = \yy_1+\yy_2 = 0\\0\\2\\2\\2\ebm
+          </me>.
+          Solving the system <m>(A-3I)\zz = \yy_1+\yy_2</m>, we find
+          <md>
+            <mrow>\zz \amp = \bbm \frac12 +\frac12 s-\frac12 t\\1-s+t\\1+s\\s\\t\ebm</mrow>
+            <mrow>\amp = \bbm \frac12\\1\\1\\0\\0\ebm + s\frac12\\-1\\1\\1\\0\ebm+t\bbm -\frac12\\1\\0\\0\\1\ebm</mrow>
+            <mrow>\amp = \bbm \frac12\\1\\1\\0\\0\ebm \frac{s}{2}\yy_1+\frac{t}{2}\yy_2</mrow>
+          </md>.
+          We let <m>\zz_3 = \bbm \frac 1\\2\\2\\0\\0\ebm</m>, and check that
+          <me>
+            A\zz_3 = 3\zz_3+\zz_2
+          </me>,
+          as required.
+        </p>
+
+        <p>
+          This gives us the basis <m>B = \{\xx_1,\xx_2,\yy_1,\zz_2,\zz_3\}</m> for <m>\R^5</m>,
+          and with respect to this basis, we have the Jordan canonical form
+          <me>
+            M_B(T) = \bbm 2 \amp 1\amp 0\amp 0 \amp 0\\
+                          0 \amp 2\amp 0\amp 0 \amp 0\\
+                          0 \amp 0\amp 3\amp 0 \amp 0\\
+                          0 \amp 0\amp 0\amp 3 \amp 1\\
+                          0 \amp 0\amp 0\amp 0 \amp 3\ebm
+          </me>.
+        </p>
+      </solution>
+    </example>
+
     <p>
-      Still to come: a couple of computational examples.
+      The following Sage cells perform the computations needed for <xref ref="ex-jordan-form1"/>.
+      First, we get the characteristic polynomial.
     </p>
+    <sage>
+      <input>
+        from sympy import *
+        init_printing()
+        A = Matrix([[7,1,-3,2,1],[-6,2,4,-2,-2],[0,1,3,1,-1],[-8,-1,6,0,-3],[-4,0,3,-1,1]])
+        p = A.charpoly()
+        factor(p)
+      </input>
+    </sage>
+
+    <p>
+      Next, we determine a basis for the <m>E_2(A)</m> eigenspace.
+    </p>
+    <sage>
+      <input>
+        N2 = A-2*eye(5)
+        E2 = N2.nullspace()
+        E2
+      </input>
+    </sage>
+
+    <p>
+      Next, we solve the system <m>(A-2I)\xx_2=\xx_1</m>.
+    </p>
+
+    <sage>
+      B2 = N2.col_insert(5,E2[0])
+      B2.rref()
+    </sage>
+
+    <p>
+      Now, we repeat for the eigenvalue <m>\lambda=3</m>.
+      Make sure you've run the previous cells to define the matrix <m>A</m>.
+    </p>
+
+    <sage>
+      <input>
+        N3 = A-3*eye(5)
+        E3 = N3.nullspace()
+        E3
+      </input>
+    </sage>
+
+    <p>
+      In the next cell, note that we doubled the eigenvectors in <c>E3</c> to avoid fractions.
+      To follow the solution in our example, we append <c>2*E3[0]</c>.
+      You should find that using the eigenvector <m>\yy_1</m> corresponding to <c>E3[0]</c>
+      leads to an inconsistent system. Once you confirm this, replace <c>E3[0]</c> with <c>E3[1]</c>
+      and re-run the cell to see that we get an inconsistent system using <m>\yy_2</m> as well!
+    </p>
+    <sage>
+      B3 = N3.col_insert(5,2*E3[0])
+      B3.rref()
+    </sage>
+
+    <p>
+      We now want to try a linear combination <m>a\yy_1+b\yy_2</m>,
+      and see what values of <m>a</m> and <m>b</m> give a consistent system.
+      The <c>rref</c> command takes things a bit farther than we'd like,
+      but adding the optional argument <c>simplify=True</c> leaves us with a clue:
+      SymPy has to divide by <m>32a-32b</m> to get to RREF, so if <m>a=b</m>,
+      something interesing happens.
+    </p>
+
+    <sage>
+      <input>
+        a = Symbol('a')
+        b = Symbol('b')
+        C3 = N3.col_insert(5,a*E3[0]+b*E3[1])
+        C3.rref(simplify=True)
+      </input>
+    </sage>
+
+    <sage>
+      <input>
+        D3 = N3.col_insert(5,E3[0]+E3[1])
+        D3.rref()
+      </input>
+    </sage>
+
+    <p>
+      Finally, we check that our last vector works.
+    </p>
+
+    <sage>
+      <input>
+        Z3 = Matrix([1,2,2,0,0])
+        A-3*Z3-2*(E3[0]+E3[1])
+      </input>
+    </sage>
   </section>
 </chapter>
