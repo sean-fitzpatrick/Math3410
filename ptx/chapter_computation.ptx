@@ -585,10 +585,10 @@
             <p>
               If we know that <m>3</m> is an eigenvalue of a <m>4\times 4</m> matrix <m>A</m>,
               one way to get a basis for the eigenspace <m>E_3(A)</m> is to do:
-              <program>
-                B=A-3*eye(4)
-                B.nullspace()
-              </program>
+              <cd>
+                <cline>B=A-3*eye(4)</cline>
+                <cline>B.nullspace()</cline>
+              </cd>
               If you just want all the eigenvalues and eigenvectors without going through the steps,
               then you can simply execute <c>A.eigenvects()</c>.
               The result is a list of lists <mdash/> each list in the list is of the form:
@@ -604,7 +604,76 @@
       </p>
 
       <p>
-        Next to do: complex numbers.
+        For complex vectors and matrices, the main additional operation we need is the <term>hermitian conjugate</term>.
+        The hermitian conjugate of a matrix <c>A</c> is called using <c>A.H</c>, which is simple enough.
+        Unfortunately, there is no built-in complex inner product,
+        perhaps because mathematicians and physicists cannot agree on which of the two vectors in the inner product should have the complex conjugate applied to it.
+        Since we define the complex inner product by <m>\langle \zz,\ww\rangle = \zz\dotp\bar{\ww}</m>,
+        we can execute the inner product in SymPy using <c>Z.dot(W.H)</c>, or <c>(W.H)*Z</c>,
+        although the latter gives the output as a <m>1\times 1</m> matrix rather than a number.
+      </p>
+
+      <p>
+        Don't forget that when entering complex matrices, the complex unit is entered as <c>I</c>.
+        Also, complex expressions are not simplified by default,
+        so you will often need to wrap your output line in <c>simplify()</c>.
+        The Sage Cell below contains complete code for the unitary diagonalization of a <m>2\times 2</m>
+        hermitian matrix with distinct eigenvalues.
+        When doing a problem like this in a Sage cell, it's a good idea to execute each line of code
+        (and display output) before moving on to the next.
+        In this case, printing the output for the list <c>L</c> given by <c>A.eigenvects()</c>
+        helps explain the complicated-looking definitions of the vectors <c>v,w</c>.
+        Of course, if we had a matrix with repeated eigenvalues, we'd need to add steps involving Gram Schmidt.
+      </p>
+
+      <sage>
+        <input>
+          from sympy import *
+          init_printing()
+          A = Matrix(2,2,[4,3-I,3+I,1])
+          L = A.eigenvects()
+          v = ((L[0])[2])[0]
+          w = ((L[1])[2])[0]
+          u1 = (1/v.norm())*v
+          u2 = (1/w.norm())*w
+          U = u1.row_join(u2)
+          u1, u2, U, simplify(U.H*A*U)
+        </input>
+      </sage>
+
+      <p>
+        There are a few other commands that might come in handy as you work through this material:
+        <ul>
+          <li>
+            <p>
+              Two matrices can be glued together. If matrices <c>A,B</c> have the same number of rows,
+              the command <c>A.row_join(B)</c> will glue the matrices together, left-to-right.
+              If they have the same number of columns, <c>A.col_join(B)</c> will glue them together top-to-bottom.
+            </p>
+          </li>
+          <li>
+            <p>
+              To insert a column <c>C</c> into a matrix <c>M</c> (of appropriate size)
+              as the <m>j</m>th column, you can do <c>M.col_insert(j,C)</c>.
+              Just remember that columns are indexed starting at zero,
+              so you might want <c>j-1</c> instead of <c>j</c>.
+              This can be useful for things like solving a system <m>A\xx=B</m>,
+              where you want to append the column <m>B</m> to the matrix <m>A</m>.
+            </p>
+          </li>
+          <li>
+            <p>
+              A <m>QR</m>-factorization can be performed using <c>Q,R=A.QRdecomposition()</c>
+            </p>
+          </li>
+          <li>
+            <p>
+              The Jordan canonical form <m>M</m> of a matrix <m>A</m> can be obtained
+              (along with the matrix <m>P</m> whose columns are a Jordan basis)
+              using <c>P,M=A.jordan_form()</c>.
+            </p>
+          </li>
+        </ul>
       </p>
     </subsection>
   </section>
