@@ -158,24 +158,26 @@
       Asking the computer to reduce this matrix won't produce the desired result.
       (Maybe someone can figure out how to define the constants in a way that works?)
       But we can always specify row operations.
-      (Note: the following code doesn't work well in a Sage cell.
-      In Python it might work.)
     </p>
 
     <sage>
       <input>
-        N1 = N.elementary_row_operation(op='n->n+km',row1=1,row2=0,k=-2)
+        N1 = N.elementary_row_op(op='n-&gt;n+km',row=1,k=-2,row2=0)
         N1
       </input>
     </sage>
 
     <p>
-      Now we repeat. Here are two more empty cells to work with:
+      In the <c>elementary_row_op</c> function called above,
+      we are asking the computer to change row <m>1</m> (the second row)
+      by adding <m>-2</m> times row <m>0</m> )the first row).
+      See <xref ref="subsec-sympy-matrix">Section</xref> for complete details on this syntax.
     </p>
 
-    <sage>
+    <p>
+      Now we repeat. Here is another cell to work with:
+    </p>
 
-    </sage>
     <sage>
 
     </sage>

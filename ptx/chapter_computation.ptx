@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<chapter xml:id="ch-computation">
+<appendix xml:id="ch-computation">
   <title>Computational Tools</title>
 
 
@@ -379,12 +379,233 @@
           pi.is_irrational
         </input>
       </sage>
+
+      <p>
+        Finally, from time to time you may need to include paramaters (variables) in an expression.
+        Typical code for this is of the form <c>a, b, c = symbols('a b c', real = True, constant = True)</c>.
+        Here, we introduce the symbols <c>a,b,c</c> with the specification that they represent real-valued constants.
+      </p>
     </subsection>
     <subsection xml:id="subsec-sympy-matrix">
       <title>Matrices in SymPy</title>
       <p>
-        (more to come)
+        Here we collect some of the SymPy commands used throughout this text,
+        for ease of reference. For further details, please consult the
+        <url href="https://docs.sympy.org/latest/modules/matrices/matrices.html">online documentation</url>.
+      </p>
+      <p>
+        To create a <m>2\times 3</m> matrix, we can write either <c>A=Matrix(2,3,[1,2,3,4,5,6])</c>
+        or <c>A=Matrix([[1,2,3],[4,5,6]])</c>, where of course the size and entries can be changed to whatever you want.
+        The former method is a bit faster, but once your matrices get a bit bigger, the latter method is less prone to typos.
+      </p>
+
+      <sage>
+        <input>
+          A=Matrix(2,3,[1,2,3,4,5,6])
+          B=Matrix([[1,2,3],[4,5,6]])
+          A,B
+        </input>
+      </sage>
+
+      <p>
+        Also of note: a column vector <m>\bbm 1\\2\\3\ebm</m> can be entered using <c>Matrix([1,2,3])</c>.
+        There are also certain built in special matrices.
+        To get an <m>n\times n</m> identity matrix, use <c>eye(n)</c>.
+        To get an <m>m\times n</m> zero matrix, use <c>zeros(m,n)</c>, or <c>zeros(n)</c> for a square matrix.
+        There is also syntax for diagonal matrices, such as <c>diag(1,2,3)</c>.
+        What's cool is that you can even use this for block diagonal matrices:
+      </p>
+
+      <sage>
+        <input>
+          A=Matrix(2,2,[1,2,3,4])
+          B=Matrix(2,2,[5,6,7,8])
+          D=diag(A,B)
+          D
+        </input>
+      </sage>
+
+      <p>
+        To get the reduced row-echelon form of the matrix <m>A</m>, simply use <c>A.rref()</c>.
+        Addition, subtraction, and multiplication use the obvious syntax:
+        <c>A+B</c>, <c>A*B</c>, <etc/>.
+        The determinant of a square matrix is given by <c>A.det()</c>.
+        Inverses can be computed using <c>A.inv()</c> or <c>A**-1</c>.
+        The latter is rather natural, since powers in general are entered as <c>A**n</c> for <m>A^n</m>.
+      </p>
+
+      <p>
+        In most cases where you want to reduce a matrix, you're going to want to simply use the <c>rref</c> function.
+        But there are times where this can be overzealous; for example, if you have a matrix with one or more symbols.
+        It is possible to manually perform row operations when you need additional control.
+        This is achieved using the function <c>A.elementary_row_op(&lt;arguments&gt;)</c>,
+        with arguments <c>op,row,k,row1,row2</c>.
+      </p>
+
+      <p>
+        We have the following general syntax:
+        <ul>
+          <li>
+            <p>
+              To swap two rows:
+              <ul>
+                <li>
+                  <p>
+                    <c>op='n&lt;-&gt;m'</c>
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <c>row1=i</c>, where <c>i</c> is the index of the first row being swapped
+                    (remembering that rows are indexed starting with <m>0</m> for the first row).
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <c>row2=j</c>, where <c>j</c> is the index of the second row being swapped.
+                  </p>
+                </li>
+              </ul>
+            </p>
+          </li>
+          <li>
+            <p>
+              To rescale a row:
+              <ul>
+                <li>
+                  <p>
+                    <c>op='n-&gt;kn'</c>
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <c>row=i</c>, where <c>i</c> is the index of the row being rescaled.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <c>k=c</c>, where <c>c</c> is the value of the scalar you want to multiply by.
+                  </p>
+                </li>
+              </ul>
+            </p>
+          </li>
+          <li>
+            <p>
+              To add a multiple of one row to another:
+              <ul>
+                <li>
+                  <p>
+                    <c>op='n-&gt;n+km'</c>
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <c>row=i</c>, where <c>i</c> is the index of the row you want to change.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <c>k=c</c>, where <c>c</c> is the multiple of the other row.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <c>row2=j</c>, where <c>j</c> is the index of the other row.
+                  </p>
+                </li>
+              </ul>
+            </p>
+          </li>
+        </ul>
+      </p>
+
+      <p>
+        When studying matrix transformations, we are often interested in the <em>null space</em>
+        and <em>column space</em>, since these correspond to the kernel and image of a linear transformation.
+        This is achieved, simply enough, using <c>A.nullspace()</c> and <c>A.colspace()</c>.
+        The output will be a basis of column vectors for these spaces,
+        and these are exactly the ones you'd find doing Gaussian elimination by hand.
+      </p>
+
+      <p>
+        Once you get to orthogonality, you'll want to be able to compute things like dot products, and transpose.
+        These are simple enough. The dot product of vectors <c>X,Y</c> is simply <c>X.dot(Y)</c>.
+        The transpose of a matrix <c>A</c> is <c>A.T</c>. As we should expect, <c>X\dotp Y = X^TY</c>.
+      </p>
+
+      <sage>
+        <input>
+          X=Matrix([1,2,3])
+          Y=Matrix([4,5,6])
+          X.dot(Y),(X.T)*Y
+        </input>
+      </sage>
+
+      <p>
+        Of course, nobody wants to do things like the Gram Schmidt algorithm by hand.
+        Fortunately, there's a function for that.
+        If we have vectors <c>X,Y,Z</c>, we can make a list <c>L=[X,Y,Z]</c>,
+        and perform Gram Schmidt with <c>GramSchmidt(L)</c>.
+        If you want your output to be an orthonormal basis (and not merely orthogonal),
+        then you can use <c>GramSchmidt(L,true)</c>.
+      </p>
+
+      <p>
+        It's useful to note that the output from functions like <c>nullspace()</c>
+        are automatically treated as lists. So one can use simple code like the following:
+      </p>
+
+      <sage>
+        <input>
+          A=Matrix(2,3,[1,0,3,2,-1,4])
+          L=A.nullspace()
+          GramSchmidt(L)
+        </input>
+      </sage>
+
+      <p>
+        If for some reason you need to reference particular vectors in a list,
+        this can be done by specifying the index.
+        If <c>L=[X,Y,Z]</c>, then <c>L[0]==X</c>, <c>L[1]==Y</c>, and <c>L[2]==Z</c>.
+      </p>
+
+      <p>
+        Next up is eigenvalues and eigenvectors.
+        Given an <m>n\times n</m> matrix <m>A</m>, we have the following:
+        <ul>
+          <li>
+            <p>
+              For the characteristic polynomial, use <c>A.charpoly()</c>.
+              You might need <c>A.charpoly().as_expr()</c> but this hasn't seemed necessary.
+              For best results, you might prefer to use <c>factor(A.charpoly())</c>.
+            </p>
+          </li>
+          <li>
+            <p>
+              If we know that <m>3</m> is an eigenvalue of a <m>4\times 4</m> matrix <m>A</m>,
+              one way to get a basis for the eigenspace <m>E_3(A)</m> is to do:
+              <program>
+                B=A-3*eye(4)
+                B.nullspace()
+              </program>
+              If you just want all the eigenvalues and eigenvectors without going through the steps,
+              then you can simply execute <c>A.eigenvects()</c>.
+              The result is a list of lists <mdash/> each list in the list is of the form:
+              eigenvalue, multiplicity, basis for the eigenspace.
+            </p>
+
+            <p>
+              For diagonalization, one can do <c>A.diagonalize()</c>.
+              But this will not necessarily produce orthogonal diagaonalization for a symmetric matrix.
+            </p>
+          </li>
+        </ul>
+      </p>
+
+      <p>
+        Next to do: complex numbers.
       </p>
     </subsection>
   </section>
-</chapter>
+</appendix>
