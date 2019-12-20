@@ -6,7 +6,518 @@
     <title>Abstract vector spaces</title>
 
     <p>
-      (To Do)
+      In your first course in linear algebra, you likely worked a lot with vectors in two and three dimensions,
+      where they can be visualized geometrically as objects with magnitude and direction (and drawn as arrows).
+      You probably extended your understanding of vectors to include <em>column vectors</em>;
+      that is, <m>1\times n</m> matrices of the form <m>\vv=\bbm v_1\\v_2\\\vdots\\v_n\ebm</m>.
+    </p>
+
+    <p>
+      Using either geometric arguments (in <m>\R^2</m> or <m>\R^3</m>) or the properties of matrix arithmetic,
+      you would have learned that these vectors can be added, by adding corresponding components,
+      and multiplied by <em>scalars</em> <mdash/> that is, real numbers <mdash/>
+      by multiplying each component of the vector by the scalar.
+    </p>
+
+    <p>
+      It's also likely, although you may not have spent too long thinking about it,
+      that you looked at the properties obeyed by the addition and scalar multiplication of vectors
+      (or, for that matter, matrices).
+      For example, you may have made use of the fact that order of addition doesn't matter,
+      or that scalar multiplication distributes over addition.
+    </p>
+
+    <p>
+      It turns out that the algebraic properties satisfied by vector addition and scalar multiplication are not unique to vectors,
+      as vectors were understood in your first course in linear algebra.
+      In fact, many types of mathematical object exhibit similar behaviour.
+      Examples include matrices, polynomials, and even functions.
+    </p>
+
+    <p>
+      Linear algebra, as an abstract mathematical topic, begins with a realization of the importance of these properties.
+      Indeed, these properties, established as theorems for vectors in <m>\R^n</m>,
+      become the <em>axioms</em> for the abstract notion of a <em>vector space</em>.
+      The advantage of abstracting these ideas is that any proofs we write that depend only on these axioms will automatically be valid for any set of objects satisfying those axioms.
+      That is, a result that is true for vectors in <m>\R^2</m> is often also true for vectors in <m>\R^n</m>, and for matrices, and polynomials, and so on.
+      Mathematicians like to be efficient, and prefer to establish a result once in an abstract setting,
+      knowing that it will then apply to many concrete settings that fit into the framework of the abstract result.
+    </p>
+
+    <definition xml:id="def-vector-space">
+      <statement>
+        <p>
+          A <term>real vector space</term> (or vector space over <m>\R</m>) is a nonempty set <m>V</m>, whose objects are called <term>vectors</term>,
+          equipped with two operatations:
+          <ol>
+            <li>
+              <p>
+                <term>Addition</term>, which is a map from <m>V\times V</m> to <m>V</m>
+                that associates each ordered pair of vectors <m>(\vv,\ww)</m> to a vector <m>\vv+\ww</m>,
+                called the <term>sum</term> of <m>\vv</m> and <m>\ww</m>.
+              </p>
+            </li>
+
+            <li>
+              <p>
+                <term>Scalar multiplication</term>, which is a map from <m>\R\times V</m> to <m>V</m>
+                that associates each real number <m>c</m> and vector <m>\vv</m> to a vector <m>c\vv</m>.
+              </p>
+            </li>
+          </ol>
+        </p>
+
+        <p>
+          The operations of addition and scalar multiplication are required to satisfy the following <em>axioms</em>:
+          <dl>
+            <li>
+              <title>A1.</title>
+              <p>
+                If <m>\uu,\vv\in V</m>, then <m>\uu+\vv\in V</m>. (Closure under addition)
+              </p>
+            </li>
+            <li>
+              <title>A2.</title>
+              <p>
+                For all <m>\uu,\vv\in V</m>, <m>\uu+\vv=\vv+\uu</m>. (Commutativity of addition)
+              </p>
+            </li>
+            <li>
+              <title>A3.</title>
+              <p>
+                For all <m>\uu,\vv,\ww\in V</m>, <m>\uu+(\vv+\ww)=(\uu+_\vv)+\ww</m>. (Associativity of addition)
+              </p>
+            </li>
+            <li>
+              <title>A4.</title>
+              <p>
+                There exists an element <m>\zer\in V</m> such that <m>\vv+\zer=\vv</m> for each <m>\vv\in V</m>. (Existence of a zero vector)
+              </p>
+            </li>
+            <li>
+              <title>A5.</title>
+              <p>
+                For each <m>\vv\in V</m>, there exists a vector <m>-\vv\in V</m> such that <m>\vv+(-\vv)=\zer</m>. (Existence of negatives)
+              </p>
+            </li>
+            <li>
+              <title>S1.</title>
+              <p>
+                If <m>\vv\in V</m>, then <m>c\vv\in V</m> for all <m>c\in\R</m>. (Closure under scalar multiplication)
+              </p>
+            </li>
+            <li>
+              <title>S2.</title>
+              <p>
+                For all <m>c\in \R</m> and <m>\vv,\ww\in V</m>, <m>c(\vv+\ww)=c\vv+c\ww</m>. (Distribution over vector addition)
+              </p>
+            </li>
+            <li>
+              <title>S3.</title>
+              <p>
+                For all <m>a,b\in\R</m> and <m>\vv\in V</m>, <m>(a+b)\vv=a\vv+b\vv</m>. (Distribution over scalar addition)
+              </p>
+            </li>
+            <li>
+              <title>S4.</title>
+              <p>
+                For all <m>a,b\in \R</m> and <m>\vv\in V</m>, <m>a(b\vv)=(ab)\vv</m>. (Associativity of scalar multiplication)
+              </p>
+            </li>
+            <li>
+              <title>S5.</title>
+              <p>
+                For all <m>\vv\in V</m>, <m>1\vv=\vv</m>. (Normalization of scalar multiplication)
+              </p>
+            </li>
+          </dl>
+        </p>
+      </statement>
+    </definition>
+
+    <p>
+      Note that a zero vector must exist in every vector space.
+      This simple observation is a key component of many proofs and counterexamples in linear algebra.
+      In general, we may define a vector space whose scalars belong to a <em>field</em> <m>\mathbb{F}</m>.
+      A field is a set of objects whose algebraic properties are modelled after those of the real numbers.
+      Fields have their own set of axioms, which we will not list here.
+      While it is possible to study linear algebra over <em>finite fields</em> (like the integers modulo a prime number)
+      we will only consider two fields: the real numbers <m>\R</m>, and the complex numbers <m>\C</m>.
+    </p>
+    <p>
+      A vector space whose scalars are complex numbers will be called a <em>complex vector space</em>.
+      While many students are initially intimidated by the complex numbers,
+      most results in linear algebra work exactly the same over <m>\C</m> as they do over <m>\R</m>.
+      And where the results differ, things are usually <em>easier</em> with complex numbers,
+      owing in part to the fact that all complex polyomials can be completely factored.
+    </p>
+
+    <p>
+      To help us gain familiarity with the abstract nature of <xref ref="def-vector-space"/>,
+      let us consider some basic examples.
+    </p>
+
+    <example xml:id="ex-vector-spaces">
+      <statement>
+        <p>
+          The following are examples of vector spaces. We leave verification of axioms as an exercise.
+        </p>
+        <ol>
+          <li>
+            <p>
+              The set <m>\R^n</m> of <m>n</m>-tuples <m>(x_1,x_2,\ldots, \x_n)</m> of real numbers,
+              where we define
+              <md>
+                <mrow>(x_1,x_2,\ldots, x_n)+(y_1,y_2,\ldots, y_n) \amp = (x_1+y+1,x_2+y_2,\ldots, x_n+y_n) </mrow>
+                <mrow> c(x_1,x_2,\ldots, x_n)\amp = (cx_1,cx_2,\ldots, cx_n)</mrow>
+              </md>.
+              We will also often use <m>\R^n</m> to refer to the vector space of <m>1\times n</m> column matrices <m>\bbm x_1\\x_2\\\vdots\\x_n\ebm</m>,
+              where addition and scalar multiplication are defined as for matrices
+              (and the same as the above, with the only difference being the way in which we choose to write our vectors).
+              If the distinction between <m>n</m>-tuples and column matrices is ever important, it will be made clear.
+            </p>
+          </li>
+
+          <li>
+            <p>
+              The set <m>\mathbf{M}_{mn}</m> of <m>m\times n</m> matrices, equipped with the usual matrix addition and scalar multiplication.
+            </p>
+          </li>
+
+          <li>
+            <p>
+              The set <m>\mathbf{P}_n</m> of all polynomials
+              <me>
+                p(x) = a_0+a_1x+\cdots + a_nx^n
+              </me>
+              of degree less than or equal to <m>n</m>, where, for
+              <md>
+                <mrow>p(x) \amp = a_0+a_1x+\cdots + a_nx^n </mrow>
+                <mrow>q(x) \amp = b_0+b_1x+\cdots +b_nx^n</mrow>
+              </md>
+              we define
+              <me>
+                p(x)+q(x)=(a_0+b_0)+(a_1+b_1)x+\cdots + (a_n+b_n)x^n
+              </me>
+              and
+              <me>
+                cp(x) = ca_0+(ca_1)x+\cdots + (ca_n)x^n
+              </me>.
+              The zero vector is the polynomial <m>0=0+0x+\cdots + 0x^n</m>.
+            </p>
+          </li>
+
+          <li>
+            <p>
+              The set <m>\mathbf{F}[a,b]</m> of all functions <m>f:[a,b]\to \R</m>,
+              where we define <m>(f+g)(x)=f(x)+g(x)</m> and <m>(cf)(x)=c(f(x))</m>.
+              The zero function is the function satsifying <m>0(x)=0</m> for all <m>x\in [a,b]</m>,
+              and the negative of a function <m>f</m> is given by <m>(-f)(x)=-f(x)</m> for all <m>x\in [a,b]</m>.
+            </p>
+          </li>
+        </ol>
+      </statement>
+    </example>
+
+    <p>
+      There are a number of other algebraic properties that are common to all vector spaces;
+      for example, it is true that <m>0\vv = \zer</m> for all vectors <m>\vv</m> in any vector space <m>V</m>.
+      The reason these are not included is that the ten axioms in <xref ref="def-vector-space"/>
+      are the ones deemed <q>essential</q> <ndash /> all other properties can be deduced from the axioms.
+      To demonstate, we next give the proof that <m>0\vv = \zer</m>.
+    </p>
+
+    <theorem xml:id="thm-zero-mult">
+      <statement>
+        <p>
+          In any vector space <m>V</m>, we have <m>0\vv = \zer</m> for all <m>\vv\in V</m>
+        </p>
+      </statement>
+      <proof>
+        <p>
+          Since <m>0+0=0</m>, we have <m>0\vv=(0+0)\vv</m>.
+          Using the distributive axiom S3, this becomes
+          <me>
+            0\vv + 0\vv = 0\vv
+          </me>.
+           By axiom A5, there is an element <m>-0\vv\in V</m> such that <m>0\vv+(-0\vv)=\zer</m>.
+           Adding this to both sides of the equation above, we get:
+           <me>
+             (0\vv+0\vv)+(-0\vv) = 0\vv+(-0\vv)
+           </me>.
+           Now, apply the associative property (A3) on the left, and A5 on the right, to get
+           <me>
+             0\vv + (0\vv+(-0\vv)) = \zer
+           </me>.
+           Using A5 again on the left, we get <m>0\vv+\zer = \zer</m>.
+           Finally, axiom A4 guarantees <m>0\vv = 0\vv+\zer = \zer</m>.
+        </p>
+      </proof>
+
+    </theorem>
+
+    <p>
+      Similar tactics can be used to establish the following results,
+      which we leave as an exercise.
+      Solutions are included, but it will be worth your while in the long run to wrestle with these.
+    </p>
+
+    <exercise xml:id="ex-more-props">
+      <statement>
+        <p>
+          Show that the following properties are valid in any vector space <m>V</m>:
+          <ol>
+            <li>
+              <p>
+                If <m>\uu+\vv=\uu+\ww</m>, then <m>\vv=\ww</m>.
+              </p>
+            </li>
+            <li>
+              <p>
+                For any scalar <m>c</m>, <m>c\zer=\zer</m>.
+              </p>
+            </li>
+            <li>
+              <p>
+                If <m>c\vv=\zer</m>, then either <m>c=0</m> or <m>\vv=\zer</m>.
+              </p>
+            </li>
+            <li>
+              <p>
+                For any <m>\vv\in V</m>, <m>(-1)\vv=-\vv</m>.
+              </p>
+            </li>
+            <li>
+              <p>
+                The zero vector is the unique vector such that <m>\vv+\zer=\vv</m> for all <m>\vv\in V</m>.
+              </p>
+            </li>
+            <li>
+              <p>
+                The negative <m>-\vv</m> of any vector <m>\vv</m> is unique.
+              </p>
+            </li>
+          </ol>
+        </p>
+      </statement>
+      <solution>
+        <p>
+          <ol>
+            <li>
+              <p>
+                Suppose <m>\uu+\vv=\uu+\ww</m>. By adding <m>-\uu</m> on the left of each side, we obtain:
+                <md>
+                  <mrow>-\uu+(\uu+\vv) \amp =-\uu+(\uu+\ww)</mrow>
+                  <mrow>(-\uu+\uu)+\vv \amp =(-\uu+\uu)+\ww \quad \text{ by A3}</mrow>
+                  <mrow> \zer+\vv \amp =\zer+\ww \quad \text{ by A5}</mrow>
+                  <mrow> \vv \amp =\ww \quad \text{ by A4}</mrow>
+                </md>.
+              </p>
+            </li>
+            <li>
+              <p>
+                We have <m>c\zer = c(\zer+\zer) = c\zer +c\zer</m>, by A4 and S2, respectively.
+                Adding <m>-c\zer</m> to both sides (and using axioms A3, A4, A5 as in the proof of <xref ref="thm-zero-mult"/>)
+                we get <m>\zer = c\zer</m>.
+              </p>
+            </li>
+            <li>
+              <p>
+                The main difficulty with this problem is getting the logic of the statement correct,
+                and making sure you know what it is you're trying to prove.
+                The desired conclusion is an <em>or</em> statement, which means it suffices to establish one part or the other.
+                Typically, the way to proceed in these cases is to argue that if the first part is false,
+                then the second must be true. This is how we proceed here.
+              </p>
+
+              <p>
+                Suppose that <m>c\vv=\zer</m>. If <m>c=0</m>,
+                then it's true that <m>c=0</m> or <m>\vv=\zer</m>,
+                so there's nothing to prove.
+                Suppose then that <m>c\neq 0</m>. Then there exists a real number <m>\frac1c</m> such that <m>c\bigl(\frac1c\bigr)=1</m>.
+                Multiplying both sides of <m>c\vv=\zer</m> by <m>\frac1c</m>, we get
+                <me>
+                  \frac1c(c\vv)=\frac1c\zer
+                </me>.
+                By the previous problem, we know that <m>\frac1c\zer = \zer</m>,
+                and by axioms S4 and S5, we have
+                <me>
+                  \frac1c(c\vv)=\bigl(\frac1c\cdot c\bigr)\vv = 1\vv = \vv
+                </me>,
+                showing that <m>\vv=\zer</m>, and thus <m>c=0</m> or <m>\vv=\zer</m>.
+                (This is a proof by cases, relying on the tautology <m>c=0</m> or <m>c\neq 0</m>.)
+              </p>
+            </li>
+
+            <li>
+              <p>
+                Suppose there are two vectors <m>\zer_1,\zer_2</m> that act as additive identities.
+                Then
+                <md>
+                  <mrow>\zer_1 \amp = \zer_1+\zer_2 \quad \text{ since } \vv+\zer_2=\vv \text{ for any } \vv</mrow>
+                  <mrow>  \amp =\zer_2+\zer_1 \quad \text{ by axiom A2}</mrow>
+                  <mrow>  \amp \zer_2 \quad \text{ since } \vv+\zer_1=\vv \text{ for any } \vv</mrow>
+                </md>
+                So any two vectors satisfying the property in A4 must, in fact, be the same.
+              </p>
+            </li>
+            <li>
+              <p>
+                Let <m>\vv\in V</m>, and suppose there are vectors <m>\ww_1,\ww_2\in V</m>
+                such that <m>\vv+\ww_1=\zer</m> and <m>\vv+\ww_2=\zer</m>. Then
+                <md>
+                  <mrow>\ww_1 \amp = \ww_1+\zer \quad  \text{ by A4}</mrow>
+                  <mrow> \amp = \ww_1+(\vv+\ww_2) \quad \text{ by assumption}</mrow>
+                  <mrow> \amp = (\ww_1+\vv)+\ww_2 \quad \text{ by A3}</mrow>
+                  <mrow> \amp = (\vv+\ww_1)+\ww_2 \quad \text{ by A2}</mrow>
+                  <mrow> \amp = \zer+\ww_2 \quad \text{ by assumption}</mrow>
+                  <mrow> \amp \ww_2 \quad \text{ by A4}</mrow>
+                </md>.
+              </p>
+            </li>
+          </ol>
+        </p>
+      </solution>
+    </exercise>
+  </section>
+
+  <section xml:id="sec-subspace">
+    <title>Subspaces</title>
+    <p>
+      We begin with a motivating example. Let <m>\vv</m> be a nonzero vector in some vector space <m>V</m>.
+      Consider the set <m>S = \{c\vv\,|\, c\in \R\}</m>.
+      Given <m>a\vv,b\vv\in S</m>, notice that <m>a\vv+b\vv=(a+b)\vv</m> is also an element of <m>S</m>,
+      since <m>a+b</m> is again a real number.
+      Moreover, for any real number <m>c</m>, <m>c(a\vv)=(ca)\vv</m> is an element of <m>S</m>.
+    </p>
+
+    <p>
+      There are two important observations: one is that performing addition or scalar multiplication on elements of <m>S</m>
+      produces a new element of <m>S</m>. The other is that this addition and multiplication is essentially that of <m>\R</m>.
+      The vector <m>\vv</m> is just a placeholder. Addition simply involves the real number addition <m>a+b</m>.
+      Scalar multiplication becomes the real number multiplication <m>ca</m>.
+      So we expect that the rules for addition and scalar multiplication in <m>S</m> follow those in <m>\R</m>,
+      so that <m>S</m> is like a <q>copy</q> of <m>\R</m> inside of <m>V</m>.
+      In particular, addition and scalar multiplication in <m>S</m> will satisfy all the vector space axioms,
+      so that <m>S</m> deserves to be considered a vector space in its own right.
+    </p>
+
+    <p>
+      A similar thing happens if we consider a set <m>U=\{a\vv+b\ww\,|\, a,b\in\R\}</m>,
+      where <m>\vv,\ww</m> are two vectors in a vector space <m>V</m>.
+      Given two elements <m>a_1\vv+a_2\ww,b_1\uu+b_2\ww</m>, we have
+      <me>
+        (a_1\vv+a_2\ww)+(b_1\v+b_2\ww) = (a_1+b_1)\vv+(a_2+b_2)\ww
+      </me>,
+      which is again an element of <m>U</m>, and the addition rule looks an awful lot like the addition rule
+      <m>(a_1,a_2)+(b_1,b_2)=(a_1+b_1,a_2+b_2)</m> in <m>\R^2</m>.
+      Scalar multiplication follows a similar pattern.
+    </p>
+
+    <p>
+      In general we are often interested in subsets of vectors spaces that behave like <q>copies</q>
+      of smaller vector spaces contained within the larger space.
+      The technical term for this is <em>subspace</em>.
+    </p>
+
+    <definition xml:id="def-subspace">
+      <statement>
+        <p>
+          Let <m>V</m> be a vector space, and let <m>U\subseteq V</m> be a subset.
+          We say that <m>U</m> is a <term>subspace</term> of <m>V</m> if <m>U</m>
+          is itself a vector space when using the addition and scalar multiplication of <m>V</m>.
+        </p>
+      </statement>
+    </definition>
+
+    <p>
+      If we were to follow the definition, then verifying that a subset <m>U</m> is a subspace would involve checking all ten vector space axioms.
+      Fortunately, this is not necessary. Since the operations are those of the vector space <m>V</m>,
+      most properties follow automatically, being inherited from those of <m>V</m>.
+    </p>
+
+    <theorem xml:id="thm-subspace-test">
+      <statement>
+        <p>
+          Let <m>V</m> be a vector space and let <m>U\subseteq V</m> be a subset.
+          Then <m>U</m> is a subspace of <m>V</m> if and only if the following conditions are satisfied:
+          <ol>
+            <li>
+              <p>
+                <m>\zer\in U</m>, where <m>\zer</m> is the zero vector of <m>V</m>.
+              </p>
+            </li>
+
+            <li>
+              <p>
+                <m>U</m> is closed under addition. That is, for all <m>\uu_1,\uu_2\in U</m>, we have <m>\uu_1+\uu_2\in U</m>.
+              </p>
+            </li>
+
+            <li>
+              <p>
+                <m>U</m> is closed under scalar multiplication. That is, for all <m>\uu\in U</m> and <m>c\in\R</m>, <m>c\uu\in U</m>.
+              </p>
+            </li>
+          </ol>
+        </p>
+      </statement>
+      <proof>
+        <p>
+          If <m>U</m> is a vector space, then clearly the second and third conditions must hold.
+          Since a vector space musy be nonempty, there is some <m>\uu\in U</m>,
+          from which it follows that <m>\zer=0\uu\in U</m>.
+        </p>
+        <p>
+          Conversely, if all three conditions hold, we have axioms A1, A4, and S1 by assumption.
+          Axioms A2 and A3 hold since any vector in <m>U</m> is also a vector in <m>V</m>;
+          the same reasoning shows that axioms S2, S3, S4, and S5 hold.
+          Finally, axiom A5 holds because condition 3 ensures that <m>(-1)\uu\in U</m> for any <m>\uu\in U</m>,
+          and we know that <m>(-1)\uu=-\uu</m> by <xref ref="ex-more-props">Exercise</xref>.
+        </p>
+      </proof>
+
+    </theorem>
+
+    <p>
+      In some texts, the condition that <m>\zer\in U</m> is replaced by the requirement that <m>U</m> be nonempty.
+      Existence of <m>\zer</m> then follows from the fact that <m>0\vv=\zer</m>.
+      However, it is usually easy to check that a set contains the zero vector,
+      so it's the first thing one typically looks for when confirming that a subset is nonempty.
+    </p>
+
+    <example>
+      <statement>
+        <p>
+          For any vector space <m>V</m>, the set <m>\{\zer\}</m> is a subspace,
+          known as the <em>trivial subspace</em>.
+        </p>
+        <p>
+          If <m>V=\mathbf{P}</m> is the vector space of all polynomials,
+          then for any natural number <m>n</m>, the subset <m>U</m> of all polynomials of degree less than or equal to <m>n</m>
+          is a subspace of <m>V</m>. Another common type of polynomial subspace is the set of all polynomials with a given root.
+          For example, the set <m>U=\{p(x)\in\mathbf{P}\,|\,p(1)=0\}</m> is easily confirmed to be a subspace.
+          However, a condition such as <m>p(1)=2</m> would <em>not</em> define a subspace,
+          since this condition is not satisfied by the zero polynomial.
+        </p>
+        <p>
+          In <m>\R^n</m>, we can define a subspace using one or more homogeneous linear equations.
+          For example, the set
+          <me>
+            \{(x,y,z)\,|\, 2x-3y+4z=0\}
+          </me>
+          is a subspace of <m>\R^3</m>. A non-homogeneous equation won't work, however, since it would exclude the zero vector.
+          Of course, we should expect that any non-linear equation fails to define a subspace,
+          although one is still expected to verify this by confirming the failure of one of the axioms.
+          For example, the set <m>S=\{(x,y)\,|\,x=y^2\}</m> is not a subspace;
+          although it contains the zero vector (since <m>0^2=0</m>), we have <m>(1,1)\in S</m>,
+          but <m>2(1,1)=(2,2)</m> does not belong to <m>S</m>.
+        </p>
+      </statement>
+    </example>
+
+    <p>
+      In the next section, we'll encounter perhaps the most fruitful source of subspaces: sets of linear combinations (or <em>spans</em>).
     </p>
   </section>
 
@@ -14,9 +525,9 @@
     <title>Span</title>
     <p>
       Recall that a <term>linear combination</term> of a set of vectors
-      <m>\vec{v}_1,\ldots, \vec{v}_k</m> is a vector expression of the form
+      <m>\vv_1,\ldots, \vv_k</m> is a vector expression of the form
       <me>
-        \vec{w}=c_1\vec{v}_1+c_2\vec{v}_2+\cdots +c_k\vec{v}_k,
+        \ww=c_1\vv_1+c_2\vv_2+\cdots +c_k\vv_k,
       </me>
       where <m>c_1,\ldots, c_k</m> are scalars.
     </p>
@@ -24,10 +535,10 @@
     <p>
       The <term>span</term> of those same vectors is the set of all possible linear combinations:
       <me>
-        \spn\{\vec{v}_1,\ldots, \vec{v}_k\} = \{c_1\vec{v}_1+ \cdots + c_k\vec{v}_k \,|\, c_1,\ldots, c_k \in \mathbb{F}\}.
+        \spn\{\vv_1,\ldots, \vv_k\} = \{c_1\vv_1+ \cdots + c_k\vv_k \,|\, c_1,\ldots, c_k \in \mathbb{F}\}.
       </me>
-      Therefore, the questions <q>Is the vector <m>\vec{w}</m> in <m>\spn\{\vec{v}_1,\ldots, \vec{v}_k\}</m>?</q>
-      is really asking, <q>Can <m>\vec{w}</m> be written as a linear combination of <m>\vec{v}_1,\ldots, \vec{v}_k</m>?</q>
+      Therefore, the questions <q>Is the vector <m>\ww</m> in <m>\spn\{\vv_1,\ldots, \vv_k\}</m>?</q>
+      is really asking, <q>Can <m>\ww</m> be written as a linear combination of <m>\vv_1,\ldots, \vv_k</m>?</q>
     </p>
 
     <p>
@@ -183,6 +694,64 @@
     </sage>
 
     <p>
+      One of the reasons we care about linear combinations and span is that it gives us an easy means of generating subspaces,
+      as the following theorem suggests.
+    </p>
+
+    <theorem xml:id="thm-span-is-subspace">
+      <statement>
+        <p>
+          Let <m>V</m> be a vector space, and let <m>\vv_1,\vv_2,\ldots, \vv_k</m> be vectors in <m>V</m>. Then:
+          <ol>
+            <li>
+              <p>
+                <m>U=\spn\{\vv_1,\vv_2,\ldots, \vv_k\}</m> is a subspace of <m>V</m>.
+              </p>
+            </li>
+
+            <li>
+              <p>
+                <m>U</m> is the <em>smallest</em> subspace of  <m>V</m> containing <m>\vv_1,\ldots, \vv_k</m>,
+                in the sense that if <m>W\subseteq V</m> is a subspace and <m>\vv_1,\ldots, \vv_k\in W</m>,
+                then <m>U\subeteq W</m>.
+              </p>
+            </li>
+          </ol>
+        </p>
+      </statement>
+      <proof>
+        <p>
+          Let <m>U=\spn\{\vv_1,\vv_2,\ldots, \vv_k\}</m>. Then <m>0\in U</m>,
+          since <m>0=0\vv_1+0\vv_2+\cdots + 0\vv_k</m>.
+          If <m>\uu=a_1\vv_1+a_2\vv_2+\cdots +a_k\vv_k</m> and <m>\ww=b_1\vv_1+b_2\vv_2+\cdots +b_k\vv_k</m>
+          are vectors in <m>U</m>, then
+          <md>
+            <mrow>\uu+\ww \amp =(a_1\vv_1+a_2\vv_2+\cdots +a_k\vv_k)+(b_1\vv_1+b_2\vv_2+\cdots +b_k\vv_k)</mrow>
+            <mrow> \amp = (a_1+b_1)\vv_1+(a_2+b_2)\vv_2+\cdots + (a_k+b_k)\vv_k</mrow>
+          </md>
+          is in <m>U</m>, and
+          <md>
+            <mrow>c\uu \amp =c(a_1\vv_1+a_2\vv_2+\cdots +a_k\vv_k)</mrow>
+            <mrow> \amp =(ca_1)\vv_1+(ca_2)\vv_2+\cdots + (ca_k)\vv_k</mrow>
+          </md>
+          is in <m>U</m>, so by <xref ref="thm-subspace-test">Theorem</xref>,
+          <m>U</m> is a subspace.
+        </p>
+
+        <p>
+          To see that <m>U</m> is the smallest subspace containing <m>\vv_1,\ldots, \vv_k</m>,
+          we need only note that if <m>\vv_1,\ldots, \vv_k\in W</m>,
+          where <m>W</m> is a subspace, then since <m>W</m> is closed under scalar multiplication,
+          we know that <m>c_1\vv_1,\ldots, c_k\vv_k</m> for any scalars <m>c_1,\ldots, c_k</m>,
+          and since <m>W</m> is closed under addition, <m>c_1\vv_1+\cdots+c_k\vv_k\in W</m>.
+          Thus, <m>W</m> contains all linear combinations of <m>\vv_1,\ldots, \vv_k</m>,
+          which is to say that <m>W</m> contains <m>U</m>.
+        </p>
+      </proof>
+
+    </theorem>
+
+    <p>
       We end this section with a few non-computational, but useful results,
       which will be left as exercises to be done in class, or by the reader.
     </p>
@@ -207,10 +776,10 @@
     <theorem xml:id="theorem-surplus-span">
       <statement>
         <p>
-          Let <m>V</m> be a vector space, and let <m>\vec{v}_1,\ldots, \vec{v}_k\in V</m>.
-          If <m>\vec{u}\in \spn\{\vec{v}_1,\ldots, \vec{v}_k\}</m>, then
+          Let <m>V</m> be a vector space, and let <m>\vv_1,\ldots, \vv_k\in V</m>.
+          If <m>\uu\in \spn\{\vv_1,\ldots, \vv_k\}</m>, then
           <me>
-            \spn\{\vec{u},\vec{v}_1,\ldots, \vec{v}_k\} = \spn\{\vec{v}_1,\ldots, \vec{v}_k\}
+            \spn\{\uu,\vv_1,\ldots, \vv_k\} = \spn\{\vv_1,\ldots, \vv_k\}
           </me>.
         </p>
       </statement>
@@ -233,11 +802,11 @@
     <p>
       In any vector space <m>V</m>, we say that a set of vectors
       <me>
-        \{\vec{v}_1,\ldots,\vec{v}_2\}
+        \{\vv_1,\ldots,\vv_2\}
       </me>
       is <term>linearly independent</term> if for any scalars <m>c_1,\ldots, c_k</m>
       <me>
-        c_1\vec{v}_1+\cdots + c_k\vec{v}_k = \vec{0} \quad\Rightarrow\quad c_1=\cdots = c_k=0
+        c_1\vv_1+\cdots + c_k\vv_k = \mathbf{0} \quad\Rightarrow\quad c_1=\cdots = c_k=0
       </me>.
     </p>
 
@@ -255,7 +824,7 @@
           <ol>
             <li>
               <p>
-                If <m>\vec{v}\neq\vec{0}</m>, then <m>\{\vec{v}\}</m> is indenpendent.
+                If <m>\vv\neq\mathbf{0}</m>, then <m>\{\vv\}</m> is indenpendent.
               </p>
             </li>
             <li>
@@ -269,11 +838,11 @@
     </lemma>
 
     <p>
-      The definition of linear independence tells us that if <m>\{\vec{v}_1,\ldots, \vec{v}_k\}</m>
-      is an independent set of vectors, then there is only one way to write <m>\vec{0}</m>
+      The definition of linear independence tells us that if <m>\{\vv_1,\ldots, \vv_k\}</m>
+      is an independent set of vectors, then there is only one way to write <m>\mathbf{0}</m>
       as a linear combination of these vectors; namely,
       <me>
-        \vec{0} = 0\vec{v}_1+0\vec{v}_2+\cdots +0\vec{v_k}
+        \mathbf{0} = 0\vv_1+0\vv_2+\cdots +0\vv_k
       </me>.
       In fact, more is true: <em>any</em> vector in the span of a linearly independent set
       can be written in only one way as a linear combination of those vectors.
@@ -284,12 +853,12 @@
       about homogeneous systems of linear equations.
       For example, suppose we want to know if the vectors
       <me>
-        \vec{u}=\bbm 1\\-1\\4\ebm, \vec{v}=\bbm 0\\2\\-3\ebm, \vec{w}=\bbm 4\\0\\-3\ebm
+        \uu=\bbm 1\\-1\\4\ebm, \vv=\bbm 0\\2\\-3\ebm, \ww=\bbm 4\\0\\-3\ebm
       </me>
       are linearly independent in <m>\mathbb{R}^3</m>.
       This question leads to the vector equation
       <me>
-        x\vec{u}+y\vec{v}+z\vec{w}=\vec{0}
+        x\uu+y\vv+z\ww=\mathbf{0}
       </me>,
       which becomes the matrix equation
       <me>
@@ -301,7 +870,7 @@
       We now apply some basic theory from linear algebra.
       A unique (and therefore, trivial) solution to this system is guaranteed if the matrix
       <m>A = \bbm 1\amp0\amp4\\-1\amp2\amp0\\4\amp-3\amp-3\ebm</m> is invertible,
-      since in that case we have <m>\bbm x\\y\\z\ebm = A^{-1}\vec{0} = \vec{0}</m>.
+      since in that case we have <m>\bbm x\\y\\z\ebm = A^{-1}\mathbf{0} = \mathbf{0}</m>.
     </p>
 
     <p>
@@ -360,9 +929,9 @@
 
     <p>
       Notice that this time we don't get a unique solution, so we can conclude that these vectors are <em>not</em> independent.
-      Furthermore, you can probably deduce from the above that we have <m>2\vec{v}_1+3\vec{v}_2-\vec{v}_3=\vec{0}</m>.
-      Now suppose that <m>\vec{w}\in\spn\{\vec{v}_1,\vec{v}_2,\vec{v}_3\}</m>.
-      In how many ways can we write <m>\vec{w}</m> as a linear combination of these vectors?
+      Furthermore, you can probably deduce from the above that we have <m>2\vv_1+3\vv_2-\vv_3=\mathbf{0}</m>.
+      Now suppose that <m>\ww\in\spn\{\vv_1,\vv_2,\vv_3\}</m>.
+      In how many ways can we write <m>\ww</m> as a linear combination of these vectors?
     </p>
 
     <exercise>
@@ -460,8 +1029,8 @@
       <title>Fundamental Theorem (Steinitz Exchange Lemma)</title>
       <statement>
         <p>
-          Suppose <m>V = \spn\{\vec{v}_1,\ldots, \vec{v}_n\}</m>.
-          If <m>\{\vec{w}_1,\ldots, \vec{w}_m\}</m> is a linearly independent set of vectors in <m>V</m>,
+          Suppose <m>V = \spn\{\vv_1,\ldots, \vv_n\}</m>.
+          If <m>\{\ww_1,\ldots, \ww_m\}</m> is a linearly independent set of vectors in <m>V</m>,
           then <m>m\leq n</m>.
         </p>
       </statement>
@@ -477,7 +1046,7 @@
     <definition xml:id="def-basis">
       <statement>
         <p>
-          Let <m>V</m> be a vector space. A set <m>\mathcal{B}=\{\vec{e}_1,\ldots, \vec{e}_n\}</m>
+          Let <m>V</m> be a vector space. A set <m>\mathcal{B}=\{\mathbf{e}_1,\ldots, \mathbf{e}_n\}</m>
           is called a <term>basis</term> of <m>V</m> if <m>\mathcal{B}</m> is linearly independent,
           and <m>\operatorname{span}\mathcal{B} = V</m>.
         </p>
@@ -485,7 +1054,7 @@
     </definition>
 
     <p>
-      The importance of a basis is that vector vector <m>\vec{v}\in V</m> can be written in terms of the basis,
+      The importance of a basis is that vector vector <m>\vv\in V</m> can be written in terms of the basis,
       and this expression as a linear combination of basis vectors is <em>unique</em>.
       Another important fact is that every basis has the same number of elements.
     </p>
@@ -495,14 +1064,14 @@
 
       <statement>
         <p>
-          If <m>\{\vec{e}_1,\ldots, \vec{e}_n\}</m> and <m>\{\vec{f}_1,\ldots, \vec{f}_m\}</m>
+          If <m>\{\mathbf{e}_1,\ldots, \mathbf{e}_n\}</m> and <m>\{\mathbf{f}_1,\ldots, \mathbf{f}_m\}</m>
           are both bases of a vector space <m>V</m>, then <m>m=n</m>.
         </p>
       </statement>
     </theorem>
 
     <p>
-      Suppose <m>V=\spn\{\vec{v}_1,\ldots,\vec{v}_n\}</m>.
+      Suppose <m>V=\spn\{\vv_1,\ldots,\vv_n\}</m>.
       If this set is not linearly independent, <xref ref="theorem-surplus-span">Theorem</xref>
       tells us that we can remove a vector from the set, and still span <m>V</m>.
       We can repeat this procedure until we have a linearly independent set of vectors, which will then be a basis.
@@ -515,7 +1084,7 @@
           Let <m>V</m> be a vector space.
           If <m>V</m> can be spanned by a finite number of vectors,
           then we call <m>V</m> a <term>finite-dimensional</term> vector space.
-          If <m>V</m> is finite-dimensional (and non-trivial), and <m>\{\vec{e}_1,\ldots, \vec{e}_n\}</m>
+          If <m>V</m> is finite-dimensional (and non-trivial), and <m>\{\mathbf{e}_1,\ldots, \mathbf{e}_n\}</m>
           is a basis of <m>V</m>, we say that <m>V</m> has <term>dimension</term> <m>n</m>,
           and write
           <me>
@@ -655,53 +1224,53 @@
     </exercise>
 
     <p>
-      We've noted a few times now that if <m>\vec{w}\in\spn\{\vec{v}_1,\ldots, \vec{v}_n\}</m>,
+      We've noted a few times now that if <m>\ww\in\spn\{\vv_1,\ldots, \vv_n\}</m>,
       then
       <me>
-        \spn\{\vec{w},\vec{v}_1,\ldots, \vec{v}_n\}=\spn\{\vec{v}_1,\ldots, \vec{v}_n\}
+        \spn\{\ww,\vv_1,\ldots, \vv_n\}=\spn\{\vv_1,\ldots, \vv_n\}
       </me>
-      If <m>\vec{w}</m> is not in the span, we can make another useful observation:
+      If <m>\ww</m> is not in the span, we can make another useful observation:
     </p>
 
     <lemma xml:id="lemma-independent">
       <title>Independent Lemma</title>
       <statement>
         <p>
-          Suppose <m>\{\vec{v}_1,\ldots, \vec{v}_n\}</m> is a linearly independent set of vectors in a vector space <m>V</m>.
-          If <m>\vec{u}\in V</m> but <m>\vec{u}\notin \spn\{\vec{v}_1,\ldots, \vec{v}_n\}</m>,
-          then <m>\{\vec{u},\vec{v}_1,\ldots, \vec{v}_n\}</m> is independent.
+          Suppose <m>\{\vv_1,\ldots, \vv_n\}</m> is a linearly independent set of vectors in a vector space <m>V</m>.
+          If <m>\uu\in V</m> but <m>\uu\notin \spn\{\vv_1,\ldots, \vv_n\}</m>,
+          then <m>\{\uu,\vv_1,\ldots, \vv_n\}</m> is independent.
         </p>
       </statement>
       <proof>
         <p>
-          Suppose <m>S=\{\vec{v}_1,\ldots, \vec{v}_n\}</m> is independent,
-          and that <m>\vec{u}\notin\spn S</m>. Suppose we have
+          Suppose <m>S=\{\vv_1,\ldots, \vv_n\}</m> is independent,
+          and that <m>\uu\notin\spn S</m>. Suppose we have
           <me>
-            a\vec{u}+c_1\vec{v}_1+c_2\vec{v}_2+\cdots +c_n\vec{b}_n=\vec{0}
+            a\uu+c_1\vv_1+c_2\vv_2+\cdots +c_n\mathbf{b}_n=\mathbf{0}
           </me>
           for scalars <m>a,c_1,\ldots, c_n</m>. We must have <m>a=0</m>;
           otherwise, we can multiply by <m>\frac1a</m> and rearrange to obtain
           <me>
-            \vec{u} = -\frac{c_1}{a}\vec{v}_1-\cdots -\frac{c_n}{a}\vec{v}_n
+            \uu = -\frac{c_1}{a}\vv_1-\cdots -\frac{c_n}{a}\vv_n
           </me>,
-          but this would mean that <m>\vec{u}\in \spn S</m>, contradicting our assumption.
+          but this would mean that <m>\uu\in \spn S</m>, contradicting our assumption.
         </p>
 
         <p>
           With <m>a=0</m> we're left with
           <me>
-            c_1\vec{v}_1+c_2\vec{v}_2+\cdots +c_n\vec{b}_n=\vec{0}
+            c_1\vv_1+c_2\vv_2+\cdots +c_n\mathbf{b}_n=\mathbf{0}
           </me>,
           and since we assumed that the set <m>S</m> is independent,
           we must have <m>c_1=c_2=\cdots=c_n=0</m>. Since we already showed <m>a=0</m>,
-          this shows that <m>\{\vec{u},\vec{v}_1,\ldots, \vec{v}_n\}</m> is independent.
+          this shows that <m>\{\uu,\vv_1,\ldots, \vv_n\}</m> is independent.
         </p>
       </proof>
 
     </lemma>
     <p>
       This is, in fact, an <q>if and only if</q> result.
-      If <m>\vec{u}\in\spn\{\vec{v}_1,\ldots, \vec{v}_n\}</m>, then <m>\{\vec{u},\vec{v}_1,\ldots, \vec{v}_n\}</m> is not independent.
+      If <m>\uu\in\spn\{\vv_1,\ldots, \vv_n\}</m>, then <m>\{\uu,\vv_1,\ldots, \vv_n\}</m> is not independent.
       Above, we argued that if <m>V</m> is finite dimensional,
       then any spanning set for <m>V</m> can be reduced to a basis.
       It probably won't surprise you that the following is also true.
@@ -712,7 +1281,7 @@
         <p>
           Let <m>V</m> be a finite-dimensional vector space,
           and let <m>U</m> be any subspace of <m>V</m>.
-          Then any independent set of vectors <m>\{\vec{u}_1,\ldots, \vec{u}_k\}</m> in <m>U</m>
+          Then any independent set of vectors <m>\{\uu_1,\ldots, \uu_k\}</m> in <m>U</m>
           can be enlarged to a basis of <m>U</m>.
         </p>
       </statement>
@@ -779,7 +1348,7 @@
         <p>
           Find a basis of <m>M_{22}(\R)</m> that contains the vectors
           <me>
-            \vec{v}=\bbm 1\amp 1\\0\amp 0\ebm, \vec{w}=\bbm 0\amp 1\\0\amp 1\ebm
+            \vv=\bbm 1\amp 1\\0\amp 0\ebm, \ww=\bbm 0\amp 1\\0\amp 1\ebm
           </me>.
         </p>
       </statement>
@@ -789,7 +1358,7 @@
           <me>
             \left\{\bbm 1\amp 0\\0\amp 0\ebm, \bbm 0\amp 1\\0\amp 0\ebm, \bbm 0\amp 0\\1\amp 0\ebm, \bbm 0\amp 0\\0\amp 1\ebm\right\}
           </me>.
-          It's easy to check that <m>\bbm 1\amp 0\\0\amp 0\ebm</m> is not in the span of <m>\{\vec{v},\vec{w}\}</m>.
+          It's easy to check that <m>\bbm 1\amp 0\\0\amp 0\ebm</m> is not in the span of <m>\{\vv,\ww\}</m>.
           To get a basis, we need one more vector.
           Observe that all three of our vectors so far have a zero in the <m>(2,1)</m>-entry.
           Thus, <m>\bbm 0\amp 0\\1\amp 0\ebm</m> cannot be in the span of the first three vectors,
@@ -873,7 +1442,7 @@
           <ol>
             <li>
               <p>
-                Suppose <m>U\subseteq W</m>, and let <m>B=\{\vec{u}_1,\ldots, \vec{u}_k\}</m>
+                Suppose <m>U\subseteq W</m>, and let <m>B=\{\uu_1,\ldots, \uu_k\}</m>
                 be a basis for <m>U</m>. Since <m>B</m> is a basis, it's independent.
                 And since <m>B\subseteq U</m> and <m>U\subseteq W</m>, <m>B\subseteq W</m>.
                 Thus, <m>B</m> is an independent subset of <m>W</m>,
@@ -887,8 +1456,8 @@
                 Suppose <m>U\subseteq W</m> and <m>\dim U = \dim W</m>.
                 Let <m>B</m> be a basis for <m>U</m>.
                 As above, <m>B</m> is an independent subset of <m>W</m>.
-                If <m>W\neq U</m>, then there is some <m>\vec{w}\in W</m> with <m>\vec{w}\notin U</m>.
-                But <m>U=\spn B</m>, so that would mean that <m>B\cup \{\vec{w}\}</m>
+                If <m>W\neq U</m>, then there is some <m>\ww\in W</m> with <m>\ww\notin U</m>.
+                But <m>U=\spn B</m>, so that would mean that <m>B\cup \{\ww\}</m>
                 is a linearly independent set containing <m>\dim U+1</m> vectors.
                 This is impossible, since <m>\dim W=\dim U</m>,
                 so no independent set can contain more than <m>\dim U</m> vectors.
@@ -942,13 +1511,13 @@
         In class, we discussed the fact that the right way to define a subspace containing both <m>U</m> and <m>W</m>
         is using their <term>sum</term>: we define the sum <m>U+W</m> of two subspaces by
         <me>
-          U+W = \{\vec{u}+\vec{w} \,|\, \vec{u}\in U \text{ and } \vec{w}\in W\}
+          U+W = \{\uu+\ww \,|\, \uu\in U \text{ and } \ww\in W\}
         </me>.
         We proved that <m>U+W</m> is again a subspace of <m>V</m>.
       </p>
 
       <p>
-        If <m>U\cap W = \{\vec{0}\}</m>, we say that the sum is a <term>direct sum</term>,
+        If <m>U\cap W = \{\mathbf{0}\}</m>, we say that the sum is a <term>direct sum</term>,
         and write it as <m>U\oplus W</m>.
         The following theorem might help us understand why direct sums are singled out for special attention:
       </p>
@@ -967,47 +1536,47 @@
 
       <p>
         If the sum is direct, then we have simply <m>\dim(U\oplus W) = \dim U + \dim W</m>.
-        The other reason why direct sums are preferable, is that any <m>\vec{v}\in U\oplus W</m>
-        can be written <em>uniquely</em> as <m>\vec{v}=\vec{u}+\vec{w}</m>
-        where <m>\vec{U}\in U</m> and <m>\vec{w}\in W</m>.
+        The other reason why direct sums are preferable, is that any <m>\vv\in U\oplus W</m>
+        can be written <em>uniquely</em> as <m>\vv=\uu+\ww</m>
+        where <m>\uu\in U</m> and <m>\ww\in W</m>.
       </p>
 
       <theorem xml:id="thm-direct-sum">
         <statement>
           <p>
             For any subspaces <m>U,W</m> of a vector space <m>V</m>,
-            <m>U\cap W = \{\vec{0}\}</m> if and only if for every <m>\vec{v}\in U+W</m>
-            there exist unique <m>\vec{u}\in U, \vec{w}\in W</m> such that <m>\vec{v}=\vec{u}+\vec{w}</m>.
+            <m>U\cap W = \{\mathbf{0}\}</m> if and only if for every <m>\vv\in U+W</m>
+            there exist unique <m>\uu\in U, \ww\in W</m> such that <m>\vv=\uu+\ww</m>.
           </p>
         </statement>
         <proof>
           <p>
-            Suppose that <m>U\cap W = \{\vec{0}\}</m>, and suppose that we have
-            <m>\vec{v} = \vec{u}_1+\vec{w}_1 = \vec{u}_2+\vec{w}_2</m>,
-            for <m>\vec{u}_1,\vec{u}_2\in U,\vec{w}_1,\vec{w}_2\in W</m>.
-            Then <m>\vec{0}=(\vec{u}_1-\vec{u}_2)+(\vec{w}_1-\vec{w}_2)</m>,
+            Suppose that <m>U\cap W = \{\mathbf{0}\}</m>, and suppose that we have
+            <m>\vv = \uu_1+\ww_1 = \uu_2+\ww_2</m>,
+            for <m>\uu_1,\uu_2\in U,\ww_1,\ww_2\in W</m>.
+            Then <m>\mathbf{0}=(\uu_1-\uu_2)+(\ww_1-\ww_2)</m>,
             which implies that
             <me>
-              \vec{w}_1-\vec{w}_2 = -(\vec{u}_1-\vec{u}_2)
+              \ww_1-\ww_2 = -(\uu_1-\uu_2)
             </me>.
-            Now, <m>\vec{u}=\vec{u}_1-\vec{u}_2\in U</m>,
+            Now, <m>\uu=\uu_1-\uu_2\in U</m>,
             since <m>U</m> is a subspace, and similarly,
-            <m>\vec{w}=\vec{w}_1-\vec{w}_2\in W</m>.
-            But we also have <m>\vec{w}=-\vec{u}</m>, which implies that <m>\vec{w}\in U</m>.
-            Therefore, <m>\vec{w}\in U\cap W</m>, which implies that <m>\vec{w}=\vec{0}</m>,
-            so <m>\vec{w}_1=\vec{w}_2</m>.
-            But we must also then have <m>\vec{u}=\vec{0}</m>, so <m>\vec{u}_1=\vec{u}_2</m>.
+            <m>\ww=\ww_1-\ww_2\in W</m>.
+            But we also have <m>\ww=-\uu</m>, which implies that <m>\ww\in U</m>.
+            Therefore, <m>\ww\in U\cap W</m>, which implies that <m>\ww=\mathbf{0}</m>,
+            so <m>\ww_1=\ww_2</m>.
+            But we must also then have <m>\uu=\mathbf{0}</m>, so <m>\uu_1=\uu_2</m>.
           </p>
 
           <p>
-            Conversely, suppose that every <m>\vec{v}\in U+W</m> can be written uniquely as <m>\vec{v}=vec{u}+\vec{w}</m>,
-            with <m>\vec{u}\in U</m> and <m>\vec{w}\in W</m>. Suppose that <m>\vec{a}\in U\cap W</m>.
-            Then <m>\vec{a}\in U</m> and <m>\vec{a}\in W</m>, so we also have <m>-\vec{a}\in W</m>,
+            Conversely, suppose that every <m>\vv\in U+W</m> can be written uniquely as <m>\vv=vec{u}+\ww</m>,
+            with <m>\uu\in U</m> and <m>\ww\in W</m>. Suppose that <m>\mathbf{a}\in U\cap W</m>.
+            Then <m>\mathbf{a}\in U</m> and <m>\mathbf{a}\in W</m>, so we also have <m>-\mathbf{a}\in W</m>,
             since <m>W</m> is a subspace.
-            But then <m>\vec{0}=\vec{a}+(-\vec{a})</m>, where <m>\vec{a}\in U</m> and <m>-\vec{a}\in W</m>.
-            On the other hand, <m>\vec{0}=\vec{0}+\vec{0}</m>,
-            and <m>\vec{0}</m> belongs to both <m>U</m> and <m>W</m>. It follows that <m>\vec{a}=\vec{0}</m>.
-            Since <m>\vec{a}</m> was arbitrary, <m>U\cap W = \{\vec{0}\}</m>.
+            But then <m>\mathbf{0}=\mathbf{a}+(-\mathbf{a})</m>, where <m>\mathbf{a}\in U</m> and <m>-\mathbf{a}\in W</m>.
+            On the other hand, <m>\mathbf{0}=\mathbf{0}+\mathbf{0}</m>,
+            and <m>\mathbf{0}</m> belongs to both <m>U</m> and <m>W</m>. It follows that <m>\mathbf{a}=\mathbf{0}</m>.
+            Since <m>\mathbf{a}</m> was arbitrary, <m>U\cap W = \{\mathbf{0}\}</m>.
           </p>
         </proof>
 
@@ -1028,41 +1597,41 @@
         </statement>
         <proof>
           <p>
-            Let <m>\{\vec{u}_1,\ldots, \vec{u}_m\}</m> be a basis of <m>U</m>.
-            Since <m>U\subseteq W</m>, the set <m>\{\vec{u}_1,\ldots, \vec{u}_m\}</m>
+            Let <m>\{\uu_1,\ldots, \uu_m\}</m> be a basis of <m>U</m>.
+            Since <m>U\subseteq W</m>, the set <m>\{\uu_1,\ldots, \uu_m\}</m>
             is a linearly independent subset of <m>V</m>.
             Since any linearly independent set can be extended to a basis of <m>V</m>,
-            there exist vectors <m>\vec{w}_1,\ldots,\vec{w}_n</m> such that
+            there exist vectors <m>\ww_1,\ldots,\ww_n</m> such that
             <me>
-              \{\vec{u}_1,\ldots, \vec{u}_m,\vec{w}_1,\ldots, \vec{w}_n\}
+              \{\uu_1,\ldots, \uu_m,\ww_1,\ldots, \ww_n\}
             </me>
             is a basis of <m>V</m>.
           </p>
 
           <p>
-            Now, let <m>W = \spn\{\vec{w}_1,\ldots, \vec{w}_n\}</m>.
-            Then <m>W</m> is a subspace, and <m>\{\vec{w}_1,\ldots, \vec{w}_n\}</m>
+            Now, let <m>W = \spn\{\ww_1,\ldots, \ww_n\}</m>.
+            Then <m>W</m> is a subspace, and <m>\{\ww_1,\ldots, \ww_n\}</m>
             is a basis for <m>W</m>. (It spans, and must be independent since it's a subset of an independent set.)
           </p>
 
           <p>
             Clearly, <m>U+W=V</m>, since <m>U+W</m> contains the basis for <m>V</m> we've constructed.
-            To show the sum is direct, it suffices to show that <m>U\cap W = \{\vec{0}\}</m>.
-            To that end, suppose that <m>\vec{v}\in U\cap W</m>.
-            Since <m>\vec{v}\in U</m>, we have
+            To show the sum is direct, it suffices to show that <m>U\cap W = \{\mathbf{0}\}</m>.
+            To that end, suppose that <m>\vv\in U\cap W</m>.
+            Since <m>\vv\in U</m>, we have
             <me>
-              \vec{v}=a_1\vec{u}_1+\cdots +a_m\vec{u}_m
+              \vv=a_1\uu_1+\cdots +a_m\uu_m
             </me>
-            for scalars <m>a_1,\ldots, a_m</m>. Since <m>\vec{v}\in W</m>, we can write
+            for scalars <m>a_1,\ldots, a_m</m>. Since <m>\vv\in W</m>, we can write
             <me>
-              \vec{v}=b_1\vec{w}_1+\cdots + b_n\vec{w}_n
+              \vv=b_1\ww_1+\cdots + b_n\ww_n
             </me>
             for scalars <m>b_1,\ldots, b_n</m>. But then
             <me>
-              \vec{0}=\vec{v}-\vec{v}=a_1\vec{u}_1+\cdots a_m\vec{u}_m-b_1\vec{w}_1-\cdots -b_n\vec{w}_n.
+              \mathbf{0}=\vv-\vv=a_1\uu_1+\cdots a_m\uu_m-b_1\ww_1-\cdots -b_n\ww_n.
             </me>
-            Since <m>\{\vec{u}_1,\ldots, \vec{u}_m,\vec{w}_1,\ldots, \vec{w}_n\}</m> is a basis for <m>V</m>,
-            it's independent, and therefore, all of the <m>a_i,b_j</m> must be zero, and therefore, <m>\vec{v}=\vec{0}</m>.
+            Since <m>\{\uu_1,\ldots, \uu_m,\ww_1,\ldots, \ww_n\}</m> is a basis for <m>V</m>,
+            it's independent, and therefore, all of the <m>a_i,b_j</m> must be zero, and therefore, <m>\vv=\mathbf{0}</m>.
 
           </p>
         </proof>

@@ -26,11 +26,11 @@
         <p>
           Let <m>A</m> be an <m>n\times n</m> matrix.
           A number <m>\lambda</m> is called an <term>eigenvalue</term> of <m>A</m>
-          if there exists a nonzero vector <m>\vec{x}</m> such that
+          if there exists a nonzero vector <m>\xx</m> such that
           <me>
-            A\vec{x} = \lambda\vec{x}
+            A\xx = \lambda\xx
           </me>.
-          Any such vector <m>\vec{x}</m> is called an <term>eigenvector</term>
+          Any such vector <m>\xx</m> is called an <term>eigenvector</term>
           associated to the eigenvalue <m>\lambda</m>.
         </p>
       </statement>
@@ -38,26 +38,26 @@
 
     <p>
       Note that eigenvalues and eigenvectors can just as easily be defined for a general linear operator <m>T:V\to V</m>.
-      In this context, and eigenvector <m>\vec{x}</m> is sometimes referred to as a <em>characteristic vector</em> (or characteristic direction)
-      for <m>T</m>, since the property <m>T(\vec{x})=\lambda \vec{x}</m>
-      simply states that the transformed vector <m>T(\vec{x})</m> is parallel to the original vector <m>\vec{x}</m>.
+      In this context, and eigenvector <m>\xx</m> is sometimes referred to as a <em>characteristic vector</em> (or characteristic direction)
+      for <m>T</m>, since the property <m>T(\xx)=\lambda \xx</m>
+      simply states that the transformed vector <m>T(\xx)</m> is parallel to the original vector <m>\xx</m>.
       Some linear algebra textbooks that focus more on general linear transformations frame this topic in the context of
       <em>invariant subspaces</em> for a linear operator.
     </p>
 
     <p>
-      A subspace <m>U\subseteq V</m> is <em>invariant</em> with respect to <m>T</m> if <m>T(\vec{u})\in U</m> for all <m>\vec{u}\in U</m>.
-      Note that if <m>\vec{x}</m> is an eigenvector of <m>T</m>, then <m>\spn\{\vec{x}\}</m> is an invariant subspace.
-      To see this, note that if <m>T(\vec{x})=\lambda \vec{x}</m> and <m>\vec{y}=k\vec{x}</m>, then
+      A subspace <m>U\subseteq V</m> is <em>invariant</em> with respect to <m>T</m> if <m>T(\uu)\in U</m> for all <m>\uu\in U</m>.
+      Note that if <m>\xx</m> is an eigenvector of <m>T</m>, then <m>\spn\{\xx\}</m> is an invariant subspace.
+      To see this, note that if <m>T(\xx)=\lambda \xx</m> and <m>\yy=k\xx</m>, then
       <me>
-        T(\vec{y})=T(k\vec{x})=kT(\vec{x})=k(\lambda \vec{x})=\lambda(k\vec{x})=\lambda\vec{y})
+        T(\yy)=T(k\xx)=kT(\xx)=k(\lambda \xx)=\lambda(k\xx)=\lambda\yy)
       </me>.
     </p>
 
     <p>
-      Note that if <m>\vec{x}</m> is an eigenvector of the matrix <m>A</m>, then we have
+      Note that if <m>\xx</m> is an eigenvector of the matrix <m>A</m>, then we have
       <men xml:id="eq-eigen-null">
-        (A-\lambda I_n)\vec{x}=\vec{0}
+        (A-\lambda I_n)\xx=\mathbf{0}
       </men>,
       where <m>I_n</m> denotes the <m>n\times n</m> identity matrix.
       Thus, if <m>\lambda</m> is an eigenvalue of <m>A</m>,
@@ -97,7 +97,7 @@
               </p>
             </li>
             <li>
-              <m>E_\lambda(A)\neq \{\vec{0}\}</m>
+              <m>E_\lambda(A)\neq \{\mathbf{0}\}</m>
             </li>
 
             <li>
@@ -212,7 +212,7 @@
           which has reduced row-echelon form <m>\bbm 1\amp 1\amp 1\\0\amp 0\amp 0\\0\amp 0\amp 0\ebm</m>.
           Solving for the nullspace, we find that there are two independent eigenvectors:
           <me>
-            \vec{x}_{1,1}=\bbm 1\\-1\\0\ebm, \quad \text{ and } \quad \vec{x}_{1,2}=\bbm 1\\0\\-1\ebm
+            \xx_{1,1}=\bbm 1\\-1\\0\ebm, \quad \text{ and } \quad \xx_{1,2}=\bbm 1\\0\\-1\ebm
           </me>,
           so
           <me>
@@ -225,7 +225,7 @@
           which has reduced row-echelon form <m>\bbm 1\amp 0\amp -1\\0\amp 1\amp -1\\0\amp 0\amp 0\ebm</m>.
           An eigenvector in this case is given by
           <me>
-            \vec{x}_2 = \bbm 1\\1\\1\ebm
+            \xx_2 = \bbm 1\\1\\1\ebm
           </me>.
         </p>
       </solution>
@@ -260,10 +260,10 @@
     <lemma xml:id="lem-block-eigen">
       <statement>
         <p>
-          Let <m>\{\vec{x}_1,\ldots, \vec{x}_k\}</m> be a set of linearly independent eigenvectors of a matrix <m>A</m>,
+          Let <m>\{\xx_1,\ldots, \xx_k\}</m> be a set of linearly independent eigenvectors of a matrix <m>A</m>,
           with corresponding eigenvalues <m>\lambda_1,\ldots, \lambda_k</m> (not necessarily distinct).
-          Extend this set to a basis <m>\{\vec{x}_1,\ldots, \vec{x}_k,\vec{x}_{k+1},\ldots, \vec{x}_n\}</m>,
-          and let <m>P=\bbm \vec{x}_1\amp \cdots \amp \vec{x}_n\ebm</m>
+          Extend this set to a basis <m>\{\xx_1,\ldots, \xx_k,\xx_{k+1},\ldots, \xx_n\}</m>,
+          and let <m>P=\bbm \xx_1\amp \cdots \amp \xx_n\ebm</m>
           be the matrix whose columns are the basis vectors. (Note that <m>P</m> is necessarily invertible.)
           Then
           <me>
@@ -276,14 +276,14 @@
         <p>
           We have
           <md>
-            <mrow>P^{-1}AP \amp = P^{-1}A\bbm \vec{x}_1\amp \cdots \amp \vec{x}_n\ebm</mrow>
-            <mrow> \amp =\bbm (P^{-1}A)\vec{x}_1\amp \cdots \amp (P^{-1}A)\vec{x}_n\ebm</mrow>
+            <mrow>P^{-1}AP \amp = P^{-1}A\bbm \xx_1\amp \cdots \amp \xx_n\ebm</mrow>
+            <mrow> \amp =\bbm (P^{-1}A)\xx_1\amp \cdots \amp (P^{-1}A)\xx_n\ebm</mrow>
           </md>.
           For <m>1\leq i\leq k</m>, we have
           <me>
-            (P^{-1}A)(\vec{x}_i) = P^{-1}(A\vec{x}_i) = P^{-1}(\lambda_i\vec{x}_i)=\lambda_i(P^{-1}\vec{x}_i)
+            (P^{-1}A)(\xx_i) = P^{-1}(A\xx_i) = P^{-1}(\lambda_i\xx_i)=\lambda_i(P^{-1}\xx_i)
           </me>.
-          But <m>P^{-1}\vec{x}_i</m> is the <m>i</m>th column of <m>P^{-1}P = I_n</m>,
+          But <m>P^{-1}\xx_i</m> is the <m>i</m>th column of <m>P^{-1}P = I_n</m>,
           which proves the result.
         </p>
       </proof>
@@ -291,7 +291,7 @@
 
     <p>
       We can use <xref ref="lem-block-eigen"/> to prove that <m>\dim E_\lambda(A)\leq m</m> as follows.
-      Suppose <m>\{\vec{x}_1,\ldots, \vec{x}_k\}</m> is a basis for <m>E_\lambda(A)</m>.
+      Suppose <m>\{\xx_1,\ldots, \xx_k\}</m> is a basis for <m>E_\lambda(A)</m>.
       Then this is a linearly independent set of eigenvectors, so our lemma guarantees the existence of a matrix <m>P</m>
        such that
        <me>
@@ -327,13 +327,13 @@
     <p>
       Recall that an <m>n\times n</m> matrix <m>A</m> is <em>symmertric</em> if <m>A^T=A</m>.
       Symmetry of <m>A</m> is equivalent to the following:
-      for any vectors <m>\vec{x},\vec{y}\in\R^n</m>,
+      for any vectors <m>\xx,\yy\in\R^n</m>,
       <me>
-        \vec{x}\dotp (A\vec{y}) = (A\vec{x})\dotp \vec{y}
+        \xx\dotp (A\yy) = (A\xx)\dotp \yy
       </me>.
       To see that this is implied by the symmetry of <m>A</m>, note that
       <me>
-        \vec{x}\dotp (A\vec{y}) = \vec{x}^T(A\vec{y})=(\vec{x}^TA^T)\vec{y} = (A\vec{x})^T\vec{y}=(A\vec{x})\dotp\vec{y}
+        \xx\dotp (A\yy) = \xx^T(A\yy)=(\xx^TA^T)\yy = (A\xx)^T\yy=(A\xx)\dotp\yy
       </me>.
       For inner product spaces, the above is taken as the <em>definition</em> of what it means for an operator to be symmetric.
     </p>
@@ -341,17 +341,17 @@
     <exercise>
       <statement>
         <p>
-          Prove that if <m>\vec{x}\dotp(A\vec{y})=(A\vec{x})\dotp \vec{y}</m> for any <m>\vec{x},\vec{y}\in\R^n</m>,
+          Prove that if <m>\xx\dotp(A\yy)=(A\xx)\dotp \yy</m> for any <m>\xx,\yy\in\R^n</m>,
           then <m>A</m> is symmetric.
         </p>
       </statement>
       <solution>
         <p>
-          Take <m>\vec{x}=\vec{e}_i</m> and <m>\vec{y}=\vec{e}_j</m>,
-          where <m>\{\vec{e}_1,\ldots, \vec{e}_n\}</m> is the standard basis for <m>\R^n</m>.
+          Take <m>\xx=\mathbf{e}_i</m> and <m>\yy=\mathbf{e}_j</m>,
+          where <m>\{\mathbf{e}_1,\ldots, \mathbf{e}_n\}</m> is the standard basis for <m>\R^n</m>.
           Then with <m>A = [a_{ij}]</m> we have
           <me>
-            a_{ij} =\vec{e}_i\dotp(A\vec{e_j}) = (A\vec{e_i})\dotp \vec{e_j} = a_{ji}
+            a_{ij} =\mathbf{e}_i\dotp(A\mathbf{e}_j) = (A\mathbf{e}_i)\dotp \mathbf{e}_j = a_{ji}
           </me>,
           which shows that <m>A^T=A</m>.
         </p>
@@ -373,16 +373,16 @@
         <p>
           To see this, suppose <m>A</m> is symmetric, and that we have
           <me>
-            A\vec{x}_1=\lambda_1\vec{x}_1\quad \text{ and } A\vec{x}_2=\lambda_2\vec{x}_2
+            A\xx_1=\lambda_1\xx_1\quad \text{ and } A\xx_2=\lambda_2\xx_2
           </me>,
-          with <m>\vec{x}_1\neq\vec{0},\vec{x}_2\neq \vec{0}</m>, and <m>\lambda_1\neq \lambda_2</m>.
+          with <m>\xx_1\neq\mathbf{0},\xx_2\neq \mathbf{0}</m>, and <m>\lambda_1\neq \lambda_2</m>.
           We then have, since <m>A</m> is symmetric, and using the result above,
           <me>
-            \lambda_1(\vec{x}_1\dotp \vec{x}_2) = (\lambda_1\vec{x}_1)\dotp \vec{x}_2 = (A\vec{x}_1)\dotp \vec{x}_2 = \vec{x}_1\dotp(A\vec{x}_2) = \vec{x}_1(\lambda_2\vec{x}_2) = \lambda_2(\vec{x}_1\dotp\vec{x}_2)
+            \lambda_1(\xx_1\dotp \xx_2) = (\lambda_1\xx_1)\dotp \xx_2 = (A\xx_1)\dotp \xx_2 = \xx_1\dotp(A\xx_2) = \xx_1(\lambda_2\xx_2) = \lambda_2(\xx_1\dotp\xx_2)
           </me>.
-          It follows that <m>(\lambda_1-\lambda_2)(\vec{x}_1\dotp \vec{x}_2)=0</m>,
+          It follows that <m>(\lambda_1-\lambda_2)(\xx_1\dotp \xx_2)=0</m>,
           and since <m>\lambda_1\neq \lambda_2</m>,
-          we must have <m>\vec{x}_1\dotp \vec{x}_2=0</m>.
+          we must have <m>\xx_1\dotp \xx_2=0</m>.
         </p>
       </proof>
 
@@ -615,9 +615,9 @@
 
     <p>
       A basic fact about orthogonal matrices is that they <em>preserve length</em>.
-      Indeed, for any vector <m>\vec{x}</m> in <m>\R^n</m> and any orthogonal matrix <m>P</m>,
+      Indeed, for any vector <m>\xx</m> in <m>\R^n</m> and any orthogonal matrix <m>P</m>,
       <me>
-        \len{P\vec{x}}^2 = (P\vec{x})\dotp (P\vec{x}) = (P\vec{x})^T(P\vec{x}) = (\vec{x}^TP^T)(P\vec{x}) = \vec{x}^T\vec{x}=\len{\vec{x}}^2
+        \len{P\xx}^2 = (P\xx)\dotp (P\xx) = (P\xx)^T(P\xx) = (\xx^TP^T)(P\xx) = \xx^T\xx=\len{\xx}^2
       </me>,
       since <m>P^TP=I_n</m>.
     </p>
@@ -749,7 +749,7 @@
         But most of the theorems and proofs we've encountered go through unchanged if we work over a general field.
         (This is not quite true: over a <em>finite</em> field things can get more complicated.
         For example, if <m>\mathbb{F}=\mathbb{Z}_2=\{0,1\}</m>,
-        then we get weird results like <m>\vec{v}+\vec{v}=\vec{0}</m>, since <m>1+1=0</m>.)
+        then we get weird results like <m>\vv+\vv=\mathbf{0}</m>, since <m>1+1=0</m>.)
       </p>
 
       <p>

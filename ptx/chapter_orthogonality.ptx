@@ -20,11 +20,11 @@
         It turns out that the missing link is the humble dot product.
         This should be plausible after a bit of thought.
         After all, you probably encountered the following result, perhaps as a consequence of the law of cosines:
-        for any two vectors <m>\vec{u},\vec{v}\in\R^2</m>,
+        for any two vectors <m>\uu,\vv\in\R^2</m>,
         <me>
-          \vec{u}\dotp\vec{v} = \len{\vec{u}}\,\len{\vec{v}}\cos\theta
+          \uu\dotp\vv = \len{\uu}\,\len{\vv}\cos\theta
         </me>,
-        where <m>\theta</m> is the angle between <m>\vec{u}</m> and <m>\vec{v}</m>.
+        where <m>\theta</m> is the angle between <m>\uu</m> and <m>\vv</m>.
         Here we see both magnitude and direction (encoded by the angle) defined in terms of the dot product.
       </p>
 
@@ -45,15 +45,15 @@
       <definition xml:id="def-dot-prod-norm">
         <statement>
           <p>
-            Let <m>\vec{x}=(x_1,x_2,\ldots, x_n)</m> and <m>\vec{y}=(y_1,y_2,\ldots, y_n)</m>
-            be vectors in <m>\R^n</m>. The <term>dot product</term> of <m>\vec{x}</m> and <m>\vec{y}</m>,
-            denoted by <m>\vec{x}\dotp\vec{y}</m> is the scalar defined by
+            Let <m>\xx=(x_1,x_2,\ldots, x_n)</m> and <m>\yy=(y_1,y_2,\ldots, y_n)</m>
+            be vectors in <m>\R^n</m>. The <term>dot product</term> of <m>\xx</m> and <m>\yy</m>,
+            denoted by <m>\xx\dotp\yy</m> is the scalar defined by
             <me>
-              \vec{x}\dotp \vec{y} = x_1y_1+x_2y_2+\cdots + x_ny_n
+              \xx\dotp \yy = x_1y_1+x_2y_2+\cdots + x_ny_n
             </me>.
-            The <term>norm</term> of a vector <m>\vec{x}</m> is denoted <m>\len{\vec{x}}</m> and defined by
+            The <term>norm</term> of a vector <m>\xx</m> is denoted <m>\len{\xx}</m> and defined by
             <me>
-              \len{\vec{x}} = \sqrt{x_1^2+x_2^2+\cdots + x_n^2}
+              \len{\xx} = \sqrt{x_1^2+x_2^2+\cdots + x_n^2}
             </me>.
           </p>
         </statement>
@@ -61,7 +61,7 @@
 
       <p>
         Note that both the dot product and the norm produce <em>scalars</em>.
-        Through the Pythagorean Theorem, we recognize the norm as the length of <m>\vec{x}</m>.
+        Through the Pythagorean Theorem, we recognize the norm as the length of <m>\xx</m>.
         The dot product can still be thought of as measuring the angle between vectors,
         although the simple geometric proof used in two dimensions is not that easily translated to <m>n</m> dimensions.
         At the very least, the dot product lets us extend the notion of right angles to higher dimensions.
@@ -70,8 +70,8 @@
       <definition xml:id="def-orthogonal">
         <statement>
           <p>
-            We say that two vectors <m>\vec{x},\vec{y}\in\R^n</m>
-            are <term>orthogonal</term> if <m>\vec{x}\dotp\vec{y} = 0</m>.
+            We say that two vectors <m>\xx,\yy\in\R^n</m>
+            are <term>orthogonal</term> if <m>\xx\dotp\yy = 0</m>.
           </p>
         </statement>
       </definition>
@@ -84,18 +84,18 @@
       <theorem xml:id="thm-dot-props">
         <statement>
           <p>
-            For any vectors <m>\vec{x},\vec{y},\vec{z}\in\R^n</m>,
+            For any vectors <m>\xx,\yy,\zz\in\R^n</m>,
             <ol>
-              <li><m>\vec{x}\dotp\vec{y} = \vec{y}\dotp\vec{x}</m></li>
-              <li><m>\vec{x}\dotp(\vec{y}+\vec{z})=\vec{x}\dotp\vec{y}+\vec{x}\dotp\vec{z}</m></li>
+              <li><m>\xx\dotp\yy = \yy\dotp\xx</m></li>
+              <li><m>\xx\dotp(\yy+\zz)=\xx\dotp\yy+\xx\dotp\zz</m></li>
               <li>
                 <p>
-                  For any scalar <m>c</m>, <m>\vec{x}\dotp(c\vec{y}) = (c\vec{x})\dotp\vec{y}=c(\vec{x}\dotp\vec{y})</m>
+                  For any scalar <m>c</m>, <m>\xx\dotp(c\yy) = (c\xx)\dotp\yy=c(\xx\dotp\yy)</m>
                 </p>
               </li>
               <li>
                 <p>
-                  <m>\vec{x}\dotp\vec{x}\geq 0</m>, and <m>\vec{x}\dotp\vec{x}=0</m> if and only if <m>\vec{x}=\vec{0}</m>
+                  <m>\xx\dotp\xx\geq 0</m>, and <m>\xx\dotp\xx=0</m> if and only if <m>\xx=\mathbf{0}</m>
                 </p>
               </li>
             </ol>
@@ -106,12 +106,12 @@
       <p>
         The above properties, when properly abstracted, become the defining properties of a (real) inner product.
         (A complex inner product also involves complex conjugates.)
-        For a general inner product, the requirement <m>\vec{x}\dotp\vec{x}\geq 0</m>
+        For a general inner product, the requirement <m>\xx\dotp\xx\geq 0</m>
         is referred to as being <em>positive-definite</em>,
         and the property that only the zero vector produces zero when dotted with itself is called <em>nondegenerate</em>.
         Note that we have the following connection between norm and dot product:
         <me>
-          \len{\vec{x}}^2 = \vec{x}\dotp \vec{x}
+          \len{\xx}^2 = \xx\dotp \xx
         </me>.
         For a general inner product, this can be used as a <em>definition</em> of the norm associated to an inner product.
       </p>
@@ -119,8 +119,8 @@
       <exercise>
         <statement>
           <p>
-            Given that <m>\len{\vec{x}}=3, \len{\vec{y}}=1</m>, and <m>\vec{x}\dotp\vec{y}=-2</m>,
-            compute <m>(4\vec{x}-3\vec{y})\dotp (\vec{x}+5\vec{y})</m>.
+            Given that <m>\len{\xx}=3, \len{\yy}=1</m>, and <m>\xx\dotp\yy=-2</m>,
+            compute <m>(4\xx-3\yy)\dotp (\xx+5\yy)</m>.
           </p>
         </statement>
         <solution>
@@ -128,9 +128,9 @@
             Note that the distributive property, together with symmetry,
             let us handle this dot product using what is essentially <q><init>FOIL</init></q>:
             <md>
-              <mrow> (4\vec{x}-3\vec{y})\dotp (\vec{x}+5\vec{y})\amp = (4\vec{x})\dotp \vec{x}+(4\vec{x})\dotp(5\vec{y})+(-3\vec{y})\dotp \vec{x}+(-3\vec{y})\dotp(5\vec{y})</mrow>
-              <mrow> \amp = 4(\vec{x}\dotp\vec{x})+(4\cdot 5)(\vec{x}\dotp \vec{y})-3(\vec{y}\dotp \vec{x})+(-3\cdot 5)(\vec{y}\dotp\vec{y})</mrow>
-              <mrow> \amp = 4\len{\vec{x}}^2+20\vec{x}\dotp\vec{y}-3\vec{x}\dotp\vec{y}-15\len{\vec{y}}^2</mrow>
+              <mrow> (4\xx-3\yy)\dotp (\xx+5\yy)\amp = (4\xx)\dotp \xx+(4\xx)\dotp(5\yy)+(-3\yy)\dotp \xx+(-3\yy)\dotp(5\yy)</mrow>
+              <mrow> \amp = 4(\xx\dotp\xx)+(4\cdot 5)(\xx\dotp \yy)-3(\yy\dotp \xx)+(-3\cdot 5)(\yy\dotp\yy)</mrow>
+              <mrow> \amp = 4\len{\xx}^2+20\xx\dotp\yy-3\xx\dotp\yy-15\len{\yy}^2</mrow>
               <mrow> \amp = 4(9)+17(-2)-15(1) = -13</mrow>
             </md>.
           </p>
@@ -140,9 +140,9 @@
       <exercise xml:id="ex-norm-sum-square">
         <statement>
           <p>
-            Show that for any vectors <m>\vec{x},\vec{y}\in\R^n</m>, we have
+            Show that for any vectors <m>\xx,\yy\in\R^n</m>, we have
             <me>
-              \len{\vec{x}+\vec{y}}^2 = \len{\vec{x}}^2+2\vec{x}\dotp\vec{y}+\len{\vec{y}}^2
+              \len{\xx+\yy}^2 = \len{\xx}^2+2\xx\dotp\yy+\len{\yy}^2
             </me>.
           </p>
         </statement>
@@ -150,9 +150,9 @@
           <p>
             This is simply an exercise in properties of the dot product. We have
             <md>
-              <mrow>\len{\vec{x}+\vec{y}}^2 \amp = (\vec{x}+\vec{y})\dotp (\vec{x}+\vec{y}) </mrow>
-              <mrow> \amp = \vec{x}\dotp \vec{x}+\vec{x}\dotp\vec{y}+\vec{y}\dotp\vec{x}+\vec{y}\dotp\vec{y}</mrow>
-              <mrow>  \amp =\len{\vec{x}}^2+2\vec{x}\dotp\vec{y}+\len{\vec{y}}^2</mrow>
+              <mrow>\len{\xx+\yy}^2 \amp = (\xx+\yy)\dotp (\xx+\yy) </mrow>
+              <mrow> \amp = \xx\dotp \xx+\xx\dotp\yy+\yy\dotp\xx+\yy\dotp\yy</mrow>
+              <mrow>  \amp =\len{\xx}^2+2\xx\dotp\yy+\len{\yy}^2</mrow>
             </md>.
           </p>
         </solution>
@@ -161,19 +161,19 @@
       <exercise>
         <statement>
           <p>
-            Suppose <m>\mathbb{R}^n=\spn\{\vec{v}_1,\vec{v}_2,\ldots, \vec{v}_k\}</m>.
-            Prove that <m>\vec{x}=\vec{0}</m> if and only if <m>\vec{x}\dotp \vec{v}_i=0</m> for each <m>i=1,2,\ldots, k</m>.
+            Suppose <m>\mathbb{R}^n=\spn\{\vv_1,\vv_2,\ldots, \vv_k\}</m>.
+            Prove that <m>\xx=\mathbf{0}</m> if and only if <m>\xx\dotp \vv_i=0</m> for each <m>i=1,2,\ldots, k</m>.
           </p>
         </statement>
         <solution>
           <p>
-            If <m>\vec{x}=\vec{0}</m>, then the result follows immediately from the dot product formula in <xref ref="def-dot-prod-norm"/>.
-            Conversely, suppose <m>\vec{x}\dotp \vec{v}_i=0</m> for each <m>i</m>.
-            Since the <m>\vec{v}_i</m> span <m>\R^n</m>, there must exist scalars <m>c_1,c_2,\ldots, c_k</m>
-            such that <m>\vec{x}=c_1\vec{v}_1+c_2\vec{v}_2+\cdots+c_k\vec{v}_k</m>. But then
+            If <m>\xx=\mathbf{0}</m>, then the result follows immediately from the dot product formula in <xref ref="def-dot-prod-norm"/>.
+            Conversely, suppose <m>\xx\dotp \vv_i=0</m> for each <m>i</m>.
+            Since the <m>\vv_i</m> span <m>\R^n</m>, there must exist scalars <m>c_1,c_2,\ldots, c_k</m>
+            such that <m>\xx=c_1\vv_1+c_2\vv_2+\cdots+c_k\vv_k</m>. But then
             <md>
-              <mrow>\vec{x}\dotp\vec{x} \amp = \vec{x}\dotp (c_1\vec{v}_1+c_2\vec{v}_2+\cdots+c_k\vec{v}_k) </mrow>
-              <mrow> \amp = c_1(\vec{x}\dotp \vec{v}_1)+ c_2(\vec{x}\dotp \vec{v}_2)+\cdots +c_k(\vec{x}\dotp \vec{v}_k)</mrow>
+              <mrow>\xx\dotp\xx \amp = \xx\dotp (c_1\vv_1+c_2\vv_2+\cdots+c_k\vv_k) </mrow>
+              <mrow> \amp = c_1(\xx\dotp \vv_1)+ c_2(\xx\dotp \vv_2)+\cdots +c_k(\xx\dotp \vv_k)</mrow>
               <mrow>  \amp = c_1(0)+c_2(0)+\cdots + c_k(0)=0</mrow>
             </md>.
           </p>
@@ -188,14 +188,14 @@
       <theorem xml:id="thm-cauchy-triangle">
         <statement>
           <p>
-            Let <m>\vec{x},\vec{y}</m> be any vectors in <m>\R^n</m>.
+            Let <m>\xx,\yy</m> be any vectors in <m>\R^n</m>.
             Then
             <ol>
               <li>
-                <m>\lvert \vec{x}\dotp \vec{y}\rvert \leq \len{\vec{x}}\len{\vec{y}}</m>
+                <m>\lvert \xx\dotp \yy\rvert \leq \len{\xx}\len{\yy}</m>
               </li>
               <li>
-                <m>\len{\vec{x}+\vec{y}}\leq \len{\vec{x}}+\len{\vec{y}}</m>
+                <m>\len{\xx+\yy}\leq \len{\xx}+\len{\yy}</m>
               </li>
             </ol>
           </p>
@@ -205,20 +205,20 @@
       <p>
         The first of the above inequalities is called the <em>Cauchy-Schwarz inequality</em>, which be viewed as a manifestation of the formula
         <me>
-          \vec{x}\dotp \vec{y} = \len{\vec{x}}\len{\vec{y}}\cos\theta
+          \xx\dotp \yy = \len{\xx}\len{\yy}\cos\theta
         </me>,
         since after all, <m>\lvert \cos\theta\rvert\leq 1</m> for any angle <m>\theta</m>.
         For a direct proof, we note that for any scalars <m>r,s</m> we have
         <me>
-          \len{r\vec{x}\pm s\vec{y}}^2 = r^2\len{\vec{x}}^2\pm 2rs\vec{x}\dotp\vec{y}+s^2\len{\vec{y}}^2
+          \len{r\xx\pm s\yy}^2 = r^2\len{\xx}^2\pm 2rs\xx\dotp\yy+s^2\len{\yy}^2
         </me>.
-        Putting <m>r=\len{\vec{y}}, s=\len{\vec{x}}</m> gives
+        Putting <m>r=\len{\yy}, s=\len{\xx}</m> gives
         <me>
-          \len{s\vec{x}\pm r\vec{y}}^2 = 2rs(rs\pm\vec{x}\dotp\vec{y})
+          \len{s\xx\pm r\yy}^2 = 2rs(rs\pm\xx\dotp\yy)
         </me>.
         Since the left-hand side is non-negative, we must have
         <me>
-          \vec{x}\vec{y}\leq \len{\vec{x}}\len{\vec{y}} \quad \text{ and } -\len{\vec{x}}\len{\vec{y}}\leq \vec{x}\dotp\vec{y}
+          \xx\yy\leq \len{\xx}\len{\yy} \quad \text{ and } -\len{\xx}\len{\yy}\leq \xx\dotp\yy
         </me>,
         and the result follows.
       </p>
@@ -234,10 +234,10 @@
       <definition xml:id="def-vector-distance">
         <statement>
           <p>
-            For any vectors <m>\vec{x},\vec{y}\in \R^n</m>, the <term>distance</term>
-            from <m>\vec{x}</m> to <m>\vec{y}</m> is denoted <m>d(\vec{x},\vec{y})</m>, and defined as
+            For any vectors <m>\xx,\yy\in \R^n</m>, the <term>distance</term>
+            from <m>\xx</m> to <m>\yy</m> is denoted <m>d(\xx,\yy)</m>, and defined as
             <me>
-              d(\vec{x},\vec{y}) = \len{\vec{x}-\vec{y}}
+              d(\xx,\yy) = \len{\xx-\yy}
             </me>.
           </p>
         </statement>
@@ -250,17 +250,17 @@
         <ol>
           <li>
             <p>
-              <m>d(\vec{x},\vec{y})=d(\vec{y},\vec{x})</m> for any <m>\vec{x},\vec{y}</m>
+              <m>d(\xx,\yy)=d(\yy,\xx)</m> for any <m>\xx,\yy</m>
             </p>
           </li>
           <li>
             <p>
-              <m>d(\vec{x},\vec{y})\geq 0</m>, and <m>d(\vec{x},\vec{y})=0</m> if and only if <m>\vec{x}=\vec{y}</m>
+              <m>d(\xx,\yy)\geq 0</m>, and <m>d(\xx,\yy)=0</m> if and only if <m>\xx=\yy</m>
             </p>
           </li>
           <li>
             <p>
-              <m>d(\vec{x},\vec{y})\leq d(\vec{x},\vec{z})+d(\vec{z},\vec{y})</m> for any <m>\vec{x},\vec{y},\vec{z}</m>
+              <m>d(\xx,\yy)\leq d(\xx,\zz)+d(\zz,\yy)</m> for any <m>\xx,\yy,\zz</m>
             </p>
           </li>
         </ol>
@@ -289,17 +289,17 @@
       <definition xml:id="def-ortho-set">
         <statement>
           <p>
-            A set of vectors <m>\{\vec{v}_1,\vec{v}_2,\ldots, \vec{v}_k\}</m> in <m>\R^n</m>
+            A set of vectors <m>\{\vv_1,\vv_2,\ldots, \vv_k\}</m> in <m>\R^n</m>
             is called <term>orthogonal</term> if:
             <ul>
               <li>
                 <p>
-                  <m>\vec{v}_i\neq \vec{0}</m> for each <m>i=1,2\ldots, n</m>
+                  <m>\vv_i\neq \mathbf{0}</m> for each <m>i=1,2\ldots, n</m>
                 </p>
               </li>
               <li>
                 <p>
-                  <m>\vec{v}_i\dotp\vec{v}_j = 0</m> for all <m>i\neq j</m>
+                  <m>\vv_i\dotp\vv_j = 0</m> for all <m>i\neq j</m>
                 </p>
               </li>
             </ul>
@@ -328,8 +328,8 @@
           </p>
 
           <p>
-            To find a fourth vector, we proceed as follows. Let <m>\vec{x}=(a,b,c,d)</m>.
-            We want <m>\vec{x}</m> to be orthogonal to the three vectors in our set.
+            To find a fourth vector, we proceed as follows. Let <m>\xx=(a,b,c,d)</m>.
+            We want <m>\xx</m> to be orthogonal to the three vectors in our set.
             Computing dot products, we must have:
             <md>
               <mrow>(a,b,c,d)\dotp (1,0,1,0) \amp = a+c=0 </mrow>
@@ -339,7 +339,7 @@
             This is simply a homogeneous system of three equations in four variables.
             Using the Sage cell below, we find that our vector must satisfy
             <m>a=\frac12 d, b = -3d, c=-\frac12 d</m>.
-            One possible nonzero solution is to take <m>d=2</m>, giving <m>\vec{x}=(1,-6,-1,2)</m>.
+            One possible nonzero solution is to take <m>d=2</m>, giving <m>\xx=(1,-6,-1,2)</m>.
             We'll leave the verification that this vector works as an easy exercise.
           </p>
         </solution>
@@ -367,18 +367,18 @@
         </statement>
         <proof>
           <p>
-            Suppose <m>S=\{\vec{v}_1,\vec{v}_2,\ldots, \vec{v}_k\}</m> is orthogonal, and suppose
+            Suppose <m>S=\{\vv_1,\vv_2,\ldots, \vv_k\}</m> is orthogonal, and suppose
             <me>
-              c_1\vec{v}_1+c_2\vec{v}_2+\cdots + c_k\vec{v}_k = \vec{0}
+              c_1\vv_1+c_2\vv_2+\cdots + c_k\vv_k = \mathbf{0}
             </me>
             for scalars <m>c_1,c_2,\ldots, c_k</m>.
-            Taking the dot product of both sides of the above equation with <m>\vec{v}_1</m> gives
+            Taking the dot product of both sides of the above equation with <m>\vv_1</m> gives
             <md>
-              <mrow>c_1(\vec{v}_1\dotp \vec{v}_1)+c_2(\vec{v}_1\dotp \vec{v}_2)+\cdots +c_k(\vec{v}_1\dotp \vec{v}_k) \amp =\vec{v}_1\dotp \vec{0}</mrow>
-              <mrow> c_1\len{\vec{v}_1}^2+0+\cdots + 0\amp = 0 </mrow>
+              <mrow>c_1(\vv_1\dotp \vv_1)+c_2(\vv_1\dotp \vv_2)+\cdots +c_k(\vv_1\dotp \vv_k) \amp =\vv_1\dotp \mathbf{0}</mrow>
+              <mrow> c_1\len{\vv_1}^2+0+\cdots + 0\amp = 0 </mrow>
             </md>.
-            Since <m>\len{\vec{v}_1}^2\neq 0</m>, we must have <m>c_1=0</m>.
-            We similarly find that all the remaining scalars are zero by taking the dot product with <m>\vec{v}_2,\ldots, \vec{v}_k</m>.
+            Since <m>\len{\vv_1}^2\neq 0</m>, we must have <m>c_1=0</m>.
+            We similarly find that all the remaining scalars are zero by taking the dot product with <m>\vv_2,\ldots, \vv_k</m>.
           </p>
         </proof>
       </theorem>
@@ -394,9 +394,9 @@
       <theorem xml:id="thm-pythagoras">
         <statement>
           <p>
-            For any orthogonal set of vectors <m>\{\vec{x}_1,\ldots, \vec{x}_k\}</m> we have
+            For any orthogonal set of vectors <m>\{\xx_1,\ldots, \xx_k\}</m> we have
             <me>
-              \len{\vec{x}_1+\cdots +\vec{x}_k}^2 = \len{\vec{x}_1}^2+\cdots + \len{\vec{x}_k}^2
+              \len{\xx_1+\cdots +\xx_k}^2 = \len{\xx_1}^2+\cdots + \len{\xx_k}^2
             </me>.
           </p>
         </statement>
@@ -404,9 +404,9 @@
 
       <p>
         Our final initial result about orthogonal sets of vectors relates to span.
-        In general, we know that if <m>\vec{y}\in\spn\{\vec{x}_1,\ldots, \vec{x}_k\}</m>,
+        In general, we know that if <m>\yy\in\spn\{\xx_1,\ldots, \xx_k\}</m>,
         then it is possible to solve for scalars <m>c_1,\ldots, c_k</m>
-        such that <m>\vec{y}=c_1\vec{x}_1+\cdots+ c_k\vec{x}_k</m>.
+        such that <m>\yy=c_1\xx_1+\cdots+ c_k\xx_k</m>.
         The trouble is that finding these scalars generally involves setting up,
         and then solving, a system of linear equations.
         The great thing about orthogonal sets of vectors is that we can provide explicit formulas for the scalars.
@@ -416,24 +416,24 @@
         <title>Fourier expansion theorem</title>
         <statement>
           <p>
-            Let <m>=\{\vec{v}_1,\vec{v}_2,\ldots, \vec{v}_k\}</m> be an orthogonal set of vectors.
-            For any <m>\vec{y}\in \spn S</m>, we have
+            Let <m>=\{\vv_1,\vv_2,\ldots, \vv_k\}</m> be an orthogonal set of vectors.
+            For any <m>\yy\in \spn S</m>, we have
             <me>
-              \vec{y} = \left(\frac{\vec{y}\dotp\vec{v_1}}{\vec{v}_1\dotp\vec{v}_1}\right)\vec{v}_1+
-              \left(\frac{\vec{y}\dotp\vec{v_2}}{\vec{v}_2\dotp\vec{v}_2}\right)\vec{v}_2+\cdots +
-              \left(\frac{\vec{y}\dotp\vec{v_k}}{\vec{v}_k\dotp\vec{v}_k}\right)\vec{v}_k
+              \yy = \left(\frac{\yy\dotp\mathbf{v}_1}{\vv_1\dotp\vv_1}\right)\vv_1+
+              \left(\frac{\yy\dotp\mathbf{v}_2}{\vv_2\dotp\vv_2}\right)\vv_2+\cdots +
+              \left(\frac{\yy\dotp\mathbf{v}_k}{\vv_k\dotp\vv_k}\right)\vv_k
             </me>.
           </p>
         </statement>
         <proof>
           <p>
-            Let <m>\vec{y}=c_1\vec{v}_1+\cdots + c_k\vec{v}_k</m>.
-            Taking the dot product of both sides of this equation with <m>\vec{v}_i</m>
+            Let <m>\yy=c_1\vv_1+\cdots + c_k\vv_k</m>.
+            Taking the dot product of both sides of this equation with <m>\vv_i</m>
             gives
             <me>
-              \vec{v}_i\dotp\vec{y} = c_i(\vec{v}_i\dotp\vec{v}_i)
+              \vv_i\dotp\yy = c_i(\vv_i\dotp\vv_i)
             </me>,
-            since the dot product of <m>\vec{v}_i</m> with <m>\vec{v}_j</m> for <m>i\neq j</m> is zero.
+            since the dot product of <m>\vv_i</m> with <m>\vv_j</m> for <m>i\neq j</m> is zero.
           </p>
         </proof>
       </theorem>
@@ -447,8 +447,8 @@
       <exercise xml:id="ex-test-span">
         <statement>
           <p>
-            Determine whether or not the vectors <m>\vec{v}=(1,-4,3,-11), \vec{w}=(3,1,-4,2)</m>
-            belong to the span of the vectors <m>\vec{x}_1=(1,0,1,0), \vec{x}_2=(-1,0,1,1), \vec{x}_3=(1,1,-1,2)</m>.
+            Determine whether or not the vectors <m>\vv=(1,-4,3,-11), \ww=(3,1,-4,2)</m>
+            belong to the span of the vectors <m>\xx_1=(1,0,1,0), \xx_2=(-1,0,1,1), \xx_3=(1,1,-1,2)</m>.
             (We confirmed that these vectors form an orthogonal set in <xref ref="ex-orthogonal-set"/>.)
           </p>
         </statement>
@@ -456,31 +456,31 @@
           <p>
             We compute
             <md>
-              <mrow>\left(\frac{\vec{v}\dotp\vec{x}_1}{\len{\vec{x}_1}^2}\right)\vec{x_1}
-                \amp +\left(\frac{\vec{v}\dotp\vec{x}_2}{\len{\vec{x}_2}^2}\right)\vec{x_2}
-                +\left(\frac{\vec{v}\dotp\vec{x}_3}{\len{\vec{x}_3}^2}\right)\vec{x_3}</mrow>
-              <mrow> \amp = \frac{4}{2}\vec{x}_1+\frac{-9}{3}\vec{x}_2+\frac{-28}{7}</mrow>
+              <mrow>\left(\frac{\vv\dotp\xx_1}{\len{\xx_1}^2}\right)\mathbf{x}_1
+                \amp +\left(\frac{\vv\dotp\xx_2}{\len{\xx_2}^2}\right)\mathbf{x}_2
+                +\left(\frac{\vv\dotp\xx_3}{\len{\xx_3}^2}\right)\mathbf{x}_3</mrow>
+              <mrow> \amp = \frac{4}{2}\xx_1+\frac{-9}{3}\xx_2+\frac{-28}{7}</mrow>
               <mrow> \amp = 2(1,0,1,0)-3(-1,0,1,1)-4(1,1,-1,2)</mrow>
-              <mrow> \amp = (1,-4,3,-11) = \vec{v}</mrow>
+              <mrow> \amp = (1,-4,3,-11) = \vv</mrow>
             </md>,
-            so <m>\vec{v}\in\spn\{\vec{x}_1,\vec{x}_2,\vec{x}_3\}</m>.
+            so <m>\vv\in\spn\{\xx_1,\xx_2,\xx_3\}</m>.
           </p>
 
           <p>
-            On the other hand, repeating the same calculation with <m>\vec{w}</m>, we find
+            On the other hand, repeating the same calculation with <m>\ww</m>, we find
             <md>
-              <mrow>\left(\frac{\vec{v}\dotp\vec{x}_1}{\len{\vec{x}_1}^2}\right)\vec{x_1}
-                \amp +\left(\frac{\vec{v}\dotp\vec{x}_2}{\len{\vec{x}_2}^2}\right)\vec{x_2}
-                +\left(\frac{\vec{v}\dotp\vec{x}_3}{\len{\vec{x}_3}^2}\right)\vec{x_3}</mrow>
+              <mrow>\left(\frac{\vv\dotp\xx_1}{\len{\xx_1}^2}\right)\xx_1
+                \amp +\left(\frac{\vv\dotp\xx_2}{\len{\xx_2}^2}\right)\xx_2
+                +\left(\frac{\vv\dotp\xx_3}{\len{\xx_3}^2}\right)\xx_3</mrow>
               <mrow> \amp =\frac12 (1,0,1,0)-\frac53 (-1,0,1,1) +\frac47 (1,1,-1,2)</mrow>
-              <mrow> \amp = \left(\frac{73}{42},\frac47,-\frac{115}{42},-\frac{11}{21}\right)\neq \vec{w}</mrow>
+              <mrow> \amp = \left(\frac{73}{42},\frac47,-\frac{115}{42},-\frac{11}{21}\right)\neq \ww</mrow>
             </md>,
-            so <m>\vec{w}\notin\spn\{\vec{x}_1,\vec{x}_2,\vec{x}_3\}</m>.
+            so <m>\ww\notin\spn\{\xx_1,\xx_2,\xx_3\}</m>.
           </p>
 
           <p>
-            Soon, we'll see that the quantity we computed when showing that <m>\vec{w}\notin\spn\{\vec{x}_1,\vec{x}_2,\vec{x}_3\}</m>
-            is, in fact, the <em>orthogonal projection</em> of <m>\vec{w}</m> onto the subspace <m>\spn\{\vec{x}_1,\vec{x}_2,\vec{x}_3\}</m>.
+            Soon, we'll see that the quantity we computed when showing that <m>\ww\notin\spn\{\xx_1,\xx_2,\xx_3\}</m>
+            is, in fact, the <em>orthogonal projection</em> of <m>\ww</m> onto the subspace <m>\spn\{\xx_1,\xx_2,\xx_3\}</m>.
           </p>
         </solution>
       </exercise>
@@ -488,12 +488,12 @@
       <p>
         The Fourier expansion is especially simple if our basis vectors have norm one,
         since the demoninators in each coefficient disappear.
-        Recall (from elementary linear algebra) that for any nonzero vector <m>\vec{v}</m>,
-        a <em>unit vector</em> (that is, a vector of norm one) in the direction of <m>\vec{v}</m> is given by
+        Recall (from elementary linear algebra) that for any nonzero vector <m>\vv</m>,
+        a <em>unit vector</em> (that is, a vector of norm one) in the direction of <m>\vv</m> is given by
         <me>
-          \hat{u} = \frac{1}{\len{\vec{v}}}\vec{v}
+          \hat{u} = \frac{1}{\len{\vv}}\vv
         </me>.
-        We often say that the vector <m>\vec{u}</m> is <em>normalized</em>.
+        We often say that the vector <m>\uu</m> is <em>normalized</em>.
         (The convention of using a <q>hat</q> for unit vectors is common but not universal.)
       </p>
 
@@ -530,17 +530,17 @@
       <p>
         The process of creating unit vectors does typically introduce square root coefficients in our vectors.
         This can seem undesirable, but there remains value in having an orthonormal basis.
-        For example, suppose we wanted to write the vector <m>\vec{v}=(3,5,-1,2)</m> in terms of our basis.
+        For example, suppose we wanted to write the vector <m>\vv=(3,5,-1,2)</m> in terms of our basis.
         We can quickly compute
         <md>
-          <mrow>\vec{v}\dotp\hat{u}_1 \amp = \frac{3}{\sqrt{2}}-\frac{1}{\sqrt{2}}=\sqrt{2}</mrow>
-          <mrow>\vec{v}\dotp\hat{u}_2 \amp = -\frac{3}{\sqrt{3}}-\frac{1}{\sqrt{3}}+\frac{2}{\sqrt{3}}=-\frac{2}{\sqrt{3}}</mrow>
-          <mrow>\vec{v}\dotp\hat{u}_3 \amp = \frac{3}{\sqrt{7}}+\frac{5}{\sqrt{7}}+\frac{1}{\sqrt{7}}+\frac{4}{\sqrt{7}} = \frac{11}{\sqrt{7}}</mrow>
-          <mrow>\vec{v}\dotp\hat{u}_4 \amp = \frac{3}{\sqrt{42}}-\frac{30}{\sqrt{42}}+\frac{1}{\sqrt{42}}+\frac{4}{\sqrt{42}} = -\frac{22}{\sqrt{42}}</mrow>
+          <mrow>\vv\dotp\hat{u}_1 \amp = \frac{3}{\sqrt{2}}-\frac{1}{\sqrt{2}}=\sqrt{2}</mrow>
+          <mrow>\vv\dotp\hat{u}_2 \amp = -\frac{3}{\sqrt{3}}-\frac{1}{\sqrt{3}}+\frac{2}{\sqrt{3}}=-\frac{2}{\sqrt{3}}</mrow>
+          <mrow>\vv\dotp\hat{u}_3 \amp = \frac{3}{\sqrt{7}}+\frac{5}{\sqrt{7}}+\frac{1}{\sqrt{7}}+\frac{4}{\sqrt{7}} = \frac{11}{\sqrt{7}}</mrow>
+          <mrow>\vv\dotp\hat{u}_4 \amp = \frac{3}{\sqrt{42}}-\frac{30}{\sqrt{42}}+\frac{1}{\sqrt{42}}+\frac{4}{\sqrt{42}} = -\frac{22}{\sqrt{42}}</mrow>
         </md>,
         and so
         <me>
-          \vec{v} = \sqrt{2}\hat{u}_1-\frac{2}{\sqrt{3}}\hat{u}_2+\frac{11}{\sqrt{7}}\hat{u}_3-\frac{22}{\sqrt{42}}\hat{u}_4
+          \vv = \sqrt{2}\hat{u}_1-\frac{2}{\sqrt{3}}\hat{u}_2+\frac{11}{\sqrt{7}}\hat{u}_3-\frac{22}{\sqrt{42}}\hat{u}_4
         </me>.
         There's still work to be done, but it is comparatively simpler than solving the corresponding system of equations.
       </p>
@@ -559,13 +559,13 @@
 
     <p>
       You may recall the following from elementary linear algebra, or vector calculus.
-      Given an nonzero vector <m>\vec{u}</m> and a vector <m>\vec{v}</m>,
-      the <em>projection</em> of <m>\vec{v}</m> onto <m>\vec{u}</m> is given by
+      Given an nonzero vector <m>\uu</m> and a vector <m>\vv</m>,
+      the <em>projection</em> of <m>\vv</m> onto <m>\uu</m> is given by
       <me>
-        \proj{\vec{u}}{\vec{v}} = \left(\frac{\vec{v}\dotp\vec{u}}{\len{\vec{u}}^2}\right)\vec{u}
+        \proj{\uu}{\vv} = \left(\frac{\vv\dotp\uu}{\len{\uu}^2}\right)\uu
       </me>.
       Note that this looks just like one of the terms in <xref ref="thm-fourier-expansion" text="title"/>.
-      Recall also that the vector <m>\vec{v}-\proj{\vec{u}}{\vec{v}}</m> is orthogonal to <m>\vec{u}</m>.
+      Recall also that the vector <m>\vv-\proj{\uu}{\vv}</m> is orthogonal to <m>\uu</m>.
       Our next result is a generalization of this observation.
     </p>
 
@@ -573,23 +573,23 @@
       <title>Orthogonal Lemma</title>
       <statement>
         <p>
-          Let <m>\{\vec{v}_1,\vec{v}_2,\ldots, \vec{v}_m\}</m> be an orthogonal set of vectors in <m>\R^n</m>,
-          and let <m>\vec{x}</m> be any vector in <m>\R^n</m>. Define the vector <m>\vec{v}_{m+1}</m> by
+          Let <m>\{\vv_1,\vv_2,\ldots, \vv_m\}</m> be an orthogonal set of vectors in <m>\R^n</m>,
+          and let <m>\xx</m> be any vector in <m>\R^n</m>. Define the vector <m>\vv_{m+1}</m> by
           <me>
-            \vec{v}_{m+1} = \vec{x}-\left(\frac{\vec{x}\dotp\vec{v}_1}{\len{\vec{v}_1}^2}\vec{v}_1+\cdots + \frac{\vec{x}\dotp\vec{v}_m}{\len{\vec{v}_m}^2}\vec{v}_m\right)
+            \vv_{m+1} = \xx-\left(\frac{\xx\dotp\vv_1}{\len{\vv_1}^2}\vv_1+\cdots + \frac{\xx\dotp\vv_m}{\len{\vv_m}^2}\vv_m\right)
           </me>.
           Then:
           <ol>
             <li>
               <p>
-                <m>\vec{v}_{m+1}\dotp \vec{v}_i = 0</m> for each <m>i=1,\ldots, m</m>.
+                <m>\vv_{m+1}\dotp \vv_i = 0</m> for each <m>i=1,\ldots, m</m>.
               </p>
             </li>
             <li>
               <p>
-                If <m>\vec{x}\notin\spn\{\vec{v}_1,\ldots, \vec{v}_m\}</m>,
-                then <m>\vec{v}_{m+1}\neq \vec{0}</m>,
-                and therefore, <m>\{\vec{v}_1,\ldots, \vec{v}_m,\vec{v}_{m+1}\}</m> is an orthogonal set.
+                If <m>\xx\notin\spn\{\vv_1,\ldots, \vv_m\}</m>,
+                then <m>\vv_{m+1}\neq \mathbf{0}</m>,
+                and therefore, <m>\{\vv_1,\ldots, \vv_m,\vv_{m+1}\}</m> is an orthogonal set.
               </p>
             </li>
           </ol>
@@ -602,17 +602,17 @@
               <p>
                 For any <m>i=1,\ldots m</m>, we have
                 <me>
-                  \vec{v}_{m+1}\dotp\vec{v}_i = \vec{x}\dotp\vec{v}_i - \frac{\vec{x}\dotp\vec{v}_i}{\len{\vec{v}_i}^2}(\vec{v}_i\dotp\vec{v}_i)=0
+                  \vv_{m+1}\dotp\vv_i = \xx\dotp\vv_i - \frac{\xx\dotp\vv_i}{\len{\vv_i}^2}(\vv_i\dotp\vv_i)=0
                 </me>,
-                since <m>\vec{v}_i\dotp\vec{v}_j = 0</m> for <m>i\neq j</m>.
+                since <m>\vv_i\dotp\vv_j = 0</m> for <m>i\neq j</m>.
               </p>
             </li>
 
             <li>
               <p>
-                It follows from the <xref ref="thm-fourier-expansion" text="title"/> that <m>\vec{v}_{m+1}=\vec{0}</m>
-                if and only if <m>\vec{x}\in\spn\{\vec{v}_1,\ldots, \vec{v}_m\}</m>,
-                and the fact that <m>\{\vec{v}_1,\ldots, \vec{v}_m,\vec{v}_{m+1}\}</m>
+                It follows from the <xref ref="thm-fourier-expansion" text="title"/> that <m>\vv_{m+1}=\mathbf{0}</m>
+                if and only if <m>\xx\in\spn\{\vv_1,\ldots, \vv_m\}</m>,
+                and the fact that <m>\{\vv_1,\ldots, \vv_m,\vv_{m+1}\}</m>
                 is an orthogonal set then follows from the first part.
               </p>
             </li>
@@ -626,28 +626,28 @@
       any set of orthogonal vectors in <m>U</m> can be extended to an orthogonal basis of <m>U</m>.
       Since any set containing a single nonzero vector is orthogonal,
       it follows that every subspace has an orthogonal basis.
-      (If <m>U=\{\vec{0}\}</m>, we consider the empty basis to be orthogonal.)
+      (If <m>U=\{\mathbf{0}\}</m>, we consider the empty basis to be orthogonal.)
     </p>
 
     <p>
       The procedure for creating an orthogonal basis is clear.
-      Start with a single nonzero vector <m>\vec{v}_1\in U</m>.
-      If <m>U\neq \spn\{\vec{v}_1\}</m>, choose a vector <m>\vec{x}_1\in U</m> with <m>\vec{x}_1\notin\spn\{\vec{v}_1\}</m>.
+      Start with a single nonzero vector <m>\vv_1\in U</m>.
+      If <m>U\neq \spn\{\vv_1\}</m>, choose a vector <m>\xx_1\in U</m> with <m>\xx_1\notin\spn\{\vv_1\}</m>.
       The <xref ref="thm-orthogonal-lemma" text="title"/> then provides us with a vector
       <me>
-        \vec{v}_2 = \vec{x}_1-\frac{\vec{x}_1\dotp\vec{v}_1}{\len{\vec{v}_1}^2}\vec{v}_1
+        \vv_2 = \xx_1-\frac{\xx_1\dotp\vv_1}{\len{\vv_1}^2}\vv_1
       </me>
-      such that <m>\{\vec{v}_1,\vec{v}_2\}</m> is orthogonal.
-      If <m>U=\spn\{\vec{v}_1,\vec{v}_2\}</m>, we're done.
-      Otherwise, we repeat the process, choosing <m>\vec{x}_2\notin\spn\{\vec{v}_1,\vec{v}_2\}</m>,
-      and then using the <xref ref="thm-orthogonal-lemma" text="title"/> to obtain <m>\vec{v}_3</m>,
+      such that <m>\{\vv_1,\vv_2\}</m> is orthogonal.
+      If <m>U=\spn\{\vv_1,\vv_2\}</m>, we're done.
+      Otherwise, we repeat the process, choosing <m>\xx_2\notin\spn\{\vv_1,\vv_2\}</m>,
+      and then using the <xref ref="thm-orthogonal-lemma" text="title"/> to obtain <m>\vv_3</m>,
       and so on, until an orthogonal basis is obtained.
     </p>
 
     <p>
       With one minor modification, the above procedure provides us with a major result.
-      Suppose <m>U</m> is a subspace of <m>\R^n</m>, and start with <em>any</em> basis <m>\{\vec{x}_1,\ldots, \vec{x}_m\}</m> of <m>U</m>.
-      By choosing our <m>\vec{x}_i</m> in the procedure above to be these basis vectors, we obtain the
+      Suppose <m>U</m> is a subspace of <m>\R^n</m>, and start with <em>any</em> basis <m>\{\xx_1,\ldots, \xx_m\}</m> of <m>U</m>.
+      By choosing our <m>\xx_i</m> in the procedure above to be these basis vectors, we obtain the
       <em>Gram-Schmidt algorithm</em> for constructing an orthogonal basis.
     </p>
 
@@ -655,19 +655,19 @@
       <title>Gram-Schmidt Orthonormalization Algorithm</title>
       <statement>
         <p>
-          Let <m>U</m> be a subspace of <m>\R^n</m>, and let <m>\{\vec{x}_1,\ldots, \vec{x}_m\}</m> be a basis of <m>U</m>.
-          Define vectors <m>\vec{v}_1,\ldots, \vec{v}_m</m> in <m>U</m> as follows:
+          Let <m>U</m> be a subspace of <m>\R^n</m>, and let <m>\{\xx_1,\ldots, \xx_m\}</m> be a basis of <m>U</m>.
+          Define vectors <m>\vv_1,\ldots, \vv_m</m> in <m>U</m> as follows:
           <md>
-            <mrow>\vec{v}_1 \amp = \vec{x}_1 </mrow>
-            <mrow>\vec{v}_2 \amp = \vec{x}_2 - \frac{\vec{x}_2\dotp\vec{v}_1}{\len{\vec{v}_1}^2}\vec{v}_1</mrow>
-            <mrow>\vec{v}_3 \amp = \vec{x}_3 - \frac{\vec{x}_3\dotp\vec{v}_1}{\len{\vec{v}_1}^2}\vec{v}_1-\frac{\vec{x}_3\dotp\vec{v}_2}{\len{\vec{v}_2}^2}\vec{v}_2</mrow>
+            <mrow>\vv_1 \amp = \xx_1 </mrow>
+            <mrow>\vv_2 \amp = \xx_2 - \frac{\xx_2\dotp\vv_1}{\len{\vv_1}^2}\vv_1</mrow>
+            <mrow>\vv_3 \amp = \xx_3 - \frac{\xx_3\dotp\vv_1}{\len{\vv_1}^2}\vv_1-\frac{\xx_3\dotp\vv_2}{\len{\vv_2}^2}\vv_2</mrow>
             <mrow>\vdots \amp </mrow>
-            <mrow>\vec{v}_m \amp = \vec{x}_m - \frac{\vec{x}_m\dotp\vec{v}_1}{\len{\vec{v}_1}^2}\vec{v}_1-\cdots - \frac{\vec{x}_m\dotp\vec{v}_{m-1}}{\len{\vec{v}_{m-1}}^2}\vec{v}_{m-1}</mrow>
+            <mrow>\vv_m \amp = \xx_m - \frac{\xx_m\dotp\vv_1}{\len{\vv_1}^2}\vv_1-\cdots - \frac{\xx_m\dotp\vv_{m-1}}{\len{\vv_{m-1}}^2}\vv_{m-1}</mrow>
           </md>.
-          Then <m>\{\vec{v}_1,\ldots, \vec{v}_m\}</m> is an orthogonal basis for <m>U</m>.
+          Then <m>\{\vv_1,\ldots, \vv_m\}</m> is an orthogonal basis for <m>U</m>.
           Moreover, for each <m>k=1,2,\ldots, m</m>, we have
           <me>
-            \spn\{\vec{v}_1,\ldots, \vec{v}_k\} = \spn\{\vec{x}_1,\ldots, \vec{x}_k\}
+            \spn\{\vv_1,\ldots, \vv_k\} = \spn\{\xx_1,\ldots, \xx_k\}
           </me>.
         </p>
       </statement>
@@ -697,16 +697,16 @@
     <p>
       Let's make that basis look a little nicer by using some scalar multiplication to clear fractions.
       <me>
-        B=\left\{\vec{x}_1=\bbm 3\\-6\\-4\\0\\0\ebm, \vec{x}_2=\bbm 1\\2\\0\\-4\\0\ebm, \vec{x}_3=\bbm 7\\4\\0\\0\\-2\ebm\right\}
+        B=\left\{\xx_1=\bbm 3\\-6\\-4\\0\\0\ebm, \xx_2=\bbm 1\\2\\0\\-4\\0\ebm, \xx_3=\bbm 7\\4\\0\\0\\-2\ebm\right\}
       </me>
-      Defnitely not an orthogonal basis. So we take <m>\vec{v}_1=\vec{x}_1</m>, and
+      Defnitely not an orthogonal basis. So we take <m>\vv_1=\xx_1</m>, and
       <md>
-        <mrow>\vec{v}_2 \amp = \vec{x}_2-\left(\frac{\vec{x}_2\dotp\vec{v}_1}{\len{\vec{v}_1}^2}\right)\vec{v}_1</mrow>
+        <mrow>\vv_2 \amp = \xx_2-\left(\frac{\xx_2\dotp\vv_1}{\len{\vv_1}^2}\right)\vv_1</mrow>
         <mrow> \amp = \bbm 1\\2\\0\\-4\\0\ebm -\frac{-9}{61}\bbm 3\\-6\\-4\\-0\\0\ebm </mrow>
       </md>,
       which equals something I'm not sure I want to try to simplify. Finally, we find
       <me>
-        \vec{v}_3 = \vec{x}_3-\left(\frac{\vec{x}_3\dotp \vec{v}_1}{\len{\vec{v}_1}^2}\right)\vec{v}_1-\left(\frac{\vec{x}_3\dotp\vec{v}_2}{\len{\vec{v}_2}^2}\right)\vec{v}_2
+        \vv_3 = \xx_3-\left(\frac{\xx_3\dotp \vv_1}{\len{\vv_1}^2}\right)\vv_1-\left(\frac{\xx_3\dotp\vv_2}{\len{\vv_2}^2}\right)\vv_2
       </me>.
       And now you probably get about five minutes into the fractions and say something that shouldn't appear in print.
       This sounds like a job for the computer.
@@ -784,18 +784,18 @@
         </p>
 
         <p>
-          We let <m>\vec{x}_1=(1,-2,1), \vec{x}_2=(3,0,-2), \vec{x}_3=(-1,1,2)</m>,
-          and set <m>\vec{v}_1=\vec{x}_1</m>. Then we have
+          We let <m>\xx_1=(1,-2,1), \xx_2=(3,0,-2), \xx_3=(-1,1,2)</m>,
+          and set <m>\vv_1=\xx_1</m>. Then we have
           <md>
-            <mrow>\vec{v}_2 \amp = \vec{x}_2-\left(\frac{\vec{x}_2\dotp \vec{v}_1}{\len{\vec{v}_1}^2}\right)\vec{v}_1 </mrow>
+            <mrow>\vv_2 \amp = \xx_2-\left(\frac{\xx_2\dotp \vv_1}{\len{\vv_1}^2}\right)\vv_1 </mrow>
             <mrow> \amp = (3,0,-2)-\frac{1}{6}(1,-2,1)</mrow>
             <mrow> \amp = \frac16(17,2,-3) </mrow>
           </md>.
         </p>
         <p>
-          Next, we compute <m>\vec{v}_3</m>.
+          Next, we compute <m>\vv_3</m>.
           <md>
-            <mrow>\vec{v}_3 \amp = \vec{x}_3-\left(\frac{\vec{x}_3\dotp \vec{v}_1}{\len{\vec{v}_1}^2}\right)\vec{v}_1 - \left(\frac{\vec{x}_3\dotp \vec{v}_2}{\len{\vec{v}_2}^2}\right)\vec{v}_2</mrow>
+            <mrow>\vv_3 \amp = \xx_3-\left(\frac{\xx_3\dotp \vv_1}{\len{\vv_1}^2}\right)\vv_1 - \left(\frac{\xx_3\dotp \vv_2}{\len{\vv_2}^2}\right)\vv_2</mrow>
             <mrow> \amp = (-1,1,2)-\frac{-1}{6}(1,-2,1)-\cdot \frac{-21}{303}(17,2,-3)</mrow>
             <mrow> \amp = (-1,1,2)+\frac16(1,-2,1)+\frac{7}{101}(17,2,-3)</mrow>
             <mrow> \amp = \frac{1}{606}\bigl((-606,606,1212)+(101,-202,101)+(782,84,-126)\bigr)</mrow>
@@ -807,14 +807,14 @@
 
     <aside>
       <p>
-        You'll notice that I used <m>6\vec{v}_2</m> rather than <m>\vec{v}_2</m>
-        in the calculation of <m>\vec{v}_3</m>.
+        You'll notice that I used <m>6\vv_2</m> rather than <m>\vv_2</m>
+        in the calculation of <m>\vv_3</m>.
         This lets me avoid fractions (momentarily), and doesn't affect the answer,
         since for any nonzero scalar <m>c</m>,
         <md>
-          <mrow>\left(\frac{c\vec{v}\dotp \vec{x}}{\len{c\vec{v}}^2}\right)\amp(c\vec{v})</mrow>
-          <mrow>\amp= \left(\frac{c(\vec{v}\dotp\vec{x})}{c^2\len{\vec{v}}^2}\right)(c\vec{v})</mrow>
-          <mrow>\amp=\left(\frac{\vec{v}\dotp\vec{x}}{\len{\vec{v}^2}}\right)\vec{v}</mrow>
+          <mrow>\left(\frac{c\vv\dotp \xx}{\len{c\vv}^2}\right)\amp(c\vv)</mrow>
+          <mrow>\amp= \left(\frac{c(\vv\dotp\xx)}{c^2\len{\vv}^2}\right)(c\vv)</mrow>
+          <mrow>\amp=\left(\frac{\vv\dotp\xx}{\len{\vv^2}}\right)\vv</mrow>
         </md>.
       </p>
     </aside>
@@ -840,12 +840,12 @@
         Since any single nonzero vector forms an orthogonal basis for its span,
         the projection
         <me>
-          \proj{\vec{u}}{\vec{v}}=\left(\frac{\vec{u}\dotp\vec{v}}{\len{\vec{u}}^2}\right)\vec{u}
+          \proj{\uu}{\vv}=\left(\frac{\uu\dotp\vv}{\len{\uu}^2}\right)\uu
         </me>
-        can be viewed as the orthogonal projection of the vector <m>\vec{v}</m>,
-        not onto the vector <m>\vec{u}</m>, but onto the subspace <m>\spn\{\vec{u}\}</m>.
+        can be viewed as the orthogonal projection of the vector <m>\vv</m>,
+        not onto the vector <m>\uu</m>, but onto the subspace <m>\spn\{\uu\}</m>.
         This is, after all, how we viewed projections in elementary linear algebra:
-        we drop the perpendicular from the tip of <m>\vec{v}</m> onto the <em>line</em> in the direction of <m>\vec{u}</m>.
+        we drop the perpendicular from the tip of <m>\vv</m> onto the <em>line</em> in the direction of <m>\uu</m>.
       </p>
 
       <p>
@@ -857,19 +857,19 @@
         <statement>
           <p>
             Let <m>U</m> be a subspace of <m>\R^n</m> with orthogonal basis
-            <m>\{\vec{u}_1,\ldots, \vec{u}_k\}</m>.
-            For any vector <m>\vec{v}\in \R^n</m>, we define the <term>orthogonal projection</term>
-            of <m>\vec{v}</m> onto <m>U</m> by
+            <m>\{\uu_1,\ldots, \uu_k\}</m>.
+            For any vector <m>\vv\in \R^n</m>, we define the <term>orthogonal projection</term>
+            of <m>\vv</m> onto <m>U</m> by
             <me>
-              \proj{U}{\vec{v}} = \sum_{i=1}^k\left(\frac{\vec{u}_i\dotp\vec{v}}{\len{\vec{u}_i}^2}\right)\vec{u}_i
+              \proj{U}{\vv} = \sum_{i=1}^k\left(\frac{\uu_i\dotp\vv}{\len{\uu_i}^2}\right)\uu_i
             </me>.
           </p>
         </statement>
       </definition>
 
       <p>
-        Note that <m>\proj{U}{\vec{v}}</m> is indeed an element of <m>U</m>, since it's a linear combination of its basis vectors.
-        In the case of the trivial subspace <m>U=\{\vec{0}\}</m>, we define orthogonal projection of any vector to be <m>\vec{0}</m>,
+        Note that <m>\proj{U}{\vv}</m> is indeed an element of <m>U</m>, since it's a linear combination of its basis vectors.
+        In the case of the trivial subspace <m>U=\{\mathbf{0}\}</m>, we define orthogonal projection of any vector to be <m>\mathbf{0}</m>,
         since really, what other choice do we have? (This case isn't really of any interest, we just like being thorogh.)
       </p>
 
@@ -906,27 +906,27 @@
             <me>
               \bbm x\\y\\z\ebm = \bbm 2y-4z\\y\\z\ebm = y\bbm 2\\1\\0\ebm + z\bbm -4\\0\\1\ebm
             </me>,
-            so <m>\vec{u}=\bbm 2\\1\\0\ebm</m> and <m>\vec{v}\bbm -4\\0\\1\ebm</m> are parallel to the plane.
+            so <m>\uu=\bbm 2\\1\\0\ebm</m> and <m>\vv\bbm -4\\0\\1\ebm</m> are parallel to the plane.
             We then compute the normal vector
             <me>
-              \vec{n}=\vec{u}\times\vec{v}=\bbm 1\\-2\\4\ebm
+              \mathbf{n}=\uu\times\vv=\bbm 1\\-2\\4\ebm
             </me>,
-            and compute the projection of the position vector <m>\vec{p}=\bbm 3,1,-2\ebm</m> for the point <m>P=(3,1,-2)</m> onto <m>\vec{n}</m>.
+            and compute the projection of the position vector <m>\mathbf{p}=\bbm 3,1,-2\ebm</m> for the point <m>P=(3,1,-2)</m> onto <m>\mathbf{n}</m>.
             This gives the vector
             <me>
-              \vec{x} = \left(\frac{\vec{p}\dotp\vec{n}}{\len{\vec{n}}^2}\right)\vec{n} = \frac{-7}{21}\bbm 1\\-2\\4\ebm =\bbm-1/3\\2/3\\-4/3\ebm
+              \xx = \left(\frac{\mathbf{p}\dotp\mathbf{n}}{\len{\mathbf{n}}^2}\right)\mathbf{n} = \frac{-7}{21}\bbm 1\\-2\\4\ebm =\bbm-1/3\\2/3\\-4/3\ebm
             </me>.
           </p>
 
           <p>
-            Now, this vector is <em>parallel</em> to <m>\vec{n}</m>, so it's perpendicular to the plane.
-            Subtracting it from <m>\vec{p}</m> gives a vector parallel to the plane, and this is the position vector for the point we seek.
+            Now, this vector is <em>parallel</em> to <m>\mathbf{n}</m>, so it's perpendicular to the plane.
+            Subtracting it from <m>\mathbf{p}</m> gives a vector parallel to the plane, and this is the position vector for the point we seek.
             <me>
-              \vec{q}=\vec{p}-\vec{x}=\bbm 3\\1\\-2\ebm-\bbm -1/3\\-2/3\\-4/3\ebm = \bbm 10/3\\1/3\\-2/3\ebm
+              \mathbf{q}=\mathbf{p}-\xx=\bbm 3\\1\\-2\ebm-\bbm -1/3\\-2/3\\-4/3\ebm = \bbm 10/3\\1/3\\-2/3\ebm
             </me>
             so the closest point is <m>Q=\bigl(\frac{10}{3},\frac13,-\frac{2}{3}\bigr)</m>.
             We weren't asked for it, but note that if we wanted the distance from the point <m>P</m> to the plane,
-            this is given by <m>\len{\vec{x}}=\frac13\sqrt{21}</m>.
+            this is given by <m>\len{\xx}=\frac13\sqrt{21}</m>.
           </p>
         </solution>
         <solution>
@@ -934,14 +934,14 @@
 
           <p>
             Let's solve the same problem using orthogonal projection.
-            First, we have to deal with the fact that the vectors <m>\vec{u}</m> and <m>\vec{v}</m> are probably not orthogonal.
-            To get around this, we replace <m>\vec{v}</m> with
+            First, we have to deal with the fact that the vectors <m>\uu</m> and <m>\vv</m> are probably not orthogonal.
+            To get around this, we replace <m>\vv</m> with
             <me>
-              \vec{w} = \vec{v}-\left(\frac{\vec{v}\dotp\vec{u}}{\len{\vec{u}}^2}\right)\vec{u} = \bbm -4\\0\\1\ebm+\frac 85\bbm 2\\1\\0\ebm = \bbm -4/5\\8/5\\1\ebm
+              \ww = \vv-\left(\frac{\vv\dotp\uu}{\len{\uu}^2}\right)\uu = \bbm -4\\0\\1\ebm+\frac 85\bbm 2\\1\\0\ebm = \bbm -4/5\\8/5\\1\ebm
             </me>.
             We now set
             <md>
-              <mrow>\vec{q} \amp =\left(\frac{\vec{p}\dotp\vec{u}}{\len{\vec{u}}^2}\right)\vec{u}-\left(\frac{\vec{p}\dotp\vec{w}}{\len{\vec{w}}^2}\right)\vec{w}</mrow>
+              <mrow>\mathbf{q} \amp =\left(\frac{\mathbf{p}\dotp\uu}{\len{\uu}^2}\right)\uu-\left(\frac{\mathbf{p}\dotp\ww}{\len{\ww}^2}\right)\ww</mrow>
               <mrow> \amp = \frac{7}{5}\bbm 2\\1\\0\ebm +\frac{-14}{105}\bbm -4\\8\\5\ebm </mrow>
               <mrow> \amp = \bbm 10/3\\1/3\\-2/3\ebm</mrow>
             </md>.
@@ -962,7 +962,7 @@
             we define the <term>orthogonal complement</term> of <m>U</m>, denoted <m>U^\bot</m>,
             by
             <me>
-              U^\bot = \{\vec{x}\in\R^n \,|\, \vec{x}\dotp\vec{y} = 0 \text{ for all } \vec{y}\in U\}
+              U^\bot = \{\xx\in\R^n \,|\, \xx\dotp\yy = 0 \text{ for all } \yy\in U\}
             </me>.
           </p>
         </statement>
@@ -992,21 +992,21 @@
         <title>Projection Theorem</title>
         <statement>
           <p>
-            Let <m>U</m> be a subspace of <m>\R^n</m>, let <m>\vec{x}</m> be any vector in <m>\R^n</m>,
-            and let <m>\vec{p}=\proj{U}{\vec{x}}</m>. Then:
+            Let <m>U</m> be a subspace of <m>\R^n</m>, let <m>\xx</m> be any vector in <m>\R^n</m>,
+            and let <m>\mathbf{p}=\proj{U}{\xx}</m>. Then:
             <ol>
               <li>
                 <p>
-                  <m>\vec{p}\in U</m>, and <m>\vec{x}-\vec{p}\in U^\bot</m>.
+                  <m>\mathbf{p}\in U</m>, and <m>\xx-\mathbf{p}\in U^\bot</m>.
                 </p>
               </li>
               <li>
                 <p>
-                  <m>\vec{p}</m> is the <em>closest</em> vector in <m>U</m> to the vector <m>\vec{x}</m>,
-                  in the sense that the distance <m>d(\vec{p},\vec{x})</m> is minimal among all vectors in <m>U</m>.
-                  That is, for all <m>\vec{u}\neq \vec{p}\in U</m>, we have
+                  <m>\mathbf{p}</m> is the <em>closest</em> vector in <m>U</m> to the vector <m>\xx</m>,
+                  in the sense that the distance <m>d(\mathbf{p},\xx)</m> is minimal among all vectors in <m>U</m>.
+                  That is, for all <m>\uu\neq \mathbf{p}\in U</m>, we have
                   <me>
-                    \len{\vec{x}-\vec{p}}\lt\len{\vec{x}-\vec{y}}
+                    \len{\xx-\mathbf{p}}\lt\len{\xx-\yy}
                   </me>.
                 </p>
               </li>
@@ -1018,16 +1018,16 @@
       <exercise>
         <statement>
           <p>
-            Show that <m>U\cap U^\bot = \{\vec{0}\}</m>.
+            Show that <m>U\cap U^\bot = \{\mathbf{0}\}</m>.
             Use this fact to show that <xref ref="def-ortho-projection"/> does not depend on the choice orthogonal basis.
           </p>
         </statement>
         <hint>
           <p>
-            Suppose we find vectors <m>\vec{p}</m> and <m>\vec{p}'</m> using basis <m>B</m> and <m>B'</m>.
-            Note that <m>\vec{p}-\vec{p}'\in U</m>, but also that
+            Suppose we find vectors <m>\mathbf{p}</m> and <m>\mathbf{p}'</m> using basis <m>B</m> and <m>B'</m>.
+            Note that <m>\mathbf{p}-\mathbf{p}'\in U</m>, but also that
             <me>
-              \vec{p}-\vec{p}' = (\vec{p}-\vec{x})-(\vec{p}'-\vec{x})
+              \mathbf{p}-\mathbf{p}' = (\mathbf{p}-\xx)-(\mathbf{p}'-\xx)
             </me>
             Now use <xref ref="thm-projection"/>
           </p>
@@ -1045,7 +1045,7 @@
           <p>
             Let <m>U</m> be a subspace of <m>\R^n</m>, and define a function <m>P_U:\R^n\to \R^n</m> by
             <me>
-              P_U(\vec{x}) = \proj{U}{\vec{x}} \text{ for any } \vec{x}\in\R^n
+              P_U(\xx) = \proj{U}{\xx} \text{ for any } \xx\in\R^n
             </me>.
             Then <m>T</m> is a linear operator such that <m>U=\im P_U</m> and <m>U^\bot = \ker P_U</m>.
           </p>
@@ -1057,16 +1057,16 @@
         <me>
           \dim U + \dim U^\bot = n
         </me>,
-        and since <m>U\cap U^\bot = \{\vec{0}\}</m>, <m>U^\bot</m> is indeed a complement of <m>U</m>
+        and since <m>U\cap U^\bot = \{\mathbf{0}\}</m>, <m>U^\bot</m> is indeed a complement of <m>U</m>
         in the sense introduced in <xref ref="thm-construct-complement">Theorem</xref>.
         It's also fairly easy to see that <m>\dim U + \dim U^\bot = n</m> directly.
-        If <m>\vec{w}\in U^\bot</m>, and <m>\{\vec{u}_1,\ldots, \vec{u}_k\}</m>
+        If <m>\ww\in U^\bot</m>, and <m>\{\uu_1,\ldots, \uu_k\}</m>
         is a basis for <m>U</m>, then we have
         <me>
-          \vec{w}\dotp \vec{u}_1= 0, \ldots, \vec{w}\dotp \vec{u}_k=0
+          \ww\dotp \uu_1= 0, \ldots, \ww\dotp \uu_k=0
         </me>,
-        and for an unknown <m>\vec{w}</m>, this is simply a homogeneous system of <m>k</m> equations with <m>n</m> variables.
-        Moverer, they are <em>independent</em> equations, since the <m>\vec{u}_i</m> form a basis.
+        and for an unknown <m>\ww</m>, this is simply a homogeneous system of <m>k</m> equations with <m>n</m> variables.
+        Moverer, they are <em>independent</em> equations, since the <m>\uu_i</m> form a basis.
         We thus expect <m>n-k</m> free parameters in the general solution.
       </p>
 
@@ -1083,11 +1083,11 @@
             <me>
               (a-b+3c, 2a+b, 3c, 4a-b+3c,a-4c) = a(1,2,0,4,1)+b(-1,1,0,-1,0)+c(3,0,3,3,-4)
             </me>.
-            If <m>\vec{w} = (x_1,x_2,x_3,x_4,x_5)\in U^\bot</m>, then we must have
+            If <m>\ww = (x_1,x_2,x_3,x_4,x_5)\in U^\bot</m>, then we must have
             <md>
-              <mrow>\vec{w}\dotp (1,2,0,4,1) \amp = x_1+2x_2+4x_4+x_5=0 </mrow>
-              <mrow>\vec{w}\dotp (-1,1,0,-1,0) \amp =-x_1+x_2-x_4=0</mrow>
-              <mrow>\vec{w}\dotp (3,0,3,3,-4) \amp =3x_1+3x_3+3x_4-4x_5 = 0</mrow>
+              <mrow>\ww\dotp (1,2,0,4,1) \amp = x_1+2x_2+4x_4+x_5=0 </mrow>
+              <mrow>\ww\dotp (-1,1,0,-1,0) \amp =-x_1+x_2-x_4=0</mrow>
+              <mrow>\ww\dotp (3,0,3,3,-4) \amp =3x_1+3x_3+3x_4-4x_5 = 0</mrow>
             </md>.
             To find a basis for <m>U^\bot</m>, we simply need to find the nullspace of the coefficient matrix for this system,
             which we do below.

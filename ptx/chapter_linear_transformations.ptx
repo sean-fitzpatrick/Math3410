@@ -7,8 +7,8 @@
     <p>
       At an elementary level, Linear Algebra is the study of vectors (in <m>\R^n</m>)
       and matrices. Of course, much of that study revolves around systems of equations.
-      Recall that if <m>\vec{x}</m> is a vector in <m>\R^n</m> (viewed as an <m>n\times 1</m> column matrix),
-      and <m>A</m> is an <m>m\times n</m> matrix, then <m>\vec{y}=A\vec{x}</m> is a vector in <m>\R^m</m>.
+      Recall that if <m>\xx</m> is a vector in <m>\R^n</m> (viewed as an <m>n\times 1</m> column matrix),
+      and <m>A</m> is an <m>m\times n</m> matrix, then <m>\yy=A\xx</m> is a vector in <m>\R^m</m>.
       Thus, multiplication by <m>A</m> produces a function from <m>\R^n</m> to <m>\R^m</m>.
     </p>
 
@@ -40,12 +40,12 @@
           <ol>
             <li>
               <p>
-                For all <m>\vec{v}_1,\vec{v}_2\in V</m>, <m>T(\vec{v}_1+\vec{v}_2)=T(\vec{v}_1)+T(\vec{v}_2)</m>.
+                For all <m>\vv_1,\vv_2\in V</m>, <m>T(\vv_1+\vv_2)=T(\vv_1)+T(\vv_2)</m>.
               </p>
             </li>
             <li>
               <p>
-                For all <m>\vec{v}\in V</m> and scalars <m>c</m>, <m>T(c\vec{v})=cT(\vec{v})</m>.
+                For all <m>\vv\in V</m> and scalars <m>c</m>, <m>T(c\vv)=cT(\vv)</m>.
               </p>
             </li>
           </ol>
@@ -58,8 +58,8 @@
     <p>
       Note on notation: it is common useage to drop the usual parentheses of function notation
       when working with linear transformations, as long as this does not cause confusion.
-      That is, one might write <m>T\vec{v}</m> instead of <m>T(\vec{v})</m>,
-      but one should never write <m>T\vec{v}+\vec{w}</m> in place of <m>T(\vec{v}+\vec{w})</m>,
+      That is, one might write <m>T\vv</m> instead of <m>T(\vv)</m>,
+      but one should never write <m>T\vv+\ww</m> in place of <m>T(\vv+\ww)</m>,
       for the same reason that one should never write <m>2x+y</m> in place of <m>2(x+y)</m>.
       Mathematicians often think of linear transformations in terms of matrix multiplication,
       which probably explains this notation to some extent.
@@ -81,14 +81,14 @@
           <ol>
             <li>
               <p>
-                <m>T(\vec{0}_V) = \vec{0}_W</m>, and
+                <m>T(\mathbf{0}_V) = \mathbf{0}_W</m>, and
               </p>
             </li>
             <li>
               <p>
-                For any scalars <m>c_1,\ldots, c_n</m> and vectors <m>\vec{v}_1,\ldots, \vec{v}_n\in V</m>,
+                For any scalars <m>c_1,\ldots, c_n</m> and vectors <m>\vv_1,\ldots, \vv_n\in V</m>,
                 <me>
-                  T(c_1\vec{v}_1+c_2\vec{v}_2+\cdots + c_n\vec{v}_n) = c_1T(\vec{v}_1)+c_2T(\vec{v}_2)+\cdots + c_nT(\vec{v}_n)
+                  T(c_1\vv_1+c_2\vv_2+\cdots + c_n\vv_n) = c_1T(\vv_1)+c_2T(\vv_2)+\cdots + c_nT(\vv_n)
                 </me>.
               </p>
             </li>
@@ -100,11 +100,11 @@
           <ol>
             <li>
               <p>
-                Since <m>\vec{0}_V+\vec{0}_V = \vec{0}_V</m>, we have
+                Since <m>\mathbf{0}_V+\mathbf{0}_V = \mathbf{0}_V</m>, we have
                 <me>
-                  T(\vec{0}_V) = T(\vec{0}_V+\vec{0}_V) = T(\vec{0}_V)+T(\vec{0}_V)
+                  T(\mathbf{0}_V) = T(\mathbf{0}_V+\mathbf{0}_V) = T(\mathbf{0}_V)+T(\mathbf{0}_V)
                 </me>.
-                Adding <m>-T(\vec{0}_V)</m> to both sides of the above gives us <m>\vec{0}_W = T(\vec{0}_V)</m>.
+                Adding <m>-T(\mathbf{0}_V)</m> to both sides of the above gives us <m>\mathbf{0}_W = T(\mathbf{0}_V)</m>.
               </p>
             </li>
             <li>
@@ -112,8 +112,8 @@
                 The addition property of a linear transformation can be extended to sums of three or more vectors using associativity.
                 Therefore, we have
                 <md>
-                  <mrow>T(c_1\vec{v}_1+\cdots + c_n\vec{v}_n) \amp = T(c_1\vec{v}_1)+ \cdots T(c_n\vec{v}_n)</mrow>
-                  <mrow> \amp = c_1T(\vec{v}_1)+\cdots +c_nT(\vec{v}_n)</mrow>
+                  <mrow>T(c_1\vv_1+\cdots + c_n\vv_n) \amp = T(c_1\vv_1)+ \cdots T(c_n\vv_n)</mrow>
+                  <mrow> \amp = c_1T(\vv_1)+\cdots +c_nT(\vv_n)</mrow>
                 </md>,
                 where the second line follows from the scalar multiplication property.
               </p>
@@ -131,35 +131,35 @@
           Let <m>V=\R^n</m> and let <m>W=\R^m</m>.
           For any <m>m\times n</m> matrix <m>A</m>, the map <m>T_A:\R^n\to \R^m</m> defined by
           <me>
-            T_A(\vec{x}) = A\vec{x}
+            T_A(\xx) = A\xx
           </me>
           is a linear transformation. (This follows immediately from properties of matrix multiplication.)
         </p>
 
         <p>
-          Let <m>B = \{\vec{e}_1,\ldots, \vec{e}_n\}</m> denote the standard basis of <m>\R^n</m>.
-          Recall that <m>A\vec{e}_i</m> is equal to the <m>i</m>th column of <m>A</m>.
+          Let <m>B = \{\mathbf{e}_1,\ldots, \mathbf{e}_n\}</m> denote the standard basis of <m>\R^n</m>.
+          Recall that <m>A\mathbf{e}_i</m> is equal to the <m>i</m>th column of <m>A</m>.
           Thus, if we know the value of a linear transformation <m>T:\R^n\to \R^m</m> on each basis vector,
           we can immediately determine the matrix <m>A</m> such that <m>T=T_A</m>:
           <me>
-            A = \bbm T(\vec{e}_1) \amp T(\vec{e}_2) \amp \cdots \amp T(\vec{e}_n)\ebm
+            A = \bbm T(\mathbf{e}_1) \amp T(\mathbf{e}_2) \amp \cdots \amp T(\mathbf{e}_n)\ebm
           </me>.
           This is true because <m>T</m> and <m>T_A</m> agree on the standard basis: for each <m>i=1,2,\ldots, n</m>,
           <me>
-            T_A(\vec{e_i}) = A\vec{e_i} = T(\vec{e}_i)
+            T_A(\mathbf{e}_i) = A\mathbf{e}_i = T(\mathbf{e}_i)
           </me>.
           Moreover, if two linear transformations agree on a basis, they must be equal.
-          Given any <m>\vec{x}\in \R^n</m>, we can write <m>\vec{x}</m> uniquely as a linear combination
+          Given any <m>\xx\in \R^n</m>, we can write <m>\xx</m> uniquely as a linear combination
           <me>
-            \vec{x}=c_1\vec{e}_1+c_2\vec{e}_2+\cdots + c_n\vec{e}_n.
+            \xx=c_1\mathbf{e}_1+c_2\mathbf{e}_2+\cdots + c_n\mathbf{e}_n.
           </me>
-          If <m>T(\vec{e}_i)=T_A(\vec{e}_i)</m> for each <m>i</m>, then by <xref ref="thm-lt-props"/> we have
+          If <m>T(\mathbf{e}_i)=T_A(\mathbf{e}_i)</m> for each <m>i</m>, then by <xref ref="thm-lt-props"/> we have
           <md>
-            <mrow>T(\vec{x}) \amp = T(c_1\vec{e}_1+c_2\vec{e}_2+\cdots + c_n\vec{e}_n) </mrow>
-            <mrow> \amp = c_1T(\vec{e}_1)+c_2T(\vec{e}_2)+\cdots + c_nT(\vec{e}_n)</mrow>
-            <mrow> \amp = c_1T_A(\vec{e}_1)+c_2T_A(\vec{e}_2)+\cdots + c_nT_A(\vec{e}_n)</mrow>
-            <mrow> \amp = T_A(c_1\vec{e}_1+c_2\vec{e}_2+\cdots + c_n\vec{e}_n) </mrow>
-            <mrow> \amp = T_A(\vec{x})</mrow>
+            <mrow>T(\xx) \amp = T(c_1\mathbf{e}_1+c_2\mathbf{e}_2+\cdots + c_n\mathbf{e}_n) </mrow>
+            <mrow> \amp = c_1T(\mathbf{e}_1)+c_2T(\mathbf{e}_2)+\cdots + c_nT(\mathbf{e}_n)</mrow>
+            <mrow> \amp = c_1T_A(\mathbf{e}_1)+c_2T_A(\mathbf{e}_2)+\cdots + c_nT_A(\mathbf{e}_n)</mrow>
+            <mrow> \amp = T_A(c_1\mathbf{e}_1+c_2\mathbf{e}_2+\cdots + c_n\mathbf{e}_n) </mrow>
+            <mrow> \amp = T_A(\xx)</mrow>
           </md>.
         </p>
       </statement>
@@ -171,13 +171,13 @@
         <li>
           <p>
             For any vector spaces <m>V,W</m> we can define the <term>zero transformation</term> <m>0:V\to W</m>
-            by <m>0(\vec{v})=\vec{0}</m> for all <m>\vec{v}\in V</m>.
+            by <m>0(\vv)=\mathbf{0}</m> for all <m>\vv\in V</m>.
           </p>
         </li>
         <li>
           <p>
             On any vector space <m>V</m> we have the <term>identity transformation</term>
-            <m>1_V:V\to V</m> defined by <m>1_V(\vec{v})=\vec{v}</m> for all <m>\vec{v}\in V</m>.
+            <m>1_V:V\to V</m> defined by <m>1_V(\vv)=\vv</m> for all <m>\vv\in V</m>.
           </p>
         </li>
         <li>
@@ -256,7 +256,7 @@
       <statement>
         <p>
           Let <m>T:V\to W</m> and <m>S:V\to W</m> be two linear transformations.
-          If <m>V = \spn\{\vec{v}_1,\ldots, \vec{v}_n\}</m> and <m>T(\vec{v}_i)=S(\vec{v}_i)</m>
+          If <m>V = \spn\{\vv_1,\ldots, \vv_n\}</m> and <m>T(\vv_i)=S(\vv_i)</m>
           for each <m>i=1,2,\ldots, n</m>, then <m>T=S</m>.
         </p>
       </statement>
@@ -268,34 +268,34 @@
       If we define <m>T</m> by giving its values on a spanning set, will it be well-defined?
       Suppose that we have scalars <m>a_1,\ldots, a_n, b_1,\ldots, b_n</m> such that
       <md>
-        <mrow>\vec{v} \amp a_1\vec{v_1}+\cdots + a_n\vec{v}_n</mrow>
-        <mrow> \amp b_1\vec{v}_1+\cdots + b_n\vec{v}_n</mrow>
+        <mrow>\vv \amp a_1\vv_1+\cdots + a_n\vv_n</mrow>
+        <mrow> \amp b_1\vv_1+\cdots + b_n\vv_n</mrow>
       </md>
       We then have
       <md>
-        <mrow>a_1T(\vec{v}_1)+\cdots + a_nT(\vec{v}_n) \amp =T(a_1\vec{v}_1+\cdots + a_n\vec{v}_n) </mrow>
-        <mrow> \amp =T(b_1\vec{v}_1+\cdots +b_n\vec{v}_n)</mrow>
-        <mrow>  \amp =b_1T(\vec{v}_1)+\cdots +b_nT(\vec{v}_n)</mrow>
+        <mrow>a_1T(\vv_1)+\cdots + a_nT(\vv_n) \amp =T(a_1\vv_1+\cdots + a_n\vv_n) </mrow>
+        <mrow> \amp =T(b_1\vv_1+\cdots +b_n\vv_n)</mrow>
+        <mrow>  \amp =b_1T(\vv_1)+\cdots +b_nT(\vv_n)</mrow>
       </md>.
       The next theorem seems like an obvious consequence of the above,
       and indeed, one might wonder where the assumption of a basis is needed.
-      The distinction here is that the vectors <m>\vec{w}_1,\ldots, \vec{w}_n\in W</m>
-      are chosen in advance, and then we set <m>T(vec{b}_i)=\vec{w}_i</m>,
-      rather than simply defining each <m>\vec{w}_i</m> as <m>T(\vec{b}_i)</m>.
+      The distinction here is that the vectors <m>\ww_1,\ldots, \ww_n\in W</m>
+      are chosen in advance, and then we set <m>T(vec{b}_i)=\ww_i</m>,
+      rather than simply defining each <m>\ww_i</m> as <m>T(\mathbf{b}_i)</m>.
     </p>
 
     <theorem xml:id="thm-define-using-basis">
       <statement>
         <p>
-          Let <m>V,W</m> be vector spaces. Let <m>B=\{\vec{b}_1,\ldots, \vec{b}_n\}</m>
-          be a basis of <m>V</m>, and let <m>\vec{w}_1,\ldots, \vec{w}_n</m> be any vectors in <m>W</m>.
+          Let <m>V,W</m> be vector spaces. Let <m>B=\{\mathbf{b}_1,\ldots, \mathbf{b}_n\}</m>
+          be a basis of <m>V</m>, and let <m>\ww_1,\ldots, \ww_n</m> be any vectors in <m>W</m>.
           (These vectors need not be distinct.)
           Then there exists a unique linear transformation <m>T:V\to W</m> such that
-          <m>T(\vec{b}_i)=\vec{w}_i</m> for each <m>i=1,2,\ldots, n</m>; indeed,
+          <m>T(\mathbf{b}_i)=\ww_i</m> for each <m>i=1,2,\ldots, n</m>; indeed,
           we can define <m>T</m> as follows:
-          given <m>\vec{v}\in V</m>, write <m>\vec{v}=c_1\vec{v}_1+\cdots +c_n\vec{v}_n</m>. Then
+          given <m>\vv\in V</m>, write <m>\vv=c_1\vv_1+\cdots +c_n\vv_n</m>. Then
           <me>
-            T(\vec{v})=T(c_1\vec{v}_1+\cdots + c_n\vec{v}_n) = c_1\vec{w}_1+\cdots +c_n\vec{v}_n
+            T(\vv)=T(c_1\vv_1+\cdots + c_n\vv_n) = c_1\ww_1+\cdots +c_n\vv_n
           </me>.
         </p>
       </statement>
@@ -457,18 +457,18 @@
       <statement>
         <p>
           Let <m>T:V\to W</m> be a linear transformation.
-          Prove that for any vectors <m>\vec{v}_1,\ldots, \vec{v}_n\in V</m>,
-          if <m>\{T(\vec{v}_1),\ldots, T(\vec_{v}_n)\}</m> is linearly independent in <m>W</m>,
-          then <m>\{\vec{v}_1,\ldots, \vec{v}_n\}</m> is linearly independent in <m>V</m>.
+          Prove that for any vectors <m>\vv_1,\ldots, \vv_n\in V</m>,
+          if <m>\{T(\vv_1),\ldots, T(\vv_n)\}</m> is linearly independent in <m>W</m>,
+          then <m>\{\vv_1,\ldots, \vv_n\}</m> is linearly independent in <m>V</m>.
         </p>
       </statement>
       <solution>
         <p>
-          Let us suppose that <m>\{T(\vec{v}_1),\ldots, T(\vec_{v}_n)\}</m> is linearly independent.
-          We want to show that the set <m>\{\vec{v}_1,\ldots, \vec{v}_n\}</m>
+          Let us suppose that <m>\{T(\vv_1),\ldots, T(\vv_n)\}</m> is linearly independent.
+          We want to show that the set <m>\{\vv_1,\ldots, \vv_n\}</m>
           is linearly independent. To that end, suppose that we have
           <me>
-            c_1\vec{v}_1+\cdots + c_n\vec{v}_n=\vec{0}
+            c_1\vv_1+\cdots + c_n\vv_n=\mathbf{0}
           </me>
           for some scalars <m>c_1,\ldots, c_n</m> (that we want to show must all equal zero).
         </p>
@@ -477,13 +477,13 @@
           We want to make use of our hypothesis, so we need to bring the linear map <m>T</m> into the picture.
           We apply <m>T</m> to both sides of the equation above, giving us:
           <me>
-            T(c_1\vec{v}_1+\cdots + c_n\vec{v}_n)=T(\vec{0})
+            T(c_1\vv_1+\cdots + c_n\vv_n)=T(\mathbf{0})
           </me>.
           Now we make use of both parts of <xref ref="thm-lt-props">Theorem</xref> to get
           <me>
-            c_1T(\vec{v}_1)+\cdots +c_nT(\vec{v}_n) = \vec{0}
+            c_1T(\vv_1)+\cdots +c_nT(\vv_n) = \mathbf{0}
           </me>.
-          By our hypothesis that the <m>T(\vec{v}_i)</m> are independent,
+          By our hypothesis that the <m>T(\vv_i)</m> are independent,
           we must conclude that all the scalars are zero, and we're done.
         </p>
       </solution>
@@ -507,11 +507,11 @@
           Let <m>T:V\to W</m> be a linear transformation. The <term>kernel</term> of <m>T</m>,
           denoted <m>\ker T</m>, is defined by
           <me>
-            \ker T = \{\vec{v}\in V \,|\, T(\vec{v})=\vec{0}\}
+            \ker T = \{\vv\in V \,|\, T(\vv)=\mathbf{0}\}
           </me>.
           The <term>image</term> of <m>T</m>, denoted <m>\im T</m>, is defined by
           <me>
-            \im T = \{T(\vec{v}) \,|\, \vec{v}\in V\}
+            \im T = \{T(\vv) \,|\, \vv\in V\}
           </me>.
         </p>
       </statement>
@@ -546,16 +546,16 @@
           <ol>
             <li>
               <p>
-                To show that <m>\ker T</m> is a subspace, first note that <m>\vec{0}\in \ker T</m>,
-                since <m>T(\vec{0})=\vec{0}</m> for any linear transformation <m>T</m>.
-                If <m>\vec{v},\vec{w}\in \ker T</m>, then <m>T(\vec{v})=\vec{0}</m>
-                and <m>T(\vec{w})=0</m>, and therefore,
+                To show that <m>\ker T</m> is a subspace, first note that <m>\mathbf{0}\in \ker T</m>,
+                since <m>T(\mathbf{0})=\mathbf{0}</m> for any linear transformation <m>T</m>.
+                If <m>\vv,\ww\in \ker T</m>, then <m>T(\vv)=\mathbf{0}</m>
+                and <m>T(\ww)=0</m>, and therefore,
                 <me>
-                  T(\vec{v}+\vec{w})=T(\vec{v})+T(\vec{w})=\vec{0}+\vec{0}=\vec{0}
+                  T(\vv+\ww)=T(\vv)+T(\ww)=\mathbf{0}+\mathbf{0}=\mathbf{0}
                 </me>.
-                Similarly, for any scalar <m>c</m> and <m>\vec{v}\in \ker T</m>,
+                Similarly, for any scalar <m>c</m> and <m>\vv\in \ker T</m>,
                 <me>
-                  T(c\vec{v})=cT(\vec{v})=c\vec{0}=\vec{0}
+                  T(c\vv)=cT(\vv)=c\mathbf{0}=\mathbf{0}
                 </me>.
                 By the subspace test, <m>\ker T</m> is a subspace.
               </p>
@@ -563,21 +563,21 @@
 
             <li>
               <p>
-                Again, since <m>T(\vec{0})=\vec{0}</m>, we see that <m>\vec{0}\in \im T</m>,
+                Again, since <m>T(\mathbf{0})=\mathbf{0}</m>, we see that <m>\mathbf{0}\in \im T</m>,
                 so <m>\im T</m> is nonempty.
-                If <m>\vec{w}_1,\vec{w}_2\in \im T</m>, then there exist <m>\vec{v}_1,\vec{v}_2\in V</m>
-                such that <m>T(\vec{v}_1)=\vec{w}_1</m> and <m>T(\vec{v}_2)=\vec{w}_2</m>.
+                If <m>\ww_1,\ww_2\in \im T</m>, then there exist <m>\vv_1,\vv_2\in V</m>
+                such that <m>T(\vv_1)=\ww_1</m> and <m>T(\vv_2)=\ww_2</m>.
                 It follows that
                 <me>
-                  \vec{w}_1+\vec{w}_2 = T(\vec{v}_1)+T(\vec{v}_2) = T(\vec{v}_1+\vec{v}_2)
+                  \ww_1+\ww_2 = T(\vv_1)+T(\vv_2) = T(\vv_1+\vv_2)
                 </me>,
-                so <m>\vec{w}_1+\vec{w}_2\in \im T</m>.
-                Similarly, if <m>c</m> is any scalar and <m>\vec{w}=T(\vec{v})\in\im T</m>,
+                so <m>\ww_1+\ww_2\in \im T</m>.
+                Similarly, if <m>c</m> is any scalar and <m>\ww=T(\vv)\in\im T</m>,
                 then
                 <me>
-                  c\vec{w}=cT(\vec{v})=T(c\vec{v})
+                  c\ww=cT(\vv)=T(c\vv)
                 </me>,
-                so <m>c\vec{w}\in \im T</m>.
+                so <m>c\ww\in \im T</m>.
               </p>
             </li>
           </ol>
@@ -589,24 +589,24 @@
     <p>
       A familiar setting that you may already have encontered in a previous linear algebra course is that of a matrix transformation.
       Let <m>A</m> be an <m>m\times n</m> matrix. Then we can define <m>T:\R^n\to \R^m</m>
-      by <m>T(\vec{x})=A\vec{x}</m>, where elements of <m>\R^n,\R^m</m> are considered as column vectors.
+      by <m>T(\xx)=A\xx</m>, where elements of <m>\R^n,\R^m</m> are considered as column vectors.
       We then have
       <me>
-        \ker T = \nll(A) = \{\vec{x}\in \R^n \,|\, A\vec{x}=\vec{0}\}
+        \ker T = \nll(A) = \{\xx\in \R^n \,|\, A\xx=\mathbf{0}\}
       </me>
       and
       <me>
-        \im T = \csp(A) = \{A\vec{x}\,|\, \vec{x}\in \R^n\}
+        \im T = \csp(A) = \{A\xx\,|\, \xx\in \R^n\}
       </me>,
       where <m>\csp(A)</m> denotes the <term>column space</term> of <m>A</m>.
       Recall further that if we write <m>A</m> in terms of its columns as
       <me>
         A = \bbm C_1 \amp C_2 \amp \cdots \amp C_n\ebm
       </me>
-      and a vector <m>\vec{x}\in \R^n</m> as <m>\vec{x}=\bbm x_1\\x_2\\\vdots \\x_n\ebm</m>,
+      and a vector <m>\xx\in \R^n</m> as <m>\xx=\bbm x_1\\x_2\\\vdots \\x_n\ebm</m>,
       then
       <me>
-        A\vec{x} = x_1C_1+x_2C_2+\cdots +x_nC_n
+        A\xx = x_1C_1+x_2C_2+\cdots +x_nC_n
       </me>.
       Thus, any element of <m>\csp(A)</m> is a linear combination of its columns,
       explaining the name <em>column space</em>.
@@ -615,7 +615,7 @@
     <p>
       Determining <m>\nll(A)</m> and <m>\csp(A)</m> for a given matrix <m>A</m> is,
       unsurprisingly, a matter of reducing <m>A</m> to row-echelon form.
-      Finding <m>\nll(A)</m> is simply a matter of describing the set of all solutions to the homogeneous system <m>A\vec{x}=\vec{0}</m>.
+      Finding <m>\nll(A)</m> is simply a matter of describing the set of all solutions to the homogeneous system <m>A\xx=\mathbf{0}</m>.
       Finding <m>\csp(A)</m> relies on the following theorem.
     </p>
 
@@ -704,15 +704,15 @@
     </p>
 
     <p>
-      Furthermore, we can determine the nullspace: if <m>A\vec{x}=\vec{0}</m> where
-      <m>\vec{x}=\bbm x_1\\x_2\\x_3\\x_4\ebm</m>, then we must have
+      Furthermore, we can determine the nullspace: if <m>A\xx=\mathbf{0}</m> where
+      <m>\xx=\bbm x_1\\x_2\\x_3\\x_4\ebm</m>, then we must have
       <md>
         <mrow>x_1 \amp =\frac65 x_3-\frac25 x_4</mrow>
         <mrow>x_2 \amp =-\frac25 x_3+\frac 45 x_4</mrow>
       </md>,
       so
       <me>
-        \vec{x} = \bbm \frac65x_3-\frac25x_4\\ -\frac25x_3+\frac45x_4\\x_3\\x_4\ebm = \frac{x_3}{5}\bbm 6\\-2\\5\\0\ebm + \frac{x_4}{5}\bbm -2\\4\\0\\5\ebm
+        \xx = \bbm \frac65x_3-\frac25x_4\\ -\frac25x_3+\frac45x_4\\x_3\\x_4\ebm = \frac{x_3}{5}\bbm 6\\-2\\5\\0\ebm + \frac{x_4}{5}\bbm -2\\4\\0\\5\ebm
       </me>.
       It follows that a basis for <m>\nll(A)=\ker T</m> is <m>\left\{\bbm 6\\-2\\5\\0\ebm, \bbm -2\\4\\0\\5\ebm\right\}</m>.
     </p>
@@ -777,8 +777,8 @@
       Note that if <m>W</m> is finite-dimensional, then so is <m>\im T</m>,
       since it's a subspace of <m>W</m>.
       On the other hand, if <m>V</m> is finite-dimensional,
-      then we can find a basis <m>\{\vec{v}_1,\ldots, \vec{v}_n\}</m> of <m>V</m>,
-      and the set <m>\{T(\vec{v}_1),\ldots, T(\vec{v}_n)\}</m> will span <m>\im T</m>,
+      then we can find a basis <m>\{\vv_1,\ldots, \vv_n\}</m> of <m>V</m>,
+      and the set <m>\{T(\vv_1),\ldots, T(\vv_n)\}</m> will span <m>\im T</m>,
       so again the image is finite-dimensional, so the rank of <m>T</m> is finite.
       It is possible for either the rank or the nullity of a transformation to be infinite.
     </p>
@@ -873,24 +873,24 @@
       <statement>
         <p>
           Let <m>T:V\to W</m> be a linear transformation.
-          Then <m>T</m> is injective if and only if <m>\ker T = \{\vec{0}\}</m>.
+          Then <m>T</m> is injective if and only if <m>\ker T = \{\mathbf{0}\}</m>.
         </p>
       </statement>
 
       <proof>
         <p>
-          Suppose <m>T</m> is injective, and let <m>\vec{v}\in \ker T</m>.
-          Then <m>T(\vec{v})=\vec{0}</m>. On the other hand, we know that <m>T(\vec{0})=\vec{0}</m>,
-          and since <m>T</m> is injective, we must have <m>\vec{v}=\vec{0}</m>.
+          Suppose <m>T</m> is injective, and let <m>\vv\in \ker T</m>.
+          Then <m>T(\vv)=\mathbf{0}</m>. On the other hand, we know that <m>T(\mathbf{0})=\mathbf{0}</m>,
+          and since <m>T</m> is injective, we must have <m>\vv=\mathbf{0}</m>.
 
-          Conversely, suppose that <m>\ker T = \{0\}</m> and that <m>T(\vec{v}_1)=T(\vec{v}_2)</m>
-          for some <m>\vec{v}_1,\vec{v}_2\in V</m>. Then
+          Conversely, suppose that <m>\ker T = \{0\}</m> and that <m>T(\vv_1)=T(\vv_2)</m>
+          for some <m>\vv_1,\vv_2\in V</m>. Then
           <me>
-            \vec{0} = T(\vec{v}_1)-T(\vec{v}_2) = T(\vec{v}_1-\vec{v}_2)
+            \mathbf{0} = T(\vv_1)-T(\vv_2) = T(\vv_1-\vv_2)
           </me>,
-          so <m>\vec{v}_1-\vec{v}_2\in \ker T</m>.
-          Therefore, we must have <m>\vec{v}_1-\vec{v}_2=\vec{0}</m>,
-          so <m>\vec{v}_1=\vec{v}_2</m>, and it follows that <m>T</m> is injective.
+          so <m>\vv_1-\vv_2\in \ker T</m>.
+          Therefore, we must have <m>\vv_1-\vv_2=\mathbf{0}</m>,
+          so <m>\vv_1=\vv_2</m>, and it follows that <m>T</m> is injective.
         </p>
       </proof>
 
@@ -898,8 +898,8 @@
 
     <p>
       Let us return to the case of a matrix transformation <m>T_A:\R^n\to \R^m</m>.
-      Notice that <m>\ker T_A</m> is simply the set of all solutions to <m>A\vec{x}=\vec{0}</m>,
-      while <m>\im T_A</m> is the set of all <m>\vec{y}\in\R^m</m> for which <m>A\vec{x}=\vec{y}</m>
+      Notice that <m>\ker T_A</m> is simply the set of all solutions to <m>A\xx=\mathbf{0}</m>,
+      while <m>\im T_A</m> is the set of all <m>\yy\in\R^m</m> for which <m>A\xx=\yy</m>
       <em>has</em> a solution.
     </p>
 
@@ -907,7 +907,7 @@
       Recall from the discussion above that <m>\rank A = \dim \csp(A) = \dim \im T_A</m>.
       It follows that <m>T_A</m> is surjective if and only if <m>\rank A = m</m>.
       On the other hand, <m>T_A</m> is injective if and only if <m>\rank A = n</m>,
-      because we know that the system <m>A\vec{x}=\vec{0}</m> has a unique solution if and only if each column of <m>A</m> contains a leading one.
+      because we know that the system <m>A\xx=\mathbf{0}</m> has a unique solution if and only if each column of <m>A</m> contains a leading one.
     </p>
 
     <p>
@@ -946,23 +946,23 @@
         <p>
           The trick with this proof is that we aren't assuming <m>V</m> is finite-dimensional,
           so we can't start with a basis of <m>V</m>. But we do know that <m>\im T</m>
-          is finite-dimensional, so we start with a basis <m>\{\vec{w}_1,\ldots, \vec{w}_m\}</m>
+          is finite-dimensional, so we start with a basis <m>\{\ww_1,\ldots, \ww_m\}</m>
           of <m>\im T</m>.
           Of course, every vector in <m>\im T</m> is the image of some vector in <m>V</m>,
-          so we can write <m>\vec{w}_i =T(\vec{v}_i)</m>, where <m>\vec{v}_i\in V</m>,
+          so we can write <m>\ww_i =T(\vv_i)</m>, where <m>\vv_i\in V</m>,
           for <m>i=1,2,\ldots, m</m>.
         </p>
 
         <p>
-          Since <m>\{T(\vec{v}_1),\ldots, T(\vec{v}_m)\}</m> is a basis,
+          Since <m>\{T(\vv_1),\ldots, T(\vv_m)\}</m> is a basis,
           it is linearly independent. The results of <xref ref="ex_lintrans-indep">Exercise</xref>
-          tell us that the set <m>\{\vec{v}_1,\ldots, \vec{v}_m\}</m> must therefore be independent.
+          tell us that the set <m>\{\vv_1,\ldots, \vv_m\}</m> must therefore be independent.
         </p>
 
         <p>
-          We now introduce a basis <m>\{\vec{u}_1,\ldots, \vec{u}_n\}</m>
+          We now introduce a basis <m>\{\uu_1,\ldots, \uu_n\}</m>
           of <m>\ker T</m>, which we also know to be finite-dimensional.
-          If we can show that the set <m>\{\vec{u}_1,\ldots, \vec{u}_n,\vec{v}_1,\ldots, \vec{v}_m\}</m>
+          If we can show that the set <m>\{\uu_1,\ldots, \uu_n,\vv_1,\ldots, \vv_m\}</m>
           is a basis for <m>V</m>, we'd be done, since the number of vectors in this basis
           is <m>\dim\ker T + \dim \im T</m>. We must therefore show that this set is independent,
           and that it spans <m>V</m>.
@@ -971,48 +971,48 @@
         <p>
           To see that it's independent, suppose that
           <me>
-            a_1\vec{u}_1+\cdots + a_n\vec{u}_n+b_1\vec{v}_1+\cdots +\b_m\vec{v}_m=\vec{0}
+            a_1\uu_1+\cdots + a_n\uu_n+b_1\vv_1+\cdots +\b_m\vv_m=\mathbf{0}
           </me>.
-          Applying <m>T</m> to this equation, and noting that <m>T(\vec{u}_i)=\vec{0}</m>
-          for each <m>i</m>, by definition of the <m>\vec{u}_i</m>, we get
+          Applying <m>T</m> to this equation, and noting that <m>T(\uu_i)=\mathbf{0}</m>
+          for each <m>i</m>, by definition of the <m>\uu_i</m>, we get
           <me>
-            b_1T(\vec{v}_1)+\cdots +b_mT(\vec{v}_m)=\vec{0}
+            b_1T(\vv_1)+\cdots +b_mT(\vv_m)=\mathbf{0}
           </me>.
-          We assumed that the vectors <m>T(\vec{v}_i)</m> were independent,
+          We assumed that the vectors <m>T(\vv_i)</m> were independent,
           so all the <m>b_i</m> must be zero. But then we get
           <me>
-            a_1\vec{u}_1+\cdots +a_n\vec{u}_n=\vec{0}
+            a_1\uu_1+\cdots +a_n\uu_n=\mathbf{0}
           </me>,
-          and since the <m>\vec{u}_i</m> are independent, all the <m>a_i</m> must be zero.
+          and since the <m>\uu_i</m> are independent, all the <m>a_i</m> must be zero.
         </p>
 
         <p>
-          To see that these vectors span, choose any <m>\vec{x}\in V</m>.
-          Since <m>T(\vec{x})\in \im T</m>, there exist scalars <m>c_1,\ldots, c_m</m>
+          To see that these vectors span, choose any <m>\xx\in V</m>.
+          Since <m>T(\xx)\in \im T</m>, there exist scalars <m>c_1,\ldots, c_m</m>
           such that
           <men xml:id="eqn-almost-span">
-            T(\vec{x})=c_1T(\vec{v_1})+\cdots +c_mT(\vec{v}_m)
+            T(\xx)=c_1T(\vv_1)+\cdots +c_mT(\vv_m)
           </men>.
-          We'd like to be able to conclude from this that <m>\vec{x}=c_1\vec{v}_1+\cdots +c_m\vec{v}_m</m>,
+          We'd like to be able to conclude from this that <m>\xx=c_1\vv_1+\cdots +c_m\vv_m</m>,
           but this would be false, unless <m>T</m> was known to be injective (which it isn't).
           Failure to be injective involves the kernel -- how do we bring that into the picture?
         </p>
 
         <p>
-          The trick is to realize that the reason we might have <m>\vec{x}\neq c_1\vec{v}_1+\cdots +c_m\vec{v}_m</m>
+          The trick is to realize that the reason we might have <m>\xx\neq c_1\vv_1+\cdots +c_m\vv_m</m>
           is that we're off by something in the kernel.
           Indeed, <xref ref="eqn-almost-span"/> can be re-written as
           <me>
-            T(\vec{x}-c_1\vec{v}_1-\cdots -c_m\vec{v}_m) = \vec{0}
+            T(\xx-c_1\vv_1-\cdots -c_m\vv_m) = \mathbf{0}
           </me>,
-          so <m>\vec{x}-c_1\vec{v}_1-\cdots -c_m\vec{v}_m\in\ker T</m>.
+          so <m>\xx-c_1\vv_1-\cdots -c_m\vv_m\in\ker T</m>.
           But we have a basis for <m>\ker T</m>, so we can write
           <me>
-            \vec{x}-c_1\vec{v}_1-\cdots -c_m\vec{v}_m=t_1\vec{u}_1+\cdots +t_n\vec{u}_n
+            \xx-c_1\vv_1-\cdots -c_m\vv_m=t_1\uu_1+\cdots +t_n\uu_n
           </me>
           for some scalars <m>t_1,\ldots, t_n</m>, and this can be rearanged to give
           <me>
-            \vec{x}=t_1\vec{u}_1+\cdots +t_n\vec{u}_n+c_1\vec{v}_1+\cdots + c_m\vec{v}_m
+            \xx=t_1\uu_1+\cdots +t_n\uu_n+c_1\vv_1+\cdots + c_m\vv_m
           </me>,
           which completes the proof.
         </p>
@@ -1085,22 +1085,22 @@
 
               <p>
                 Conversely, suppose <m>\dim V\leq \dim W</m>.
-                Choose a basis <m>\{\vec{v}_1,\ldots, \vec{v}_m\}</m> of <m>V</m>,
-                and a basis <m>\{\vec{w}_1\,ldots, \vec{w}_n\}</m> of <m>W</m>, where <m>m\leq n</m>.
+                Choose a basis <m>\{\vv_1,\ldots, \vv_m\}</m> of <m>V</m>,
+                and a basis <m>\{\ww_1\,ldots, \ww_n\}</m> of <m>W</m>, where <m>m\leq n</m>.
                 By <xref ref="thm-define-using-basis">Theorem</xref>, there exists a linear transformation
-                <m>T:V\to W</m> with <m>T(\vec{v}_i)=\vec{w}_i</m> for <m>i=1,\ldots, m</m>.
+                <m>T:V\to W</m> with <m>T(\vv_i)=\ww_i</m> for <m>i=1,\ldots, m</m>.
                 (The main point here is that we run out of basis vectors for <m>V</m> before we run out of basis vectors for <m>W</m>.)
-                This map is injective: if <m>T(\vec{v})=\vec{0}</m>,
-                write <m>\vec{v}=c_1\vec{v}_1+\cdots + c_m\vec{v}_m</m>.
+                This map is injective: if <m>T(\vv)=\mathbf{0}</m>,
+                write <m>\vv=c_1\vv_1+\cdots + c_m\vv_m</m>.
                 Then
                 <md>
-                  <mrow>\vec{0} \amp = T(\vec{v})</mrow>
-                  <mrow> \amp = T(c_1\vec{v}_1+\cdots + c_m\vec{v}_m)</mrow>
-                  <mrow>  \amp = c_1T(\vec{v}_1)+\cdots + c_mT(\vec{v}_m)</mrow>
-                  <mrow>  \amp = c_1\vec{w}_1+\cdots +c_m\vec{w}_m</mrow>
+                  <mrow>\mathbf{0} \amp = T(\vv)</mrow>
+                  <mrow> \amp = T(c_1\vv_1+\cdots + c_m\vv_m)</mrow>
+                  <mrow>  \amp = c_1T(\vv_1)+\cdots + c_mT(\vv_m)</mrow>
+                  <mrow>  \amp = c_1\ww_1+\cdots +c_m\ww_m</mrow>
                 </md>.
-                Since <m>\{\vec{w}_1,\ldots, \vec{w}_m\}</m> is a subset of a basis, it's indendependent.
-                Therefore, the scalars <m>c_i</m> must all be zero, and therefore <m>\vec{v}=\vec{0}</m>.
+                Since <m>\{\ww_1,\ldots, \ww_m\}</m> is a subset of a basis, it's indendependent.
+                Therefore, the scalars <m>c_i</m> must all be zero, and therefore <m>\vv=\mathbf{0}</m>.
               </p>
             </li>
 
@@ -1111,20 +1111,20 @@
                   \dim W = \dim V - \dim \ker T\geq \dim V
                 </me>.
                 Conversely, suppose <m>\dim V\geq \dim W</m>. Again,
-                choose a basis <m>\{\vec{v}_1,\ldots, \vec{v}_m\}</m> of <m>V</m>,
-                and a basis <m>\{\vec{w}_1\,ldots, \vec{w}_n\}</m> of <m>W</m>,
+                choose a basis <m>\{\vv_1,\ldots, \vv_m\}</m> of <m>V</m>,
+                and a basis <m>\{\ww_1\,ldots, \ww_n\}</m> of <m>W</m>,
                 where this time, <m>m\geq n</m>.
                 We can define a linear transformation as follows:
                 <me>
-                  T(\vec{v}_1)=\vec{w}_1,\ldots, T(\vec{v}_n)=\vec{w}_n, \text{ and } T(\vec{v}_j) = \vec{0} \text{ for } j>n.
+                  T(\vv_1)=\ww_1,\ldots, T(\vv_n)=\ww_n, \text{ and } T(\vv_j) = \mathbf{0} \text{ for } j>n.
                 </me>
                 It's easy to check that this map is a surjection:
-                given <m>\vec{w}\in W</m>, we can write it in terms of our basis as <m>\vec{w}=c_1\vec{w}_1+\cdots + c_n\vec{w}_n</m>.
-                Using these same scalars, we can define <m>\vec{v}=c_1\vec{v}_1+\cdots + c_n\vec{v}_n\in V</m> such that <m>T(\vec{v})=\vec{w}</m>.
+                given <m>\ww\in W</m>, we can write it in terms of our basis as <m>\ww=c_1\ww_1+\cdots + c_n\ww_n</m>.
+                Using these same scalars, we can define <m>\vv=c_1\vv_1+\cdots + c_n\vv_n\in V</m> such that <m>T(\vv)=\ww</m>.
               </p>
 
               <p>
-                Note that it's not important how we define <m>T(\vec{v}_j)</m> when <m>j>n</m>.
+                Note that it's not important how we define <m>T(\vv_j)</m> when <m>j>n</m>.
                 The point is that this time, we run out of basis vectors for <m>W</m> before we run out of basis vectors for <m>V</m>.
                 Once each vector in the basis of <m>W</m> is in the image of <m>T</m>, we're guaranteed that <m>T</m> is surjective,
                 and we can define the value of <m>T</m> on any remaining basis vectors however we want.
@@ -1175,10 +1175,10 @@
 
         <p>
           Suppose now that <m>\dim V =\dim W</m>.
-          Then we can choose bases <m>\{\vec{v}_1,\ldots, \vec{v}_n\}</m> of <m>V</m>,
-          and <m>\{\vec{w}_1,\ldots, \vec{w}_n\}</m> of <m>W</m>.
+          Then we can choose bases <m>\{\vv_1,\ldots, \vv_n\}</m> of <m>V</m>,
+          and <m>\{\ww_1,\ldots, \ww_n\}</m> of <m>W</m>.
           <xref ref="thm-define-using-basis">Theorem</xref> then guarantees the existence of a linear map <m>T:V\to W</m>
-          such that <m>T(\vec{v}_i)=\vec{w}_i</m> for each <m>i=1,2,\ldots, n</m>.
+          such that <m>T(\vv_i)=\ww_i</m> for each <m>i=1,2,\ldots, n</m>.
           Repeating the arguments of <xref ref="ex-dimension-injection-surjection">Exercise</xref> shows that <m>T</m> is a bijection.
         </p>
       </proof>
@@ -1208,11 +1208,11 @@
       <statement>
         <p>
           Let <m>V</m> be a finite-dimensional vector space,
-          and let <m>B=\{\vec{e}_1,\ldots, \vec{e}_n\}</m> be a basis for <m>V</m>.
+          and let <m>B=\{\mathbf{e}_1,\ldots, \mathbf{e}_n\}</m> be a basis for <m>V</m>.
           The <term>coefficient isomorphism</term> associated to <m>B</m>
           is the map <m>C_B:V\to \R^n</m> defined by
           <me>
-            C_B(c_1\vec{e}_1+c_2\vec{e}_2+\cdots +c_n\vec{e}_n)=\bbm c_1\\c_2\\\vdots \\c_n\ebm
+            C_B(c_1\mathbf{e}_1+c_2\mathbf{e}_2+\cdots +c_n\mathbf{e}_n)=\bbm c_1\\c_2\\\vdots \\c_n\ebm
           </me>.
 
         </p>
@@ -1225,11 +1225,11 @@
     <p>
       The coefficient isomorphism is especially useful when we want to analyze a linear map computationally.
       Suppose we're given <m>T:V\to W</m> where <m>V, W</m> are finite-dimensional.
-      Let us choose bases <m>B=\{\vec{v}_1,\ldots, \vec{v}_n\}</m> of <m>V</m>
-      and <m>B' = \{\vec{w}_1,\ldots, \vec{w}_m\}</m> of <m>W</m>.
+      Let us choose bases <m>B=\{\vv_1,\ldots, \vv_n\}</m> of <m>V</m>
+      and <m>B' = \{\ww_1,\ldots, \ww_m\}</m> of <m>W</m>.
       The choice of these two bases determines scalars <m>a_{ij}, 1\leq i\leq n, 1\leq j\leq m</m>, such that
       <me>
-        T(\vec{v}_j) = a_{1j}\vec{w}_1+a_{2j}\vec{w}_2+\cdots + a_{mj}\vec{w}_j,
+        T(\vv_j) = a_{1j}\ww_1+a_{2j}\ww_2+\cdots + a_{mj}\ww_j,
       </me>
       for each <m>i=1,2,\ldots, n</m>. The resulting matrix <m>A=[a_{ij}]</m>
       defines a matrix transformation <m>T_A:\R^n\to \R^m</m> such that
@@ -1281,7 +1281,7 @@
       </me>,
       and the composition <m>T_A\circ T_B:\R^k\to \R^m</m> satisfies
       <me>
-        T_A\circ T_B(\vec{x}) = T_A(T_B(\vec{x})) = T_A(B\vec{x})=A(B\vec{x})=(AB)\vec{x}=T_{AB}(\vec{x})
+        T_A\circ T_B(\xx) = T_A(T_B(\xx)) = T_A(B\xx)=A(B\xx)=(AB)\xx=T_{AB}(\xx)
       </me>.
       Note that the rules given in elementary linear algebra, for the relative sizes of matrices that can be multiplied,
       are simply a manifestation of the fact that to compose functions,
@@ -1297,16 +1297,16 @@
       <solution>
         <p>
           Suppose we have linear maps <m>U\xrightarrow{T} V\xrightarrow{S} W</m>,
-          and let <m>\vec{u}_1,\vec{u}_2\in U</m>. Then
+          and let <m>\uu_1,\uu_2\in U</m>. Then
           <md>
-            <mrow>ST(\vec{u}_1+\vec{u}_2) \amp = S(T(\vec{u}_1+\vec{u}_2)) </mrow>
-            <mrow> \amp = S(T(\vec{u}_1)+T(\vec{u}_2))</mrow>
-            <mrow>  \amp = S(T(\vec{u}_1))+S(T(\vec{u}_2)) </mrow>
-            <mrow>  \amp = ST(\vec{u}_1)+ST(\vec{u}_2)</mrow>
+            <mrow>ST(\uu_1+\uu_2) \amp = S(T(\uu_1+\uu_2)) </mrow>
+            <mrow> \amp = S(T(\uu_1)+T(\uu_2))</mrow>
+            <mrow>  \amp = S(T(\uu_1))+S(T(\uu_2)) </mrow>
+            <mrow>  \amp = ST(\uu_1)+ST(\uu_2)</mrow>
           </md>,
           and for any scalar <m>c</m>,
           <me>
-            ST(c\vec{u}_1) = S(T(c\vec{u}_1))=S(cT(\vec{u}_1)) = cS(T(\vec{u}_1))=c(ST(\vec{u}_1))
+            ST(c\uu_1) = S(T(c\uu_1))=S(cT(\uu_1)) = cS(T(\uu_1))=c(ST(\uu_1))
           </me>.
 
         </p>
@@ -1334,18 +1334,18 @@
       </statement>
       <solution>
         <p>
-          Let <m>\vec{w}_1,\vec{w}_2\in W</m>.
-          Then there exist <m>\vec{v}_1,\vec{v}_2\in V</m>  with <m>\vec{w}_1=T(\vec{v}_1), \vec{w}_2=T(\vec{v}_2)</m>.
+          Let <m>\ww_1,\ww_2\in W</m>.
+          Then there exist <m>\vv_1,\vv_2\in V</m>  with <m>\ww_1=T(\vv_1), \ww_2=T(\vv_2)</m>.
           We then have
           <md>
-            <mrow>T^{-1}(\vec{w}_1+\vec{w}_2) \amp = T^{-1}(T(\vec{v}_1)+T(\vec{v}_2)) </mrow>
-            <mrow> \amp = T^{-1}(T(\vec{v}_1+\vec{v}_2))</mrow>
-            <mrow>  \amp = \vec{v}_1+\vec{v}_2</mrow>
-            <mrow>  \amp = T^{-1}(\vec{w}_1)+T^{-1}(\vec{w}_2)</mrow>
+            <mrow>T^{-1}(\ww_1+\ww_2) \amp = T^{-1}(T(\vv_1)+T(\vv_2)) </mrow>
+            <mrow> \amp = T^{-1}(T(\vv_1+\vv_2))</mrow>
+            <mrow>  \amp = \vv_1+\vv_2</mrow>
+            <mrow>  \amp = T^{-1}(\ww_1)+T^{-1}(\ww_2)</mrow>
           </md>.
           For any scalar <m>c</m>, we similarly have
           <me>
-            T^{-1}(c\vec{w}_1) = T^{-1}(cT(\vec{v}_1))=T^{-1}(T(c\vec{v}_1)) = c\vec{v}_1 = cT^{-1}(\vec{w}_1)
+            T^{-1}(c\ww_1) = T^{-1}(cT(\vv_1))=T^{-1}(T(c\vv_1)) = c\vv_1 = cT^{-1}(\ww_1)
           </me>.
         </p>
       </solution>
