@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<section xml:id="sec-independence">
+  <title>Linear Independence</title>
+
+  <p>
+    In any vector space <m>V</m>, we say that a set of vectors
+    <me>
+      \{\vv_1,\ldots,\vv_2\}
+    </me>
+    is <term>linearly independent</term> if for any scalars <m>c_1,\ldots, c_k</m>
+    <me>
+      c_1\vv_1+\cdots + c_k\vv_k = \mathbf{0} \quad\Rightarrow\quad c_1=\cdots = c_k=0
+    </me>.
+  </p>
+
+  <p>
+    This means that no vector in the set can be written as a linear combination of the other vectors in that set.
+    We will soon see that when looking for vectors that span a subspace,
+    it is especially useful to find a spanning set that is also linearly independent.
+    The following lemma establishes some basic properties of independent sets.
+  </p>
+
+  <lemma>
+    <statement>
+      <p>
+        In any vector space <m>V</m>:
+        <ol>
+          <li>
+            <p>
+              If <m>\vv\neq\mathbf{0}</m>, then <m>\{\vv\}</m> is indenpendent.
+            </p>
+          </li>
+          <li>
+            <p>
+              If <m>S\subseteq V</m> contains the zero vector, then <m>S</m> is dependent.
+            </p>
+          </li>
+        </ol>
+      </p>
+    </statement>
+  </lemma>
+
+  <p>
+    The definition of linear independence tells us that if <m>\{\vv_1,\ldots, \vv_k\}</m>
+    is an independent set of vectors, then there is only one way to write <m>\mathbf{0}</m>
+    as a linear combination of these vectors; namely,
+    <me>
+      \mathbf{0} = 0\vv_1+0\vv_2+\cdots +0\vv_k
+    </me>.
+    In fact, more is true: <em>any</em> vector in the span of a linearly independent set
+    can be written in only one way as a linear combination of those vectors.
+  </p>
+
+  <p>
+    Computationally, questions about linear independence are just questions
+    about homogeneous systems of linear equations.
+    For example, suppose we want to know if the vectors
+    <me>
+      \uu=\bbm 1\\-1\\4\ebm, \vv=\bbm 0\\2\\-3\ebm, \ww=\bbm 4\\0\\-3\ebm
+    </me>
+    are linearly independent in <m>\mathbb{R}^3</m>.
+    This question leads to the vector equation
+    <me>
+      x\uu+y\vv+z\ww=\mathbf{0}
+    </me>,
+    which becomes the matrix equation
+    <me>
+      \bbm 1\amp0\amp4\\-1\amp2\amp0\\4\amp-3\amp-3\ebm\bbm x\\y\\z\ebm = \bbm 0\\0\\0\ebm
+    </me>.
+  </p>
+
+  <p>
+    We now apply some basic theory from linear algebra.
+    A unique (and therefore, trivial) solution to this system is guaranteed if the matrix
+    <m>A = \bbm 1\amp0\amp4\\-1\amp2\amp0\\4\amp-3\amp-3\ebm</m> is invertible,
+    since in that case we have <m>\bbm x\\y\\z\ebm = A^{-1}\mathbf{0} = \mathbf{0}</m>.
+  </p>
+
+  <p>
+    This approach is problematic, however, since it won't work if we have 2 vectors, or 4.
+    Instead, we look at the reduced row-echelon form.
+    A unique solution corresponds to having a leading 1 in each column of <m>A</m>.
+    Let's check this condition.
+  </p>
+
+  <sage>
+    <input>
+      from sympy import *
+      init_printing()
+    </input>
+  </sage>
+
+  <sage>
+    <input>
+      A = Matrix(3,3,[1,0,4,-1,2,0,4,-3,-3])
+      A.rref()
+    </input>
+  </sage>
+
+  <p>
+    One observation is useful here, and will lead to a better understanding of independence.
+    First, it would be impossible to have 4 or more linearly independent vectors in <m>\mathbb{R}^3</m>.
+    Why? (How many leading ones can you have in a <m>3\times 4</m> matrix?)
+    Second, having two or fewer vectors makes it more likely that the set is independent.
+  </p>
+
+  <p>
+    The largest set of linearly independent vectors possible in <m>\mathbb{R}^3</m> contains three vectors.
+    You might have also observed that the smallest number of vectors needed to span <m>\mathbb{R}^3</m> is 3.
+    Hmm. Seems like there's something interesting going on here. But first, some more computation.
+  </p>
+
+  <exercise>
+    <statement>
+      <p>
+        Determine whether the set <m>\left\{\bbm 1\\2\\0\ebm, \bbm -1\\0\\3\ebm,\bbm -1\\4\\9\ebm\right\}</m>
+        is linearly independent in <m>\R^3</m>.
+      </p>
+    </statement>
+  </exercise>
+
+  <p>
+    Again, we set up a matrix and reduce:
+  </p>
+
+  <sage>
+    <input>
+      A = Matrix(3,3,[1,-1,-1,2,0,4,0,3,9])
+      A.rref()
+    </input>
+  </sage>
+
+  <p>
+    Notice that this time we don't get a unique solution, so we can conclude that these vectors are <em>not</em> independent.
+    Furthermore, you can probably deduce from the above that we have <m>2\vv_1+3\vv_2-\vv_3=\mathbf{0}</m>.
+    Now suppose that <m>\ww\in\spn\{\vv_1,\vv_2,\vv_3\}</m>.
+    In how many ways can we write <m>\ww</m> as a linear combination of these vectors?
+  </p>
+
+  <exercise>
+    <statement>
+      <p>
+        Which of the following subsets of <m>P_2(\mathbb{R})</m> are independent?
+        <md>
+          <mrow>\text{(a) } S_1 = \{x^2+1, x+1, x\}</mrow>
+          <mrow>\text{(b) } S_2 = \{x^2-x+3, 2x^2+x+5, x^2+5x+1\}</mrow>
+        </md>
+      </p>
+    </statement>
+  </exercise>
+
+  <p>
+    In each case, we set up the defining equation for independence, collect terms,
+    and then analyze the resulting system of equations.
+    (If you work with polynomials often enough,
+    you can probably jump straight to the matrix.
+    For now, let's work out the details.)
+  </p>
+
+  <p>Suppose
+    <me>
+      r(x^2+1)+s(x+1)+tx = 0
+    </me>.
+    Then <m>rx^2+(s+t)x+(r+s)=0=0x^2+0x+0</m>, so
+    <md>
+      <mrow>r \amp =0</mrow>
+      <mrow>s+t \amp =0</mrow>
+      <mrow>r+s\amp =0</mrow>
+    </md>.
+    And in this case, we don't even need to ask the computer.
+    The first equation gives <m>r=0</m> right away,
+    and putting that into the third equation gives <m>s=0</m>,
+    and the second equation then gives <m>t=0</m>.
+  </p>
+
+  <p>
+    Since <m>r=s=t=0</m> is the only solution, the set is independent.
+  </p>
+
+  <p>
+    Repeating for <m>S_2</m> leads to the equation
+    <me>
+      (r+2s+t)x^2+(-r+s+5t)x+(3r+5s+t)1=0.
+    </me>
+    This gives us:
+  </p>
+
+  <sage>
+    <input>
+      A = Matrix(3,3,[1,2,1,-1,1,5,3,5,1])
+      A.rref()
+    </input>
+  </sage>
+
+  <exercise>
+    <statement>
+      <p>
+        Determine whether or not the set
+        <me>
+          \left\{\bbm -1\amp 0\\0\amp -1\ebm, \bbm 1\amp -1\\ -1\amp 1\ebm,
+                 \bbm 1\amp 1\\1\amp 1\ebm, \bbm 0\amp -1\\-1\amp 0\ebm\right\}
+        </me>
+        is linearly independent in <m>M_2(\mathbb{R})</m>.
+      </p>
+    </statement>
+  </exercise>
+
+  <p>
+    Again, we set a linear combination equal to the zero vector, and combine:
+    <md>
+      <mrow>a\bbm -1\amp 0\\0\amp -1\ebm +b\bbm 1\amp -1\\ -1\amp 1\ebm
+        +c\bbm 1\amp 1\\1\amp 1\ebm +d \bbm 0\amp -1\\-1\amp 0\ebm = \bbm 0\amp 0\\ 0\amp 0\ebm</mrow>
+      <mrow>\bbm -a+b+c\amp -b+c-d\\-b+c-d\amp -a+b+c\ebm = \bbm 0\amp 0\\0\amp 0\ebm</mrow>
+    </md>.
+  </p>
+
+  <p>
+    We could proceed, but we might instead notice right away that equations 1 and 4 are identical,
+    and so are equations 2 and 3.
+    With only two distinct equations and 4 unknowns, we're certain to find nontrivial solutions.
+  </p>
+</section>

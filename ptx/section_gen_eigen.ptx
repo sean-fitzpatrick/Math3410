@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<section xml:id="sec-gen-eigen">
+  <title>Generalized eigenspaces</title>
+  <p>
+    Example <xref ref="eg-invariant-block"/> showed us that if <m>V=U\oplus W</m>,
+    where <m>U</m> and <m>W</m> are <m>T</m>-invariant,
+    then the matrix <m>M_B(T)</m> has block diagonal form <m>\bbm A \amp 0\\0\amp B\ebm</m>,
+    as long as the basis <m>B</m> is the union of bases of <m>U</m> and <m>W</m>.
+  </p>
+
+  <p>
+    We want to take this idea further. If <m>V = U_1\oplus U_2\oplus \cdots \oplus U_k</m>,
+    where each subspace <m>U_j</m> is <m>T</m>-invariant,
+    then with repsect to a basis <m>B</m> consisting of basis vectors for each subspace,
+    we will have
+    <me>
+      M_B(T)=\bbm A_1 \amp 0 \amp \cdots \amp 0\\
+                  0 \amp A_2 \amp \cdots \amp 0\\
+                  \vdots \amp \vdots \amp \ddots \amp \vdots\\
+                  0 \amp 0 \amp \cdots \amp A_k\ebm
+    </me>,
+    where each <m>A_j</m> is the matrix of <m>T|_{U_j}</m> with respect to some basis of <m>U_j</m>.
+  </p>
+
+  <p>
+    Our goal moving forward is twofold: one, to make the blocks as small as possible,
+    so that <m>M_B(T)</m> is as close to diagonal as possible,
+    and two, to make the blocks as simple as possible.
+    Of course, if <m>T</m> is diagonalizable, then we can get all blocks down to size <m>1\times 1</m>,
+    but this is not always possible.
+  </p>
+
+  <p>
+    Recall from <xref ref="subsec-eigen-basics">Section</xref> that if the characteristic polynomial of <m>T</m>
+    (or equivalently, any matrix representation <m>A</m> of <m>T</m>) is
+    <me>
+      c_T(x) = (x-\lambda_1)^{m_1}(x-\lambda_2)^{m_2}\cdots (x-\lambda_k)^{m_k}
+    </me>,
+    then <m>\dim E_{\lambda_j}(T)\leq m_j</m> for each <m>j=1,\ldots, k</m>,
+    and <m>T</m> is diagonalizable if and only if we have equality for each <m>j</m>.
+    (This guarantees that we have sufficiently many independent eigenvectors to form a basis of <m>V</m>.)
+  </p>
+
+  <p>
+    Since eigenspaces are <m>T</m>-invariant, we see that being able to diagonalize <m>T</m> is equivalent to having the direct sum decomposition
+    <me>
+      V = E_{\lambda_1}(T)\oplus E_{\lambda_2}(T)\oplus \cdots \oplus E_{\lambda_k}(T)
+    </me>.
+    If <m>T</m> cannot be diagonalized, it's because we came up short on the number of eigenvectors,
+    and the direct sum of all eigenspaces only produces some subspace of <m>V</m> of lower dimension.
+    We now consider how one might enlarge a set of independent eigenvectors in some standard,
+    and ideally optimal, way.
+  </p>
+
+  <p>
+    First, we note that for any operator <m>T</m>, the restriction of <m>T</m> to <m>\ker T</m> is the zero operator,
+    since by definition, <m>T(\vv)=\zer</m> for all <m>\vv\in\ker T</m>.
+    Since we define <m>E_{\lambda}(T)=\ker (T-\lambda I)</m>,
+    it follows that <m>T-\lambda I</m> restricts to the zero operator on the eigenspace <m>E_\lambda(T)</m>.
+    The idea is to relax the condition <q>identically zero</q> to something that will allow us to potentially enlarge some of our eigenspaces,
+    so that we end up with enough vectors to span <m>V</m>.
+  </p>
+
+  <p>
+    It turns out that the correct replacement for <q>identically zero</q> is <q>nilpotent</q>.
+    What we would like to find is some subspace <m>G_\lambda(T)</m> such that the restriction of <m>T-\lambda I</m>
+    to <m>G_\lambda(T)</m> will be nilpotent.
+    (Recall that this means <m>(T-\lambda I)^k = 0</m> for some integer <m>k</m> when restricted to <m>G_\lambda(T)</m>.)
+    The only problem is that we don't (yet) know what this subspace should be.
+    To figure it out, we rely on some ideas you may have explored in your last assignment.
+  </p>
+
+  <theorem xml:id="thm-nullspace-power">
+    <statement>
+      <p>
+        Let <m>T:V\to V</m> be a linear operator. Then:
+        <ol>
+          <li>
+            <m>\{\zer\}\subseteq \ker T \subseteq \ker T^2 \subseteq \cdots \subseteq \ker T^k\subseteq \cdots</m>
+          </li>
+          <li>
+            <p>
+              If <m>\ker T^{k+1}=\ker T^k</m> for some <m>k</m>, then <m>\ker T^{k+m}=\ker T^k</m> for all <m>m\geq 0</m>.
+            </p>
+          </li>
+          <li>
+            <p>
+              If <m>n=\dim V</m>, then <m>\ker T^{n+1} = \ker T^n</m>.
+            </p>
+          </li>
+        </ol>
+      </p>
+    </statement>
+  </theorem>
+
+  <p>
+    In other words, for any operator <m>T</m>, the kernels of successive powers of <m>T</m> can get bigger,
+    but the moment the kernel doesn't change for the next highest power,
+    it stops changing for all further powers of <m>T</m>.
+    That is, we have a sequence of kernels of strictly greater dimension until we reach a maximum,
+    at which point the kernels stop growing. And of course, the maximum dimension cannot be more than the dimension of <m>V</m>.
+  </p>
+
+  <definition xml:id="def-generalized-eigenspace">
+    <statement>
+      <p>
+        Let <m>T:V\to V</m> be a linear operator, and let <m>\lambda</m> be an eigenvalue of <m>T</m>.
+        The <term>generalized eigenspace</term> of <m>T</m> associated to the eigenvalue <m>\lambda</m>
+        is denoted <m>G_\lambda(T)</m>, and defined as
+        <me>
+          G_\lambda(T) = \ker (T-\lambda I)^n
+        </me>,
+        where <m>n=\dim V</m>.
+      </p>
+    </statement>
+  </definition>
+
+  <p>
+    Some remarks are in order. First, we can actually define <m>G_\lambda(T)</m> for any scalar <m>\lambda</m>.
+    But this space will be trivial if <m>\lambda</m> is not an eigenvalue.
+    Second, it is possible to show (although we will not do so here)
+    that if <m>\lambda</m> is an eigenvalue with multiplicity <m>m</m>,
+    then <m>G_\lambda(T)=\ker (T-\lambda I)^m</m>.
+    (The kernel will usually have stopped growing well before we hit <m>n=\dim V</m>,
+    but we know they're all eventually equal, so using <m>n</m> guarantees we have everything).
+  </p>
+
+  <p>
+    We will not prove it here (see Nicholson, or Axler),
+    but the advantage of using generalized eigenspaces is that they're just big enough to cover all of <m>V</m>.
+  </p>
+
+  <theorem xml:id="thm-gen-eigen-decomp">
+    <statement>
+      <p>
+        Let <m>V</m> be a complex vector space, and let <m>T:V\to V</m> be a linear operator.
+        (We can take <m>V</m> to be real if we assume that <m>T</m> has all real eigenvalues.)
+        Let <m>\lambda_1,\ldots, \lambda_k</m> be the distinct eigenvalues of <m>T</m>.
+        Then each generalized eigenspace <m>G_{\lambda_j}(T)</m> is <m>T</m>-invariant,
+        and we have the direct sum decomposition
+        <me>
+          V = G_{\lambda_1}(T)\oplus G_{\lambda_2}(T)\oplus \cdots \oplus G_{\lambda_k}(T)
+        </me>.
+      </p>
+    </statement>
+  </theorem>
+
+
+  <p>
+    For each eigenvalue <m>\lambda_j</m> of <m>T</m>, let <m>l_j</m> denote the <em>smallest</em>
+    integer power such that <m>G_{\lambda_j}(T) = (T-\lambda_j I)^{l_j}</m>.
+    Then certainly we have <m>l_j\leq m_j</m> for each <m>j</m>.
+    (Note also that if <m>l_j=1</m>, then <m>G_{\lambda_j}(T)=E_{\lambda_j}(T)</m>.)
+  </p>
+
+
+  <p>
+    The polynomial <m>m_T(x) = (x-\lambda_1)^{l_1}(x-\lambda_2)^{l_2}\cdots (x-\lambda_k)^{l_k}</m>
+    is the polynomial of <em>smallest degree</em> such that <m>m_T(T)=0</m>.
+    The polynomial <m>m_T(x)</m> is called the <term>minimal polynomial</term> of <m>T</m>.
+    Note that <m>T</m> is diagonalizable if and only if the minimal polynomial of <m>T</m> has no repeated roots.
+  </p>
+
+  <p>
+    In <xref ref="sec-jordan-form"/>, we'll explore a systematic method for determining the generalized eigenspaces of a matrix,
+    and in particular, for computing a basis for each generalized eigenspace,
+    with respect to which the corresponding block in the block-diagonal form is especially simple.
+  </p>
+</section>

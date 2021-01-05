@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<section xml:id="sec-isomorphism">
+  <title>Isomorphisms (a.k.a. invertible linear maps)</title>
+  <p>
+    We ended the last section with an important result.
+    <xref ref="ex-dimension-injection-surjection">Exercise</xref>
+    showed that existence of an injective linear map <m>T:V\to W</m>
+    is equivalent to <m>\dim V\leq \dim W</m>,
+    and that existence of a surjective linear map is equivalent to <m>\dim V\geq \dim W</m>.
+    It's probably not surprising than that existence of a <em>bijective</em> linear map <m>T:V\to W</m>
+    is equivalent to <m>\dim V = \dim W</m>.
+  </p>
+
+  <definition xml:id="def-isomorphism">
+    <statement>
+      <p>
+        A bijective linear transformation <m>T:V\to W</m> is called an <term>isomorphism</term>.
+        If such a map exists, we say that <m>V</m> and <m>W</m> are <term>isomorphic</term>, and write <m>V\cong W</m>.
+      </p>
+    </statement>
+  </definition>
+
+  <theorem xml:id="thm-iso-dimension">
+    <statement>
+      <p>
+        For any finite-dimensional vector spaces <m>V</m> and <m>W</m>,
+        <m>V\cong W</m> if any only if <m>\dim V = \dim W</m>.
+      </p>
+    </statement>
+    <proof>
+      <p>
+        If <m>T:V\to W</m> is a bijection, then it is both injective and surjective.
+        Since <m>T</m> is injective, <m>\dim V\leq \dim W</m>,
+        by <xref ref="ex-dimension-injection-surjection">Exercise</xref>.
+        By this same exercise,  since <m>T</m> is surjective, we must have <m>\dim V\geq \dim W</m>.
+        It follows that <m>\dim V=\dim W</m>.
+      </p>
+
+      <p>
+        Suppose now that <m>\dim V =\dim W</m>.
+        Then we can choose bases <m>\{\vv_1,\ldots, \vv_n\}</m> of <m>V</m>,
+        and <m>\{\ww_1,\ldots, \ww_n\}</m> of <m>W</m>.
+        <xref ref="thm-define-using-basis">Theorem</xref> then guarantees the existence of a linear map <m>T:V\to W</m>
+        such that <m>T(\vv_i)=\ww_i</m> for each <m>i=1,2,\ldots, n</m>.
+        Repeating the arguments of <xref ref="ex-dimension-injection-surjection">Exercise</xref> shows that <m>T</m> is a bijection.
+      </p>
+    </proof>
+
+  </theorem>
+
+  <p>
+    Note that buried in the theorem above is the following useful fact:
+    <em>an isomorphism <m>T:V\to W</m> takes any basis of <m>V</m> to a basis of <m>W</m></em>.
+    Another remarkable result of the above theorem is that <em>any two vector spaces of the same dimension are isomorphic</em>!
+    In particular, we have the following theorem.
+  </p>
+
+  <theorem xml:id="thm-iso-rn">
+    <statement>
+      <p>
+        If <m>\dim V=n</m>, then <m>V\cong \R^n</m>.
+      </p>
+    </statement>
+  </theorem>
+  <p>
+    This theorem is a direct consequence of <xref ref="thm-iso-dimension"/>.
+    But it's useful to understand how it works in practice.
+  </p>
+
+  <definition xml:id="def-coefficient-iso">
+    <statement>
+      <p>
+        Let <m>V</m> be a finite-dimensional vector space,
+        and let <m>B=\{\mathbf{e}_1,\ldots, \mathbf{e}_n\}</m> be a basis for <m>V</m>.
+        The <term>coefficient isomorphism</term> associated to <m>B</m>
+        is the map <m>C_B:V\to \R^n</m> defined by
+        <me>
+          C_B(c_1\mathbf{e}_1+c_2\mathbf{e}_2+\cdots +c_n\mathbf{e}_n)=\bbm c_1\\c_2\\\vdots \\c_n\ebm
+        </me>.
+
+      </p>
+    </statement>
+  </definition>
+  <p>
+    Note that this is a well-defined map since every vector in <m>V</m> can be written uniquely in terms of the basis <m>B</m>.
+  </p>
+
+  <p>
+    The coefficient isomorphism is especially useful when we want to analyze a linear map computationally.
+    Suppose we're given <m>T:V\to W</m> where <m>V, W</m> are finite-dimensional.
+    Let us choose bases <m>B=\{\vv_1,\ldots, \vv_n\}</m> of <m>V</m>
+    and <m>B' = \{\ww_1,\ldots, \ww_m\}</m> of <m>W</m>.
+    The choice of these two bases determines scalars <m>a_{ij}, 1\leq i\leq n, 1\leq j\leq m</m>, such that
+    <me>
+      T(\vv_j) = a_{1j}\ww_1+a_{2j}\ww_2+\cdots + a_{mj}\ww_j,
+    </me>
+    for each <m>i=1,2,\ldots, n</m>. The resulting matrix <m>A=[a_{ij}]</m>
+    defines a matrix transformation <m>T_A:\R^n\to \R^m</m> such that
+    <me>
+      T_A\circ C_B = C_{B'}\circ T
+    </me>.
+    The relationship among the four maps used here is best captured by the following <q>commutative diagram</q>:
+  </p>
+
+  <figure xml:id="fig_transformation_matrix">
+    <caption>Defining the matrix of a linear map with respect to choices of basis.</caption>
+    <image xml:id="img_trans_matrix" width="35%">
+      <latex-image>
+        \begin{tikzpicture}
+        \matrix (m) [matrix of math nodes,row sep=3em,column sep=4em,minimum width=2em]
+        {
+        V \amp W \\
+        \R^n \amp \R^m \\};
+        \path[-stealth]
+        (m-1-1) edge node [left] {$C_B$} (m-2-1)
+                edge node [above] {$T$} (m-1-2)
+        (m-2-1) edge node [above] {$T_A$} (m-2-2)
+        (m-1-2) edge node [right] {$C_{B'}$} (m-2-2);
+        \end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>
+    With this connection between linear maps (in general) and matrices,
+    it can be worthwhile to pause and consider invertibility in the context of matrices.
+    Recall that an <m>n\times n</m> matrix <m>A</m> is <em>invertible</em> if there exists a matrix <m>A^{-1}</m>
+    such that <m>AA^{-1}=I_n</m> and <m>A^{-1}A=I_n</m>.
+  </p>
+
+  <p>
+    The same definition can be made for linear maps.
+    We've defined what it means for a map <m>T:V\to W</m> to be invertible as a <em>function</em>.
+    In particular, we relied on the fact that any bijection has an inverse.
+  </p>
+
+  <p>
+    First, a note on notation. Given linear maps <m>U\xrightarrow{T} V\xrightarrow{S} W</m>,
+    we typically write the composition <m>S\circ T:U\to W</m> as a <q>product</q> <m>ST</m>.
+    The reason for this is again to mimic the case of matrices. Let <m>A</m> be an <m>m\times n</m>
+    matrix, and let <m>B</m> be an <m>n\times k</m> matrix. Then we have linear maps
+    <me>
+      \R^k \xrightarrow{T_B} \R^n\xrightarrow{T_A} \R^m
+    </me>,
+    and the composition <m>T_A\circ T_B:\R^k\to \R^m</m> satisfies
+    <me>
+      T_A\circ T_B(\xx) = T_A(T_B(\xx)) = T_A(B\xx)=A(B\xx)=(AB)\xx=T_{AB}(\xx)
+    </me>.
+    Note that the rules given in elementary linear algebra, for the relative sizes of matrices that can be multiplied,
+    are simply a manifestation of the fact that to compose functions,
+    the range of the first must be contained in the domain of the second.
+  </p>
+
+  <exercise>
+    <statement>
+      <p>
+        Show that the composition of two linear maps is again a linear map.
+      </p>
+    </statement>
+    <solution>
+      <p>
+        Suppose we have linear maps <m>U\xrightarrow{T} V\xrightarrow{S} W</m>,
+        and let <m>\uu_1,\uu_2\in U</m>. Then
+        <md>
+          <mrow>ST(\uu_1+\uu_2) \amp = S(T(\uu_1+\uu_2)) </mrow>
+          <mrow> \amp = S(T(\uu_1)+T(\uu_2))</mrow>
+          <mrow>  \amp = S(T(\uu_1))+S(T(\uu_2)) </mrow>
+          <mrow>  \amp = ST(\uu_1)+ST(\uu_2)</mrow>
+        </md>,
+        and for any scalar <m>c</m>,
+        <me>
+          ST(c\uu_1) = S(T(c\uu_1))=S(cT(\uu_1)) = cS(T(\uu_1))=c(ST(\uu_1))
+        </me>.
+
+      </p>
+    </solution>
+  </exercise>
+  <p>
+    Moreover, <xref ref="thm-iso-dimension"/> tells us why we can only consider invertibility for square matrices:
+    we know that invertible linear maps are only defined between spaces of equal dimension.
+    In analogy with matrices, some texts will define a linear map <m>T:V\to W</m>
+    to be invertible if there exists a linear map <m>S:W\to V</m> such that
+    <me>
+      ST = 1_V \quad \text{ and } \quad TS = 1_W
+    </me>.
+    From this definition, one can show that <m>S</m> and <m>T</m> must be bijections,
+    and of course, if <m>T</m> is a bijection (as in our definition) then we know it has an inverse.
+    What remains to be seen is that this inverse is also a linear map.
+  </p>
+
+  <exercise>
+    <statement>
+      <p>
+        Let <m>T:V\to W</m> be a bijective linear transformation.
+        Show that <m>T^{-1}:W\to V</m> is a linear transformation.
+      </p>
+    </statement>
+    <solution>
+      <p>
+        Let <m>\ww_1,\ww_2\in W</m>.
+        Then there exist <m>\vv_1,\vv_2\in V</m>  with <m>\ww_1=T(\vv_1), \ww_2=T(\vv_2)</m>.
+        We then have
+        <md>
+          <mrow>T^{-1}(\ww_1+\ww_2) \amp = T^{-1}(T(\vv_1)+T(\vv_2)) </mrow>
+          <mrow> \amp = T^{-1}(T(\vv_1+\vv_2))</mrow>
+          <mrow>  \amp = \vv_1+\vv_2</mrow>
+          <mrow>  \amp = T^{-1}(\ww_1)+T^{-1}(\ww_2)</mrow>
+        </md>.
+        For any scalar <m>c</m>, we similarly have
+        <me>
+          T^{-1}(c\ww_1) = T^{-1}(cT(\vv_1))=T^{-1}(T(c\vv_1)) = c\vv_1 = cT^{-1}(\ww_1)
+        </me>.
+      </p>
+    </solution>
+  </exercise>
+
+  <exercise>
+    <statement>
+      <p>
+        Show that if <m>ST=1_V</m>, then <m>S</m> is surjective and <m>T</m> is injective.
+        Conclude that if <m>ST=1_V</m> and <m>TS=1_w</m>, then <m>S</m> and <m>T</m> are both bijections.
+      </p>
+    </statement>
+    <hint>
+      <p>
+        This is really a Math 2000 problem.
+      </p>
+    </hint>
+  </exercise>
+</section>

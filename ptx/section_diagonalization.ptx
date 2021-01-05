@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<section xml:id="subsec-ortho-diag">
+  <title>Diagonalization of symmetric matrices</title>
+  <p>
+    Recall that an <m>n\times n</m> matrix <m>A</m> is <em>symmertric</em> if <m>A^T=A</m>.
+    Symmetry of <m>A</m> is equivalent to the following:
+    for any vectors <m>\xx,\yy\in\R^n</m>,
+    <me>
+      \xx\dotp (A\yy) = (A\xx)\dotp \yy
+    </me>.
+    To see that this is implied by the symmetry of <m>A</m>, note that
+    <me>
+      \xx\dotp (A\yy) = \xx^T(A\yy)=(\xx^TA^T)\yy = (A\xx)^T\yy=(A\xx)\dotp\yy
+    </me>.
+    For inner product spaces, the above is taken as the <em>definition</em> of what it means for an operator to be symmetric.
+  </p>
+
+  <exercise>
+    <statement>
+      <p>
+        Prove that if <m>\xx\dotp(A\yy)=(A\xx)\dotp \yy</m> for any <m>\xx,\yy\in\R^n</m>,
+        then <m>A</m> is symmetric.
+      </p>
+    </statement>
+    <solution>
+      <p>
+        Take <m>\xx=\mathbf{e}_i</m> and <m>\yy=\mathbf{e}_j</m>,
+        where <m>\{\mathbf{e}_1,\ldots, \mathbf{e}_n\}</m> is the standard basis for <m>\R^n</m>.
+        Then with <m>A = [a_{ij}]</m> we have
+        <me>
+          a_{ij} =\mathbf{e}_i\dotp(A\mathbf{e}_j) = (A\mathbf{e}_i)\dotp \mathbf{e}_j = a_{ji}
+        </me>,
+        which shows that <m>A^T=A</m>.
+      </p>
+    </solution>
+  </exercise>
+
+  <p>
+    A useful property of symmetric matrices, mentioned earlier,
+    is that eigenvectors corresponding to distinct eigenvalues are orthogonal.
+  </p>
+
+  <theorem xml:id="thm-ortho-eigen-symm">
+    <statement>
+      <p>
+        If <m>A</m> is a symmetric matrix, then eigenvectors corresponding to <em>distinct</em> eigenvalues are orthogonal.
+      </p>
+    </statement>
+    <proof>
+      <p>
+        To see this, suppose <m>A</m> is symmetric, and that we have
+        <me>
+          A\xx_1=\lambda_1\xx_1\quad \text{ and } A\xx_2=\lambda_2\xx_2
+        </me>,
+        with <m>\xx_1\neq\mathbf{0},\xx_2\neq \mathbf{0}</m>, and <m>\lambda_1\neq \lambda_2</m>.
+        We then have, since <m>A</m> is symmetric, and using the result above,
+        <me>
+          \lambda_1(\xx_1\dotp \xx_2) = (\lambda_1\xx_1)\dotp \xx_2 = (A\xx_1)\dotp \xx_2 = \xx_1\dotp(A\xx_2) = \xx_1(\lambda_2\xx_2) = \lambda_2(\xx_1\dotp\xx_2)
+        </me>.
+        It follows that <m>(\lambda_1-\lambda_2)(\xx_1\dotp \xx_2)=0</m>,
+        and since <m>\lambda_1\neq \lambda_2</m>,
+        we must have <m>\xx_1\dotp \xx_2=0</m>.
+      </p>
+    </proof>
+
+  </theorem>
+
+  <p>
+    The procedure for diagonalizing a matrix is as follows:
+    assuming that <m>\dim E_\lambda(A)</m> is equal to the multiplicity of <m>\lambda</m>
+    for each distinct eigenvalue <m>\lambda</m>, we find a basis for <m>E_\lambda(A)</m>.
+    The union of the bases for each eigenspace is then a basis of eigenvectors for <m>\R^n</m>,
+    and the matrix <m>P</m> whose columns are those eigenvectors will satisfy <m>P^{-1}AP = D</m>,
+    where <m>D</m> is a diagonal matrix whose diagonal entires are the eigenvalues of <m>A</m>.
+  </p>
+
+  <p>
+    If <m>A</m> is symmetric, we know that eigenvectors from <em>different</em> eigenspaces will be orthogonal to each other.
+    If we futher choose an orthogonal basis of eigenvectors for each eigenspace (which is possible via the Gram-Schmidt procedure),
+    then we can construct an orthogonal basis of eigenvectors for <m>\R^n</m>.
+    Furthermore, if we normalize each vector, then we'll have an orthonormal basis.
+    The matrix <m>P</m> whose columns consist of these orthonormal basis vectors has a name.
+  </p>
+
+  <definition xml:id="def-orthogonal-matrix">
+    <statement>
+      <p>
+        A matrix <m>P</m> is called <term>orthogonal</term> if <m>P^T = P^{-1}</m>.
+      </p>
+    </statement>
+  </definition>
+
+  <theorem xml:id="thm-ortho-matrix">
+    <statement>
+      <p>
+        A matrix <m>P</m> is orthogonal if and only if the columns of <m>P</m> form an orthonormal basis for <m>\R^n</m>.
+      </p>
+    </statement>
+  </theorem>
+
+  <p>
+    A fun fact is that if the columns of <m>P</m> are orthonormal, then so are the rows.
+    But this is not true if we ask for the columns to be merely orthogonal.
+    For example, the columns of <m>A = \bbm 1\amp 0\amp 5\\-2\amp 1\amp 2\\1\amp 2\amp -1\ebm </m> are orthogonal,
+    but the rows certainly are not. But if we normalize the columns, we get
+    <me>
+      P = \bbm 1/\sqrt{6}\amp 0 \amp 1/\sqrt{30}\\-2/\sqrt{6}\amp 1/\sqrt{5}\amp 2/\sqrt{30}\\1/\sqrt{6}\amp 2/\sqrt{5}\amp -1/\sqrt{30}\ebm
+    </me>,
+    which, as you can confirm, is an orthogonal matrix.
+  </p>
+
+  <definition xml:id="def-ortho-diag">
+    <statement>
+      <p>
+        An <m>n\times n</m> matrix <m>A</m> is said to be <em>orthogonally diagonalizable</em>
+        if there exists an orthogonal matrix <m>P</m> such that <m>P^TAP</m> is diagonal.
+      </p>
+    </statement>
+  </definition>
+
+  <p>
+    The above definition leads to the following result, also known as the Principal Axes Theorem.
+  </p>
+  <theorem xml:id="thm-real-spectral">
+    <title>Real Spectral Theorem</title>
+
+    <statement>
+      <p>
+        The following are equivalent for a real <m>n\times n</m> matrix <m>A</m>:
+        <ol>
+          <li>
+            <p>
+              <m>A</m> is symmetric.
+            </p>
+          </li>
+          <li>
+            <p>
+              There is an orthonormal basis for <m>\R^n</m> consisting of eigenvectors of <m>A</m>.
+            </p>
+          </li>
+          <li>
+            <p>
+              <m>A</m> is orthogonally diagonalizable.
+            </p>
+          </li>
+        </ol>
+      </p>
+    </statement>
+  </theorem>
+
+  <exercise>
+    <statement>
+      <p>
+        Determine the eigenvalues of <m>A=\bbm 5\amp -2\amp -4\\-2\amp 8\amp -2\\-4\amp -2\amp 5\ebm</m>,
+        and find an orthogonal matrix <m>P</m> such that <m>P^TAP</m> is diagonal.
+      </p>
+    </statement>
+  </exercise>
+
+  <p>
+    We'll solve this problem with the help of the computer.
+  </p>
+
+  <sage>
+    <input>
+      from sympy import *
+      init_printing()
+      A = Matrix(3,3,[5,-2,-4,-2,8,-2,-4,-2,5])
+      p=A.charpoly().as_expr()
+      factor(p)
+    </input>
+  </sage>
+
+  <p>
+    We get <m>c_A(x)=x(x-9)^2</m>, so our eigenvalues are <m>0</m> and <m>9</m>.
+    For <m>0</m> we have <m>E_0(A) = \nll(A)</m>:
+  </p>
+
+  <sage>
+    <input>
+      A.nullspace()
+    </input>
+  </sage>
+
+  <p>
+    For <m>9</m> we have <m>E_9(A) = \nll(A-9I)</m>.
+  </p>
+
+  <sage>
+    <input>
+      B=A-9*eye(3)
+      B.nullspace()
+    </input>
+  </sage>
+
+  <p>
+    The approach above is useful as we're trying to remind ourselves how eigenvalues and eigenvectors are defined and computed.
+    Eventually we might want to be more efficient. Fortunately, there's a command for that.
+  </p>
+
+  <sage>
+    <input>
+      A.eigenvects()
+    </input>
+  </sage>
+
+  <p>
+    This gives us a basis for <m>\R^3</m> consisting of eigenvalues of <m>A</m>, but we want an orthogonal basis.
+    Note that the eigenvector corresponding to <m>\lambda = 0</m> is orthogonal to both of the eigenvectors corresponding to <m>\lambda =9</m>.
+    But these eigenvectors are not orthogonal to each other.
+    To get an orthogonal basis for <m>E_9(A)</m>, we apply the Gram-Schmidt algorithm.
+  </p>
+
+  <sage>
+    <input>
+      L=B.nullspace()
+      GramSchmidt(L)
+    </input>
+  </sage>
+
+  <p>
+    This gives us an orthogonal basis of eigenvectors. Scaling to clear fractions, we have
+    <me>
+      \left\{\bbm 2\\1\\2\ebm, \bbm -1\\2\\0\ebm, \bbm -4\\-2\\5\ebm\right\}
+    </me>
+    From here, we need to normalize each vector to get the matrix <m>P</m>.
+    But we might not like that the last vector has norm <m>\sqrt{45}</m>.
+    One option to consider is to apply Gram-Schmidt with the vectors in the other order.
+  </p>
+
+  <sage>
+    <input>
+      L=[Matrix([-1,0,1]),Matrix([-1,2,0])]
+      GramSchmidt(L)
+    </input>
+  </sage>
+
+  <p>
+    That gives us the (slightly nicer) basis
+    <me>
+      \left\{\bbm 2\\1\\2\ebm, \bbm -1\\0\\1\ebm, \bbm 1\\-4\\1\ebm\right\}
+    </me>.
+    The corresponding orthonormal basis is
+    <me>
+      B = \left\{\frac{1}{3}\bbm 2\\1\\2\ebm, \frac{1}{\sqrt{2}}\bbm -1\\0\\1\ebm, \frac{1}{\sqrt{18}}\bbm 1\\-4\\1\ebm\right\}
+    </me>.
+    This gives us the matrix <m>P=\bbm 2/3\amp -1/\sqrt{2}\amp 1/\sqrt{18}\\1/3\amp 0 \amp -4/\sqrt{18}\\2/3\amp 1/\sqrt{2}\amp 1/\sqrt{18}\ebm</m>.
+    Let's confirm that <m>P</m> is orthogonal.
+  </p>
+
+  <sage>
+    <input>
+      P=Matrix(3,3,[2/3, -1/sqrt(2),1/sqrt(18), 1/3,0,-4/sqrt(18),2/3,1/sqrt(2),1/sqrt(18)])
+      P,P*P.transpose()
+    </input>
+  </sage>
+
+  <p>
+    Since <m>PP^T=I_3</m>, we can conclude that <m>P^T=P^{-1}</m>, so <m>P</m> is ortohonal, as required.
+    Finally, we diagaonlize <m>A</m>.
+  </p>
+
+  <sage>
+    <input>
+      Q=P.transpose()
+      Q*A*P
+    </input>
+  </sage>
+
+  <p>
+    Incidentally, the SymPy library for Python does have a diagaonalization routine;
+    however, it does not do orthogonal diagonalization by default.
+    Here is what it provides for our matrix <m>A</m>.
+  </p>
+
+  <sage>
+    <input>
+      A.diagonalize()
+    </input>
+  </sage>
+</section>

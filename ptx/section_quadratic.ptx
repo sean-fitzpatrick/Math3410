@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<section xml:id="sec-quadratic">
+  <title>Quadratic forms</title>
+  <p>
+    If you've done a couple of calculus courses, you've probably encountered conic sections,
+    like the ellipse <m>\frac{x^2}{a^2}+\frac{y^2}{b^2}=1</m> or the parabola <m>\frac{y}{b}=\frac{x^2}{a^2}</m>.
+    You might also recall that your instructor was careful to avoid conic sections with equations including
+    <q>cross-terms</q> like <m>xy</m>.
+    The reason for this is that sketching a conic section like <m>x^2+4xy+y^2=1</m> requires the techniques of the previous section.
+  </p>
+
+  <p>
+    A basic fact about orthogonal matrices is that they <em>preserve length</em>.
+    Indeed, for any vector <m>\xx</m> in <m>\R^n</m> and any orthogonal matrix <m>P</m>,
+    <me>
+      \len{P\xx}^2 = (P\xx)\dotp (P\xx) = (P\xx)^T(P\xx) = (\xx^TP^T)(P\xx) = \xx^T\xx=\len{\xx}^2
+    </me>,
+    since <m>P^TP=I_n</m>.
+  </p>
+
+  <p>
+    Note also that since <m>P^TP=I_n</m> and <m>\det P^T=\det P</m>, we have
+    <me>
+      \det(P)^2=\det(P^TP)=\det(I_n)=1
+    </me>,
+    so <m>\det(P)=\pm 1</m>. If <m>\det P=1</m>, we have what is called a <em>special orthogonal matrix</em>.
+    In <m>\R^2</m> or <m>\R^3</m>, multiplication by a special orthgonal matrix is simply a rotation.
+    (If <m>\det P=-1</m>, there is also a reflection.)
+  </p>
+
+  <p>
+    We mentioned in the previous section that the <xref ref="thm-real-spectral" text="title"/>
+    is also referred to as the principal axes theorem.
+    The name comes from the fact that one way to interpret the orthogonal diagonalization of a symmetric matrix is that we are rotating our coordinate system.
+    The original coordinate axes are rotated to new coordinate axes, with respect to which the matrix <m>A</m> is diagonal.
+    This will become more clear once we apply these ideas to the problem of conic sections mentioned above.
+    First, a definition.
+  </p>
+
+  <definition xml:id="def-quadratic-form">
+    <statement>
+      <p>
+        A <term>quadratic form</term> on variables <m>x_1, x_2,\ldots, x_n</m>
+        is any expression of the form
+        <me>
+          q(x_1,\ldots, x_n) = \sum_{i\leq j}a_{ij}x_ix_j
+        </me>.
+      </p>
+    </statement>
+  </definition>
+
+  <p>
+    For example, <m>q_1(x,y)=4 x^2-4xy+4y^2</m> and <m>q_2(x,y,z)=9x^2-4 y^2-4xy-2xz+z^2</m> are quadratic forms.
+    Note that each term in a quadratic form is of degree two.
+    We omit linear terms, since these can be absorbed by completing the square.
+    The important observation is that every quadratic form can be associated to a symmetric matrix.
+    The diagonal entries are the coefficients <m>a_{ii}</m> appearing in <xref ref="def-quadratic-form"/>,
+    while the off-diagonal entries are <em>half</em> the corresponding coefficients <m>a_{ij}</m>.
+  </p>
+
+  <p>
+    For example the two quadratic forms given above have the following associated matrices:
+    <me>
+      A_1 = \bbm 4 \amp -2\\-2\amp 4\ebm \text{ and } A_2 = \bbm 9 \amp -2 \amp -1\\-2\amp 4\amp 0\\-1\amp 0\amp 1\ebm
+    </me>.
+    The reason for this is that we can then write
+    <me>
+      q_1(x,y)=\bbm x\amp y\ebm\bbm 4 \amp -1\\-1\amp 1\ebm\bbm x\\y\ebm
+    </me>
+    and
+    <me>
+      q_2(x,y,z)=\bbm x\amp y\amp z\ebm\bbm 9 \amp -2 \amp -1\\-2\amp 4\amp 0\\-1\amp 0\amp 1\ebm\bbm x\\y\\z\ebm
+    </me>.
+  </p>
+
+  <p>
+    Of course, the reason for wanting to associate a <em>symmetric</em> matrix to a quadratic form is that it can be orthogonally diagonalized.
+    Consider the matrix <m>A_1</m>.
+  </p>
+
+  <sage>
+    <input>
+      from sympy import *
+      init_printing()
+      A1 = Matrix(2,2,[4,-2,-2,4])
+      p = A1.charpoly()
+      factor(p)
+    </input>
+  </sage>
+
+  <p>
+    We find distinct eigenvalues <m>\lambda_1=2</m> and <m>\lambda_2=6</m>.
+    Since <m>A</m> is symmetric, we know the corresponding eigenvectors will be orthgonal.
+  </p>
+
+  <sage>
+    <input>
+      A1.eigenvects()
+    </input>
+  </sage>
+
+  <p>
+    The resulting orthogonal matrix is <m>P=\frac{1}{\sqrt{2}}\bbm 1\amp -1\\1\amp 1\ebm</m>,
+    and we find
+    <me>
+      P^TAP = \bbm 2\amp 0\\0\amp 6\ebm, \text{ or } A = PDP^T,
+    </me>
+    where <m>D = \bbm 2\amp 0\\0\amp 6\ebm</m>. If we define new variables <m>y_1,y_2</m> by
+    <me>
+      \bbm y_1\\y_2\ebm = P^T\bbm x_1\\x_2\ebm
+    </me>,
+    then we find that
+    <md>
+      <mrow>\bbm x_1\amp x_2\ebm A\bbm x_1\\x_2\ebm \amp = (\bbm x_1\amp x_2\ebm P)D\left(P^T\bbm x_1\\x_2\ebm\right) </mrow>
+      <mrow> \amp = \bbm y_1 \amp y_2\ebm\bbm 2\amp 0\\0\amp 6\ebm\bbm y_1\\y_2\ebm</mrow>
+      <mrow> \amp = 2y_1^2+6y_2^2</mrow>
+    </md>.
+    Note that there is no longer any cross term.
+  </p>
+
+  <p>
+    Now, suppose we want to graph the conic <m>4x_1^2-4x_1x_2++4x_2^2=12</m>.
+    By changing to the variables <m>y_1,y_2</m> this becomes <m>2y_1^2+6y_2^2=12</m>, or <m>\frac{y_1^2}{6}+\frac{y_2^2}{2}=1</m>.
+    This is the standard from of an ellipse, but in terms of new variables.
+    How do we graph it? Returning to the definition of our new variables, we find <m>y_1=\frac{1}{\sqrt{2}}(x_1+x_2)</m>
+    and <m>y_2=\frac{1}{\sqrt{2}}(-x_1+x_2)</m>.
+    The <m>y_1</m> axis should be the line <m>y_2=0</m>, or <m>x_1=x_2</m>.
+    (Note that this line points in the direction of the eigenvector <m>\bbm 1\\1\ebm</m>.)
+    The <m>y_2</m> axis should be the line <m>y_1=0</m>, or <m>x_1=-x_2</m>, which is in the direction of the eigenvector <m>\bbm -1\\1\ebm</m>.
+  </p>
+
+  <p>
+    This lets us see that our new coordinate axes are simply a rotation (by <m>\pi/4</m>) of the old coordinate axes,
+    and our conic section is, accordingly, an ellipse that has been rotated by the same angle.
+  </p>
+</section>

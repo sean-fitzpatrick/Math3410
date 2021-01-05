@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<section xml:id="subsec-eigen-basics">
+  <title>Eigenvalues and Eigenvectors</title>
+  <definition xml:id="def-eigenvalue">
+    <statement>
+      <p>
+        Let <m>A</m> be an <m>n\times n</m> matrix.
+        A number <m>\lambda</m> is called an <term>eigenvalue</term> of <m>A</m>
+        if there exists a nonzero vector <m>\xx</m> such that
+        <me>
+          A\xx = \lambda\xx
+        </me>.
+        Any such vector <m>\xx</m> is called an <term>eigenvector</term>
+        associated to the eigenvalue <m>\lambda</m>.
+      </p>
+    </statement>
+  </definition>
+
+  <p>
+    Note that eigenvalues and eigenvectors can just as easily be defined for a general linear operator <m>T:V\to V</m>.
+    In this context, and eigenvector <m>\xx</m> is sometimes referred to as a <em>characteristic vector</em> (or characteristic direction)
+    for <m>T</m>, since the property <m>T(\xx)=\lambda \xx</m>
+    simply states that the transformed vector <m>T(\xx)</m> is parallel to the original vector <m>\xx</m>.
+    Some linear algebra textbooks that focus more on general linear transformations frame this topic in the context of
+    <em>invariant subspaces</em> for a linear operator.
+  </p>
+
+  <p>
+    A subspace <m>U\subseteq V</m> is <em>invariant</em> with respect to <m>T</m> if <m>T(\uu)\in U</m> for all <m>\uu\in U</m>.
+    Note that if <m>\xx</m> is an eigenvector of <m>T</m>, then <m>\spn\{\xx\}</m> is an invariant subspace.
+    To see this, note that if <m>T(\xx)=\lambda \xx</m> and <m>\yy=k\xx</m>, then
+    <me>
+      T(\yy)=T(k\xx)=kT(\xx)=k(\lambda \xx)=\lambda(k\xx)=\lambda\yy)
+    </me>.
+  </p>
+
+  <p>
+    Note that if <m>\xx</m> is an eigenvector of the matrix <m>A</m>, then we have
+    <men xml:id="eq-eigen-null">
+      (A-\lambda I_n)\xx=\mathbf{0}
+    </men>,
+    where <m>I_n</m> denotes the <m>n\times n</m> identity matrix.
+    Thus, if <m>\lambda</m> is an eigenvalue of <m>A</m>,
+    any corresponding eigenvector is an element of <m>\nll(A-\lambda I_n)</m>.
+  </p>
+
+  <definition xml:id="def-eigenspace">
+    <statement>
+      <p>
+        For any real number <m>\lambda</m> and matrix <m>A</m>,
+        we define the <term>eigenspace</term> <m>E_\lambda(A)</m> by
+        <me>
+          E_\lambda(A) = \nll (A-\lambda I_n)
+        </me>.
+      </p>
+    </statement>
+  </definition>
+
+  <p>
+    Note that <m>E_\lambda(A)</m> can be defined for any real number <m>\lambda</m>,
+    whether or not <m>\lambda</m> is an eigenvalue.
+    However, the eigenvalues of <m>A</m> are distinguished by the property that there is a
+    <em>nonzero</em> solution to <xref ref="eq-eigen-null"/>.
+    Furthermore, we know that <xref ref="eq-eigen-null"/> can only have nontrivial solutions if the matrix <m>A-\lambda I_n</m>
+    is not invertible. We also know that <m>A-\lambda I_n</m> is non-invertible if and only if <m>\det (A-\lambda I_n) = 0</m>.
+    This gives us the following theorem.
+  </p>
+
+  <theorem xml:id="thm-eigenspace-nonzero">
+    <statement>
+      <p>
+        The following are equivalent for any <m>n\times n</m> matrix <m>A</m> and real number <m>\lambda</m>:
+        <ol>
+          <li>
+            <p>
+              <m>\lambda</m> is an eigenvalue of <m>A</m>.
+            </p>
+          </li>
+          <li>
+            <m>E_\lambda(A)\neq \{\mathbf{0}\}</m>
+          </li>
+
+          <li>
+            <m>\det(A-\lambda I_n) = 0</m>
+          </li>
+        </ol>
+      </p>
+    </statement>
+  </theorem>
+
+  <p>
+    The polynomial <m>p_A(x)=\det(xI_n -A)</m> is called the <term>characteristic polynomial</term> of <m>A</m>.
+    (Note that <m>\det(x I_n-A) = (-1)^n\det(A-x I_n)</m>. We choose this order so that the coefficient of <m>x^n</m> is always 1.)
+    The equation
+    <men xml:id="eq-characteristic">
+      \det(xI_n - A) = 0
+    </men>
+    is called the <term>characteristic equation</term> of <m>A</m>.
+    The solutions to this equation are precisely the eigenvalues of <m>A</m>.
+  </p>
+
+  <p>
+    Recall that a matrix <m>B</m> is said to be <term>similar</term> to a matrix <m>A</m>
+    if there exists an invertible matrix <m>P</m> such that <m>B = P^{-1}AP</m>.
+    Much of what follows concerns the question of whether or not a given <m>n\times n</m>
+    matrix <m>A</m> is <term>diagonalizable</term>.
+  </p>
+
+  <definition xml:id="def-diagonalizable">
+    <statement>
+      <p>
+        An <m>n\times n</m> matrix <m>A</m> is said to be <term>diagonalizable</term>
+        if <m>A</m> is similar to a diagonal matrix.
+      </p>
+    </statement>
+  </definition>
+
+  <p>
+    The following results will frequently be useful.
+  </p>
+
+  <theorem xml:id="thm-similar-properties">
+    <statement>
+      <p>
+        The relation <m>A\sim B</m> if and only if <m>A</m> is simlar to <m>B</m> is an equivalence relation.
+        Moreover, if <m>A\sim B</m>, then:
+        <ul>
+          <li>
+            <m>\det A = \det B</m>
+          </li>
+          <li>
+            <m>\tr A = \tr B</m>
+          </li>
+
+          <li>
+            <m>c_A(x) = c_B(x)</m>
+          </li>
+        </ul>
+        In other words, <m>A</m> and <m>B</m> have the same determinant, trace, and characteristic polynomial
+        (and thus, the same eigenvalues).
+      </p>
+    </statement>
+    <proof>
+      <p>
+        The first two follow directly from properties of the determinant and trace.
+        For the last, note that if <m>B = P^{-1}AP</m>, then
+        <me>
+          P^{-1}(xI_n-A)P = P^{-1}(xI_n)P-P^{-1}AP = xI_n B
+        </me>,
+        so <m>xI_n-B\sim xI_n-A</m>, and therefore <m>\det(xI_n-B)=\det(xI_n-A)</m>.
+      </p>
+    </proof>
+
+  </theorem>
+
+
+  <example>
+    <statement>
+      <p>
+        Determine the eigenvalues and eigenvectors of <m>A = \bbm 0\amp 1\amp 1\\1\amp 0\amp 1\\1\amp 1\amp 0\ebm</m>.
+      </p>
+    </statement>
+    <solution>
+      <p>
+        We begin with the characteristic polynomial. We have
+        <md>
+          <mrow>\det(xI_n - A) \amp =\det\bbm x \amp -1\amp -1\\-1\amp x \amp -1\\-1\amp -1\amp x\ebm</mrow>
+          <mrow> \amp = x \begin{vmatrix}x \amp -1\\-1\amp x\end{vmatrix}
+             +1\begin{vmatrix}-1\amp -1\\-1\amp x\end{vmatrix}
+             -1\begin{vmatrix}-1\amp x\\-1\amp -1\end{vmatrix}</mrow>
+          <mrow> \amp = x(x^2-1)+(-x-1)-(1+x)</mrow>
+          <mrow> \amp x(x-1)(x+1)-2(x+1)</mrow>
+          <mrow> \amp (x+1)[x^2-x-2]</mrow>
+          <mrow> \amp (x+1)^2(x-2)</mrow>
+        </md>.
+      </p>
+
+      <p>
+        The roots of the characteristic polynomial are our eigenvalues,
+        so we have <m>\lambda_1=-1</m> and <m>\lambda_2=2</m>.
+        Note that the first eigenvalue comes from a repeated root.
+        This is typicaly where things get interesting.
+        If an eigenvalue does not come from a repeated root,
+        then there will only be one (independent) eigenvector that corresponds to it.
+        (That is, <m>\dim E_\lambda(A)=1</m>.)
+        If an eigenvalue is repeated, it could have more than one eigenvector,
+        but this is not guaranteed.
+      </p>
+
+      <p>
+        We find that <m>A-(-1)I_n = \bbm 1\amp 1\amp 1\\1\amp 1\amp 1\\1\amp 1\amp 1\ebm</m>,
+        which has reduced row-echelon form <m>\bbm 1\amp 1\amp 1\\0\amp 0\amp 0\\0\amp 0\amp 0\ebm</m>.
+        Solving for the nullspace, we find that there are two independent eigenvectors:
+        <me>
+          \xx_{1,1}=\bbm 1\\-1\\0\ebm, \quad \text{ and } \quad \xx_{1,2}=\bbm 1\\0\\-1\ebm
+        </me>,
+        so
+        <me>
+          E_{-1}(A) = \spn\left\{\bbm 1\\-1\\0\ebm, \bbm 1\\0\\-1\ebm\right\}
+        </me>.
+      </p>
+
+      <p>
+        For the second eigenvector, we have <m>A-2I = \bbm -2\amp 1\amp 1\\1\amp -2\amp 1\\1\amp 1\amp -2\ebm</m>,
+        which has reduced row-echelon form <m>\bbm 1\amp 0\amp -1\\0\amp 1\amp -1\\0\amp 0\amp 0\ebm</m>.
+        An eigenvector in this case is given by
+        <me>
+          \xx_2 = \bbm 1\\1\\1\ebm
+        </me>.
+      </p>
+    </solution>
+  </example>
+
+  <p>
+    In general, if the characteristic polynomial can be factored as <m>p_A(x)=(x-\lambda)^mq(x)</m>,
+    where <m>q(x)</m> is not divisible by <m>x-\lambda</m>, then we say that <m>\lambda</m>
+    is an eigenvalue of <term>multiplicity</term> <m>m</m>. A main result is the following.
+  </p>
+
+  <theorem xml:id="thm-multiplicity">
+    <statement>
+      <p>
+        Let <m>\lambda</m> be an eigenvalue of <m>A</m> of multiplicity <m>m</m>.
+        Then <m>\dim E_\lambda(A)\leq m</m>.
+      </p>
+    </statement>
+  </theorem>
+
+  <p>
+    Some textbooks refer to the multiplicity <m>m</m> of an eigenvalue as the
+    <em>algebraic multiplicity</em> of <m>\lambda</m>, and the number <m>\dim E_\lambda(A)</m>
+    as the <em>geometric multiplicity</em> of <m>\lambda</m>.
+  </p>
+
+  <p>
+    To prove <xref ref="thm-multiplicity"/> we need the following lemma,
+    from Section 5.5 of Nicholson's textbook.
+  </p>
+
+  <lemma xml:id="lem-block-eigen">
+    <statement>
+      <p>
+        Let <m>\{\xx_1,\ldots, \xx_k\}</m> be a set of linearly independent eigenvectors of a matrix <m>A</m>,
+        with corresponding eigenvalues <m>\lambda_1,\ldots, \lambda_k</m> (not necessarily distinct).
+        Extend this set to a basis <m>\{\xx_1,\ldots, \xx_k,\xx_{k+1},\ldots, \xx_n\}</m>,
+        and let <m>P=\bbm \xx_1\amp \cdots \amp \xx_n\ebm</m>
+        be the matrix whose columns are the basis vectors. (Note that <m>P</m> is necessarily invertible.)
+        Then
+        <me>
+          P^{-1}AP = \bbm \diag(\lambda_1,\ldots, \lambda_k) \amp B\\0\amp A_1\ebm
+        </me>,
+        where <m>B</m> has size <m>k\times (n-k)</m>, and <m>A_1</m> has size <m>(n-k)\times (n-k)</m>.
+      </p>
+    </statement>
+    <proof>
+      <p>
+        We have
+        <md>
+          <mrow>P^{-1}AP \amp = P^{-1}A\bbm \xx_1\amp \cdots \amp \xx_n\ebm</mrow>
+          <mrow> \amp =\bbm (P^{-1}A)\xx_1\amp \cdots \amp (P^{-1}A)\xx_n\ebm</mrow>
+        </md>.
+        For <m>1\leq i\leq k</m>, we have
+        <me>
+          (P^{-1}A)(\xx_i) = P^{-1}(A\xx_i) = P^{-1}(\lambda_i\xx_i)=\lambda_i(P^{-1}\xx_i)
+        </me>.
+        But <m>P^{-1}\xx_i</m> is the <m>i</m>th column of <m>P^{-1}P = I_n</m>,
+        which proves the result.
+      </p>
+    </proof>
+  </lemma>
+
+  <p>
+    We can use <xref ref="lem-block-eigen"/> to prove that <m>\dim E_\lambda(A)\leq m</m> as follows.
+    Suppose <m>\{\xx_1,\ldots, \xx_k\}</m> is a basis for <m>E_\lambda(A)</m>.
+    Then this is a linearly independent set of eigenvectors, so our lemma guarantees the existence of a matrix <m>P</m>
+     such that
+     <me>
+       P^{-1}AP = \bbm \lambda I_k \amp B\\0\amp A_1\ebm
+     </me>.
+     Let <m>\tilde{A}=P^{-1}AP</m>. On the one hand, since <m>\tilde{A}\sim A</m>,
+     we have <m>c_A(x)=c_{\tilde{A}}(x)</m>.
+     On the other hand,
+     <me>
+       \det(xI_n-\tilde{A}) = \det\bbm (x-\lambda)I_k \amp -B\\0 \amp xI_{n-k}-A_1\ebm = (x-\lambda)^k\det(xI_{n-k}A_1)
+     </me>.
+     This shows that <m>c_A(x)</m> is divisible by <m>(x-\lambda)^k</m>.
+     Since <m>m</m> is the largest integer such that <m>c_A(x)</m> is divisible by <m>(x-\lambda)^m</m>,
+     we must have <m>\dim E_\lambda(A)=k\leq m</m>.
+  </p>
+
+  <p>
+    <xref ref="thm-multiplicity"/> provides an initial criterion for diagonalization:
+    if the dimension of each eigenspace <m>E_\lambda(A)</m> is equal to the multiplicity of <m>\lambda</m>,
+    then <m>A</m> is diagonalizable.
+    The truth of this statement relies on one additional fact:
+    any set of eigenvectors corresponding to <em>distinct</em> eigenvalues is linearly independent.
+    The proof of this fact is a relatively straightforward proof by induction.
+    It can be found in Section 5.5 of Nicholson for those who are interested.
+    However, our focus for the remainder of the section will be on diagonalization of <em>symmetric</em>
+    matrices, and soon we will see that for such matrices, eigenvectors corresponding to different eigenvalues are,
+    in fact, <em>orthogonal</em>.
+  </p>
+</section>

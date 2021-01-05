@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<section xml:id="sec-matrix-operator">
+  <title>The matrix of a linear operator</title>
+  <p>
+    Recall that a linear transformation <m>T:V\to V</m> is referred to as a <term>linear operator</term>.
+    Recall also that two matrices <m>A</m> and <m>B</m> are <term>similar</term>
+    if there exists an invertible matrix <m>P</m> such that <m>B = PAP^{1-}</m>,
+    and that similar matrices have a lot of properties in common.
+    In particular, if <m>A</m> is similar to <m>B</m>, then <m>A</m> and <m>B</m>
+    have the same trace, determinant, and eigenvalues.
+    One way to understand this is the realization that two matrices are similar if they are representations of the
+    <em>same</em> operator, with respect to <em>different</em> bases.
+  </p>
+
+  <p>
+    Since the domain and codomain of a linear operator are the same,
+    we can consider the matrix <m>M_{DB}(T)</m> where <m>B</m> and <m>D</m> are the <em>same</em> ordered basis.
+    This leads to the next definition.
+  </p>
+
+  <definition xml:id="def-operator-matrix">
+    <statement>
+      <p>
+        Let <m>T:V\to V</m> be a linear operator,
+        and let <m>B=\basis{b}{n}</m> be an ordered basis of <m>V</m>.
+        The matrix <m>M_B(T)=M_{BB}(T)</m> is called the <term><m>B</m>-matrix</term> of <m>T</m>.
+      </p>
+    </statement>
+  </definition>
+
+  <p>
+    The following result collects several useful properties of the <m>B</m>-matrix of an operator.
+    Most of these were already encountered for the matrix <m>M_{DB}(T)</m> of a transformation,
+    although not all were stated formally. (Formal statements can be found in the textbook by Nicholson.)
+  </p>
+
+  <theorem xml:id="thm-bmatrix-properties">
+    <statement>
+      <p>
+        Let <m>T:V\to V</m> be a linear operator, and let <m>B=\basis{b}{n}</m> be a basis for <m>V</m>.
+        Then
+        <ol>
+          <li><m>C_B(T(\vv))=M_B(T)C_B(\vv)</m> for all <m>\vv\in V</m>.</li>
+          <li>If <m>S:V\to V</m> is another operator, then <m>M_B(ST)=M_B(S)M_B(T)</m>.</li>
+          <li><m>T</m> is an isomorphism if and only if <m>M_B(T)</m> is invertible.</li>
+          <li>If <m>T</m> is an isomorphism, then <m>M_B(T^{-1}) = [M_B(T)]^{-1}</m>.</li>
+          <li><m>M_B(T)=\bbm C_B(\mathbf{b}_1) \amp \cdots \amp C_B(\mathbf{b}_n)\ebm</m>.</li>
+        </ol>
+      </p>
+    </statement>
+  </theorem>
+
+
+  <example>
+    <statement>
+      <p>
+        Find the <m>B</m>-matrix of the operator <m>T:P_2(\R)\to P_2(\R)</m> given by
+        <m>T(p(x))=p(0)(1+x^2)+p(1)x</m>, with respect to the ordered basis
+        <me>
+          B = \{1-x, x+3x^2, 2-x^2\}
+        </me>.
+      </p>
+    </statement>
+    <solution>
+      <p>
+        We compute
+        <md>
+          <mrow>T(1-x) \amp = 1(1+x^2)+0(x) = 1+x^2</mrow>
+          <mrow>T(x+3x^2) \amp = 0(1+x^2)+4x=4x</mrow>
+          <mrow>T(2-x^2) \amp = 2(1+x^2)+1(x) = 2+x+2x^2</mrow>
+        </md>.
+        We now need to write each of these in terms of the basis <m>B</m>.
+        We can do this by working out how to write each polynomial above in terms of <m>B</m>.
+        Or we can be systematic.
+      </p>
+
+      <p>
+        Let <m>P = \bbm 1\amp 0\amp 2\\-1\amp 1\amp 0\\0\amp 3\amp -1\ebm</m>
+        be the matrix whose columns are given by the coefficient representations of the polynomials in <m>B</m>
+        with respect to the <em>standard basis</em> <m>B_0=\{1,x,x^2\}</m>.
+        For <m>T(1-x)=1+x^2</m> we need to solve the equation
+        <me>
+          a(1-x)+b(x+3x^2)+c(2-x^2)=1+x^2
+        </me>
+        for scalars <m>a,b,c</m>. But this is equivalent to the system
+        <md>
+          <mrow>a+2c \amp =1</mrow>
+          <mrow>-a+b \amp =0</mrow>
+          <mrow>3b-c \amp =1</mrow>
+        </md>,
+        which, in turn, is equivalent to the matrix equation
+        <me>
+          \bbm 1\amp 0\amp 2\\-1\amp 1\amp 0\\0\amp 3\amp -1\ebm\bbm a\\b\\c\ebm = \bbm 1\\0\\1\ebm
+        </me>;
+        that is, <m>PC_B(1+x^2) = C_{B_0}(1+x^2)</m>. Thus,
+        <me>
+          C_B(1+x^2) = \bbm a\\b\\c\ebm = P^{-1}C_{B_0}(1+x^2) = P^{-1}\bbm 1\\0\\1\ebm
+        </me>.
+        Similarly, <m>C_B(4x)=P^{-1}\bbm 0\\4\\0\ebm = P^{-1}C_{B_0}(4x)</m>, and
+        <m>C_B(2+x+2x^2)=P^{-1}\bbm 2\\1\\2\ebm = P^{-1}C_{B_0}(2+x+2x^2)</m>.
+        Thus, (using the Sage code below)
+        <md>
+          <mrow>M_B(T) \amp =\bbm C_B(T(1-x)) \amp C_B(T(x+3x^2)) \amp C_B(T(2-x^2))\ebm</mrow>
+          <mrow> \amp =\bbm P^{-1}C_{B_0}T(1-x) \amp P^{-1} C_{B_0}T(x+3x^2) \amp P^{-1}C_{B_0}(T(2-x^2))\ebm</mrow>
+          <mrow> \amp =P^{-1}\bbm C_{B_0}(1+x^2) \amp C_{B_0}(4x)\amp C_{B_0}(2+x+2x^2)\ebm</mrow>
+          <mrow> \amp =\bbm 1/7\amp -6/7\amp 3/7\\1/7\amp 1/7\amp 2/7\\3/7\amp 3/7\amp -1/7\ebm
+                       \bbm 1\amp 0\amp 2\\0\amp 4\amp 1\\1\amp 0\amp 2\ebm</mrow>
+          <mrow> \amp = \bbm 3/7\amp -24/7\amp 0\\3/7\amp 4/7\amp 1\\2/7\amp 12/7\amp 1\ebm</mrow>
+        </md>.
+      </p>
+
+      <p>
+        Let's confirm that this works. Suppose we have
+        <md>
+          <mrow>p(x) \amp = C_B^{-1}\bbm a\\b\\c\ebm = a(1-x)+b(x+3x^2)+c(2-x^2)</mrow>
+          <mrow>\amp = (a+2c)+(-a+b)x+(3b-c)x^2</mrow>
+        </md>.
+        Then <m>T(p(x))=(a+2c)(1+x^2)+(4b+c)x</m>, and we find
+        <me>
+          C_B(T(p(x))) = P^{-1}\bbm a+2c\\4b+c\\a+2c\ebm = \bbm \frac37 a-\frac{24}{7}b\\\frac37 a+\frac47 b+c\\\frac27 a+\frac{12}{7}b+c\ebm
+        </me>.
+        On the other hand,
+        <me>
+          M_B(T) = \bbm 3/7\amp -24/7\amp 0\\3/7\amp 4/7\amp 1\\2/7\amp 12/7\amp 1\ebm\bbm a\\b\\c\ebm = \bbm \frac37 a-\frac{24}{7}b\\\frac37 a+\frac47 b+c\\\frac27 a+\frac{12}{7}b+c\ebm
+        </me>.
+        The results agree, but possibly leave us a little confused.
+      </p>
+    </solution>
+  </example>
+
+  <sage>
+    <input>
+      from sympy import *
+      init_printing()
+      P = Matrix(3,3,[1,0,2,-1,1,0,0,3,-1])
+      M = Matrix(3,3,[1,0,2,0,4,1,1,0,2])
+      P**-1, P**-1*M
+    </input>
+  </sage>
+
+  <p>
+    In general, given an ordered basis <m>B=\basis{b}{n}</m> for a vector space <m>V</m>
+    with standard basis <m>B_0 = \basis{e}{n}</m>, if we let
+    <me>
+      P = \bbm C_{B_0}(\mathbf{b}_1) \amp \cdots \amp C_{B_0}(\mathbf{b}_n)\ebm
+    </me>,
+    then
+    <md>
+      <mrow>M_B(T) \amp = \bbm C_B(T(\mathbf{b}_1)) \amp \cdots \amp C_B(T(\mathbf{b_n})\ebm</mrow>
+      <mrow> \amp = P^{-1}\bbm C_{B_0}(T(\mathbf{b}_1)) \amp \cdots \amp C_{B_0}(T(\mathbf{b_n})\ebm</mrow>
+    </md>.
+  </p>
+
+  <p>
+    As we saw above, this gives us the result, but doesn't shed much light on the problem,
+    unless we have an easy way to write vectors in terms of the basis <m>B</m>.
+    Let's revisit the problem. Instead of using the given basis <m>B</m>,
+    let's use the standard basis <m>B_0 = \{1,x,x^2\}</m>.
+    We quickly find
+    <me>
+      T(1)=1+x+x^2, T(x) = x, \text{ and } T(x^2)=x
+    </me>,
+    so with respect to the standard basis, <m>M_{B_0}(T) = \bbm 1\amp 0\amp 0\\1\amp 1\amp 1\\1\amp 0\amp 0\ebm</m>.
+    Now, recall that
+    <me>
+      M_{B}(T)=P^{-1}\bbm C_{B_0}T(1-x)\amp C_{B_0}(T(x+3x^2)\amp C_{B_0}(T(2-x^2))\ebm
+    </me>
+    and note that for any polynomial <m>p(x)</m>, <m>C_{B_0}T(p(x)) = M_{B_0}C_{B_0}(p(x))</m>. But
+    <me>
+      \bbm C_{B_0}(1-x) \amp C_{B_0}(x+3x^2)\amp C_{B_0}(2-x^2)\ebm = P
+    </me>,
+    so we get
+    <md>
+      <mrow>M_B(T) \amp = P^{-1}\bbm C_{B_0}T(1-x)\amp C_{B_0}(T(x+3x^2)\amp C_{B_0}(T(2-x^2))\ebm</mrow>
+      <mrow> \amp = P^{-1}\bbm M_{B_0}C_{B_0}(1-x)\amp M_{B_0}C_{B_0}(x+3x^2)\amp M_{B_0}C_{B_0}(2-x^2)\ebm </mrow>
+      <mrow> \amp = P^{-1}M_{B_0}\bbm C_{B_0}(1-x) \amp C_{B_0}(x+3x^2)\amp C_{B_0}(2-x^2)\ebm</mrow>
+      <mrow> \amp = P^{-1}M_{B_0}P</mrow>
+    </md>.
+  </p>
+
+  <p>
+    Now we have a much more efficient method for arriving at the matrix <m>M_B(T)</m>.
+    The matrix <m>M_{B_0}(T)</m> is easy to determine, the matrix <m>P</m> is easy to determine,
+    and with the help of the computer, it's easy to compute <m>P^{-1}M_{B_0}P = M_B(T)</m>.
+  </p>
+
+  <sage>
+    <input>
+      M0 = Matrix(3,3,[1,0,0,1,1,1,1,0,0])
+      P**-1*M0*P
+    </input>
+  </sage>
+
+  <exercise>
+    <statement>
+      <p>
+        Determine the matrix of the operator <m>T:\R^3\to \R^3</m> given by
+        <me>
+          T(x,y,z) = (3x-2y+4z,x-5y,2y-7z)
+        </me>
+        with respect to the ordered basis
+        <me>
+          B = \{(1,2,0),(0,-1,2),(1,2,1)\}
+        </me>.
+        (You may want to use the Sage cell below for computational assistance.)
+      </p>
+    </statement>
+    <solution>
+      <p>
+        With respect to the standard basis, we have
+        <me>
+          M_0=M_{B_0}(T) = \bbm 3\amp -2\amp 4\\1\amp -5\amp 0\\0\amp 2\amp -7\ebm
+        </me>,
+        and the matrix <m>P</m> is given by <m>P = \bbm 1\amp 3\amp 1\\2\amp -1\amp 2\\0\amp 2\amp-5\ebm</m>.
+        Thus, we find
+        <me>
+          M_B(T)=P^{-1}M_0P=\bbm 9\amp 56\amp 36\\7\amp 15\amp 15\\-10\amp -46\amp -33\ebm
+        </me>.
+      </p>
+    </solution>
+  </exercise>
+
+  <sage>
+    <input>
+
+    </input>
+  </sage>
+
+  <p>
+    The matrix <m>P</m> used in the above examples is known as a <em>change</em> matrix.
+    If the columns of <m>P</m> are the coefficient vectors of <m>B=\basis{b}{n}</m>
+    with respect to another basis <m>D</m>, then we have
+    <md>
+      <mrow>P \amp= \bbm C_D(\mathbf{b}_1)\amp\cdots \amp C_D(\mathbf{b}_n)\ebm</mrow>
+      <mrow>\amp = \bbm C_D(1_V(\mathbf{b}_1))\amp \cdots \amp C_D(1_V(\mathbf{b}_n))\ebm</mrow>
+      <mrow>\amp = M_{DB}(1_V)</mrow>
+    </md>.
+    In other words, <m>P</m> is the matrix of the identity transformation <m>1_V:V\to V</m>,
+    where we use the basis <m>B</m> for the domain, and the basis <m>D</m> for the codomain.
+  </p>
+
+  <definition xml:id="def-change-matrix">
+    <statement>
+      <p>
+        The <term>change matrix</term> with respect to ordered bases <m>B,D</m> of <m>V</m>
+        is denoted <m>P_{D\leftarrow B}</m>, and defined by
+        <me>
+          P_{D\leftarrow B} = M_{DB}(1_V)
+        </me>.
+      </p>
+    </statement>
+  </definition>
+
+  <theorem xml:id="thm-change-matrix">
+    <statement>
+      <p>
+        Let <m>B=\basis{b}{n}</m> and <m>D</m> be two ordered bases of <m>V</m>.
+        Then
+        <me>
+          P_{D\leftarrow B} = \bbm C_D(\mathbf{b}_1)\amp \cdots \amp C_D(\mathbf{b}_n)\ebm
+        </me>,
+        and satisfies <m>C_D(\vv) = P_{D\leftarrow B}C_B(\vv)</m> for all <m>\vv\in V</m>.
+      </p>
+
+      <p>
+        The matrix <m>P_{D\leftarrow B}</m> is invertible, and <m>(P_{D\leftarrow B})^{-1} = P_{B\leftarrow D}</m>.
+        Moreover, if <m>E</m> is a third ordered basis, then
+        <me>
+          P_{E\leftarrow D}P_{D\leftarrow B} = P_{E\leftarrow B}
+        </me>.
+      </p>
+    </statement>
+  </theorem>
+
+  <example>
+    <statement>
+      <p>
+        Let <m>B = \{1,x,x^2\}</m> and let <m>D = \{1+x,x+x^2,2-3x+x^2\}</m> be orderd bases of <m>P_2(\R)</m>.
+        Find the change matrix <m>P_{D\leftarrow B}</m>.
+      </p>
+    </statement>
+    <solution>
+      <p>
+        Finding this matrix requires us to first write the vectors in <m>B</m> in terms of the vectors in <m>D</m>.
+        However, it's much easier to do this the other way around. We easily find
+        <me>
+          P_{B\leftarrow D} = \bbm 1\amp 0\amp 2\\1\amp 1\amp -3\\0\amp 1\amp 1\ebm
+        </me>,
+        and by <xref ref="thm-change-matrix"/>, we have
+        <me>
+          P_{D\leftarrow B} = (P_{B\leftarrow D})^{-1} = \frac16\bbm 4\amp 2\amp -2\\-1\amp 1\amp 5\\1\amp -1\amp 1\ebm
+        </me>.
+      </p>
+    </solution>
+  </example>
+
+  <p>
+    The above results give a straightforward procedure for determining the matrix of any operator,
+    with respect to any basis, if we let <m>D</m> be the standard basis.
+    The importance of these results is not just their computational simplicity, however.
+    The most important outcome of the above is that if <m>M_B(T)</m> and <m>M_D(T)</m>
+    give the matrix of <m>T</m> with respect to two different bases, then
+    <me>
+      M_B(T) = (P_{D\leftarrow B})^{-1}M_B(T)P_{D\leftarrow B}
+    </me>,
+    so that the two matrices are <em>similar</em>.
+  </p>
+
+  <p>
+    Recall from <xref ref="thm-similar-properties">Theorem</xref>
+    that similar matrices have the same determinant, trace, and eigenvalues.
+    This means that we can unambiguously define the determinant and trace of an  <em>operator</em>,
+    and that we can compute eigenvalues of an operator using any matrix representation of that operator.
+  </p>
+</section>

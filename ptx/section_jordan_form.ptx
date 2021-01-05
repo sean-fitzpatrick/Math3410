@@ -1,0 +1,551 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<section xml:id="sec-jordan-form">
+  <title>Jordan Canonical Form</title>
+  <p>
+    The results of <xref ref="thm-nullspace-power"/> and <xref ref="thm-gen-eigen-decomp"/>
+    tell us that for an eigenvalue <m>\lambda</m> of <m>T:V\to V</m> with multiplicity <m>m</m>,
+    we have a sequence of subspace inclusions
+    <me>
+      E_\lambda(T) = \ker (T-\lambda I)\subseteq \ker (T-\lambda I)^2 \subseteq \cdots \subseteq \ker (T-\lambda I)^m = G_\lambda(T)
+    </me>.
+    Not all subspaces in this sequence are necessarily distinct.
+    Indeed, it is entirely possible that <m>\dim E_\lambda(T)=m</m>,
+    in which case <m>E_\lambda(T)=G_\lambda(T)</m>.
+    In geeral there will be some <m>l\leq m</m> such that <m>\ker (T-\lambda I)^l=G_\lambda(T)</m>.
+  </p>
+
+  <p>
+    Our goal in this section is to determine a basis for <m>G_\lambda(T)</m> in a standard way.
+    We begin with a couple of important results, which we state without proof.
+    The first can be found in Axler's book; the second in Nicholson's.
+  </p>
+
+  <theorem xml:id="thm-gen-eigen-props">
+    <statement>
+      <p>
+        Suppose <m>V</m> is a complex vector space, and <m>T:V\to V</m> is a linear operator.
+        Let <m>\lambda_1,\ldots, \lambda_k</m> denote the distinct eigenvalues of <m>T</m>.
+        (We can assume <m>V</m> is real if we also assume that all eigenvalues of <m>V</m> are real.)
+        Then:
+        <ol>
+          <li>
+            <p>
+              Generalized eigenvectors corresponding to <em>distinct</em> eigenvalues are linearly independent.
+            </p>
+          </li>
+          <li><m>V = G_{\lambda_1}(T)\oplus G_{\lambda_2}(T)\oplus \cdots \oplus G_{\lambda_k}(T)</m></li>
+          <li>
+            <p>
+              Each generalize eigenspace <m>G_{\lambda_j}(T)</m> is <m>T</m>-invariant.
+            </p>
+          </li>
+          <li>
+            <p>
+              Each restriction <m>(T-\lambda_j)|_{G_{\lambda_j}(T)}</m> is nilpotent.
+            </p>
+          </li>
+        </ol>
+      </p>
+    </statement>
+  </theorem>
+
+  <theorem xml:id="thm-block-eigen">
+    <statement>
+      <p>
+        Let <m>T:V\to V</m> be a linear operator. If the characteristic polynomial of <m>T</m> is given by
+        <me>
+          c_T(x) = (x-\lambda_1)^{m_1}(x-\lambda_2)^{m_2}\cdots (x-\lambda_k)^{m_k}
+        </me>,
+        then <m>\dim G_{\lambda_j}(T)=m_j</m> for each <m>j=1,\ldots, k</m>.
+      </p>
+
+      <p>
+        Moreover, if we let <m>B=B_1\cup B_2\cup\cdots \cup B_k</m>,
+        where <m>B_j</m> is any basis for <m>G_{\lambda_j}(T)</m> for <m>j=1,\ldots, k</m>,
+        then <m>B</m> is a basis for <m>V</m> (this follows immediately from <xref ref="thm-gen-eigen-props"/>)
+        and the matrix of <m>T</m> with respect to this basis has the block-diagonal form
+        <me>
+          M_B(T) = \bbm A_1 \amp 0 \amp \cdots \amp 0\\
+                        0 \amp A_2 \amp \cdots \amp 0\\
+                        \vdots\amp\vdots\amp\ddots\amp\vdots\\
+                        0 \amp 0 \amp \cdots \amp A_k\ebm
+        </me>,
+        where each <m>A_j</m> has size <m>m_j\times m_j</m>.
+      </p>
+    </statement>
+  </theorem>
+
+  <p>
+    A few remarks are called for here.
+    <ul>
+      <li>
+        <p>
+          One of the ways to see that <m>\dim G_{\lambda_j}(T)=m_j</m> is to consider <m>(M_B(T)-\lambda_j I_n)^{m_j}</m>.
+          This will have the form <m>\diag(U_1^{m_j}, U_2^{m_j},\ldots, U_k^{m_j})</m>,
+          where <m>U_i</m> is the matrix of <m>(T-\lambda_j)^{m_j}</m>,
+          restricted to <m>G_{\lambda_i}(T)</m>.
+          If <m>i\neq j</m>, <m>T-\lambda_j I</m> restricts to an invertible operator on <m>G_{\lambda_i}(T)</m>,
+          but its restricton to <m>G_{\lambda_j}(T)</m> is nilpotent, by <xref ref="thm-gen-eigen-props"/>.
+          So <m>U_j</m> is nilpotent (with <m>U_j^{m_j}=0</m>), and has size <m>m_j\times m_j</m>,
+          while <m>U_i</m> is invertible if <m>i\neq j</m>.
+          The matrix <m>(M_B(T)-\lambda_j I)^{m_j}</m> thus ends up with a <m>m_j\times m_j</m> block of zeros,
+          so <m>\dim \ker (T-\lambda_j I)^{m_j}=m_j</m>.
+        </p>
+      </li>
+
+      <li>
+        <p>
+          If the previous point wasn't clear, note that with an appropriate choice of basis,
+          the block <m>A_i</m> in <xref ref="thm-block-eigen"/> has the form
+          <me>
+            A_i = \bbm \lambda_i \amp \ast \amp \cdots \amp \ast\\
+                       0 \amp \lambda_i \amp \cdots \amp \ast\\
+                       \vdots \amp \vdots \amp \ddots\amp \vdots\\
+                       0 \amp 0 \amp \cdots \amp \lambda_i\ebm
+          </me>.
+          Thus, <m>M_B(T)-\lambda_j I</m> will have blocks that are upper triangular,
+          with diagonal entries <m>\lambda_i-\lambda_j\neq 0</m> when <m>i\neq j</m>,
+          but when <m>i=j</m> we get a matrix that is strictly upper triangular,
+          and therefore nilpotent, since its diagonal entries will be <m>\lambda_j-\lambda_j=0</m>.
+        </p>
+      </li>
+
+      <li>
+        <p>
+          if <m>l_j</m> is the <em>least</em> integer such that <m>\ker (A-\lambda_j I)^{l_j}=G_{\lambda_j}(T)</m>,
+          then it is possible to choose the basis of <m>G_{\lambda_j}(T)</m> so that <m>A_j</m> is itself block-diagonal,
+          with the largest block having size <m>l_j\times l_j</m>.
+          The remainder of this section is devoted to determining how to choose such a basis.
+        </p>
+      </li>
+    </ul>
+  </p>
+
+  <p>
+    The basic principle for choosing a basis for each generalized eigenspace is as follows.
+    We know that <m>E_{\lambda}(T)\subseteq G_\lambda(T)</m> for each eigenvalue <m>\lambda</m>.
+    So we start with a basis for <m>E_\lambda(T)</m>, by finding eigenvectors as usual.
+    If <m>\ker (T-\lambda I)^2 = \ker (T-\lambda I)</m>, then we're done: <m>E_\lambda(T)=G_\lambda(T)</m>.
+    Otherwise, we enlarge the basis for <m>E_\lambda(T)</m> to a basis of <m>\ker T(-\lambda I)^2</m>.
+    If <m>\ker T(-\lambda I)^3=\ker (T-\lambda I)^2</m>, then we're done,
+    and <m>G_\lambda(T) = \ker (T-\lambda I)^2</m>.
+    If not, we enlarge our existing basis to a basis of <m>\ker (T-\lambda I)^3</m>.
+    We continue this process until we reach some power <m>l</m> such that <m>\ker (T-\lambda I)^l = \ker (T-\lambda I)^{l+1}</m>.
+    (This is guaranteed to happen by <xref ref="thm-nullspace-power"/>.)
+    We then conclude that <m>G_\lambda(T) = \ker (T-\lambda I)^l</m>.
+  </p>
+
+  <p>
+    The above produces <em>a</em> basis for <m>G_\lambda(T)</m>,
+    but we want what is, in some sense, the <q>best</q> basis.
+    For our purposes, the best basis is the one in which the matrix of <m>T</m> restricted to each generalized eigenspace is block diaganal,
+    where each block is a <em>Jordan block</em>.
+  </p>
+
+  <definition xml:id="def-jordan-block">
+    <statement>
+      <p>
+        Let <m>\lambda</m> be a scalar. A <term>Jordan block</term> is an <m>m\times m</m> matrix of the form
+        <me>
+          J(m,\lambda) = \bbm \lambda \amp 1 \amp 0 \amp \cdots \amp 0\\
+                              0 \amp \lambda \amp 1 \amp \cdots \amp 0\\
+                              \vdots \amp \vdots \amp \ddots \amp \ddots \amp \vdots\\
+                              0 \amp 0 \amp \cdots \amp \lambda \amp 1\\
+                              0 \amp 0 \amp 0 \amp \cdots \amp \lambda\ebm
+        </me>.
+        That is <m>J(m,\lambda)</m> has each diagaonal entry equal to <m>\lambda</m>,
+        and each <q>superdiagonal</q> entry (those just above the diagaonal) equal to 1,
+        with all other entries equal to zero.
+      </p>
+    </statement>
+  </definition>
+
+  <example>
+    <statement>
+      <p>
+        The following are examples of Jordan blocks:
+        <me>
+          J(2,4)=\bbm 4 \amp 1\\ 0\amp 4\ebm, J(3,\sqrt{2})=\bbm \sqrt{2} \amp 1\amp 0\\0\amp \sqrt{2}\amp 1\\0\amp 0\amp \sqrt{2}\ebm,
+          J(4,2i)=\bbm 2i \amp 1\amp 0\amp 0\\0\amp 2i\amp 1\amp 0\\0\amp 0\amp 2i\amp 1\\0\amp 0\amp 0\amp 2i\ebm
+        </me>.
+      </p>
+    </statement>
+  </example>
+
+  <insight xml:id="jordan-chain-basis">
+    <title>Finding a chain basis </title>
+    <p>
+      A Jordan block corresponds to basis vectors <m>\vv_1,\vv_2,\ldots, \vv_m</m> with the following properties:
+      <md>
+        <mrow>T(\vv_1) \amp = \lambda \vv_1</mrow>
+        <mrow>T(\vv_2) \amp = \vv_1+\lambda \vv_2</mrow>
+        <mrow>T(\vv_3) \amp = \vv_2+\lambda \vv_3</mrow>
+      </md>,
+      and so on. Notice that <m>\vv_1</m> is an eigenvector, and for each <m>j=2,\ldots, m</m>,
+      <me>
+        (T-\lambda I)\vv_{j} = \vv_{j-1}
+      </me>.
+    </p>
+
+    <p>
+      Notice also that if we set <m>N=T-\lambda I</m>, then
+      <me>
+        \vv_1 = N\vv_2, \vv_2 = N\vv_3, \ldots, \vv_{m-1} = N\vv_m
+      </me>
+      so our basis for <m>G_\lambda(T)</m> is of the form
+      <me>
+        \vv, N\vv, N^2\vv, \ldots, N^{m-1}\vv
+      </me>,
+      where <m>\vv = \vv_m</m>, and <m>\vv_1=N^{m-1}\vv</m> is an eigenvector.
+      (Note that <m>N^m\vv = (T-\lambda I)\vv_1=\zer</m>,
+      and indeed <m>N^m\vv_j=\zer</m> for each <m>j=1,\ldots, m</m>.)
+      Such a basis is known as a <term>chain basis</term>.
+    </p>
+
+    <p>
+      If <m>\dim E_\lambda(T)\gt 1</m> we might have to repeat this process for each eigenvector in a basis for the eigenspace.
+      The full matrix of <m>T</m> might have several Jordan blocks of possibly different sizes for each eigenvalue.
+    </p>
+  </insight>
+
+  <example xml:id="ex-jordan-form1">
+    <statement>
+      <p>
+        Determine a Jordan basis for the operator <m>T:\R^5\to \R^5</m>
+        whose matrix with respect to the standard basis is given by
+        <me>
+          A = \bbm 7\amp 1 \amp -3\amp 2\amp 1\\
+                  -6\amp 2\amp 4\amp -2\amp -2\\
+                  0 \amp 1\amp 3 \amp 1\amp -1\\
+                  -8\amp -1\amp 6\amp 0 \amp-3\\
+                  -4\amp 0\amp 3\amp -1\amp 1\ebm
+        </me>
+      </p>
+    </statement>
+    <solution>
+      <p>
+        The characteristic polynomial of <m>A</m> is given by
+        <me>
+          c_A(x)=(x-2)^2(x-3)^3
+        </me>.
+        (See the Sage cell below to confirm this.)
+        We thus have two eigenvalues: <m>2</m>, of multiplicity <m>2</m>,
+        and <m>3</m>, of multiplicity <m>3</m>.
+        We find
+        <me>
+          E_2(A)=\nll(A-2I) = \spn\{\xx_1\}, \text{ where } \xx_1=\bbm -1\\0\\-1\\1\\0\ebm
+        </me>,
+        so we have only one independent eigenvector, which means that <m>G_2(A)=\nll(A-2I)^2</m>.
+      </p>
+
+      <p>
+        Following <xref ref="jordan-chain-basis"/>, we extend <m>\{\xx_1\}</m>
+        to a basis of <m>G_2(A)</m> by solving the system
+        <me>
+          (A-2I)\xx = \xx_1
+        </me>.
+        Performing Gaussian elimination, we find a general solution
+        <me>
+          \xx = \bbm -t\\-1\\-t\\t\\0\ebm = t\bbm -1\\0\\-1\\1\\0\ebm + \bbm 0\\-1\\0\\0\\0\ebm
+        </me>.
+        Note that our solution is of the form <m>\xx = t\xx_1+\xx_2</m>.
+        We set <m>t=0</m>, and get <m>\xx_2 = \bbm 0\amp -1\amp 0\amp 0\amp 0\ebm^T</m>.
+      </p>
+
+      <p>
+        Next, we consider the eigenvalue <m>\lambda=3</m>. We find
+        <me>
+          E_3(A) = \nll(A-3I) = \spn\{\yy_1,\yy_2\}, \text{ where } \yy_1 = \bbm 1\\-2\\2\\2\\0\ebm, \yy_2 = \bbm -1\\2\\0\\0\\2\ebm
+        </me>.
+        Again, we're one eigenvector short of the multiplicity, so we need to consider <m>G_3(A)=\nll(A-3I)^3</m>.
+        Unfortunately, the systems <m>(A-3I)\yy = \yy_1</m> and <m>(A-3I)\yy=\yy_2</m> are both inconsistent!
+      </p>
+
+      <p>
+        We can salvage the situation by replacing the eigenvector <m>\yy_2</m> by some linear combination
+        <m>\zz_2 = a\yy_1+b\yy_2</m>. We row-reduce, and look for values of <m>a</m> and <m>b</m> that give a consistent system.
+        We find that <m>a=b</m> does the job, so we set
+        <me>
+          \zz_2 = \yy_1+\yy_2 = \bbm 0\\0\\2\\2\\2\ebm
+        </me>.
+        Solving the system <m>(A-3I)\zz = \yy_1+\yy_2</m>, we find
+        <md>
+          <mrow>\zz \amp = \bbm \frac12 +\frac12 s-\frac12 t\\1-s+t\\1+s\\s\\t\ebm</mrow>
+          <mrow>\amp = \bbm \frac12\\1\\1\\0\\0\ebm + s\bbm\frac12\\-1\\1\\1\\0\ebm+t\bbm -\frac12\\1\\0\\0\\1\ebm</mrow>
+          <mrow>\amp = \bbm \frac12\\1\\1\\0\\0\ebm \frac{s}{2}\yy_1+\frac{t}{2}\yy_2</mrow>
+        </md>.
+        We let <m>\zz_3 = \bbm \frac 1\\2\\2\\0\\0\ebm</m>, and check that
+        <me>
+          A\zz_3 = 3\zz_3+\zz_2
+        </me>,
+        as required.
+      </p>
+
+      <p>
+        This gives us the basis <m>B = \{\xx_1,\xx_2,\yy_1,\zz_2,\zz_3\}</m> for <m>\R^5</m>,
+        and with respect to this basis, we have the Jordan canonical form
+        <me>
+          M_B(T) = \bbm 2 \amp 1\amp 0\amp 0 \amp 0\\
+                        0 \amp 2\amp 0\amp 0 \amp 0\\
+                        0 \amp 0\amp 3\amp 0 \amp 0\\
+                        0 \amp 0\amp 0\amp 3 \amp 1\\
+                        0 \amp 0\amp 0\amp 0 \amp 3\ebm
+        </me>.
+      </p>
+    </solution>
+  </example>
+
+  <p>
+    The following Sage cells perform the computations needed for <xref ref="ex-jordan-form1"/>.
+    First, we get the characteristic polynomial.
+  </p>
+  <sage>
+    <input>
+      from sympy import *
+      init_printing()
+      A = Matrix([[7,1,-3,2,1],[-6,2,4,-2,-2],[0,1,3,1,-1],[-8,-1,6,0,-3],[-4,0,3,-1,1]])
+      p = A.charpoly()
+      factor(p)
+    </input>
+  </sage>
+
+  <p>
+    Next, we determine a basis for the <m>E_2(A)</m> eigenspace.
+  </p>
+  <sage>
+    <input>
+      N2 = A-2*eye(5)
+      E2 = N2.nullspace()
+      E2
+    </input>
+  </sage>
+
+  <p>
+    Next, we solve the system <m>(A-2I)\xx_2=\xx_1</m>.
+  </p>
+
+  <sage>
+    <input>
+      B2 = N2.col_insert(5,E2[0])
+      B2.rref()
+    </input>
+  </sage>
+
+  <p>
+    Now, we repeat for the eigenvalue <m>\lambda=3</m>.
+    Make sure you've run the previous cells to define the matrix <m>A</m>.
+  </p>
+
+  <sage>
+    <input>
+      N3 = A-3*eye(5)
+      E3 = N3.nullspace()
+      E3
+    </input>
+  </sage>
+
+  <p>
+    In the next cell, note that we doubled the eigenvectors in <c>E3</c> to avoid fractions.
+    To follow the solution in our example, we append <c>2*E3[0]</c>.
+    You should find that using the eigenvector <m>\yy_1</m> corresponding to <c>E3[0]</c>
+    leads to an inconsistent system. Once you confirm this, replace <c>E3[0]</c> with <c>E3[1]</c>
+    and re-run the cell to see that we get an inconsistent system using <m>\yy_2</m> as well!
+  </p>
+  <sage>
+    <input>
+      B3 = N3.col_insert(5,2*E3[0])
+      B3.rref()
+    </input>
+  </sage>
+
+  <p>
+    We now want to try a linear combination <m>a\yy_1+b\yy_2</m>,
+    and see what values of <m>a</m> and <m>b</m> give a consistent system.
+    The <c>rref</c> command takes things a bit farther than we'd like,
+    but adding the optional argument <c>simplify=True</c> leaves us with a clue:
+    SymPy has to divide by <m>32a-32b</m> to get to RREF, so if <m>a=b</m>,
+    something interesing happens.
+  </p>
+
+  <sage>
+    <input>
+      a = Symbol('a')
+      b = Symbol('b')
+      C3 = N3.col_insert(5,a*E3[0]+b*E3[1])
+      C3.rref(simplify=True)
+    </input>
+  </sage>
+
+  <sage>
+    <input>
+      D3 = N3.col_insert(5,E3[0]+E3[1])
+      D3.rref()
+    </input>
+  </sage>
+
+  <p>
+    Finally, we check that our last vector works.
+  </p>
+
+  <sage>
+    <input>
+      Z3 = Matrix([1,2,2,0,0])
+      A-3*Z3-2*(E3[0]+E3[1])
+    </input>
+  </sage>
+
+  <p>
+    Now that we've done all the work required for <xref ref="ex-jordan-form1"/>,
+    we should confess that there was an easier way all along:
+  </p>
+
+  <sage>
+    <input>
+      A.jordan_form()
+    </input>
+  </sage>
+
+  <p>
+    The <c>jordan_form()</c> command returns a pair <m>P,J</m>,
+    where <m>J</m> is the Jordan canonical form of <m>A</m>,
+    and <m>P</m> is an invertible matrix such that <m>P^{-1}AP=J</m>.
+    You might find that the computer's answer is not quite the same as ours.
+    This is because the Jordan canonical form is only unique up to permuation of the Jordan blocks.
+    Changing the order of the blocks amounts to changing the order of the columns of <m>P</m>,
+    which are given by a basis of (generalized eigenvectors).
+  </p>
+
+  <exercise xml:id="ex-jordan-form2">
+    <statement>
+      <p>
+        Determine a Jordan basis for the linear operator <m>T:\R^4\to\R^4</m>
+        given by
+        <me>
+          T(w,x,y,z)=(w+x,x,-x+2y,w-x+y+z)
+        </me>.
+      </p>
+    </statement>
+    <solution>
+      <p>
+        With respect to the standard basis of <m>\R^4</m>, the matrix of <m>T</m> is
+        <me>
+          M = \bbm 1\amp 1\amp 0\amp 0\\0\amp 1\amp 0\amp 0\\0\amp -1\amp 2\amp 0\\1\amp -1\amp 1\amp 1\ebm
+        </me>.
+        We find (perhaps using the Sage cell provided below, and the code from the example above) that
+        <me>
+          c_T(x)=(x-1)^3(x-2)
+        </me>,
+        so <m>T</m> has eigenvalues <m>1</m> (of multiplicity <m>3</m>), and <m>2</m> (of multiplicity <m>1</m>).
+      </p>
+
+      <p>
+        We tackle the repeated eigenvalue first. The reduced row-echelon form of <m>M-I</m> is given by
+        <me>
+          R_1 = \bbm 1\amp 0\amp 0\amp 0\\0\amp 1\amp 0\amp 0\\0\amp 0\amp 1\amp 0\\0\amp 0\amp 0\amp 0\ebm
+        </me>,
+        so
+        <me>
+          E_1(M) = \spn\{\xx_1\}, \text{ where } \xx_1 = \bbm 0\\0\\0\\1\ebm
+        </me>.
+        We now attempt to solve <m>(M-I)\xx=\xx_1</m>. We find
+        <me>
+          \left(\begin{matrix}0\amp 1\amp 0\amp 0\\0\amp 0\amp 0\amp 0\\0\amp -1\amp 1\amp 0\\1\amp -1\amp 1\amp 0\end{matrix}\right|\left.\begin{matrix}0\\0\\0\\1\end{matrix}\right)
+          \xrightarrow{\text{RREF}}
+          \left(\begin{matrix} 1\amp 0\amp 0\amp 0\\0\amp 1\amp 0\amp 0\\0\amp 0\amp 1\amp 0\\0\amp 0\amp 0\amp 0\end{matrix}\right|\left.\begin{matrix}1\\0\\0\\0\end{matrix}\right)
+        </me>,
+        so <m>\xx = t\xx_1+\xx_2</m>, where <m>\xx_2 = \bbm 1\\0\\0\\0\ebm</m>.
+        We take <m>\xx_2</m> as our first generalized eigenvector.
+        Note that <m>(M-I)^2\xx_2 = (M-I)\xx_1=\zer</m>, so <m>\xx_2\in \nll (M-I)^2</m>, as expected.
+      </p>
+
+      <p>
+        Finally, we look for an element of <m>\nll (M-I)^3</m> of the form <m>\xx_3</m>,
+        where <m>(M-I)\xx_3=\xx_2</m>. We set up and solve the system <m>(M-I)\xx=\xx_2</m> as follows:
+        <me>
+          \left(\begin{matrix}0\amp 1\amp 0\amp 0\\0\amp 0\amp 0\amp 0\\0\amp -1\amp 1\amp 0\\1\amp -1\amp 1\amp 0\end{matrix}\right|\left.\begin{matrix}1\\0\\0\\0\end{matrix}\right)
+          \xrightarrow{\text{RREF}}
+          \left(\begin{matrix} 1\amp 0\amp 0\amp 0\\0\amp 1\amp 0\amp 0\\0\amp 0\amp 1\amp 0\\0\amp 0\amp 0\amp 0\end{matrix}\right|\left.\begin{matrix}0\\1\\1\\0\end{matrix}\right)
+        </me>,
+        so <m>\xx = t\xx_1+\xx_3</m>, where <m>\xx_3 =\bbm 0\\1\\1\\0\ebm</m>.
+      </p>
+
+      <p>
+        Finally, we deal with the eigenvalue <m>2</m>. The reduced row-echelon form of <m>M-2I</m> is
+        <me>
+          R_2 = \bbm 1\amp 0\amp 0\amp 0\\0\amp 1\amp 0\amp 0\\0\amp 0\amp 1\amp -1\\0\amp 0\amp 0\amp 0\ebm
+        </me>,
+        so
+        <me>
+          E_2(M) = \spn\{\yy\}, \text{ where } \yy = \bbm 0\\0\\1\\1\ebm
+        </me>.
+      </p>
+
+      <p>
+        Our basis of column vectors is therefore <m>B=\{\xx_1,\xx_2,\xx_3,\yy\}</m>.
+        Note that by design,
+        <md>
+          <mrow>M\xx_1 \amp =\xx_1</mrow>
+          <mrow>M\xx_2 \amp =\xx_1+\xx_2</mrow>
+          <mrow>M\xx_3 \amp= \xx_2+\xx_3</mrow>
+          <mrow>M\yy \amp = 2\yy</mrow>
+        </md>.
+        The corresponding Jordan basis for <m>\R^4</m> is
+        <me>
+          \{(0,0,0,1),(1,0,0,0),(0,1,1,0),(0,0,1,1)\}
+        </me>,
+        and with respect to this basis, we have
+        <me>
+          M_B(T) = \bbm 1\amp 1\amp 0\amp 0\\
+                        0\amp 1\amp 1\amp 0\\
+                        0\amp 0\amp 1\amp 0\\
+                        0\amp 0\amp 0\amp 2\ebm
+        </me>.
+      </p>
+    </solution>
+  </exercise>
+
+  <sage>
+
+  </sage>
+
+  <p>
+    One final note: we mentioned above that the minimal polynomial of an operator has the form
+    <me>
+      m_T(x)=(x-\lambda_1)^{l_1}(x-\lambda_2)^{l_2}\cdots (x-\lambda_k)^{l_k}
+    </me>,
+    where for each <m>j=1,2,\ldots, k</m>, <m>l_j</m> is the size of the largest Jordan block corresponding to <m>\lambda_j</m>.
+    Knowing the minimal polynomial therefore tells as a lot about the Jordan canonical form, but not everything.
+    Of course, if <m>l_j=1</m> for all <m>j</m>, then our operator can be diagaonalized.
+    If <m>\dim V\leq 4</m>, the minimal polynomial tells us everything, except for the order of the Jordan blocks.
+  </p>
+
+  <p>
+    In <xref ref="ex-jordan-form2"/>, the minimal polynomial is <m>m_T(x)=(x-1)^3(x-2)</m>,
+    the same as the characteristic polynomial. If we knew this in advance,
+    then the only possible Jordan canonical forms would be
+    <me>
+      \bbm 1\amp 1\amp 0\amp 0\\
+           0\amp 1\amp 1\amp 0\\
+           0\amp 0\amp 1\amp 0\\
+           0\amp 0\amp 0\amp 2\ebm \text{ or } \bbm 2\amp 0\amp 0\amp 0\\
+                                                    0\amp 1\amp 1\amp 0\\
+                                                    0\amp 0\amp 1\amp 1\\
+                                                    0\amp 0\amp 0\amp 1\ebm
+    </me>.
+    If instead the minimal polynomial had turned out to be <m>(x-1)^2(x-2)</m>
+    (with the same characteristic polynomial), then, up to permutation of the Jordan blocks,
+    our Jordan canonical form would be
+    <me>
+      \bbm 1\amp 0\amp 0\amp 0\\0\amp 1\amp 1\amp 0\\0\amp 0\amp 1\amp 0\\0\amp 0\amp 0\amp 2\ebm
+    </me>.
+  </p>
+
+  <p>
+    However, once we hit matrices of size <m>5\times 5</m> or larger, some ambiguity creeps in.
+    For example, suppose <m>c_A(x) = (x-2)^5</m> with <m>m_A(x)=(x-2)^2</m>.
+    Then the largest Jordan block is <m>2\times 2</m>,
+    but we could have two <m>2\times 2</m> blocks and a <m>1\times 1</m>,
+    or three <m>1\times 1</m> blocks and one <m>2\times 2</m>.
+  </p>
+</section>
