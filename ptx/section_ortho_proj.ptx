@@ -155,7 +155,7 @@
     <me>
       B=\left\{\xx_1=\bbm 3\\-6\\-4\\0\\0\ebm, \xx_2=\bbm 1\\2\\0\\-4\\0\ebm, \xx_3=\bbm 7\\4\\0\\0\\-2\ebm\right\}
     </me>
-    Defnitely not an orthogonal basis. So we take <m>\vv_1=\xx_1</m>, and
+    Definitely not an orthogonal basis. So we take <m>\vv_1=\xx_1</m>, and
     <md>
       <mrow>\vv_2 \amp = \xx_2-\left(\frac{\xx_2\dotp\vv_1}{\len{\vv_1}^2}\right)\vv_1</mrow>
       <mrow> \amp = \bbm 1\\2\\0\\-4\\0\ebm -\frac{-9}{61}\bbm 3\\-6\\-4\\-0\\0\ebm </mrow>
@@ -180,7 +180,7 @@
 
   <p>
     Oh wait, you wanted that normalized?
-    Turns out the GramSchmidt function has an optional argument of true or false.
+    Turns out the <c>GramSchmidt</c> function has an optional argument of true or false.
     The default is false, which is to not normalize. Setting it to true gives an orthonormal basis:
   </p>
 
@@ -190,7 +190,7 @@
     </input>
     <output>
       \[\left[\bbm -\frac{3\sqrt{61}}{61}\\ \frac{6\sqrt{61}}{61}\\ \frac{4\sqrt{61}}{61}\\0\\0\ebm,
-      \bbm -\frac{22\sqrt{183}}{915}\\-\frac{17\sqrt{183}}{915}\\ \fraC{3\sqrt{183}}{305}\\ \frac{\sqrt{183}}{15}\\0\ebm,
+      \bbm -\frac{22\sqrt{183}}{915}\\-\frac{17\sqrt{183}}{915}\\ \frac{3\sqrt{183}}{305}\\ \frac{\sqrt{183}}{15}\\0\ebm,
       \bbm -\frac{76\sqrt{3}}{165}\\-\frac{12\sqrt{3}}{55}\\-\frac{\sqrt{3}}{55}\\-\frac{37\sqrt{3}}{165}\\ \frac{5\sqrt{3}}{33}\ebm\right]\]
     </output>
   </sage>
