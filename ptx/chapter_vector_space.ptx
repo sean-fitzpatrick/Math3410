@@ -2,46 +2,47 @@
 
 <chapter xmlns:xi="http://www.w3.org/2001/XInclude" xml:id="ch-vector-space">
   <title>Vector spaces</title>
+  <introduction>
+    <p>
+      In your first course in linear algebra, you likely worked a lot with vectors in two and three dimensions,
+      where they can be visualized geometrically as objects with magnitude and direction (and drawn as arrows).
+      You probably extended your understanding of vectors to include <em>column vectors</em>;
+      that is, <m>1\times n</m> matrices of the form <m>\vv=\bbm v_1\\v_2\\\vdots\\v_n\ebm</m>.
+    </p>
 
-  <p>
-    In your first course in linear algebra, you likely worked a lot with vectors in two and three dimensions,
-    where they can be visualized geometrically as objects with magnitude and direction (and drawn as arrows).
-    You probably extended your understanding of vectors to include <em>column vectors</em>;
-    that is, <m>1\times n</m> matrices of the form <m>\vv=\bbm v_1\\v_2\\\vdots\\v_n\ebm</m>.
-  </p>
+    <p>
+      Using either geometric arguments (in <m>\R^2</m> or <m>\R^3</m>) or the properties of matrix arithmetic,
+      you would have learned that these vectors can be added, by adding corresponding components,
+      and multiplied by <em>scalars</em> <mdash/> that is, real numbers <mdash/>
+      by multiplying each component of the vector by the scalar.
+    </p>
 
-  <p>
-    Using either geometric arguments (in <m>\R^2</m> or <m>\R^3</m>) or the properties of matrix arithmetic,
-    you would have learned that these vectors can be added, by adding corresponding components,
-    and multiplied by <em>scalars</em> <mdash/> that is, real numbers <mdash/>
-    by multiplying each component of the vector by the scalar.
-  </p>
+    <p>
+      It's also likely, although you may not have spent too long thinking about it,
+      that you looked at the properties obeyed by the addition and scalar multiplication of vectors
+      (or, for that matter, matrices).
+      For example, you may have made use of the fact that order of addition doesn't matter,
+      or that scalar multiplication distributes over addition.
+    </p>
 
-  <p>
-    It's also likely, although you may not have spent too long thinking about it,
-    that you looked at the properties obeyed by the addition and scalar multiplication of vectors
-    (or, for that matter, matrices).
-    For example, you may have made use of the fact that order of addition doesn't matter,
-    or that scalar multiplication distributes over addition.
-  </p>
+    <p>
+      It turns out that the algebraic properties satisfied by vector addition and scalar multiplication are not unique to vectors,
+      as vectors were understood in your first course in linear algebra.
+      In fact, many types of mathematical object exhibit similar behaviour.
+      Examples include matrices, polynomials, and even functions.
+    </p>
 
-  <p>
-    It turns out that the algebraic properties satisfied by vector addition and scalar multiplication are not unique to vectors,
-    as vectors were understood in your first course in linear algebra.
-    In fact, many types of mathematical object exhibit similar behaviour.
-    Examples include matrices, polynomials, and even functions.
-  </p>
-
-  <p>
-    Linear algebra, as an abstract mathematical topic, begins with a realization of the importance of these properties.
-    Indeed, these properties, established as theorems for vectors in <m>\R^n</m>,
-    become the <em>axioms</em> for the abstract notion of a <em>vector space</em>.
-    The advantage of abstracting these ideas is that any proofs we write that depend only on these axioms will automatically be valid for any set of objects satisfying those axioms.
-    That is, a result that is true for vectors in <m>\R^2</m> is often also true for vectors in <m>\R^n</m>, and for matrices, and polynomials, and so on.
-    Mathematicians like to be efficient, and prefer to establish a result once in an abstract setting,
-    knowing that it will then apply to many concrete settings that fit into the framework of the abstract result.
-  </p>
-
+    <p>
+      Linear algebra, as an abstract mathematical topic, begins with a realization of the importance of these properties.
+      Indeed, these properties, established as theorems for vectors in <m>\R^n</m>,
+      become the <em>axioms</em> for the abstract notion of a <em>vector space</em>.
+      The advantage of abstracting these ideas is that any proofs we write that depend only on these axioms will automatically be valid for any set of objects satisfying those axioms.
+      That is, a result that is true for vectors in <m>\R^2</m> is often also true for vectors in <m>\R^n</m>, and for matrices, and polynomials, and so on.
+      Mathematicians like to be efficient, and prefer to establish a result once in an abstract setting,
+      knowing that it will then apply to many concrete settings that fit into the framework of the abstract result.
+    </p>
+  </introduction>
+  
   <xi:include href="./section_vsp_intro.ptx"/>
   <xi:include href="./section_subspace.ptx"/>
   <xi:include href="./section_span.ptx"/>

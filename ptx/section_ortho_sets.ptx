@@ -337,20 +337,26 @@
           This is simply a homogeneous system of three equations in four variables.
           Using the Sage cell below, we find that our vector must satisfy
           <m>a=\frac12 d, b = -3d, c=-\frac12 d</m>.
+        </p>
+
+        <sage>
+          <input>
+            from sympy import *
+            init_printing()
+            A=Matrix(3,4,[1,0,1,0,-1,0,1,1,1,1,-1,2])
+            A.rref()
+          </input>
+          <output>
+            \[\bbm 1\amp 0\amp 0\amp -\frac12\\ 0\amp 1\amp 0\amp 3\\ 0\amp 0\amp 1\amp \frac12\ebm, (0,1,2)\]
+          </output>
+        </sage>
+
+        <p>
           One possible nonzero solution is to take <m>d=2</m>, giving <m>\xx=(1,-6,-1,2)</m>.
           We'll leave the verification that this vector works as an easy exercise.
         </p>
       </solution>
     </exercise>
-
-    <sage>
-      <input>
-        from sympy import *
-        init_printing()
-        A=Matrix(3,4,[1,0,1,0,-1,0,1,1,1,1,-1,2])
-        A.rref()
-      </input>
-    </sage>
 
     <p>
       The requirement that the vectors in an orthogonal set be nonzero is partly because the alternative would be boring,

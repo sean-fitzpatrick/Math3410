@@ -204,14 +204,19 @@
 
     <sage>
       <input>
+        from sympy import *
+        init_printing()
         Z = Matrix([2-I,3*I,4+2*I])
         W = Matrix([3*I,4-5*I,-2+2*I])
         Z, W, Z.dot(W.H)
       </input>
+      <output>
+        \[\left(\bbm 2-i\\3i\\4+2i\ebm, \bbm 3i\\4-5i\\-2+2i\ebm, (-2-2i)(4+2i)-3i(2-i)+3i(4+5i)\right)\]
+      </output>
     </sage>
 
     <p>
-      Again, you might want to wrap that last term in <c>simplify()</c>.
+      Again, you might want to wrap that last term in <c>simplify()</c> (in which case you'll get <m>-22-6i</m> for the dot product).
       Above, we saw that the complex inner product is designed to be positive definite, like the real inner product.
       The remaining properties of the complex inner product are given as follows.
     </p>
@@ -397,11 +402,12 @@
 
     <sage>
       <input>
-        from sympy import *
-        init_printing()
         A = Matrix(3,3,[4,1-I,-2+3*I,1+I,5,7*I,-2-3*I,-7*I,-4])
-        A == H
+        A == A.H
       </input>
+      <output>
+        \[\text{True}\]
+      </output>
     </sage>
 
     <p>
@@ -415,6 +421,12 @@
         B = Matrix(2,2,[1/2+1/2*I, sqrt(2)/2,1/2-1/2*I,(sqrt(2)/2)*I])
         B,B*B.H
       </input>
+      <output>
+        \[\left(\bbm \frac12+\frac{i}{2}\amp \frac{\sqrt{2}}{2}\\ \frac12-\frac{i}{2}\amp \frac{\sqrt{2}i}{2}\ebm,
+         \bbm \frac12 + \left(\frac12-\frac{i}{2}\right)\left(\frac12+\frac{i}{2}\right)\amp
+        -\frac{i}{2}+left(\frac12+\frac{i}{2}\right)^2\\ \left(\frac12-\frac{i}{2}\right)^2\amp
+        \frac12 + \left(\frac12-\frac{i}{2}\right)\left(\frac12+\frac{i}{2}\right)\ebm\right)\]
+      </output>
     </sage>
 
     <p>
@@ -634,11 +646,12 @@
 
     <sage>
       <input>
-        from sympy import *
-        init_printing()
         A = Matrix(2,2,[4,3-I,3+I,1])
         A.eigenvects()
       </input>
+      <output>
+        \[\left[\left(-1,1,\bbm -\frac35+\frac{i}{5}\\1\ebm\right),\left(6,1,\bbm \frac32-\frac{i}{2}\ebm\right)\right]\]
+      </output>
     </sage>
 
     <p>
@@ -671,6 +684,9 @@
         L = A.eigenvects()
         L
       </input>
+      <output>
+        \[\left[\left(-1,1,\bbm -\frac35+\frac{i}{5}\\1\ebm\right), \left(6,1,\bbm \frac32-\frac{i}{2}\\1\ebm\right)\right]\]
+      </output>
     </sage>
 
     <p>
@@ -705,6 +721,11 @@
         U = u1.row_join(u2)
         u1, u2, U, simplify(U.H*A*U)
       </input>
+      <output>
+        \[\left(\bbm\frac{\sqrt{35}(-\frac35+\frac{i}{5})}{7}\\ \frac{\sqrt{35}}{7}\ebm,\bbm \frac{\sqrt{14}(\frac32-\frac{i}{2})}{7}\\ \frac{\sqrt{14}}{7}\ebm,
+        \bbm \frac{\sqrt{35}(-\frac35+\frac{i}{5})}{7} \amp \frac{\sqrt{14}(\frac32-\frac{i}{2})}{7}\\ \frac{\sqrt{35}}{7} \amp\frac{\sqrt{14}}{7}\ebm,
+        \bbm -1\amp 0\\0\amp 6\ebm\right)\]
+      </output>
     </sage>
 
     <p>

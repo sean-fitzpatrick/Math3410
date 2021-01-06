@@ -283,14 +283,37 @@
       </p>
 
       <p>
-        We compute (using the Sage cell below) that
-        <me>
-          P^{-1}=\frac13\bbm 1\amp 2\amp -4\\1\amp -1\amp 2\\0\amp 0\amp 3\ebm
-        </me>,
-        and
-        <me>
-          M(T)P^{-1}=\bbm 1\amp 2\amp -1\\-1\amp 0\amp 2\ebm
-        </me>.
+        To compute <m>P^{-1}</m>, we use the computer:
+      </p>
+
+      <sage>
+        <input>
+          from sympy import *
+          init_printing()
+          P = Matrix(3,3,[1,2,0,1,-1,2,0,0,1])
+          P**-1
+        </input>
+        <output>
+          \[\bbm \frac13\amp \frac23\amp -frac43\\ \frac13\amp -\frac13 \amp \frac23\\0\amp 0\amp 1\ebm\]
+        </output>
+      </sage>
+
+      <p>
+        Next, we find <m>M(T)P^{-1}</m>:
+      </p>
+
+      <sage>
+        <input>
+          M = Matrix(2,3,[3,0,3,-1,-2,2])
+          v = Matrix([2,3,-4])
+          M*P**-1
+        </input>
+        <output>
+          \[\bbm 1\amp 2\amp -1\\-1\amp 0\amp 2\ebm\]
+        </output>
+      </sage>
+
+      <p>
         This matrix first converts the coefficient vector for a polynomial <m>p(x)</m>
         with respect to the standard basis into the coefficient vector for our given basis <m>B</m>,
         and then multiplies by the matrix representing our transformation.
@@ -299,7 +322,21 @@
 
       <p>
         The polynomial <m>p(x) = 2+3x-4x^2</m> has coefficient vector <m>\bbm 2\\3\\-4\ebm</m>
-        with respect to the standard basis. We find that <m>M(T)P^{-1}\bbm 2\\3\\-4\ebm = \bbm 12\\-10\ebm</m>.
+        with respect to the standard basis. We find that <m>M(T)P^{-1}\bbm 2\\3\\-4\ebm = \bbm 12\\-10\ebm</m>:
+      </p>
+
+      <sage>
+        <input>
+          M = Matrix(2,3,[3,0,3,-1,-2,2])
+          v = Matrix([2,3,-4])
+          (M*P**-1)*v
+        </input>
+        <output>
+          \[\bbm 12\\-10\ebm\]
+        </output>
+      </sage>
+
+      <p>
         The coefficients <m>12</m> and <m>-10</m> are the coefficients of <m>T(p(x))</m>
         with repsect to the basis <m>D</m>. Thus,
         <me>
@@ -318,12 +355,34 @@
         We can then write a new matrix <m>\hat{M}(T) = QM(T)P^{-1}</m>;
         this new matrix is now the matrix representation of <m>T</m> with respect to the
         <em>standard</em> bases of <m>P_2(\R)</m> and <m>\R^2</m>.
+      </p>
+
+      <sage>
+        <input>
+          Q = Matrix(2,2,[0,-1,1,1])
+          Q*M*P**-1
+        </input>
+        <output>
+          \[\bbm 1\amp 0\amp -2\\0\amp 2\amp 1\ebm\]
+        </output>
+      </sage>
+
+      <p>
         We check that
         <me>
           \hat{M}(T)\bbm 2\\3\\-4\ebm = \bbm 10\\2\ebm
         </me>,
         as before.
       </p>
+
+      <sage>
+        <input>
+          (Q*M*P**-1)*v
+        </input>
+        <output>
+          \[\bbm 10\\2 \ebm\]
+        </output>
+      </sage>
 
       <p>
         We find that <m>\tilde{M}(T) = \bbm 1\amp 0\amp -2\\0\amp 2\amp 1\ebm</m>.
@@ -339,30 +398,6 @@
       </p>
     </solution>
   </example>
-
-  <sage>
-    <input>
-      from sympy import *
-      init_printing()
-      P = Matrix(3,3,[1,2,0,1,-1,2,0,0,1])
-      P**-1
-    </input>
-  </sage>
-
-  <sage>
-    <input>
-      M = Matrix(2,3,[3,0,3,-1,-2,2])
-      v = Matrix([2,3,-4])
-      M*P**-1,v,(M*P**-1)*v
-    </input>
-  </sage>
-
-  <sage>
-    <input>
-      Q = Matrix(2,2,[0,-1,1,1])
-      Q*M*P**-1
-    </input>
-  </sage>
 
   <p>
     The previous example illustrated some important observations that are true in general.
@@ -396,12 +431,16 @@
     The vertical arrows are the coefficient isomorphisms <m>C_{B_0},C_{B_1},C_{D_0},C_{D_1}</m>.
   </p>
 
+  <p>
+    In the <init>HTML</init> version of the book, you can click and drag to rotate the figure below.
+  </p>
+
   <figure xml:id="fig-basis-cube">
     <caption>Diagramming matrix of a transformation with respect to two different choices of basis</caption>
     <interactive xml:id="geogebra-basis-cube" platform="geogebra" width="67%" aspect="1:1">
       <slate xml:id="basis-cube" surface="geogebra" source="images/basis_cube.ggb" aspect="1:1"/>
       <static>
-        <image xml:id="img-basis-cube" width="67%" source="images/basis_cube.svg"/>
+        <image xml:id="img-basis-cube" width="67%" source="images/basis_cube.pdf"/>
       </static>
     </interactive>
   </figure>
@@ -437,7 +476,24 @@
         </me>,
         we have the matrix <m>P = \bbm 1\amp 0\amp 0\amp 1\\0\amp 1\amp 1\amp 0\\0\amp 0\amp 1\amp 0\\0\amp 1\amp 0\amp 1\ebm</m>,
         representing the change from the basis <m>B</m> the basis <m>B_0</m>.
-        The basis <m>D</m> of <m>P_2(\R)</m> is already the standard basis.
+        The basis <m>D</m> of <m>P_2(\R)</m> is already the standard basis,
+        so we need the matrix <m>M_{DB}(T)P^{-1}</m>:
+      </p>
+
+      <sage>
+        <input>
+          from sympy import *
+          init_printing()
+          M = Matrix(3,4,[2,-1,0,3,0,4,-5,1,-1,0,3,-2])
+          P = Matrix(4,4,[1,0,0,1,0,1,1,0,0,0,1,0,0,1,0,1])
+          M*P**-1
+        </input>
+        <output>
+          \[\bbm 2\amp -2\amp 2\amp 1\\0\amp 3\amp -8\amp 1\\-1\amp 1\amp 2\amp -1\ebm\]
+        </output>
+      </sage>
+
+      <p>
         For a matrix <m>X = \bbm a\amp b\\c\amp d\ebm</m> we find
         <me>
           M_{DB}(T)P^{-1}C_{B_0}(X)=\bbm 2\amp -2\amp 2\amp 1\\0\amp 3\amp -8\amp 1\\-1\amp 1\amp 2\amp -1\ebm\bbm a\\b\\c\\d\ebm =
@@ -448,18 +504,9 @@
           <mrow>T\left(\bbm a\amp b\\c\amp d\ebm\right) \amp = C_D^{-1}\bbm 2a-2b+2c+d\\3b-8c+d\\-a+b+2c-d\ebm</mrow>
           <mrow>\amp = (2a-2b+2c+d)+(3b-8c+d)x+(-a+b+2c-d)x^2</mrow>
         </md>.
-
       </p>
     </solution>
   </exercise>
-
-  <sage>
-    <input>
-      M = Matrix(3,4,[2,-1,0,3,0,4,-5,1,-1,0,3,-2])
-      P = Matrix(4,4,[1,0,0,1,0,1,1,0,0,0,1,0,0,1,0,1])
-      M*P**-1
-    </input>
-  </sage>
 
   <p>
     In textbooks such as Sheldon Axler's <em>Linear Algebra Done Right</em> that focus primarily on linear transfomrations,

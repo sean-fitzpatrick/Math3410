@@ -270,6 +270,26 @@
     <p>
       In most cases where you want to reduce a matrix, you're going to want to simply use the <c>rref</c> function.
       But there are times where this can be overzealous; for example, if you have a matrix with one or more symbols.
+      One option is to replace <c>A.rref()</c> with <c>A.echelon_form()</c>.
+      The <c>echelon_form</c> function creates zeros in the pivot columns,
+      but does not create leading on ones.
+    </p>
+
+    <p>
+      For example, let's take the matrix <m>A = \bbm a \amp 2\amp b\\2\amp 1\amp a\\2a\amp b\amp 3\ebm</m>.
+      Note the difference in output between <c>rref</c> and <c>echelon_form</c>.
+    </p>
+
+    <sage>
+      <input>
+        a = Symbol('a')
+        b = Symbol('b')
+        A = Matrix(3,3,[a,2,b,2,1,a,2*a,b,3])
+        A, A.rref(), A.echelon_form()
+      </input>
+    </sage>
+    
+    <p>
       It is possible to manually perform row operations when you need additional control.
       This is achieved using the function <c>A.elementary_row_op(&lt;arguments&gt;)</c>,
       with arguments <c>op,row,k,row1,row2</c>.
@@ -410,8 +430,9 @@
         <li>
           <p>
             For the characteristic polynomial, use <c>A.charpoly()</c>.
-            You might need <c>A.charpoly().as_expr()</c> but this hasn't seemed necessary.
-            For best results, you might prefer to use <c>factor(A.charpoly())</c>.
+            However, the result will give you something SymPy calls a <q>PurePoly</q>,
+            and the <c>factor</c> command will have no effect.
+            Instead, use <c>A.charpoly().as_expr()</c>.
           </p>
         </li>
         <li>

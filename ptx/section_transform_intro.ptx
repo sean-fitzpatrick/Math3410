@@ -328,6 +328,22 @@
           \bbm 3\amp 2\\1\amp -5\ebm\bbm a\\b\ebm = \bbm 4\\3\ebm.
         </me>
         Solving (perhaps using the code cell below), we get <m>a=\frac{26}{17}, b = -\frac{5}{17}</m>.
+      </p>
+
+      <sage>
+        <input>
+          from sympy import *
+          init_printing()
+          A = Matrix(2,2,[3,2,1,-5])
+          B = Matrix(2,1,[4,3])
+          (A**-1)*B
+        </input>
+        <output>
+          \[\bbm \frac{26}{17}\\-\frac{5}{17}\ebm\]
+        </output>
+      </sage>
+
+      <p>
         Therefore,
         <me>
           T\bbm 3\\4\ebm = \frac{26}{17}\bbm 1\\4\ebm -\frac{5}{17}\bbm 2\\-1\ebm = \bbm 16/17\\109/17\ebm
@@ -336,15 +352,7 @@
     </solution>
   </exercise>
 
-  <sage>
-    <input>
-      from sympy import *
-      init_printing()
-      A = Matrix(2,2,[3,2,1,-5])
-      B = Matrix(2,1,[4,3])
-      (A**-1)*B
-    </input>
-  </sage>
+
 
   <exercise>
     <statement>
@@ -397,23 +405,45 @@
         Since <m>\{(1,2),(-1,1)\}</m> forms a basis of <m>\R^2</m>
         (the vectors are not parallel and there are two of them),
         it suffices to determine how to write a general vector in terms of this basis.
-        suppose
+        Suppose
         <me>
           x(1,2)+y(-1,1)=(a,b)
         </me>
         for a general element <m>(a,b)\in \R^2</m>.
-        This is equivalent to the matrix equation <m>\bbm 1\amp -1\\2\amp 1\ebm\bbm x\\y\ebm = \bbm a\\b\ebm</m>.
-        We find:
+        This is equivalent to the matrix equation <m>\bbm 1\amp -1\\2\amp 1\ebm\bbm x\\y\ebm = \bbm a\\b\ebm</m>,
+        which we can solve as <m>\bbm x\\y\ebm = \bbm 1\amp -1\\2\amp 1\ebm^{-1}\bbm a\\b\ebm</m>:
+      </p>
+
+      <sage>
+        <input>
+          from sympy import *
+          init_printing()
+          a, b = symbols('a b', real = True, constant = True)
+          A = Matrix(2,2,[1,-1,2,1])
+          B = Matrix(2,1,[a,b])
+          (A**-1)*B
+        </input>
+        <output>
+          \[\bbm \frac{a}{3}+\frac{b}{3}\\-\frac{2a}{3}+\frac{b}{3}\ebm\]
+        </output>
+      </sage>
+
+      <p>
+        This gives us the result
         <me>
-          (a,b) = \frac13(a+b)(1,2)+\frac13(-2a+b)(-1,1).
+          (a,b) = \frac13(a+b)\cdot (1,2)+\frac13(-2a+b)\cdot (-1,1).
         </me>
         Thus,
         <md>
-          <mrow>T(a,b) \amp = \frac13(a+b)T(1,2)+\frac13(-2a+b)T(-1,1) </mrow>
-          <mrow> \amp = \frac13(a+b)(1,1,0)+\frac13(-2a+b)(0,2,-1)</mrow>
+          <mrow>T(a,b) \amp = \frac13(a+b)\cdot T(1,2)+\frac13(-2a+b)\cdot T(-1,1) </mrow>
+          <mrow> \amp = \frac13(a+b)\cdot (1,1,0)+\frac13(-2a+b)\cdot (0,2,-1)</mrow>
           <mrow> \amp = \left(\frac{a+b}{3}, -a+b, \frac{2a-b}{3}\right)</mrow>
         </md>.
-        Therefore,
+      </p>
+
+
+      <p>
+        We conclude that
         <me>
           T(3,2) = \left(\frac53, -1, \frac43\right)
         </me>.
@@ -421,14 +451,7 @@
     </solution>
   </exercise>
 
-  <sage>
-    <input>
-      a, b = symbols('a b', real = True, constant = True)
-      A = Matrix(2,2,[1,-1,2,1])
-      B = Matrix(2,1,[a,b])
-      (A**-1)*B
-    </input>
-  </sage>
+
 
   <exercise xml:id="ex_lintrans-indep">
     <statement>

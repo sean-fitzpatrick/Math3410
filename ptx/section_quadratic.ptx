@@ -84,9 +84,12 @@
       from sympy import *
       init_printing()
       A1 = Matrix(2,2,[4,-2,-2,4])
-      p = A1.charpoly()
+      p = A1.charpoly().as_expr()
       factor(p)
     </input>
+    <output>
+      \[(\lambda-6)(\lambda-2)\]
+    </output>
   </sage>
 
   <p>
@@ -98,6 +101,9 @@
     <input>
       A1.eigenvects()
     </input>
+    <output>
+      \[\left[\left(2,1,\bbm 1\\1\ebm\right),\left(6,1,\bbm -1\\1\ebm\right)\right]\]
+    </output>
   </sage>
 
   <p>

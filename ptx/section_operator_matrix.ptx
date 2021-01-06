@@ -99,7 +99,24 @@
         </me>.
         Similarly, <m>C_B(4x)=P^{-1}\bbm 0\\4\\0\ebm = P^{-1}C_{B_0}(4x)</m>, and
         <m>C_B(2+x+2x^2)=P^{-1}\bbm 2\\1\\2\ebm = P^{-1}C_{B_0}(2+x+2x^2)</m>.
-        Thus, (using the Sage code below)
+        Using the computer, we find:
+      </p>
+
+      <sage>
+        <input>
+          from sympy import *
+          init_printing()
+          P = Matrix(3,3,[1,0,2,-1,1,0,0,3,-1])
+          M = Matrix(3,3,[1,0,2,0,4,1,1,0,2])
+          P**-1, P**-1*M
+        </input>
+        <output>
+          \[\left(\bbm 1/7\amp -6/7\amp 3/7\\1/7\amp 1/7\amp 2/7\\3/7\amp 3/7\amp -1/7\ebm, \bbm 3/7\amp -24/7\amp 0\\3/7\amp 4/7\amp 1\\2/7\amp 12/7\amp 1\ebm\right)\]
+        </output>
+      </sage>
+
+      <p>
+        That is,
         <md>
           <mrow>M_B(T) \amp =\bbm C_B(T(1-x)) \amp C_B(T(x+3x^2)) \amp C_B(T(2-x^2))\ebm</mrow>
           <mrow> \amp =\bbm P^{-1}C_{B_0}T(1-x) \amp P^{-1} C_{B_0}T(x+3x^2) \amp P^{-1}C_{B_0}(T(2-x^2))\ebm</mrow>
@@ -128,16 +145,6 @@
       </p>
     </solution>
   </example>
-
-  <sage>
-    <input>
-      from sympy import *
-      init_printing()
-      P = Matrix(3,3,[1,0,2,-1,1,0,0,3,-1])
-      M = Matrix(3,3,[1,0,2,0,4,1,1,0,2])
-      P**-1, P**-1*M
-    </input>
-  </sage>
 
   <p>
     In general, given an ordered basis <m>B=\basis{b}{n}</m> for a vector space <m>V</m>
@@ -187,9 +194,14 @@
 
   <sage>
     <input>
+      from sympy import *
+      init_printing()
       M0 = Matrix(3,3,[1,0,0,1,1,1,1,0,0])
       P**-1*M0*P
     </input>
+    <output>
+      \[\bbm 3/7\amp -24/7\amp 0\\3/7\amp 4/7\amp 1\\2/7\amp 12/7\amp 1\ebm\]
+    </output>
   </sage>
 
   <exercise>

@@ -31,61 +31,73 @@
         Determine whether the vector <m>\bbm 2\\3\ebm</m> is in the span of the vectors <m>\bbm 1\\1\ebm,\bbm -1\\2\ebm</m>.
       </p>
     </statement>
+    <solution>
+      <p>
+        This is really asking: are there scalars <m>s,t</m> such that
+        <me>
+          s\bbm 1\\1\ebm + t\bbm -1\\2\ebm = \bbm 2\\3\ebm
+        </me>?
+        And this, in turn, is equivalent to the system
+        <md>
+          <mrow>s -t \amp=2 </mrow>
+          <mrow>s+2t \amp=3 </mrow>
+        </md>,
+        which is the same as the matrix equation
+        <me>
+          \bbm 1\amp -1\\1\amp 2\ebm\bbm s\\t\ebm = \bbm 2\\3\ebm.
+        </me>
+        Solving the system confirms that there is indeed a solution, so the answer to our original question is yes.
+      </p>
+
+      <p>
+        To confirm the above example (and see what the solution is), we can use the computer.
+        This first code cell loads the <c>sympy</c> Python library,
+        and then configures the output to look nice.
+        For details on the code used below, see <xref ref="ch-computation" text="custom">the Appendix</xref>.
+      </p>
+
+      <sage>
+        <input>
+          from sympy import *
+          init_printing()
+          A = Matrix(2,3,[1,-1,2,1,2,3])
+          A.rref()
+        </input>
+        <output>
+          \begin{equation*}
+            \bbm 1\amp 0\amp \frac73\\0\amp 1\amp \frac13\ebm, (0,1)
+          \end{equation*}
+        </output>
+      </sage>
+
+      <p>
+        The above code produces the reduced row-echelon form of the augmented matrix for our system.
+        (The tuple <m>(0,1)</m> lists the pivot columns <mdash/> note that Python indexes the columns starting at <m>0</m> rather than <m>1</m>.)
+        Do you remember how to get the answer from here? Here's another approach.
+      </p>
+
+      <sage>
+        <input>
+          B = Matrix(2,2,[1,-1,1,2])
+          B
+        </input>
+        <output>
+          \[\bbm 1\amp -1\\1\amp 2\ebm\]
+        </output>
+      </sage>
+
+      <sage>
+        <input>
+          C = Matrix(2,1,[2,3])
+          X = (B**-1)*C
+          X
+        </input>
+        <output>
+          \[\bbm \frac 73\\\frac13\ebm\]
+        </output>
+      </sage>
+    </solution>
   </exercise>
-
-  <p>
-    This is really asking: are there scalars <m>s,t</m> such that
-    <me>
-      s\bbm 1\\1\ebm + t\bbm -1\\2\ebm = \bbm 2\\3\ebm
-    </me>?
-    And this, in turn, is equivalent to the system
-    <md>
-      <mrow>s -t \amp=2 </mrow>
-      <mrow>s+2t \amp=3 </mrow>
-    </md>,
-    which is the same as the matrix equation
-    <me>
-      \bbm 1\amp -1\\1\amp 2\ebm\bbm s\\t\ebm = \bbm 2\\3\ebm.
-    </me>
-    Solving the system confirms that there is indeed a solution, so the answer to our original question is yes.
-  </p>
-
-  <p>
-    To confirm the above example (and see what the solution is), we can use the computer.
-  </p>
-  <sage>
-    <input>
-      from sympy import *
-      init_printing()
-    </input>
-  </sage>
-
-  <sage>
-    <input>
-      A = Matrix(2,3,[1,-1,2,1,2,3])
-      A.rref()
-    </input>
-  </sage>
-
-  <p>
-    The above code produces the reduced row-echelon form of the augmented matrix for our system.
-    Do you remember how to get the answer from here? Here's another approach.
-  </p>
-
-  <sage>
-    <input>
-      B = Matrix(2,2,[1,-1,1,2])
-      B
-    </input>
-  </sage>
-
-  <sage>
-    <input>
-      C = Matrix(2,1,[2,3])
-      X = (B**-1)*C
-      X
-    </input>
-  </sage>
 
   <p>
     Our next example involves polynomials.
@@ -100,77 +112,109 @@
         <m>\spn\{1+2x-x^2,3+5x+2x^2\}</m>.
       </p>
     </statement>
+    <solution>
+      <p>
+        We seek scalars <m>s,t</m> such that
+        <me>
+          s(1+2x-2x^2)+t(3+5x+2x^2)=1+x+4x^2
+        </me>.
+        On the left-hand side, we expand and gather terms:
+        <me>
+          (s+3t)+(2s+5t)x+(-2s+2t)x^2 = 1+x+4x^2
+        </me>.
+        These two polynomials are equal if and only if we can solve the system
+        <md>
+          <mrow>s+3t \amp = 1 </mrow>
+          <mrow>2s+5t \amp =1</mrow>
+          <mrow> -2s+2t \amp =4</mrow>
+        </md>.
+      </p>
+
+      <p>
+        We can solve this computationally using matrices again.
+      </p>
+      <sage>
+        <input>
+          from sympy import *
+          init_printing()
+          M = Matrix(3,3,[1,3,1,2,5,1,-2,2,4])
+          M.rref()
+        </input>
+        <output>
+          \[\bbm 1\amp 0\amp 0\\0\amp 1\amp 0\\0\amp 0\amp 1\ebm, (0,1,2)\]
+        </output>
+      </sage>
+      <p>
+        So, what's the answer? Is <m>p(x)</m> in the span?
+        Can we determine what polynomials are in the span?
+        Let's consider a general polynomial <m>q(x)=a+bx+cx^2</m>.
+        A bit of thought tells us that the coefficients <m>a,b,c</m>
+        should replace the constants <m>1,1,4</m> above.
+      </p>
+
+      <sage>
+        <input>
+          a, b, c = symbols('a b c', real = True, constant = True)
+          N = Matrix(3,3,[1,3,a,2,5,b,-2,2,c])
+          N
+        </input>
+        <output>
+          \[\bbm 1\amp 3\amp a\\2\amp 5\amp b\\-2\amp 2\amp c\ebm\]
+        </output>
+      </sage>
+
+      <p>
+        Asking the computer to reduce this matrix to <init>RREF</init> won't produce the desired result.
+        But we can always specify row operations.
+      </p>
+
+      <sage>
+        <input>
+          N1 = N.elementary_row_op(op='n-&gt;n+km',row=1,k=-2,row2=0)
+          N1
+        </input>
+        <output>
+          \[\bbm 1\amp 3\amp a\\0\amp -1\amp -2a+b\\-2\amp 2\amp c\ebm\]
+        </output>
+      </sage>
+
+      <p>
+        In the <c>elementary_row_op</c> function called above,
+        we are asking the computer to change row <m>1</m> (the second row)
+        by adding <m>-2</m> times row <m>0</m> )the first row).
+        See <xref ref="subsec-sympy-matrix">Section</xref> for complete details on this syntax.
+      </p>
+
+      <p>
+        Now we repeat. Here is another cell to work with:
+      </p>
+
+      <sage>
+
+      </sage>
+
+      <p>
+        Another option is to replace the <c>rref()</c> function with the
+        <c>echelon_form()</c> function, which doesn't simplify quite as far:
+      </p>
+
+      <sage>
+        <input>
+          a, b, c = symbols('a b c', real = True, constant = True)
+          N = Matrix(3,3,[1,3,a,2,5,b,-2,2,c])
+          N.echelon_form()
+        </input>
+        <output>
+          \[\bbm 1\amp 3\amp a\\0\amp -1\amp -2a+b\\0\amp 0\amp 14a-8b-c\ebm\]
+        </output>
+      </sage>
+
+      <p>
+        For a consistent system, we need <m>c=14a-8b</m>.
+      </p>
+    </solution>
   </exercise>
 
-  <p>
-    We seek scalars <m>s,t</m> such that
-    <me>
-      s(1+2x-2x^2)+t(3+5x+2x^2)=1+x+4x^2
-    </me>.
-    On the left-hand side, we expand and gather terms:
-    <me>
-      (s+3t)+(2s+5t)x+(-2s+2t)x^2 = 1+x+4x^2
-    </me>.
-    These two polynomials are equal if and only if we can solve the system
-    <md>
-      <mrow>s+3t \amp = 1 </mrow>
-      <mrow>2s+5t \amp =1</mrow>
-      <mrow> -2s+2t \amp =4</mrow>
-    </md>.
-  </p>
-
-  <p>
-    We can solve this computationally using matrices again.
-  </p>
-  <sage>
-    <input>
-      M = Matrix(3,3,[1,3,1,2,5,1,-2,2,4])
-      M.rref()
-    </input>
-  </sage>
-  <p>
-    So, what's the answer? Is <m>p(x)</m> in the span?
-    Can we determine what polynomials are in the span?
-    Let's consider a general polynomial <m>q(x)=a+bx+cx^2</m>.
-    A bit of thought tells us that the coefficients <m>a,b,c</m>
-    should replace the constants <m>1,1,4</m> above.
-  </p>
-
-  <sage>
-    <input>
-      a, b, c = symbols('a b c', real = True, constant = True)
-      N = Matrix(3,3,[1,3,a,2,5,b,-2,2,c])
-      N
-    </input>
-  </sage>
-
-  <p>
-    Asking the computer to reduce this matrix won't produce the desired result.
-    (Maybe someone can figure out how to define the constants in a way that works?)
-    But we can always specify row operations.
-  </p>
-
-  <sage>
-    <input>
-      N1 = N.elementary_row_op(op='n-&gt;n+km',row=1,k=-2,row2=0)
-      N1
-    </input>
-  </sage>
-
-  <p>
-    In the <c>elementary_row_op</c> function called above,
-    we are asking the computer to change row <m>1</m> (the second row)
-    by adding <m>-2</m> times row <m>0</m> )the first row).
-    See <xref ref="subsec-sympy-matrix">Section</xref> for complete details on this syntax.
-  </p>
-
-  <p>
-    Now we repeat. Here is another cell to work with:
-  </p>
-
-  <sage>
-
-  </sage>
 
   <p>
     One of the reasons we care about linear combinations and span is that it gives us an easy means of generating subspaces,
