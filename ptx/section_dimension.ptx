@@ -84,30 +84,137 @@
         Find a basis for <m>U=\{X\in M_{22} \,|\, XA = AX\}</m>, if <m>A = \bbm 1\amp 1\\0\amp 0\ebm</m>
       </p>
     </statement>
+    <solution>
+      <p>
+        Let <m>X=\bbm a\amp b\\c\amp d\ebm</m>. Then <m>AX = \bbm a+c\amp b+d\\0\amp 0\ebm</m>,
+        and <m>XA = \bbm a\amp a\\c\amp c\ebm</m>, so the condition <m>AX=XA</m>
+        requires:
+        <md>
+          <mrow>a+c \amp = a</mrow>
+          <mrow>b+d \amp = a</mrow>
+          <mrow>0 \amp = c</mrow>
+          <mrow>0 \amp =c</mrow>
+        </md>.
+      </p>
+
+      <p>
+        So <m>c=0</m>, in which case the first equation <m>a=a</m> is trivial,
+        and we are left with the single equation <m>a=b+d</m>. Thus, our matrix <m>X</m>
+        must be of the form
+        <me>
+          X = \bbm b+d \amp b\\0\amp d\ebm = b\bbm 1\amp 1\\0\amp 0\ebm + d\bbm 1\amp 0\\0\amp 1\ebm
+        </me>.
+        Since the matrices <m>\bbm 1\amp 1\\0\amp 0\ebm</m> and <m>\bbm 1\amp 0\\0\amp 1\ebm</m>
+        are not scalar multiples, they must be independent, and therefore, they form a basis for <m>U</m>.
+      </p>
+    </solution>
   </exercise>
 
   <exercise>
     <statement>
       <p>
         Show that the following are bases of <m>\R^3</m>:
-        <ul>
+        <ol>
           <li><m>\{(1,1,0),(1,0,1),(0,1,1)\}</m></li>
           <li><m>\{(-1,1,1),(1,-1,1),(1,1,-1)</m></li>
-        </ul>
+        </ol>
       </p>
     </statement>
+    <solution>
+      <p>
+        We need to show that each set is independent, and that it spans.
+      </p>
+      <p>
+        <ol>
+          <li>
+            <p>
+              The set is independent if the equation
+              <me>
+                x(1,1,0)+y(1,0,1)+z(0,1,1)=(0,0,0)
+              </me>
+              has <m>x=y=z=0</m> as its only solution.
+              This equation is equivalent to the system
+              <md>
+                <mrow>x+y \amp =0</mrow>
+                <mrow>x+z \amp =0</mrow>
+                <mrow>y+z \amp =0</mrow>
+              </md>.
+            </p>
+            <p>
+              We know that the solution to this system is unique if the coefficient matrix
+              <m>A = \bbm 1\amp 1\amp 0\\1\amp 0\amp 1\\0\amp 1\amp 1\ebm</m> is invertible.
+              Note that the columns of this matrix are vectors in our set.
+            </p>
+            <p>
+              We can determine invertibility either by showing that the <init>RREF</init> of <m>A</m>
+              is the identity, or by showing that the determinant of <m>A</m> is nonzero.
+              Either way, this is most easily done by the computer.
+            </p>
+
+            <sage>
+              <input>
+                from sympy import *
+                init_printing()
+                A = Matrix(3,3,[1,1,0,1,0,1,0,1,1])
+                A.rref(), A.det()
+              </input>
+              <output>
+                \[\left(\bbm 1\amp 0\amp 0\\0\amp 1\amp 0\\0\amp 0\amp 1\ebm, (0,1,2)\right), -2
+              </output>
+            </sage>
+
+            <p>
+              Our set of vectors is therefore linearly independent.
+              Now, to show that it spans, we need to show that for any vector <m>(a,b,c)</m>,
+              the equation
+              <me>
+                x(1,1,0)+y(1,0,1)+z(0,1,1)=(a,b,c)
+              </me>
+              has a solution. But we know that this system has the same coefficient matrix as the one above,
+              and that existence of a solution again follows from invertibility of <m>A</m>,
+              which we have already established.
+            </p>
+            <p>
+              Note that for three vectors in <m>\R^3</m>, once independence has been confirmed,
+              span is automatic. We will soon see that this is not a coincidence.
+            </p>
+          </li>
+          <li>
+            <p>
+              Based on what we learned from the first set,
+              determining whether or not this set is a basis is equivalent to determining whether or not the matrix
+              <m>A</m> whose columns consist of the vectors in the set is invertible.
+              We form the matrix
+              <me>
+                A = \bbm -1\amp 1\amp 1\\1\amp -1\amp 1\\1\amp 1\amp -1\ebm
+              </me>
+              and then check invertibility using the computer.
+            </p>
+
+            <sage>
+              <input>
+                A = Matrix(3,3,[-1,1,1,1,-1,1,1,1,-1])
+                A.det()
+              </input>
+              <output>
+                \[4\]
+              </output>
+            </sage>
+
+            <p>
+              Since the determinant is nonzero, our set is a basis.
+            </p>
+          </li>
+        </ol>
+      </p>
+    </solution>
   </exercise>
 
-  <sage>
-    <input>
-      from sympy import *
-      init_printing()
-    </input>
-  </sage>
-
-  <sage>
-
-  </sage>
+  <p>
+    The next two exercises are left to the reader to solve.
+    In each case, your goal should be to turn the questions of independence and span into a system of equations,
+    which you can then solve using the computer.
+  </p>
 
   <exercise>
     <statement>
@@ -139,7 +246,7 @@
   <exercise>
     <statement>
       <p>
-        Find a basis and dimension for the following subpaces of <m>P_2</m>:
+        Find a basis and dimension for the following subspaces of <m>P_2</m>:
         <ol label='a'>
           <li>
             <m>U_1 = \{a(1+x)+b(x+x^2)\,|\, a,b\in\R\}</m>
@@ -573,7 +680,7 @@
     <theorem xml:id="thm-construct-complement">
       <statement>
         <p>
-          Let <m>V</m> be a finite-dimensonal vector space, and let <m>U</m> be any subspace of <m>V</m>.
+          Let <m>V</m> be a finite-dimensional vector space, and let <m>U</m> be any subspace of <m>V</m>.
           Then there exists a subspace <m>W\subseteq V</m> such that <m>U\oplus W = V</m>.
         </p>
       </statement>

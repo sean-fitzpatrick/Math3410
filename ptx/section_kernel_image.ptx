@@ -95,7 +95,7 @@
   </theorem>
 
   <p>
-    A familiar setting that you may already have encontered in a previous linear algebra course is that of a matrix transformation.
+    A familiar setting that you may already have encountered in a previous linear algebra course is that of a matrix transformation.
     Let <m>A</m> be an <m>m\times n</m> matrix. Then we can define <m>T:\R^n\to \R^m</m>
     by <m>T(\xx)=A\xx</m>, where elements of <m>\R^n,\R^m</m> are considered as column vectors.
     We then have
@@ -154,7 +154,7 @@
     and we can transform <m>A</m> into a row-echelon matrix <m>R</m> using elementary row operations,
     it follows that <m>R = UA</m> for an invertible matrix <m>U</m>; indeed,
     we have <m>U = E_kE_{k-1}\cdots E_2E_1</m>, where <m>E_1,\ldots, E_k</m>
-    are the elemetnary matrices corresponding to the row operations used to carry <m>A</m> to <m>R</m>.
+    are the elementary matrices corresponding to the row operations used to carry <m>A</m> to <m>R</m>.
   </p>
 
   <p>
@@ -231,7 +231,7 @@
 
   <p>
     Incidentally, the SymPy library for Python has built-in functions for computing nullspace and column space.
-    But it's probably worth your while to know how to determine these from the RREF of a matrix,
+    But it's probably worth your while to know how to determine these from the <init>RREF</init> of a matrix,
     without additional help from the computer.
     That said, let's see how the computer's output compares to what we found:
   </p>
@@ -262,9 +262,9 @@
   <p>
     An important result that comes out while trying to show that the <q>pivot columns</q>
     of a matrix (the ones that end up with leading ones in the RREF) are a basis for the column space
-    is that the column rank (defined as the dimesion of <m>\csp(A)</m>) and the row rank
+    is that the column rank (defined as the dimension of <m>\csp(A)</m>) and the row rank
     (the dimension of the space spanned by the columns of <m>A</m>) are equal.
-    One can therefore speak unabmiguously about the <term>rank</term> of a matrix <m>A</m>,
+    One can therefore speak unambiguously about the <term>rank</term> of a matrix <m>A</m>,
     and it is just as it's defined in a first course in linear algebra: the number of leading ones in the RREF of <m>A</m>.
   </p>
 
@@ -617,7 +617,7 @@
                 <mrow>  \amp = c_1T(\vv_1)+\cdots + c_mT(\vv_m)</mrow>
                 <mrow>  \amp = c_1\ww_1+\cdots +c_m\ww_m</mrow>
               </md>.
-              Since <m>\{\ww_1,\ldots, \ww_m\}</m> is a subset of a basis, it's indendependent.
+              Since <m>\{\ww_1,\ldots, \ww_m\}</m> is a subset of a basis, it's independent.
               Therefore, the scalars <m>c_i</m> must all be zero, and therefore <m>\vv=\mathbf{0}</m>.
             </p>
           </li>
