@@ -111,103 +111,107 @@
   </exercise>
 
   <exercise>
-    <statement>
+    <introduction>
       <p>
-        Show that the following are bases of <m>\R^3</m>:
-        <ol>
-          <li><m>\{(1,1,0),(1,0,1),(0,1,1)\}</m></li>
-          <li><m>\{(-1,1,1),(1,-1,1),(1,1,-1)</m></li>
-        </ol>
+        Show that the following sets are bases of <m>\R^3</m>.
       </p>
-    </statement>
-    <solution>
-      <p>
-        We need to show that each set is independent, and that it spans.
-      </p>
-      <p>
-        <ol>
-          <li>
-            <p>
-              The set is independent if the equation
-              <me>
-                x(1,1,0)+y(1,0,1)+z(0,1,1)=(0,0,0)
-              </me>
-              has <m>x=y=z=0</m> as its only solution.
-              This equation is equivalent to the system
-              <md>
-                <mrow>x+y \amp =0</mrow>
-                <mrow>x+z \amp =0</mrow>
-                <mrow>y+z \amp =0</mrow>
-              </md>.
-            </p>
-            <p>
-              We know that the solution to this system is unique if the coefficient matrix
-              <m>A = \bbm 1\amp 1\amp 0\\1\amp 0\amp 1\\0\amp 1\amp 1\ebm</m> is invertible.
-              Note that the columns of this matrix are vectors in our set.
-            </p>
-            <p>
-              We can determine invertibility either by showing that the <init>RREF</init> of <m>A</m>
-              is the identity, or by showing that the determinant of <m>A</m> is nonzero.
-              Either way, this is most easily done by the computer.
-            </p>
+    </introduction>
+    <task>
+      <statement>
+        <p>
+          <m>\{(1,1,0),(1,0,1),(0,1,1)\}</m>
+        </p>
+      </statement>
+      <solution>
+        <p>
+          We need to show that the set is independent, and that it spans.
+        </p>
+        <p>
+          The set is independent if the equation
+          <me>
+            x(1,1,0)+y(1,0,1)+z(0,1,1)=(0,0,0)
+          </me>
+          has <m>x=y=z=0</m> as its only solution.
+          This equation is equivalent to the system
+          <md>
+            <mrow>x+y \amp =0</mrow>
+            <mrow>x+z \amp =0</mrow>
+            <mrow>y+z \amp =0</mrow>
+          </md>.
+        </p>
+        <p>
+          We know that the solution to this system is unique if the coefficient matrix
+          <m>A = \bbm 1\amp 1\amp 0\\1\amp 0\amp 1\\0\amp 1\amp 1\ebm</m> is invertible.
+          Note that the columns of this matrix are vectors in our set.
+        </p>
+        <p>
+          We can determine invertibility either by showing that the <init>RREF</init> of <m>A</m>
+          is the identity, or by showing that the determinant of <m>A</m> is nonzero.
+          Either way, this is most easily done by the computer:
+        </p>
 
-            <sage>
-              <input>
-                from sympy import *
-                init_printing()
-                A = Matrix(3,3,[1,1,0,1,0,1,0,1,1])
-                A.rref(), A.det()
-              </input>
-              <output>
-                \[\left(\bbm 1\amp 0\amp 0\\0\amp 1\amp 0\\0\amp 0\amp 1\ebm, (0,1,2)\right), -2\]
-              </output>
-            </sage>
+        <sage>
+          <input>
+            from sympy import *
+            init_printing()
+            A = Matrix([[1,1,0],[1,0,1],[0,1,1]])
+            A.rref(), A.det()
+          </input>
+          <output>
+            \[\left(\bbm 1\amp 0\amp 0\\0\amp 1\amp 0\\0\amp 0\amp 1\ebm, (0,1,2)\right), -2\]
+          </output>
+        </sage>
 
-            <p>
-              Our set of vectors is therefore linearly independent.
-              Now, to show that it spans, we need to show that for any vector <m>(a,b,c)</m>,
-              the equation
-              <me>
-                x(1,1,0)+y(1,0,1)+z(0,1,1)=(a,b,c)
-              </me>
-              has a solution. But we know that this system has the same coefficient matrix as the one above,
-              and that existence of a solution again follows from invertibility of <m>A</m>,
-              which we have already established.
-            </p>
-            <p>
-              Note that for three vectors in <m>\R^3</m>, once independence has been confirmed,
-              span is automatic. We will soon see that this is not a coincidence.
-            </p>
-          </li>
-          <li>
-            <p>
-              Based on what we learned from the first set,
-              determining whether or not this set is a basis is equivalent to determining whether or not the matrix
-              <m>A</m> whose columns consist of the vectors in the set is invertible.
-              We form the matrix
-              <me>
-                A = \bbm -1\amp 1\amp 1\\1\amp -1\amp 1\\1\amp 1\amp -1\ebm
-              </me>
-              and then check invertibility using the computer.
-            </p>
+        <p>
+          Our set of vectors is therefore linearly independent.
+          Now, to show that it spans, we need to show that for any vector <m>(a,b,c)</m>,
+          the equation
+          <me>
+            x(1,1,0)+y(1,0,1)+z(0,1,1)=(a,b,c)
+          </me>
+          has a solution. But we know that this system has the same coefficient matrix as the one above,
+          and that existence of a solution again follows from invertibility of <m>A</m>,
+          which we have already established.
+        </p>
+        <p>
+          Note that for three vectors in <m>\R^3</m>, once independence has been confirmed,
+          span is automatic. We will soon see that this is not a coincidence.
+        </p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>
+          <m>\{(-1,1,1),(1,-1,1),(1,1,-1)\}</m>
+        </p>
+      </statement>
+      <solution>
+        <p>
+          Based on what we learned from the first set,
+          determining whether or not this set is a basis is equivalent to determining whether or not the matrix
+          <m>A</m> whose columns consist of the vectors in the set is invertible.
+          We form the matrix
+          <me>
+            A = \bbm -1\amp 1\amp 1\\1\amp -1\amp 1\\1\amp 1\amp -1\ebm
+          </me>
+          and then check invertibility using the computer.
+        </p>
 
-            <sage>
-              <input>
-                A = Matrix(3,3,[-1,1,1,1,-1,1,1,1,-1])
-                A.det()
-              </input>
-              <output>
-                \[4\]
-              </output>
-            </sage>
+        <sage>
+          <input>
+            A = Matrix([[-1,1,1],[1,-1,1],[1,1,-1]])
+            A.det()
+          </input>
+          <output>
+            \[4\]
+          </output>
+        </sage>
 
-            <p>
-              Since the determinant is nonzero, our set is a basis.
-            </p>
-          </li>
-        </ol>
-      </p>
-    </solution>
+        <p>
+          Since the determinant is nonzero, our set is a basis.
+        </p>
+      </solution>
+    </task>
   </exercise>
 
   <p>
