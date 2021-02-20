@@ -1,0 +1,759 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<section xml:id="sec-matrix-factor">
+  <title>Matrix Factorizations and Eigenvalues</title>
+  <introduction>
+    <p>
+      This section is a rather rapid tour of some cool ideas that get a lot of use in applied linear algebra.
+      We are rather light on details here. The interested reader can consult sections 8.3<ndash/>8.6 in Nicholson.
+    </p>
+  </introduction>
+
+  <subsection xml:id="subsec-matrix-factorization">
+    <title>Matrix Factorizations</title>
+
+    <p>
+      Recall that an <m>n\times n</m> matrix <m>A</m> is symmetric if <m>A^T=A</m>
+      and hermitian if <m>A^H=A</m>, where <m>A^H</m> is the conjugate transpose of a complex matrix.
+      In either case, the corresponding matrix transformation <m>T_A</m> is said to be self-adjoint,
+      which means that it satisfies the condition
+      <me>
+        \langle u,T_Av\rangle = \langle T_Au,v\rangle
+      </me>
+      for all <m>u,v\in \mathbb{R}^n</m> (or <m>\mathbb{C}^n</m>).
+    </p>
+
+    <p>
+      All such matrices (or operators) can be diagonalized,
+      in the sense that there is an orthonormal basis of eigenvectors for that matrix.
+      These eigenvectors can be arranged to form an orthogonal matrix <m>P</m> (or unitary matrix <m>U</m>) such that
+      <me>
+        P^TAP = D \quad \text{ (or } U^HAU=D)
+      </me>,
+      where <m>D</m> is a diagonal matrix whose entries are the eigenvalues of <m>A</m>.
+    </p>
+
+    <paragraphs xml:id="pars-positive-ops">
+      <title>Positive Operators</title>
+      <definition xml:id="def-positive-op">
+        <statement>
+          <p>
+            A symmetric/hermitian matrix <m>A</m> (or operator <m>T</m>) is <term>positive</term>
+            if <m>\vec{x}^TA\vec x\geq 0</m> (<m>\langle \vec x,T\vec x\rangle\geq 0</m>) for all vectors <m>\vec x\neq \vec 0</m>.
+            It is <term>positive-definite</term> if <m>\vec{x}^TA\vec x>0</m> for all nonzero <m>\vec x</m>.
+          </p>
+        </statement>
+      </definition>
+
+      <aside>
+        <p>
+          Some books will define positive-definite operators by the condition <m>\vec{x}^TA\vec{x}</m>
+          without the requirement that <m>A</m> must be symmetric/hermitian.
+          However, we will stick to the simpler definition.
+        </p>
+      </aside>
+
+      <p>
+        This is equivalent to requiring that all the eigenvalues of <m>A</m> are non-negative.
+        Every positive matrix <m>A</m> has a unique positive square root: a matrix <m>R</m> such that <m>R^2=A</m>.
+      </p>
+
+      <theorem xml:id="thm-positive-prod">
+        <statement>
+          <p>
+            For any <m>n\times n</m> matrix <m>U</m>, the matrix <m>A=U^TU</m> is positive.
+            Moreover, if <m>U</m> is invertible, then <m>A</m> is positive-definite.
+          </p>
+        </statement>
+        <proof>
+          <p>
+            For any <m>\vec{x}\neq \vec 0</m> in <m>\R^n</m>,
+            <me>
+              \vec{x}^T A\vec x = \vec{x}^TU^T U\vec{x} = (U\vec{x})^T(U\vec x) = \len{U\vec{x}}^2\geq 0
+            </me>.
+          </p>
+        </proof>
+      </theorem>
+
+      <p>
+        What is interesting is that the coverse to the above statement is also true.
+        The <term>Cholesky factorization</term> of a positive-definite matrix <m>A</m>
+        is given by <m>A=U^TU</m>, where <m>U</m> is upper-triangular,
+        with positive diagonal entries. (See Nicholson for details.)
+      </p>
+
+      <p>
+        Even better is that there is a very simple algorithm for obtaining the factorization:
+        Carry the matrix <m>A</m> to triangular form, using only row operations of the type
+        <m>R_i+kR_j\to R_i</m>. Then divide each row by the square root of the diagonal entry.
+      </p>
+
+      <p>
+        The SymPy library contains the <c>cholesky()</c> algorithm.
+        Note however that it produces a lower triangular matrix, rather than upper triangular.
+        (That is, the output gives <m>L=U^T</m> rather than <m>U</m>, so you will have <m>A=LL^T</m>.)
+        Let's give it a try. First, enter a positive-definite matrix.
+        (We'll try the one from Example 8.3.3 in Nicholson.)
+      </p>
+
+      <sage>
+        <input>
+          from sympy import *
+          init_printing()
+          A = Matrix([[10,5,2],[5,3,2],[2,2,3]])
+          A
+        </input>
+      </sage>
+
+      <p>
+        Next, find the Cholesky factorization:
+      </p>
+
+      <sage>
+        <input>
+          L = A.cholesky()
+          L, L*L.T
+        </input>
+      </sage>
+
+      <sage>
+        <input>
+          L*L.T == A
+        </input>
+      </sage>
+    </paragraphs>
+
+    <paragraphs xml:id="pars-singular-values">
+      <title>Singular Value Decomposition</title>
+      <p>
+        For any <m>n\times n</m> matrix <m>A</m>, the matrices <m>A^TA</m> and <m>AA^T</m> are both positive. (Exercise!)
+        This means that we can define <m>\sqrt{A^TA}</m>, even if <m>A</m> itself is not symmetric or positive.
+      </p>
+
+      <p>
+        <ul>
+          <li>
+            <p>
+              Since <m>A^TA</m> is symmetric, we know that it can be diagonalized.
+            </p>
+          </li>
+          <li>
+            <p>
+              Since <m>A^TA</m> is positive, we know its eigenvalues are non-negative.
+            </p>
+          </li>
+          <li>
+            <p>
+              This means we can define the <term>singular values</term> <m>\sigma_i = \sqrt{\lambda_i}</m> for each <m>i=1,\ldots, n</m>.
+            </p>
+          </li>
+          <li>
+            <p>
+              <alert>Note:</alert> it's possible to do this even if <m>A</m> is not a square matrix!
+            </p>
+          </li>
+        </ul>
+      </p>
+
+      <p>
+        The SymPy library has a function for computing the singular values of a matrix.
+        Given a matrix <c>A</c>, the command <c>A.singular_values()</c> will return its singular values.
+        Try this for a few different matrices below:
+      </p>
+
+      <sage>
+        <input>
+          M = Matrix()
+          M = Matrix([[1,2,3],[4,5,6]])
+        </input>
+      </sage>
+
+      <p>
+        In fact, SymPy can even return singular values for a matrix with variable entries!
+        Try the following example from the <url href="https://docs.sympy.org/latest/modules/matrices/matrices.html#sympy.matrices.matrices.MatrixEigen.singular_values">SymPy documentation</url>.
+      </p>
+
+      <sage>
+        <input>
+          x = Symbol('x', real=True)
+          M = Matrix([[0,1,0],[0,x,0],[-1,0,0]])
+          M,M.singular_values()
+        </input>
+      </sage>
+
+      <p>
+        For an <m>n\times n</m> matrix <m>A</m>, we might not be able to diagonalize <m>A</m>
+        (with a single orthonormal basis).
+        However, it turns out that it's <em>always</em> possible to find a pair of orthonormal bases
+        <m>\{e_1,\ldots, e_n\}, \{f_1,\ldots, f_n\}</m> such that
+        <me>
+          Ax = \sigma_1(x\cdot e_1)f_1+\cdots + \sigma_n(x\cdot e_n)f_n
+        </me>.
+        In matrix form, <m>A = P\Sigma_A Q^T</m> for orthogonal matrices <m>P,Q</m>.
+      </p>
+
+      <p>
+        In fact, this can be done even if <m>A</m> is not square,
+        which is arguably the more interesting case! Let <m>A</m> be an <m>m\times n</m> matrix.
+        We will find an <m>m\times m</m> orthogonal matrix <m>P</m> and <m>n\times n</m> orthogonal matrix <m>Q</m>,
+        such that <m>A=P\Sigma_A Q^T</m>, where <m>\Sigma_A</m> is also <m>m\times n</m>.
+      </p>
+
+      <aside>
+        <p>
+          If <m>A</m> is symmetric and positive-definite,
+          the singular values of <m>A</m> are just the eigenvalues of <m>A</m>,
+          and the singular value decomposition is the same as diagonalization.
+        </p>
+      </aside>
+
+      <p>
+        The basis <m>\{f_1,\ldots, f_n\}</m> is an orthonormal basis for <m>A^TA</m>,
+        and the matrix <m>Q</m> is the matrix whose columns are the vectors <m>f_i</m>.
+        As a result, <m>Q</m> is orthogonal.
+      </p>
+
+      <p>
+        The matrix <m>\Sigma_A</m> is the same size as <m>A</m>.
+        First, we list the positive singular values of <m>A</m> in decreasing order:
+        <me>
+          \sigma_1\geq \sigma_2\geq \cdots \geq \sigma_k>0
+        </me>.
+        Then, we let <m>D_A = \operatorname{diag}(\sigma_1,\ldots, \sigma_k)</m>,
+        and set
+        <me>
+          \Sigma_A = \begin{bmatrix}D_A\amp 0\\0\amp 0\end{bmatrix}
+        </me>.
+        That is, we put <m>D_A</m> in the upper-left, and then fill in zeros as needed,
+        until <m>\Sigma_A</m> is the same size as <m>A</m>.
+      </p>
+
+      <p>
+        Next, we compute the vectors <m>e_i = \frac{1}{\len{Af_i}}Af_i</m>, for <m>i=1,\ldots, k</m>.
+        As shown in Nicolson, <m>\{e_1,\ldots, e_r\}</m> will be an orthonormal basis for the column space of <m>A</m>.
+        The matrix <m>P</m> is constructed by extending this to an orthonormal basis of <m>\R^m</m>.
+      </p>
+
+      <p>
+        All of this is a lot of work to do by hand, but it turns out that it can be done numerically,
+        and more importantly, <em>efficiently</em>, by a computer.
+        The SymPy library does not have an <init>SVD</init> algorithm,
+        but the <c>mpmath</c> library does, and it works well with SymPy.
+      </p>
+
+      <p>
+        Example 8.6.1 in Nicolson shows that for the matrix <m>A = \begin{bmatrix}1\amp 0\amp 1\\-1\amp 1\amp 0\end{bmatrix}</m>
+        we should have
+        <me>
+          P = \frac{1}{\sqrt{2}}\bbm 1\amp 1\\-1\amp 1\ebm, \Sigma_A = \bbm \sqrt{3}\amp 0\amp 0\\0\amp 1\amp 0\ebm, Q = \frac{1}{\sqrt{6}}\bbm2\amp -1\amp 1\\0\amp \sqrt{3}\amp \sqrt{3}\\-\sqrt{2}\amp -\sqrt{2}\amp \sqrt{2}\ebm
+        </me>.
+        Let us test this on the computer. First, we import the <c>mpmath</c> library, and define <m>A</m>.
+        (Importantly, the <c>svd</c> routine from <c>mpmath</c> will accept a SymPy matrix as input.
+        We do not, for example, have to first convert it to a NumPy array.)
+        Since both SymPy and mpmath have similar functions,
+        we <c>import as</c>  for both libraries, so we can distinguish between them as needed.
+      </p>
+
+      <sage>
+        <input>
+          import sympy as sy
+          import mpmath as mp
+          sy.init_printing()
+          mp.pretty = True
+          A = mp.matrix([[1,0,1],[-1,1,0]])
+          A
+        </input>
+      </sage>
+
+      <p>
+        Note that we defined <c>A</c> as a mpmath <c>matrix</c>.
+        The <c>svg</c> command from the mpmath library will also work on a SymPy <c>Matrix</c>,
+        but certain mpmath commands, like the <c>chop</c> command used to round decimals, will not.
+        Next, we apply the <c>svd</c> algorithm.
+      </p>
+
+      <sage>
+        <input>
+          P,S,QT = mp.svd(A)
+          P,S,QT
+        </input>
+      </sage>
+
+      <p>
+        Note that the input isn't quite so nice this time: the algorithm is numerical.
+        For some reason, if you define <c>A</c> as a SymPy matrix,
+        then <c>P</c> will be a SymPy matrix, but <c>S</c> and <c>Q</c> will not.
+        (I have no idea why.)
+        Also, the matrix <c>S</c> is a column matrix, containing the positive singular values of <m>A</m>.
+        We can turn it into a diagonal matrix as follows, using the <c>diag</c> command from mpmath:
+      </p>
+
+      <sage>
+        <input>
+          S1 = mp.diag(S)
+          S1
+        </input>
+      </sage>
+
+      <p>
+        In case you don't recognize the square root of 3 by its decimal approximation, we can check:
+      </p>
+
+      <sage>
+        <input>
+          S1*S1
+        </input>
+      </sage>
+
+      <p>
+        The matrix <m>\Sigma_A</m> is supposed to be <m>2\times 3</m>, with an additional column of zeros.
+        If we want to define this as a SymPy matrix, we can.
+        Note that we are using the <c>diag</c> command from SymPy this time, rather than mpmath.
+      </p>
+
+      <sage>
+        <input>
+          S2 = sy.Matrix(S1)
+          SigA = S2.row_join(sy.Matrix([0,0]))
+          SigA
+        </input>
+      </sage>
+
+      <p>
+        We will see in a minute that this matrix is not really necessary,
+        because the <c>svd</c> algorithm in mpmath is a bit different from the one in Nicholson.
+      </p>
+
+      <p>
+        The matrix <m>P</m> is already a SymPy matrix, as it turns out, but <m>Q</m> is not.
+      </p>
+
+      <sage>
+        <input>
+          QT
+        </input>
+      </sage>
+
+      <p>
+        Notice that this matrix is not square! The output from the algorithm also has the transpose already applied.
+      </p>
+
+      <sage>
+        <input>
+          Q1 = QT.T
+          Q1
+        </input>
+      </sage>
+
+      <p>
+        The matrix <c>Q1</c> we get here is (up to a difference in sign)
+        the first two columns of the matrix <m>Q</m> found in Nicholson.
+        This makes sense: the matrix <m>S</m> that we get from the algorithm is <m>D_A</m>,
+        not <m>\Sigma_A</m>. The third column of <m>\Sigma_A</m> is zero.
+        So when we multiply by <m>Q^T</m>, the third row of <m>Q^T</m> (that is, the third column of <m>Q</m>)
+        is lost. That is, <m>S(QT)=\Sigma_AQ^T</m>.
+      </p>
+
+      <p>
+        To confirm that everything worked, we can multiply:
+      </p>
+
+      <sage>
+        <input>
+          P*S1*QT
+        </input>
+      </sage>
+
+      <p>
+        Maybe that's not so elightening, given all the decimal places.
+        Let's check the difference with the matrix <m>A</m>:
+      </p>
+
+      <sage>
+        <input>
+          A-P*S1*QT
+        </input>
+      </sage>
+
+      <p>
+        Looks like some pretty small numbers there.
+        The mpmath library includes the <c>chop</c> command for truncating decimals.
+      </p>
+
+      <sage>
+        <input>
+          chop(A-P*S1*QT)
+        </input>
+      </sage>
+
+      <p>
+        The Singular Value Decomposition has a lot of useful appplications,
+        some of which are described in Nicholson's book.
+        On a very fundamental level the <init>SVD</init> provides us with information on some of the most essential properties of the matrix <m>A</m>,
+        and any system of equations with <m>A</m> as its coefficient matrix.
+      </p>
+
+      <p>
+        Recall the following definitions for an <m>m\times n</m> matrix <m>A</m>:
+        <ol>
+          <li>
+            <p>
+              The <term>rank</term> of <m>A</m> is the number of leadning ones in the <init>RREF</init> of <m>A</m>,
+              which is also equal to the dimension of the column space of <m>A</m> (or if you prefer, the dimesion of <m>\im (T_A)</m>).
+            </p>
+          </li>
+          <li>
+            <p>
+              The <term>column space</term> of <m>A</m>, denoted <m>\csp(A)</m>,
+              is the subspace of <m>\R^m</m> spanned by the columns of <m>A</m>.
+              (This is the image of the matrix transformation <m>T_A</m>;
+              it is also the space of all vectors <m>\vec{b}</m> for which the system <m>A\vec{x}=\vec{b}</m> is consistent.)
+            </p>
+          </li>
+          <li>
+            <p>
+              The <term>row space</term> of <m>A</m>, denoted <m>\operatorname{row}(A)</m>, is the span of the rows of <m>A</m>,
+              viewed as column vectors in <m>\R^n</m>.
+            </p>
+          </li>
+          <li>
+            <p>
+              The <term>null space</term> of <m>A</m> is the space of solutions to the homogeneous system <m>A\vec{x}=\vec{0}</m>.
+              This is, of course, equal the kernel of the associated transformation <m>T_A</m>.
+            </p>
+          </li>
+        </ol>
+      </p>
+
+      <p>
+        There are some interesting relationships among these spaces,
+        which are left as an exercise. (Solutions are in Nicholson if you get stumped.)
+      </p>
+
+      <exercise>
+        <statement>
+          <p>
+            Let <m>A</m> be an <m>m\times n</m> matrix. Prove the following:
+            <ol>
+              <li>
+                <p>
+                  <m>(\operatorname{row}(A))^\bot = \null(A)</m>
+                </p>
+              </li>
+              <li>
+                <p>
+                  <m>(\csp(A))^\bot = \null(A^T)</m>
+                </p>
+              </li>
+            </ol>
+          </p>
+        </statement>
+      </exercise>
+
+      <p>
+        Here's the cool thing about the <init>SVD</init>.
+        Let <m>\sigma_1\geq \sigma_2\geq \cdots \geq \sigma_r>0</m> be the positive singular values of <m>A</m>.
+        Let <m>\vec{q}_1,\ldots, \vec{q}_r,\ldots, \vec{q}_n</m> be the orthonormal basis of eigenvectors for <m>A^TA</m>,
+        and let <m>\vec{p}_1,\ldots, \vec{p}_r,\ldots, \vec{p}_m</m>
+        be the orthonormal basis of <m>\R^m</m> constructed in the <init>SVD</init> algorithm. Then:
+      </p>
+
+      <p>
+        <ol>
+          <li>
+            <p>
+              <m>\rank(A)=r</m>
+            </p>
+          </li>
+          <li>
+            <p>
+              <m>\vec{q}_1,\ldots, \vec{q}_r</m> form a basis for <m>\operatorname{row}(A)</m>.
+            </p>
+          </li>
+          <li>
+            <p>
+              <m>\vec{p}_1,\ldots, \vec{p}_r</m> form a basis for <m>\csp(A)</m>
+              (and thus, the <q>row rank</q> and <q>column rank</q> of <m>A</m> are the same).
+            </p>
+          </li>
+          <li>
+            <p>
+              <m>\vec{q}_{r+1},\ldots, \vec{q}_n</m> form a basis for <m>\null(A)</m>.
+              (And these are therefore the basis solutions of <m>A\vec{x}=\vec{0}</m>!)
+            </p>
+          </li>
+          <li>
+            <p>
+              <m>\vec{p}_{r+1},\ldots, \vec{p}_m</m> form a basis for <m>\null(A^T)</m>.
+            </p>
+          </li>
+        </ol>
+      </p>
+      
+      <p>
+        If you want to explore this further, have a look at the excellent
+        <url href="https://www.juanklopper.com/wp-content/uploads/2015/03/III_05_Singular_value_decomposition.html">notebook by Dr. Juan H Klopper</url>.
+        The <c>ipynb</c> file can be found <url href="https://github.com/juanklopper/MIT_OCW_Linear_Algebra_18_06">on his GitHub page</url>.
+        In it, he takes you through various approaches to finding the singular value decomposition,
+        using the method above, as well as using NumPy and SciPy (which, for industrial applications, are superior to SymPy and mpmath).
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="pars-polar-decomp">
+      <title>Polar Decomposition</title>
+      <p>
+        For any <m>n\times n</m> matrix <m>A</m>, there exists an orthogonal (or unitary) matrix <m>P</m> such that
+        <me>
+          A = P\sqrt{A^TA}
+        </me>.
+        This is meant to remind you of the polar decomposition
+        <me>
+          z = e^{i\theta}\sqrt{\bar{z}z}
+        </me>
+        for a complex number.
+      </p>
+
+      <p>
+        One way to compute the polar decomposition is using the Singular Value Decomposition (see Nicholson's text).
+        Note that both <m>P</m> and <m>\sqrt{A^TA}</m> can be diagonalized, but usually not with the same orthonormal basis.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="pars-qr-factor">
+      <title>QR Factorization</title>
+      <p>
+        Suppose <m>A</m> is an <m>m\times n</m> matrix with independent columns.
+        (Question: for this to happen, which is true <mdash/> <m>m\geq n</m>, or <m>n\geq m</m>?)
+      </p>
+
+      <p>
+        A <m>QR</m>-factorization of <m>A</m> is a factorization of the form <m>A=QR</m>,
+        where <m>Q</m> is <m>m\times n</m>, with orthonormal columns,
+        and <m>R</m> is an invertible upper-triangular (<m>n\times n</m>) matrix with positive diagonal entries.
+        If <m>A</m> is a square matrix, <m>Q</m> will be orthogonal.
+      </p>
+
+      <p>
+        A lot of the methods we're looking at here involve more sophisticated numerical techniques than SymPy is designed to handle.
+        If we wanted to spend time on these topics, we'd have to learn a bit about the NumPy package,
+        which has built in tools for finding things like polar decomposition and singular value decomposition.
+        However, SymPy does know how to do <m>QR</m> factorization. After defining a matrix <c>A</c>, we can use the command
+        <cd>
+          Q, R = A.QRdecomposition()
+        </cd>.
+      </p>
+
+      <sage>
+        <input>
+          from sympy import *
+          init_printing()
+          A = Matrix(3,3,[1,-2,3,3,-1,2,4,2,5])
+          Q, R = A.QRdecomposition()
+          A, Q, R
+        </input>
+      </sage>
+
+      <p>
+        Let's check that the matrix <m>Q</m> really is orthogonal:
+      </p>
+      <sage>
+        <input>
+          Q**(-1) == Q.T
+        </input>
+      </sage>
+
+      <p>
+        Details of how to perform the QR factorization can be found in Nicholson's textbook.
+        It's essentially a consequence of performing the Gram-Schmidt algorithm on the columns of <m>A</m>,
+        and keeping track of our work.
+      </p>
+
+      <p>
+        The calculation above is a symbolic computation, which is nice for understanding what's going on.
+        The reason why the <m>QR</m> factorization is useful in practice is that there are efficient numerical methods for doing it
+        (with good control over rounding errors).
+        Our next topic looks at a useful application of the <m>QR</m> factorization.
+      </p>
+    </paragraphs>
+  </subsection>
+
+  <subsection xml:id="subsec-compute-eigen">
+    <title>Computing Eigenvalues</title>
+    <p>
+      Our first method focuses on the dominant eigenvalue of a matrix.
+      An eigenvalue is dominant if it is larger in absolute value than all other eigenvalues.
+      For example, if <m>A</m> has eigenvalues <m>1,3,-2,-5</m>, then <m>-5</m> is the dominant eigenvalue.
+    </p>
+
+    <p>
+      If <m>A</m> has eigenvalues <m>1,3,0,-4,4</m> then there is no dominant eigenvalue.
+      Any eigenvector corresponding to a dominant eigenvalue is called a dominant eigenvector.
+    </p>
+
+    <paragraphs xml:id="pars-power-method">
+      <title>The Power Method</title>
+      <p>
+        If a matrix <m>A</m> has a dominant eigenvalue,
+        there is a method for finding it (approximately)
+        that does not involve finding and factoring the characteristic polynomial of <m>A</m>.
+      </p>
+
+      <p>
+        We start with some initial guess <m>x_0</m> for a dominant eigenvector.
+        We then set <m>x_{k+1} = Ax_k</m> for each <m>k\geq 0</m>, giving a sequence
+        <me>
+          x_0, Ax_0, A^2x_0, A^3x_0,\ldots
+        </me>.
+        We expect (for reasons we'll explain) that <m>\lVert x_k-x\rVert \to 0</m> as <m>k\to\infty</m>,
+        where <m>x</m> is a dominant eigenvector. Let's try an example.
+      </p>
+
+      <sage>
+        <input>
+          A = Matrix(2,2,[1,-4,-3,5])
+          A,A.eigenvects()
+        </input>
+      </sage>
+
+      <p>
+        The dominant eigenvalue is <m>\lambda = 7</m>. Let's try an initial guess of
+        <m>x_0=\begin{bmatrix}1\\0\end{bmatrix}</m> and see what happens.
+      </p>
+
+      <sage>
+        <input>
+          x0 = Matrix([1,0])
+          L = list()
+          for k in range(10):
+              L.append(A**k*x0)
+          L
+        </input>
+      </sage>
+
+      <p>
+        We might want to confirm whether that rather large fraction is close to <m>\frac23</m>.
+        To do so, we can get the computer to divide the numerator by the denominator.
+      </p>
+
+      <sage>
+        <input>
+          L[9][0]/l[9][1]
+        </input>
+      </sage>
+
+      <p>
+        The above might show you the fraction rather than its decimal approximation.
+        (This may depend on whether you're on Sage or Jupyter.)
+        To get the decimal, try wrapping the above in <c>float()</c> (or <c>N</c>, or append with <c>.evalf()</c>).
+      </p>
+
+      <p>
+        For the eigenvalue, we note that if <m>Ax=\lambda x</m>, then
+        <me>
+          \frac{x\cdot Ax}{\lVert x\rVert^2} = \frac{x\cdot (\lambda x)}{\lVert x\rVert^2} = \lambda
+        </me>.
+        This leads us to consider the Rayleigh quotients
+        <me>
+          r_k = \frac{x_k\cdot x_{k+1}}{\lVert x_k\rVert^2}
+        </me>.
+      </p>
+
+      <sage>
+        <input>
+          M = list()
+          for k in range(9):
+              M.append((L[k].dot(L[k+1]))/(L[k].dot(L[k])))
+          M
+        </input>
+      </sage>
+
+      <p>
+        We can convert a rational number r to a float using either <c>N(r)</c> or <c>r.evalf()</c>.
+        (The latter seems to be the better bet when working with a list.)
+      </p>
+
+      <sage>
+        <input>
+          M2 = list()
+          for k in range(9):
+              M2.append((M[k]).evalf())
+          M2
+        </input>
+      </sage>
+    </paragraphs>
+
+    <paragraphs xml:id="pars-qr-algorithm">
+      <title>The QR Algorithm</title>
+      <p>
+        Given an <m>n\times n</m> matrix <m>A</m>, we know we can write <m>A=QR</m>,
+        with <m>Q</m> orthogonal and <m>R</m> upper-triangular.
+        The <m>QR</m>-algorithm exploits this fact. We set <m>A_1=A</m>, and write <m>A_1=Q_1R_1</m>.
+      </p>
+
+      <p>
+        Then we set <m>A_2 = R_1Q_1</m>, and factor: <m>A_2=Q_2R_2</m>.
+        Notice <m>A_2 = R_1Q_1 = Q_1^TA_1Q_1</m>. Since <m>A_2</m> is similar to <m>A_1</m>,
+        <m>A_2</m> has the same eigenvalues as <m>A_1=A</m>.
+      </p>
+
+      <p>
+        Next, set <m>A_3 = R_2Q_2</m>, and factor as <m>A_3 = Q_3R_3</m>.
+        Since <m>A_3 = Q_2^TA_2Q_2</m>, <m>A_3</m> has the same eigenvalues as <m>A_2</m>.
+        In fact, <m>A_3 = Q_2^T(Q_1^TAQ_1)Q_2 = (Q_1Q_2)^TA(Q_1Q_2)</m>.
+      </p>
+
+      <p>
+        After <m>k</m> steps we have <m>A_{k+1} = (Q_1\cdots Q_k)^TA(Q_1\cdots Q_k)</m>,
+        which still has the same eigenvalues as <m>A</m>.
+        By some sort of dark magic, this sequence of matrices converges to an upper triangular matrix with eigenvalues on the diagonal!
+      </p>
+
+      <p>
+        Consider the matrix <m>A = \begin{bmatrix}5&amp;-2&amp;3\\0&amp;4&amp;0\\0&amp;-1&amp;3\end{bmatrix}</m>
+      </p>
+
+      <sage>
+        <input>
+          A = Matrix(3,3,[5,-2,3,0,4,0,0,-1,3])
+          A.eigenvals()
+        </input>
+      </sage>
+
+      <sage>
+        <input>
+          Q1,R1 = A.QRdecomposition()
+          A2=R1*Q1
+          A2,Q1,R1
+        </input>
+      </sage>
+
+      <p>
+        Now we repeat the process:
+      </p>
+
+      <sage>
+        <input>
+          Q2,R2 = A2.QRdecomposition()
+          A3=R2*Q2
+          A3.evalf()
+        </input>
+      </sage>
+
+      <p>
+        Do this a few more times, and see what results!
+        (If someone can come up with a way to code this as a loop, let me know!)
+        The diagonal entries should get closer to <m>5,4,3</m>, resepctively,
+        and the <m>(3,2)</m> entry should get closer to <m>0</m>.
+      </p>
+
+      <sage>
+
+      </sage>
+
+      <sage>
+
+      </sage>
+    </paragraphs>
+  </subsection>
+
+</section>
