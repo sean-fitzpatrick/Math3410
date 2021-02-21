@@ -18,7 +18,7 @@
     but it will contain some rows or columns of zeros that are added to get the desired size.
     The matrix <m>Q</m> is an orthogonal <m>n\times n</m> matrix whose columns are an orthonormal basis of eigenvectors for <m>A^TA</m>.
     The matrix <m>P</m> is an orthogonal <m>m\times m</m> matrix whose columns are an orthonormal basis of <m>\R^m</m>.
-    (The first <m>r</m> columns of <m>P</m> are given by <m>A\vecq_i</m>, where <m>\vecq_i</m> is the eigenvector of <m>A^TA</m> corrsponding to the positive singular value <m>\sigma_i</m>.)
+    (The first <m>r</m> columns of <m>P</m> are given by <m>A\vecq_i</m>, where <m>\vecq_i</m> is the eigenvector of <m>A^TA</m> corresponding to the positive singular value <m>\sigma_i</m>.)
   </p>
 
   <p>
@@ -37,7 +37,7 @@
     This time, rather than using the mpmath algorithm,
     we will work through the process as outlined in Nicholson step-by-step.
     First, we will work through (again) Example 8.6.1 in Nicholson.
-    Let <m>A = \bbm 1\amp 0\amp 1\\-1\amp 1\amp 0\bbm</m>.
+    Let <m>A = \bbm 1\amp 0\amp 1\\-1\amp 1\amp 0\ebm</m>.
     First, we get the singular values:
   </p>
 
@@ -52,7 +52,7 @@
   </sage>
 
   <p>
-    Next, we get the eigenvales and eigenvectors of <m>A^TA</m>:
+    Next, we get the eigenvalues and eigenvectors of <m>A^TA</m>:
   </p>
 
   <sage>
@@ -67,7 +67,7 @@
     Now we need to normalize the eigenvectors, in the correct order.
     Note that the eigenvectors were listed in <em>increasing</em> order of eigenvalue,
     so we need to reverse the order. Note that <c>L1</c> is a list of lists.
-    The eigenvector is the third entry (index 2) in the list (eigenvalue, multilicity, eigenvector).
+    The eigenvector is the third entry (index 2) in the list (eigenvalue, multiplicity, eigenvector).
     We also need to turn list elements into matrices.
     So, for example the second eigenvector is <c>Matrix(L1[1][2])</c>.
   </p>
@@ -144,28 +144,30 @@
   </p>
 
   <listing xml:id="listing-svd">
-    <title>SymPy code for a singular value decomposition example</title>
+    <caption>SymPy code for a singular value decomposition example</caption>
     <program>
-      from sympy import *
-      init_printing()
-      A = Matrix([[1,0,1],[-1,1,0]])
-      B=(A.T)*A
-      L0=A.singular_values()
-      L1=B.eigenvects()
-      R1=Matrix(L1[2][2])
-      R2=Matrix(L1[1][2])
-      R3=Matrix(L1[0][2])
-      Q1 = (1/R1.norm())*R1
-      Q2 = (1/R2.norm())*R2
-      Q3 = (1/R3.norm())*R3
-      Q = Matrix(BlockMatrix([Q1,Q2,Q3]))
-      SigA = diag(L0[0],L0[1]).row_join(Matrix([0,0]))
-      S1 = A*Q1
-      S2 = A*Q2
-      P1 = (1/S1.norm())*S1
-      P2 = (1/S2.norm())*S2
-      P = Matrix(BlockMatrix([P1,P2]))
-      P,SigA,Q,P*SigA*Q.T
+      <input>
+        from sympy import *
+        init_printing()
+        A = Matrix([[1,0,1],[-1,1,0]])
+        B=(A.T)*A
+        L0=A.singular_values()
+        L1=B.eigenvects()
+        R1=Matrix(L1[2][2])
+        R2=Matrix(L1[1][2])
+        R3=Matrix(L1[0][2])
+        Q1 = (1/R1.norm())*R1
+        Q2 = (1/R2.norm())*R2
+        Q3 = (1/R3.norm())*R3
+        Q = Matrix(BlockMatrix([Q1,Q2,Q3]))
+        SigA = diag(L0[0],L0[1]).row_join(Matrix([0,0]))
+        S1 = A*Q1
+        S2 = A*Q2
+        P1 = (1/S1.norm())*S1
+        P2 = (1/S2.norm())*S2
+        P = Matrix(BlockMatrix([P1,P2]))
+        P,SigA,Q,P*SigA*Q.T
+      </input>
     </program>
   </listing>
 
@@ -188,7 +190,7 @@
       <p>
         Either by reading Nicholson or by searching online (or both),
         come up with a couple of answers to the question:
-        <q>Why are people interested in the singular value decomosition?</q>
+        <q>Why are people interested in the singular value decomposition?</q>
       </p>
     </statement>
   </exercise>
