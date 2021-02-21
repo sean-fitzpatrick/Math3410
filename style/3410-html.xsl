@@ -7,9 +7,9 @@
 <!-- String parameters -->
 
 <!-- html layout options -->
-<xsl:param name="html.knowl.exercise.sectional" select="'no'"/>
-<xsl:param name="html.knowl.example" select="'no'"/>
-<xsl:param name="html.knowl.exercise.inline" select="no"/>
+<!-- <xsl:param name="html.knowl.exercise.sectional" select="'no'"/> -->
+<!-- <xsl:param name="html.knowl.example" select="'no'"/> -->
+<!-- <xsl:param name="html.knowl.exercise.inline" select="no"/> -->
 <!-- uncomment next line to enable hypothesis annotation -->
 <xsl:param name="html.annotation" select="'hypothesis'"/>
 
