@@ -240,13 +240,26 @@
   </theorem>
 
   <p>
-    If the above spanning set is not also independent,
-    then one might be concerned about the fact that there will be more than one way to express a vector as linear combination of vectors in that set.
+    <alert>Caution</alert>: If the above spanning set is not also independent,
+    then we can't just define the values <m>T(\vv_i)</m> however we want.
+    For example, suppose we want to define <m>T:\R^2\to\R^2</m>,
+    and we set <m>\R^2=\spn{(1,2),(4,-1),(5,1)}</m>.
+    If <m>T(1,2)=(3,4)</m> and <m>T(4,-1)=(-2,2)</m>,
+    then we <em>must</em> have <m>T(5,1)=(1,6)</m>.
+    Why? Because <m>(5,1)=(1,2)+(4,1)</m>, and if <m>T</m> is to be linear,
+    then we have to have <m>T((1,2)+(4,-1))=T(1,2)+T(4,-1)</m>.
+  </p>
+
+  <p>
+    If for some reason we already know that our transformation is linear,
+    we might still be concerned about the fact that if a spanning set is not independent,
+    there will be more than one way to express a vector as linear combination of vectors in that set.
     If we define <m>T</m> by giving its values on a spanning set, will it be well-defined?
+    (That is, could we get two different values for <m>T(\vv)</m> by expressing <m>\vv</m> in terms of the spanning set in two different ways?)
     Suppose that we have scalars <m>a_1,\ldots, a_n, b_1,\ldots, b_n</m> such that
     <md>
-      <mrow>\vv \amp = a_1\vv_1+\cdots + a_n\vv_n</mrow>
-      <mrow> \amp = b_1\vv_1+\cdots + b_n\vv_n</mrow>
+      <mrow>\vv \amp = a_1\vv_1+\cdots + a_n\vv_n \quad \text{ and }</mrow>
+      <mrow>\vv \amp = b_1\vv_1+\cdots + b_n\vv_n</mrow>
     </md>
     We then have
     <md>
@@ -254,6 +267,22 @@
       <mrow> \amp =T(b_1\vv_1+\cdots +b_n\vv_n)</mrow>
       <mrow>  \amp =b_1T(\vv_1)+\cdots +b_nT(\vv_n)</mrow>
     </md>.
+  </p>
+
+  <p>
+    Of course, we can avoid all of this unpleasantness by using a <em>basis</em>
+    to define a transformation. Given a basis <m>B = \{\vv_1,\ldots, \vv_n\}</m>
+    for a vector space <m>V</m>, we can define a transformation <m>T:V\to W</m>
+    by setting <m>T(\vv_i)=\ww_i</m> for some choice of vectors <m>\ww_1,\ldots, \ww_n</m>
+    and defining
+    <me>
+      T(c_1\vv_1+\cdots +c_n\vv_n)=c_1T(\vv_1)+\cdots + c_nT(\vv_n)
+    </me>.
+    Because each vector <m>\vv\in V</m> can be written <em>uniquely</em> in terms of a basis,
+    we know that our transformation is well-defined.
+  </p>
+
+  <p>
     The next theorem seems like an obvious consequence of the above,
     and indeed, one might wonder where the assumption of a basis is needed.
     The distinction here is that the vectors <m>\ww_1,\ldots, \ww_n\in W</m>
@@ -272,7 +301,7 @@
         we can define <m>T</m> as follows:
         given <m>\vv\in V</m>, write <m>\vv=c_1\vv_1+\cdots +c_n\vv_n</m>. Then
         <me>
-          T(\vv)=T(c_1\vv_1+\cdots + c_n\vv_n) = c_1\ww_1+\cdots +c_n\vv_n
+          T(\vv)=T(c_1\vv_1+\cdots + c_n\vv_n) = c_1\ww_1+\cdots +c_n\ww_n
         </me>.
       </p>
     </statement>

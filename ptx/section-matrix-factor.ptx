@@ -39,15 +39,15 @@
         <statement>
           <p>
             A symmetric/hermitian matrix <m>A</m> (or operator <m>T</m>) is <term>positive</term>
-            if <m>\vec{x}^TA\vec x\geq 0</m> (<m>\langle \vec x,T\vec x\rangle\geq 0</m>) for all vectors <m>\vec x\neq \vec 0</m>.
-            It is <term>positive-definite</term> if <m>\vec{x}^TA\vec x>0</m> for all nonzero <m>\vec x</m>.
+            if <m>\xx^TA\xx\geq 0</m> (<m>\langle \xx,T\xx\rangle\geq 0</m>) for all vectors <m>\xx\neq \zer</m>.
+            It is <term>positive-definite</term> if <m>\xx^TA\xx\gt 0</m> for all nonzero <m>\xx</m>.
           </p>
         </statement>
       </definition>
 
       <aside>
         <p>
-          Some books will define positive-definite operators by the condition <m>\vec{x}^TA\vec{x}</m>
+          Some books will define positive-definite operators by the condition <m>\xx^TA\xx</m>
           without the requirement that <m>A</m> must be symmetric/hermitian.
           However, we will stick to the simpler definition.
         </p>
@@ -67,9 +67,9 @@
         </statement>
         <proof>
           <p>
-            For any <m>\vec{x}\neq \vec 0</m> in <m>\R^n</m>,
+            For any <m>\xx\neq \zer</m> in <m>\R^n</m>,
             <me>
-              \vec{x}^T A\vec x = \vec{x}^TU^T U\vec{x} = (U\vec{x})^T(U\vec x) = \len{U\vec{x}}^2\geq 0
+              \xx^T A\xx = \xx^TU^T U\xx = (U\xx)^T(U\xx) = \len{U\xx}^2\geq 0
             </me>.
           </p>
         </proof>
@@ -217,7 +217,7 @@
         The matrix <m>\Sigma_A</m> is the same size as <m>A</m>.
         First, we list the positive singular values of <m>A</m> in decreasing order:
         <me>
-          \sigma_1\geq \sigma_2\geq \cdots \geq \sigma_k>0
+          \sigma_1\geq \sigma_2\geq \cdots \geq \sigma_k\gt 0
         </me>.
         Then, we let <m>D_A = \operatorname{diag}(\sigma_1,\ldots, \sigma_k)</m>,
         and set
@@ -407,7 +407,7 @@
               The <term>column space</term> of <m>A</m>, denoted <m>\csp(A)</m>,
               is the subspace of <m>\R^m</m> spanned by the columns of <m>A</m>.
               (This is the image of the matrix transformation <m>T_A</m>;
-              it is also the space of all vectors <m>\vec{b}</m> for which the system <m>A\vec{x}=\vec{b}</m> is consistent.)
+              it is also the space of all vectors <m>\mathbf{b}</m> for which the system <m>A\xx=\mathbf{b}</m> is consistent.)
             </p>
           </li>
           <li>
@@ -418,7 +418,7 @@
           </li>
           <li>
             <p>
-              The <term>null space</term> of <m>A</m> is the space of solutions to the homogeneous system <m>A\vec{x}=\vec{0}</m>.
+              The <term>null space</term> of <m>A</m> is the space of solutions to the homogeneous system <m>A\xx=\zer</m>.
               This is, of course, equal the kernel of the associated transformation <m>T_A</m>.
             </p>
           </li>
@@ -452,9 +452,9 @@
 
       <p>
         Here's the cool thing about the <init>SVD</init>.
-        Let <m>\sigma_1\geq \sigma_2\geq \cdots \geq \sigma_r>0</m> be the positive singular values of <m>A</m>.
-        Let <m>\vec{q}_1,\ldots, \vec{q}_r,\ldots, \vec{q}_n</m> be the orthonormal basis of eigenvectors for <m>A^TA</m>,
-        and let <m>\vec{p}_1,\ldots, \vec{p}_r,\ldots, \vec{p}_m</m>
+        Let <m>\sigma_1\geq \sigma_2\geq \cdots \geq \sigma_r\gt 0</m> be the positive singular values of <m>A</m>.
+        Let <m>\vecq_1,\ldots, \vecq_r,\ldots, \vecq_n</m> be the orthonormal basis of eigenvectors for <m>A^TA</m>,
+        and let <m>\vecp_1,\ldots, \vecp_r,\ldots, \vecp_m</m>
         be the orthonormal basis of <m>\R^m</m> constructed in the <init>SVD</init> algorithm. Then:
       </p>
 
@@ -467,29 +467,29 @@
           </li>
           <li>
             <p>
-              <m>\vec{q}_1,\ldots, \vec{q}_r</m> form a basis for <m>\operatorname{row}(A)</m>.
+              <m>\vecq_1,\ldots, \vecq_r</m> form a basis for <m>\operatorname{row}(A)</m>.
             </p>
           </li>
           <li>
             <p>
-              <m>\vec{p}_1,\ldots, \vec{p}_r</m> form a basis for <m>\csp(A)</m>
+              <m>\vecp_1,\ldots, \vecp_r</m> form a basis for <m>\csp(A)</m>
               (and thus, the <q>row rank</q> and <q>column rank</q> of <m>A</m> are the same).
             </p>
           </li>
           <li>
             <p>
-              <m>\vec{q}_{r+1},\ldots, \vec{q}_n</m> form a basis for <m>\null(A)</m>.
-              (And these are therefore the basis solutions of <m>A\vec{x}=\vec{0}</m>!)
+              <m>\vecq_{r+1},\ldots, \vecq_n</m> form a basis for <m>\null(A)</m>.
+              (And these are therefore the basis solutions of <m>A\xx=\zer</m>!)
             </p>
           </li>
           <li>
             <p>
-              <m>\vec{p}_{r+1},\ldots, \vec{p}_m</m> form a basis for <m>\null(A^T)</m>.
+              <m>\vecp_{r+1},\ldots, \vecp_m</m> form a basis for <m>\null(A^T)</m>.
             </p>
           </li>
         </ol>
       </p>
-      
+
       <p>
         If you want to explore this further, have a look at the excellent
         <url href="https://www.juanklopper.com/wp-content/uploads/2015/03/III_05_Singular_value_decomposition.html">notebook by Dr. Juan H Klopper</url>.
@@ -743,7 +743,7 @@
         Do this a few more times, and see what results!
         (If someone can come up with a way to code this as a loop, let me know!)
         The diagonal entries should get closer to <m>5,4,3</m>, resepctively,
-        and the <m>(3,2)</m> entry should get closer to <m>0</m>.
+        and the <m>(3,2)</m> entry should get closer to <m\gt 0</m>.
       </p>
 
       <sage>

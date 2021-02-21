@@ -18,7 +18,7 @@
     but it will contain some rows or columns of zeros that are added to get the desired size.
     The matrix <m>Q</m> is an orthogonal <m>n\times n</m> matrix whose columns are an orthonormal basis of eigenvectors for <m>A^TA</m>.
     The matrix <m>P</m> is an orthogonal <m>m\times m</m> matrix whose columns are an orthonormal basis of <m>\R^m</m>.
-    (The first <m>r</m> columns of <m>P</m> are given by <m>A\vec{q}_i</m>, where <m>\vec{q}_i</m> is the eigenvector of <m>A^TA</m> corrsponding to the positive singular value <m>\sigma_i</m>.)
+    (The first <m>r</m> columns of <m>P</m> are given by <m>A\vecq_i</m>, where <m>\vecq_i</m> is the eigenvector of <m>A^TA</m> corrsponding to the positive singular value <m>\sigma_i</m>.)
   </p>
 
   <p>
@@ -110,8 +110,8 @@
   <p>
     Alternatively, you could do <c>SigA = diag(L0[0],L0[1]).row_join(Matrix([0,0]))</c>.
     Finally, we need to make the matrix <m>P</m>.
-    First, we find the vectors <m>A\vec{q}_1, A\vec{q}_2</m> and normalize.
-    (Note that <m>A\vec{q}_3=\vec{0}</m>, so this vector is unneeded, as expected.)
+    First, we find the vectors <m>A\vecq_1, A\vecq_2</m> and normalize.
+    (Note that <m>A\vecq_3=\zer</m>, so this vector is unneeded, as expected.)
   </p>
 
   <sage>
@@ -128,7 +128,7 @@
   <p>
     Note that the matrix <m>P</m> is already the correct size, because <m>\rank(A)=2\dim(\R^2)</m>.
     In general, for an <m>m\times n</m> matrix <m>A</m>, if <m>\rank(A)=r\lt m</m>,
-    we would have to extend the set <m>\{\vec{p}_1,\ldots, \vec{p}_r\}</m> to a basis for <m>\R^m</m>.
+    we would have to extend the set <m>\{\vecp_1,\ldots, \vecp_r\}</m> to a basis for <m>\R^m</m>.
     Finally, we check that our matrices work as advertised.
   </p>
 
@@ -176,7 +176,7 @@
         <me>
           \bbm 1\amp -1\\1\amp 0\\0\amp 1\ebm \quad \quad \bbm 1\amp 1\amp 1\\-1\amp 0\amp 2 \\1\amp 2\amp 0\ebm
         </me>.
-         Note that for these matrices, you will need to do some additional work to extend the <m>\vec{p}_i</m>
+         Note that for these matrices, you will need to do some additional work to extend the <m>\vecp_i</m>
          vectors to an orthonormal basis. You can adapt the code above,
          but you will have to think about how to implement additional code to construct any extra vectors you need.
       </p>

@@ -110,6 +110,52 @@
     </solution>
   </exercise>
 
+  <example>
+    <title>Standard bases</title>
+    <statement>
+      <p>
+        Most of the vector spaces we work with come equipped with a <em>standard basis</em>.
+        The standard basis for a vector space is typically a basis such that the scalars needed to express a vector in terms of that basis are the same scalars used to define the vector in the first place.
+        For example, we write an element of <m>\R^3</m> as <m>(x,y,z)</m> (or <m>\langle x,y,z\rangle</m>,
+        or <m>\begin{bmatrix}x\amp y\amp z\end{bmatrix}</m>, or <m>\begin{bmatrix}x\\y\\z\end{bmatrix}</m><ellipsis/>).
+        We can also write
+        <me>
+          (x,y,z)=x(1,0,0)+y(0,1,0)+z(0,0,1)
+        </me>.
+        The set <m>\{(1,0,0),(0,1,0),(0,0,1)\}</m> is the standard basis for <m>\R^3</m>.
+        In general, the vector space <m>\R^n</m> (written this time as column vectors) has standard basis
+        <me>
+          \vece_1=\bbm 1\\0\\ \vdots \\0\ebm, \vece_2 = \bbm 0\\1\\ \vdots \\0\ebm, \ldots, \vece_n=\bbm 0\\0\\ \vdots \\1\ebm
+        </me>.
+        From this, we can conclude (unsurprisingly) that <m>\dim \R^n = n</m>.
+      </p>
+
+      <p>
+        Similarly, a polynomial <m>p(x)\in P_n(\R)</m> is usually written as
+        <me>
+          p(x) = a_0+a_1x+a_2x^2+\cdots + a_nx^n
+        </me>,
+        suggesting the standard basis <m>\{1,x,x^2,\ldots, x^n\}</m>.
+        As a result, we see that <m>\dim P_n(\R)=n+1</m>.
+      </p>
+
+      <p>
+        For one more example, we note that a <m>2\times 2</m> matrix <m>A\in M_{22}(\R)</m>
+        can be written as
+        <me>
+          \bbm a\amp b\\c\amp d\ebm = a\bbm 1\amp 0\\0\amp 0\ebm+b\bbm 0\amp 1\\0\amp 0\ebm +c\bbm 0\amp 0\\1\amp 0\ebm + d\bbm 0\amp 0\\0\amp 1\ebm
+        </me>,
+        which suggests a standard basis for <m>M_{22}(\R)</m>, with similar results for any other matrix space.
+        From this, we can conclude (exercise) that <m>\dim M_{mn}(\R)=mn</m>.
+      </p>
+    </statement>
+    <solution>
+      <p>
+
+      </p>
+    </solution>
+  </example>
+
   <exercise>
     <introduction>
       <p>

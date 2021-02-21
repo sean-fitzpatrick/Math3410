@@ -12,42 +12,42 @@
     <p>
       Let <m>A</m> be an <m>m\times n</m> matrix.
       We can use <m>A</m> to define a transformation <m>T_A:\R^n\to \R^m</m>
-      given by <m>T_A(\vec{x})=A\vec x</m>, where we view <m>\vec x</m>
+      given by <m>T_A(\xx)=A\xx</m>, where we view <m>\xx</m>
       as an <m>n\times 1</m> column vector.
     </p>
 
     <p>
-      The <term>kernel</term> of <m>T_A</m> is the set of vectors <m>\vec x</m>
-      such that <m>T_A(\vec x)=\vec 0</m>.
-      That is, <m>\ker T_A</m> is the set of solutions to the homogeneous system <m>A\vec x = \vec 0</m>.
+      The <term>kernel</term> of <m>T_A</m> is the set of vectors <m>\xx</m>
+      such that <m>T_A(\xx)=\zer</m>.
+      That is, <m>\ker T_A</m> is the set of solutions to the homogeneous system <m>A\xx = \zer</m>.
     </p>
 
     <p>
       The <term>image</term> of <m>T_A</m> (also known as the range of <m>T_A</m>)
-      is the set of vectors <m>\vec y\in \R^m</m> such that <m>\vec y = A\vec x</m>
-      for some <m>\vec{x}\in\R^n</m>.
-      In other words, <m>\im(T_A)</m> is the set of vectors <m>\vec y</m>
-      for which the non-homogeneous system <m>A\vec x=\vec y</m> is consistent.
+      is the set of vectors <m>\yy\in \R^m</m> such that <m>\yy = A\xx</m>
+      for some <m>\xx\in\R^n</m>.
+      In other words, <m>\im(T_A)</m> is the set of vectors <m>\yy</m>
+      for which the non-homogeneous system <m>A\xx=\yy</m> is consistent.
     </p>
 
     <p>
       Because <m>T_A</m> is a linear transformation,
       we can compute it as long as we're given its values on a basis.
-      If <m>\{\vec{v}_1, \vec{v}_2,\ldots, \vec{v}_n\}</m> is a basis for <m>\R^n</m>,
-      then for any <m>\vec{x}\in\R^n</m> there exist unique scalars <m>c_1,c_2,\ldots, c_n</m>
+      If <m>\{\vv_1, \vv_2,\ldots, \vv_n\}</m> is a basis for <m>\R^n</m>,
+      then for any <m>\xx\in\R^n</m> there exist unique scalars <m>c_1,c_2,\ldots, c_n</m>
       such that
       <me>
-        \vec{x} = c_1\vec{v}_1+c_2\vec{v}_2+\cdots + c_n\vec{v}_n
+        \xx = c_1\vv_1+c_2\vv_2+\cdots + c_n\vv_n
       </me>,
       and since <m>T_A</m> is linear, we have
       <me>
-        T_A(\vec{x})=c_1T_A(\vec{v}_1)+c_2T_A(\vec{v}_2)+\cdots +c_nT_A(\vec{v}_n)
+        T_A(\xx)=c_1T_A(\vv_1)+c_2T_A(\vv_2)+\cdots +c_nT_A(\vv_n)
       </me>.
     </p>
 
     <p>
       The main challenge, computationally speaking, is that if our basis is not the standard basis,
-      some effort will be required to write <m>\vec x</m> in terms of the given basis.
+      some effort will be required to write <m>\xx</m> in terms of the given basis.
     </p>
   </introduction>
 
@@ -64,7 +64,7 @@
       </p>
 
       <p>
-        Let <m>\{\vec{e}_1,\vec{e}_2,\vec{e}_3, \vec{e}_4\}</m> denote the standard basis for <m>\R^4</m>.
+        Let <m>\{\vece_1,\vece_2,\vece_3, \vece_4\}</m> denote the standard basis for <m>\R^4</m>.
       </p>
     </introduction>
     <task>
@@ -93,7 +93,7 @@
     <task>
       <statement>
         <p>
-          Determine <m>T(\vec{e}_i)</m> for <m>i=1,2,3,4</m>,
+          Determine <m>T(\vece_i)</m> for <m>i=1,2,3,4</m>,
           and in so doing, determine the matrix <m>A</m> such that <m>T=T_A</m>.
         </p>
       </statement>
@@ -141,7 +141,7 @@
 
   <p>
     Next we will compute the kernel and image of the transformation from the previous exercise.
-    Recall that when solving a homogeneous system <m>A\vec x = \vec 0</m>,
+    Recall that when solving a homogeneous system <m>A\xx = \zer</m>,
     we find the <init>RREF</init> of <m>A</m>,
     and any variables whose columns do not contain a leading 1 are assigned as parameters.
     We then express the general solution <m>x</m> in terms of those parameters.
