@@ -163,7 +163,7 @@
 
       <sage>
         <input>
-          from sympy import *
+          from sympy import Matrix,init_printing,factor
           init_printing()
           A = Matrix(3,3,[5,-2,-4,-2,8,-2,-4,-2,5])
           p=A.charpoly().as_expr()
@@ -194,6 +194,7 @@
 
       <sage>
         <input>
+          from sympy import eye
           B=A-9*eye(3)
           B.nullspace()
         </input>
@@ -228,6 +229,7 @@
 
       <sage>
         <input>
+          from sympy import GramSchmidt
           L=B.nullspace()
           GramSchmidt(L)
         </input>
@@ -248,7 +250,7 @@
 
       <sage>
         <input>
-          L=[Matrix([-1,0,1]),Matrix([-1,2,0])]
+          L=[Matrix(3,1,[-1,0,1]),Matrix(3,1,[-1,2,0])]
           GramSchmidt(L)
         </input>
         <output>

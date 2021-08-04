@@ -31,16 +31,28 @@
     </sage>
 
     <p>
-      <alert>Note:</alert> if you are going to be working with multiple libraries,
+      <alert>Note:</alert> the command <c>from sympy import *</c>
+      given above is <em>not</em> best practice.
+      It can be convenient when you want to do a quick calculation
+      (for example, on a test), but can have unintended consequences.
+      It is better to only load those parts of a library you are going to use;
+      for example, <c>from sympy import Matrix, init_printing</c>.
+    </p>
+
+    <p>
+      If you are going to be working with multiple libraries,
       and more than one of them defines a certain command,
-      instead of <c>from sympy import all</c> you can do <c>import sympy as sy</c>.
-      If you do this, each SymPy command will need to be appended with <c>sy</c>; for example,
+      you can use prefixes to indicate what library you want to use.
+      For example, if you enter <c>import sympy as sy</c>,
+      each SymPy command will need to be appended with <c>sy</c>; for example,
       you might write <c>sy.Matrix</c> instead of simply <c>Matrix</c>.
       Let's use SymPy to create a <m>2\times 3</m> matrix.
     </p>
 
     <sage>
       <input>
+        from sympy import Matrix, init_printing
+        init_printing()
         A = Matrix(2,3,[1,2,3,4,5,6])
         A
       </input>
@@ -48,7 +60,9 @@
 
     <p>
       The <c>A</c> on the second line asks Python to print the matrix using SymPy's printing support.
-      If we use Python's <c>print</c> command, we get something different:
+      If we use Python's <c>print</c> command, we get something different;
+      note that the next Sage cell remembers the values from the previous one,
+      if you are using the <init>HTML</init> version of the book.
     </p>
 
     <sage>
@@ -76,11 +90,13 @@
 
     <p>
       But we often do linear algebra over the rational numbers,
-      and so SymPy will let you specify this:
+      and so SymPy will let you specify this.
+      First, you'll need to load the <c>Rational</c> function.
     </p>
 
     <sage>
       <input>
+        from sympy import Rational
         Rational(2,7)
       </input>
     </sage>
@@ -108,6 +124,7 @@
 
     <sage>
       <input>
+        from sympy import S
         S(2)/7
       </input>
     </sage>
@@ -124,6 +141,7 @@
 
     <sage>
       <input>
+        from sympy import Float
         Float(2.5)
       </input>
     </sage>
@@ -209,6 +227,7 @@
     </sage>
     <sage>
       <input>
+        from sympy import pi
         pi.is_irrational
       </input>
     </sage>
@@ -282,6 +301,7 @@
 
     <sage>
       <input>
+        from sympy import Symbol
         a = Symbol('a')
         b = Symbol('b')
         A = Matrix(3,3,[a,2,b,2,1,a,2*a,b,3])
@@ -389,8 +409,8 @@
 
     <sage>
       <input>
-        X=Matrix([1,2,3])
-        Y=Matrix([4,5,6])
+        X=Matrix(3,1,[1,2,3])
+        Y=Matrix(3,1,[4,5,6])
         X.dot(Y),(X.T)*Y
       </input>
     </sage>
@@ -411,6 +431,7 @@
 
     <sage>
       <input>
+        from sympy import GramSchmidt
         A=Matrix(2,3,[1,0,3,2,-1,4])
         L=A.nullspace()
         GramSchmidt(L)
@@ -482,7 +503,7 @@
 
     <sage>
       <input>
-        from sympy import *
+        from sympy import Matrix,init_printing,simplify
         init_printing()
         A = Matrix(2,2,[4,3-I,3+I,1])
         L = A.eigenvects()

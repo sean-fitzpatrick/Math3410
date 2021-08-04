@@ -97,12 +97,12 @@
 
   <p>
     To solve this problem, you may use Python code, as outlined below.
-    To get started, load the SymPy library.
+    To get started, load the functions you'll need from the SymPy library.
   </p>
 
   <sage>
     <input>
-      from sympy import *
+      from sympy import symbols,factor,init_printing
       x = symbols('x')
       init_printing()
     </input>
@@ -111,6 +111,7 @@
   <p>
     The associated polynomial for the recurrence is:
   </p>
+
   <p>
     (Input your polynomial here. You can type <c>$</c> to enter and exit math mode in a Markdown cell,
     and you can use <c>^</c> to enter exponents.)
@@ -167,6 +168,7 @@
 
   <sage>
     <input>
+      from sympy import Matrix
       A = Matrix()
       B = Matrix([1,2,1])
       X = A**(-1)*B

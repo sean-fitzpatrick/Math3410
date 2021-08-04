@@ -43,7 +43,7 @@
 
   <sage>
     <input>
-      from sympy import *
+      from sympy import Matrix,init_printing
       init_printing()
       A = Matrix([[1,0,1],[-1,1,0]])
       L0=A.singular_values()
@@ -90,6 +90,7 @@
 
   <sage>
     <input>
+      from sympy import BlockMatrix
       Q = Matrix(BlockMatrix([Q1,Q2,Q3]))
       Q,Q*Q.T
     </input>
@@ -147,7 +148,7 @@
     <caption>SymPy code for a singular value decomposition example</caption>
     <program>
       <input>
-        from sympy import *
+        from sympy import Matrix,BlockMatrix,init_printing
         init_printing()
         A = Matrix([[1,0,1],[-1,1,0]])
         B=(A.T)*A

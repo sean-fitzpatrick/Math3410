@@ -230,7 +230,7 @@
 
       <sage>
         <input>
-          from sympy import *
+          from sympy import Matrix,init_printing,factor
           init_printing()
           A = Matrix([[7,1,-3,2,1],
                       [-6,2,4,-2,-2],
@@ -257,6 +257,7 @@
 
       <sage>
         <input>
+          from sympy import eye
           N2 = A-2*eye(5)
           E2 = N2.nullspace()
           E2
@@ -359,6 +360,7 @@
 
       <sage>
         <input>
+          from sympy import Symbol
           a = Symbol('a')
           b = Symbol('b')
           C3 = N3.col_insert(5,a*E3[0]+b*E3[1])
@@ -411,7 +413,7 @@
 
       <sage>
         <input>
-          Z3 = Matrix([1,2,2,0,0])
+          Z3 = Matrix(5,1,[1,2,2,0,0])
           A*Z3-3*Z3-2*(E3[0]+E3[1])
         </input>
         <output>

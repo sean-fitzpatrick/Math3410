@@ -204,10 +204,10 @@
 
     <sage>
       <input>
-        from sympy import *
+        from sympy import Matrix,init_printing
         init_printing()
-        Z = Matrix([2-I,3*I,4+2*I])
-        W = Matrix([3*I,4-5*I,-2+2*I])
+        Z = Matrix(3,1,[2-I,3*I,4+2*I])
+        W = Matrix(3,1,[3*I,4-5*I,-2+2*I])
         Z, W, Z.dot(W.H)
       </input>
       <output>
@@ -406,7 +406,7 @@
         A == A.H
       </input>
       <output>
-        \[\text{True}\]
+        True
       </output>
     </sage>
 
@@ -431,6 +431,7 @@
 
     <p>
       Hmm... That doesn't look like the identity on the right. Maybe try replacing <c>B*B.H</c> with <c>simplify(B*B.H)</c>.
+      (You will want to add <c>from sympy import simplify</c> at the top of the cell.)
       Or you could try <c>B.H, B**-1</c> to compare results.
       Actually, what's interesting is that in a Sage cell, <c>B.H == B**-1</c> yields <c>False</c>,
       but <c>B.H == simplify(B**-1)</c> yields <c>True</c>!
