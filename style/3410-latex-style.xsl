@@ -39,7 +39,7 @@
     <xsl:call-template name="xelatex-font-check">
         <xsl:with-param name="font-name" select="'Carlito-Regular'"/>
     </xsl:call-template>
-    <xsl:text>\setmainfont{Carlito-Regular}[]&#xa;</xsl:text>
+    <xsl:text>\setmainfont{Carlito-Regular}&#xa;</xsl:text>
 </xsl:template>
 
 
@@ -65,10 +65,10 @@
     <xsl:text>fonttitle=\normalfont\bfseries, colbacktitle=blue!20, colframe=blue!75!black, colback=blue!5, coltitle=black, titlerule=-0.3pt,</xsl:text>
 </xsl:template>
 
-<!-- <xsl:template match="&ASIDE-LIKE;" mode="tcb-style">
-    <xsl:text>enhanced, colback=blue!3, colframe=blue!50!black,&#xa;</xsl:text>
-    <xsl:text>coltitle=black, fonttitle=\bfseries, attach title to upper, after title={\space},</xsl:text>
-</xsl:template> -->
+<xsl:template match="&ASIDE-LIKE;" mode="tcb-style">
+    <xsl:text>enhanced, colback=white, colframe=white,&#xa;</xsl:text>
+    <xsl:text>coltitle=black, fonttitle=\bfseries, attach title to upper, after title={\space},left=1pt,</xsl:text>
+</xsl:template>
 
 <xsl:template match="example" mode="tcb-style">
     <xsl:text>fonttitle=\normalfont\bfseries, colback=white, colframe=black, colbacktitle=white, coltitle=black,
@@ -121,42 +121,38 @@
 </xsl:template>
 
 <!-- figures in the margin -->
-<!-- load marginnote package -->
-<xsl:param name="latex.preamble.early" select="'\usepackage{marginnote}'"/>
+<xsl:param name="latex.preamble.early" select="'
+\usepackage{xcoffins}&#xa;
+\NewCoffin\Framex&#xa;
+\NewCoffin\Theox
+  '"/>
 
-<!-- margin figures within a tcolorbox get shifted with xelatex -->
-<!-- this shifts them back into place -->
 <xsl:param name="latex.preamble.late" select="'
-\makeatletter&#xa;
-\def\pgfsys@hboxsynced#1{%&#xa;
-  {%&#xa;
-    \pgfsys@beginscope%&#xa;
-    \setbox\pgf@hbox=\hbox{%&#xa;
-      \hskip\pgf@pt@x%&#xa;
-      \raise\pgf@pt@y\hbox{%&#xa;
-        \pgf@pt@x=0pt%&#xa;
-        \pgf@pt@y=0pt%&#xa;
-        \special{pdf: content q}%&#xa;
-        \pgflowlevelsynccm%&#xa;
-        \pgfsys@invoke{q -1 0 0 -1 0 0 cm}%&#xa;
-        \special{pdf: content -1 0 0 -1 0 0 cm q}% translate to original coordinate system&#xa;
-        \pgfsys@invoke{0 J [] 0 d}% reset line cap and dash&#xa;
-        \wd#1=0pt%&#xa;
-        \ht#1=0pt%&#xa;
-        \dp#1=0pt%&#xa;
-        \box#1%&#xa;
-        \pgfsys@invoke{n Q Q Q}%&#xa;
-      }%&#xa;
-      \hss%&#xa;
-    }%&#xa;
-    \wd\pgf@hbox=0pt%&#xa;
-    \ht\pgf@hbox=0pt%&#xa;
-    \dp\pgf@hbox=0pt%&#xa;
-    \pgfsys@hbox\pgf@hbox%&#xa;
-    \pgfsys@endscope%&#xa;
-  }%&#xa;
+\newlength{\Textw} % save textwidth outside the boxes&#xa;
+\setlength{\Textw}{\textwidth}&#xa;
+\newlength{\Hshift}&#xa;
+\newlength{\Mshift}&#xa;
+\newcommand*{\marginshift}{%&#xa;
+    \setlength{\Hshift}{5.5mm}&#xa;
+    \setlength{\Mshift}{\marginparsep}&#xa;
+    }&#xa;
+    &#xa;
+\newcommand{\tcbmarginbox}[2]{%&#xa;
+    \marginshift&#xa;
+    \SetHorizontalCoffin\Framex{} %clear box Framex&#xa;
+    \SetVerticalCoffin\Theox{\marginparwidth}{#1}% fill box \Theox&#xa;
+    \JoinCoffins*\Framex[r,vc]\Theox[l,vc](\dimexpr\Mshift+\textwidth\relax,#2)%join boxes&#xa;
+    \noindent\TypesetCoffin\Framex(\Hshift,0pt)\\[-2\baselineskip] %typset assembly&#xa;
 }&#xa;
-\makeatother'"/>
+&#xa;
+\newcommand{\parmarginbox}[2]{%&#xa;
+    \marginshift&#xa;
+    \SetHorizontalCoffin\Framex{}&#xa;
+    \SetVerticalCoffin\Theox{\marginparwidth}{#1}&#xa;
+    \JoinCoffins*\Framex[r,vc]\Theox[l,vc](\dimexpr\Mshift+\textwidth\relax,#2)&#xa;
+    \noindent\TypesetCoffin\Framex(0mm,0pt)\\[-2\baselineskip]&#xa;
+}'"/>
+
 
 <!-- we want images in margin to be the full margin width -->
 <xsl:template match="figure/image[not(ancestor::sidebyside) and (descendant::latex-image or descendant::asymptote) and not(ancestor::exercise)]">
@@ -172,45 +168,70 @@
 </xsl:template>
 
 <!-- latex-image, asymptote, and tabular can all go in margin -->
-<xsl:template match="figure[not(ancestor::sidebyside) and not(ancestor::aside) and not(descendant::sidebyside) and (descendant::latex-image or descendant::asymptote or descendant::tabular) and not(ancestor::exercise)]">
-    <xsl:text>\marginnote{%&#xa;</xsl:text>
-    <xsl:text>\begin{</xsl:text>
-    <xsl:apply-templates select="." mode="environment-name"/>
-    <xsl:text>}{</xsl:text>
-    <xsl:apply-templates select="." mode="caption-full"/>
-    <xsl:text>}{</xsl:text>
-    <xsl:apply-templates select="." mode="latex-id"/>
-    <xsl:text>}{</xsl:text>
-    <xsl:if test="$b-latex-hardcode-numbers">
-        <xsl:apply-templates select="." mode="number"/>
-    </xsl:if>
-    <xsl:text>}%&#xa;</xsl:text>
-    <!-- images have margins and widths, so centering not needed -->
-    <!-- Eventually everything in a figure should control itself -->
-    <!-- or be flush left (or so)                                -->
-    <xsl:if test="self::figure and not(image)">
-        <xsl:text>\centering&#xa;</xsl:text>
-    </xsl:if>
-    <xsl:apply-templates select="*"/>
-    <!-- reserve space for the caption -->
-    <xsl:text>\tcblower&#xa;</xsl:text>
-    <xsl:text>\end{</xsl:text>
-    <xsl:apply-templates select="." mode="environment-name"/>
-    <xsl:text>}%&#xa;</xsl:text>
-    <xsl:apply-templates select="." mode="pop-footnote-text"/>
-    <xsl:text>}%&#xa;</xsl:text>
-    <xsl:text>\par&#xa;</xsl:text>
+<xsl:template match="figure[not(ancestor::sidebyside) and not(ancestor::aside) and not(descendant::sidebyside) and (descendant::latex-image or descendant::asymptote or descendant::tabular or descendant::video) and not(ancestor::exercise)]">
+    <xsl:text>&#xa;</xsl:text>
+    <xsl:choose>
+      <xsl:when test="ancestor::example">
+        <xsl:text>\tcbmarginbox{%&#xa;</xsl:text>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:text>\parmarginbox{%&#xa;</xsl:text>
+      </xsl:otherwise>
+    </xsl:choose>
+        <xsl:text>\begin{</xsl:text>
+        <xsl:apply-templates select="." mode="environment-name"/>
+        <xsl:text>}{</xsl:text>
+        <xsl:apply-templates select="." mode="caption-full"/>
+        <xsl:text>}{</xsl:text>
+        <xsl:apply-templates select="." mode="latex-id"/>
+        <xsl:text>}{</xsl:text>
+        <xsl:if test="$b-latex-hardcode-numbers">
+            <xsl:apply-templates select="." mode="number"/>
+        </xsl:if>
+        <xsl:text>}%&#xa;</xsl:text>
+        <!-- images have margins and widths, so centering not needed -->
+        <!-- Eventually everything in a figure should control itself -->
+        <!-- or be flush left (or so)                                -->
+        <xsl:if test="self::figure and not(image)">
+            <xsl:text>\centering&#xa;</xsl:text>
+        </xsl:if>
+        <xsl:apply-templates select="*"/>
+        <!-- reserve space for the caption -->
+        <xsl:text>\tcblower&#xa;</xsl:text>
+        <xsl:text>\end{</xsl:text>
+        <xsl:apply-templates select="." mode="environment-name"/>
+        <xsl:text>}%&#xa;</xsl:text>
+        <xsl:apply-templates select="." mode="pop-footnote-text"/>
+        <xsl:text>}{0pt}&#xa;</xsl:text>
+        <xsl:text>&#xa;</xsl:text>
 </xsl:template>
 
 
 <!-- asides in the margin -->
 <!-- simple asides, with no styling available -->
 <xsl:template match="aside">
-    <xsl:text>\marginnote{&#xa;</xsl:text>
-    <xsl:apply-templates select="." mode="label"/>
-    <xsl:apply-templates select="p|&FIGURE-LIKE;|sidebyside|image|tabular" />
-    <xsl:text>}%&#xa;</xsl:text>
-    <xsl:text>\par&#xa;</xsl:text>
+    <xsl:text>&#xa;</xsl:text>
+    <xsl:choose>
+      <xsl:when test="ancestor::example">
+        <xsl:text>\tcbmarginbox{%&#xa;</xsl:text>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:text>\parmarginbox{%&#xa;</xsl:text>
+      </xsl:otherwise>
+    </xsl:choose>
+        <xsl:text>\begin{</xsl:text>
+        <xsl:value-of select="local-name(.)" />
+        <xsl:text>}</xsl:text>
+        <xsl:apply-templates select="." mode="block-options"/>
+        <xsl:text>%&#xa;</xsl:text>
+        <!-- Coordinate with schema, since we enforce it here -->
+        <xsl:apply-templates select="p|blockquote|pre|image|video|program|console|tabular"/>
+        <xsl:text>\end{</xsl:text>
+        <xsl:value-of select="local-name(.)" />
+        <xsl:text>}&#xa;</xsl:text>
+        <xsl:apply-templates select="." mode="pop-footnote-text"/>
+        <xsl:text>}{0pt}%&#xa;</xsl:text>
+        <xsl:text>&#xa;</xsl:text>
 </xsl:template>
 
 <!-- puts standard tcolorbox for aside into the margin -->
@@ -230,10 +251,10 @@
 
 
 <!-- now come all the options -->
-<!-- turn off hints, answers, and solutions for divisional exercises -->
-<xsl:param name="exercise.divisional.hint" select="'no'"/>
-<xsl:param name="exercise.divisional.answer" select="'no'"/>
-<xsl:param name="exercise.divisional.solution" select="'no'"/>
+<!-- turn off hints, answers, and solutions for exercises -->
+<!-- <xsl:param name="exercise.divisional.hint" select="'no'"/> -->
+<xsl:param name="exercise.inline.answer" select="'no'"/>
+<xsl:param name="exercise.inline.solution" select="'no'"/>
 
 <!-- print options -->
 <!-- <xsl:param name="latex.print" select="'no'"/> -->
