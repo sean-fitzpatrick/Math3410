@@ -2,231 +2,261 @@
 
 <worksheet xml:id="worksheet-recurrence">
   <title>Worksheet: linear recurrences</title>
-  <p>
-    For this worksheet, the reader is directed to Section 7.5 of
-    <em>Linear Algebra with Applications</em>, by Keith Nicholson.
-    You will probably want to read this section before proceeding.
-  </p>
+  <page>
+    <introduction>
+      <p>
+        For this worksheet, the reader is directed to Section 7.5 of
+        <em>Linear Algebra with Applications</em>, by Keith Nicholson.
+        You will probably want to read this section before proceeding.
+      </p>
 
-  <p>
-    A <em>linear recurrence</em> of length <m>k</m> is a sequence <m>[x_n)</m> that is recursively defined,
-    with successive terms in the sequence defined in terms of the previous <m>k</m> terms,
-    via a linear recursion formula of the form
-    <me>
-      x_{n+k} = a_0x_k + a_1x_{k+1}+\cdots + a_{k-1}x_{n+k-1}
-    </me>.
-    (Here we assume <m>a_0\neq 0</m> to have the appropriate length.)
-    The most famous example of a linear recurrence is, of course, the Fibonacci sequence,
-    which is defined by <m>x_0=1, x_1=1</m>, and <m>x_{n+2}=x_n+x_{n+1}</m> for all <m>n\geq 0</m>.
-  </p>
+      <p>
+        A <em>linear recurrence</em> of length <m>k</m> is a sequence <m>[x_n)</m> that is recursively defined,
+        with successive terms in the sequence defined in terms of the previous <m>k</m> terms,
+        via a linear recursion formula of the form
+        <me>
+          x_{n+k} = a_0x_k + a_1x_{k+1}+\cdots + a_{k-1}x_{n+k-1}
+        </me>.
+        (Here we assume <m>a_0\neq 0</m> to have the appropriate length.)
+        The most famous example of a linear recurrence is, of course, the Fibonacci sequence,
+        which is defined by <m>x_0=1, x_1=1</m>, and <m>x_{n+2}=x_n+x_{n+1}</m> for all <m>n\geq 0</m>.
+      </p>
 
-  <p>
-    As demonstrated in the Nicholson's book,
-    the set of all sequences satisfying a linear recursion of length <m>k</m>
-    form a subspace <m>V</m> of the vector space <m>\mathbb{R}^\infty</m>
-    of all real-valued sequences.
-    Since each sequence is determined by the <m>k</m> initial conditions <m>x_0, x_1, \ldots, x_{k-1}</m>,
-    we see that <m>V</m> is isomorphic to <m>\mathbb{R}^k</m>.
-  </p>
+      <p>
+        As demonstrated in the Nicholson's book,
+        the set of all sequences satisfying a linear recursion of length <m>k</m>
+        form a subspace <m>V</m> of the vector space <m>\mathbb{R}^\infty</m>
+        of all real-valued sequences.
+        Since each sequence is determined by the <m>k</m> initial conditions <m>x_0, x_1, \ldots, x_{k-1}</m>,
+        we see that <m>V</m> is isomorphic to <m>\mathbb{R}^k</m>.
+      </p>
 
-  <p>
-    The goal of this worksheeet is to understand how to obtain <em>closed form</em>
-    expressions for a recursively defined sequence using linear algebra.
-    That is, rather than having to generate terms of the sequence one-by-one using the recursion formula,
-    we want a function of <m>n</m> that will produce each term <m>x_n</m> in the sequence.
-  </p>
+      <p>
+        The goal of this worksheeet is to understand how to obtain <em>closed form</em>
+        expressions for a recursively defined sequence using linear algebra.
+        That is, rather than having to generate terms of the sequence one-by-one using the recursion formula,
+        we want a function of <m>n</m> that will produce each term <m>x_n</m> in the sequence.
+      </p>
 
-  <p>
-    Since we know the dimension of the space <m>V</m> of solutions, it suffices to understand two things:
-    <ul>
-      <li>
+      <p>
+        Since we know the dimension of the space <m>V</m> of solutions, it suffices to understand two things:
+        <ul>
+          <li>
+            <p>
+              How to produce a basis for <m>V</m>.
+            </p>
+          </li>
+          <li>
+            <p>
+              How to write a given solution in terms of that basis.
+            </p>
+          </li>
+        </ul>
+      </p>
+
+      <p>
+        The key observation is that for each recursion relation, there is an associated polynomial.
+        For the recursion
+        <me>
+          x_{n+k} = a_0x_n + a_1x_{n+1}+\cdots + a_{k-1}x_{n+k-1}
+        </me>,
+        the associated polynomial is
+        <me>
+          p(x) = x^k - a_{k-1}x^{k-1}-\cdots -a_1x-a_0
+        </me>.
+      </p>
+
+      <p>
+        The main result is Theorem 7.5.4 in Nicholson. If we can factor <m>p(x)</m> completely over the reals as
+        <me>
+          p(x) = (x-\lambda_1)^{m_1}(x-\lambda_2)^{m_2}\cdots (x-\lambda_p)^{m_p}
+        </me>,
+        then a basis for the space of solutions is given by
+        <md>
+          <mrow>\left[\lambda_1^n\right), \amp \left[n\lambda_1^n\right),\ldots, \left[n^{m_1-1}\lambda_1^n\right)</mrow>
+          <mrow>\left[\lambda_2^n\right), \amp \left[n\lambda_2^n\right),\ldots, \left[n^{m_2-1}\lambda_2^n\right)</mrow>
+          <mrow>\amp \vdots </mrow>
+          <mrow>\left[\lambda_p^n\right), \amp \left[n\lambda_p^n\right),\ldots, \left[n^{m_p-1}\lambda_p^n\right)</mrow>
+        </md>.
+      </p>
+
+      <p>
+        Once we have a basis, we can apply the given coefficients to determine how
+        to write a particular sequence as a linear combination of the basis vectors.
+      </p>
+    </introduction>
+  </page>
+  <page>
+    <exercise workspace="3in">
+      <statement>
         <p>
-          How to produce a basis for <m>V</m>.
+          Find a basis for the space <m>V</m> of sequences <m>[x_n)</m> satisfying the recurrence
+          <me>
+            x_{n+3}=-2x_n+x_{n+1}+2x_{n+2}
+          </me>.
         </p>
-      </li>
-      <li>
         <p>
-          How to write a given solution in terms of that basis.
+          Then find a formula for the sequence satisfying the initial conditions <m>x_0=1, x_1=2, x_2=1</m>.
         </p>
-      </li>
-    </ul>
-  </p>
+      </statement>
+    </exercise>
 
-  <p>
-    The key observation is that for each recursion relation, there is an associated polynomial.
-    For the recursion
-    <me>
-      x_{n+k} = a_0x_k + a_1x_{k+1}+\cdots + a_{k-1}x_{n+k-1}
-    </me>,
-    the associated polynomial is
-    <me>
-      p(x) = x^k - a_{k-1}x^{k-1}-\cdots -a_1x-a_0
-    </me>.
-  </p>
+    <p>
+      To solve this problem, you may use Python code, as outlined below.
+      To get started, load the functions you'll need from the SymPy library.
+    </p>
 
-  <p>
-    The key result is Theorem 7.5.4 in Nicholson. If we can factor <m>p(x)</m> completely over the reals as
-    <me>
-      p(x) = (x-\lambda_1)^{m_1}(x-\lambda_2)^{m_2}\cdots (x-\lambda_p)^{m_p}
-    </me>,
-    then a basis for the space of solutions is given by
-    <md>
-      <mrow>\left[\lambda_1^n\right), \amp \left[n\lambda_1^n\right),\ldots, \left[n^{m_1-1}\lambda_1^n\right)</mrow>
-      <mrow>\left[\lambda_2^n\right), \amp \left[n\lambda_2^n\right),\ldots, \left[n^{m_2-1}\lambda_2^n\right)</mrow>
-      <mrow>\amp \vdots </mrow>
-      <mrow>\left[\lambda_p^n\right), \amp \left[n\lambda_p^n\right),\ldots, \left[n^{m_p-1}\lambda_p^n\right)</mrow>
-    </md>.
-  </p>
+    <sage>
+      <input>
+        from sympy import symbols,factor,init_printing
+        x = symbols('x')
+        init_printing()
+      </input>
+    </sage>
 
-  <p>
-    Once we have a basis, we can apply the given coefficients to determine how
-    to write a particular sequence as a linear combination of the basis vectors.
-  </p>
+    <p>
+      First, determine the associated polynomial for the recurrence.
+    </p>
 
-  <exercise>
-    <statement>
-      <p>
-        Find a basis for the space <m>V</m> of sequences <m>[x_n)</m> satisfying the recurrence
-        <me>
-          x_{n+3}=-2x_n+x_{n+1}+2x_{n+2}
-        </me>.
-        Then find a formula for the sequence satisfying the initial conditions <m>x_0=1, x_1=2, x_2=1</m>.
-      </p>
-    </statement>
-  </exercise>
+    <p>
+      (Input your polynomial in the cell below. To get proper formatting, wrap your math in <c>$</c> delimiters,
+      and can use <c>^</c> to enter exponents.)
+    </p>
 
-  <p>
-    To solve this problem, you may use Python code, as outlined below.
-    To get started, load the functions you'll need from the SymPy library.
-  </p>
+    <sage language="html">
 
-  <sage>
-    <input>
-      from sympy import symbols,factor,init_printing
-      x = symbols('x')
-      init_printing()
-    </input>
-  </sage>
+    </sage>
 
-  <p>
-    The associated polynomial for the recurrence is:
-  </p>
+    <p>
+      Next, factor the polynomial. You can do this using the <c>factor()</c> command.
+      In Python, you will need to enter <c>**</c> for the exponents.
+    </p>
 
-  <p>
-    (Input your polynomial here. You can type <c>$</c> to enter and exit math mode in a Markdown cell,
-    and you can use <c>^</c> to enter exponents.)
-  </p>
+    <sage>
 
-  <p>
-    Next, factor the polynomial. You can do this using the <c>factor()</c> command.
-    In Python, you will need to enter <c>**</c> for the exponents.
-  </p>
+    </sage>
 
-  <sage>
+    <p>
+      In the cell below, list the roots of the polynomial,
+      and the resulting basis <m>B</m> for the space <m>V</m> of solutions.
+      Recall that if <m>\lambda</m> is a root of the polynomial,
+      then <m>[\lambda^n)</m> will be a basis vector for the vector space <m>V</m> of solutions.
+      You may wish to confirm that each of your basis sequences indeed satisfies our recursion.
+    </p>
 
-  </sage>
+    <sage language="html"></sage>
+  </page>
 
-  <p>
-    If you are doing this worksheet in Jupyter, change the cell below to Markdown.
-    In it, list the roots of the polynomial,
-    and the resulting basis <m>B</m> for the space <m>V</m> of solutions.
-    Recall that if <m>\lambda</m> is a root of the polynomial,
-    then <m>[\lambda^n)</m> will be a basis vector for the vector space <m>V</m> of solutions.
-    You may wish to confirm that each of your basis sequences indeed satisfies our recursion.
-  </p>
+  <page>
+    <p>
+      Next, let <m>s=[x_n)</m> be the recursion that satisfies the given initial conditions.
+      We want to write <m>[x_n)</m> in terms of the basis we just found.
+      Recall, from Nicholson, that since our basis has three elements, there is an isomorphism
+      <m>T:\R^3\to V</m>, where <m>T(a,b,c)</m> is equal to the sequence <m>[x_n)</m> in <m>V</m>
+      that satisfies the initial conditions <m>x_0=a, x_1=b, x_2=c</m>.
+      Thus, our desired sequence is given by <m>s=T(1,2,1)</m>.
+    </p>
 
-  <p>
-    Next, let <m>s=[x_n)</m> be the recursion that satisfies the given initial conditions.
-    We want to write <m>[x_n)</m> in terms of the basis we just found.
-    Recall, from Nicholson, that since our basis has three elements, there is an isomorphism
-    <m>T:\R^3\to V</m>, where <m>T(a,b,c)</m> is equal to the sequence <m>[x_n)</m> in <m>V</m>
-    that satisfies the initial conditions <m>x_0=a, x_1=b, x_2=c</m>.
-    Thus, our desired sequence is given by <m>s=T(1,2,1)</m>.
-  </p>
+    <p>
+      Let <m>\vv_1, \vv_2, \vv_3\in\R^3</m> be the vectors such that
+      <m>B=\{T(\vv_1), T(\vv_2), T(\vv_3)\}</m>.
+      (That is, write out the first three terms in each sequence in your basis to get three vectors.)
+      We then need to find scalars <m>c_1,c_2,c_3</m> such that
+      <me>
+        c_1\vv_1+c_2\vv_2+c_3\vv_3=(1,2,1)
+      </me>.
+      We will then have
+      <md>
+        <mrow>s \amp = T(1,2,1)</mrow>
+        <mrow> \amp = c_1T(\vv_1)+c_2T(\vv_2)+c_3T(\vv_3)</mrow>
+      </md>,
+      and we recall that the sequences <m>T(\vv_i)</m> are the sequences in our basis <m>B</m>.
+    </p>
 
-  <p>
-    Let <m>\vv_1, \vv_2, \vv_3\in\R^3</m> be the vectors such that
-    <m>B=\{T(\vv_1), T(\vv_2), T(\vv_3)\}</m>.
-    (That is, write out the first three terms in each sequence in your basis to get three vectors.)
-    We then need to find scalars <m>c_1,c_2,c_3</m> such that
-    <me>
-      c_1\vv_1+c_2\vv_2+c_3\vv_3=(1,2,1)
-    </me>.
-    We will then have
-    <md>
-      <mrow>s \amp = T(1,2,1)</mrow>
-      <mrow> \amp = c_1T(\vv_1)+c_2T(\vv_2)+c_3T(\vv_3)</mrow>
-    </md>,
-    and we recall that the sequences <m>T(\vv_i)</m> are the sequences in our basis <m>B</m>.
-  </p>
+    <p>
+      Set up this system, and then use the computer to solve.
+      Let <c>A</c> be the coefficient matrix for the system,
+      which you will need to input into the cell below,
+      and let <c>B</c> be the column vector containing the initial conditions.
+    </p>
+    <sage>
+      <input>
+        from sympy import Matrix
+        A = Matrix()
+        B = Matrix([1,2,1])
+        X = A**(-1)*B
+        X
+      </input>
+    </sage>
 
-  <p>
-    Set up this system, and then use the computer to solve.
-    Let <c>A</c> be the coefficient matrix for the system,
-    and let <c>B</c> be the column vector containing the initial conditions.
-  </p>
+    <p>
+      Using the solution above, state the answer to this exercise.
+    </p>
 
-  <sage>
-    <input>
-      from sympy import Matrix
-      A = Matrix()
-      B = Matrix([1,2,1])
-      X = A**(-1)*B
-      X
-    </input>
-  </sage>
+    <sage language="html">
 
-  <p>
-    Using the solution above, state the answer to this exercise.
-  </p>
+    </sage>
 
-  <sage>
+    <p>
+      Now, we leave you with a few more exercises.
+      Recall that if the associated polynomial for your recursion has a repeated root <m>(x-\lambda)^k</m>,
+      then your basis will include the sequences <m>[\lambda^n), [n\lambda^n), \ldots, [n^{k-1}\lambda^n)</m>.
+    </p>
 
-  </sage>
 
-  <p>
-    Now, we leave you with two more exercises.
-    Recall that if the associated polynomial for your recursion has a repeated root <m>(x-\lambda)^k</m>,
-    then your basis will include the sequences <m>[\lambda^n), [n\lambda^n), \ldots, [n^{k-1}\lambda^n)</m>.
-  </p>
+    <exercise workspace="2in">
+      <statement>
+        <p>
+          Find a basis for the space <m>V</m> of sequences <m>[x_n)</m> satisfying the recurrence
+          <me>
+            x_{n+3} = -4x_n+3x_{n+2}
+          </me>.
+          Then find a formula for the sequence satisfying the initial conditions <m>x_0=1, x_1=-1, x_2=1</m>.
+        </p>
+      </statement>
+    </exercise>
 
-  <exercise>
-    <statement>
-      <p>
-        Find a basis for the space $V$ of sequences <m>[x_n)</m> satisfying the recurrence
-        <me>
-          x_{n+3} = -4x_n+3x_{n+2}
-        </me>.
-        Then find a formula for the sequence satisfying the initial conditions <m>x_0=1, x_1=-1, x_2=1</m>.
-      </p>
-    </statement>
-  </exercise>
+    <sage>
 
-  <exercise>
-    <statement>
-      <p>
-        Find a basis for the space $V$ of sequences <m>[x_n)</m> satisfying the recurrence
-        <me>
-          x_{n+3} = 8x_n-12x_{n+1}+6x_{n+2}
-        </me>.
-        Then find a formula for the sequence satisfying the initial conditions <m>x_0=1, x_1=-1, x_2=1</m>.
-      </p>
-    </statement>
-  </exercise>
+    </sage>
+  </page>
 
-  <p>
-    Our last exercise is more theoretical, and less computational.
-    Recall that the <em>shift operator</em> <m>S</m> on the vector space <m>\R^\infty</m>
-    of sequences is the operator that deletes the first entry of a sequence.
-    (So the remaining entries get <q>shifted</q> once to the left.)
-  </p>
+  <page>
+    <exercise workspace="2.5in">
+      <statement>
+        <p>
+          Find a basis for the space <m>V</m> of sequences <m>[x_n)</m> satisfying the recurrence
+          <me>
+            x_{n+3} = 8x_n-12x_{n+1}+6x_{n+2}
+          </me>.
+          Then find a formula for the sequence satisfying the initial conditions <m>x_0=1, x_1=-1, x_2=1</m>.
+        </p>
+      </statement>
+    </exercise>
 
-  <exercise>
-    <statement>
-      <p>
-        Show that the shift operator is onto, but not one-to-one.
-        Then, determine the kernel of the shift operator.
-      </p>
-    </statement>
-  </exercise>
+    <sage>
+
+    </sage>
+
+
+    <p>
+      Our last exercise is more theoretical, and less computational.
+      Recall that the <em>shift operator</em> <m>S</m> on the vector space <m>\R^\infty</m>
+      of sequences is the operator that deletes the first entry of a sequence.
+      (So the remaining entries get <q>shifted</q> once to the left.)
+    </p>
+
+    <exercise workspace="2.5in">
+      <statement>
+        <p>
+          Show that the shift operator is onto, but not one-to-one.
+          Then, determine the kernel of the shift operator.
+        </p>
+      </statement>
+    </exercise>
+
+    <sage language="html">
+
+    </sage>
+  </page>
 </worksheet>

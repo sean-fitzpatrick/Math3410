@@ -2,36 +2,38 @@
 
 <worksheet xml:id="worksheet-svd">
   <title>Worksheet: Singular Value Decomposition</title>
-  <p>
-    For this worksheet, the reader is directed to Section 8.6 of
-    <em>Linear Algebra with Applications</em>, by Keith Nicholson,
-    and, of course, to <xref ref="section-matrix-factor"/>.
-    (See also <url href="https://www.juanklopper.com/wp-content/uploads/2015/03/III_05_Singular_value_decomposition.html">notebook by Dr. Juan H Klopper</url>.)
-  </p>
+  <introduction>
+    <p>
+      For this worksheet, the reader is directed to Section 8.6 of
+      <em>Linear Algebra with Applications</em>, by Keith Nicholson,
+      and, of course, to <xref ref="section-matrix-factor"/>.
+      (See also <url href="https://www.juanklopper.com/wp-content/uploads/2015/03/III_05_Singular_value_decomposition.html">notebook by Dr. Juan H Klopper</url>.)
+    </p>
 
-  <p>
-    In <xref ref="section-matrix-factor"/> we saw that the <c>svd</c> algorithm in the mpmath library does things a little bit differently than Nicholson.
-    If we start with a square matrix <m>A</m>, the results are the same,
-    but if <m>A</m> is not square, the decomposition <m>A = P\Sigma_A Q^T</m> looks a little different.
-    In particular, if <m>A</m> is <m>m\times n</m>,
-    the matrix <m>\Sigma_A</m> defined in Nicholson will also be <m>m\times n</m>,
-    but it will contain some rows or columns of zeros that are added to get the desired size.
-    The matrix <m>Q</m> is an orthogonal <m>n\times n</m> matrix whose columns are an orthonormal basis of eigenvectors for <m>A^TA</m>.
-    The matrix <m>P</m> is an orthogonal <m>m\times m</m> matrix whose columns are an orthonormal basis of <m>\R^m</m>.
-    (The first <m>r</m> columns of <m>P</m> are given by <m>A\vecq_i</m>, where <m>\vecq_i</m> is the eigenvector of <m>A^TA</m> corresponding to the positive singular value <m>\sigma_i</m>.)
-  </p>
+    <p>
+      In <xref ref="section-matrix-factor"/> we saw that the <c>svd</c> algorithm in the mpmath library does things a little bit differently than Nicholson.
+      If we start with a square matrix <m>A</m>, the results are the same,
+      but if <m>A</m> is not square, the decomposition <m>A = P\Sigma_A Q^T</m> looks a little different.
+      In particular, if <m>A</m> is <m>m\times n</m>,
+      the matrix <m>\Sigma_A</m> defined in Nicholson will also be <m>m\times n</m>,
+      but it will contain some rows or columns of zeros that are added to get the desired size.
+      The matrix <m>Q</m> is an orthogonal <m>n\times n</m> matrix whose columns are an orthonormal basis of eigenvectors for <m>A^TA</m>.
+      The matrix <m>P</m> is an orthogonal <m>m\times m</m> matrix whose columns are an orthonormal basis of <m>\R^m</m>.
+      (The first <m>r</m> columns of <m>P</m> are given by <m>A\vecq_i</m>, where <m>\vecq_i</m> is the eigenvector of <m>A^TA</m> corresponding to the positive singular value <m>\sigma_i</m>.)
+    </p>
 
-  <p>
-    The <c>svd</c> algorithm provided by mpmath replaces <m>\Sigma_A</m> by the <m>m\times m</m> diagonal matrix of singular values.
-    The matrix <m>Q</m> is replaced by the <m>m\times n</m> matrix whose columns are the first <m>m</m> eigenvectors of <m>A^TA</m>.
-    (Note that the rank of <m>A^TA</m> is equal to the rank of <m>A</m>,
-    which is equal to the number of nonzero eigenvectors of <m>A^TA</m> (counted with multiplicity).)
-    So we will have <m>m\geq r</m>, where <m>r</m> is the number of nonzero singular values.
-  </p>
+    <p>
+      The <c>svd</c> algorithm provided by mpmath replaces <m>\Sigma_A</m> by the <m>m\times m</m> diagonal matrix of singular values.
+      The matrix <m>Q</m> is replaced by the <m>m\times n</m> matrix whose columns are the first <m>m</m> eigenvectors of <m>A^TA</m>.
+      (Note that the rank of <m>A^TA</m> is equal to the rank of <m>A</m>,
+      which is equal to the number of nonzero eigenvectors of <m>A^TA</m> (counted with multiplicity).)
+      So we will have <m>m\geq r</m>, where <m>r</m> is the number of nonzero singular values.
+    </p>
 
-  <p>
-    The product <m>\Sigma_A Q^T</m> will be the same in both cases, and the matrix <m>P</m> is the same as well.
-  </p>
+    <p>
+      The product <m>\Sigma_A Q^T</m> will be the same in both cases, and the matrix <m>P</m> is the same as well.
+    </p>
+  </introduction>
 
   <p>
     This time, rather than using the mpmath algorithm,
@@ -172,36 +174,53 @@
     </program>
   </listing>
 
-  <exercise>
-    <statement>
-      <p>
-        Do Exercise 8.6.9 in Nicholson: compute the SVD for the matrices
-        <me>
-          \bbm 1\amp -1\\1\amp 0\\0\amp 1\ebm \quad \quad \bbm 1\amp 1\amp 1\\-1\amp 0\amp 2 \\1\amp 2\amp 0\ebm
-        </me>.
-         Note that for these matrices, you will need to do some additional work to extend the <m>\vecp_i</m>
-         vectors to an orthonormal basis. You can adapt the code above,
-         but you will have to think about how to implement additional code to construct any extra vectors you need.
-      </p>
-    </statement>
-  </exercise>
+  <page>
+    <exercise workspace="5in">
+      <statement>
+        <p>
+          Do Exercise 8.6.9 in Nicholson: compute the SVD for the matrices
+          <me>
+            \bbm 1\amp -1\\1\amp 0\\0\amp 1\ebm \quad \quad \bbm 1\amp 1\amp 1\\-1\amp 0\amp 2 \\1\amp 2\amp 0\ebm
+          </me>.
+           Note that for these matrices, you will need to do some additional work to extend the <m>\vecp_i</m>
+           vectors to an orthonormal basis. You can adapt the code above,
+           but you will have to think about how to implement additional code to construct any extra vectors you need.
+        </p>
+      </statement>
+    </exercise>
 
-  <exercise>
-    <statement>
-      <p>
-        Either by reading Nicholson or by searching online (or both),
-        come up with a couple of answers to the question:
-        <q>Why are people interested in the singular value decomposition?</q>
-      </p>
-    </statement>
-  </exercise>
+    <sage>
 
-  <exercise>
-    <statement>
-      <p>
-        (Optional) If you are interested, learn how to compute the <init>SVD</init>
-        using tools from the NumPy and SciPy libraries instead.
-      </p>
-    </statement>
-  </exercise>
+    </sage>
+
+  </page>
+
+  <page>
+    <exercise workspace="4in">
+      <statement>
+        <p>
+          Either by reading Nicholson or by searching online (or both),
+          come up with a couple of answers to the question:
+          <q>Why are people interested in the singular value decomposition?</q>
+        </p>
+      </statement>
+    </exercise>
+
+    <sage language="html">
+
+    </sage>
+
+    <exercise workspace="4in">
+      <statement>
+        <p>
+          (Optional) If you are interested, learn how to compute the <init>SVD</init>
+          using tools from the NumPy and SciPy libraries instead.
+        </p>
+      </statement>
+    </exercise>
+
+    <sage language="html">
+
+    </sage>
+  </page>
 </worksheet>

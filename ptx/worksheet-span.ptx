@@ -2,152 +2,166 @@
 
 <worksheet xml:id="worksheet-span">
   <title>Worksheet: understanding span</title>
-  <p>
-    In this worksheet, we will attempt to understand the concept of span.
-    Recall from <xref ref="sec-span"/> that the span of a set of vectors
-    <m>\vv_1, \vv_2,\ldots, \vv_k</m> in a vector space <m>V</m>
-    is the set of all linear combinations that can be generated from those vectors.
-  </p>
+  <introduction>
+    <p>
+      In this worksheet, we will attempt to understand the concept of span.
+      Recall from <xref ref="sec-span"/> that the span of a set of vectors
+      <m>\vv_1, \vv_2,\ldots, \vv_k</m> in a vector space <m>V</m>
+      is the set of all linear combinations that can be generated from those vectors.
+    </p>
 
-  <p>
-    Therefore, the question <q>Does the vector <m>\ww</m> belong to the span of <m>\vv_1, \vv_2,\ldots, \vv_k</m>?</q>
-    is equivalent to asking, <q>Can I write <m>\ww</m> as a linear combination of the <m>\vv_i</m>?</q>,
-    which, in turn, is equivalent to asking:
-  </p>
+    <p>
+      Therefore, the question <q>Does the vector <m>\ww</m> belong to the span of <m>\vv_1, \vv_2,\ldots, \vv_k</m>?</q>
+      is equivalent to asking, <q>Can I write <m>\ww</m> as a linear combination of the <m>\vv_i</m>?</q>,
+      which, in turn, is equivalent to asking:
+    </p>
 
-  <p>
-    Do there exist scalars <m>c_1,c_2,\ldots, c_k</m> such that
-    <me>
-      \ww=c_1\vv_1+c_2\vv_2+\cdots +c_k\vv_k
-    </me>?
-  </p>
+    <p>
+      Do there exist scalars <m>c_1,c_2,\ldots, c_k</m> such that
+      <me>
+        \ww=c_1\vv_1+c_2\vv_2+\cdots +c_k\vv_k
+      </me>?
+    </p>
 
-  <p>
-    In any finite-dimensional vector space, this last question can be turned into a system of equations.
-    If that system has a solution, then yes <mdash /> your vector is in the span.
-    If the system is inconsistent, then the answer is no.
-  </p>
+    <p>
+      In any finite-dimensional vector space, this last question can be turned into a system of equations.
+      If that system has a solution, then yes <mdash /> your vector is in the span.
+      If the system is inconsistent, then the answer is no.
+    </p>
+  </introduction>
 
-  <exercise>
-    <statement>
-      <p>
-        Determine whether or not the vector <m>\ww=\langle 3,-1, 4, 2\rangle</m> in <m>\R^4</m>
-        belongs to the span of the vectors
-        <me>
-          \langle 2, 1, 4, -3\rangle, \langle 0, 2, 1, 4\rangle, \langle -1, 1, 0, 2\rangle
-        </me>.
-      </p>
-    </statement>
-  </exercise>
+  <page>
+    <exercise workspace="0.85in">
+      <statement>
+        <p>
+          Determine whether or not the vector <m>\ww=\langle 3,-1, 4, 2\rangle</m> in <m>\R^4</m>
+          belongs to the span of the vectors
+          <me>
+            \langle 2, 1, 4, -3\rangle, \langle 0, 2, 1, 4\rangle, \langle -1, 1, 0, 2\rangle
+          </me>.
+        </p>
+      </statement>
+    </exercise>
 
-  <p>
-    To assist with solving this problem, a code cell is provided below.
-    Once you have determined the augmented matrix of your system of equations,
-    see <xref ref="sec-sympy"/> for details on how to enter your matrix,
-    and then compute its reduced row-echelon form.
-  </p>
+    <p>
+      To assist with solving this problem, a code cell is provided below.
+      Once you have determined the augmented matrix of your system of equations,
+      see <xref ref="sec-sympy"/> for details on how to enter your matrix,
+      and then compute its reduced row-echelon form.
+    </p>
 
-  <sage>
-    <input>
-      from sympy import Matrix, init_printing
-      init_printing()
-    </input>
-  </sage>
+    <sage>
+      <input>
+        from sympy import Matrix, init_printing
+        init_printing()
+      </input>
+    </sage>
 
-  <exercise>
-    <statement>
-      <p>
-        Determine whether or not the polynomial <m>q(x) = 4-6x-11x^2</m> belongs to the span of the polynomials
-        <me>
-          p_1(x) = x-3x^2, p_2(x)=2-x, p_3(x) = -1+4x+x^2
-        </me>.
-      </p>
-    </statement>
-  </exercise>
 
-  <sage>
+    <exercise workspace="0.85in">
+      <statement>
+        <p>
+          Determine whether or not the polynomial <m>q(x) = 4-6x-11x^2</m> belongs to the span of the polynomials
+          <me>
+            p_1(x) = x-3x^2, p_2(x)=2-x, p_3(x) = -1+4x+x^2
+          </me>.
+        </p>
+      </statement>
+    </exercise>
 
-  </sage>
+    <sage>
 
-  <p>
-    For our next activity, we are going to look at <init>RGB</init> colours.
-    Here, <init>RGB</init> stands for Red, Green, Blue.
-    All colours displayed by your computer monitor can be expressed in terms of these colours.
-  </p>
+    </sage>
 
-  <p>
-    First, we load some Python libraries we'll need.
-    These are intended for use in a Jupyter notebook and won't run properly if you are using Sagecell in the <init>HTML</init> textbook.
-  </p>
+    <p></p>
+  </page>
 
-  <sage>
-    <input>
-      import ipywidgets as wid
-      import matplotlib.pyplot as plt
-    </input>
-  </sage>
+  <page>
+    <p>
+      For our next activity, we are going to look at <init>RGB</init> colours.
+      Here, <init>RGB</init> stands for Red, Green, Blue.
+      All colours displayed by your computer monitor can be expressed in terms of these colours.
+    </p>
 
-  <p>
-    Next, we will create a widget that lets us select values for red, green, and blue.
-    The <init>RGB</init> colour system assigns 8-bit values to each colour.
-    Possible values for each range from 0 to 255;
-    this indicates how much of each colour will be blended to create the colour you want.
-    Extensive information on the <init>RGB</init> colour system can be found
-    <url href="https://en.wikipedia.org/wiki/RGB_color_model">on wikipedia</url>,
-    and there are a number of good online resources about the use of <init>RGB</init> in web design,
-    <url href="https://www.w3schools.com/colors/colors_rgb.asp">such as this one from w3schools</url>.
-  </p>
+    <p>
+      First, we load some Python libraries we'll need.
+      These are intended for use in a Jupyter notebook and won't run properly if you are using Sagecell in the <init>HTML</init> textbook.
+    </p>
 
-  <sage>
-    <input>
-      r=wid.IntSlider(
-          value=155,
-          min=0,
-          max=255,
-          step=1,
-          description='Red:'
-      )
-      g=wid.IntSlider(
-          value=155,
-          min=0,
-          max=255,
-          step=1,
-          description='Green:'
-      )
-      b=wid.IntSlider(
-          value=155,
-          min=0,
-          max=255,
-          step=1,
-          description='Blue:'
-      )
-      display(r,g,b)
-    </input>
-  </sage>
+    <sage>
+      <input>
+        import ipywidgets as wid
+        import matplotlib.pyplot as plt
+      </input>
+    </sage>
 
-  <p>
-    By moving the sliders generated above, you can create different colours.
-    To see what colour you've created by moving the sliders, run the code below.
-  </p>
+    <p>
+      Next, we will create a widget that lets us select values for red, green, and blue.
+      The <init>RGB</init> colour system assigns 8-bit values to each colour.
+      Possible values for each range from 0 to 255;
+      this indicates how much of each colour will be blended to create the colour you want.
+      Extensive information on the <init>RGB</init> colour system can be found
+      <url href="https://en.wikipedia.org/wiki/RGB_color_model">on wikipedia</url>,
+      and there are a number of good online resources about the use of <init>RGB</init> in web design,
+      <url href="https://www.w3schools.com/colors/colors_rgb.asp">such as this one from w3schools</url>.
+    </p>
 
-  <sage>
-    <input>
-      plt.imshow([[(r.value/255, g.value/255, b.value/255)]])
-    </input>
-  </sage>
+    <sage>
+      <input>
+        r=wid.IntSlider(
+            value=155,
+            min=0,
+            max=255,
+            step=1,
+            description='Red:'
+        )
+        g=wid.IntSlider(
+            value=155,
+            min=0,
+            max=255,
+            step=1,
+            description='Green:'
+        )
+        b=wid.IntSlider(
+            value=155,
+            min=0,
+            max=255,
+            step=1,
+            description='Blue:'
+        )
+        display(r,g,b)
+      </input>
+    </sage>
 
-  <exercise>
-    <statement>
-      <p>
-        In what ways can you explain the <init>RGB</init> colour system in terms of span?
-      </p>
-    </statement>
-  </exercise>
-  <exercise>
-    <statement>
-      <p>
-        Why would it nonetheless be inappropriate to describe the set of all <init>RGB</init> colours as a vector space?
-      </p>
-    </statement>
-  </exercise>
+    <p>
+      By moving the sliders generated above, you can create different colours.
+      To see what colour you've created by moving the sliders, run the code below.
+    </p>
+
+    <sage>
+      <input>
+        plt.imshow([[(r.value/255, g.value/255, b.value/255)]])
+      </input>
+    </sage>
+
+    <exercise workspace="0.65in">
+      <statement>
+        <p>
+          In what ways can you explain the <init>RGB</init> colour system in terms of span?
+        </p>
+      </statement>
+    </exercise>
+
+    <sage language="html"></sage>
+
+    <exercise workspace="0.65in">
+      <statement>
+        <p>
+          Why would it nonetheless be inappropriate to describe the set of all <init>RGB</init> colours as a vector space?
+        </p>
+      </statement>
+    </exercise>
+
+    <sage language="html"></sage>
+  </page>
 </worksheet>

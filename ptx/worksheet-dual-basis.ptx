@@ -2,384 +2,393 @@
 
 <worksheet xml:id="worksheet-dual-basis">
   <title>Worksheet: dual basis.</title>
-  <p>
-    This worksheet is more theoretically inclined that most of the other workheets so far.
-    But it introduces a useful concept, so it's worth your while to work through it!
-  </p>
 
-  <p>
-    Let <m>V</m> be a vector space over <m>\R</m>.
-    (That is, scalars are real numbers, rather than, say, complex.)
-    A linear transformation <m>\phi:V\to \R</m> is called a <term>linear functional</term>.
-  </p>
+  <page>
+    <introduction>
+      <p>
+        Let <m>V</m> be a vector space over <m>\R</m>.
+        (That is, scalars are real numbers, rather than, say, complex.)
+        A linear transformation <m>\phi:V\to \R</m> is called a <term>linear functional</term>.
+      </p>
 
-  <p>
-    Here are some examples of linear functionals:
-    <ul>
-      <li>
+      <p>
+        Here are some examples of linear functionals:
+        <ul>
+          <li>
+            <p>
+              The map <m>\phi:\R^3\to \R</m> given by <m>\phi(x,y,z) = 3x-2y+5z</m>.
+            </p>
+          </li>
+          <li>
+            <p>
+              The evaluation map <m>ev_a:P_n(\R)\to \R</m> given by <m>ev_a(p) = p(a)</m>.
+              (For example, <m>ev_2(3-4x+5x^2) = 2-4(2)+5(2^2) = 14</m>.)
+            </p>
+          </li>
+          <li>
+            <p>
+              The map <m>\phi:\mathcal{C}[a,b]\to \R</m> given by <m>\phi(f) = \int_a^b f(x)\,dx</m>,
+              where <m>\mathcal{C}[a,b]</m> denotes the space of all continuous functions on <m>[a,b]</m>.
+            </p>
+          </li>
+        </ul>
+      </p>
+
+      <p>
+        Note that for any vector spaces <m>V,W</m>,
+        the set <m>\mathcal{L}(V,W)</m> of linear transformations from <m>V</m> to <m>W</m>
+        is itself a vector space, if we define
+        <me>
+        (S+T)(v) = S(v)+T(v),\quad \text{ and } \quad (kT)(v)=k(T(v))
+        </me>.
+        In particular, given a vector space <m>V</m>,
+        we denote the set of all linear functionals on <m>V</m> by <m>V^*=\mathcal{L}(V,\R)</m>,
+        and call this the <em>dual space</em> of <m>V</m>.
+      </p>
+
+      <p>
+        We make the following observations:
+        <ul>
+          <li>
+            <p>
+              If <m>\dim V=n</m> and <m>\dim W=m</m>, then <m>\mathcal{L}(V,W)</m>
+              is isomorphic to the space <m>M_{mn}</m> of <m>m\times n</m> matrices,
+              so it has dimension <m>mn</m>.
+            </p>
+          </li>
+          <li>
+            <p>
+              Since <m>\dim \R=1</m>, if <m>V</m> is finite-dimensional,
+              then <m>V^*=\mathcal{L}(V,\R)</m> has dimension <m>1n=n</m>.
+            </p>
+          </li>
+          <li>
+            <p>
+              Since <m>\dim V^*=\dim V</m>, <m>V</m> and <m>V^*</m> are isomorphic.
+            </p>
+          </li>
+        </ul>
+      </p>
+
+      <p>
+        Here is a basic example that is intended as a guide to your intuition regarding dual spaces.
+        Take <m>V = \R^3</m>. Given any <m>v\in V</m>,
+        define a map <m>\phi_{v}:V\to \R</m> by <m>\phi_{v}(w) = v\dotp w</m> (the usual dot product).
+      </p>
+
+      <p>
+        One way to think about this: if we write <m>v\in V</m> as a column vector <m>\bbm v_1\\v_2\\v_3\ebm</m>,
+        then we can identify <m>\phi_{v}</m> with <m>v^T</m>, where the action is via multiplication:
+        <me>
+        \phi_{v}(w) = \bbm v_1\amp v_2\amp v_3\ebm\bbm w_1\\w_2\\w_3\ebm = v_1w_1+v_2w_2+v_3w_3
+        </me>.
+        It turns out that this example can be generalized,
+        but the definition of <m>\phi_v</m> involves the dot product, which is particular to <m>\R^n</m>.
+      </p>
+
+      <p>
+        There is a generalization of the dot product, known as an inner product.
+        (See Chapter 10 of Nicholson, for example.)
+        On any inner product space,
+        we can associate each vector <m>v\in V</m> to a linear functional <m>\phi_v</m> using the procedure above.
+      </p>
+
+      <p>
+        Another way to work concretely with dual vectors (without the need for inner products)
+        is to define things in terms of a basis.
+      </p>
+
+      <p>
+        Given a basis <m>\{v_1,v_2,\ldots, v_n\}</m> of <m>V</m>,
+        we define the corresponding <term>dual basis</term> <m>\{\phi_1,\phi_2,\ldots, \phi_n\}</m> of <m>V^*</m> by
+        <me>
+        \phi_i(v_j) = \begin{cases} 1, \amp \text{ if } i=j\\ 0, \amp \text{ if } i\neq j\end{cases}
+        </me>.
+        Note that each <m>\phi_j</m> is well-defined,
+        since any linear transformation can be defined by giving its values on a basis.
+      </p>
+
+      <p>
+        For the standard basis on <m>\R^n</m>,
+        note that the corresponding dual basis functionals are given by
+        <me>
+        \phi_j(x_1,x_2,\ldots, x_n) = x_j
+        </me>.
+        That is, these are the <em>coordinate functions</em> on <m>\R^n</m>.
+      </p>
+    </introduction>
+  </page>
+
+  <page>
+    <exercise workspace="2.5in">
+      <statement>
         <p>
-          The map <m>\phi:\R^3\to \R</m> given by <m>\phi(x,y,z) = 3x-2y+5z</m>.
+          Show that the dual basis is indeed a basis for <m>V^*</m>.
         </p>
-      </li>
-      <li>
+      </statement>
+      <solution>
         <p>
-          The evaluation map <m>ev_a:P_n(\R)\to \R</m> given by <m>ev_a(p) = p(a)</m>.
-          (For example, <m>ev_2(3-4x+5x^2) = 2-4(2)+5(2^2) = 14</m>.)
+          We know that <m>\dim V^* = \dim V=n</m>.
+          Since there are <m>n</m> vectors in the dual basis,
+          it's enough to show that they're linearly independent. Suppose that
+          <me>
+            c_1\phi_1+c_2\phi_2+\cdots c_n\phi_n=0
+          </me>
+          for some scalars <m>c_1,c_2,\ldots, c_n</m>.
         </p>
-      </li>
-      <li>
+
         <p>
-          The map <m>\phi:\mathcal{C}[a,b]\to \R</m> given by <m>\phi(f) = \int_a^b f(x)\,dx</m>,
-          where <m>\mathcal{C}[a,b]</m> denotes the space of all continuous functions on <m>[a,b]</m>.
+          This means that <m>(c_1\phi_1+c_2\phi_2+\cdots c_n\phi_n)(v)=0</m> for all <m>v\in V</m>;
+          in particular, this must be true for the basis vectors <m>v_1,\ldots, v_n</m>.
         </p>
-      </li>
-    </ul>
-  </p>
 
-  <p>
-    Note that for any vector spaces <m>V,W</m>,
-    the set <m>\mathcal{L}(V,W)</m> of linear transformations from <m>V</m> to <m>W</m>
-    is itself a vector space, if we define
-    <me>
-    (S+T)(v) = S(v)+T(v),\quad \text{ and } \quad (kT)(v)=k(T(v))
-    </me>.
-    In particular, given a vector space <m>V</m>,
-    we denote the set of all linear functionals on <m>V</m> by <m>V^*=\mathcal{L}(V,\R)</m>,
-    and call this the <em>dual space</em> of <m>V</m>.
-  </p>
-
-  <p>
-    We make the following observations:
-    <ul>
-      <li>
         <p>
-          If <m>\dim V=n</m> and <m>\dim W=m</m>, then <m>\mathcal{L}(V,W)</m>
-          is isomorphic to the space <m>M_{mn}</m> of <m>m\times n</m> matrices,
-          so it has dimension <m>mn</m>.
+          By the definition of the dual basis, for each <m>i=1,2,\ldots, n</m> we have
+          <me>
+            (c_1\phi_1+c_2\phi_2+\cdots c_n\phi_n)(v_i) = 0+\cdots + 0 +c_i(1)+0+\cdots + 0 = c_i = 0
+          </me>.
+          Thus, <m>c_i=0</m> for each <m>i</m>, and therefore, the <m>\phi_i</m> are linearly independent.
         </p>
-      </li>
-      <li>
+      </solution>
+    </exercise>
+
+    <p>
+      Next, let <m>V</m> and <m>W</m> be vector spaces,
+      and let <m>T:V\to W</m> be a linear transformation.
+      For any such <m>T</m>, we can define the <em>dual map</em> <m>T^*:W^*\to V^*</m>
+      by <m>T^*(\phi) = \phi\circ T</m> for each <m>\phi\in W^*</m>.
+    </p>
+
+    <exercise workspace="2.5in">
+      <statement>
         <p>
-          Since <m>\dim \R=1</m>, if <m>V</m> is finite-dimensional,
-          then <m>V^*=\mathcal{L}(V,\R)</m> has dimension <m>1n=n</m>.
+          Confirm that (a) <m>T^*(\phi)</m> does indeed define an element of <m>V^*</m>;
+          that is, a linear map from <m>V</m> to <m>\R</m>, and (b) that <m>T^*</m> is linear.
         </p>
-      </li>
-      <li>
+      </statement>
+      <solution>
         <p>
-          Since <m>\dim V^*=\dim V</m>, <m>V</m> and <m>V^*</m> are isomorphic.
+          There are two things to check. First, we show that <m>T^*(\phi)\in V^*</m>
+          for each <m>\phi\in W*</m>. Since <m>T:V\to W</m> and <m>\phi:W\to \R</m>,
+          it follows that <m>T^*\phi = \phi\circ T</m> is a map from <m>V</m> to <m>\R</m>.
+          But we must also show that it's linear.
         </p>
-      </li>
-    </ul>
-  </p>
 
-  <p>
-    Here is a basic example that is intended as a guide to your intuition regarding dual spaces.
-    Take <m>V = \R^3</m>. Given any <m>v\in V</m>,
-    define a map <m>\phi_{v}:V\to \R</m> by <m>\phi_{v}(w) = v\dotp w</m> (the usual dot product).
-  </p>
+        <p>
+          Given <m>v_1, v_2\in V</m>, we have
+          <md>
+            <mrow>(T^*\phi)(v_1+v_2) \amp = \phi(T(v_1+v_2))=\phi(T(v_1)+T(v_2)) \quad \text{ because <m>T</m> is linear}</mrow>
+            <mrow>\amp =\phi(T(v_1))+\phi(T(v_2)) \quad \text{ because <m>\phi</m> is linear}</mrow>
+            <mrow>\amp =(T^*\phi)(v_1)+(T^*\phi)(v_2)</mrow>
+          </md>.
+          Similarly, for any scalar <m>c</m>,
+          <me>
+            (T^*\phi)(cv) = \phi(T(cv))=\phi(cT(v))=c(\phi(T(v)))=c((T^*\phi)(v))
+          </me>.
+          This shows that <m>T^*\phi\in V^*</m>.
+        </p>
 
-  <p>
-    One way to think about this: if we write <m>v\in V</m> as a column vector <m>\bbm v_1\\v_2\\v_3\ebm</m>,
-    then we can identify <m>\phi_{v}</m> with <m>v^T</m>, where the action is via multiplication:
-    <me>
-    \phi_{v}(w) = \bbm v_1\amp v_2\amp v_3\ebm\bbm w_1\\w_2\\w_3\ebm = v_1w_1+v_2w_2+v_3w_3
-    </me>.
-    It turns out that this example can be generalized,
-    but the definition of <m>\phi_v</m> involves the dot product, which is particular to <m>\R^n</m>.
-  </p>
+        <p>
+          Next, we need to show that <m>T^*:W^*\to V^*</m> is a linear map.
+          Let <m>\phi,\psi\in W^*</m>, and let <m>c</m> be a scalar. We have:
+          <me>
+            T^*(\phi+\psi) = (\phi+\psi)\circ T = \phi\circ T+\psi\circ T = T^*\phi+T^*\psi
+          </me>,
+          and
+          <me>
+            T^*(c\phi) = (c\phi)\circ T = c(\phi\circ T) = cT^*\phi
+          </me>.
+          This follows from the vector space structure on any space of functions.
+          For a vector <m>v\in V</m>, we have
+          <me>
+            (T^*(c\phi))(v) = (c\phi(T(v)))=c(\phi(T(v)))=c((T^*\phi)(v))
+          </me>.
+        </p>
+      </solution>
+    </exercise>
 
-  <p>
-    There is a generalization of the dot product, known as an inner product.
-    (See Chapter 10 of Nicholson, for example.)
-    On any inner product space,
-    we can associate each vector <m>v\in V</m> to a linear functional <m>\phi_v</m> using the procedure above.
-  </p>
+    <exercise workspace="2.5in">
+      <statement>
+        <p>
+          Let <m>V=P(\R)</m> be the space of all polynomials,
+          and let <m>D:V\to V</m> be the derivative transformation <m>D(p(x))=p'(x)</m>.
+          Let <m>\phi:V\to \R</m> be the linear functional defined by <m>\phi(p(x)) = \int_0^1 p(x)\,dx</m>.
+        </p>
 
-  <p>
-    Another way to work concretely with dual vectors (without the need for inner products)
-    is to define things in terms of a basis.
-  </p>
+        <p>
+          What is the linear functional <m>D^*(\phi)</m>?
+        </p>
+      </statement>
+      <solution>
+        <p>
+          Let <m>p</m> be a polynomial. Then
+          <me>
+            (D^*\phi)(p) = \phi(D(p))=\phi(p') = \int_0^1 p'(x)\,dx
+          </me>.
+          By the Fundamental Theorem of Calculus (or a tedious calculation, if you prefer), we get
+          <me>
+            (D^*\phi)(p) = p(1)-p(0)
+          </me>.
+        </p>
+      </solution>
+    </exercise>
 
-  <p>
-    Given a basis <m>\{v_1,v_2,\ldots, v_n\}</m> of <m>V</m>,
-    we define the corresponding <term>dual basis</term> <m>\{\phi_1,\phi_2,\ldots, \phi_n\}</m> of <m>V^*</m> by
-    <me>
-    \phi_i(v_j) = \begin{cases} 1, \amp \text{ if } i=j\\ 0, \amp \text{ if } i\neq j\end{cases}
-    </me>.
-    Note that each <m>\phi_j</m> is well-defined,
-    since any linear transformation can be defined by giving its values on a basis.
-  </p>
+  </page>
 
-  <p>
-    For the standard basis on <m>\R^n</m>,
-    note that the corresponding dual basis functionals are given by
-    <me>
-    \phi_j(x_1,x_2,\ldots, x_n) = x_j
-    </me>.
-    That is, these are the <em>coordinate functions</em> on <m>\R^n</m>.
-  </p>
+  <page>
+    <exercise workspace="3in">
+      <statement>
+        <p>
+          Show that dual maps satisfy the following properties:
+          for any <m>S,T\in \mathcal{L}(V,W)</m> and <m>k\in \R</m>,
+          <ol>
+            <li><m>(S+T)^* = S^*+T^*</m></li>
+            <li><m>(kS)^* = kS^*</m></li>
+            <li xml:id="list-property-last"><m>(ST)^* = T^*S^*</m></li>
+          </ol>
+        </p>
 
-  <exercise>
-    <statement>
+        <p>
+          In item <xref ref="list-property-last"/>, assume <m>S\in \mathcal{L}(V,W)</m> and <m>T\in \mathcal{L}(U,V)</m>.
+          (Reminder: the notation <m>ST</m> is sometimes referred to as the <q>product</q>
+          of <m>S</m> and <m>T</m>, in analogy with matrices, but actually represents the composition <m>S\circ T</m>.)
+        </p>
+      </statement>
+      <solution>
+        <p>
+          Let <m>\phi\in W^*</m>. We have
+          <me>
+            (S+T)^*(\phi) = \phi\circ(S+T) = \phi\circ S+\phi\circ T = S^*\phi+T^*\phi
+          </me>,
+          since <m>\phi</m> is linear. Similarly,
+          <me>
+            (kS)^*(\phi) = \phi\circ (kS) = k(\phi\circ S) = k(S^*\phi)
+          </me>.
+          Finally, we have
+          <me>
+            (ST)^*\phi = \phi\circ(ST) = \phi\circ(S\circ T) = (\phi\circ S)\circ T = T^*(\phi\circ S) = T^*(S^*\phi) = (T^*S^*)(\phi),
+          </me>.
+          since composition is associative.
+        </p>
+      </solution>
+    </exercise>
+
+    <p>
+      We have one topic remaining in relation to dual spaces:
+      determining the kernel and image of a dual map <m>T^*</m> (in terms of the kernel and image of <m>T</m>).
+      Let <m>V</m> be a vector space, and let <m>U</m> be a subspace of <m>V</m>.
+      Any such subspace determines an important subspace of <m>V^*</m>:
+      the <term>annihilator</term> of <m>U</m>, denoted by <m>U^0</m> and defined by
+      <me>
+        U^0 = \{\phi\in V^* \,|\, \phi(u)=0 \text{ for all } u\in U\}
+      </me>.
+    </p>
+
+    <exercise workspace="3in">
+      <statement>
+        <p>
+          Determine a basis (in terms of the standard dual basis for <m>(\R^4)^*</m>)
+          for the annihilator <m>U^0</m> of the subspace <m>U\subseteq \R^4</m> given by
+          <me>
+            U = \{(2a+b,3b,a,a-2b)\,|\, a,b\in\R\}
+          </me>.
+        </p>
+      </statement>
+      <hint>
+        <p>
+          Write <m>\phi = c_1\phi_1+c_2\phi_2+c_3\phi_3+c_4\phi_4</m>,
+          and note that each <m>\phi_j</m> simply gives the <m>j</m>th component of a vector in <m>\R^4</m>.
+        </p>
+      </hint>
+      <solution>
+        <p>
+          As per the hint, suppose <m>\phi = c_1\phi_1+c_2\phi_2+c_3\phi_3+c_4\phi_4</m>,
+          and that <m>\phi\in U^0</m>. Then
+          <md>
+            <mrow>\phi(2a+b,3b,a,a-2b) \amp  = c_1\phi_1(2a+b,3b,a,a-2b)+c_2\phi_2(2a+b,3b,a,a-2b)</mrow>
+            <mrow>\amp \quad + c_3\phi_3(2a+b,3b,a,a-2b)+c_4\phi_4(2a+b,3b,a,a-2b)</mrow>
+            <mrow>\amp  = c_1(2a+b)+c_2(3b)+c_3(a)+c_4(a-2b)</mrow>
+            <mrow>\amp  = a(2c_1+c_3+c_4)+b(c_1+3c_2-2c_4)</mrow>
+          </md>.
+        </p>
+
+        <p>
+          We wish for this to be zero for all possible values of <m>a</m> and <m>b</m>.
+          Therefore, we must have
+          <md>
+            <mrow>2c_1+c_3+c_4\amp =0</mrow>
+            <mrow>c_1+3c_2-2c_4\amp =0</mrow>
+          </md>.
+          Solving gives us <m>c_1=-\frac12 c_3-\frac12 c_4</m> and <m>c_2=\frac16 c_3+\frac56 c_4</m>, so
+          <md>
+            <mrow>\phi \amp = \left(-\frac12 c_3-\frac12 c_4\right)\phi_1 +\left(\frac16 c_3+\frac56 c_4\right)\phi_2 + c_3\phi_3 + c_4\phi_4</mrow>
+            <mrow>\amp  = c_3\left(-\frac12 \phi_1 + \frac16 \phi_2+\phi_3\right)+c_4\left(-\frac12\phi_1+\frac56 \phi_2 + \phi_4\right)</mrow>
+          </md>.
+          This gives us the following basis for <m>U^0</m>:
+          <me>
+            \left\{\phi_3-\frac12 \phi_1+\frac16 \phi_2, \phi_4-\frac12\phi_1+\frac56\phi_3\right\}
+          </me>.
+        </p>
+      </solution>
+    </exercise>
+  </page>
+
+  <page>
+    <conclusion>
       <p>
-        Show that the dual basis is indeed a basis for <m>V^*</m>.
+        Here is a fun theorem about annihilators that I won't ask you to prove.
       </p>
-    </statement>
-    <solution>
+
+      <theorem xml:id="thm-anihilator-dimension">
+        <statement>
+          <p>
+            Let <m>V</m> be a finite dimensional vector space. For any subspace <m>U</m> of <m>V</m>,
+            <me>
+            \dim U + \dim U^0 = \dim V
+            </me>.
+          </p>
+        </statement>
+      </theorem>
+
       <p>
-        We know that <m>\dim V^* = \dim V=n</m>.
-        Since there are <m>n</m> vectors in the dual basis,
-        it's enough to show that they're linearly independent. Suppose that
+        Here's an outline of the proof. For any subspace <m>U\subseteq V</m>,
+        we can define the <em>inclusion</em> map <m>i:U\to V</m>, given by <m>i(u)=u</m>.
+        (This is not the identity on <m>V</m> since it's only defined on <m>U</m>.
+        In particular, it is not onto unless <m>U=V</m>, although it is clearly one-to-one.)
+      </p>
+
+      <p>
+        Then <m>i^*</m> is a map from <m>V^*</m> to <m>U^*</m>.
+        Moreover, note that for any <m>\phi\in V^*</m>, <m>i^*(\phi)\in U^*</m> satisfies, for any <m>u\in U</m>,
         <me>
-          c_1\phi_1+c_2\phi_2+\cdots c_n\phi_n=0
-        </me>
-        for some scalars <m>c_1,c_2,\ldots, c_n</m>.
-      </p>
-
-      <p>
-        This means that <m>(c_1\phi_1+c_2\phi_2+\cdots c_n\phi_n)(v)=0</m> for all <m>v\in V</m>;
-        in particular, this must be true for the basis vectors <m>v_1,\ldots, v_n</m>.
-      </p>
-
-      <p>
-        By the definition of the dual basis, for each <m>i=1,2,\ldots, n</m> we have
-        <me>
-          (c_1\phi_1+c_2\phi_2+\cdots c_n\phi_n)(v_i) = 0+\cdots + 0 +c_i(1)+0+\cdots + 0 = c_i = 0
+          i^*(\phi)(u) = \phi(i(u))=\phi(u)
         </me>.
-        Thus, <m>c_i=0</m> for each <m>i</m>, and therefore, the <m>\phi_i</m> are linearly independent.
-      </p>
-    </solution>
-  </exercise>
-
-  <p>
-    Next, let <m>V</m> and <m>W</m> be vector spaces,
-    and let <m>T:V\to W</m> be a linear transformation.
-    For any such <m>T</m>, we can define the <em>dual map</em> <m>T^*:W^*\to V^*</m>
-    by <m>T^*(\phi) = \phi\circ T</m> for each <m>\phi\in W^*</m>.
-  </p>
-
-  <exercise>
-    <statement>
-      <p>
-        Confirm that (a) <m>T^*(\phi)</m> does indeed define an element of <m>V^*</m>;
-        that is, a linear map from <m>V</m> to <m>\R</m>, and (b) that <m>T^*</m> is linear.
-      </p>
-    </statement>
-    <solution>
-      <p>
-        There are two things to check. First, we show that <m>T^*(\phi)\in V^*</m>
-        for each <m>\phi\in W*</m>. Since <m>T:V\to W</m> and <m>\phi:W\to \R</m>,
-        it follows that <m>T^*\phi = \phi\circ T</m> is a map from <m>V</m> to <m>\R</m>.
-        But we must also show that it's linear.
+        Thus, <m>\phi\in \ker i^*</m> if and only if <m>i^*(\phi)=0</m>,
+        which is if and only if <m>\phi(u)=0</m> for all <m>u\in U</m>,
+        which is if and only if <m>\phi\in U^0</m>. Therefore, <m>\ker i^* = U^0</m>.
       </p>
 
       <p>
-        Given <m>v_1, v_2\in V</m>, we have
-        <md>
-          <mrow>(T^*\phi)(v_1+v_2) \amp = \phi(T(v_1+v_2))=\phi(T(v_1)+T(v_2)) \quad \text{ because <m>T</m> is linear}</mrow>
-          <mrow>\amp =\phi(T(v_1))+\phi(T(v_2)) \quad \text{ because <m>\phi</m> is linear}</mrow>
-          <mrow>\amp =(T^*\phi)(v_1)+(T^*\phi)(v_2)</mrow>
-        </md>.
-        Similarly, for any scalar <m>c</m>,
+        By the dimension theorem, we have:
         <me>
-          (T^*\phi)(cv) = \phi(T(cv))=\phi(cT(v))=c(\phi(T(v)))=c((T^*\phi)(v))
+          \dim V^* = \dim \ker i^* + \dim \operatorname{im} i^*
         </me>.
-        This shows that <m>T^*\phi\in V^*</m>.
+        With a bit of work, one can show that <m>\operatorname{im} i^* = U^*</m>,
+        and we get the result from the fact that <m>\dim V^*=\dim V</m> and <m>\dim U^* = \dim U</m>.
       </p>
 
       <p>
-        Next, we need to show that <m>T^*:W^*\to V^*</m> is a linear map.
-        Let <m>\phi,\psi\in W^*</m>, and let <m>c</m> be a scalar. We have:
-        <me>
-          T^*(\phi+\psi) = (\phi+\psi)\circ T = \phi\circ T+\psi\circ T = T^*\phi+T^*\psi
-        </me>,
-        and
-        <me>
-          T^*(c\phi) = (c\phi)\circ T = c(\phi\circ T) = cT^*\phi
-        </me>.
-        This follows from the vector space structure on any space of functions.
-        For a vector <m>v\in V</m>, we have
-        <me>
-          (T^*(c\phi))(v) = (c\phi(T(v)))=c(\phi(T(v)))=c((T^*\phi)(v))
-        </me>.
-      </p>
-    </solution>
-  </exercise>
-
-  <exercise>
-    <statement>
-      <p>
-        Let <m>V=P(\R)</m> be the space of all polynomials,
-        and let <m>D:V\to V</m> be the derivative transformation <m>D(p(x))=p'(x)</m>.
-        Let <m>\phi:V\to \R</m> be the linear functional defined by <m>\phi(p(x)) = \int_0^1 p(x)\,dx</m>.
+        There are a number of interesting results of this flavour.
+        For example, one can show that a map <m>T</m> is injective if and only if <m>T^*</m> is surjective, and vice-versa.
       </p>
 
       <p>
-        What is the linear functional <m>D^*(\phi)</m>?
+        One final, optional task: return to the example of <m>\R^n</m>,
+        viewed as column vectors, and consider a matrix transformation
+        <m>T_A:\R^n\to \R^m</m> given by <m>T_A(\vec{x}) = A\vec{x}</m> as usual.
+        Viewing <m>(\R^n)^*</m> as row vectors, convince yourself that <m>(T_A)^* = T_{A^T}</m>;
+        that is, that what we've really been talking about all along is just the transpose of a matrix!
       </p>
-    </statement>
-    <solution>
-      <p>
-        Let <m>p</m> be a polynomial. Then
-        <me>
-          (D^*\phi)(p) = \phi(D(p))=\phi(p') = \int_0^1 p'(x)\,dx
-        </me>.
-        By the Fundamental Theorem of Calculus (or a tedious calculation, if you prefer), we get
-        <me>
-          (D^*\phi)(p) = p(1)-p(0)
-        </me>.
-      </p>
-    </solution>
-  </exercise>
-
-  <exercise>
-    <statement>
-      <p>
-        Show that dual maps satisfy the following properties:
-        for any <m>S,T\in \mathcal{L}(V,W)</m> and <m>k\in \R</m>,
-        <ol>
-          <li><m>(S+T)^* = S^*+T^*</m></li>
-          <li><m>(kS)^* = kS^*</m></li>
-          <li xml:id="list-property-last"><m>(ST)^* = T^*S^*</m></li>
-        </ol>
-      </p>
-
-      <p>
-        In item <xref ref="list-property-last"/>, assume <m>S\in \mathcal{L}(V,W)</m> and <m>T\in \mathcal{L}(U,V)</m>.
-        (Reminder: the notation <m>ST</m> is sometimes referred to as the <q>product</q>
-        of <m>S</m> and <m>T</m>, in analogy with matrices, but actually represents the composition <m>S\circ T</m>.)
-      </p>
-    </statement>
-    <solution>
-      <p>
-        Let <m>\phi\in W^*</m>. We have
-        <me>
-          (S+T)^*(\phi) = \phi\circ(S+T) = \phi\circ S+\phi\circ T = S^*\phi+T^*\phi
-        </me>,
-        since <m>\phi</m> is linear. Similarly,
-        <me>
-          (kS)^*(\phi) = \phi\circ (kS) = k(\phi\circ S) = k(S^*\phi)
-        </me>.
-        Finally, we have
-        <me>
-          (ST)^*\phi = \phi\circ(ST) = \phi\circ(S\circ T) = (\phi\circ S)\circ T = T^*(\phi\circ S) = T^*(S^*\phi) = (T^*S^*)(\phi),
-        </me>.
-        since composition is associative.
-      </p>
-    </solution>
-  </exercise>
-
-  <p>
-    We have one topic remaining in relation to dual spaces:
-    determining the kernel and image of a dual map <m>T^*</m> (in terms of the kernel and image of <m>T</m>).
-    Let <m>V</m> be a vector space, and let <m>U</m> be a subspace of <m>V</m>.
-    Any such subspace determines an important subspace of <m>V^*</m>:
-    the <term>annihilator</term> of <m>U</m>, denoted by <m>U^0</m> and defined by
-    <me>
-      U^0 = \{\phi\in V^* \,|\, \phi(u)=0 \text{ for all } u\in U\}
-    </me>.
-  </p>
-
-  <exercise>
-    <statement>
-      <p>
-        Determine a basis (in terms of the standard dual basis for <m>(\R^4)^*</m>)
-        for the annihilator <m>U^0</m> of the subspace <m>U\subseteq \R^4</m> given by
-        <me>
-          U = \{(2a+b,3b,a,a-2b)\,|\, a,b\in\R\}
-        </me>.
-      </p>
-    </statement>
-    <hint>
-      <p>
-        Write <m>\phi = c_1\phi_1+c_2\phi_2+c_3\phi_3+c_4\phi_4</m>,
-        and note that each <m>\phi_j</m> simply gives the <m>j</m>th component of a vector in <m>\R^4</m>.
-      </p>
-    </hint>
-    <solution>
-      <p>
-        As per the hint, suppose <m>\phi = c_1\phi_1+c_2\phi_2+c_3\phi_3+c_4\phi_4</m>,
-        and that <m>\phi\in U^0</m>. Then
-        <md>
-          <mrow>\phi(2a+b,3b,a,a-2b) \amp  = c_1\phi_1(2a+b,3b,a,a-2b)+c_2\phi_2(2a+b,3b,a,a-2b)</mrow>
-          <mrow>\amp \quad + c_3\phi_3(2a+b,3b,a,a-2b)+c_4\phi_4(2a+b,3b,a,a-2b)</mrow>
-          <mrow>\amp  = c_1(2a+b)+c_2(3b)+c_3(a)+c_4(a-2b)</mrow>
-          <mrow>\amp  = a(2c_1+c_3+c_4)+b(c_1+3c_2-2c_4)</mrow>
-        </md>.
-      </p>
-
-      <p>
-        We wish for this to be zero for all possible values of <m>a</m> and <m>b</m>.
-        Therefore, we must have
-        <md>
-          <mrow>2c_1+c_3+c_4\amp =0</mrow>
-          <mrow>c_1+3c_2-2c_4\amp =0</mrow>
-        </md>.
-        Solving gives us <m>c_1=-\frac12 c_3-\frac12 c_4</m> and <m>c_2=\frac16 c_3+\frac56 c_4</m>, so
-        <md>
-          <mrow>\phi \amp = \left(-\frac12 c_3-\frac12 c_4\right)\phi_1 +\left(\frac16 c_3+\frac56 c_4\right)\phi_2 + c_3\phi_3 + c_4\phi_4</mrow>
-          <mrow>\amp  = c_3\left(-\frac12 \phi_1 + \frac16 \phi_2+\phi_3\right)+c_4\left(-\frac12\phi_1+\frac56 \phi_2 + \phi_4\right)</mrow>
-        </md>.
-        This gives us the following basis for <m>U^0</m>:
-        <me>
-          \left\{\phi_3-\frac12 \phi_1+\frac16 \phi_2, \phi_4-\frac12\phi_1+\frac56\phi_3\right\}
-        </me>.
-      </p>
-    </solution>
-  </exercise>
-
-  <p>
-    Here is a fun theorem about annihilators that I won't ask you to prove.
-  </p>
-
-  <theorem xml:id="thm-anihilator-dimension">
-    <statement>
-      <p>
-        Let <m>V</m> be a finite dimensional vector space. For any subspace <m>U</m> of <m>V</m>,
-        <me>
-        \dim U + \dim U^0 = \dim V
-        </me>.
-      </p>
-    </statement>
-  </theorem>
-
-  <p>
-    Here's an outline of the proof. For any subspace <m>U\subseteq V</m>,
-    we can define the <em>inclusion</em> map <m>i:U\to V</m>, given by <m>i(u)=u</m>.
-    (This is not the identity on <m>V</m> since it's only defined on <m>U</m>.
-    In particular, it is not onto unless <m>U=V</m>, although it is clearly one-to-one.)
-  </p>
-
-  <p>
-    Then <m>i^*</m> is a map from <m>V^*</m> to <m>U^*</m>.
-    Moreover, note that for any <m>\phi\in V^*</m>, <m>i^*(\phi)\in U^*</m> satisfies, for any <m>u\in U</m>,
-    <me>
-      i^*(\phi)(u) = \phi(i(u))=\phi(u)
-    </me>.
-    Thus, <m>\phi\in \ker i^*</m> if and only if <m>i^*(\phi)=0</m>,
-    which is if and only if <m>\phi(u)=0</m> for all <m>u\in U</m>,
-    which is if and only if <m>\phi\in U^0</m>. Therefore, <m>\ker i^* = U^0</m>.
-  </p>
-
-  <p>
-    By the dimension theorem, we have:
-    <me>
-      \dim V^* = \dim \ker i^* + \dim \operatorname{im} i^*
-    </me>.
-    With a bit of work, one can show that <m>\operatorname{im} i^* = U^*</m>,
-    and we get the result from the fact that <m>\dim V^*=\dim V</m> and <m>\dim U^* = \dim U</m>.
-  </p>
-
-  <p>
-    There are a number of interesting results of this flavour.
-    For example, one can show that a map <m>T</m> is injective if and only if <m>T^*</m> is surjective, and vice-versa.
-  </p>
-
-  <p>
-    One final, optional task: return to the example of <m>\R^n</m>,
-    viewed as column vectors, and consider a matrix transformation
-    <m>T_A:\R^n\to \R^m</m> given by <m>T_A(\vec{x}) = A\vec{x}</m> as usual.
-    Viewing <m>(\R^n)^*</m> as row vectors, convince yourself that <m>(T_A)^* = T_{A^T}</m>;
-    that is, that what we've really been talking about all along is just the transpose of a matrix!
-  </p>
+    </conclusion>
+  </page>
 </worksheet>
