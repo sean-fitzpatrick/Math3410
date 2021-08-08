@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<worksheet xml:id="worksheet-gen-eigen">
+  <title>Worksheet: generalized eigenvectors</title>
+
+  <page>
+    <introduction>
+    <p>
+      Let <m>V</m> be a finite-dimensional vector space, and let <m>T:V\to V</m> be a linear operator.
+      Assume that <m>T</m> has all real eigenvalues (alternatively, assume we're working over the complex numbers).
+      Let <m>A</m> be the matrix of <m>T</m> with respect to some standard basis <m>B_0</m> of <m>V</m>.
+    </p>
+
+    <p>
+      Our goal will be to replace the basis <m>B_0</m> with a basis <m>B</m> such that the matrix of <m>T</m> with respect to <m>B</m> is as simple as possible.
+      (Where we agree that the "simplest" possible matrix would be diagonal.)
+    </p>
+
+    <p>
+      Recall the following results that we've observed so far:
+      <ul>
+        <li>
+          <p>
+            The characteristic polynomial <m>c_T(x)</m> of <m>T</m> does not depend on the choice of basis.
+          </p>
+        </li>
+        <li>
+          <p>
+            The eigenvalues of <m>T</m> are the roots of this polynomial.
+          </p>
+        </li>
+        <li>
+          <p>
+            The eigenspaces <m>E_\lambda(T)</m> are <m>T</m>-invariant subspaces of <m>V</m>.
+          </p>
+        </li>
+        <li>
+          <p>
+            The matrix <m>A</m> can be diagonalized if and only if there is a basis of <m>V</m> consisting of eigenvectors of <m>T</m>.
+          </p>
+        </li>
+        <li>
+          <p>
+            Suppose
+            <me>
+              c_T(x) = (x-\lambda_1)^{m_1}(x-\lambda_2)^{m_2}\cdots (x-\lambda_k)^{m_k}
+            </me>.
+            Then <m>A</m> can be diagonalized if and only if <m>\dim E_{\lambda_i}(T) = m_i</m> for each <m>i=1,\ldots, k</m>.
+          </p>
+        </li>
+      </ul>
+     </p>
+
+      <p>
+        In the case where <m>A</m> can be diagonalized, we have the direct sum decomposition
+        <me>
+          V = E_{\lambda_1}(T)\oplus E_{\lambda_2}(T) \oplus \cdots \oplus E_{\lambda_k}(T)
+        </me>.
+      </p>
+
+      <p>
+        The question is: what do we do if there aren't enough eigenvectors to form a basis of <m>V</m>?
+        When that happens, the direct sum of all the eigenspaces will not give us all of <m>V</m>.
+      </p>
+
+      <p>
+        The idea: replace <m>E_{\lambda_j}(T)</m> with a <term>generalized eigenspace</term>
+        <m>G_{\lambda_j}(T)</m> whose dimension is <m>m_i</m>.
+      </p>
+
+      <p>
+        Our candidate: instead of <m>E_{\lambda}(T) = \ker(T-\lambda I)</m>,
+        we use <m>G_\lambda(T) = \ker((T-\lambda I)^m)</m>, where <m>m</m> is the multiplicity of <m>\lambda</m>.
+       </p>
+    </introduction>
+  </page>
+
+  <page>
+    <exercise workspace="3in" xml:id="ws-ge-ex1">
+      <statement>
+        <p>
+          Recall that in class we proved that <m>\ker(T)</m> and <m>\operatorname{im}(T)</m> are <m>T</m>-invariant subspaces.
+          Let <m>p(x)</m> be any polynomial, and prove that <m>\ker (p(T))</m> and <m>\operatorname{im}(p(T))</m> are also <m>T</m>-invariant.
+        </p>
+
+        <p>
+          <em>Hint:</em> first show that <m>p(T)T=Tp(T)</m> for any polynomial <m>T</m>.
+        </p>
+      </statement>
+    </exercise>
+
+    <sage language="html"></sage>
+
+    <p>
+      Applying the result of Problem 1 to the polynomial <m>p(x) = (x-\lambda)^m</m> shows that <m>G_\lambda(T)</m> is <m>T</m>-invariant.
+      It is possible to show that <m>\dim G_\lambda(T)=m</m> but I won't ask you to do that. (A proof is in Nicholson if you really want to see it.)
+    </p>
+
+    <p>
+      Instead, we will try to understand what's going on by exploring an example.
+    </p>
+
+    <p>
+      Consider the following matrix.
+    </p>
+
+    <sage>
+      <input>
+        from sympy import *
+        init_printing()
+        A=Matrix([[2,0,0,1,0],[-1,0,1,2,3],[0,1,2,0,-1],[-2,-3,2,5,3],[0,-1,0,1,4]])
+        A
+      </input>
+    </sage>
+
+    <exercise workspace="2in" xml:id="ws-ge-ex2">
+      <statement>
+        <p>
+          Find (and factor) the characteristic polynomial of <m>A</m>.
+          For the commands you might need, <url href="https://opentext.uleth.ca/Math3410/sec-sympy.html">refer to the textbook</url>.
+        </p>
+      </statement>
+    </exercise>
+
+    <sage>
+
+    </sage>
+  </page>
+
+  <page>
+    <exercise workspace="3in" xml:id="ws-ge-ex3">
+      <statement>
+        <p>
+          Find the eigenvectors. What are the dimensions of the eigenspaces? Based on this observation, can <m>A</m> be diagonalized?
+        </p>
+      </statement>
+    </exercise>
+
+    <sage>
+
+    </sage>
+
+    <exercise workspace="3in" xml:id="ws-ge-ex4">
+      <statement>
+        <p>
+          Prove that for any <m>n\times n</m> matrix <m>A</m>, we have
+          <me>
+            \{0\}\subseteq \operatorname{null}(A)\subseteq \operatorname{null}(A^2) \subseteq \cdots \subseteq \operatorname{null}(A^n)
+          </me>.
+        </p>
+      </statement>
+    </exercise>
+
+    <sage language="html">
+
+    </sage>
+  </page>
+
+  <page>
+    <p>
+      It turns out that at some point, the null spaces stabilize.
+      If <m>\operatorname{null}(A^k)=\operatorname{null}A^{k+1}</m> for some <m>k</m>,
+      then <m>\operatorname{null}(A^k)=\operatorname{null}(A^{k+l})</m> for all <m>l\geq 0</m>.
+    </p>
+
+    <exercise workspace="2.5in" xml:id="ws-ge-ex5">
+      <statement>
+        <p>
+          For each eigenvalue found in <xref ref="ws-ge-ex2"/>, compute the nullspace of <m>A-\lambda I</m>,
+          <m>(A-\lambda I)^2</m>, <m>(A-\lambda I)^3</m>, <etc/> until you find two consecutive nullspaces that are the same.
+        </p>
+
+        <p>
+          By <xref ref="ws-ge-ex4"/>, any vector in <m>\operatorname{null}(A-\lambda I)^m</m> will also be a vector in <m>\operatorname{null}(A-\lambda I)^{m+1}</m>.
+          In particular, at each step, we can find a basis for <m>\operatorname{null}(A-\lambda I)^m</m> that includes the basis for <m>\operatorname{null}(A-\lambda I)^{m-1}</m>.
+        </p>
+
+        <p>
+          For each eigenvalue found in <xref ref="ws-ge-ex2"/>, determine such a basis for the corresponding generalized eigenspace.
+          You will want to list your vectors so that the vectors from the basis of the nullspace for <m>A-\lambda I</m> come first,
+          then the vectors for the basis of the nullspace for <m>(A-\lambda I)^2</m>, and so on.
+        </p>
+      </statement>
+    </exercise>
+
+    <sage>
+
+    </sage>
+
+    <exercise workspace="2.5in" xml:id="ws-ge-ex6">
+      <statement>
+        <p>
+          Finally, let's see how all of this works. Let <m>P</m> be the matrix whose columns consist of the vectors found in Problem 4.
+          What do you get when you compute the matrix <m>P^{-1}AP</m>?
+        </p>
+      </statement>
+    </exercise>
+
+    <sage>
+
+    </sage>
+  </page>
+</worksheet>
