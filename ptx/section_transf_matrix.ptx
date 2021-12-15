@@ -294,7 +294,7 @@
           P**-1
         </input>
         <output>
-          \[\bbm \frac13\amp \frac23\amp -frac43\\ \frac13\amp -\frac13 \amp \frac23\\0\amp 0\amp 1\ebm\]
+          \[\bbm \frac13\amp \frac23\amp -\frac43\\ \frac13\amp -\frac13 \amp \frac23\\0\amp 0\amp 1\ebm\]
         </output>
       </sage>
 
@@ -409,16 +409,16 @@
       <p>
         Suppose <m>T:V\to W</m> is a linear transformation,
         and suppose <m>M_0 = M_{D_0B_0}(T)</m> is the matrix of <m>T</m> with respect to bases <m>B_0</m> of <m>V</m> and <m>D_0</m> of <m>W</m>.
-        Let <m>B_1=\basis{v}{n}</m> and <m>D_1\basis{w}{m}</m> be any other choice of basis for <m>V</m> and <m>W</m>, respectively.
+        Let <m>B_1=\basis{v}{n}</m> and <m>D_1=\basis{w}{m}</m> be any other choice of basis for <m>V</m> and <m>W</m>, respectively.
         Let
         <md>
           <mrow>P \amp =\bbm C_{B_0}(\vv_1) \amp C_{B_0}(\vv_2) \amp \cdots \amp C_{B_0}(\vv_n)\ebm</mrow>
-          <mrow>Q \amp =\bbm C_{B_0}(\ww_1) \amp C_{B_0}(\ww_2) \amp \cdots \amp C_{B_0}(\ww_n)\ebm</mrow>
+          <mrow>Q \amp =\bbm C_{D_0}(\ww_1) \amp C_{D_0}(\ww_2) \amp \cdots \amp C_{DB_0}(\ww_n)\ebm</mrow>
         </md>
         be matrices whose columns are the coefficient vectors of the vectors in <m>B_1,D_1</m> with respect to <m>B_0,D_0</m>.
         Then the matrix of <m>T</m> with respect to the bases <m>B_1</m> and <m>D_1</m> is
         <me>
-          M_{D_1B_1}(T) = QM_{D_0B_0}(T)P^{-1}
+          M_{D_0B_0}(T) = QM_{D_1B_1}(T)P^{-1}
         </me>.
       </p>
     </statement>

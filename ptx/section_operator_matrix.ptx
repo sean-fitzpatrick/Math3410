@@ -45,7 +45,7 @@
           <li>If <m>S:V\to V</m> is another operator, then <m>M_B(ST)=M_B(S)M_B(T)</m>.</li>
           <li><m>T</m> is an isomorphism if and only if <m>M_B(T)</m> is invertible.</li>
           <li>If <m>T</m> is an isomorphism, then <m>M_B(T^{-1}) = [M_B(T)]^{-1}</m>.</li>
-          <li><m>M_B(T)=\bbm C_B(T(\mathbf{b}_1)) \amp \cdots \amp C_BT((\mathbf{b}_n))\ebm</m>.</li>
+          <li><m>M_B(T)=\bbm C_B(T(\mathbf{b}_1)) \amp \cdots \amp C_B(T(\mathbf{b}_n))\ebm</m>.</li>
         </ol>
       </p>
     </statement>
@@ -306,13 +306,27 @@
   </example>
 
   <p>
+    Note that the change matrix notation is useful for linear transformations between different vector spaces as well.
+    Recall <xref ref="thm-change-basis-transformation"/>, which gave the result
+    <me>
+      M_{D_0B_0}(T) = QM_{D_1B_1}P^{-1}
+    </me>,
+    where (using our new notation) <m>P=P_{B_0\leftarrow B_1}</m> and <m>Q=P_{D_0\leftarrow D_1}</m>.
+    In this notation, we have
+    <me>
+      M_{D_0B_0}(T) = P_{D_0\leftarrow D_1}M_{D_1B_1}(T)P_{B_1\leftarrow B_0}
+    </me>,
+    which seems more intiutive.
+  </p>
+
+  <p>
     The above results give a straightforward procedure for determining the matrix of any operator,
     with respect to any basis, if we let <m>D</m> be the standard basis.
     The importance of these results is not just their computational simplicity, however.
     The most important outcome of the above is that if <m>M_B(T)</m> and <m>M_D(T)</m>
     give the matrix of <m>T</m> with respect to two different bases, then
     <me>
-      M_B(T) = (P_{D\leftarrow B})^{-1}M_B(T)P_{D\leftarrow B}
+      M_B(T) = (P_{D\leftarrow B})^{-1}M_D(T)P_{D\leftarrow B}
     </me>,
     so that the two matrices are <em>similar</em>.
   </p>

@@ -255,7 +255,7 @@
 <!-- <xsl:param name="exercise.divisional.hint" select="'no'"/> -->
 <xsl:param name="exercise.inline.answer" select="'no'"/>
 <xsl:param name="exercise.inline.solution" select="'no'"/>
-
+<xsl:param name="exercise.worksheet.solution" select="'no'"/>
 <!-- print options -->
 <!-- <xsl:param name="latex.print" select="'no'"/> -->
 <xsl:param name="latex.pageref" select="'no'"/>

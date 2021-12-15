@@ -122,6 +122,7 @@
 
 <!-- figures in the margin -->
 <xsl:param name="latex.preamble.early" select="'
+\raggedbottom&#xa;
 \usepackage{xcoffins}&#xa;
 \NewCoffin\Framex&#xa;
 \NewCoffin\Theox&#xa;
@@ -158,7 +159,7 @@
     \SetVerticalCoffin\Theox{\marginparwidth}{#1}&#xa;
     \JoinCoffins*\Framex[r,vc]\Theox[l,vc](\dimexpr\Mshift+\textwidth\relax,#2)&#xa;
     \noindent\TypesetCoffin\Framex(0mm,0pt)\\[-2\baselineskip]&#xa;
-  }'"/>
+}'"/>
 
 
 <!-- we want images in margin to be the full margin width -->
@@ -262,6 +263,7 @@
 <!-- <xsl:param name="exercise.divisional.hint" select="'no'"/> -->
 <xsl:param name="exercise.inline.answer" select="'no'"/>
 <xsl:param name="exercise.inline.solution" select="'no'"/>
+<xsl:param name="exercise.worksheet.solution" select="'no'"/>
 
 <!-- turn off page references so print matches electronic -->
 <xsl:param name="latex.pageref" select="'no'"/>
