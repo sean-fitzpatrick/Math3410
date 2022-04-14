@@ -37,9 +37,9 @@
     <xsl:text>%% so that we can exercise specific font features&#xa;</xsl:text>
     <xsl:text>%%&#xa;</xsl:text>
     <xsl:call-template name="xelatex-font-check">
-        <xsl:with-param name="font-name" select="'Carlito-Regular'"/>
+        <xsl:with-param name="font-name" select="'Latte-Regular'"/>
     </xsl:call-template>
-    <xsl:text>\setmainfont{Carlito-Regular}&#xa;</xsl:text>
+    <xsl:text>\setmainfont{Latte-Regular}&#xa;</xsl:text>
 </xsl:template>
 
 
