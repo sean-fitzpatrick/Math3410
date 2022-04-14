@@ -10,7 +10,11 @@
       \newcommand{\bbm}{\begin{bmatrix}}
       \newcommand{\ebm}{\end{bmatrix}}
       \newcommand{\R}{\mathbb{R}}
-      \renewcommand{\C}{\mathbb{C}}
+      \ifdefined\C
+      \renewcommand\C{\mathbb{C}}
+      \else
+      \newcommand\C{\mathbb{C}}
+      \fi
       \newcommand{\im}{\operatorname{im}}
       \newcommand{\nll}{\operatorname{null}}
       \newcommand{\csp}{\operatorname{col}}
