@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*       on 2022-04-29T15:26:58-06:00       *-->
+<!--*   A recent stable commit (2020-08-09):   *-->
+<!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math"><div class="solution solution-like"><ol class="decimal">
+<li>
+<p>Suppose <span class="process-math">\(\uu+\vv=\uu+\ww\text{.}\)</span> By adding <span class="process-math">\(-\uu\)</span> on the left of each side, we obtain:</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{align*}
+-\uu+(\uu+\vv) \amp =-\uu+(\uu+\ww)\\
+(-\uu+\uu)+\vv \amp =(-\uu+\uu)+\ww \quad \text{ by A3}\\
+\zer+\vv \amp =\zer+\ww \quad \text{ by A5}\\
+\vv \amp =\ww \quad \text{ by A4}\text{.}
+\end{align*}
+</div>
+</li>
+<li><p>We have <span class="process-math">\(c\zer = c(\zer+\zer) = c\zer +c\zer\text{,}\)</span> by A4 and S2, respectively. Adding <span class="process-math">\(-c\zer\)</span> to both sides (and using axioms A3, A4, A5 as in the proof of <a href="" class="xref" data-knowl="./knowl/thm-zero-mult.html" title="Theorem 1.1.3">Theorem 1.1.3</a>) we get <span class="process-math">\(\zer = c\zer\text{.}\)</span></p></li>
+<li>
+<p>The main difficulty with this problem is getting the logic of the statement correct, and making sure you know what it is you're trying to prove. The desired conclusion is an <em class="emphasis">or</em> statement, which means it suffices to establish one part or the other. Typically, the way to proceed in these cases is to argue that if the first part is false, then the second must be true. This is how we proceed here.</p>
+<p>Suppose that <span class="process-math">\(c\vv=\zer\text{.}\)</span> If <span class="process-math">\(c=0\text{,}\)</span> then it's true that <span class="process-math">\(c=0\)</span> or <span class="process-math">\(\vv=\zer\text{,}\)</span> so there's nothing to prove. Suppose then that <span class="process-math">\(c\neq 0\text{.}\)</span> Then there exists a real number <span class="process-math">\(\frac1c\)</span> such that <span class="process-math">\(c\bigl(\frac1c\bigr)=1\text{.}\)</span> Multiplying both sides of <span class="process-math">\(c\vv=\zer\)</span> by <span class="process-math">\(\frac1c\text{,}\)</span> we get</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\frac1c(c\vv)=\frac1c\zer\text{.}
+\end{equation*}
+</div>
+<p class="continuation">By the previous problem, we know that <span class="process-math">\(\frac1c\zer = \zer\text{,}\)</span> and by axioms S4 and S5, we have</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\frac1c(c\vv)=\bigl(\frac1c\cdot c\bigr)\vv = 1\vv = \vv\text{,}
+\end{equation*}
+</div>
+<p class="continuation">showing that <span class="process-math">\(\vv=\zer\text{,}\)</span> and thus <span class="process-math">\(c=0\)</span> or <span class="process-math">\(\vv=\zer\text{.}\)</span> (This is a proof by cases, relying on the tautology <span class="process-math">\(c=0\)</span> or <span class="process-math">\(c\neq 0\text{.}\)</span>)</p>
+</li>
+<li>
+<p>Suppose there are two vectors <span class="process-math">\(\zer_1,\zer_2\)</span> that act as additive identities. Then</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{align*}
+\zer_1 \amp = \zer_1+\zer_2 \quad \text{ since } \vv+\zer_2=\vv \text{ for any } \vv\\
+\amp =\zer_2+\zer_1 \quad \text{ by axiom A2}\\
+\amp \zer_2 \quad \text{ since } \vv+\zer_1=\vv \text{ for any } \vv
+\end{align*}
+</div>
+<p class="continuation">So any two vectors satisfying the property in A4 must, in fact, be the same.</p>
+</li>
+<li>
+<p>Let <span class="process-math">\(\vv\in V\text{,}\)</span> and suppose there are vectors <span class="process-math">\(\ww_1,\ww_2\in V\)</span> such that <span class="process-math">\(\vv+\ww_1=\zer\)</span> and <span class="process-math">\(\vv+\ww_2=\zer\text{.}\)</span> Then</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{align*}
+\ww_1 \amp = \ww_1+\zer \quad  \text{ by A4}\\
+\amp = \ww_1+(\vv+\ww_2) \quad \text{ by assumption}\\
+\amp = (\ww_1+\vv)+\ww_2 \quad \text{ by A3}\\
+\amp = (\vv+\ww_1)+\ww_2 \quad \text{ by A2}\\
+\amp = \zer+\ww_2 \quad \text{ by assumption}\\
+\amp \ww_2 \quad \text{ by A4}\text{.}
+\end{align*}
+</div>
+</li>
+</ol></div></body>
+</html>
