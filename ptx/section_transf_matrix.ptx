@@ -437,12 +437,42 @@
 
   <figure xml:id="fig-basis-cube">
     <caption>Diagramming matrix of a transformation with respect to two different choices of basis</caption>
-    <interactive xml:id="geogebra-basis-cube" platform="geogebra" width="67%" aspect="1:1">
+    <!-- <interactive xml:id="geogebra-basis-cube" platform="geogebra" width="67%" aspect="1:1">
       <slate xml:id="basis-cube" surface="geogebra" source="images/basis_cube.ggb" aspect="1:1"/>
       <static>
         <image xml:id="img-basis-cube" width="67%" source="images/basis_cube.pdf"/>
       </static>
-    </interactive>
+    </interactive> -->
+    <asymptote>
+      import three;
+      usepackage("amssymb");
+
+      currentprojection=orthographic(8,2,2,center=true);
+
+      size(10cm);
+      size3(6cm,10cm,16cm);
+
+      draw(unitbox);
+
+      dot(unitbox, 6+blue);
+
+      label("$\mathbb{R}^n$",(0,-0.01,0),W);
+      label("$\mathbb{R}^n$",(1,0,0),SW);
+      label("$\mathbb{R}^m$",(0,1,0),SE);
+      label("$\mathbb{R}^m$",(1,1,0),SE);
+      draw("$C_{B_1}$",(0,0,1)--(0,0,0),arrow=Arrow3(),1+black);
+      draw("$C_{B_2}$",(1,0,1)--(1,0,0),arrow=Arrow3(),1+black);
+      draw("$C_{D_1}$",(0,1,1)--(0,1,0),arrow=Arrow3(),1+black);
+      draw("$C_{D_2}$",(1,1,1)--(1,1,0),arrow=Arrow3(),1+black);
+      draw("$M_{D_1B_1}(T)$",(0,0,0)--(0,1,0),arrow=Arrow3(),1+black);
+      draw("$M_{D_2B_2}(T)$",(1,0,0)--(1,1,0),arrow=Arrow3(),1+black);
+      label("$V$",(0,0,1),NW);
+      label("$V$",(1,0,1),NW);
+      label("$W$",(0,1,1),NE);
+      label("$W$",(1,1,1),ESE);
+      draw("$T$",(1,0,1)--(1,1,1),arrow=Arrow3(),1+black);
+      draw("$T$",(0,0,1)--(0,1,1),arrow=Arrow3(),1+black);
+    </asymptote>
   </figure>
 
   <p>
