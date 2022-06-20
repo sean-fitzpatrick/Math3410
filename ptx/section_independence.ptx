@@ -4,21 +4,116 @@
   <title>Linear Independence</title>
 
   <p>
-    In any vector space <m>V</m>, we say that a set of vectors
+    Recall that in <xref ref="ex-subspace-lines-and-planes"/>,
+    we had to take care to insist that the vectors spanning our plane were not parallel.
+    Otherwise, what we thought was a plane would, in fact, be only a line.
+    Similarly, we said that a line is given by the set of all vectors of the form <m>t\vv</m>,
+    where <m>t</m> is a scalar, and <m>\vv</m> <em>is not the zero vector</em>.
+    Otherwise, if <m>\vv=\zer</m>, we would have <m>t\vv=\zer</m> for all <m>t\in\R</m>,
+    and our <q>line</q> would be the trivial subspace.
+  </p>
+
+  <p>
+    When we define a subspace as the span of a set of vectors,
+    we want to have an idea of the size (or perhaps complexity) of the subspace.
+    Certainly the number of vectors we use to generate the span gives a measure of this,
+    but it is not the whole story: we also need to know how many of these vectors <q>depend</q> on other vectors in the generating set.
+    As <xref ref="theorem-surplus-span"/> tells us,
+    when one of the vectors in our generating set can be written as a linear combination of the others,
+    we can remove it as a generator without changing the span.
+  </p>
+
+  <p>
+    Given a set of vectors <m>S=\{\vv_1,\vv_2,\ldots, \vv_k\}</m>,
+    an important question is therefore: can any of these vectors be written as a linear combination of other vectors in the set?
+    If the answer is no, we say that <m>S</m> is <term>linearly independent</term>.
+    This is a difficult condition to check, however:
+    first, we would have to show that <m>\vv_1</m> cannot be written as a linear combination of <m>\vv_2,\ldots, \vv_k</m>.
+    Then, that <m>\vv_2</m> cannot be written in terms of <m>\vv_1,\vv_3,\ldots, \vv_k</m>, and so on.
+  </p>
+
+  <p>
+    This could amount to solving <m>k</m> different systems of equations in <m>k-1</m> variables!
+    But the systems are not all unrelated. The equation <m>\vv_1=c_2\vv_2+\cdots+c_k\vv_k</m>
+    can be rewritten as <m>c_1\vv_1-c_2\vv_2-\cdots -c_k\vv_k=\zer</m>,
+    where we happen to have set <m>c_1=1</m>.
+  </p>
+
+  <p>
+    In fact, we can do the same thing for each of these systems,
+    and in each case we end up with the same thing: a single <em>homogeneous</em> system with one extra variable.
+    (We get back each of the systems we started with by setting one of the variables equal to <m>1</m>.)
+    This not only is far more efficient, it changes the question:
+    it is no longer a question of <em>existence</em> of solutions to a collection of non-homogeneous systems,
+    but a question of <em>uniqueness</em> for the solution of a single homogeneous system.
+  </p>
+
+  <definition xml:id="def-independent">
+    <statement>
+      <p>
+        Let <m>\{\vv_1,\ldots,\vv_k\}</m> be a set of vectors in a vector space <m>V</m>.
+        We say that this set is <term>linearly independent</term> if,
+        for scalars <m>c_1,\ldots, c_k</m>, the equation
+        <me>
+          c_1\vv_1+\cdots + c_k\vv_k = \mathbf{0}
+        </me>
+        implies that <m>c_1=0, c_2=0,\ldots, c_k=0</m>.
+      </p>
+    </statement>
+  </definition>
+
+  <exercise>
+    <statement correct="no">
+      <p>
+        If <m>c_1\vv_1+\cdots +c_k\vv_k=\zer</m>,
+        where <m>c_1=0,\ldots, c_k=0</m>, then
+        <m>\{\vv_1,\ldots, \vv_k\}</m> is linearly independent.
+      </p>
+    </statement>
+    <feedback>
+      <p>
+        The definition of independence is a conditional statement:
+        <em>if</em> <m>c_1\vv_1+\cdots + c_k\vv_k = \mathbf{0}</m>,
+        <em>then</em> <m>c_1=0,\ldots, c_k=0</m>.
+        It is important to get the order of the logic correct here,
+        as the converse is always true.
+      </p>
+    </feedback>
+  </exercise>
+
+  <aside>
+    <p>
+      Recall that the <em>trivial solution</em>, where all variables are zero,
+      is <em>always</em> a solution to a homogeneous system of linear equations.
+      When checking for independence (or writing proofs of related theorems),
+      it is vitally important that we do not assume in advance that our scalars are zero.
+      Otherwise, we are simply making the assertion that <m>0\vv_1+\cdots+0\vv_k=\zer</m>,
+      which is, indeed, trivial.
+    </p>
+
+    <p>
+      When we prove linear independence, we are trying to show that the trivial solution
+      is the <em>only</em> solution.
+    </p>
+  </aside>
+
+  <p>
+    Note that the definition of independence asserts that there can be no
+    <q>non-trivial</q> linear combinations that add up to the zero vector.
+    Indeed, if even one scalar can be nonzero, then we can solve for the corresponding vector.
+    Say, for example, that we have a solution to <m>c_1\vv_1+c_2\vv_2\cdots + c_k\vv_k = \mathbf{0}</m>
+    with <m>c_1\neq 0</m>. Then we can move all other vectors to the right-hand side,
+    and multiply both sides by <m>1/c_1</m> to give
     <me>
-      \{\vv_1,\ldots,\vv_k\}
-    </me>
-    is <term>linearly independent</term> if for any scalars <m>c_1,\ldots, c_k</m>
-    <me>
-      c_1\vv_1+\cdots + c_k\vv_k = \mathbf{0} \quad\Rightarrow\quad c_1=\cdots = c_k=0
+      \vv_1 = -\frac{c_2}{c_1}\vv_2-\cdots - \frac{c_k}{c_1}\vv_k
     </me>.
   </p>
 
   <p>
-    This means that no vector in the set can be written as a linear combination of the other vectors in that set.
-    We will soon see that when looking for vectors that span a subspace,
-    it is especially useful to find a spanning set that is also linearly independent.
-    The following lemma establishes some basic properties of independent sets.
+    When looking for vectors that span a subspace,
+    it is useful to find a spanning set that is also linearly independent.
+    Otherwise, as <xref ref="theorem-surplus-span"/> tells us,
+    we will have some <q>redundant</q> vectors, in the sense that removing them as generators does not change the span.
   </p>
 
   <lemma>
@@ -39,6 +134,26 @@
         </ol>
       </p>
     </statement>
+    <proof>
+      <title>Strategy</title>
+      <p>
+        This time, we will outline the strategy, and leave the execution to you.
+        Both parts are about linear combinations.
+        What does independence look like for a single vector?
+        We would need to show that if <m>c\vv=\zer</m> for some scalar <m>c</m>,
+        then <m>c=0</m>.
+        Now recall that in <xref ref="ex-more-props"/>,
+        we showed that if <m>c\vv=\zer</m>, either <m>c=0</m> or <m>\vv=\zer</m>.
+        We're assuming <m>\vv=\zer</m>, so what does that tell you about <m>c</m>?
+      </p>
+
+      <p>
+        In the second part, if we have a linear combination involving the zero vector,
+        does the value of the scalar in front of <m>\zer</m> matter?
+        (Can it change the value of the linear combination?)
+        If not, is there any reason that scalar would have to be zero?
+      </p>
+    </proof>
   </lemma>
 
   <p>
@@ -238,6 +353,4 @@
       </p>
     </solution>
   </exercise>
-
-
 </section>
