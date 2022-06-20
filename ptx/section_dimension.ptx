@@ -62,12 +62,12 @@
         and there will be some vectors <m>\ww_{n+1},\ldots, \ww_m</m> leftover.
         Why is this a problem? (What assumption about the <m>\ww_i</m> will we contradict?)
       </p>
-    </proof>    
+    </proof>
   </theorem>
 
   <p>
-    If a set of vectors spans a vector space <m>V</m>, and it is not independent,
-    we observed that it is possible to remove a vector from the set and still span <m>V</m>.
+    If a set of vectors spans a vector space <m>V</m>, but it is not independent,
+    we observed that it is possible to remove a vector from the set and still span <m>V</m> using a smaller set.
     This suggests that spanning sets that are also linearly independent are of particular importance,
     and indeed, they are important enough to have a name.
   </p>
@@ -77,7 +77,7 @@
       <p>
         Let <m>V</m> be a vector space. A set <m>\mathcal{B}=\{\mathbf{e}_1,\ldots, \mathbf{e}_n\}</m>
         is called a <term>basis</term> of <m>V</m> if <m>\mathcal{B}</m> is linearly independent,
-        and <m>\operatorname{span}\mathcal{B} = V</m>.
+        and <m>\spn\mathcal{B} = V</m>.
       </p>
     </statement>
   </definition>
@@ -574,6 +574,64 @@
         Support your answer.
       </p>
     </statement>
+  </exercise>
+
+  <exercise>
+    <introduction>
+      <p>
+        Determine whether the following statements are true or false.
+      </p>
+    </introduction>
+    <task>
+      <statement correct="no">
+        <p>
+          A set of 2 vectors can span <m>\R^3</m>.
+        </p>
+      </statement>
+      <feedback>
+        <p>
+          We know that the standard basis for <m>\R^3</m> contains three vectors,
+          and as a basis, it is linearly independent.
+          According to <xref ref="theorem-steinitz"/>, a spanning set cannot be larger than an independent set.
+        </p>
+      </feedback>
+    </task>
+    <task>
+      <statement correct="yes">
+        <p>
+          It is possible for a set of 2 vectors to be linearly independent in <m>\R^3</m>.
+        </p>
+      </statement>
+      <feedback>
+        <p>
+          There are many such examples, including <m>\{(1,0,0),(0,1,0)\}</m>.
+        </p>
+      </feedback>
+    </task>
+    <task>
+      <statement correct="yes">
+        <p>
+          A set of 4 vectors can span <m>\R^3</m>.
+        </p>
+      </statement>
+      <feedback>
+        <p>
+          Add any vector you want to a basis for <m>\R^3</m>, and the resulting set will span.
+        </p>
+      </feedback>
+    </task>
+    <task>
+      <statement correct="no">
+        <p>
+          It is possible for a set of 4 vectors to be linearly independent in <m>\R^3</m>.
+        </p>
+      </statement>
+      <feedback>
+        <p>
+          We know that 3 vectors can span <m>\R^3</m>, and an independent set cannot be larger than a spanning set.
+        </p>
+      </feedback>
+    </task>
   </exercise>
 
   <p>
