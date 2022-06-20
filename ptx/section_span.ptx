@@ -41,12 +41,34 @@
   </example>
 
   <p>
-    The <term>span</term> of those same vectors is the set of all possible linear combinations:
-    <me>
-      \spn\{\vv_1,\ldots, \vv_k\} = \{c_1\vv_1+ \cdots + c_k\vv_k \,|\, c_1,\ldots, c_k \in \mathbb{F}\}.
-    </me>
-    Therefore, the questions <q>Is the vector <m>\ww</m> in <m>\spn\{\vv_1,\ldots, \vv_k\}</m>?</q>
-    is really asking, <q>Can <m>\ww</m> be written as a linear combination of <m>\vv_1,\ldots, \vv_k</m>?</q>
+    The <term>span</term> of those same vectors is the set of all possible linear combinations that can be formed:
+  </p>
+
+  <definition xml:id="def-span">
+    <title>Span</title>
+    <statement>
+      <p>
+        Let <m>\vv_1,\ldots, \vv_k</m> be a set of vectors in a vector space <m>V</m>.
+        The <term>span</term> of this set of vectors is the subset of <m>V</m> defined by
+        <me>
+          \spn\{\vv_1,\ldots, \vv_k\} = \{c_1\vv_1+ \cdots + c_k\vv_k \,|\, c_1,\ldots, c_k \in \mathbb{F}\}
+        </me>.
+      </p>
+    </statement>
+  </definition>
+
+  <p>
+    The vectors <m>\vv_1,\ldots, \vv_k</m> can be thought of as the <term>generators</term> of the span.
+    Every other vector in the set can be obtained as a linear combination of these vectors.
+    Note that even though we have finitely many generators,
+    because the set (usually <m>\R</m>) from which we choose our scalars is infinite,
+    there are infinitely many elements in the span.
+  </p>
+
+  <p>
+    Since span is defined in terms of linear combinations,
+    what the question <q>Is the vector <m>\ww</m> in <m>\spn\{\vv_1,\ldots, \vv_k\}</m>?</q>
+    is really asking is, <q>Can <m>\ww</m> be written as a linear combination of <m>\vv_1,\ldots, \vv_k</m>?</q>
   </p>
 
   <p>
@@ -417,7 +439,7 @@
         Therefore, <m>\xx\in\spn\{\uu,\vv_1,\ldots, \vv_k\}</m>,
         which proves the opposite conclusion, and therefore the result.
       </p>
-    </proof>    
+    </proof>
   </theorem>
 
   <p>
