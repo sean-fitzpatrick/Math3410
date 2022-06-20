@@ -12,6 +12,35 @@
   </p>
 
   <p>
+    It's important to make sure you don't get lost in the notation here.
+    Be sure that you can keep track of which symbols are vectors, and which are scalars!
+    Note that in a sense, this is the most general sort of expression you can form using the two operations of a vector space,
+    addition, and scalar multiplication. We multiply some collection of vectors by scalars,
+    and then use addition to <q>combine</q> them into a single vector.
+  </p>
+
+  <example>
+    <statement>
+      <p>
+        In <m>\R^3</m>, let <m>\uu = \bbm 1\\0\\3\ebm</m>, <m>\vv = \bbm -1\\2\\1\ebm</m>, and <m>\ww = \bbm 0\\3\\1\ebm</m>.
+        With scalars <m>3,-2,4</m> we can form the linear combination
+        <me>
+          3\uu-2\vv+4\ww = \bbm 3\\0\\9\ebm+\bbm 2\\-4\\-2\ebm + \bbm 0\\12\\4\ebm = \bbm 5\\8\\11\ebm
+        </me>.
+        Notice how the end result is a single vector, and we've lost all information regarding the vectors it came from.
+        Sometimes we want the end result, but often we are more interested in details of the linear combination itself.
+      </p>
+
+      <p>
+        In the vector space of all real-valued continuous functions on <m>\R</m>,
+        we can consider linear combinations such as <m>f(x)=3e^{2x}+4\sin(3x)-3\cos(3x)</m>.
+        (This might, for example, be a particular solution to some differential equation.)
+        Note that in this example, there is no nice way to <q>combine</q> these functions into a single term.
+      </p>
+    </statement>
+  </example>
+
+  <p>
     The <term>span</term> of those same vectors is the set of all possible linear combinations:
     <me>
       \spn\{\vv_1,\ldots, \vv_k\} = \{c_1\vv_1+ \cdots + c_k\vv_k \,|\, c_1,\ldots, c_k \in \mathbb{F}\}.
@@ -242,6 +271,27 @@
       </p>
     </statement>
     <proof>
+      <title>Strategy</title>
+      <p>
+        For the first part, we will rely on our trusty <xref ref="thm-subspace-test" text="title"/>.
+        The proof is essentially the same as the motivating example from the beginning of <xref ref="sec-subspace"/>,
+        modified to allow an arbitrary number of vectors.
+        First, we will write the zero vector as a linear combination of the given vectors. (What should the scalars be?)
+        Then we check addition and scalar multiplication.
+      </p>
+
+      <p>
+        How do we show that a subspace is <em>smallest</em>?
+        As suggested in the statement above, show that if a subspace <m>W</m>
+        contains the vectors <m>\vv_1,\vv_2,\ldots, \vv_k</m>,
+        then it must contain every vector in <m>U</m>.
+        This must be the case because <m>W</m> is closed under addition and scalar multiplication,
+        and every vector in <m>U</m> is formed using these operations.
+      </p>
+    </proof>
+
+    <proof>
+      <title>Execution</title>
       <p>
         Let <m>U=\spn\{\vv_1,\vv_2,\ldots, \vv_k\}</m>. Then <m>0\in U</m>,
         since <m>0=0\vv_1+0\vv_2+\cdots + 0\vv_k</m>.
@@ -273,11 +323,6 @@
 
   </theorem>
 
-  <p>
-    We end this section with a few non-computational, but useful results,
-    which will be left as exercises to be done in class, or by the reader.
-  </p>
-
   <exercise>
     <statement>
       <p>
@@ -285,15 +330,32 @@
         Show that if <m>X\subseteq Y</m>, then <m>\spn X \subseteq \spn Y</m>.
       </p>
     </statement>
+    <hint>
+      <p>
+        Your goal is to show that any linear combination of vectors in <m>X</m>
+        can also be written as a linear combination of vectors in <m>Y</m>.
+        What value should you choose for the scalars in front of any vectors that belong to <m>Y</m> but not <m>X</m>?
+      </p>
+    </hint>
   </exercise>
 
   <exercise>
-    <statement>
+    <statement correct="no">
       <p>
-        Can <m>\{(1,2,0), (1,1,1)\}</m> span <m>\{(a,b,0)\,|\, a,b \in\R\}</m>?
+        The vectors <m>\{(1,2,0), (1,1,1)\}</m> span <m>\{(a,b,0)\,|\, a,b \in\R\}</m>.
       </p>
     </statement>
+    <feedback>
+      <p>
+        The only way to get <m>0</m> as the third component of <m>s(1,2,0)+t(1,1,1)</m> is to set <m>t=0</m>.
+        But the scalar multiples of <m>(1,2,0)</m> do not generate all vectors of the form <m>(a,b,0)</m>.
+      </p>
+    </feedback>
   </exercise>
+
+  <p>
+    We end with a result that will be important as we work on our understanding of the structure of vector spaces.
+  </p>
 
   <theorem xml:id="theorem-surplus-span">
     <statement>
@@ -305,6 +367,57 @@
         </me>.
       </p>
     </statement>
+    <proof>
+      <title>Strategy</title>
+      <p>
+        We need to first recall that the span of a set of vectors is, first and foremost, a set.
+        That means that we are proving the equality of two sets.
+        Recall that this typically requires us to prove that each set is a subset of the other.
+      </p>
+
+      <p>
+        This means that we need to show that any linear combination of the vectors
+        <m>\uu,\vv_1,\ldots, \vv_k</m> can be written as a linear combination of the vectors
+        <m>\vv_1,\ldots, \vv_k</m>, and vice-versa.
+        In one direction, we will need our hypothesis: <m>\uu\in \spn\{\vv_1,\ldots, \vv_k\}</m>.
+        In the other direction, we come back to a trick we've already seen: adding zero does nothing.
+        That is, if a vector is missing from a linear combination, we can include it, using <m>0</m> for its coefficient.
+      </p>
+    </proof>
+    <proof>
+      <title>Execution</title>
+      <p>
+        Suppose that <m>\uu\in \spn\{\vv_1,\ldots, \vv_k\}</m>.
+        This means that <m>\uu</m> can be written as a linear combination of the vectors <m>\vv_1,\ldots, \vv_k</m>,
+        so there must exist scalars <m>a_1,\ldots, a_k</m> such that
+        <men xml:id="eq-u-in-span">
+          \uu=a_1\vv_1+a_2\vv_2+\cdots _a_k\vv_k
+        </men>.
+        Now, let <m>\ww\in \uu\in \spn\{\uu,\vv_1,\ldots, \vv_k\}</m>.
+        Then we must have
+        <me>
+          \ww = b\uu+c_1\vv_1+\cdots+c_k\vv_k
+        </me>
+        for scalars <m>b,c_1,\ldots, c_k</m>. From our hypothesis (using <xref ref="eq-u-in-span"/>), we get
+        <md>
+          <mrow>\ww \amp = b(a_1\vv_1+a_2\vv_2+\cdots _a_k\vv_k) +c_1\vv_1+\cdots +\c_k\vv_k</mrow>
+          <mrow> \amp = ((ba_1)\vv_1+\cdots + (ba_k)\vv_k)+(c_1\vv_1+\cdots +\c_k\vv_k)</mrow>
+          <mrow> \amp = (ba_1+c_1)\vv_1+\cdots+(ba_k+c_k)\vv_k</mrow>
+        </md>.
+        Since <m>\ww</m> can be written as a linear combination of <m>\vv_1,\ldots, \vv_k</m>,
+        <m>\ww\in\spn\{\vv_1,\ldots, \vv_k\}</m>, and therefore <m>\spn\{\uu,\vv_1,\ldots, \vv_k\}\subseteq \spn\{\vv_1,\ldots, \vv_k\}</m>.
+      </p>
+      <p>
+        On the other hand, let <m>\xx\in \spn\{\vv_1,\ldots, \vv_k\}</m>.
+        Then there exist scalars <m>c_1,\ldots, c_k</m> for which we have
+        <md>
+          <mrow>\xx \amp = c_1\vv_1+\cdots +c_k\vv_k</mrow>
+          <mrow> \amp = 0\uu + c_1\vv_1+\cdots + c_k\vv_k</mrow>
+        </md>.
+        Therefore, <m>\xx\in\spn\{\uu,\vv_1,\ldots, \vv_k\}</m>,
+        which proves the opposite conclusion, and therefore the result.
+      </p>
+    </proof>    
   </theorem>
 
   <p>
