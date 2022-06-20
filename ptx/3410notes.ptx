@@ -44,8 +44,8 @@
     </latex-image-preamble>
   </docinfo>
   <book xml:id="linear-algebra">
-    <title>Lecture Notes for Math 3410, with Computational Examples</title>
-
+    <title>Linear Algebra</title>
+    <subtitle>A second course, featuring proofs and Python</subtitle>
     <frontmatter>
 
       <titlepage>
@@ -57,9 +57,9 @@
       </titlepage>
 
       <colophon>
-        <edition>Version 1.0.0 (just past beta?)</edition>
+        <edition>Version 2.0.0 (now with Runestone)</edition>
         <copyright>
-          <year>2021</year>
+          <year>2022</year>
           <holder>Sean Fitzpatrick</holder>
           <minilicense>Creative Commons BY NC</minilicense>
           <shortlicense>
@@ -72,9 +72,14 @@
 
       <preface>
         <p>
+          This textbook is intended for a second course in linear algebra,
+          for students who have completed a first course focused on procedures rather than proofs.
+          (That is, a course covering systems of equations, matrix algebra, determinants, <etc /> but not vector spaces.)
+        </p>
+        <p>
           Linear algebra is a mature, rich subject, full of both fascinating theory and useful applications.
           One of the things you might have taken away from a first course in the subject is that there's a lot of tedious calculation involved.
-          This is true, if you're a human. But the algorithms you learn in a course like Math 1410 are easily implemented on a computer.
+          This is true, if you're a human. But the algorithms you learned are easily implemented on a computer.
           If we want to be able to discuss any of the interesting applications of linear algebra,
           we're going to need to learn how to do linear algebra on a computer.
         </p>
@@ -83,7 +88,7 @@
           like Maple, Mathematica, and MatLab. But all of these are proprietary, and expensive.
           Sage is a popular open source system for mathematics,
           and students considering further studies in mathematics would do well to learn Sage.
-          Since most people in Math 3410 are probably not considering a career as a mathematician,
+          Since we want to prepare students for careers other than <q>mathematician</q>,
           we'll try to do everything in Python.
         </p>
         <p>
@@ -106,15 +111,33 @@
           and reveal.js slides.
         </p>
         <p>
+          It should be noted that Jupyter conversion is not perfect.
+          In particular, wherever there are code cells present within an example or exercise,
+          the resulting notebook will not be valid.
+          However, all of the <em>worksheets</em> in the book will successfully convert to Jupyter notebooks,
+          and are intended to be used as such.
+        </p>
+        <p>
           I initially wrote these notes during the Fall 2019 semester,
           for Math 3410 at the University of Lethbridge.
           The original textbook for the course was <em>Linear Algebra with Applications</em>,
           by Keith Nicholson. This book is available as an open education resource from
           <url href="https://lyryx.com/linear-algebra-applications/" visual="lyryx.com/linear-algebra-applications/">Lyryx Learning</url>.
-          Since these notes followed our course, and the course, to some extent,
-          followed Nicholson's book, the notation, terminology, and (to some extent)
-          organization of content aligns with that in Nicholson.
-          (However, in a few places a careful reader might be able to detect the influence of Sheldon Axler's beautiful <em>Linear Algebra Done Right</em>.)
+        </p>
+        <p>
+          Since the notes were written for a course that used Nicholson's textbook,
+          the influence of his book is evident throughout.
+          In particular, much of the notation agrees with that of Nicholson,
+          and there are places where I refer to his book for further details.
+          I taught a previous offering of this course using Sheldon Axler's beautiful <em>Linear Algebra Done Right</em>,
+          which certainly had an effect on how I view the subject,
+          and it is quite likely that this has impacted how I present some of the material in this book.
+        </p>
+        <p>
+          This new edition of the book features exercises written using some of the interactive features
+          provided by the partnership between <pretext /> and <url href="https://runestone.academy/" visual="runestone.academy">Runestone</url>.
+          I have also tried to provide additional guidance on understanding (and constructing)
+          the proofs that appear in an upper division course on linear algebra.
         </p>
       </preface>
 
