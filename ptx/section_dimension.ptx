@@ -16,6 +16,53 @@
         then <m>m\leq n</m>.
       </p>
     </statement>
+    <proof>
+      <title>Strategy</title>
+      <p>
+        We won't give a complete proof of this theorem.
+        The idea is straightforward, but checking all the details takes some work.
+        Since <m>\{\vv_1,\ldots, \vv_k\}</m> is a spanning set,
+        each of the vectors in our independent set can be written as a linear combination of <m>\vv_1,\ldots, \vv_k</m>.
+        In particular, we can write
+        <me>
+          \ww_1 = a_1\vv_1+a_2\vv_2+\cdots + a_n\vv_n
+        </me>
+        for scalars <m>a_1,\ldots, a_n</m>, and these scalars can't all be zero.
+        (Why? And why is this important?)
+      </p>
+
+      <p>
+        The next step is to argue that <m>V=\{\ww_1,\vv_2,\ldots, \vv_n\}</m>;
+        that is, that we can replace <m>\vv_1</m> by <m>\ww_1</m> without changing the span.
+        This will involve chasing some linear combinations,
+        and remember that we need to check both inclusions to prove set equality.
+        (This step requires us to have assumed that the scalar <m>a_1</m> is nonzero. Do you see why?)
+      </p>
+
+      <p>
+        Next, we similarly replace <m>\vv_2</m> with <m>\ww_2</m>.
+        Note that we can write
+        <me>
+          \ww_2=a\ww_1+b_2\vv_2+\cdots + b_n\vv_n
+        </me>,
+        and at least one of the <m>b_i</m> must be nonzero.
+        (Why can't they all be zero? What does <xref ref="ex-independent-subset"/> tell you about <m>\{\ww_1,\ww_2\}</m>?)
+      </p>
+
+      <p>
+        If we assume that <m>b_2</m> is one of the nonzero scalars,
+        we can solve for <m>\vv_2</m> in the equation above, and replace <m>\vv_2</m> by <m>\ww_2</m> in our spanning set.
+        At this point, you will have successfully argued that <m>V=\spn\{\ww_1,\ww_2,\vv_3,\ldots, \vv_n\}</m>.
+      </p>
+
+      <p>
+        Now, we repeat the process. If <m>m\leq n</m>, we eventually run out of <m>\ww_i</m> vectors, and all is well.
+        The question is, what goes wrong if <m>m\gt n</m>? Then we run out of <m>\vv_j</m> vectors first.
+        We'll be able to write <m>V=\spn\{\ww_1,\ldots, \ww_n\}</m>,
+        and there will be some vectors <m>\ww_{n+1},\ldots, \ww_m</m> leftover.
+        Why is this a problem? (What assumption about the <m>\ww_i</m> will we contradict?)
+      </p>
+    </proof>    
   </theorem>
 
   <p>
