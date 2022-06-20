@@ -323,6 +323,105 @@
   </exercise>
 
   <p>
+    Let's try a few more examples.
+  </p>
+
+  <example>
+    <introduction>
+      <p>
+        Determine whether or not the following subsets are subspaces.
+      </p>
+    </introduction>
+    <task>
+      <statement>
+        <p>
+          The subset <m>\{(x-y, x+y+2, 2x-3y) \,|\, x,y\in\R\}\subseteq\R^3</m>
+        </p>
+      </statement>
+      <solution>
+        <p>
+          The clue here that this is not a subspace is the presence of the 2 in the second component.
+          Typically for a subspace, we expect to see linear expressions involving our variables,
+          but in linear algebra, the adjective <em>linear</em> doesn't imply the inclusion of constant terms the way it does in calculus.
+          The reason, again, is the special role of zero in a vector space.
+        </p>
+
+        <p>
+          While it's true that this set doesn't contain the zero vector (which rules it out as a subspace),
+          it's not as obvious: perhaps there are values of <m>x</m> and <m>y</m>
+          that give us <m>x+y+2=0</m>, and <m>x-y=0, 2x-3y=0</m> as well?
+          Solving a system of equations would tell us that indeed, this is not possible.
+        </p>
+
+        <p>
+          We could also show that the closure conditions fail.
+          Putting <m>x=1, y=0</m> gives the element <m>(1,3,2)</m>,
+          and putting <m>x=0,y=1</m> gives the element <m>(-1,3,-3)</m>.
+          Adding these, we get the vector <m>(0,6,-1)</m>.
+          Why is this not in the set? We would need <m>x-y=0</m>, so <m>x=y</m>.
+          Then <m>x+y+2=2x+2=6</m> implies <m>x=y=2</m>, but <m>2(2)-3(2)=-2\neq -3</m>.
+        </p>
+      </solution>
+    </task>
+
+    <task>
+      <statement>
+        <p>
+          The subset <m>\{p(x)\in \mathbb{P}_3\,|\, p(1)=p(2)\}\subseteq \mathbb{P}_3</m>.
+        </p>
+      </statement>
+      <solution>
+        <p>
+          At first glance, it may not be clear whether the condition <m>p(1)=p(2)</m> is linear.
+          One approach is to write out our polynomial in terms of coefficients.
+          If <m>p(x)=ax^3+bx^2+cx+d</m>, then <m>p(1)=p(2)</m> implies
+          <me>
+            a+b+c+d=8a+4b+2c+d
+          </me>,
+          or <m>7a+3b+c=0</m>, which is a homogeneous linear equation.
+          This isn't yet a proof <mdash/> we still have to apply the subspace test!
+        </p>
+
+        <p>
+          We can use the subspace test in terms of coefficients with the condition <m>7a+3b+c=0</m>,
+          or we can use the original condition directly.
+          First, the zero polynomial <m>\zer</m> satisfies <m>\zer(1)=\zer(2)</m>, since it's equal to zero everywhere.
+          Next, suppose we have polynomials <m>p(x),q(x)</m> with <m>p(1)=p(2)</m> and <m>q(1)=q(2)</m>.
+          Then
+          <me>
+            (p+q)(1)=p(1)+q(1)=p(2)+q(2)=(p+q)(2)
+          </me>,
+          and for any scalar <m>c</m>, <m>(cp)(1)=c(p(1))=c(p(2))=(cp)(2)</m>.
+          This shows that the set is closed under both addition and scalar multiplication.
+        </p>
+      </solution>
+    </task>
+
+    <task>
+      <statement>
+        <p>
+          The subset <m>\{A\in M_{2\times 2}(\R) \,|\, \det(A)=0\}</m>.
+        </p>
+      </statement>
+      <solution>
+        <p>
+          Here, we have the condition <m>\det(A)=0</m>, which is homogeneous, but is it linear?
+          If you remember a bit about the determinant,
+          you might recall that it behaves well with respect to multiplication, but not addition,
+          and indeed, this is going to mean that we don't have a subspace.
+        </p>
+
+        <p>
+          To see that this is the case, consider closure under addition.
+          The matrices <m>A=\bbm 1\amp 0\\0\amp 0\ebm</m> and <m>B=\bbm 0\amp 0\\0\amp 1\ebm</m>
+          both have determinant <m>0</m>, but <m>A+B=\bbm 1\amp 0\\0\amp 1\ebm</m> has determinant 1.
+          Therefore, <m>A</m> and <m>B</m> both belong to the set, but <m>A+B</m> does not.
+        </p>
+      </solution>
+    </task>
+  </example>
+
+  <p>
     In the next section, we'll encounter perhaps the most fruitful source of subspaces: sets of linear combinations (or <em>spans</em>).
     We will see that such sets are always subspaces, so if we can identify a subset as a span,
     we know automatically that it is a subspace.
