@@ -97,6 +97,23 @@
         are both bases of a vector space <m>V</m>, then <m>m=n</m>.
       </p>
     </statement>
+    <proof>
+      <title>Strategy</title>
+      <p>
+        One way of proving the equality <m>m=n</m> is to show that <m>m\leq n</m> and <m>m\geq n</m>.
+        We know that since both sets are bases, both sets are independent, and they both span <m>V</m>.
+        Can you see a way to use <xref ref="theorem-steinitz"/> (twice)?
+      </p>
+    </proof>
+    <proof>
+      <p>
+        Let <m>A=\{\mathbf{e}_1,\ldots, \mathbf{e}_n\}</m> and let <m>B=\{\mathbf{f}_1,\ldots, \mathbf{f}_m\}</m>.
+        Since both <m>A</m> and <m>B</m> are bases, both sets are linearly independent, and both sets span <m>V</m>.
+        Since <m>A</m> is independent and <m>\spn B=V</m>, we must have <m>n\leq m</m>, by <xref ref="theorem-steinitz"/>.
+        Similarly, since <m>\spn A = V</m> and <m>B</m> is independent, we must have <m>n\geq m</m>,
+        and therefore, <m>n=m</m>.
+      </p>
+    </proof>
   </theorem>
 
   <p>
@@ -152,7 +169,8 @@
           X = \bbm b+d \amp b\\0\amp d\ebm = b\bbm 1\amp 1\\0\amp 0\ebm + d\bbm 1\amp 0\\0\amp 1\ebm
         </me>.
         Since the matrices <m>\bbm 1\amp 1\\0\amp 0\ebm</m> and <m>\bbm 1\amp 0\\0\amp 1\ebm</m>
-        are not scalar multiples, they must be independent, and therefore, they form a basis for <m>U</m>.
+        are not scalar multiples of each other, they must be independent, and therefore, they form a basis for <m>U</m>.
+        (Why do we know these matrices span <m>U</m>?)
       </p>
     </solution>
   </exercise>
@@ -196,14 +214,9 @@
         From this, we can conclude (exercise) that <m>\dim M_{mn}(\R)=mn</m>.
       </p>
     </statement>
-    <solution>
-      <p>
-
-      </p>
-    </solution>
   </example>
 
-  <exercise>
+  <exercise xml:id="ex-basis-r3">
     <introduction>
       <p>
         Show that the following sets are bases of <m>\R^3</m>.
@@ -322,6 +335,15 @@
         </me>.
       </p>
     </statement>
+    <hint>
+      <p>
+        For independence, consider the linear combination
+        <me>
+          w\bbm 1\amp 0\\0\amp 1\ebm + x\bbm 0\amp 1\\1\amp 0\ebm +y\bbm 1\amp 1\\0\amp 1\ebm +z\bbm 1\amp 0\\0\amp 0\ebm=\bbm 1\amp 0\\0\amp 1\ebm
+        </me>.
+        Combine the left-hand side, and then equate entries of the matrices on either side to obtain a system of equations.
+      </p>
+    </hint>
   </exercise>
 
   <sage>
@@ -334,6 +356,19 @@
         Show that <m>\{1+x,x+x^2,x^2+x^3,x^3\}</m> is a basis for <m>P_3</m>.
       </p>
     </statement>
+    <hint>
+      <p>
+        For independence, consider the linear combination
+        <me>
+          a(1+x)+b(x+x^2)+c(x^2+x^3)+dx^3=0
+        </me>.
+        When dealing with polynomials, we need to collect like terms and equate coefficients:
+        <me>
+          a\cdot 1 +(a+b)x+(b+c)x^2+(c+d)x^3=0
+        </me>,
+        so the coefficients <m>a, a+b, b+c, c+d</m> must all equal zero.
+      </p>
+    </hint>
   </exercise>
 
   <sage>
@@ -341,72 +376,76 @@
   </sage>
 
   <exercise>
-    <statement>
+    <introduction>
       <p>
         Find a basis and dimension for the following subspaces of <m>P_2</m>:
-        <ol marker='a'>
-          <li>
-            <m>U_1 = \{a(1+x)+b(x+x^2)\,|\, a,b\in\R\}</m>
-          </li>
-          <li>
-            <m>U_2=\{p(x)\in P_2 \,|\, p(1)=0\}</m>
-          </li>
-          <li>
-            <m>U_3 = \{p(x)\in P_2 \,|\, p(x)=p(-x)\}</m>
-          </li>
-        </ol>
       </p>
-    </statement>
-    <solution>
-      <p>
-        <ol marker='a'>
-          <li>
-            <p>
-              By definition, <m>U_1 = \spn \{1+x,x+x^2\}</m>,
-              and these vectors are independent, since neither is a scalar multiple of the other.
-              Since there are two vectors in this basis, <m>\dim U_1 = 2</m>.
-            </p>
-          </li>
-          <li>
-            <p>
-              If <m>p(1)=0</m>, then <m>p(x)=(x-1)q(x)</m> for some polynomial <m>q</m>.
-              Since <m>U_2</m> is a subspace of <m>P_2</m>, the degree of <m>q</m> is at most 2.
-              Therefore, <m>q(x)=ax+b</m> for some <m>a,b\in\R</m>, and
-              <me>
-                p(x) = (x-1)(ax+b) = a(x^2-x)+b(x-1)
-              </me>.
-              Since <m>p</m> was arbitrary, this shows that <m>U_2 = \spn\{x^2-x,x-1\}</m>.
-            </p>
+    </introduction>
+    <task>
+      <statement>
+        <p>
+          <m>U_1 = \{a(1+x)+b(x+x^2)\,|\, a,b\in\R\}</m>
+        </p>
+      </statement>
+      <solution>
+        <p>
+          By definition, <m>U_1 = \spn \{1+x,x+x^2\}</m>,
+          and these vectors are independent, since neither is a scalar multiple of the other.
+          Since there are two vectors in this basis, <m>\dim U_1 = 2</m>.
+        </p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>
+          <m>U_2=\{p(x)\in P_2 \,|\, p(1)=0\}</m>
+        </p>
+      </statement>
+      <solution>
+        <p>
+          If <m>p(1)=0</m>, then <m>p(x)=(x-1)q(x)</m> for some polynomial <m>q</m>.
+          Since <m>U_2</m> is a subspace of <m>P_2</m>, the degree of <m>q</m> is at most 2.
+          Therefore, <m>q(x)=ax+b</m> for some <m>a,b\in\R</m>, and
+          <me>
+            p(x) = (x-1)(ax+b) = a(x^2-x)+b(x-1)
+          </me>.
+          Since <m>p</m> was arbitrary, this shows that <m>U_2 = \spn\{x^2-x,x-1\}</m>.
+        </p>
 
-            <p>
-              The set <m>\{x^2-x,x-1\}</m> is also independent,
-              since neither vector is a scalar multiple of the other.
-              Therefore, this set is a basis, and <m>\dim U_2=2</m>.
-            </p>
-          </li>
-          <li>
-            <p>
-              If <m>p(x)=p(-x)</m>, then <m>p(x)</m> is an even polynomial,
-              and therefore <m>p(x)=a+bx^2</m> for <m>a,b\in\R</m>.
-              (If you didn't know this it's easily verified: if
-              <me>
-                a+bx+cx^2 = a+b(-x)+c(-x)^2
-              </me>,
-              we can immediately cancel <m>a</m> from each side,
-              and since <m>(-x)^2=x^2</m>, we can cancel <m>cx^2</m> as well.
-              This leaves <m>bx=-bx</m>, or <m>2bx=0</m>, which implies that <m>b=0</m>.)
-            </p>
+        <p>
+          The set <m>\{x^2-x,x-1\}</m> is also independent,
+          since neither vector is a scalar multiple of the other.
+          Therefore, this set is a basis, and <m>\dim U_2=2</m>.
+        </p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>
+          <m>U_3 = \{p(x)\in P_2 \,|\, p(x)=p(-x)\}</m>
+        </p>
+      </statement>
+      <solution>
+        <p>
+          If <m>p(x)=p(-x)</m>, then <m>p(x)</m> is an even polynomial,
+          and therefore <m>p(x)=a+bx^2</m> for <m>a,b\in\R</m>.
+          (If you didn't know this it's easily verified: if
+          <me>
+            a+bx+cx^2 = a+b(-x)+c(-x)^2
+          </me>,
+          we can immediately cancel <m>a</m> from each side,
+          and since <m>(-x)^2=x^2</m>, we can cancel <m>cx^2</m> as well.
+          This leaves <m>bx=-bx</m>, or <m>2bx=0</m>, which implies that <m>b=0</m>.)
+        </p>
 
-            <p>
-              It follows that the set <m>\{1,x^2\}</m> spans <m>U_3</m>,
-              and since this is a subset of the standard basis <m>\{1,x,x^2\}</m> of <m>P_2</m>,
-              it must be independent, and is therefore a basis of <m>U_3</m>,
-              letting us conclude that <m>\dim U_3=2</m>.
-            </p>
-          </li>
-        </ol>
-      </p>
-    </solution>
+        <p>
+          It follows that the set <m>\{1,x^2\}</m> spans <m>U_3</m>,
+          and since this is a subset of the standard basis <m>\{1,x,x^2\}</m> of <m>P_2</m>,
+          it must be independent, and is therefore a basis of <m>U_3</m>,
+          letting us conclude that <m>\dim U_3=2</m>.
+        </p>
+      </solution>
+    </task>
   </exercise>
 
   <p>
@@ -427,6 +466,26 @@
         then <m>\{\uu,\vv_1,\ldots, \vv_n\}</m> is independent.
       </p>
     </statement>
+    <proof>
+      <title>Strategy</title>
+      <p>
+        We want to show that a set of vectors is linearly independent,
+        so we should begin by setting a linear combination of these vectors equal to the zero vector.
+        Our goal is to show that all the coefficients have to be zero.
+      </p>
+
+      <p>
+        Since the vector <m>\uu</m> is <q>special</q>,
+        its coefficient gets a different treatment, using a familiar tautology:
+        either this coefficient is zero, or it isn't.
+      </p>
+      <p>
+        what if the coefficient of <m>\uu</m> is nonzero? Does that contradict one of our assumptions?
+        If the coefficient of <m>\uu</m> is zero, then it disappears from our linear combination.
+        What assumption applies to the remaining vectors?
+      </p>
+    </proof>
+
     <proof>
       <p>
         Suppose <m>S=\{\vv_1,\ldots, \vv_n\}</m> is independent,
@@ -472,6 +531,22 @@
       </p>
     </statement>
     <proof>
+      <title>Strategy</title>
+      <p>
+        We have an independent set of vectors that doesn't span our subspace.
+        That means there must be some vector in <m>U</m> that isn't in the span,
+        so <xref ref="lemma-independent"/> applies:
+        we can add that vector to our set, and get a larger independent set.
+      </p>
+
+      <p>
+        Now it's just a matter of repeating this process until we get a spanning set.
+        But there's one gap: how do we know the process has to stop?
+        Why can't we just keep adding vectors forever, getting larger and larger independent sets?
+      </p>
+    </proof>
+
+    <proof>
       <p>
         This follows from <xref ref="lemma-independent"/>.
         If our independent set of vectors spans <m>U</m>, then it's a basis and we're done.
@@ -482,7 +557,7 @@
 
       <p>
         Note that this process <em>must</em> terminate: <m>V</m> is finite-dimensional,
-        so there is a finite spanning set for <m>V</m>, and therefore for <m>U</m>.
+        so there is a finite spanning set for <m>V</m>.
         By the Steinitz Exchange lemma, our independent set cannot get larger than this spanning set.
       </p>
     </proof>
@@ -492,7 +567,7 @@
   <theorem xml:id="thm-basis-exist">
     <statement>
       <p>
-        Any finite-dimensional vector space <m>V</m> has a basis.
+        Any finite-dimensional (non-trivial) vector space <m>V</m> has a basis.
         Moreover:
         <ol>
           <li>
@@ -503,31 +578,62 @@
           </li>
           <li>
             <p>
-              Given an independent set <m>I</m> in <m>V</m>,
+              Given an independent set <m>I</m> in <m>V</m> that does not span <m>V</m>,
               and a basis <m>\mathcal{B}</m> of <m>V</m>,
               we can enlarge <m>I</m> to a basis of <m>V</m> by adding elements of <m>\mathcal{B}</m>.
             </p>
           </li>
         </ol>
       </p>
+    </statement>
+    <proof>
+      <title>Strategy</title>
+      <p>
+        Much of this theorem sums up some of what we've learned so far:
+        As long as a vector space <m>V</m> contains a nonzero vector <m>\vv</m>,
+        the set <m>\{\vv\}</m> is independent and can be enlarged to a basis, by <xref ref="lem-enlarge-independent"/>.
+        The size of any spanning set is at least as big as the dimension of <m>V</m>, by <xref ref="theorem-steinitz"/>.
+      </p>
 
       <p>
-        If <m>U</m> is a subspace of <m>V</m>, then:
-        <ol>
-          <li>
-            <p>
-              <m>U</m> is finite-dimensional, and <m>\dim U\leq \dim V</m>.
-            </p>
-          </li>
-          <li>
-            <p>
-              If <m>\dim U = \dim V</m>, then <m>U=V</m>.
-            </p>
-          </li>
-        </ol>
+        To understand why we can enlarge a given independent set using elements of an <em>existing</em> basis,
+        we need to think about why there must be some vector in this basis that is not in the span of our independent set,
+        so that we can apply <xref ref="lem-enlarge-independent"/>.
       </p>
-    </statement>
+    </proof>
+    <proof>
+      <p>
+        Let <m>V</m> be a finite-dimensional, non-trivial vector space.
+        If <m>\vv\neq \zer</m> is a vector in <m>V</m>, then <m>\{\vv\}</m> is linearly independent.
+        By <xref ref="lem-enlarge-independent"/>, we can enlarge this set to a basis of <m>V</m>,
+        so <m>V</m> has a basis.
+      </p>
+      <p>
+        Now, suppose <m>V = \spn\{\ww_1,\ldots, \ww_m\}</m>,
+        and let <m>B=\{\vv_1,\ldots, \vv_n\}</m> be a basis for <m>V</m>.
+        By definition, we have <m>\dim V=n</m>,
+        and by <xref ref="theorem-steinitz"/>, since <m>B</m> is linearly independent,
+        we must have <m>n\leq m</m>.
+      </p>
+      <p>
+        Let us now consider an independent set <m>I=\{\uu_1,\ldots, \uu_k\}</m>.
+        Since <m>I</m> is independent and <m>B</m> spans <m>V</m>, we must have <m>k\leq n</m>.
+        If <m>\spn I\neq V</m>, there must be some element of <m>B</m> that is not in the span of <m>I</m>:
+        if every element of <m>B</m> is in <m>\spn I</m>, then <m>\spn I = \spn (B\cup I)</m>
+        by <xref ref="theorem-surplus-span"/>.
+        And since <m>B</m> is a basis, it spans <m>V</m>, so every element of <m>I</m> is in the span of <m>B</m>,
+        and we similarly have that <m>\spn (B\cup I)=\spn B</m>, so <m>\spn B=\spn I</m>.
+      </p>
+      <p>
+        Since we can find an element of <m>B</m> that is not in the span of <m>I</m>,
+        we can add that element to <m>I</m>, and the resulting set is still independent.
+        If the new set spans <m>V</m>, we're done. If not, we can repeat the process, adding another vector from <m>B</m>.
+        Since the set <m>B</m> is finite, this process must eventually end.
+      </p>
+    </proof>
   </theorem>
+
+
 
   <exercise>
     <statement>
@@ -726,6 +832,31 @@
       </p>
     </statement>
     <proof>
+      <title>Strategy</title>
+      <p>
+        This result is a combination of three observations:
+        <ol>
+          <li>
+            <p>
+              The dimension of <m>V</m> is the size of any basis
+            </p>
+          </li>
+          <li>
+            <p>
+              Any independent set can be enlarged to a basis,
+              and cannot have more vectors than a basis.
+            </p>
+          </li>
+          <li>
+            <p>
+              Any spanning set contains a basis,
+              and cannot have fewer vectors than a basis.
+            </p>
+          </li>
+        </ol>
+      </p>
+    </proof>
+    <proof>
       <p>
         If <m>S</m> is independent, then it can be extended to a basis <m>B</m> with <m>S\subseteq B</m>.
         But <m>S</m> and <m>B</m> both contain <m>n</m> vectors (since <m>\dim V=n</m>),
@@ -738,157 +869,21 @@
         they must be equal.
       </p>
     </proof>
-
   </theorem>
 
-  <paragraphs xml:id="pars-subspace-combine">
-    <title>New subspaces from old</title>
-    <p>
-      On your first assignment, you showed that if <m>U</m> and <m>W</m> are subspaces of a vector space <m>V</m>,
-      then the intersection <m>U\cap W</m> is also a subspace of <m>V</m>.
-      You also showed that the union <m>U\cup W</m> is generally not a subspace,
-      unless one subspace is contained in the other
-      (in which case the union is just the larger of the two subspaces we already have).
-    </p>
+  <p>
+    <xref ref="thm-half-the-work"/> saves us a lot of time,
+    since it tells us that, when we know the dimension of <m>V</m>,
+    we do not have to check both independence and span to confirm a basis;
+    checking one of the two implies the other. (And usually independence is easier to check.)
+  </p>
 
-    <p>
-      In class, we discussed the fact that the right way to define a subspace containing both <m>U</m> and <m>W</m>
-      is using their <term>sum</term>: we define the sum <m>U+W</m> of two subspaces by
-      <me>
-        U+W = \{\uu+\ww \,|\, \uu\in U \text{ and } \ww\in W\}
-      </me>.
-      We proved that <m>U+W</m> is again a subspace of <m>V</m>.
-    </p>
-
-    <p>
-      If <m>U\cap W = \{\mathbf{0}\}</m>, we say that the sum is a <term>direct sum</term>,
-      and write it as <m>U\oplus W</m>.
-      The following theorem might help us understand why direct sums are singled out for special attention:
-    </p>
-    <theorem xml:id="thm-sum-dimension">
-      <statement>
-        <p>
-          Let <m>U</m> and <m>W</m> be subspaces of a finite-dimensional vector space <m>V</m>.
-          Then <m>U+W</m> is finite-dimensional, and
-          <me>
-            \dim(U+W)=\dim U + \dim W - \dim(U\cap W)
-          </me>.
-        </p>
-      </statement>
-
-    </theorem>
-
-    <p>
-      If the sum is direct, then we have simply <m>\dim(U\oplus W) = \dim U + \dim W</m>.
-      The other reason why direct sums are preferable, is that any <m>\vv\in U\oplus W</m>
-      can be written <em>uniquely</em> as <m>\vv=\uu+\ww</m>
-      where <m>\uu\in U</m> and <m>\ww\in W</m>.
-    </p>
-
-    <theorem xml:id="thm-direct-sum">
-      <statement>
-        <p>
-          For any subspaces <m>U,W</m> of a vector space <m>V</m>,
-          <m>U\cap W = \{\mathbf{0}\}</m> if and only if for every <m>\vv\in U+W</m>
-          there exist unique <m>\uu\in U, \ww\in W</m> such that <m>\vv=\uu+\ww</m>.
-        </p>
-      </statement>
-      <proof>
-        <p>
-          Suppose that <m>U\cap W = \{\mathbf{0}\}</m>, and suppose that we have
-          <m>\vv = \uu_1+\ww_1 = \uu_2+\ww_2</m>,
-          for <m>\uu_1,\uu_2\in U,\ww_1,\ww_2\in W</m>.
-          Then <m>\mathbf{0}=(\uu_1-\uu_2)+(\ww_1-\ww_2)</m>,
-          which implies that
-          <me>
-            \ww_1-\ww_2 = -(\uu_1-\uu_2)
-          </me>.
-          Now, <m>\uu=\uu_1-\uu_2\in U</m>,
-          since <m>U</m> is a subspace, and similarly,
-          <m>\ww=\ww_1-\ww_2\in W</m>.
-          But we also have <m>\ww=-\uu</m>, which implies that <m>\ww\in U</m>.
-          Therefore, <m>\ww\in U\cap W</m>, which implies that <m>\ww=\mathbf{0}</m>,
-          so <m>\ww_1=\ww_2</m>.
-          But we must also then have <m>\uu=\mathbf{0}</m>, so <m>\uu_1=\uu_2</m>.
-        </p>
-
-        <p>
-          Conversely, suppose that every <m>\vv\in U+W</m> can be written uniquely as <m>\vv=\vec{u}+\ww</m>,
-          with <m>\uu\in U</m> and <m>\ww\in W</m>. Suppose that <m>\mathbf{a}\in U\cap W</m>.
-          Then <m>\mathbf{a}\in U</m> and <m>\mathbf{a}\in W</m>, so we also have <m>-\mathbf{a}\in W</m>,
-          since <m>W</m> is a subspace.
-          But then <m>\mathbf{0}=\mathbf{a}+(-\mathbf{a})</m>, where <m>\mathbf{a}\in U</m> and <m>-\mathbf{a}\in W</m>.
-          On the other hand, <m>\mathbf{0}=\mathbf{0}+\mathbf{0}</m>,
-          and <m>\mathbf{0}</m> belongs to both <m>U</m> and <m>W</m>. It follows that <m>\mathbf{a}=\mathbf{0}</m>.
-          Since <m>\mathbf{a}</m> was arbitrary, <m>U\cap W = \{\mathbf{0}\}</m>.
-        </p>
-      </proof>
-
-    </theorem>
-
-    <p>
-      We end with one last application of the theory we've developed on the existence of a basis for a finite-dimensional vector space.
-      As we continue on to later topics, we'll find that it is often useful to be able to decompose a vector space into a direct sum of subspaces.
-      Using bases, we can show that this is always possible.
-    </p>
-
-    <theorem xml:id="thm-construct-complement">
-      <statement>
-        <p>
-          Let <m>V</m> be a finite-dimensional vector space, and let <m>U</m> be any subspace of <m>V</m>.
-          Then there exists a subspace <m>W\subseteq V</m> such that <m>U\oplus W = V</m>.
-        </p>
-      </statement>
-      <proof>
-        <p>
-          Let <m>\{\uu_1,\ldots, \uu_m\}</m> be a basis of <m>U</m>.
-          Since <m>U\subseteq V</m>, the set <m>\{\uu_1,\ldots, \uu_m\}</m>
-          is a linearly independent subset of <m>V</m>.
-          Since any linearly independent set can be extended to a basis of <m>V</m>,
-          there exist vectors <m>\ww_1,\ldots,\ww_n</m> such that
-          <me>
-            \{\uu_1,\ldots, \uu_m,\ww_1,\ldots, \ww_n\}
-          </me>
-          is a basis of <m>V</m>.
-        </p>
-
-        <p>
-          Now, let <m>W = \spn\{\ww_1,\ldots, \ww_n\}</m>.
-          Then <m>W</m> is a subspace, and <m>\{\ww_1,\ldots, \ww_n\}</m>
-          is a basis for <m>W</m>. (It spans, and must be independent since it's a subset of an independent set.)
-        </p>
-
-        <p>
-          Clearly, <m>U+W=V</m>, since <m>U+W</m> contains the basis for <m>V</m> we've constructed.
-          To show the sum is direct, it suffices to show that <m>U\cap W = \{\mathbf{0}\}</m>.
-          To that end, suppose that <m>\vv\in U\cap W</m>.
-          Since <m>\vv\in U</m>, we have
-          <me>
-            \vv=a_1\uu_1+\cdots +a_m\uu_m
-          </me>
-          for scalars <m>a_1,\ldots, a_m</m>. Since <m>\vv\in W</m>, we can write
-          <me>
-            \vv=b_1\ww_1+\cdots + b_n\ww_n
-          </me>
-          for scalars <m>b_1,\ldots, b_n</m>. But then
-          <me>
-            \mathbf{0}=\vv-\vv=a_1\uu_1+\cdots a_m\uu_m-b_1\ww_1-\cdots -b_n\ww_n.
-          </me>
-          Since <m>\{\uu_1,\ldots, \uu_m,\ww_1,\ldots, \ww_n\}</m> is a basis for <m>V</m>,
-          it's independent, and therefore, all of the <m>a_i,b_j</m> must be zero, and therefore, <m>\vv=\mathbf{0}</m>.
-
-        </p>
-      </proof>
-
-
-    </theorem>
-
-    <p>
-      The subspace <m>W</m> constructed in the theorem above is called a <term>complement</term> of <m>U</m>.
-      It is not unique; indeed, it depends on the choice of basis vectors.
-      For example, if <m>U</m> is a one-dimensional subspace of <m>\R^2</m>; that is, a line,
-      then any other non-parallel line through the origin provides a complement of <m>U</m>.
-      Later we will see that an especially useful choice of complement is the <term>orthogonal complement</term>.
-    </p>
-  </paragraphs>
+  <p>
+    We saw this in <xref ref="ex-basis-r3"/>:
+    given a set of vectors in <m>\R^3</m>,
+    we form the matrix <m>A</m> with these vectors as columns.
+    This matrix becomes the coefficient matrix for the system of equations we obtain when checking for independence,
+    <em>and</em> for the system we obtain when checking for span.
+    In both cases, the condition on <m>A</m> is the same; namely, that it must be invertible.
+  </p>
 </section>
