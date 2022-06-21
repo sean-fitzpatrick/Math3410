@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-06-21T11:15:46-06:00       *-->
+<!--*       on 2022-06-21T16:34:10-06:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -12,36 +12,42 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="robots" content="noindex, nofollow">
+<script>// Make *any* pre with class 'sagecell-sage' an executable Sage cell
+// Their results will be linked, only within language type
+sagecell.makeSagecell({inputLocation: 'pre.sagecell-sage',
+                       linked: true,
+                       languages: ['sage'],
+                       evalButtonText: 'Evaluate (Sage)'});
+</script>
 </head>
 <body class="ignore-math">
 <div class="solution solution-like">
 <h4 class="heading">
-<span class="type">Solution</span><span class="space"> </span><span class="codenumber">3.1.14.1</span><span class="period">.</span>
+<span class="type">Solution</span><span class="space"> </span><span class="codenumber">3.1.10.1</span><span class="period">.</span>
 </h4>
-<p>We compute</p>
+<p>Clearly, all three vectors are nonzero. To confirm the set is orthogonal, we simply compute dot products:</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{align*}
-\left(\frac{\vv\dotp\xx_1}{\len{\xx_1}^2}\right)\xx_1
-\amp +\left(\frac{\vv\dotp\xx_2}{\len{\xx_2}^2}\right)\xx_2
-+\left(\frac{\vv\dotp\xx_3}{\len{\xx_3}^2}\right)\xx_3\\
-\amp = \frac{4}{2}\xx_1+\frac{-9}{3}\xx_2+\frac{-28}{7}\xx_3\\
-\amp = 2(1,0,1,0)-3(-1,0,1,1)-4(1,1,-1,2)\\
-\amp = (1,-4,3,-11) = \vv\text{,}
+(1,0,1,0)\dotp (-1,0,1,1)\amp =-1+0+1+0=0\\
+(-1,0,1,1)\dotp (1,1,-1,2)\amp =-1+0-1+2=0\\
+(1,0,1,0)\dotp (1,1,-1,2) \amp = 1+0-1+0=0\text{.}
 \end{align*}
 </div>
-<p class="continuation">so <span class="process-math">\(\vv\in\spn\{\xx_1,\xx_2,\xx_3\}\text{.}\)</span></p>
-<p>On the other hand, repeating the same calculation with <span class="process-math">\(\ww\text{,}\)</span> we find</p>
+<p>To find a fourth vector, we proceed as follows. Let <span class="process-math">\(\xx=(a,b,c,d)\text{.}\)</span> We want <span class="process-math">\(\xx\)</span> to be orthogonal to the three vectors in our set. Computing dot products, we must have:</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{align*}
-\left(\frac{\vv\dotp\xx_1}{\len{\xx_1}^2}\right)\xx_1
-\amp +\left(\frac{\vv\dotp\xx_2}{\len{\xx_2}^2}\right)\xx_2
-+\left(\frac{\vv\dotp\xx_3}{\len{\xx_3}^2}\right)\xx_3\\
-\amp =\frac12 (1,0,1,0)-\frac53 (-1,0,1,1) +\frac47 (1,1,-1,2)\\
-\amp = \left(\frac{73}{42},\frac47,-\frac{115}{42},-\frac{11}{21}\right)\neq \ww\text{,}
+(a,b,c,d)\dotp (1,0,1,0) \amp = a+c=0 \\
+(a,b,c,d)\dotp (-1,0,1,1) \amp = -a+c+d=0 \\
+(a,b,c,d)\dotp (1,1,-1,2) \amp = a+b-c+2d=0\text{.}
 \end{align*}
 </div>
-<p class="continuation">so <span class="process-math">\(\ww\notin\spn\{\xx_1,\xx_2,\xx_3\}\text{.}\)</span></p>
-<p>Soon, we'll see that the quantity we computed when showing that <span class="process-math">\(\ww\notin\spn\{\xx_1,\xx_2,\xx_3\}\)</span> is, in fact, the <em class="emphasis">orthogonal projection</em> of <span class="process-math">\(\ww\)</span> onto the subspace <span class="process-math">\(\spn\{\xx_1,\xx_2,\xx_3\}\text{.}\)</span></p>
+<p class="continuation">This is simply a homogeneous system of three equations in four variables. Using the Sage cell below, we find that our vector must satisfy <span class="process-math">\(a=\frac12 d, b = -3d, c=-\frac12 d\text{.}\)</span></p>
+<pre class="ptx-sagecell sagecell-sage" id="sage-45"><script type="text/x-sage">from sympy import Matrix, init_printing
+init_printing()
+A=Matrix(3,4,[1,0,1,0,-1,0,1,1,1,1,-1,2])
+A.rref()
+</script></pre>
+<p>One possible nonzero solution is to take <span class="process-math">\(d=2\text{,}\)</span> giving <span class="process-math">\(\xx=(1,-6,-1,2)\text{.}\)</span> We'll leave the verification that this vector works as an easy exercise.</p>
 </div>
 <span class="incontext"><a href="sec-orthogonal-sets.html#solution-41" class="internal">in-context</a></span>
 </body>

@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-06-21T11:15:47-06:00       *-->
+<!--*       on 2022-06-21T16:34:09-06:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -14,20 +14,38 @@
 <meta name="robots" content="noindex, nofollow">
 </head>
 <body class="ignore-math">
-<article class="hiddenproof"><h4 class="heading"><span class="type">Proof</span></h4>
-<p>By <a href="" class="xref" data-knowl="./knowl/thm-schurr.html" title="Theorem 4.4.13">Theorem 4.4.13</a>, there exists a unitary matrix <span class="process-math">\(U\)</span> such that <span class="process-math">\(A = UTU^H\text{,}\)</span> where <span class="process-math">\(T\)</span> is upper triangular, and has the eigenvalues of <span class="process-math">\(A\)</span> as diagonal entries. Since <span class="process-math">\(c_A(A)=c_A(UTU^H)=Uc_A(T)U^H\text{,}\)</span> and <span class="process-math">\(c_A(x)=c_T(x)\)</span> (since <span class="process-math">\(A\)</span> and <span class="process-math">\(T\)</span> are similar) it suffices to show that <span class="process-math">\(c_A(A)=0\)</span> when <span class="process-math">\(A\)</span> is upper-triangular. (If you like, we are showing that <span class="process-math">\(C_T(T)=0\text{,}\)</span> and deducing that <span class="process-math">\(c_A(A)=0\text{.}\)</span>) But if <span class="process-math">\(A\)</span> is upper-triangular, so is <span class="process-math">\(xI_A\text{,}\)</span> and therefore, <span class="process-math">\(\det(xI-A)\)</span> is just the product of the diagonal entries. That is,</p>
-<div class="displaymath process-math" data-contains-math-knowls="./knowl/thm-schurr.html">
+<article class="hiddenproof"><h3 class="heading"><span class="type">Proof</span></h3>
+<ol class="decimal">
+<li>
+<p>To show that <span class="process-math">\(\ker T\)</span> is a subspace, first note that <span class="process-math">\(\mathbf{0}\in \ker T\text{,}\)</span> since <span class="process-math">\(T(\mathbf{0})=\mathbf{0}\)</span> for any linear transformation <span class="process-math">\(T\text{.}\)</span> If <span class="process-math">\(\vv,\ww\in \ker T\text{,}\)</span> then <span class="process-math">\(T(\vv)=\mathbf{0}\)</span> and <span class="process-math">\(T(\ww)=0\text{,}\)</span> and therefore,</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
-c_A(x) = (x-\lambda_1)(x-\lambda_2)\cdots (x-\lambda_n)\text{,}
+T(\vv+\ww)=T(\vv)+T(\ww)=\mathbf{0}+\mathbf{0}=\mathbf{0}\text{.}
 \end{equation*}
 </div>
-<p class="continuation">so</p>
-<div class="displaymath process-math" data-contains-math-knowls="./knowl/thm-schurr.html">
+<p class="continuation">Similarly, for any scalar <span class="process-math">\(c\)</span> and <span class="process-math">\(\vv\in \ker T\text{,}\)</span></p>
+<div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
-c_A(A) = (A-\lambda_1I)(A-\lambda_2I)\cdots (A-\lambda_nI)\text{.}
+T(c\vv)=cT(\vv)=c\mathbf{0}=\mathbf{0}\text{.}
 \end{equation*}
 </div>
-<p>Since the first column of <span class="process-math">\(A\)</span> is <span class="process-math">\(\bbm \lambda_1\amp 0 \amp \cdots \amp 0\ebm^T\text{,}\)</span> the first column of <span class="process-math">\(A-\lambda_1I\)</span> is identically zero. The second column of <span class="process-math">\(A-\lambda_2I\)</span> similarly has the form <span class="process-math">\(\bbm k\amp 0\amp\cdots\amp 0\ebm\)</span> for some number <span class="process-math">\(k\text{.}\)</span></p>
-<p>It follows that the first two columns of <span class="process-math">\((A-\lambda_1I)(A-\lambda_2I)\)</span> are identically zero. Since only the first two entries in the third column of <span class="process-math">\((A-\lambda_3I)\)</span> can be nonzero, we find that the first three columns of <span class="process-math">\((A-\lambda_1I)(A-\lambda_2I)(A-\lambda_3I)\)</span> are zero, and so on.</p></article><span class="incontext"><a href="sec-complex.html#proof-30" class="internal">in-context</a></span>
+<p class="continuation">By the subspace test, <span class="process-math">\(\ker T\)</span> is a subspace.</p>
+</li>
+<li>
+<p>Again, since <span class="process-math">\(T(\mathbf{0})=\mathbf{0}\text{,}\)</span> we see that <span class="process-math">\(\mathbf{0}\in \im T\text{,}\)</span> so <span class="process-math">\(\im T\)</span> is nonempty. If <span class="process-math">\(\ww_1,\ww_2\in \im T\text{,}\)</span> then there exist <span class="process-math">\(\vv_1,\vv_2\in V\)</span> such that <span class="process-math">\(T(\vv_1)=\ww_1\)</span> and <span class="process-math">\(T(\vv_2)=\ww_2\text{.}\)</span> It follows that</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\ww_1+\ww_2 = T(\vv_1)+T(\vv_2) = T(\vv_1+\vv_2)\text{,}
+\end{equation*}
+</div>
+<p class="continuation">so <span class="process-math">\(\ww_1+\ww_2\in \im T\text{.}\)</span> Similarly, if <span class="process-math">\(c\)</span> is any scalar and <span class="process-math">\(\ww=T(\vv)\in\im T\text{,}\)</span> then</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+c\ww=cT(\vv)=T(c\vv)\text{,}
+\end{equation*}
+</div>
+<p class="continuation">so <span class="process-math">\(c\ww\in \im T\text{.}\)</span></p>
+</li>
+</ol></article><span class="incontext"><a href="sec-kernel-image.html#proof-30" class="internal">in-context</a></span>
 </body>
 </html>

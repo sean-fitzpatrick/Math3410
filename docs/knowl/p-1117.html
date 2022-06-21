@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-06-21T11:15:48-06:00       *-->
+<!--*       on 2022-06-21T16:34:12-06:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -14,24 +14,25 @@
 <meta name="robots" content="noindex, nofollow">
 </head>
 <body class="ignore-math">
-<h3 class="heading"><span class="type">Paragraph</span></h3>
-<p>A few remarks are called for here.</p>
-<ul class="disc">
-<li><p>One of the ways to see that <span class="process-math">\(\dim G_{\lambda_j}(T)=m_j\)</span> is to consider <span class="process-math">\((M_B(T)-\lambda_j I_n)^{m_j}\text{.}\)</span> This will have the form <span class="process-math">\(\diag(U_1^{m_j}, U_2^{m_j},\ldots, U_k^{m_j})\text{,}\)</span> where <span class="process-math">\(U_i\)</span> is the matrix of <span class="process-math">\((T-\lambda_j)^{m_j}\text{,}\)</span> restricted to <span class="process-math">\(G_{\lambda_i}(T)\text{.}\)</span> If <span class="process-math">\(i\neq j\text{,}\)</span> <span class="process-math">\(T-\lambda_j I\)</span> restricts to an invertible operator on <span class="process-math">\(G_{\lambda_i}(T)\text{,}\)</span> but its restriction to <span class="process-math">\(G_{\lambda_j}(T)\)</span> is nilpotent, by <a href="" class="xref" data-knowl="./knowl/thm-gen-eigen-props.html" title="Theorem 5.6.1">Theorem 5.6.1</a>. So <span class="process-math">\(U_j\)</span> is nilpotent (with <span class="process-math">\(U_j^{m_j}=0\)</span>), and has size <span class="process-math">\(m_j\times m_j\text{,}\)</span> while <span class="process-math">\(U_i\)</span> is invertible if <span class="process-math">\(i\neq j\text{.}\)</span> The matrix <span class="process-math">\((M_B(T)-\lambda_j I)^{m_j}\)</span> thus ends up with a <span class="process-math">\(m_j\times m_j\)</span> block of zeros, so <span class="process-math">\(\dim \ker (T-\lambda_j I)^{m_j}=m_j\text{.}\)</span></p></li>
-<li>
-<p>If the previous point wasn't clear, note that with an appropriate choice of basis, the block <span class="process-math">\(A_i\)</span> in <a href="" class="xref" data-knowl="./knowl/thm-block-eigen.html" title="Theorem 5.6.2">Theorem 5.6.2</a> has the form</p>
-<div class="displaymath process-math" data-contains-math-knowls="./knowl/thm-block-eigen.html">
+<h5 class="heading"><span class="type">Paragraph</span></h5>
+<p>Since we don't know the map <span class="process-math">\(T\)</span> or anything about the bases <span class="process-math">\(B_U,B_W\text{,}\)</span> we're looking for a fairly general statement here. Since <span class="process-math">\(U\)</span> is <span class="process-math">\(T\)</span>-invariant, we must have <span class="process-math">\(T(\uu_i)\in U\)</span> for each <span class="process-math">\(i=1,\ldots, m\text{.}\)</span> Similarly, <span class="process-math">\(T(\ww_j)\in W\)</span> for each <span class="process-math">\(j=1,\ldots, n\text{.}\)</span> This means that we have</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{align*}
+T(\uu_1) \amp = a_{11}\uu_1 + \cdots + a_{m1}\uu_m + 0\ww_1+\cdots + 0\ww_n\\
+\amp \vdots \\
+T(\uu_m) \amp = a_{1m}\uu_1 + \cdots + a_{mm}\uu_m+0\ww_1+\cdots + 0\ww_n\\
+T(\ww_1) \amp = 0\uu_1 + \cdots + 0\uu_m+b_{11}\ww_1 + \cdots + b_{n1}\ww_n \\
+\amp \vdots \\
+T(\ww_n) \amp = 0\uu_1 + \cdots + 0\uu_m+b_{1n}\ww_1 + \cdots + b_{nn}\ww_n
+\end{align*}
+</div>
+<p class="continuation">for some scalars <span class="process-math">\(a_{ij},b_{ij}\text{.}\)</span> If we set <span class="process-math">\(A = [a_{ij}]_{m\times m}\)</span> and <span class="process-math">\(B = [b_{ij}]_{n\times n}\text{,}\)</span> then we have</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
-A_i = \bbm \lambda_i \amp \ast \amp \cdots \amp \ast\\
-0 \amp \lambda_i \amp \cdots \amp \ast\\
-\vdots \amp \vdots \amp \ddots\amp \vdots\\
-0 \amp 0 \amp \cdots \amp \lambda_i\ebm\text{.}
+M_B(T) = \bbm A \amp 0\\0\amp B\ebm\text{.}
 \end{equation*}
 </div>
-<p class="continuation">Thus, <span class="process-math">\(M_B(T)-\lambda_j I\)</span> will have blocks that are upper triangular, with diagonal entries <span class="process-math">\(\lambda_i-\lambda_j\neq 0\)</span> when <span class="process-math">\(i\neq j\text{,}\)</span> but when <span class="process-math">\(i=j\)</span> we get a matrix that is strictly upper triangular, and therefore nilpotent, since its diagonal entries will be <span class="process-math">\(\lambda_j-\lambda_j=0\text{.}\)</span></p>
-</li>
-<li><p>if <span class="process-math">\(l_j\)</span> is the <em class="emphasis">least</em> integer such that <span class="process-math">\(\ker (A-\lambda_j I)^{l_j}=G_{\lambda_j}(T)\text{,}\)</span> then it is possible to choose the basis of <span class="process-math">\(G_{\lambda_j}(T)\)</span> so that <span class="process-math">\(A_j\)</span> is itself block-diagonal, with the largest block having size <span class="process-math">\(l_j\times l_j\text{.}\)</span> The remainder of this section is devoted to determining how to choose such a basis.</p></li>
-</ul>
-<span class="incontext"><a href="sec-jordan-form.html#p-1117" class="internal">in-context</a></span>
+<p class="continuation">Moreover, we can also see that <span class="process-math">\(A = M_{B_U}(T|_U)\text{,}\)</span> and <span class="process-math">\(B = M_{B_W}(T|_W)\text{.}\)</span></p>
+<span class="incontext"><a href="sec-direct-sum.html#p-1117" class="internal">in-context</a></span>
 </body>
 </html>

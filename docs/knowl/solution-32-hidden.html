@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-06-21T11:15:46-06:00       *-->
+<!--*       on 2022-06-21T16:34:09-06:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -12,27 +12,48 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="robots" content="noindex, nofollow">
+<script>// Make *any* pre with class 'sagecell-sage' an executable Sage cell
+// Their results will be linked, only within language type
+sagecell.makeSagecell({inputLocation: 'pre.sagecell-sage',
+                       linked: true,
+                       languages: ['sage'],
+                       evalButtonText: 'Evaluate (Sage)'});
+</script>
 </head>
 <body class="ignore-math"><div class="solution solution-like">
-<p>Let us suppose that <span class="process-math">\(\{T(\vv_1),\ldots, T(\vv_n)\}\)</span> is linearly independent. We want to show that the set <span class="process-math">\(\{\vv_1,\ldots, \vv_n\}\)</span> is linearly independent. To that end, suppose that we have</p>
+<p>Since <span class="process-math">\(\{(1,2),(-1,1)\}\)</span> forms a basis of <span class="process-math">\(\R^2\)</span> (the vectors are not parallel and there are two of them), it suffices to determine how to write a general vector in terms of this basis. Suppose</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
-c_1\vv_1+\cdots + c_n\vv_n=\mathbf{0}
+x(1,2)+y(-1,1)=(a,b)
 \end{equation*}
 </div>
-<p class="continuation">for some scalars <span class="process-math">\(c_1,\ldots, c_n\)</span> (that we want to show must all equal zero).</p>
-<p>We want to make use of our hypothesis, so we need to bring the linear map <span class="process-math">\(T\)</span> into the picture. We apply <span class="process-math">\(T\)</span> to both sides of the equation above, giving us:</p>
-<div class="displaymath process-math" data-contains-math-knowls="./knowl/thm-lt-props.html">
+<p class="continuation">for a general element <span class="process-math">\((a,b)\in \R^2\text{.}\)</span> This is equivalent to the matrix equation <span class="process-math">\(\bbm 1\amp -1\\2\amp 1\ebm\bbm x\\y\ebm = \bbm a\\b\ebm\text{,}\)</span> which we can solve as <span class="process-math">\(\bbm x\\y\ebm = \bbm 1\amp -1\\2\amp 1\ebm^{-1}\bbm a\\b\ebm\text{:}\)</span></p>
+<pre class="ptx-sagecell sagecell-sage" id="sage-24"><script type="text/x-sage">from sympy import Matrix, init_printing, symbols
+init_printing()
+a, b = symbols('a b', real = True, constant = True)
+A = Matrix(2,2,[1,-1,2,1])
+B = Matrix(2,1,[a,b])
+(A**-1)*B
+</script></pre>
+<p>This gives us the result</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
-T(c_1\vv_1+\cdots + c_n\vv_n)=T(\mathbf{0})\text{.}
+(a,b) = \frac13(a+b)\cdot (1,2)+\frac13(-2a+b)\cdot (-1,1).
 \end{equation*}
 </div>
-<p class="continuation">Now we make use of both parts of <a href="" class="xref" data-knowl="./knowl/thm-lt-props.html" title="Theorem 2.1.2">Theorem 2.1.2</a> to get</p>
-<div class="displaymath process-math" data-contains-math-knowls="./knowl/thm-lt-props.html">
+<p class="continuation">Thus,</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{align*}
+T(a,b) \amp = \frac13(a+b)\cdot T(1,2)+\frac13(-2a+b)\cdot T(-1,1) \\
+\amp = \frac13(a+b)\cdot (1,1,0)+\frac13(-2a+b)\cdot (0,2,-1)\\
+\amp = \left(\frac{a+b}{3}, -a+b, \frac{2a-b}{3}\right)\text{.}
+\end{align*}
+</div>
+<p>We conclude that</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
-c_1T(\vv_1)+\cdots +c_nT(\vv_n) = \mathbf{0}\text{.}
+T(3,2) = \left(\frac53, -1, \frac43\right)\text{.}
 \end{equation*}
 </div>
-<p class="continuation">By our hypothesis that the <span class="process-math">\(T(\vv_i)\)</span> are independent, we must conclude that all the scalars are zero, and we're done.</p>
 </div></body>
 </html>

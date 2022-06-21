@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-06-21T11:15:48-06:00       *-->
+<!--*       on 2022-06-21T16:34:11-06:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -14,34 +14,14 @@
 <meta name="robots" content="noindex, nofollow">
 </head>
 <body class="ignore-math">
-<h4 class="heading"><span class="type">Paragraph</span></h4>
-<p>Let <span class="process-math">\(P = \bbm 1\amp 0\amp 2\\-1\amp 1\amp 0\\0\amp 3\amp -1\ebm\)</span> be the matrix whose columns are given by the coefficient representations of the polynomials in <span class="process-math">\(B\)</span> with respect to the <em class="emphasis">standard basis</em> <span class="process-math">\(B_0=\{1,x,x^2\}\text{.}\)</span> For <span class="process-math">\(T(1-x)=1+x^2\)</span> we need to solve the equation</p>
+<h3 class="heading"><span class="type">Paragraph</span></h3>
+<p>Conversely, given any linear map <span class="process-math">\(T:\R^n\to \R^m\text{,}\)</span> if we let <span class="process-math">\(\basis{e}{n}\)</span> denote the standard basis of <span class="process-math">\(\R^n\text{,}\)</span> then the matrix</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
-a(1-x)+b(x+3x^2)+c(2-x^2)=1+x^2
+A = \bbm T(\mathbf{e}_1) \amp T(\mathbf{e}_2) \amp \cdots \amp T(\mathbf{e}_n)\ebm
 \end{equation*}
 </div>
-<p class="continuation">for scalars <span class="process-math">\(a,b,c\text{.}\)</span> But this is equivalent to the system</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{align*}
-a+2c \amp =1\\
--a+b \amp =0\\
-3b-c \amp =1\text{,}
-\end{align*}
-</div>
-<p class="continuation">which, in turn, is equivalent to the matrix equation</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-\bbm 1\amp 0\amp 2\\-1\amp 1\amp 0\\0\amp 3\amp -1\ebm\bbm a\\b\\c\ebm = \bbm 1\\0\\1\ebm\text{;}
-\end{equation*}
-</div>
-<p class="continuation">that is, <span class="process-math">\(PC_B(1+x^2) = C_{B_0}(1+x^2)\text{.}\)</span> Thus,</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-C_B(1+x^2) = \bbm a\\b\\c\ebm = P^{-1}C_{B_0}(1+x^2) = P^{-1}\bbm 1\\0\\1\ebm\text{.}
-\end{equation*}
-</div>
-<p class="continuation">Similarly, <span class="process-math">\(C_B(4x)=P^{-1}\bbm 0\\4\\0\ebm = P^{-1}C_{B_0}(4x)\text{,}\)</span> and <span class="process-math">\(C_B(2+x+2x^2)=P^{-1}\bbm 2\\1\\2\ebm = P^{-1}C_{B_0}(2+x+2x^2)\text{.}\)</span> Using the computer, we find:</p>
-<span class="incontext"><a href="sec-matrix-operator.html#p-1025" class="internal">in-context</a></span>
+<p class="continuation">is such that <span class="process-math">\(T=T_A\text{.}\)</span></p>
+<span class="incontext"><a href="sec-matrix-of-transformation.html#p-1025" class="internal">in-context</a></span>
 </body>
 </html>
