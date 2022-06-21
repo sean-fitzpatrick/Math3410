@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-06-20T21:40:06-06:00       *-->
+<!--*       on 2022-06-21T10:57:38-06:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -23,38 +23,19 @@ sagecell.makeSagecell({inputLocation: 'pre.sagecell-sage',
 <body class="ignore-math">
 <div class="solution solution-like">
 <h4 class="heading">
-<span class="type">Solution</span><span class="space"> </span><span class="codenumber">1.6.7.a.1</span><span class="period">.</span>
+<span class="type">Solution</span><span class="space"> </span><span class="codenumber">1.6.7.b.1</span><span class="period">.</span>
 </h4>
-<p>We need to show that the set is independent, and that it spans.</p>
-<p>The set is independent if the equation</p>
+<p>Based on what we learned from the first set, determining whether or not this set is a basis is equivalent to determining whether or not the matrix <span class="process-math">\(A\)</span> whose columns consist of the vectors in the set is invertible. We form the matrix</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
-x(1,1,0)+y(1,0,1)+z(0,1,1)=(0,0,0)
+A = \bbm -1\amp 1\amp 1\\1\amp -1\amp 1\\1\amp 1\amp -1\ebm
 \end{equation*}
 </div>
-<p class="continuation">has <span class="process-math">\(x=y=z=0\)</span> as its only solution. This equation is equivalent to the system</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{align*}
-x+y \amp =0\\
-x+z \amp =0\\
-y+z \amp =0\text{.}
-\end{align*}
-</div>
-<p>We know that the solution to this system is unique if the coefficient matrix <span class="process-math">\(A = \bbm 1\amp 1\amp 0\\1\amp 0\amp 1\\0\amp 1\amp 1\ebm\)</span> is invertible. Note that the columns of this matrix are vectors in our set.</p>
-<p>We can determine invertibility either by showing that the <abbr class="initialism">RREF</abbr> of <span class="process-math">\(A\)</span> is the identity, or by showing that the determinant of <span class="process-math">\(A\)</span> is nonzero. Either way, this is most easily done by the computer:</p>
-<pre class="ptx-sagecell sagecell-sage" id="sage-19"><script type="text/x-sage">from sympy import Matrix,init_printing
-init_printing()
-A = Matrix([[1,1,0],[1,0,1],[0,1,1]])
-A.rref(), A.det()
+<p class="continuation">and then check invertibility using the computer.</p>
+<pre class="ptx-sagecell sagecell-sage" id="sage-20"><script type="text/x-sage">A = Matrix([[-1,1,1],[1,-1,1],[1,1,-1]])
+A.det()
 </script></pre>
-<p>Our set of vectors is therefore linearly independent. Now, to show that it spans, we need to show that for any vector <span class="process-math">\((a,b,c)\text{,}\)</span> the equation</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-x(1,1,0)+y(1,0,1)+z(0,1,1)=(a,b,c)
-\end{equation*}
-</div>
-<p class="continuation">has a solution. But we know that this system has the same coefficient matrix as the one above, and that existence of a solution again follows from invertibility of <span class="process-math">\(A\text{,}\)</span> which we have already established.</p>
-<p>Note that for three vectors in <span class="process-math">\(\R^3\text{,}\)</span> once independence has been confirmed, span is automatic. We will soon see that this is not a coincidence.</p>
+<p>Since the determinant is nonzero, our set is a basis.</p>
 </div>
 <span class="incontext"><a href="sec-dimension.html#solution-24" class="internal">in-context</a></span>
 </body>

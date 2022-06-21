@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-06-20T21:40:02-06:00       *-->
+<!--*       on 2022-06-21T10:57:33-06:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -627,7 +627,7 @@ c\odot (d\odot x) = c\odot (x^d) = (x^d)^c = x^{dc} = x^{cd} = (cd)\odot x\text{
 </div>
 <p class="continuation">which is what we needed to show.</p>
 </div></div>
-</div></article><article class="task exercise-like" id="task-10"><h5 class="heading"><span class="codenumber">(b)</span></h5>
+</div></article><article class="task exercise-like" id="part-mult-zero"><h5 class="heading"><span class="codenumber">(b)</span></h5>
 <p id="p-123">For any scalar <span class="process-math">\(c\text{,}\)</span> <span class="process-math">\(c\zer=\zer\text{.}\)</span></p>
 <div class="solutions">
 <a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-7" id="hint-7"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-7"><div class="hint solution-like"><p id="p-124">Your approach should be quite similar to the one used in <a href="" class="xref" data-knowl="./knowl/thm-zero-mult.html" title="Theorem 1.1.8">Theorem 1.1.8</a>.</p></div></div>
@@ -647,31 +647,11 @@ c\odot (d\odot x) = c\odot (x^d) = (x^d)^c = x^{dc} = x^{cd} = (cd)\odot x\text{
 <p class="continuation">and since <span class="process-math">\(-c\zer+c\zer=\zer\)</span> by A5, we get <span class="process-math">\(\zer =\zer+c\zer\text{.}\)</span> Finally, we apply A4 on the right hand side to get <span class="process-math">\(\zer=c\zer\text{,}\)</span> as required.</p>
 </div></div>
 </div></article><article class="task exercise-like" id="task-11"><h5 class="heading"><span class="codenumber">(c)</span></h5>
-<p id="p-126">If <span class="process-math">\(c\vv=\zer\text{,}\)</span> then either <span class="process-math">\(c=0\)</span> or <span class="process-math">\(\vv=\zer\text{.}\)</span></p>
+<p id="p-126">The zero vector is the unique vector such that <span class="process-math">\(\vv+\zer=\vv\)</span> for all <span class="process-math">\(\vv\in V\text{.}\)</span></p>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-8" id="hint-8"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-8"><div class="hint solution-like"><p id="p-127">Consider a proof by cases: either <span class="process-math">\(c=0\)</span> or <span class="process-math">\(c\neq 0\text{.}\)</span> In the first case, there is nothing to prove (why?). In the second case, use the fact (see <a href="" class="xref" data-knowl="./knowl/def-field.html" title="Definition 1.1.2">Definition 1.1.2</a>) that for any nonzero scalar <span class="process-math">\(c\text{,}\)</span> there exists a scalar <span class="process-math">\(1/c\)</span> such that <span class="process-math">\(c\cdot 1/c=1\text{.}\)</span></p></div></div>
+<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-8" id="hint-8"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-8"><div class="hint solution-like"><p id="p-127">If you want to prove something is unique, try assuming that you have more than one! If any two different elements with the same property have to be equal, then all such elements must, in fact, be the same element.</p></div></div>
 <a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-11" id="solution-11"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-11"><div class="solution solution-like">
-<p id="p-128">The main difficulty with this problem is getting the logic of the statement correct, and making sure you know what it is you're trying to prove. The desired conclusion is an <em class="emphasis">or</em> statement, which means it suffices to establish one part or the other. Typically, the way to proceed in these cases is to argue that if the first part is false, then the second must be true. This is how we proceed here.</p>
-<p id="p-129">Suppose that <span class="process-math">\(c\vv=\zer\text{.}\)</span> If <span class="process-math">\(c=0\text{,}\)</span> then it's true that <span class="process-math">\(c=0\)</span> or <span class="process-math">\(\vv=\zer\text{,}\)</span> so there's nothing to prove. Suppose then that <span class="process-math">\(c\neq 0\text{.}\)</span> Then there exists a real number <span class="process-math">\(\frac1c\)</span> such that <span class="process-math">\(c\bigl(\frac1c\bigr)=1\text{.}\)</span> Multiplying both sides of <span class="process-math">\(c\vv=\zer\)</span> by <span class="process-math">\(\frac1c\text{,}\)</span> we get</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-\frac1c(c\vv)=\frac1c\zer\text{.}
-\end{equation*}
-</div>
-<p class="continuation">By the previous problem, we know that <span class="process-math">\(\frac1c\zer = \zer\text{,}\)</span> and by axioms S4 and S5, we have</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-\frac1c(c\vv)=\bigl(\frac1c\cdot c\bigr)\vv = 1\vv = \vv\text{,}
-\end{equation*}
-</div>
-<p class="continuation">showing that <span class="process-math">\(\vv=\zer\text{,}\)</span> and thus <span class="process-math">\(c=0\)</span> or <span class="process-math">\(\vv=\zer\text{.}\)</span> (This is a proof by cases, relying on the tautology <span class="process-math">\(c=0\)</span> or <span class="process-math">\(c\neq 0\text{.}\)</span>)</p>
-</div></div>
-</div></article><article class="task exercise-like" id="task-12"><h5 class="heading"><span class="codenumber">(d)</span></h5>
-<p id="p-130">The zero vector is the unique vector such that <span class="process-math">\(\vv+\zer=\vv\)</span> for all <span class="process-math">\(\vv\in V\text{.}\)</span></p>
-<div class="solutions">
-<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-9" id="hint-9"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-9"><div class="hint solution-like"><p id="p-131">If you want to prove something is unique, try assuming that you have more than one! If any two different elements with the same property have to be equal, then all such elements must, in fact, be the same element.</p></div></div>
-<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-12" id="solution-12"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-12"><div class="solution solution-like">
-<p id="p-132">Suppose there are two vectors <span class="process-math">\(\zer_1,\zer_2\)</span> that act as additive identities. Then</p>
+<p id="p-128">Suppose there are two vectors <span class="process-math">\(\zer_1,\zer_2\)</span> that act as additive identities. Then</p>
 <div class="displaymath process-math" data-contains-math-knowls="" id="md-9">
 \begin{align*}
 \zer_1 \amp = \zer_1+\zer_2 \quad \text{ since } \vv+\zer_2=\vv \text{ for any } \vv\\
@@ -681,11 +661,11 @@ c\odot (d\odot x) = c\odot (x^d) = (x^d)^c = x^{dc} = x^{cd} = (cd)\odot x\text{
 </div>
 <p class="continuation">So any two vectors satisfying the property in A4 must, in fact, be the same.</p>
 </div></div>
-</div></article><article class="task exercise-like" id="task-13"><h5 class="heading"><span class="codenumber">(e)</span></h5>
-<p id="p-133">The negative <span class="process-math">\(-\vv\)</span> of any vector <span class="process-math">\(\vv\)</span> is unique.</p>
+</div></article><article class="task exercise-like" id="task-12"><h5 class="heading"><span class="codenumber">(d)</span></h5>
+<p id="p-129">The negative <span class="process-math">\(-\vv\)</span> of any vector <span class="process-math">\(\vv\)</span> is unique.</p>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-13" id="solution-13"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-13"><div class="solution solution-like">
-<p id="p-134">Let <span class="process-math">\(\vv\in V\text{,}\)</span> and suppose there are vectors <span class="process-math">\(\ww_1,\ww_2\in V\)</span> such that <span class="process-math">\(\vv+\ww_1=\zer\)</span> and <span class="process-math">\(\vv+\ww_2=\zer\text{.}\)</span> Then</p>
+<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-12" id="solution-12"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-12"><div class="solution solution-like">
+<p id="p-130">Let <span class="process-math">\(\vv\in V\text{,}\)</span> and suppose there are vectors <span class="process-math">\(\ww_1,\ww_2\in V\)</span> such that <span class="process-math">\(\vv+\ww_1=\zer\)</span> and <span class="process-math">\(\vv+\ww_2=\zer\text{.}\)</span> Then</p>
 <div class="displaymath process-math" data-contains-math-knowls="" id="md-10">
 \begin{align*}
 \ww_1 \amp = \ww_1+\zer \quad  \text{ by A4}\\
@@ -701,29 +681,57 @@ c\odot (d\odot x) = c\odot (x^d) = (x^d)^c = x^{dc} = x^{cd} = (cd)\odot x\text{
 <span class="type">Exercise</span><span class="space"> </span><span class="codenumber">1.1.10</span><span class="period">.</span>
 </h4>
 <div class="runestone" style="max-width: none;"><div data-component="parsons" class="parsons" id="">
-<div class="parsons_question parsons-text"><p id="p-135">By rearranging the blocks below, create a proof of the statement “Let <span class="process-math">\(V\)</span> be a vector space. For any <span class="process-math">\(\vv\in V\text{,}\)</span> <span class="process-math">\((-1)\vv=-\vv\text{.}\)</span>” Note that it's possible that not all blocks will be needed.</p></div>
-<pre class="parsonsblocks" data-question_label="" style="visibility: hidden;" data-language="natural" data-noindent="true"><p id="p-136">Let <span class="process-math">\(\vv\)</span> be any vector in <span class="process-math">\(V\text{.}\)</span></p>
+<div class="parsons_question parsons-text"><p id="p-131">By rearranging the blocks below, create a proof of the statement “Let <span class="process-math">\(V\)</span> be a vector space. For any <span class="process-math">\(\vv\in V\text{,}\)</span> <span class="process-math">\((-1)\vv=-\vv\text{.}\)</span>” Note that it's possible that not all blocks will be needed.</p></div>
+<pre class="parsonsblocks" data-question_label="" style="visibility: hidden;" data-language="natural" data-noindent="true"><p id="p-132">Let <span class="process-math">\(\vv\)</span> be any vector in <span class="process-math">\(V\text{.}\)</span></p>
 ---
-<p id="p-137">Since <span class="process-math">\(-1+1=0\text{,}\)</span> <span class="process-math">\((-1+1)\vv=0\vv\text{.}\)</span></p>
+<p id="p-133">Since <span class="process-math">\(-1+1=0\text{,}\)</span> <span class="process-math">\((-1+1)\vv=0\vv\text{.}\)</span></p>
 ---
-<p id="p-138">From <a href="" class="xref" data-knowl="./knowl/ex-more-props.html" title="Exercise 1.1.9">Exercise 1.1.9</a> we know <span class="process-math">\(0\vv=\zer\text{,}\)</span> and by axiom S3, <span class="process-math">\((-1+1)\vv=-1\vv+1\vv\text{.}\)</span></p>
+<p id="p-134">From <a href="" class="xref" data-knowl="./knowl/ex-more-props.html" title="Exercise 1.1.9">Exercise 1.1.9</a> we know <span class="process-math">\(0\vv=\zer\text{,}\)</span> and by axiom S3, <span class="process-math">\((-1+1)\vv=-1\vv+1\vv\text{.}\)</span></p>
 ---
-<p id="p-139">By axiom S5, <span class="process-math">\(1\vv=\vv\text{.}\)</span></p>
+<p id="p-135">By axiom S5, <span class="process-math">\(1\vv=\vv\text{.}\)</span></p>
 ---
-<p id="p-140">Therefore, we have <span class="process-math">\(-1\vv+\vv=\zer\text{.}\)</span></p>
+<p id="p-136">Therefore, we have <span class="process-math">\(-1\vv+\vv=\zer\text{.}\)</span></p>
 ---
-<p id="p-141">Adding <span class="process-math">\(-\vv\)</span> to both sides, we get</p><div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-(-1\vv+\vv)+(-\vv)=\zer+(-\vv)\text{.}
-\end{equation*}
+<p id="p-137">Adding <span class="process-math">\(-\vv\)</span> to both sides, we get <span class="process-math">\((-1\vv+\vv)+(-\vv)=\zer+(-\vv)\text{.}\)</span></p>
+---
+<p id="p-138">Using A3 and A4, this becomes <span class="process-math">\(-1\vv+(\vv+(-\vv))=-\vv\text{.}\)</span></p>
+---
+<p id="p-139">By A5, we then have <span class="process-math">\(-1\vv+\zer=-\vv\text{.}\)</span></p>
+---
+<p id="p-140">Finally, by A4, we get <span class="process-math">\(-1\vv=-\vv\text{.}\)</span></p></pre>
+</div></div></article><p id="p-141">Note that in the above exercise, we could have shortened the proof: In <a href="" class="xref" data-knowl="./knowl/ex-more-props.html" title="Exercise 1.1.9">Exercise 1.1.9</a> we showed that additive inverses are unique. So once we reach the step where <span class="process-math">\(-1\vv+\vv=\zer\text{,}\)</span> we can conclude that <span class="process-math">\(-1\vv=-\vv\text{,}\)</span> since <span class="process-math">\(-\vv\)</span> is the unique vector that satisfies this equation.</p>
+<p id="p-142">To finish off this section, here is one more problem similar to the one above. This result will be useful in the future, and students often find the logic tricky, so it is worth your time to ensure you understand it.</p>
+<article class="exercise exercise-like" id="ex-zero-mult-prop"><h4 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">1.1.11</span><span class="period">.</span>
+</h4>
+<div class="runestone" style="max-width: none;"><div data-component="parsons" class="parsons" id="ex-zero-mult-prop">
+<div class="parsons_question parsons-text">
+<p id="p-143">Rearrange the blocks to create a valid proof of the following statement:</p>
+<p id="p-144">If <span class="process-math">\(c\vv=\zer\text{,}\)</span> then either <span class="process-math">\(c=0\)</span> or <span class="process-math">\(\vv=\zer\text{.}\)</span></p>
 </div>
+<pre class="parsonsblocks" data-question_label="" style="visibility: hidden;" data-language="natural" data-noindent="true"><p id="p-145">Let <span class="process-math">\(c\)</span> be a scalar, and let <span class="process-math">\(\vv\in V\)</span> be a vector.</p> <p id="p-146">Suppose that <span class="process-math">\(c\vv=\zer\text{.}\)</span></p>
 ---
-<p id="p-142">Using A3 and A4, this becomes <span class="process-math">\(-1\vv+(\vv+(-vv))=-\vv\text{.}\)</span></p>
+<p id="p-147">By the law of the excluded middle, either <span class="process-math">\(c=0\text{,}\)</span> or <span class="process-math">\(c\neq 0\text{.}\)</span></p>
 ---
-<p id="p-143">By A5, we then have <span class="process-math">\(-1\vv+\zer=-\vv\text{.}\)</span></p>
+<p id="p-148">If <span class="process-math">\(c=0\text{,}\)</span> then <span class="process-math">\(c=0\)</span> or <span class="process-math">\(\vv=\zer\text{,}\)</span> and we're done.</p>
 ---
-<p id="p-144">Finally, by A4, we get <span class="process-math">\(-1\vv=-\vv\text{.}\)</span></p></pre>
-</div></div></article><p id="p-145">Note that in the above exercise, we could have shortened the proof: In <a href="" class="xref" data-knowl="./knowl/ex-more-props.html" title="Exercise 1.1.9">Exercise 1.1.9</a> we showed that additive inverses are unique. So once we reach the step where <span class="process-math">\(-1\vv+\vv=\zer\text{,}\)</span> we can conclude that <span class="process-math">\(-1\vv=-\vv\text{,}\)</span> since <span class="process-math">\(-\vv\)</span> is the unique vector that satisfies this equation.</p></section></section><div class="hidden-content tex2jax_ignore" id="hk-fn-3"><div class="fn"><code class="code-inline tex2jax_ignore">en.wikipedia.org/wiki/Examples_of_vector_spaces</code></div></div>
+<p id="p-149">Suppose then that <span class="process-math">\(c\neq 0\text{.}\)</span></p>
+---
+<p id="p-150">Since <span class="process-math">\(c\neq 0\text{,}\)</span> there is a scalar <span class="process-math">\(1/c\)</span> such that <span class="process-math">\((1/c)\cdot c=1\text{.}\)</span></p>
+---
+<p id="p-151">Since <span class="process-math">\(c\vv=\zer\text{,}\)</span> <span class="process-math">\((1/c)(c\vv)=(1/c)\zer\text{.}\)</span></p>
+---
+<p id="p-152">Therefore, <span class="process-math">\(((1/c)\cdot c)\vv = \zer\text{,}\)</span> using S4 and <a href="" class="xref" data-knowl="./knowl/part-mult-zero.html" title="Task 1.1.9.b">Task 1.1.9.b</a> of <a href="" class="xref" data-knowl="./knowl/ex-more-props.html" title="Exercise 1.1.9">Exercise 1.1.9</a>.</p>
+---
+<p id="p-153">Since <span class="process-math">\((1/c)\cdot c=1\text{,}\)</span> we have <span class="process-math">\(1\vv=\vv =\zer\text{,}\)</span> using S5.</p>
+---
+<p id="p-154">Since <span class="process-math">\(\vv=\zer\text{,}\)</span> <span class="process-math">\(c=0\)</span> or <span class="process-math">\(\vv=\zer\text{.}\)</span></p>
+---
+<p id="p-155">In either case, we conclude that <span class="process-math">\(c=0\)</span> or <span class="process-math">\(\vv=\zer\text{,}\)</span> so the result is proven.</p></pre>
+</div></div>
+<div class="solutions">
+<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-9" id="hint-9"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-9"><div class="hint solution-like"><p id="p-156">The main difficulty with this problem is getting the logic of the statement correct, and making sure you know what it is you're trying to prove. Consider a proof by cases: either <span class="process-math">\(c=0\)</span> or <span class="process-math">\(c\neq 0\text{.}\)</span> In the first case, there is nothing to prove (why?). In the second case, use the fact (see <a href="" class="xref" data-knowl="./knowl/def-field.html" title="Definition 1.1.2">Definition 1.1.2</a>) that for any nonzero scalar <span class="process-math">\(c\text{,}\)</span> there exists a scalar <span class="process-math">\(1/c\)</span> such that <span class="process-math">\(c\cdot 1/c=1\text{.}\)</span></p></div></div>
+</div></article></section></section><div class="hidden-content tex2jax_ignore" id="hk-fn-3"><div class="fn"><code class="code-inline tex2jax_ignore">en.wikipedia.org/wiki/Examples_of_vector_spaces</code></div></div>
 </div></main>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script>

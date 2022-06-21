@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-06-20T21:40:03-06:00       *-->
+<!--*       on 2022-06-21T10:57:34-06:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -248,22 +248,22 @@ true);
 </div>
 </h2>
 <section class="onepage" id="page-7"><div class="introduction" id="introduction-12">
-<p id="p-547">For this worksheet, the reader is directed to Section 7.5 of <em class="emphasis">Linear Algebra with Applications</em>, by Keith Nicholson. You will probably want to read this section before proceeding.</p>
-<p id="p-548">A <em class="emphasis">linear recurrence</em> of length <span class="process-math">\(k\)</span> is a sequence <span class="process-math">\([x_n)\)</span> that is recursively defined, with successive terms in the sequence defined in terms of the previous <span class="process-math">\(k\)</span> terms, via a linear recursion formula of the form</p>
+<p id="p-558">For this worksheet, the reader is directed to Section 7.5 of <em class="emphasis">Linear Algebra with Applications</em>, by Keith Nicholson. You will probably want to read this section before proceeding.</p>
+<p id="p-559">A <em class="emphasis">linear recurrence</em> of length <span class="process-math">\(k\)</span> is a sequence <span class="process-math">\([x_n)\)</span> that is recursively defined, with successive terms in the sequence defined in terms of the previous <span class="process-math">\(k\)</span> terms, via a linear recursion formula of the form</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 x_{n+k} = a_0x_k + a_1x_{k+1}+\cdots + a_{k-1}x_{n+k-1}\text{.}
 \end{equation*}
 </div>
 <p class="continuation">(Here we assume <span class="process-math">\(a_0\neq 0\)</span> to have the appropriate length.) The most famous example of a linear recurrence is, of course, the Fibonacci sequence, which is defined by <span class="process-math">\(x_0=1, x_1=1\text{,}\)</span> and <span class="process-math">\(x_{n+2}=x_n+x_{n+1}\)</span> for all <span class="process-math">\(n\geq 0\text{.}\)</span></p>
-<p id="p-549">As demonstrated in the Nicholson's book, the set of all sequences satisfying a linear recursion of length <span class="process-math">\(k\)</span> form a subspace <span class="process-math">\(V\)</span> of the vector space <span class="process-math">\(\mathbb{R}^\infty\)</span> of all real-valued sequences. Since each sequence is determined by the <span class="process-math">\(k\)</span> initial conditions <span class="process-math">\(x_0, x_1, \ldots, x_{k-1}\text{,}\)</span> we see that <span class="process-math">\(V\)</span> is isomorphic to <span class="process-math">\(\mathbb{R}^k\text{.}\)</span></p>
-<p id="p-550">The goal of this worksheeet is to understand how to obtain <em class="emphasis">closed form</em> expressions for a recursively defined sequence using linear algebra. That is, rather than having to generate terms of the sequence one-by-one using the recursion formula, we want a function of <span class="process-math">\(n\)</span> that will produce each term <span class="process-math">\(x_n\)</span> in the sequence.</p>
-<p id="p-551">Since we know the dimension of the space <span class="process-math">\(V\)</span> of solutions, it suffices to understand two things:</p>
+<p id="p-560">As demonstrated in the Nicholson's book, the set of all sequences satisfying a linear recursion of length <span class="process-math">\(k\)</span> form a subspace <span class="process-math">\(V\)</span> of the vector space <span class="process-math">\(\mathbb{R}^\infty\)</span> of all real-valued sequences. Since each sequence is determined by the <span class="process-math">\(k\)</span> initial conditions <span class="process-math">\(x_0, x_1, \ldots, x_{k-1}\text{,}\)</span> we see that <span class="process-math">\(V\)</span> is isomorphic to <span class="process-math">\(\mathbb{R}^k\text{.}\)</span></p>
+<p id="p-561">The goal of this worksheeet is to understand how to obtain <em class="emphasis">closed form</em> expressions for a recursively defined sequence using linear algebra. That is, rather than having to generate terms of the sequence one-by-one using the recursion formula, we want a function of <span class="process-math">\(n\)</span> that will produce each term <span class="process-math">\(x_n\)</span> in the sequence.</p>
+<p id="p-562">Since we know the dimension of the space <span class="process-math">\(V\)</span> of solutions, it suffices to understand two things:</p>
 <ul class="disc">
-<li id="li-99"><p id="p-552">How to produce a basis for <span class="process-math">\(V\text{.}\)</span></p></li>
-<li id="li-100"><p id="p-553">How to write a given solution in terms of that basis.</p></li>
+<li id="li-99"><p id="p-563">How to produce a basis for <span class="process-math">\(V\text{.}\)</span></p></li>
+<li id="li-100"><p id="p-564">How to write a given solution in terms of that basis.</p></li>
 </ul>
-<p id="p-554">The key observation is that for each recursion relation, there is an associated polynomial. For the recursion</p>
+<p id="p-565">The key observation is that for each recursion relation, there is an associated polynomial. For the recursion</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 x_{n+k} = a_0x_n + a_1x_{n+1}+\cdots + a_{k-1}x_{n+k-1}\text{,}
@@ -275,7 +275,7 @@ x_{n+k} = a_0x_n + a_1x_{n+1}+\cdots + a_{k-1}x_{n+k-1}\text{,}
 p(x) = x^k - a_{k-1}x^{k-1}-\cdots -a_1x-a_0\text{.}
 \end{equation*}
 </div>
-<p id="p-555">The main result is Theorem 7.5.4 in Nicholson. If we can factor <span class="process-math">\(p(x)\)</span> completely over the reals as</p>
+<p id="p-566">The main result is Theorem 7.5.4 in Nicholson. If we can factor <span class="process-math">\(p(x)\)</span> completely over the reals as</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 p(x) = (x-\lambda_1)^{m_1}(x-\lambda_2)^{m_2}\cdots (x-\lambda_p)^{m_p}\text{,}
@@ -290,28 +290,28 @@ p(x) = (x-\lambda_1)^{m_1}(x-\lambda_2)^{m_2}\cdots (x-\lambda_p)^{m_p}\text{,}
 \left[\lambda_p^n\right), \amp \left[n\lambda_p^n\right),\ldots, \left[n^{m_p-1}\lambda_p^n\right)\text{.}
 \end{align*}
 </div>
-<p id="p-556">Once we have a basis, we can apply the given coefficients to determine how to write a particular sequence as a linear combination of the basis vectors.</p>
-</div></section><section class="onepage" id="page-8"><article class="exercise exercise-like" id="exercise-46"><h3 class="heading"><span class="codenumber">1<span class="period">.</span></span></h3>
-<p id="p-557">Find a basis for the space <span class="process-math">\(V\)</span> of sequences <span class="process-math">\([x_n)\)</span> satisfying the recurrence</p>
+<p id="p-567">Once we have a basis, we can apply the given coefficients to determine how to write a particular sequence as a linear combination of the basis vectors.</p>
+</div></section><section class="onepage" id="page-8"><article class="exercise exercise-like" id="exercise-47"><h3 class="heading"><span class="codenumber">1<span class="period">.</span></span></h3>
+<p id="p-568">Find a basis for the space <span class="process-math">\(V\)</span> of sequences <span class="process-math">\([x_n)\)</span> satisfying the recurrence</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 x_{n+3}=-2x_n+x_{n+1}+2x_{n+2}\text{.}
 \end{equation*}
 </div>
-<p id="p-558">Then find a formula for the sequence satisfying the initial conditions <span class="process-math">\(x_0=1, x_1=2, x_2=1\text{.}\)</span></p>
-<div class="workspace" data-space="3in"></div></article><p id="p-559">To solve this problem, you may use Python code, as outlined below. To get started, load the functions you'll need from the SymPy library.</p>
+<p id="p-569">Then find a formula for the sequence satisfying the initial conditions <span class="process-math">\(x_0=1, x_1=2, x_2=1\text{.}\)</span></p>
+<div class="workspace" data-space="3in"></div></article><p id="p-570">To solve this problem, you may use Python code, as outlined below. To get started, load the functions you'll need from the SymPy library.</p>
 <pre class="ptx-sagecell sagecell-sage" id="sage-36"><script type="text/x-sage">from sympy import symbols,factor,init_printing
 x = symbols('x')
 init_printing()
 </script></pre>
-<p id="p-560">First, determine the associated polynomial for the recurrence.</p>
-<p id="p-561">(Input your polynomial in the cell below. To get proper formatting, wrap your math in <code class="code-inline tex2jax_ignore">$</code> delimiters, and can use <code class="code-inline tex2jax_ignore">^</code> to enter exponents.)</p>
+<p id="p-571">First, determine the associated polynomial for the recurrence.</p>
+<p id="p-572">(Input your polynomial in the cell below. To get proper formatting, wrap your math in <code class="code-inline tex2jax_ignore">$</code> delimiters, and can use <code class="code-inline tex2jax_ignore">^</code> to enter exponents.)</p>
 <pre class="ptx-sagecell sagecell-html" id="sage-37"><script type="text/x-sage"></script></pre>
-<p id="p-562">Next, factor the polynomial. You can do this using the <code class="code-inline tex2jax_ignore">factor()</code> command. In Python, you will need to enter <code class="code-inline tex2jax_ignore">**</code> for the exponents.</p>
+<p id="p-573">Next, factor the polynomial. You can do this using the <code class="code-inline tex2jax_ignore">factor()</code> command. In Python, you will need to enter <code class="code-inline tex2jax_ignore">**</code> for the exponents.</p>
 <pre class="ptx-sagecell sagecell-sage" id="sage-38"><script type="text/x-sage"></script></pre>
-<p id="p-563">In the cell below, list the roots of the polynomial, and the resulting basis <span class="process-math">\(B\)</span> for the space <span class="process-math">\(V\)</span> of solutions. Recall that if <span class="process-math">\(\lambda\)</span> is a root of the polynomial, then <span class="process-math">\([\lambda^n)\)</span> will be a basis vector for the vector space <span class="process-math">\(V\)</span> of solutions. You may wish to confirm that each of your basis sequences indeed satisfies our recursion.</p>
-<pre class="ptx-sagecell sagecell-html" id="sage-39"><script type="text/x-sage"></script></pre></section><section class="onepage" id="page-9"><p id="p-564">Next, let <span class="process-math">\(s=[x_n)\)</span> be the recursion that satisfies the given initial conditions. We want to write <span class="process-math">\([x_n)\)</span> in terms of the basis we just found. Recall, from Nicholson, that since our basis has three elements, there is an isomorphism <span class="process-math">\(T:\R^3\to V\text{,}\)</span> where <span class="process-math">\(T(a,b,c)\)</span> is equal to the sequence <span class="process-math">\([x_n)\)</span> in <span class="process-math">\(V\)</span> that satisfies the initial conditions <span class="process-math">\(x_0=a, x_1=b, x_2=c\text{.}\)</span> Thus, our desired sequence is given by <span class="process-math">\(s=T(1,2,1)\text{.}\)</span></p>
-<p id="p-565">Let <span class="process-math">\(\vv_1, \vv_2, \vv_3\in\R^3\)</span> be the vectors such that <span class="process-math">\(B=\{T(\vv_1), T(\vv_2), T(\vv_3)\}\text{.}\)</span> (That is, write out the first three terms in each sequence in your basis to get three vectors.) We then need to find scalars <span class="process-math">\(c_1,c_2,c_3\)</span> such that</p>
+<p id="p-574">In the cell below, list the roots of the polynomial, and the resulting basis <span class="process-math">\(B\)</span> for the space <span class="process-math">\(V\)</span> of solutions. Recall that if <span class="process-math">\(\lambda\)</span> is a root of the polynomial, then <span class="process-math">\([\lambda^n)\)</span> will be a basis vector for the vector space <span class="process-math">\(V\)</span> of solutions. You may wish to confirm that each of your basis sequences indeed satisfies our recursion.</p>
+<pre class="ptx-sagecell sagecell-html" id="sage-39"><script type="text/x-sage"></script></pre></section><section class="onepage" id="page-9"><p id="p-575">Next, let <span class="process-math">\(s=[x_n)\)</span> be the recursion that satisfies the given initial conditions. We want to write <span class="process-math">\([x_n)\)</span> in terms of the basis we just found. Recall, from Nicholson, that since our basis has three elements, there is an isomorphism <span class="process-math">\(T:\R^3\to V\text{,}\)</span> where <span class="process-math">\(T(a,b,c)\)</span> is equal to the sequence <span class="process-math">\([x_n)\)</span> in <span class="process-math">\(V\)</span> that satisfies the initial conditions <span class="process-math">\(x_0=a, x_1=b, x_2=c\text{.}\)</span> Thus, our desired sequence is given by <span class="process-math">\(s=T(1,2,1)\text{.}\)</span></p>
+<p id="p-576">Let <span class="process-math">\(\vv_1, \vv_2, \vv_3\in\R^3\)</span> be the vectors such that <span class="process-math">\(B=\{T(\vv_1), T(\vv_2), T(\vv_3)\}\text{.}\)</span> (That is, write out the first three terms in each sequence in your basis to get three vectors.) We then need to find scalars <span class="process-math">\(c_1,c_2,c_3\)</span> such that</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 c_1\vv_1+c_2\vv_2+c_3\vv_3=(1,2,1)\text{.}
@@ -325,26 +325,26 @@ s \amp = T(1,2,1)\\
 \end{align*}
 </div>
 <p class="continuation">and we recall that the sequences <span class="process-math">\(T(\vv_i)\)</span> are the sequences in our basis <span class="process-math">\(B\text{.}\)</span></p>
-<p id="p-566">Set up this system, and then use the computer to solve. Let <code class="code-inline tex2jax_ignore">A</code> be the coefficient matrix for the system, which you will need to input into the cell below, and let <code class="code-inline tex2jax_ignore">B</code> be the column vector containing the initial conditions.</p>
+<p id="p-577">Set up this system, and then use the computer to solve. Let <code class="code-inline tex2jax_ignore">A</code> be the coefficient matrix for the system, which you will need to input into the cell below, and let <code class="code-inline tex2jax_ignore">B</code> be the column vector containing the initial conditions.</p>
 <pre class="ptx-sagecell sagecell-sage" id="sage-40"><script type="text/x-sage">from sympy import Matrix
 A = Matrix()
 B = Matrix([1,2,1])
 X = A**(-1)*B
 X
 </script></pre>
-<p id="p-567">Using the solution above, state the answer to this exercise.</p>
+<p id="p-578">Using the solution above, state the answer to this exercise.</p>
 <pre class="ptx-sagecell sagecell-html" id="sage-41"><script type="text/x-sage"></script></pre>
-<p id="p-568">Now, we leave you with a few more exercises. Recall that if the associated polynomial for your recursion has a repeated root <span class="process-math">\((x-\lambda)^k\text{,}\)</span> then your basis will include the sequences <span class="process-math">\([\lambda^n), [n\lambda^n), \ldots, [n^{k-1}\lambda^n)\text{.}\)</span></p>
-<article class="exercise exercise-like" id="exercise-47"><h3 class="heading"><span class="codenumber">2<span class="period">.</span></span></h3>
-<p id="p-569">Find a basis for the space <span class="process-math">\(V\)</span> of sequences <span class="process-math">\([x_n)\)</span> satisfying the recurrence</p>
+<p id="p-579">Now, we leave you with a few more exercises. Recall that if the associated polynomial for your recursion has a repeated root <span class="process-math">\((x-\lambda)^k\text{,}\)</span> then your basis will include the sequences <span class="process-math">\([\lambda^n), [n\lambda^n), \ldots, [n^{k-1}\lambda^n)\text{.}\)</span></p>
+<article class="exercise exercise-like" id="exercise-48"><h3 class="heading"><span class="codenumber">2<span class="period">.</span></span></h3>
+<p id="p-580">Find a basis for the space <span class="process-math">\(V\)</span> of sequences <span class="process-math">\([x_n)\)</span> satisfying the recurrence</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 x_{n+3} = -4x_n+3x_{n+2}\text{.}
 \end{equation*}
 </div>
 <p class="continuation">Then find a formula for the sequence satisfying the initial conditions <span class="process-math">\(x_0=1, x_1=-1, x_2=1\text{.}\)</span></p>
-<div class="workspace" data-space="2in"></div></article><pre class="ptx-sagecell sagecell-sage" id="sage-42"><script type="text/x-sage"></script></pre></section><section class="onepage" id="page-10"><article class="exercise exercise-like" id="exercise-48"><h3 class="heading"><span class="codenumber">3<span class="period">.</span></span></h3>
-<p id="p-570">Find a basis for the space <span class="process-math">\(V\)</span> of sequences <span class="process-math">\([x_n)\)</span> satisfying the recurrence</p>
+<div class="workspace" data-space="2in"></div></article><pre class="ptx-sagecell sagecell-sage" id="sage-42"><script type="text/x-sage"></script></pre></section><section class="onepage" id="page-10"><article class="exercise exercise-like" id="exercise-49"><h3 class="heading"><span class="codenumber">3<span class="period">.</span></span></h3>
+<p id="p-581">Find a basis for the space <span class="process-math">\(V\)</span> of sequences <span class="process-math">\([x_n)\)</span> satisfying the recurrence</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 x_{n+3} = 8x_n-12x_{n+1}+6x_{n+2}\text{.}
@@ -352,9 +352,9 @@ x_{n+3} = 8x_n-12x_{n+1}+6x_{n+2}\text{.}
 </div>
 <p class="continuation">Then find a formula for the sequence satisfying the initial conditions <span class="process-math">\(x_0=1, x_1=-1, x_2=1\text{.}\)</span></p>
 <div class="workspace" data-space="3in"></div></article><pre class="ptx-sagecell sagecell-sage" id="sage-43"><script type="text/x-sage"></script></pre>
-<p id="p-571">Our last exercise is more theoretical, and less computational. Recall that the <em class="emphasis">shift operator</em> <span class="process-math">\(S\)</span> on the vector space <span class="process-math">\(\R^\infty\)</span> of sequences is the operator that deletes the first entry of a sequence. (So the remaining entries get “shifted” once to the left.)</p>
-<article class="exercise exercise-like" id="exercise-49"><h3 class="heading"><span class="codenumber">4<span class="period">.</span></span></h3>
-<p id="p-572">Show that the shift operator is onto, but not one-to-one. Then, determine the kernel of the shift operator.</p>
+<p id="p-582">Our last exercise is more theoretical, and less computational. Recall that the <em class="emphasis">shift operator</em> <span class="process-math">\(S\)</span> on the vector space <span class="process-math">\(\R^\infty\)</span> of sequences is the operator that deletes the first entry of a sequence. (So the remaining entries get “shifted” once to the left.)</p>
+<article class="exercise exercise-like" id="exercise-50"><h3 class="heading"><span class="codenumber">4<span class="period">.</span></span></h3>
+<p id="p-583">Show that the shift operator is onto, but not one-to-one. Then, determine the kernel of the shift operator.</p>
 <div class="workspace" data-space="3in"></div></article><pre class="ptx-sagecell sagecell-html" id="sage-44"><script type="text/x-sage"></script></pre></section></section></div></main>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script>

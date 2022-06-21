@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-06-20T21:40:09-06:00       *-->
+<!--*       on 2022-06-21T10:57:40-06:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -15,7 +15,19 @@
 </head>
 <body class="ignore-math">
 <h5 class="heading"><span class="type">Paragraph</span></h5>
-<p>The matrix <code class="code-inline tex2jax_ignore">Q1</code> we get here is (up to a difference in sign) the first two columns of the matrix <span class="process-math">\(Q\)</span> found in Nicholson. This makes sense: the matrix <span class="process-math">\(S\)</span> that we get from the algorithm is <span class="process-math">\(D_A\text{,}\)</span> not <span class="process-math">\(\Sigma_A\text{.}\)</span> The third column of <span class="process-math">\(\Sigma_A\)</span> is zero. So when we multiply by <span class="process-math">\(Q^T\text{,}\)</span> the third row of <span class="process-math">\(Q^T\)</span> (that is, the third column of <span class="process-math">\(Q\)</span>) is lost. That is, <span class="process-math">\(S(QT)=\Sigma_AQ^T\text{.}\)</span></p>
+<p>The matrix <span class="process-math">\(\Sigma_A\)</span> is the same size as <span class="process-math">\(A\text{.}\)</span> First, we list the positive singular values of <span class="process-math">\(A\)</span> in decreasing order:</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\sigma_1\geq \sigma_2\geq \cdots \geq \sigma_k\gt 0\text{.}
+\end{equation*}
+</div>
+<p class="continuation">Then, we let <span class="process-math">\(D_A = \operatorname{diag}(\sigma_1,\ldots, \sigma_k)\text{,}\)</span> and set</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\Sigma_A = \begin{bmatrix}D_A\amp 0\\0\amp 0\end{bmatrix}\text{.}
+\end{equation*}
+</div>
+<p class="continuation">That is, we put <span class="process-math">\(D_A\)</span> in the upper-left, and then fill in zeros as needed, until <span class="process-math">\(\Sigma_A\)</span> is the same size as <span class="process-math">\(A\text{.}\)</span></p>
 <span class="incontext"><a href="section-matrix-factor.html#p-900" class="internal">in-context</a></span>
 </body>
 </html>

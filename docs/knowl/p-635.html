@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-06-20T21:40:08-06:00       *-->
+<!--*       on 2022-06-21T10:57:39-06:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -14,14 +14,23 @@
 <meta name="robots" content="noindex, nofollow">
 </head>
 <body class="ignore-math">
-<h4 class="heading"><span class="type">Paragraph</span></h4>
-<p>The procedure for creating an orthogonal basis is clear. Start with a single nonzero vector <span class="process-math">\(\vv_1\in U\text{.}\)</span> If <span class="process-math">\(U\neq \spn\{\vv_1\}\text{,}\)</span> choose a vector <span class="process-math">\(\xx_1\in U\)</span> with <span class="process-math">\(\xx_1\notin\spn\{\vv_1\}\text{.}\)</span> The <a href="" class="xref" data-knowl="./knowl/thm-orthogonal-lemma.html" title="Theorem 3.2.1: Orthogonal Lemma">Orthogonal Lemma</a> then provides us with a vector</p>
-<div class="displaymath process-math" data-contains-math-knowls="./knowl/thm-orthogonal-lemma.html ./knowl/thm-orthogonal-lemma.html">
+<h5 class="heading"><span class="type">Paragraph</span></h5>
+<p>In <a href="" class="xref" data-knowl="./knowl/ex-orthogonal-set.html" title="Exercise 3.1.10">Exercise 3.1.10</a> we saw that the set</p>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/ex-orthogonal-set.html">
 \begin{equation*}
-\vv_2 = \xx_1-\frac{\xx_1\dotp\vv_1}{\len{\vv_1}^2}\vv_1
+\{(1,0,1,0), (-1,0,1,1), (1,1,-1,2),(1,-6,-1,2)\}
 \end{equation*}
 </div>
-<p class="continuation">such that <span class="process-math">\(\{\vv_1,\vv_2\}\)</span> is orthogonal. If <span class="process-math">\(U=\spn\{\vv_1,\vv_2\}\text{,}\)</span> we're done. Otherwise, we repeat the process, choosing <span class="process-math">\(\xx_2\notin\spn\{\vv_1,\vv_2\}\text{,}\)</span> and then using the <a href="" class="xref" data-knowl="./knowl/thm-orthogonal-lemma.html" title="Theorem 3.2.1: Orthogonal Lemma">Orthogonal Lemma</a> to obtain <span class="process-math">\(\vv_3\text{,}\)</span> and so on, until an orthogonal basis is obtained.</p>
-<span class="incontext"><a href="sec-ortho-projection.html#p-635" class="internal">in-context</a></span>
+<p class="continuation">is orthogonal. Since it's orthogonal, it must be independent, and since it's a set of four independent vectors in <span class="process-math">\(\R^4\text{,}\)</span> it must be a basis. To get an orthonormal basis, we normalize each vector:</p>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/ex-orthogonal-set.html">
+\begin{align*}
+\hat{u}_1 \amp = \frac{1}{\sqrt{1^2+0^2+1^2+0^2}}(1,0,1,0) = \frac{1}{\sqrt{2}}(1,0,1,0)\\
+\hat{u}_2 \amp = \frac{1}{\sqrt{(-1)^2+0^2+1^2+1^2}}(-1,0,1,1,) = \frac{1}{\sqrt{3}}(-1,0,1,1)\\
+\hat{u}_3 \amp = \frac{1}{\sqrt{1^2+1^2+(-1)^2+2^2}}(1,1,-1,2) = \frac{1}{\sqrt{7}}(1,1,-1,2)\\
+\hat{u}_4 \amp = \frac{1}{\sqrt{1^2+(-6)^2+(-1)^2+2^2}}(1,-6,-1,2) = \frac{1}{\sqrt{42}}(1,-6,-1,2)\text{.}
+\end{align*}
+</div>
+<p class="continuation">The set <span class="process-math">\(\{\hat{u}_1,\hat{u}_2,\hat{u}_3,\hat{u}_4\}\)</span> is then an orthonormal basis of <span class="process-math">\(\R^4\text{.}\)</span></p>
+<span class="incontext"><a href="sec-orthogonal-sets.html#p-635" class="internal">in-context</a></span>
 </body>
 </html>
