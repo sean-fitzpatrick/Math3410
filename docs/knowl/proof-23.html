@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-05-04T13:27:18-06:00       *-->
+<!--*       on 2022-06-20T21:40:07-06:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -17,23 +17,15 @@
 <article class="hiddenproof"><h4 class="heading"><span class="type">Proof</span></h4>
 <ol class="decimal">
 <li>
-<p>Suppose <span class="process-math">\(A\zz = \lambda\zz\)</span> for some <span class="process-math">\(\lambda\in\C\)</span> and <span class="process-math">\(\zz\neq \mathbf{0}\text{.}\)</span> Then</p>
+<p>For any <span class="process-math">\(i=1,\ldots m\text{,}\)</span> we have</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
-\lambda \langle \zz,\zz\rangle  = \langle \lambda\zz,\zz\rangle = \langle A\zz,\zz \rangle = \langle \zz, A\zz\rangle = \langle \zz,\lambda\zz\rangle = \bar{\lambda}\langle \zz,\zz\rangle\text{.}
+\vv_{m+1}\dotp\vv_i = \xx\dotp\vv_i - \frac{\xx\dotp\vv_i}{\len{\vv_i}^2}(\vv_i\dotp\vv_i)=0\text{,}
 \end{equation*}
 </div>
-<p class="continuation">Thus, <span class="process-math">\((\lambda-\bar{\lambda})\len{\zz}^2=0\text{,}\)</span> and since <span class="process-math">\(\len{z}\neq 0\text{,}\)</span> we must have <span class="process-math">\(\bar{\lambda}=\lambda\text{,}\)</span> which means <span class="process-math">\(\lambda\in\R\text{.}\)</span></p>
+<p class="continuation">since <span class="process-math">\(\vv_i\dotp\vv_j = 0\)</span> for <span class="process-math">\(i\neq j\text{.}\)</span></p>
 </li>
-<li>
-<p>Similarly, suppose <span class="process-math">\(\lambda_1,\lambda_2\)</span> are eigenvalues of <span class="process-math">\(A\text{,}\)</span> with corresponding eigenvectors <span class="process-math">\(\zz,\ww\text{.}\)</span> Then</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-\lambda_1\langle \zz,\ww\rangle = \langle \lambda_1\zz,\ww\rangle = \langle A\zz,\ww\rangle =\langle \zz,A\ww\rangle = \langle \zz,\lambda_2\ww\rangle = \bar{\lambda_2}\langle\zz,\ww\rangle\text{.}
-\end{equation*}
-</div>
-<p class="continuation">This gives us <span class="process-math">\((\lambda_1-\bar{\lambda_2})\langle \zz,\ww\rangle=0\text{.}\)</span> And since we already know <span class="process-math">\(\lambda_2\)</span> must be real, and <span class="process-math">\(\lambda_1\neq \lambda_2\text{,}\)</span> we must have <span class="process-math">\(\langle \zz,\ww\rangle = 0\text{.}\)</span></p>
-</li>
-</ol></article><span class="incontext"><a href="sec-complex.html#proof-23" class="internal">in-context</a></span>
+<li><p>It follows from the <a href="" class="xref" data-knowl="./knowl/thm-fourier-expansion.html" title="Theorem 3.1.13: Fourier expansion theorem">Fourier expansion theorem</a> that <span class="process-math">\(\vv_{m+1}=\mathbf{0}\)</span> if and only if <span class="process-math">\(\xx\in\spn\{\vv_1,\ldots, \vv_m\}\text{,}\)</span> and the fact that <span class="process-math">\(\{\vv_1,\ldots, \vv_m,\vv_{m+1}\}\)</span> is an orthogonal set then follows from the first part.</p></li>
+</ol></article><span class="incontext"><a href="sec-ortho-projection.html#proof-23" class="internal">in-context</a></span>
 </body>
 </html>

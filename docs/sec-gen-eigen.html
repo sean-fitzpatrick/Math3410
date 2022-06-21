@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-05-04T13:27:07-06:00       *-->
+<!--*       on 2022-06-20T21:40:05-06:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -15,7 +15,7 @@
 <meta name="Keywords" content="Authored in PreTeXt">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta property="og:type" content="book">
-<meta property="book:title" content="Lecture Notes for Math 3410, with Computational Examples">
+<meta property="book:title" content="Linear Algebra">
 <meta property="book:author" content="Sean Fitzpatrick">
 <script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>window.MathJax = {
   tex: {
@@ -64,7 +64,38 @@
 <link href="https://pretextbook.org/css/0.4/style_default.css" rel="stylesheet" type="text/css">
 <link href="https://pretextbook.org/css/0.4/colors_default.css" rel="stylesheet" type="text/css">
 <link href="https://pretextbook.org/css/0.4/setcolors.css" rel="stylesheet" type="text/css">
-<!-- 2019-10-12: Temporary - CSS file for experiments with styling --><link href="developer.css" rel="stylesheet" type="text/css">
+<!--** eBookCongig is necessary to configure interactive       **-->
+<!--** Runestone components to run locally in reader's browser **-->
+<!--** No external communication:                              **-->
+<!--**     log level is 0, Runestone Services are disabled     **-->
+<script type="text/javascript">
+eBookConfig = {};
+eBookConfig.useRunestoneServices = false;
+eBookConfig.host = 'http://127.0.0.1:8000';
+eBookConfig.course = 'PTX Course: Title Here';
+eBookConfig.basecourse = 'PTX Base Course';
+eBookConfig.isLoggedIn = false;
+eBookConfig.email = '';
+eBookConfig.isInstructor = false;
+eBookConfig.logLevel = 0;
+eBookConfig.username = '';
+eBookConfig.readings = null;
+eBookConfig.activities = null;
+eBookConfig.downloadsEnabled = false;
+eBookConfig.allow_pairs = false;
+eBookConfig.enableScratchAC = false;
+eBookConfig.build_info = "";
+eBookConfig.python3 = null;
+eBookConfig.acDefaultLanguage = 'python';
+eBookConfig.runestone_version = '5.0.1';
+eBookConfig.jobehost = '';
+eBookConfig.proxyuri_runs = '';
+eBookConfig.proxyuri_files = '';
+eBookConfig.enable_chatcodes =  false;
+</script>
+<!--*** Runestone Services ***-->
+<script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.2.1/runtime.b0f8547c48f16a9f.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.2.1/637.d54be67956c5c660.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.2.1/runestone.0e9550fe42760516.bundle.js"></script><link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/6.2.1/637.fafafbd97df8a0d1.css">
+<link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/6.2.1/runestone.e4d5592da655219f.css">
 </head>
 <body class="pretext-book ignore-math has-toc has-sidebar-left">
 <a class="assistive" href="#content">Skip to main content</a><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\spn}{\operatorname{span}}
@@ -101,10 +132,12 @@
 \newcommand{\lt}{&lt;}
 \newcommand{\gt}{&gt;}
 \newcommand{\amp}{&amp;}
+\definecolor{fillinmathshade}{gray}{0.9}
+\newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
 \)</span></div>
 <header id="masthead" class="smallbuttons"><div class="banner"><div class="container">
 <a id="logo-link" href=""></a><div class="title-container">
-<h1 class="heading"><a href="linear-algebra.html"><span class="title">Lecture Notes for Math 3410, with Computational Examples</span></a></h1>
+<h1 class="heading"><a href="linear-algebra.html"><span class="title">Linear Algebra:</span> <span class="subtitle">A second course, featuring proofs and Python</span></a></h1>
 <p class="byline">Sean Fitzpatrick</p>
 </div>
 </div></div>
@@ -200,8 +233,8 @@ true);
 <main class="main"><div id="content" class="pretext-content"><section class="section" id="sec-gen-eigen"><h2 class="heading hide-type">
 <span class="type">Section</span> <span class="codenumber">5.5</span> <span class="title">Generalized eigenspaces</span>
 </h2>
-<p id="p-905">Example <a href="" class="xref" data-knowl="./knowl/eg-invariant-block.html" title="Example 5.3.9">Example 5.3.9</a> showed us that if <span class="process-math">\(V=U\oplus W\text{,}\)</span> where <span class="process-math">\(U\)</span> and <span class="process-math">\(W\)</span> are <span class="process-math">\(T\)</span>-invariant, then the matrix <span class="process-math">\(M_B(T)\)</span> has block diagonal form <span class="process-math">\(\bbm A \amp 0\\0\amp B\ebm\text{,}\)</span> as long as the basis <span class="process-math">\(B\)</span> is the union of bases of <span class="process-math">\(U\)</span> and <span class="process-math">\(W\text{.}\)</span></p>
-<p id="p-906">We want to take this idea further. If <span class="process-math">\(V = U_1\oplus U_2\oplus \cdots \oplus U_k\text{,}\)</span> where each subspace <span class="process-math">\(U_j\)</span> is <span class="process-math">\(T\)</span>-invariant, then with respect to a basis <span class="process-math">\(B\)</span> consisting of basis vectors for each subspace, we will have</p>
+<p id="p-1080">Example <a href="" class="xref" data-knowl="./knowl/eg-invariant-block.html" title="Example 5.3.9">Example 5.3.9</a> showed us that if <span class="process-math">\(V=U\oplus W\text{,}\)</span> where <span class="process-math">\(U\)</span> and <span class="process-math">\(W\)</span> are <span class="process-math">\(T\)</span>-invariant, then the matrix <span class="process-math">\(M_B(T)\)</span> has block diagonal form <span class="process-math">\(\bbm A \amp 0\\0\amp B\ebm\text{,}\)</span> as long as the basis <span class="process-math">\(B\)</span> is the union of bases of <span class="process-math">\(U\)</span> and <span class="process-math">\(W\text{.}\)</span></p>
+<p id="p-1081">We want to take this idea further. If <span class="process-math">\(V = U_1\oplus U_2\oplus \cdots \oplus U_k\text{,}\)</span> where each subspace <span class="process-math">\(U_j\)</span> is <span class="process-math">\(T\)</span>-invariant, then with respect to a basis <span class="process-math">\(B\)</span> consisting of basis vectors for each subspace, we will have</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 M_B(T)=\bbm A_1 \amp 0 \amp \cdots \amp 0\\
@@ -211,54 +244,54 @@ M_B(T)=\bbm A_1 \amp 0 \amp \cdots \amp 0\\
 \end{equation*}
 </div>
 <p class="continuation">where each <span class="process-math">\(A_j\)</span> is the matrix of <span class="process-math">\(T|_{U_j}\)</span> with respect to some basis of <span class="process-math">\(U_j\text{.}\)</span></p>
-<p id="p-907">Our goal moving forward is twofold: one, to make the blocks as small as possible, so that <span class="process-math">\(M_B(T)\)</span> is as close to diagonal as possible, and two, to make the blocks as simple as possible. Of course, if <span class="process-math">\(T\)</span> is diagonalizable, then we can get all blocks down to size <span class="process-math">\(1\times 1\text{,}\)</span> but this is not always possible.</p>
-<p id="p-908">Recall from <a href="subsec-eigen-basics.html" class="internal" title="Section 4.1: Eigenvalues and Eigenvectors">Section 4.1</a> that if the characteristic polynomial of <span class="process-math">\(T\)</span> (or equivalently, any matrix representation <span class="process-math">\(A\)</span> of <span class="process-math">\(T\)</span>) is</p>
+<p id="p-1082">Our goal moving forward is twofold: one, to make the blocks as small as possible, so that <span class="process-math">\(M_B(T)\)</span> is as close to diagonal as possible, and two, to make the blocks as simple as possible. Of course, if <span class="process-math">\(T\)</span> is diagonalizable, then we can get all blocks down to size <span class="process-math">\(1\times 1\text{,}\)</span> but this is not always possible.</p>
+<p id="p-1083">Recall from <a href="subsec-eigen-basics.html" class="internal" title="Section 4.1: Eigenvalues and Eigenvectors">Section 4.1</a> that if the characteristic polynomial of <span class="process-math">\(T\)</span> (or equivalently, any matrix representation <span class="process-math">\(A\)</span> of <span class="process-math">\(T\)</span>) is</p>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/subsec-eigen-basics.html">
 \begin{equation*}
 c_T(x) = (x-\lambda_1)^{m_1}(x-\lambda_2)^{m_2}\cdots (x-\lambda_k)^{m_k}\text{,}
 \end{equation*}
 </div>
 <p class="continuation">then <span class="process-math">\(\dim E_{\lambda_j}(T)\leq m_j\)</span> for each <span class="process-math">\(j=1,\ldots, k\text{,}\)</span> and <span class="process-math">\(T\)</span> is diagonalizable if and only if we have equality for each <span class="process-math">\(j\text{.}\)</span> (This guarantees that we have sufficiently many independent eigenvectors to form a basis of <span class="process-math">\(V\text{.}\)</span>)</p>
-<p id="p-909">Since eigenspaces are <span class="process-math">\(T\)</span>-invariant, we see that being able to diagonalize <span class="process-math">\(T\)</span> is equivalent to having the direct sum decomposition</p>
+<p id="p-1084">Since eigenspaces are <span class="process-math">\(T\)</span>-invariant, we see that being able to diagonalize <span class="process-math">\(T\)</span> is equivalent to having the direct sum decomposition</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 V = E_{\lambda_1}(T)\oplus E_{\lambda_2}(T)\oplus \cdots \oplus E_{\lambda_k}(T)\text{.}
 \end{equation*}
 </div>
 <p class="continuation">If <span class="process-math">\(T\)</span> cannot be diagonalized, it's because we came up short on the number of eigenvectors, and the direct sum of all eigenspaces only produces some subspace of <span class="process-math">\(V\)</span> of lower dimension. We now consider how one might enlarge a set of independent eigenvectors in some standard, and ideally optimal, way.</p>
-<p id="p-910">First, we note that for any operator <span class="process-math">\(T\text{,}\)</span> the restriction of <span class="process-math">\(T\)</span> to <span class="process-math">\(\ker T\)</span> is the zero operator, since by definition, <span class="process-math">\(T(\vv)=\zer\)</span> for all <span class="process-math">\(\vv\in\ker T\text{.}\)</span> Since we define <span class="process-math">\(E_{\lambda}(T)=\ker (T-\lambda I)\text{,}\)</span> it follows that <span class="process-math">\(T-\lambda I\)</span> restricts to the zero operator on the eigenspace <span class="process-math">\(E_\lambda(T)\text{.}\)</span> The idea is to relax the condition “identically zero” to something that will allow us to potentially enlarge some of our eigenspaces, so that we end up with enough vectors to span <span class="process-math">\(V\text{.}\)</span></p>
-<p id="p-911">It turns out that the correct replacement for “identically zero” is “nilpotent”. What we would like to find is some subspace <span class="process-math">\(G_\lambda(T)\)</span> such that the restriction of <span class="process-math">\(T-\lambda I\)</span> to <span class="process-math">\(G_\lambda(T)\)</span> will be nilpotent. (Recall that this means <span class="process-math">\((T-\lambda I)^k = 0\)</span> for some integer <span class="process-math">\(k\)</span> when restricted to <span class="process-math">\(G_\lambda(T)\text{.}\)</span>) The only problem is that we don't (yet) know what this subspace should be. To figure it out, we rely on some ideas you may have explored in your last assignment.</p>
+<p id="p-1085">First, we note that for any operator <span class="process-math">\(T\text{,}\)</span> the restriction of <span class="process-math">\(T\)</span> to <span class="process-math">\(\ker T\)</span> is the zero operator, since by definition, <span class="process-math">\(T(\vv)=\zer\)</span> for all <span class="process-math">\(\vv\in\ker T\text{.}\)</span> Since we define <span class="process-math">\(E_{\lambda}(T)=\ker (T-\lambda I)\text{,}\)</span> it follows that <span class="process-math">\(T-\lambda I\)</span> restricts to the zero operator on the eigenspace <span class="process-math">\(E_\lambda(T)\text{.}\)</span> The idea is to relax the condition “identically zero” to something that will allow us to potentially enlarge some of our eigenspaces, so that we end up with enough vectors to span <span class="process-math">\(V\text{.}\)</span></p>
+<p id="p-1086">It turns out that the correct replacement for “identically zero” is “nilpotent”. What we would like to find is some subspace <span class="process-math">\(G_\lambda(T)\)</span> such that the restriction of <span class="process-math">\(T-\lambda I\)</span> to <span class="process-math">\(G_\lambda(T)\)</span> will be nilpotent. (Recall that this means <span class="process-math">\((T-\lambda I)^k = 0\)</span> for some integer <span class="process-math">\(k\)</span> when restricted to <span class="process-math">\(G_\lambda(T)\text{.}\)</span>) The only problem is that we don't (yet) know what this subspace should be. To figure it out, we rely on some ideas you may have explored in your last assignment.</p>
 <article class="theorem theorem-like" id="thm-nullspace-power"><h3 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">5.5.1</span><span class="period">.</span>
 </h3>
-<p id="p-912">Let <span class="process-math">\(T:V\to V\)</span> be a linear operator. Then:</p>
+<p id="p-1087">Let <span class="process-math">\(T:V\to V\)</span> be a linear operator. Then:</p>
 <ol class="decimal">
-<li id="li-157"><p id="p-derived-li-157"><span class="process-math">\(\displaystyle \{\zer\}\subseteq \ker T \subseteq \ker T^2 \subseteq \cdots \subseteq \ker T^k\subseteq \cdots\)</span></p></li>
-<li id="li-158"><p id="p-913">If <span class="process-math">\(\ker T^{k+1}=\ker T^k\)</span> for some <span class="process-math">\(k\text{,}\)</span> then <span class="process-math">\(\ker T^{k+m}=\ker T^k\)</span> for all <span class="process-math">\(m\geq 0\text{.}\)</span></p></li>
-<li id="li-159"><p id="p-914">If <span class="process-math">\(n=\dim V\text{,}\)</span> then <span class="process-math">\(\ker T^{n+1} = \ker T^n\text{.}\)</span></p></li>
-</ol></article><p id="p-915">In other words, for any operator <span class="process-math">\(T\text{,}\)</span> the kernels of successive powers of <span class="process-math">\(T\)</span> can get bigger, but the moment the kernel doesn't change for the next highest power, it stops changing for all further powers of <span class="process-math">\(T\text{.}\)</span> That is, we have a sequence of kernels of strictly greater dimension until we reach a maximum, at which point the kernels stop growing. And of course, the maximum dimension cannot be more than the dimension of <span class="process-math">\(V\text{.}\)</span></p>
+<li id="li-176"><p id="p-derived-li-176"><span class="process-math">\(\displaystyle \{\zer\}\subseteq \ker T \subseteq \ker T^2 \subseteq \cdots \subseteq \ker T^k\subseteq \cdots\)</span></p></li>
+<li id="li-177"><p id="p-1088">If <span class="process-math">\(\ker T^{k+1}=\ker T^k\)</span> for some <span class="process-math">\(k\text{,}\)</span> then <span class="process-math">\(\ker T^{k+m}=\ker T^k\)</span> for all <span class="process-math">\(m\geq 0\text{.}\)</span></p></li>
+<li id="li-178"><p id="p-1089">If <span class="process-math">\(n=\dim V\text{,}\)</span> then <span class="process-math">\(\ker T^{n+1} = \ker T^n\text{.}\)</span></p></li>
+</ol></article><p id="p-1090">In other words, for any operator <span class="process-math">\(T\text{,}\)</span> the kernels of successive powers of <span class="process-math">\(T\)</span> can get bigger, but the moment the kernel doesn't change for the next highest power, it stops changing for all further powers of <span class="process-math">\(T\text{.}\)</span> That is, we have a sequence of kernels of strictly greater dimension until we reach a maximum, at which point the kernels stop growing. And of course, the maximum dimension cannot be more than the dimension of <span class="process-math">\(V\text{.}\)</span></p>
 <article class="definition definition-like" id="def-generalized-eigenspace"><h3 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">5.5.2</span><span class="period">.</span>
 </h3>
-<p id="p-916">Let <span class="process-math">\(T:V\to V\)</span> be a linear operator, and let <span class="process-math">\(\lambda\)</span> be an eigenvalue of <span class="process-math">\(T\text{.}\)</span> The <dfn class="terminology">generalized eigenspace</dfn> of <span class="process-math">\(T\)</span> associated to the eigenvalue <span class="process-math">\(\lambda\)</span> is denoted <span class="process-math">\(G_\lambda(T)\text{,}\)</span> and defined as</p>
+<p id="p-1091">Let <span class="process-math">\(T:V\to V\)</span> be a linear operator, and let <span class="process-math">\(\lambda\)</span> be an eigenvalue of <span class="process-math">\(T\text{.}\)</span> The <dfn class="terminology">generalized eigenspace</dfn> of <span class="process-math">\(T\)</span> associated to the eigenvalue <span class="process-math">\(\lambda\)</span> is denoted <span class="process-math">\(G_\lambda(T)\text{,}\)</span> and defined as</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 G_\lambda(T) = \ker (T-\lambda I)^n\text{,}
 \end{equation*}
 </div>
-<p class="continuation">where <span class="process-math">\(n=\dim V\text{.}\)</span></p></article><p id="p-917">Some remarks are in order. First, we can actually define <span class="process-math">\(G_\lambda(T)\)</span> for any scalar <span class="process-math">\(\lambda\text{.}\)</span> But this space will be trivial if <span class="process-math">\(\lambda\)</span> is not an eigenvalue. Second, it is possible to show (although we will not do so here) that if <span class="process-math">\(\lambda\)</span> is an eigenvalue with multiplicity <span class="process-math">\(m\text{,}\)</span> then <span class="process-math">\(G_\lambda(T)=\ker (T-\lambda I)^m\text{.}\)</span> (The kernel will usually have stopped growing well before we hit <span class="process-math">\(n=\dim V\text{,}\)</span> but we know they're all eventually equal, so using <span class="process-math">\(n\)</span> guarantees we have everything).</p>
-<p id="p-918">We will not prove it here (see Nicholson, or Axler), but the advantage of using generalized eigenspaces is that they're just big enough to cover all of <span class="process-math">\(V\text{.}\)</span></p>
+<p class="continuation">where <span class="process-math">\(n=\dim V\text{.}\)</span></p></article><p id="p-1092">Some remarks are in order. First, we can actually define <span class="process-math">\(G_\lambda(T)\)</span> for any scalar <span class="process-math">\(\lambda\text{.}\)</span> But this space will be trivial if <span class="process-math">\(\lambda\)</span> is not an eigenvalue. Second, it is possible to show (although we will not do so here) that if <span class="process-math">\(\lambda\)</span> is an eigenvalue with multiplicity <span class="process-math">\(m\text{,}\)</span> then <span class="process-math">\(G_\lambda(T)=\ker (T-\lambda I)^m\text{.}\)</span> (The kernel will usually have stopped growing well before we hit <span class="process-math">\(n=\dim V\text{,}\)</span> but we know they're all eventually equal, so using <span class="process-math">\(n\)</span> guarantees we have everything).</p>
+<p id="p-1093">We will not prove it here (see Nicholson, or Axler), but the advantage of using generalized eigenspaces is that they're just big enough to cover all of <span class="process-math">\(V\text{.}\)</span></p>
 <article class="theorem theorem-like" id="thm-gen-eigen-decomp"><h3 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">5.5.3</span><span class="period">.</span>
 </h3>
-<p id="p-919">Let <span class="process-math">\(V\)</span> be a complex vector space, and let <span class="process-math">\(T:V\to V\)</span> be a linear operator. (We can take <span class="process-math">\(V\)</span> to be real if we assume that <span class="process-math">\(T\)</span> has all real eigenvalues.) Let <span class="process-math">\(\lambda_1,\ldots, \lambda_k\)</span> be the distinct eigenvalues of <span class="process-math">\(T\text{.}\)</span> Then each generalized eigenspace <span class="process-math">\(G_{\lambda_j}(T)\)</span> is <span class="process-math">\(T\)</span>-invariant, and we have the direct sum decomposition</p>
+<p id="p-1094">Let <span class="process-math">\(V\)</span> be a complex vector space, and let <span class="process-math">\(T:V\to V\)</span> be a linear operator. (We can take <span class="process-math">\(V\)</span> to be real if we assume that <span class="process-math">\(T\)</span> has all real eigenvalues.) Let <span class="process-math">\(\lambda_1,\ldots, \lambda_k\)</span> be the distinct eigenvalues of <span class="process-math">\(T\text{.}\)</span> Then each generalized eigenspace <span class="process-math">\(G_{\lambda_j}(T)\)</span> is <span class="process-math">\(T\)</span>-invariant, and we have the direct sum decomposition</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 V = G_{\lambda_1}(T)\oplus G_{\lambda_2}(T)\oplus \cdots \oplus G_{\lambda_k}(T)\text{.}
 \end{equation*}
-</div></article><p id="p-920">For each eigenvalue <span class="process-math">\(\lambda_j\)</span> of <span class="process-math">\(T\text{,}\)</span> let <span class="process-math">\(l_j\)</span> denote the <em class="emphasis">smallest</em> integer power such that <span class="process-math">\(G_{\lambda_j}(T) = (T-\lambda_j I)^{l_j}\text{.}\)</span> Then certainly we have <span class="process-math">\(l_j\leq m_j\)</span> for each <span class="process-math">\(j\text{.}\)</span> (Note also that if <span class="process-math">\(l_j=1\text{,}\)</span> then <span class="process-math">\(G_{\lambda_j}(T)=E_{\lambda_j}(T)\text{.}\)</span>)</p>
-<p id="p-921">The polynomial <span class="process-math">\(m_T(x) = (x-\lambda_1)^{l_1}(x-\lambda_2)^{l_2}\cdots (x-\lambda_k)^{l_k}\)</span> is the polynomial of <em class="emphasis">smallest degree</em> such that <span class="process-math">\(m_T(T)=0\text{.}\)</span> The polynomial <span class="process-math">\(m_T(x)\)</span> is called the <dfn class="terminology">minimal polynomial</dfn> of <span class="process-math">\(T\text{.}\)</span> Note that <span class="process-math">\(T\)</span> is diagonalizable if and only if the minimal polynomial of <span class="process-math">\(T\)</span> has no repeated roots.</p>
-<p id="p-922">In <a href="sec-jordan-form.html" class="internal" title="Section 5.6: Jordan Canonical Form">Section 5.6</a>, we'll explore a systematic method for determining the generalized eigenspaces of a matrix, and in particular, for computing a basis for each generalized eigenspace, with respect to which the corresponding block in the block-diagonal form is especially simple.</p></section></div></main>
+</div></article><p id="p-1095">For each eigenvalue <span class="process-math">\(\lambda_j\)</span> of <span class="process-math">\(T\text{,}\)</span> let <span class="process-math">\(l_j\)</span> denote the <em class="emphasis">smallest</em> integer power such that <span class="process-math">\(G_{\lambda_j}(T) = (T-\lambda_j I)^{l_j}\text{.}\)</span> Then certainly we have <span class="process-math">\(l_j\leq m_j\)</span> for each <span class="process-math">\(j\text{.}\)</span> (Note also that if <span class="process-math">\(l_j=1\text{,}\)</span> then <span class="process-math">\(G_{\lambda_j}(T)=E_{\lambda_j}(T)\text{.}\)</span>)</p>
+<p id="p-1096">The polynomial <span class="process-math">\(m_T(x) = (x-\lambda_1)^{l_1}(x-\lambda_2)^{l_2}\cdots (x-\lambda_k)^{l_k}\)</span> is the polynomial of <em class="emphasis">smallest degree</em> such that <span class="process-math">\(m_T(T)=0\text{.}\)</span> The polynomial <span class="process-math">\(m_T(x)\)</span> is called the <dfn class="terminology">minimal polynomial</dfn> of <span class="process-math">\(T\text{.}\)</span> Note that <span class="process-math">\(T\)</span> is diagonalizable if and only if the minimal polynomial of <span class="process-math">\(T\)</span> has no repeated roots.</p>
+<p id="p-1097">In <a href="sec-jordan-form.html" class="internal" title="Section 5.6: Jordan Canonical Form">Section 5.6</a>, we'll explore a systematic method for determining the generalized eigenspaces of a matrix, and in particular, for computing a basis for each generalized eigenspace, with respect to which the corresponding block in the block-diagonal form is especially simple.</p></section></div></main>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script>
 </body>

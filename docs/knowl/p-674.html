@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-05-04T13:27:18-06:00       *-->
+<!--*       on 2022-06-20T21:40:08-06:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -14,8 +14,22 @@
 <meta name="robots" content="noindex, nofollow">
 </head>
 <body class="ignore-math">
-<h4 class="heading"><span class="type">Paragraph</span></h4>
-<p>To confirm it's unitary, add the line <code class="code-inline tex2jax_ignore">U*U.H</code> to the above, and confirm that you get the identity matrix as output. You might need to use <code class="code-inline tex2jax_ignore">simplify(U*U.H)</code> if the result is not clear. Now, to confirm that <span class="process-math">\(U^HAU\)</span> really is diagonal, go back to the cell above, and enter it. Try <code class="code-inline tex2jax_ignore">(U.H)*A*U</code>, just to remind yourself that adding the <code class="code-inline tex2jax_ignore">simplify</code> command is often a good idea.</p>
-<span class="incontext"><a href="sec-complex.html#p-674" class="internal">in-context</a></span>
+<h5 class="heading"><span class="type">Paragraph</span></h5>
+<p>First, we note that for a general element of <span class="process-math">\(U\text{,}\)</span> we have</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+(a-b+3c, 2a+b, 3c, 4a-b+3c,a-4c) = a(1,2,0,4,1)+b(-1,1,0,-1,0)+c(3,0,3,3,-4)\text{.}
+\end{equation*}
+</div>
+<p class="continuation">If <span class="process-math">\(\ww = (x_1,x_2,x_3,x_4,x_5)\in U^\bot\text{,}\)</span> then we must have</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{align*}
+\ww\dotp (1,2,0,4,1) \amp = x_1+2x_2+4x_4+x_5=0 \\
+\ww\dotp (-1,1,0,-1,0) \amp =-x_1+x_2-x_4=0\\
+\ww\dotp (3,0,3,3,-4) \amp =3x_1+3x_3+3x_4-4x_5 = 0\text{.}
+\end{align*}
+</div>
+<p class="continuation">To find a basis for <span class="process-math">\(U^\bot\text{,}\)</span> we simply need to find the nullspace of the coefficient matrix for this system, which we do below.</p>
+<span class="incontext"><a href="sec-ortho-projection.html#p-674" class="internal">in-context</a></span>
 </body>
 </html>

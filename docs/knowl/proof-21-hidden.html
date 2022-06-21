@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-05-04T13:27:17-06:00       *-->
+<!--*       on 2022-06-20T21:40:07-06:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -13,41 +13,18 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="robots" content="noindex, nofollow">
 </head>
-<body class="ignore-math"><article class="hiddenproof"><ol class="decimal">
-<li>
-<p>Using the distributive properties of matrix multiplication and the transpose,</p>
+<body class="ignore-math"><article class="hiddenproof"><p>Suppose <span class="process-math">\(S=\{\vv_1,\vv_2,\ldots, \vv_k\}\)</span> is orthogonal, and suppose</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+c_1\vv_1+c_2\vv_2+\cdots + c_k\vv_k = \mathbf{0}
+\end{equation*}
+</div>
+<p class="continuation">for scalars <span class="process-math">\(c_1,c_2,\ldots, c_k\text{.}\)</span> Taking the dot product of both sides of the above equation with <span class="process-math">\(\vv_1\)</span> gives</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{align*}
-\langle \zz_1+\zz_2,\zz_3\rangle \amp= (\zz_1+\zz_2)^T\bar{\zz_3}\\
-\amp =(\zz_1^T+\zz_2^T)\bar{\zz_3}\\
-\amp =\zz_1^T\bar{\zz_3}+\zz_2^T\bar{\zz_3}\\
-\amp =\langle \zz_1,\zz_3\rangle + \langle \zz_2,\zz_3\rangle\text{.}
+c_1(\vv_1\dotp \vv_1)+c_2(\vv_1\dotp \vv_2)+\cdots +c_k(\vv_1\dotp \vv_k) \amp =\vv_1\dotp \mathbf{0}\\
+c_1\len{\vv_1}^2+0+\cdots + 0\amp = 0 \text{.}
 \end{align*}
 </div>
-<p class="continuation">The proof is similar when addition is in the second component. (But not identical -- you'll need the fact that the complex conjugate is distributive, rather than the transpose.)</p>
-</li>
-<li>
-<p>These again follow from writing the inner product as a matrix product.</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-\langle \alpha\zz_1,\zz_2\rangle = (\alpha \zz_1)^T\bar{\zz_2} = \alpha(\zz_1^T\bar{\zz_2}) = \alpha\langle\zz_1,\zz_2\rangle\text{,}
-\end{equation*}
-</div>
-<p class="continuation">and</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-\langle \zz_1,\alpha\zz_2\rangle = \zz_1^T\overline{\alpha \zz_2} = \zz_1^T(\bar{\alpha}\bar{\zz_2}) = \bar{\alpha}(\zz_1^T\zz_2)=\alpha\langle \zz_1,\zz_2\rangle\text{.}
-\end{equation*}
-</div>
-</li>
-<li>
-<p>Note that for any vectors <span class="process-math">\(\zz,\ww\text{,}\)</span> <span class="process-math">\(\zz^T\ww\)</span> is a number, and therefore equal to its own transpose. Thus, we have <span class="process-math">\(\zz^T\ww = (\zz^T\ww)^T=\ww^T\zz\text{,}\)</span> and</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-\overline{\langle \zz_1,\zz_2\rangle} = \overline{\zz_1^T\bar{\zz_2}} = \overline{\bar{\zz_2}^T\zz_1} = \zz_2^T\overline{\zz_1}=\langle \zz_2,\zz_1\rangle\text{.}
-\end{equation*}
-</div>
-</li>
-<li><p>This was already demonstrated above.</p></li>
-</ol></article></body>
+<p class="continuation">Since <span class="process-math">\(\len{\vv_1}^2\neq 0\text{,}\)</span> we must have <span class="process-math">\(c_1=0\text{.}\)</span> We similarly find that all the remaining scalars are zero by taking the dot product with <span class="process-math">\(\vv_2,\ldots, \vv_k\text{.}\)</span></p></article></body>
 </html>

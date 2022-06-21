@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-05-04T13:26:59-06:00       *-->
+<!--*       on 2022-06-20T21:40:02-06:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -15,7 +15,7 @@
 <meta name="Keywords" content="Authored in PreTeXt">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta property="og:type" content="book">
-<meta property="book:title" content="Lecture Notes for Math 3410, with Computational Examples">
+<meta property="book:title" content="Linear Algebra">
 <meta property="book:author" content="Sean Fitzpatrick">
 <script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>window.MathJax = {
   tex: {
@@ -70,7 +70,38 @@ sagecell.makeSagecell({inputLocation: 'pre.sagecell-sage',
 <link href="https://pretextbook.org/css/0.4/style_default.css" rel="stylesheet" type="text/css">
 <link href="https://pretextbook.org/css/0.4/colors_default.css" rel="stylesheet" type="text/css">
 <link href="https://pretextbook.org/css/0.4/setcolors.css" rel="stylesheet" type="text/css">
-<!-- 2019-10-12: Temporary - CSS file for experiments with styling --><link href="developer.css" rel="stylesheet" type="text/css">
+<!--** eBookCongig is necessary to configure interactive       **-->
+<!--** Runestone components to run locally in reader's browser **-->
+<!--** No external communication:                              **-->
+<!--**     log level is 0, Runestone Services are disabled     **-->
+<script type="text/javascript">
+eBookConfig = {};
+eBookConfig.useRunestoneServices = false;
+eBookConfig.host = 'http://127.0.0.1:8000';
+eBookConfig.course = 'PTX Course: Title Here';
+eBookConfig.basecourse = 'PTX Base Course';
+eBookConfig.isLoggedIn = false;
+eBookConfig.email = '';
+eBookConfig.isInstructor = false;
+eBookConfig.logLevel = 0;
+eBookConfig.username = '';
+eBookConfig.readings = null;
+eBookConfig.activities = null;
+eBookConfig.downloadsEnabled = false;
+eBookConfig.allow_pairs = false;
+eBookConfig.enableScratchAC = false;
+eBookConfig.build_info = "";
+eBookConfig.python3 = null;
+eBookConfig.acDefaultLanguage = 'python';
+eBookConfig.runestone_version = '5.0.1';
+eBookConfig.jobehost = '';
+eBookConfig.proxyuri_runs = '';
+eBookConfig.proxyuri_files = '';
+eBookConfig.enable_chatcodes =  false;
+</script>
+<!--*** Runestone Services ***-->
+<script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.2.1/runtime.b0f8547c48f16a9f.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.2.1/637.d54be67956c5c660.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.2.1/runestone.0e9550fe42760516.bundle.js"></script><link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/6.2.1/637.fafafbd97df8a0d1.css">
+<link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/6.2.1/runestone.e4d5592da655219f.css">
 </head>
 <body class="pretext-book ignore-math has-toc has-sidebar-left">
 <a class="assistive" href="#content">Skip to main content</a><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\spn}{\operatorname{span}}
@@ -107,10 +138,12 @@ sagecell.makeSagecell({inputLocation: 'pre.sagecell-sage',
 \newcommand{\lt}{&lt;}
 \newcommand{\gt}{&gt;}
 \newcommand{\amp}{&amp;}
+\definecolor{fillinmathshade}{gray}{0.9}
+\newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
 \)</span></div>
 <header id="masthead" class="smallbuttons"><div class="banner"><div class="container">
 <a id="logo-link" href=""></a><div class="title-container">
-<h1 class="heading"><a href="linear-algebra.html"><span class="title">Lecture Notes for Math 3410, with Computational Examples</span></a></h1>
+<h1 class="heading"><a href="linear-algebra.html"><span class="title">Linear Algebra:</span> <span class="subtitle">A second course, featuring proofs and Python</span></a></h1>
 <p class="byline">Sean Fitzpatrick</p>
 </div>
 </div></div>
@@ -206,36 +239,53 @@ true);
 <main class="main"><div id="content" class="pretext-content"><section class="section" id="sec-dimension"><h2 class="heading hide-type">
 <span class="type">Section</span> <span class="codenumber">1.6</span> <span class="title">Basis and dimension</span>
 </h2>
-<p id="p-134">Next, we begin with an important result, sometimes known as the “Fundamental Theorem”:</p>
+<p id="p-295">Next, we begin with an important result, sometimes known as the “Fundamental Theorem”:</p>
 <article class="theorem theorem-like" id="theorem-steinitz"><h3 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">1.6.1</span><span class="period">.</span><span class="space"> </span><span class="title">Fundamental Theorem (Steinitz Exchange Lemma).</span>
 </h3>
-<p id="p-135">Suppose <span class="process-math">\(V = \spn\{\vv_1,\ldots, \vv_n\}\text{.}\)</span> If <span class="process-math">\(\{\ww_1,\ldots, \ww_m\}\)</span> is a linearly independent set of vectors in <span class="process-math">\(V\text{,}\)</span> then <span class="process-math">\(m\leq n\text{.}\)</span></p></article><p id="p-136">If a set of vectors spans a vector space <span class="process-math">\(V\text{,}\)</span> and it is not independent, we observed that it is possible to remove a vector from the set and still span <span class="process-math">\(V\text{.}\)</span> This suggests that spanning sets that are also linearly independent are of particular importance, and indeed, they are important enough to have a name.</p>
+<p id="p-296">Suppose <span class="process-math">\(V = \spn\{\vv_1,\ldots, \vv_n\}\text{.}\)</span> If <span class="process-math">\(\{\ww_1,\ldots, \ww_m\}\)</span> is a linearly independent set of vectors in <span class="process-math">\(V\text{,}\)</span> then <span class="process-math">\(m\leq n\text{.}\)</span></p></article><article class="hiddenproof" id="proof-9"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-9"><h3 class="heading"><span class="title">Strategy.</span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-9"><article class="hiddenproof"><p id="p-297">We won't give a complete proof of this theorem. The idea is straightforward, but checking all the details takes some work. Since <span class="process-math">\(\{\vv_1,\ldots, \vv_k\}\)</span> is a spanning set, each of the vectors in our independent set can be written as a linear combination of <span class="process-math">\(\vv_1,\ldots, \vv_k\text{.}\)</span> In particular, we can write</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\ww_1 = a_1\vv_1+a_2\vv_2+\cdots + a_n\vv_n
+\end{equation*}
+</div>
+<p class="continuation">for scalars <span class="process-math">\(a_1,\ldots, a_n\text{,}\)</span> and these scalars can't all be zero. (Why? And why is this important?)</p>
+<p id="p-298">The next step is to argue that <span class="process-math">\(V=\{\ww_1,\vv_2,\ldots, \vv_n\}\text{;}\)</span> that is, that we can replace <span class="process-math">\(\vv_1\)</span> by <span class="process-math">\(\ww_1\)</span> without changing the span. This will involve chasing some linear combinations, and remember that we need to check both inclusions to prove set equality. (This step requires us to have assumed that the scalar <span class="process-math">\(a_1\)</span> is nonzero. Do you see why?)</p>
+<p id="p-299">Next, we similarly replace <span class="process-math">\(\vv_2\)</span> with <span class="process-math">\(\ww_2\text{.}\)</span> Note that we can write</p>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/ex-independent-subset.html">
+\begin{equation*}
+\ww_2=a\ww_1+b_2\vv_2+\cdots + b_n\vv_n\text{,}
+\end{equation*}
+</div>
+<p class="continuation">and at least one of the <span class="process-math">\(b_i\)</span> must be nonzero. (Why can't they all be zero? What does <a href="" class="xref" data-knowl="./knowl/ex-independent-subset.html" title="Exercise 1.5.7">Exercise 1.5.7</a> tell you about <span class="process-math">\(\{\ww_1,\ww_2\}\text{?}\)</span>)</p>
+<p id="p-300">If we assume that <span class="process-math">\(b_2\)</span> is one of the nonzero scalars, we can solve for <span class="process-math">\(\vv_2\)</span> in the equation above, and replace <span class="process-math">\(\vv_2\)</span> by <span class="process-math">\(\ww_2\)</span> in our spanning set. At this point, you will have successfully argued that <span class="process-math">\(V=\spn\{\ww_1,\ww_2,\vv_3,\ldots, \vv_n\}\text{.}\)</span></p>
+<p id="p-301">Now, we repeat the process. If <span class="process-math">\(m\leq n\text{,}\)</span> we eventually run out of <span class="process-math">\(\ww_i\)</span> vectors, and all is well. The question is, what goes wrong if <span class="process-math">\(m\gt n\text{?}\)</span> Then we run out of <span class="process-math">\(\vv_j\)</span> vectors first. We'll be able to write <span class="process-math">\(V=\spn\{\ww_1,\ldots, \ww_n\}\text{,}\)</span> and there will be some vectors <span class="process-math">\(\ww_{n+1},\ldots, \ww_m\)</span> leftover. Why is this a problem? (What assumption about the <span class="process-math">\(\ww_i\)</span> will we contradict?)</p></article></div>
+<p id="p-302">If a set of vectors spans a vector space <span class="process-math">\(V\text{,}\)</span> but it is not independent, we observed that it is possible to remove a vector from the set and still span <span class="process-math">\(V\)</span> using a smaller set. This suggests that spanning sets that are also linearly independent are of particular importance, and indeed, they are important enough to have a name.</p>
 <article class="definition definition-like" id="def-basis"><h3 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">1.6.2</span><span class="period">.</span>
 </h3>
-<p id="p-137">Let <span class="process-math">\(V\)</span> be a vector space. A set <span class="process-math">\(\mathcal{B}=\{\mathbf{e}_1,\ldots, \mathbf{e}_n\}\)</span> is called a <dfn class="terminology">basis</dfn> of <span class="process-math">\(V\)</span> if <span class="process-math">\(\mathcal{B}\)</span> is linearly independent, and <span class="process-math">\(\operatorname{span}\mathcal{B} = V\text{.}\)</span></p></article><p id="p-138">The importance of a basis is that vector vector <span class="process-math">\(\vv\in V\)</span> can be written in terms of the basis, and this expression as a linear combination of basis vectors is <em class="emphasis">unique</em>. Another important fact is that every basis has the same number of elements.</p>
+<p id="p-303">Let <span class="process-math">\(V\)</span> be a vector space. A set <span class="process-math">\(\mathcal{B}=\{\mathbf{e}_1,\ldots, \mathbf{e}_n\}\)</span> is called a <dfn class="terminology">basis</dfn> of <span class="process-math">\(V\)</span> if <span class="process-math">\(\mathcal{B}\)</span> is linearly independent, and <span class="process-math">\(\spn\mathcal{B} = V\text{.}\)</span></p></article><p id="p-304">The importance of a basis is that vector vector <span class="process-math">\(\vv\in V\)</span> can be written in terms of the basis, and this expression as a linear combination of basis vectors is <em class="emphasis">unique</em>. Another important fact is that every basis has the same number of elements.</p>
 <article class="theorem theorem-like" id="thm-invariance"><h3 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">1.6.3</span><span class="period">.</span><span class="space"> </span><span class="title">Invariance Theorem.</span>
 </h3>
-<p id="p-139">If <span class="process-math">\(\{\mathbf{e}_1,\ldots, \mathbf{e}_n\}\)</span> and <span class="process-math">\(\{\mathbf{f}_1,\ldots, \mathbf{f}_m\}\)</span> are both bases of a vector space <span class="process-math">\(V\text{,}\)</span> then <span class="process-math">\(m=n\text{.}\)</span></p></article><p id="p-140">Suppose <span class="process-math">\(V=\spn\{\vv_1,\ldots,\vv_n\}\text{.}\)</span> If this set is not linearly independent, <a href="" class="xref" data-knowl="./knowl/theorem-surplus-span.html" title="Theorem 1.3.6">Theorem 1.3.6</a> tells us that we can remove a vector from the set, and still span <span class="process-math">\(V\text{.}\)</span> We can repeat this procedure until we have a linearly independent set of vectors, which will then be a basis. These results let us make a definition.</p>
+<p id="p-305">If <span class="process-math">\(\{\mathbf{e}_1,\ldots, \mathbf{e}_n\}\)</span> and <span class="process-math">\(\{\mathbf{f}_1,\ldots, \mathbf{f}_m\}\)</span> are both bases of a vector space <span class="process-math">\(V\text{,}\)</span> then <span class="process-math">\(m=n\text{.}\)</span></p></article><p id="p-306">Suppose <span class="process-math">\(V=\spn\{\vv_1,\ldots,\vv_n\}\text{.}\)</span> If this set is not linearly independent, <a href="" class="xref" data-knowl="./knowl/theorem-surplus-span.html" title="Theorem 1.3.8">Theorem 1.3.8</a> tells us that we can remove a vector from the set, and still span <span class="process-math">\(V\text{.}\)</span> We can repeat this procedure until we have a linearly independent set of vectors, which will then be a basis. These results let us make a definition.</p>
 <article class="definition definition-like" id="def-dimension"><h3 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">1.6.4</span><span class="period">.</span>
 </h3>
-<p id="p-141">Let <span class="process-math">\(V\)</span> be a vector space. If <span class="process-math">\(V\)</span> can be spanned by a finite number of vectors, then we call <span class="process-math">\(V\)</span> a <dfn class="terminology">finite-dimensional</dfn> vector space. If <span class="process-math">\(V\)</span> is finite-dimensional (and non-trivial), and <span class="process-math">\(\{\mathbf{e}_1,\ldots, \mathbf{e}_n\}\)</span> is a basis of <span class="process-math">\(V\text{,}\)</span> we say that <span class="process-math">\(V\)</span> has <dfn class="terminology">dimension</dfn> <span class="process-math">\(n\text{,}\)</span> and write</p>
+<p id="p-307">Let <span class="process-math">\(V\)</span> be a vector space. If <span class="process-math">\(V\)</span> can be spanned by a finite number of vectors, then we call <span class="process-math">\(V\)</span> a <dfn class="terminology">finite-dimensional</dfn> vector space. If <span class="process-math">\(V\)</span> is finite-dimensional (and non-trivial), and <span class="process-math">\(\{\mathbf{e}_1,\ldots, \mathbf{e}_n\}\)</span> is a basis of <span class="process-math">\(V\text{,}\)</span> we say that <span class="process-math">\(V\)</span> has <dfn class="terminology">dimension</dfn> <span class="process-math">\(n\text{,}\)</span> and write</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 \dim V = n\text{.}
 \end{equation*}
 </div>
-<p class="continuation">If <span class="process-math">\(V\)</span> cannot be spanned by finitely many vectors, we say that <span class="process-math">\(V\)</span> is <dfn class="terminology">infinite-dimensional</dfn>.</p></article><article class="exercise exercise-like" id="exercise-13"><h3 class="heading">
+<p class="continuation">If <span class="process-math">\(V\)</span> cannot be spanned by finitely many vectors, we say that <span class="process-math">\(V\)</span> is <dfn class="terminology">infinite-dimensional</dfn>.</p></article><article class="exercise exercise-like" id="exercise-21"><h3 class="heading">
 <span class="type">Exercise</span><span class="space"> </span><span class="codenumber">1.6.5</span><span class="period">.</span>
 </h3>
-<p id="p-142">Find a basis for <span class="process-math">\(U=\{X\in M_{22} \,|\, XA = AX\}\text{,}\)</span> if <span class="process-math">\(A = \bbm 1\amp 1\\0\amp 0\ebm\)</span></p>
+<p id="p-308">Find a basis for <span class="process-math">\(U=\{X\in M_{22} \,|\, XA = AX\}\text{,}\)</span> if <span class="process-math">\(A = \bbm 1\amp 1\\0\amp 0\ebm\)</span></p>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-7" id="solution-7"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-7"><div class="solution solution-like">
-<p id="p-143">Let <span class="process-math">\(X=\bbm a\amp b\\c\amp d\ebm\text{.}\)</span> Then <span class="process-math">\(AX = \bbm a+c\amp b+d\\0\amp 0\ebm\text{,}\)</span> and <span class="process-math">\(XA = \bbm a\amp a\\c\amp c\ebm\text{,}\)</span> so the condition <span class="process-math">\(AX=XA\)</span> requires:</p>
-<div class="displaymath process-math" data-contains-math-knowls="" id="md-13">
+<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-22" id="solution-22"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-22"><div class="solution solution-like">
+<p id="p-309">Let <span class="process-math">\(X=\bbm a\amp b\\c\amp d\ebm\text{.}\)</span> Then <span class="process-math">\(AX = \bbm a+c\amp b+d\\0\amp 0\ebm\text{,}\)</span> and <span class="process-math">\(XA = \bbm a\amp a\\c\amp c\ebm\text{,}\)</span> so the condition <span class="process-math">\(AX=XA\)</span> requires:</p>
+<div class="displaymath process-math" data-contains-math-knowls="" id="md-20">
 \begin{align*}
 a+c \amp = a\\
 b+d \amp = a\\
@@ -243,7 +293,7 @@ b+d \amp = a\\
 0 \amp =c\text{.}
 \end{align*}
 </div>
-<p id="p-144">So <span class="process-math">\(c=0\text{,}\)</span> in which case the first equation <span class="process-math">\(a=a\)</span> is trivial, and we are left with the single equation <span class="process-math">\(a=b+d\text{.}\)</span> Thus, our matrix <span class="process-math">\(X\)</span> must be of the form</p>
+<p id="p-310">So <span class="process-math">\(c=0\text{,}\)</span> in which case the first equation <span class="process-math">\(a=a\)</span> is trivial, and we are left with the single equation <span class="process-math">\(a=b+d\text{.}\)</span> Thus, our matrix <span class="process-math">\(X\)</span> must be of the form</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 X = \bbm b+d \amp b\\0\amp d\ebm = b\bbm 1\amp 1\\0\amp 0\ebm + d\bbm 1\amp 0\\0\amp 1\ebm\text{.}
@@ -251,10 +301,10 @@ X = \bbm b+d \amp b\\0\amp d\ebm = b\bbm 1\amp 1\\0\amp 0\ebm + d\bbm 1\amp 0\\0
 </div>
 <p class="continuation">Since the matrices <span class="process-math">\(\bbm 1\amp 1\\0\amp 0\ebm\)</span> and <span class="process-math">\(\bbm 1\amp 0\\0\amp 1\ebm\)</span> are not scalar multiples, they must be independent, and therefore, they form a basis for <span class="process-math">\(U\text{.}\)</span></p>
 </div></div>
-</div></article><article class="example example-like" id="example-3"><h3 class="heading">
+</div></article><article class="example example-like" id="example-6"><h3 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">1.6.6</span><span class="period">.</span><span class="space"> </span><span class="title">Standard bases.</span>
 </h3>
-<p id="p-145">Most of the vector spaces we work with come equipped with a <em class="emphasis">standard basis</em>. The standard basis for a vector space is typically a basis such that the scalars needed to express a vector in terms of that basis are the same scalars used to define the vector in the first place. For example, we write an element of <span class="process-math">\(\R^3\)</span> as <span class="process-math">\((x,y,z)\)</span> (or <span class="process-math">\(\langle x,y,z\rangle\text{,}\)</span> or <span class="process-math">\(\begin{bmatrix}x\amp y\amp z\end{bmatrix}\text{,}\)</span> or <span class="process-math">\(\begin{bmatrix}x\\y\\z\end{bmatrix}\)</span>…). We can also write</p>
+<p id="p-311">Most of the vector spaces we work with come equipped with a <em class="emphasis">standard basis</em>. The standard basis for a vector space is typically a basis such that the scalars needed to express a vector in terms of that basis are the same scalars used to define the vector in the first place. For example, we write an element of <span class="process-math">\(\R^3\)</span> as <span class="process-math">\((x,y,z)\)</span> (or <span class="process-math">\(\langle x,y,z\rangle\text{,}\)</span> or <span class="process-math">\(\begin{bmatrix}x\amp y\amp z\end{bmatrix}\text{,}\)</span> or <span class="process-math">\(\begin{bmatrix}x\\y\\z\end{bmatrix}\)</span>…). We can also write</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 (x,y,z)=x(1,0,0)+y(0,1,0)+z(0,0,1)\text{.}
@@ -267,14 +317,14 @@ X = \bbm b+d \amp b\\0\amp d\ebm = b\bbm 1\amp 1\\0\amp 0\ebm + d\bbm 1\amp 0\\0
 \end{equation*}
 </div>
 <p class="continuation">From this, we can conclude (unsurprisingly) that <span class="process-math">\(\dim \R^n = n\text{.}\)</span></p>
-<p id="p-146">Similarly, a polynomial <span class="process-math">\(p(x)\in P_n(\R)\)</span> is usually written as</p>
+<p id="p-312">Similarly, a polynomial <span class="process-math">\(p(x)\in P_n(\R)\)</span> is usually written as</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 p(x) = a_0+a_1x+a_2x^2+\cdots + a_nx^n\text{,}
 \end{equation*}
 </div>
 <p class="continuation">suggesting the standard basis <span class="process-math">\(\{1,x,x^2,\ldots, x^n\}\text{.}\)</span> As a result, we see that <span class="process-math">\(\dim P_n(\R)=n+1\text{.}\)</span></p>
-<p id="p-147">For one more example, we note that a <span class="process-math">\(2\times 2\)</span> matrix <span class="process-math">\(A\in M_{22}(\R)\)</span> can be written as</p>
+<p id="p-313">For one more example, we note that a <span class="process-math">\(2\times 2\)</span> matrix <span class="process-math">\(A\in M_{22}(\R)\)</span> can be written as</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 \bbm a\amp b\\c\amp d\ebm = a\bbm 1\amp 0\\0\amp 0\ebm+b\bbm 0\amp 1\\0\amp 0\ebm +c\bbm 0\amp 0\\1\amp 0\ebm + d\bbm 0\amp 0\\0\amp 1\ebm\text{,}
@@ -282,51 +332,51 @@ p(x) = a_0+a_1x+a_2x^2+\cdots + a_nx^n\text{,}
 </div>
 <p class="continuation">which suggests a standard basis for <span class="process-math">\(M_{22}(\R)\text{,}\)</span> with similar results for any other matrix space. From this, we can conclude (exercise) that <span class="process-math">\(\dim M_{mn}(\R)=mn\text{.}\)</span></p>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-8" id="solution-8"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-8"><div class="solution solution-like"><p id="p-148"></p></div></div>
-</div></article><article class="exercise exercise-like" id="exercise-14"><h3 class="heading">
+<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-23" id="solution-23"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-23"><div class="solution solution-like"><p id="p-314"></p></div></div>
+</div></article><article class="exercise exercise-like" id="exercise-22"><h3 class="heading">
 <span class="type">Exercise</span><span class="space"> </span><span class="codenumber">1.6.7</span><span class="period">.</span>
 </h3>
-<div class="introduction" id="introduction-3"><p id="p-149">Show that the following sets are bases of <span class="process-math">\(\R^3\text{.}\)</span></p></div>
-<article class="task exercise-like" id="task-1"><h4 class="heading"><span class="codenumber">(a)</span></h4>
-<p id="p-150"><span class="process-math">\(\{(1,1,0),(1,0,1),(0,1,1)\}\)</span></p>
+<div class="introduction" id="introduction-8"><p id="p-315">Show that the following sets are bases of <span class="process-math">\(\R^3\text{.}\)</span></p></div>
+<article class="task exercise-like" id="task-21"><h4 class="heading"><span class="codenumber">(a)</span></h4>
+<p id="p-316"><span class="process-math">\(\{(1,1,0),(1,0,1),(0,1,1)\}\)</span></p>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-9" id="solution-9"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-9"><div class="solution solution-like">
-<p id="p-151">We need to show that the set is independent, and that it spans.</p>
-<p id="p-152">The set is independent if the equation</p>
+<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-24" id="solution-24"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-24"><div class="solution solution-like">
+<p id="p-317">We need to show that the set is independent, and that it spans.</p>
+<p id="p-318">The set is independent if the equation</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 x(1,1,0)+y(1,0,1)+z(0,1,1)=(0,0,0)
 \end{equation*}
 </div>
 <p class="continuation">has <span class="process-math">\(x=y=z=0\)</span> as its only solution. This equation is equivalent to the system</p>
-<div class="displaymath process-math" data-contains-math-knowls="" id="md-14">
+<div class="displaymath process-math" data-contains-math-knowls="" id="md-21">
 \begin{align*}
 x+y \amp =0\\
 x+z \amp =0\\
 y+z \amp =0\text{.}
 \end{align*}
 </div>
-<p id="p-153">We know that the solution to this system is unique if the coefficient matrix <span class="process-math">\(A = \bbm 1\amp 1\amp 0\\1\amp 0\amp 1\\0\amp 1\amp 1\ebm\)</span> is invertible. Note that the columns of this matrix are vectors in our set.</p>
-<p id="p-154">We can determine invertibility either by showing that the <abbr class="initialism">RREF</abbr> of <span class="process-math">\(A\)</span> is the identity, or by showing that the determinant of <span class="process-math">\(A\)</span> is nonzero. Either way, this is most easily done by the computer:</p>
+<p id="p-319">We know that the solution to this system is unique if the coefficient matrix <span class="process-math">\(A = \bbm 1\amp 1\amp 0\\1\amp 0\amp 1\\0\amp 1\amp 1\ebm\)</span> is invertible. Note that the columns of this matrix are vectors in our set.</p>
+<p id="p-320">We can determine invertibility either by showing that the <abbr class="initialism">RREF</abbr> of <span class="process-math">\(A\)</span> is the identity, or by showing that the determinant of <span class="process-math">\(A\)</span> is nonzero. Either way, this is most easily done by the computer:</p>
 <pre class="ptx-sagecell hidden-sagecell-sage" id="sage-19"><script type="text/x-sage">from sympy import Matrix,init_printing
 init_printing()
 A = Matrix([[1,1,0],[1,0,1],[0,1,1]])
 A.rref(), A.det()
 </script></pre>
-<p id="p-155">Our set of vectors is therefore linearly independent. Now, to show that it spans, we need to show that for any vector <span class="process-math">\((a,b,c)\text{,}\)</span> the equation</p>
+<p id="p-321">Our set of vectors is therefore linearly independent. Now, to show that it spans, we need to show that for any vector <span class="process-math">\((a,b,c)\text{,}\)</span> the equation</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 x(1,1,0)+y(1,0,1)+z(0,1,1)=(a,b,c)
 \end{equation*}
 </div>
 <p class="continuation">has a solution. But we know that this system has the same coefficient matrix as the one above, and that existence of a solution again follows from invertibility of <span class="process-math">\(A\text{,}\)</span> which we have already established.</p>
-<p id="p-156">Note that for three vectors in <span class="process-math">\(\R^3\text{,}\)</span> once independence has been confirmed, span is automatic. We will soon see that this is not a coincidence.</p>
+<p id="p-322">Note that for three vectors in <span class="process-math">\(\R^3\text{,}\)</span> once independence has been confirmed, span is automatic. We will soon see that this is not a coincidence.</p>
 </div></div>
-</div></article><article class="task exercise-like" id="task-2"><h4 class="heading"><span class="codenumber">(b)</span></h4>
-<p id="p-157"><span class="process-math">\(\{(-1,1,1),(1,-1,1),(1,1,-1)\}\)</span></p>
+</div></article><article class="task exercise-like" id="task-22"><h4 class="heading"><span class="codenumber">(b)</span></h4>
+<p id="p-323"><span class="process-math">\(\{(-1,1,1),(1,-1,1),(1,1,-1)\}\)</span></p>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-10" id="solution-10"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-10"><div class="solution solution-like">
-<p id="p-158">Based on what we learned from the first set, determining whether or not this set is a basis is equivalent to determining whether or not the matrix <span class="process-math">\(A\)</span> whose columns consist of the vectors in the set is invertible. We form the matrix</p>
+<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-25" id="solution-25"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-25"><div class="solution solution-like">
+<p id="p-324">Based on what we learned from the first set, determining whether or not this set is a basis is equivalent to determining whether or not the matrix <span class="process-math">\(A\)</span> whose columns consist of the vectors in the set is invertible. We form the matrix</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 A = \bbm -1\amp 1\amp 1\\1\amp -1\amp 1\\1\amp 1\amp -1\ebm
@@ -336,56 +386,56 @@ A = \bbm -1\amp 1\amp 1\\1\amp -1\amp 1\\1\amp 1\amp -1\ebm
 <pre class="ptx-sagecell hidden-sagecell-sage" id="sage-20"><script type="text/x-sage">A = Matrix([[-1,1,1],[1,-1,1],[1,1,-1]])
 A.det()
 </script></pre>
-<p id="p-159">Since the determinant is nonzero, our set is a basis.</p>
+<p id="p-325">Since the determinant is nonzero, our set is a basis.</p>
 </div></div>
-</div></article></article><p id="p-160">The next two exercises are left to the reader to solve. In each case, your goal should be to turn the questions of independence and span into a system of equations, which you can then solve using the computer.</p>
-<article class="exercise exercise-like" id="exercise-15"><h3 class="heading">
+</div></article></article><p id="p-326">The next two exercises are left to the reader to solve. In each case, your goal should be to turn the questions of independence and span into a system of equations, which you can then solve using the computer.</p>
+<article class="exercise exercise-like" id="exercise-23"><h3 class="heading">
 <span class="type">Exercise</span><span class="space"> </span><span class="codenumber">1.6.8</span><span class="period">.</span>
 </h3>
-<p id="p-161">Show that the following is a basis of <span class="process-math">\(M_{22}\text{:}\)</span></p>
+<p id="p-327">Show that the following is a basis of <span class="process-math">\(M_{22}\text{:}\)</span></p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 \left\{\bbm 1\amp 0\\0\amp 1\ebm, \bbm 0\amp 1\\1\amp 0\ebm, \bbm 1\amp 1\\0\amp 1\ebm, \bbm 1\amp 0\\0\amp 0\ebm\right\}\text{.}
 \end{equation*}
 </div></article><pre class="ptx-sagecell sagecell-sage" id="sage-21"><script type="text/x-sage"></script></pre>
-<article class="exercise exercise-like" id="exercise-16"><h3 class="heading">
+<article class="exercise exercise-like" id="exercise-24"><h3 class="heading">
 <span class="type">Exercise</span><span class="space"> </span><span class="codenumber">1.6.9</span><span class="period">.</span>
 </h3>
-<p id="p-162">Show that <span class="process-math">\(\{1+x,x+x^2,x^2+x^3,x^3\}\)</span> is a basis for <span class="process-math">\(P_3\text{.}\)</span></p></article><pre class="ptx-sagecell sagecell-sage" id="sage-22"><script type="text/x-sage"></script></pre>
-<article class="exercise exercise-like" id="exercise-17"><h3 class="heading">
+<p id="p-328">Show that <span class="process-math">\(\{1+x,x+x^2,x^2+x^3,x^3\}\)</span> is a basis for <span class="process-math">\(P_3\text{.}\)</span></p></article><pre class="ptx-sagecell sagecell-sage" id="sage-22"><script type="text/x-sage"></script></pre>
+<article class="exercise exercise-like" id="exercise-25"><h3 class="heading">
 <span class="type">Exercise</span><span class="space"> </span><span class="codenumber">1.6.10</span><span class="period">.</span>
 </h3>
-<p id="p-163">Find a basis and dimension for the following subspaces of <span class="process-math">\(P_2\text{:}\)</span></p>
+<p id="p-329">Find a basis and dimension for the following subspaces of <span class="process-math">\(P_2\text{:}\)</span></p>
 <ol class="lower-alpha">
-<li id="li-35"><p id="p-derived-li-35"><span class="process-math">\(\displaystyle U_1 = \{a(1+x)+b(x+x^2)\,|\, a,b\in\R\}\)</span></p></li>
-<li id="li-36"><p id="p-derived-li-36"><span class="process-math">\(\displaystyle U_2=\{p(x)\in P_2 \,|\, p(1)=0\}\)</span></p></li>
-<li id="li-37"><p id="p-derived-li-37"><span class="process-math">\(\displaystyle U_3 = \{p(x)\in P_2 \,|\, p(x)=p(-x)\}\)</span></p></li>
+<li id="li-54"><p id="p-derived-li-54"><span class="process-math">\(\displaystyle U_1 = \{a(1+x)+b(x+x^2)\,|\, a,b\in\R\}\)</span></p></li>
+<li id="li-55"><p id="p-derived-li-55"><span class="process-math">\(\displaystyle U_2=\{p(x)\in P_2 \,|\, p(1)=0\}\)</span></p></li>
+<li id="li-56"><p id="p-derived-li-56"><span class="process-math">\(\displaystyle U_3 = \{p(x)\in P_2 \,|\, p(x)=p(-x)\}\)</span></p></li>
 </ol>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-11" id="solution-11"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-11"><div class="solution solution-like"><ol id="p-164" class="lower-alpha">
-<li id="li-38"><p id="p-165">By definition, <span class="process-math">\(U_1 = \spn \{1+x,x+x^2\}\text{,}\)</span> and these vectors are independent, since neither is a scalar multiple of the other. Since there are two vectors in this basis, <span class="process-math">\(\dim U_1 = 2\text{.}\)</span></p></li>
-<li id="li-39">
-<p id="p-166">If <span class="process-math">\(p(1)=0\text{,}\)</span> then <span class="process-math">\(p(x)=(x-1)q(x)\)</span> for some polynomial <span class="process-math">\(q\text{.}\)</span> Since <span class="process-math">\(U_2\)</span> is a subspace of <span class="process-math">\(P_2\text{,}\)</span> the degree of <span class="process-math">\(q\)</span> is at most 2. Therefore, <span class="process-math">\(q(x)=ax+b\)</span> for some <span class="process-math">\(a,b\in\R\text{,}\)</span> and</p>
+<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-26" id="solution-26"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-26"><div class="solution solution-like"><ol id="p-330" class="lower-alpha">
+<li id="li-57"><p id="p-331">By definition, <span class="process-math">\(U_1 = \spn \{1+x,x+x^2\}\text{,}\)</span> and these vectors are independent, since neither is a scalar multiple of the other. Since there are two vectors in this basis, <span class="process-math">\(\dim U_1 = 2\text{.}\)</span></p></li>
+<li id="li-58">
+<p id="p-332">If <span class="process-math">\(p(1)=0\text{,}\)</span> then <span class="process-math">\(p(x)=(x-1)q(x)\)</span> for some polynomial <span class="process-math">\(q\text{.}\)</span> Since <span class="process-math">\(U_2\)</span> is a subspace of <span class="process-math">\(P_2\text{,}\)</span> the degree of <span class="process-math">\(q\)</span> is at most 2. Therefore, <span class="process-math">\(q(x)=ax+b\)</span> for some <span class="process-math">\(a,b\in\R\text{,}\)</span> and</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 p(x) = (x-1)(ax+b) = a(x^2-x)+b(x-1)\text{.}
 \end{equation*}
 </div>
 <p class="continuation">Since <span class="process-math">\(p\)</span> was arbitrary, this shows that <span class="process-math">\(U_2 = \spn\{x^2-x,x-1\}\text{.}\)</span></p>
-<p id="p-167">The set <span class="process-math">\(\{x^2-x,x-1\}\)</span> is also independent, since neither vector is a scalar multiple of the other. Therefore, this set is a basis, and <span class="process-math">\(\dim U_2=2\text{.}\)</span></p>
+<p id="p-333">The set <span class="process-math">\(\{x^2-x,x-1\}\)</span> is also independent, since neither vector is a scalar multiple of the other. Therefore, this set is a basis, and <span class="process-math">\(\dim U_2=2\text{.}\)</span></p>
 </li>
-<li id="li-40">
-<p id="p-168">If <span class="process-math">\(p(x)=p(-x)\text{,}\)</span> then <span class="process-math">\(p(x)\)</span> is an even polynomial, and therefore <span class="process-math">\(p(x)=a+bx^2\)</span> for <span class="process-math">\(a,b\in\R\text{.}\)</span> (If you didn't know this it's easily verified: if</p>
+<li id="li-59">
+<p id="p-334">If <span class="process-math">\(p(x)=p(-x)\text{,}\)</span> then <span class="process-math">\(p(x)\)</span> is an even polynomial, and therefore <span class="process-math">\(p(x)=a+bx^2\)</span> for <span class="process-math">\(a,b\in\R\text{.}\)</span> (If you didn't know this it's easily verified: if</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 a+bx+cx^2 = a+b(-x)+c(-x)^2\text{,}
 \end{equation*}
 </div>
 <p class="continuation">we can immediately cancel <span class="process-math">\(a\)</span> from each side, and since <span class="process-math">\((-x)^2=x^2\text{,}\)</span> we can cancel <span class="process-math">\(cx^2\)</span> as well. This leaves <span class="process-math">\(bx=-bx\text{,}\)</span> or <span class="process-math">\(2bx=0\text{,}\)</span> which implies that <span class="process-math">\(b=0\text{.}\)</span>)</p>
-<p id="p-169">It follows that the set <span class="process-math">\(\{1,x^2\}\)</span> spans <span class="process-math">\(U_3\text{,}\)</span> and since this is a subset of the standard basis <span class="process-math">\(\{1,x,x^2\}\)</span> of <span class="process-math">\(P_2\text{,}\)</span> it must be independent, and is therefore a basis of <span class="process-math">\(U_3\text{,}\)</span> letting us conclude that <span class="process-math">\(\dim U_3=2\text{.}\)</span></p>
+<p id="p-335">It follows that the set <span class="process-math">\(\{1,x^2\}\)</span> spans <span class="process-math">\(U_3\text{,}\)</span> and since this is a subset of the standard basis <span class="process-math">\(\{1,x,x^2\}\)</span> of <span class="process-math">\(P_2\text{,}\)</span> it must be independent, and is therefore a basis of <span class="process-math">\(U_3\text{,}\)</span> letting us conclude that <span class="process-math">\(\dim U_3=2\text{.}\)</span></p>
 </li>
 </ol></div></div>
-</div></article><p id="p-170">We've noted a few times now that if <span class="process-math">\(\ww\in\spn\{\vv_1,\ldots, \vv_n\}\text{,}\)</span> then</p>
+</div></article><p id="p-336">We've noted a few times now that if <span class="process-math">\(\ww\in\spn\{\vv_1,\ldots, \vv_n\}\text{,}\)</span> then</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 \spn\{\ww,\vv_1,\ldots, \vv_n\}=\spn\{\vv_1,\ldots, \vv_n\}
@@ -395,7 +445,7 @@ a+bx+cx^2 = a+b(-x)+c(-x)^2\text{,}
 <article class="lemma theorem-like" id="lemma-independent"><h3 class="heading">
 <span class="type">Lemma</span><span class="space"> </span><span class="codenumber">1.6.11</span><span class="period">.</span><span class="space"> </span><span class="title">Independent Lemma.</span>
 </h3>
-<p id="p-171">Suppose <span class="process-math">\(\{\vv_1,\ldots, \vv_n\}\)</span> is a linearly independent set of vectors in a vector space <span class="process-math">\(V\text{.}\)</span> If <span class="process-math">\(\uu\in V\)</span> but <span class="process-math">\(\uu\notin \spn\{\vv_1,\ldots, \vv_n\}\text{,}\)</span> then <span class="process-math">\(\{\uu,\vv_1,\ldots, \vv_n\}\)</span> is independent.</p></article><article class="hiddenproof" id="proof-4"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-4"><h3 class="heading"><span class="type">Proof<span class="period">.</span></span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-4"><article class="hiddenproof"><p id="p-172">Suppose <span class="process-math">\(S=\{\vv_1,\ldots, \vv_n\}\)</span> is independent, and that <span class="process-math">\(\uu\notin\spn S\text{.}\)</span> Suppose we have</p>
+<p id="p-337">Suppose <span class="process-math">\(\{\vv_1,\ldots, \vv_n\}\)</span> is a linearly independent set of vectors in a vector space <span class="process-math">\(V\text{.}\)</span> If <span class="process-math">\(\uu\in V\)</span> but <span class="process-math">\(\uu\notin \spn\{\vv_1,\ldots, \vv_n\}\text{,}\)</span> then <span class="process-math">\(\{\uu,\vv_1,\ldots, \vv_n\}\)</span> is independent.</p></article><article class="hiddenproof" id="proof-10"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-10"><h3 class="heading"><span class="type">Proof<span class="period">.</span></span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-10"><article class="hiddenproof"><p id="p-338">Suppose <span class="process-math">\(S=\{\vv_1,\ldots, \vv_n\}\)</span> is independent, and that <span class="process-math">\(\uu\notin\spn S\text{.}\)</span> Suppose we have</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 a\uu+c_1\vv_1+c_2\vv_2+\cdots +c_n\mathbf{b}_n=\mathbf{0}
@@ -408,43 +458,43 @@ a\uu+c_1\vv_1+c_2\vv_2+\cdots +c_n\mathbf{b}_n=\mathbf{0}
 \end{equation*}
 </div>
 <p class="continuation">but this would mean that <span class="process-math">\(\uu\in \spn S\text{,}\)</span> contradicting our assumption.</p>
-<p id="p-173">With <span class="process-math">\(a=0\)</span> we're left with</p>
+<p id="p-339">With <span class="process-math">\(a=0\)</span> we're left with</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 c_1\vv_1+c_2\vv_2+\cdots +c_n\mathbf{b}_n=\mathbf{0}\text{,}
 \end{equation*}
 </div>
 <p class="continuation">and since we assumed that the set <span class="process-math">\(S\)</span> is independent, we must have <span class="process-math">\(c_1=c_2=\cdots=c_n=0\text{.}\)</span> Since we already showed <span class="process-math">\(a=0\text{,}\)</span> this shows that <span class="process-math">\(\{\uu,\vv_1,\ldots, \vv_n\}\)</span> is independent.</p></article></div>
-<p id="p-174">This is, in fact, an “if and only if” result. If <span class="process-math">\(\uu\in\spn\{\vv_1,\ldots, \vv_n\}\text{,}\)</span> then <span class="process-math">\(\{\uu,\vv_1,\ldots, \vv_n\}\)</span> is not independent. Above, we argued that if <span class="process-math">\(V\)</span> is finite dimensional, then any spanning set for <span class="process-math">\(V\)</span> can be reduced to a basis. It probably won't surprise you that the following is also true.</p>
+<p id="p-340">This is, in fact, an “if and only if” result. If <span class="process-math">\(\uu\in\spn\{\vv_1,\ldots, \vv_n\}\text{,}\)</span> then <span class="process-math">\(\{\uu,\vv_1,\ldots, \vv_n\}\)</span> is not independent. Above, we argued that if <span class="process-math">\(V\)</span> is finite dimensional, then any spanning set for <span class="process-math">\(V\)</span> can be reduced to a basis. It probably won't surprise you that the following is also true.</p>
 <article class="lemma theorem-like" id="lem-enlarge-independent"><h3 class="heading">
 <span class="type">Lemma</span><span class="space"> </span><span class="codenumber">1.6.12</span><span class="period">.</span>
 </h3>
-<p id="p-175">Let <span class="process-math">\(V\)</span> be a finite-dimensional vector space, and let <span class="process-math">\(U\)</span> be any subspace of <span class="process-math">\(V\text{.}\)</span> Then any independent set of vectors <span class="process-math">\(\{\uu_1,\ldots, \uu_k\}\)</span> in <span class="process-math">\(U\)</span> can be enlarged to a basis of <span class="process-math">\(U\text{.}\)</span></p></article><article class="hiddenproof" id="proof-5"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-5"><h3 class="heading"><span class="type">Proof<span class="period">.</span></span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-5"><article class="hiddenproof"><p id="p-176">This follows from <a href="" class="xref" data-knowl="./knowl/lemma-independent.html" title="Lemma 1.6.11: Independent Lemma">Lemma 1.6.11</a>. If our independent set of vectors spans <span class="process-math">\(U\text{,}\)</span> then it's a basis and we're done. If not, we can find some vector not in the span, and add it to our set to obtain a larger set that is still independent. We can continue adding vectors in this fashion until we obtain a spanning set.</p>
-<p id="p-177">Note that this process <em class="emphasis">must</em> terminate: <span class="process-math">\(V\)</span> is finite-dimensional, so there is a finite spanning set for <span class="process-math">\(V\text{,}\)</span> and therefore for <span class="process-math">\(U\text{.}\)</span> By the Steinitz Exchange lemma, our independent set cannot get larger than this spanning set.</p></article></div>
+<p id="p-341">Let <span class="process-math">\(V\)</span> be a finite-dimensional vector space, and let <span class="process-math">\(U\)</span> be any subspace of <span class="process-math">\(V\text{.}\)</span> Then any independent set of vectors <span class="process-math">\(\{\uu_1,\ldots, \uu_k\}\)</span> in <span class="process-math">\(U\)</span> can be enlarged to a basis of <span class="process-math">\(U\text{.}\)</span></p></article><article class="hiddenproof" id="proof-11"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-11"><h3 class="heading"><span class="type">Proof<span class="period">.</span></span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-11"><article class="hiddenproof"><p id="p-342">This follows from <a href="" class="xref" data-knowl="./knowl/lemma-independent.html" title="Lemma 1.6.11: Independent Lemma">Lemma 1.6.11</a>. If our independent set of vectors spans <span class="process-math">\(U\text{,}\)</span> then it's a basis and we're done. If not, we can find some vector not in the span, and add it to our set to obtain a larger set that is still independent. We can continue adding vectors in this fashion until we obtain a spanning set.</p>
+<p id="p-343">Note that this process <em class="emphasis">must</em> terminate: <span class="process-math">\(V\)</span> is finite-dimensional, so there is a finite spanning set for <span class="process-math">\(V\text{,}\)</span> and therefore for <span class="process-math">\(U\text{.}\)</span> By the Steinitz Exchange lemma, our independent set cannot get larger than this spanning set.</p></article></div>
 <article class="theorem theorem-like" id="thm-basis-exist"><h3 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">1.6.13</span><span class="period">.</span>
 </h3>
-<p id="p-178">Any finite-dimensional vector space <span class="process-math">\(V\)</span> has a basis. Moreover:</p>
+<p id="p-344">Any finite-dimensional vector space <span class="process-math">\(V\)</span> has a basis. Moreover:</p>
 <ol class="decimal">
-<li id="li-41"><p id="p-179">If <span class="process-math">\(V\)</span> can be spanned by <span class="process-math">\(m\)</span> vectors, then <span class="process-math">\(\dim V\leq m\text{.}\)</span></p></li>
-<li id="li-42"><p id="p-180">Given an independent set <span class="process-math">\(I\)</span> in <span class="process-math">\(V\text{,}\)</span> and a basis <span class="process-math">\(\mathcal{B}\)</span> of <span class="process-math">\(V\text{,}\)</span> we can enlarge <span class="process-math">\(I\)</span> to a basis of <span class="process-math">\(V\)</span> by adding elements of <span class="process-math">\(\mathcal{B}\text{.}\)</span></p></li>
+<li id="li-60"><p id="p-345">If <span class="process-math">\(V\)</span> can be spanned by <span class="process-math">\(m\)</span> vectors, then <span class="process-math">\(\dim V\leq m\text{.}\)</span></p></li>
+<li id="li-61"><p id="p-346">Given an independent set <span class="process-math">\(I\)</span> in <span class="process-math">\(V\text{,}\)</span> and a basis <span class="process-math">\(\mathcal{B}\)</span> of <span class="process-math">\(V\text{,}\)</span> we can enlarge <span class="process-math">\(I\)</span> to a basis of <span class="process-math">\(V\)</span> by adding elements of <span class="process-math">\(\mathcal{B}\text{.}\)</span></p></li>
 </ol>
-<p id="p-181">If <span class="process-math">\(U\)</span> is a subspace of <span class="process-math">\(V\text{,}\)</span> then:</p>
+<p id="p-347">If <span class="process-math">\(U\)</span> is a subspace of <span class="process-math">\(V\text{,}\)</span> then:</p>
 <ol class="decimal">
-<li id="li-43"><p id="p-182"><span class="process-math">\(U\)</span> is finite-dimensional, and <span class="process-math">\(\dim U\leq \dim V\text{.}\)</span></p></li>
-<li id="li-44"><p id="p-183">If <span class="process-math">\(\dim U = \dim V\text{,}\)</span> then <span class="process-math">\(U=V\text{.}\)</span></p></li>
-</ol></article><article class="exercise exercise-like" id="exercise-18"><h3 class="heading">
+<li id="li-62"><p id="p-348"><span class="process-math">\(U\)</span> is finite-dimensional, and <span class="process-math">\(\dim U\leq \dim V\text{.}\)</span></p></li>
+<li id="li-63"><p id="p-349">If <span class="process-math">\(\dim U = \dim V\text{,}\)</span> then <span class="process-math">\(U=V\text{.}\)</span></p></li>
+</ol></article><article class="exercise exercise-like" id="exercise-26"><h3 class="heading">
 <span class="type">Exercise</span><span class="space"> </span><span class="codenumber">1.6.14</span><span class="period">.</span>
 </h3>
-<p id="p-184">Find a basis of <span class="process-math">\(M_{22}(\R)\)</span> that contains the vectors</p>
+<p id="p-350">Find a basis of <span class="process-math">\(M_{22}(\R)\)</span> that contains the vectors</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 \vv=\bbm 1\amp 1\\0\amp 0\ebm, \ww=\bbm 0\amp 1\\0\amp 1\ebm\text{.}
 \end{equation*}
 </div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-12" id="solution-12"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-12"><div class="solution solution-like">
-<p id="p-185">By the previous theorem, we can form a basis by adding vectors from the standard basis</p>
+<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-27" id="solution-27"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-27"><div class="solution solution-like">
+<p id="p-351">By the previous theorem, we can form a basis by adding vectors from the standard basis</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 \left\{\bbm 1\amp 0\\0\amp 0\ebm, \bbm 0\amp 1\\0\amp 0\ebm, \bbm 0\amp 0\\1\amp 0\ebm, \bbm 0\amp 0\\0\amp 1\ebm\right\}\text{.}
@@ -452,83 +502,91 @@ c_1\vv_1+c_2\vv_2+\cdots +c_n\mathbf{b}_n=\mathbf{0}\text{,}
 </div>
 <p class="continuation">It's easy to check that <span class="process-math">\(\bbm 1\amp 0\\0\amp 0\ebm\)</span> is not in the span of <span class="process-math">\(\{\vv,\ww\}\text{.}\)</span> To get a basis, we need one more vector. Observe that all three of our vectors so far have a zero in the <span class="process-math">\((2,1)\)</span>-entry. Thus, <span class="process-math">\(\bbm 0\amp 0\\1\amp 0\ebm\)</span> cannot be in the span of the first three vectors, and adding it gives us our basis.</p>
 </div></div>
-</div></article><article class="exercise exercise-like" id="exercise-19"><h3 class="heading">
+</div></article><article class="exercise exercise-like" id="exercise-27"><h3 class="heading">
 <span class="type">Exercise</span><span class="space"> </span><span class="codenumber">1.6.15</span><span class="period">.</span>
 </h3>
-<p id="p-186">Extend the set <span class="process-math">\(\{1+x,x+x^2,x-x^3\}\)</span> to a basis of <span class="process-math">\(P_3(\R)\text{.}\)</span></p>
+<p id="p-352">Extend the set <span class="process-math">\(\{1+x,x+x^2,x-x^3\}\)</span> to a basis of <span class="process-math">\(P_3(\R)\text{.}\)</span></p>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-13" id="solution-13"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-13"><div class="solution solution-like"><p id="p-187">Again, we only need to add one vector from the standard basis <span class="process-math">\(\{1,x,x^2,x^3\}\text{,}\)</span> and it's not too hard to check that any of them will do.</p></div></div>
-</div></article><article class="exercise exercise-like" id="exercise-20"><h3 class="heading">
+<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-28" id="solution-28"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-28"><div class="solution solution-like"><p id="p-353">Again, we only need to add one vector from the standard basis <span class="process-math">\(\{1,x,x^2,x^3\}\text{,}\)</span> and it's not too hard to check that any of them will do.</p></div></div>
+</div></article><article class="exercise exercise-like" id="exercise-28"><h3 class="heading">
 <span class="type">Exercise</span><span class="space"> </span><span class="codenumber">1.6.16</span><span class="period">.</span>
 </h3>
-<p id="p-188">Give two examples of infinite-dimensional vector spaces. Support your answer.</p></article><p id="p-189">Let's recap our results so far:</p>
+<p id="p-354">Give two examples of infinite-dimensional vector spaces. Support your answer.</p></article><article class="exercise exercise-like" id="exercise-29"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">1.6.17</span><span class="period">.</span>
+</h3>
+<div class="introduction" id="introduction-9"><p id="p-355">Determine whether the following statements are true or false.</p></div>
+<article class="task exercise-like" id="task-23"><h4 class="heading"><span class="codenumber">(a)</span></h4>
+<p id="p-356">A set of 2 vectors can span <span class="process-math">\(\R^3\text{.}\)</span></p></article><article class="task exercise-like" id="task-24"><h4 class="heading"><span class="codenumber">(b)</span></h4>
+<p id="p-358">It is possible for a set of 2 vectors to be linearly independent in <span class="process-math">\(\R^3\text{.}\)</span></p></article><article class="task exercise-like" id="task-25"><h4 class="heading"><span class="codenumber">(c)</span></h4>
+<p id="p-360">A set of 4 vectors can span <span class="process-math">\(\R^3\text{.}\)</span></p></article><article class="task exercise-like" id="task-26"><h4 class="heading"><span class="codenumber">(d)</span></h4>
+<p id="p-362">It is possible for a set of 4 vectors to be linearly independent in <span class="process-math">\(\R^3\text{.}\)</span></p></article></article><p id="p-364">Let's recap our results so far:</p>
 <ul class="disc">
-<li id="li-45"><p id="p-190">A basis for a vector space <span class="process-math">\(V\)</span> is an independent set of vectors that spans <span class="process-math">\(V\text{.}\)</span></p></li>
-<li id="li-46"><p id="p-191">The number of vectors in any basis of <span class="process-math">\(V\)</span> is a constant, called the dimension of <span class="process-math">\(V\text{.}\)</span></p></li>
-<li id="li-47"><p id="p-192">The number of vectors in any independent set is always less than or equal to the number of vectors in a spanning set.</p></li>
-<li id="li-48"><p id="p-193">In a finite-dimensional vector space, any independent set can be enlarged to a basis, and any spanning set can be cut down to a basis by deleting vectors that are in the span of the remaining vectors.</p></li>
+<li id="li-64"><p id="p-365">A basis for a vector space <span class="process-math">\(V\)</span> is an independent set of vectors that spans <span class="process-math">\(V\text{.}\)</span></p></li>
+<li id="li-65"><p id="p-366">The number of vectors in any basis of <span class="process-math">\(V\)</span> is a constant, called the dimension of <span class="process-math">\(V\text{.}\)</span></p></li>
+<li id="li-66"><p id="p-367">The number of vectors in any independent set is always less than or equal to the number of vectors in a spanning set.</p></li>
+<li id="li-67"><p id="p-368">In a finite-dimensional vector space, any independent set can be enlarged to a basis, and any spanning set can be cut down to a basis by deleting vectors that are in the span of the remaining vectors.</p></li>
 </ul>
 <p class="continuation">Another important aspect of dimension is that it reduces many problems, such as determining equality of subspaces, to counting problems.</p>
 <article class="theorem theorem-like" id="thm-subspace-dim"><h3 class="heading">
-<span class="type">Theorem</span><span class="space"> </span><span class="codenumber">1.6.17</span><span class="period">.</span>
-</h3>
-<p id="p-194">Let <span class="process-math">\(U\)</span> and <span class="process-math">\(W\)</span> be subspaces of a finite-dimensional vector space <span class="process-math">\(V\text{.}\)</span></p>
-<ol class="decimal">
-<li id="li-49"><p id="p-195">If <span class="process-math">\(U\subseteq W\text{,}\)</span> then <span class="process-math">\(\dim U\leq \dim W\text{.}\)</span></p></li>
-<li id="li-50"><p id="p-196">If <span class="process-math">\(U\subseteq W\)</span> and <span class="process-math">\(\dim U=\dim W\text{,}\)</span> then <span class="process-math">\(U=W\text{.}\)</span></p></li>
-</ol></article><article class="hiddenproof" id="proof-6"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-6"><h3 class="heading"><span class="type">Proof<span class="period">.</span></span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-6"><article class="hiddenproof"><ol id="p-197" class="decimal">
-<li id="li-51"><p id="p-198">Suppose <span class="process-math">\(U\subseteq W\text{,}\)</span> and let <span class="process-math">\(B=\{\uu_1,\ldots, \uu_k\}\)</span> be a basis for <span class="process-math">\(U\text{.}\)</span> Since <span class="process-math">\(B\)</span> is a basis, it's independent. And since <span class="process-math">\(B\subseteq U\)</span> and <span class="process-math">\(U\subseteq W\text{,}\)</span> <span class="process-math">\(B\subseteq W\text{.}\)</span> Thus, <span class="process-math">\(B\)</span> is an independent subset of <span class="process-math">\(W\text{,}\)</span> and since any basis of <span class="process-math">\(W\)</span> spans <span class="process-math">\(W\text{,}\)</span> we know that <span class="process-math">\(\dim U = k \leq \dim W\text{,}\)</span> by <a href="" class="xref" data-knowl="./knowl/theorem-steinitz.html" title="Theorem 1.6.1: Fundamental Theorem (Steinitz Exchange Lemma)">Theorem 1.6.1</a>.</p></li>
-<li id="li-52"><p id="p-199">Suppose <span class="process-math">\(U\subseteq W\)</span> and <span class="process-math">\(\dim U = \dim W\text{.}\)</span> Let <span class="process-math">\(B\)</span> be a basis for <span class="process-math">\(U\text{.}\)</span> As above, <span class="process-math">\(B\)</span> is an independent subset of <span class="process-math">\(W\text{.}\)</span> If <span class="process-math">\(W\neq U\text{,}\)</span> then there is some <span class="process-math">\(\ww\in W\)</span> with <span class="process-math">\(\ww\notin U\text{.}\)</span> But <span class="process-math">\(U=\spn B\text{,}\)</span> so that would mean that <span class="process-math">\(B\cup \{\ww\}\)</span> is a linearly independent set containing <span class="process-math">\(\dim U+1\)</span> vectors. This is impossible, since <span class="process-math">\(\dim W=\dim U\text{,}\)</span> so no independent set can contain more than <span class="process-math">\(\dim U\)</span> vectors.</p></li>
-</ol></article></div>
-<p id="p-200">An even more useful counting result is the following:</p>
-<article class="theorem theorem-like" id="thm-half-the-work"><h3 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">1.6.18</span><span class="period">.</span>
 </h3>
-<p id="p-201">Let <span class="process-math">\(V\)</span> be an <span class="process-math">\(n\)</span>-dimensional vector space. If the set <span class="process-math">\(S\)</span> contains <span class="process-math">\(n\)</span> vectors, then <span class="process-math">\(S\)</span> is independent if and only if <span class="process-math">\(\spn S=V\text{.}\)</span></p></article><article class="hiddenproof" id="proof-7"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-7"><h3 class="heading"><span class="type">Proof<span class="period">.</span></span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-7"><article class="hiddenproof"><p id="p-202">If <span class="process-math">\(S\)</span> is independent, then it can be extended to a basis <span class="process-math">\(B\)</span> with <span class="process-math">\(S\subseteq B\text{.}\)</span> But <span class="process-math">\(S\)</span> and <span class="process-math">\(B\)</span> both contain <span class="process-math">\(n\)</span> vectors (since <span class="process-math">\(\dim V=n\)</span>), so we must have <span class="process-math">\(S=B\text{.}\)</span></p>
-<p id="p-203">If <span class="process-math">\(S\)</span> spans <span class="process-math">\(V\text{,}\)</span> then <span class="process-math">\(S\)</span> must contain a basis <span class="process-math">\(B\text{,}\)</span> and as above, since <span class="process-math">\(S\)</span> and <span class="process-math">\(B\)</span> contain the same number of vectors, they must be equal.</p></article></div>
+<p id="p-369">Let <span class="process-math">\(U\)</span> and <span class="process-math">\(W\)</span> be subspaces of a finite-dimensional vector space <span class="process-math">\(V\text{.}\)</span></p>
+<ol class="decimal">
+<li id="li-68"><p id="p-370">If <span class="process-math">\(U\subseteq W\text{,}\)</span> then <span class="process-math">\(\dim U\leq \dim W\text{.}\)</span></p></li>
+<li id="li-69"><p id="p-371">If <span class="process-math">\(U\subseteq W\)</span> and <span class="process-math">\(\dim U=\dim W\text{,}\)</span> then <span class="process-math">\(U=W\text{.}\)</span></p></li>
+</ol></article><article class="hiddenproof" id="proof-12"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-12"><h3 class="heading"><span class="type">Proof<span class="period">.</span></span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-12"><article class="hiddenproof"><ol id="p-372" class="decimal">
+<li id="li-70"><p id="p-373">Suppose <span class="process-math">\(U\subseteq W\text{,}\)</span> and let <span class="process-math">\(B=\{\uu_1,\ldots, \uu_k\}\)</span> be a basis for <span class="process-math">\(U\text{.}\)</span> Since <span class="process-math">\(B\)</span> is a basis, it's independent. And since <span class="process-math">\(B\subseteq U\)</span> and <span class="process-math">\(U\subseteq W\text{,}\)</span> <span class="process-math">\(B\subseteq W\text{.}\)</span> Thus, <span class="process-math">\(B\)</span> is an independent subset of <span class="process-math">\(W\text{,}\)</span> and since any basis of <span class="process-math">\(W\)</span> spans <span class="process-math">\(W\text{,}\)</span> we know that <span class="process-math">\(\dim U = k \leq \dim W\text{,}\)</span> by <a href="" class="xref" data-knowl="./knowl/theorem-steinitz.html" title="Theorem 1.6.1: Fundamental Theorem (Steinitz Exchange Lemma)">Theorem 1.6.1</a>.</p></li>
+<li id="li-71"><p id="p-374">Suppose <span class="process-math">\(U\subseteq W\)</span> and <span class="process-math">\(\dim U = \dim W\text{.}\)</span> Let <span class="process-math">\(B\)</span> be a basis for <span class="process-math">\(U\text{.}\)</span> As above, <span class="process-math">\(B\)</span> is an independent subset of <span class="process-math">\(W\text{.}\)</span> If <span class="process-math">\(W\neq U\text{,}\)</span> then there is some <span class="process-math">\(\ww\in W\)</span> with <span class="process-math">\(\ww\notin U\text{.}\)</span> But <span class="process-math">\(U=\spn B\text{,}\)</span> so that would mean that <span class="process-math">\(B\cup \{\ww\}\)</span> is a linearly independent set containing <span class="process-math">\(\dim U+1\)</span> vectors. This is impossible, since <span class="process-math">\(\dim W=\dim U\text{,}\)</span> so no independent set can contain more than <span class="process-math">\(\dim U\)</span> vectors.</p></li>
+</ol></article></div>
+<p id="p-375">An even more useful counting result is the following:</p>
+<article class="theorem theorem-like" id="thm-half-the-work"><h3 class="heading">
+<span class="type">Theorem</span><span class="space"> </span><span class="codenumber">1.6.19</span><span class="period">.</span>
+</h3>
+<p id="p-376">Let <span class="process-math">\(V\)</span> be an <span class="process-math">\(n\)</span>-dimensional vector space. If the set <span class="process-math">\(S\)</span> contains <span class="process-math">\(n\)</span> vectors, then <span class="process-math">\(S\)</span> is independent if and only if <span class="process-math">\(\spn S=V\text{.}\)</span></p></article><article class="hiddenproof" id="proof-13"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-13"><h3 class="heading"><span class="type">Proof<span class="period">.</span></span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-13"><article class="hiddenproof"><p id="p-377">If <span class="process-math">\(S\)</span> is independent, then it can be extended to a basis <span class="process-math">\(B\)</span> with <span class="process-math">\(S\subseteq B\text{.}\)</span> But <span class="process-math">\(S\)</span> and <span class="process-math">\(B\)</span> both contain <span class="process-math">\(n\)</span> vectors (since <span class="process-math">\(\dim V=n\)</span>), so we must have <span class="process-math">\(S=B\text{.}\)</span></p>
+<p id="p-378">If <span class="process-math">\(S\)</span> spans <span class="process-math">\(V\text{,}\)</span> then <span class="process-math">\(S\)</span> must contain a basis <span class="process-math">\(B\text{,}\)</span> and as above, since <span class="process-math">\(S\)</span> and <span class="process-math">\(B\)</span> contain the same number of vectors, they must be equal.</p></article></div>
 <section class="paragraphs" id="pars-subspace-combine"><h3 class="heading"><span class="title">New subspaces from old.</span></h3>
-<p id="p-204">On your first assignment, you showed that if <span class="process-math">\(U\)</span> and <span class="process-math">\(W\)</span> are subspaces of a vector space <span class="process-math">\(V\text{,}\)</span> then the intersection <span class="process-math">\(U\cap W\)</span> is also a subspace of <span class="process-math">\(V\text{.}\)</span> You also showed that the union <span class="process-math">\(U\cup W\)</span> is generally not a subspace, unless one subspace is contained in the other (in which case the union is just the larger of the two subspaces we already have).</p>
-<p id="p-205">In class, we discussed the fact that the right way to define a subspace containing both <span class="process-math">\(U\)</span> and <span class="process-math">\(W\)</span> is using their <dfn class="terminology">sum</dfn>: we define the sum <span class="process-math">\(U+W\)</span> of two subspaces by</p>
+<p id="p-379">On your first assignment, you showed that if <span class="process-math">\(U\)</span> and <span class="process-math">\(W\)</span> are subspaces of a vector space <span class="process-math">\(V\text{,}\)</span> then the intersection <span class="process-math">\(U\cap W\)</span> is also a subspace of <span class="process-math">\(V\text{.}\)</span> You also showed that the union <span class="process-math">\(U\cup W\)</span> is generally not a subspace, unless one subspace is contained in the other (in which case the union is just the larger of the two subspaces we already have).</p>
+<p id="p-380">In class, we discussed the fact that the right way to define a subspace containing both <span class="process-math">\(U\)</span> and <span class="process-math">\(W\)</span> is using their <dfn class="terminology">sum</dfn>: we define the sum <span class="process-math">\(U+W\)</span> of two subspaces by</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 U+W = \{\uu+\ww \,|\, \uu\in U \text{ and } \ww\in W\}\text{.}
 \end{equation*}
 </div>
 <p class="continuation">We proved that <span class="process-math">\(U+W\)</span> is again a subspace of <span class="process-math">\(V\text{.}\)</span></p>
-<p id="p-206">If <span class="process-math">\(U\cap W = \{\mathbf{0}\}\text{,}\)</span> we say that the sum is a <dfn class="terminology">direct sum</dfn>, and write it as <span class="process-math">\(U\oplus W\text{.}\)</span> The following theorem might help us understand why direct sums are singled out for special attention:</p>
+<p id="p-381">If <span class="process-math">\(U\cap W = \{\mathbf{0}\}\text{,}\)</span> we say that the sum is a <dfn class="terminology">direct sum</dfn>, and write it as <span class="process-math">\(U\oplus W\text{.}\)</span> The following theorem might help us understand why direct sums are singled out for special attention:</p>
 <article class="theorem theorem-like" id="thm-sum-dimension"><h4 class="heading">
-<span class="type">Theorem</span><span class="space"> </span><span class="codenumber">1.6.19</span><span class="period">.</span>
+<span class="type">Theorem</span><span class="space"> </span><span class="codenumber">1.6.20</span><span class="period">.</span>
 </h4>
-<p id="p-207">Let <span class="process-math">\(U\)</span> and <span class="process-math">\(W\)</span> be subspaces of a finite-dimensional vector space <span class="process-math">\(V\text{.}\)</span> Then <span class="process-math">\(U+W\)</span> is finite-dimensional, and</p>
+<p id="p-382">Let <span class="process-math">\(U\)</span> and <span class="process-math">\(W\)</span> be subspaces of a finite-dimensional vector space <span class="process-math">\(V\text{.}\)</span> Then <span class="process-math">\(U+W\)</span> is finite-dimensional, and</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 \dim(U+W)=\dim U + \dim W - \dim(U\cap W)\text{.}
 \end{equation*}
-</div></article><p id="p-208">If the sum is direct, then we have simply <span class="process-math">\(\dim(U\oplus W) = \dim U + \dim W\text{.}\)</span> The other reason why direct sums are preferable, is that any <span class="process-math">\(\vv\in U\oplus W\)</span> can be written <em class="emphasis">uniquely</em> as <span class="process-math">\(\vv=\uu+\ww\)</span> where <span class="process-math">\(\uu\in U\)</span> and <span class="process-math">\(\ww\in W\text{.}\)</span></p>
+</div></article><p id="p-383">If the sum is direct, then we have simply <span class="process-math">\(\dim(U\oplus W) = \dim U + \dim W\text{.}\)</span> The other reason why direct sums are preferable, is that any <span class="process-math">\(\vv\in U\oplus W\)</span> can be written <em class="emphasis">uniquely</em> as <span class="process-math">\(\vv=\uu+\ww\)</span> where <span class="process-math">\(\uu\in U\)</span> and <span class="process-math">\(\ww\in W\text{.}\)</span></p>
 <article class="theorem theorem-like" id="thm-direct-sum"><h4 class="heading">
-<span class="type">Theorem</span><span class="space"> </span><span class="codenumber">1.6.20</span><span class="period">.</span>
+<span class="type">Theorem</span><span class="space"> </span><span class="codenumber">1.6.21</span><span class="period">.</span>
 </h4>
-<p id="p-209">For any subspaces <span class="process-math">\(U,W\)</span> of a vector space <span class="process-math">\(V\text{,}\)</span> <span class="process-math">\(U\cap W = \{\mathbf{0}\}\)</span> if and only if for every <span class="process-math">\(\vv\in U+W\)</span> there exist unique <span class="process-math">\(\uu\in U, \ww\in W\)</span> such that <span class="process-math">\(\vv=\uu+\ww\text{.}\)</span></p></article><article class="hiddenproof" id="proof-8"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-8"><h4 class="heading"><span class="type">Proof<span class="period">.</span></span></h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-8"><article class="hiddenproof"><p id="p-210">Suppose that <span class="process-math">\(U\cap W = \{\mathbf{0}\}\text{,}\)</span> and suppose that we have <span class="process-math">\(\vv = \uu_1+\ww_1 = \uu_2+\ww_2\text{,}\)</span> for <span class="process-math">\(\uu_1,\uu_2\in U,\ww_1,\ww_2\in W\text{.}\)</span> Then <span class="process-math">\(\mathbf{0}=(\uu_1-\uu_2)+(\ww_1-\ww_2)\text{,}\)</span> which implies that</p>
+<p id="p-384">For any subspaces <span class="process-math">\(U,W\)</span> of a vector space <span class="process-math">\(V\text{,}\)</span> <span class="process-math">\(U\cap W = \{\mathbf{0}\}\)</span> if and only if for every <span class="process-math">\(\vv\in U+W\)</span> there exist unique <span class="process-math">\(\uu\in U, \ww\in W\)</span> such that <span class="process-math">\(\vv=\uu+\ww\text{.}\)</span></p></article><article class="hiddenproof" id="proof-14"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-14"><h4 class="heading"><span class="type">Proof<span class="period">.</span></span></h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-14"><article class="hiddenproof"><p id="p-385">Suppose that <span class="process-math">\(U\cap W = \{\mathbf{0}\}\text{,}\)</span> and suppose that we have <span class="process-math">\(\vv = \uu_1+\ww_1 = \uu_2+\ww_2\text{,}\)</span> for <span class="process-math">\(\uu_1,\uu_2\in U,\ww_1,\ww_2\in W\text{.}\)</span> Then <span class="process-math">\(\mathbf{0}=(\uu_1-\uu_2)+(\ww_1-\ww_2)\text{,}\)</span> which implies that</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 \ww_1-\ww_2 = -(\uu_1-\uu_2)\text{.}
 \end{equation*}
 </div>
 <p class="continuation">Now, <span class="process-math">\(\uu=\uu_1-\uu_2\in U\text{,}\)</span> since <span class="process-math">\(U\)</span> is a subspace, and similarly, <span class="process-math">\(\ww=\ww_1-\ww_2\in W\text{.}\)</span> But we also have <span class="process-math">\(\ww=-\uu\text{,}\)</span> which implies that <span class="process-math">\(\ww\in U\text{.}\)</span> Therefore, <span class="process-math">\(\ww\in U\cap W\text{,}\)</span> which implies that <span class="process-math">\(\ww=\mathbf{0}\text{,}\)</span> so <span class="process-math">\(\ww_1=\ww_2\text{.}\)</span> But we must also then have <span class="process-math">\(\uu=\mathbf{0}\text{,}\)</span> so <span class="process-math">\(\uu_1=\uu_2\text{.}\)</span></p>
-<p id="p-211">Conversely, suppose that every <span class="process-math">\(\vv\in U+W\)</span> can be written uniquely as <span class="process-math">\(\vv=\vec{u}+\ww\text{,}\)</span> with <span class="process-math">\(\uu\in U\)</span> and <span class="process-math">\(\ww\in W\text{.}\)</span> Suppose that <span class="process-math">\(\mathbf{a}\in U\cap W\text{.}\)</span> Then <span class="process-math">\(\mathbf{a}\in U\)</span> and <span class="process-math">\(\mathbf{a}\in W\text{,}\)</span> so we also have <span class="process-math">\(-\mathbf{a}\in W\text{,}\)</span> since <span class="process-math">\(W\)</span> is a subspace. But then <span class="process-math">\(\mathbf{0}=\mathbf{a}+(-\mathbf{a})\text{,}\)</span> where <span class="process-math">\(\mathbf{a}\in U\)</span> and <span class="process-math">\(-\mathbf{a}\in W\text{.}\)</span> On the other hand, <span class="process-math">\(\mathbf{0}=\mathbf{0}+\mathbf{0}\text{,}\)</span> and <span class="process-math">\(\mathbf{0}\)</span> belongs to both <span class="process-math">\(U\)</span> and <span class="process-math">\(W\text{.}\)</span> It follows that <span class="process-math">\(\mathbf{a}=\mathbf{0}\text{.}\)</span> Since <span class="process-math">\(\mathbf{a}\)</span> was arbitrary, <span class="process-math">\(U\cap W = \{\mathbf{0}\}\text{.}\)</span></p></article></div>
-<p id="p-212">We end with one last application of the theory we've developed on the existence of a basis for a finite-dimensional vector space. As we continue on to later topics, we'll find that it is often useful to be able to decompose a vector space into a direct sum of subspaces. Using bases, we can show that this is always possible.</p>
+<p id="p-386">Conversely, suppose that every <span class="process-math">\(\vv\in U+W\)</span> can be written uniquely as <span class="process-math">\(\vv=\vec{u}+\ww\text{,}\)</span> with <span class="process-math">\(\uu\in U\)</span> and <span class="process-math">\(\ww\in W\text{.}\)</span> Suppose that <span class="process-math">\(\mathbf{a}\in U\cap W\text{.}\)</span> Then <span class="process-math">\(\mathbf{a}\in U\)</span> and <span class="process-math">\(\mathbf{a}\in W\text{,}\)</span> so we also have <span class="process-math">\(-\mathbf{a}\in W\text{,}\)</span> since <span class="process-math">\(W\)</span> is a subspace. But then <span class="process-math">\(\mathbf{0}=\mathbf{a}+(-\mathbf{a})\text{,}\)</span> where <span class="process-math">\(\mathbf{a}\in U\)</span> and <span class="process-math">\(-\mathbf{a}\in W\text{.}\)</span> On the other hand, <span class="process-math">\(\mathbf{0}=\mathbf{0}+\mathbf{0}\text{,}\)</span> and <span class="process-math">\(\mathbf{0}\)</span> belongs to both <span class="process-math">\(U\)</span> and <span class="process-math">\(W\text{.}\)</span> It follows that <span class="process-math">\(\mathbf{a}=\mathbf{0}\text{.}\)</span> Since <span class="process-math">\(\mathbf{a}\)</span> was arbitrary, <span class="process-math">\(U\cap W = \{\mathbf{0}\}\text{.}\)</span></p></article></div>
+<p id="p-387">We end with one last application of the theory we've developed on the existence of a basis for a finite-dimensional vector space. As we continue on to later topics, we'll find that it is often useful to be able to decompose a vector space into a direct sum of subspaces. Using bases, we can show that this is always possible.</p>
 <article class="theorem theorem-like" id="thm-construct-complement"><h4 class="heading">
-<span class="type">Theorem</span><span class="space"> </span><span class="codenumber">1.6.21</span><span class="period">.</span>
+<span class="type">Theorem</span><span class="space"> </span><span class="codenumber">1.6.22</span><span class="period">.</span>
 </h4>
-<p id="p-213">Let <span class="process-math">\(V\)</span> be a finite-dimensional vector space, and let <span class="process-math">\(U\)</span> be any subspace of <span class="process-math">\(V\text{.}\)</span> Then there exists a subspace <span class="process-math">\(W\subseteq V\)</span> such that <span class="process-math">\(U\oplus W = V\text{.}\)</span></p></article><article class="hiddenproof" id="proof-9"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-9"><h4 class="heading"><span class="type">Proof<span class="period">.</span></span></h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-9"><article class="hiddenproof"><p id="p-214">Let <span class="process-math">\(\{\uu_1,\ldots, \uu_m\}\)</span> be a basis of <span class="process-math">\(U\text{.}\)</span> Since <span class="process-math">\(U\subseteq V\text{,}\)</span> the set <span class="process-math">\(\{\uu_1,\ldots, \uu_m\}\)</span> is a linearly independent subset of <span class="process-math">\(V\text{.}\)</span> Since any linearly independent set can be extended to a basis of <span class="process-math">\(V\text{,}\)</span> there exist vectors <span class="process-math">\(\ww_1,\ldots,\ww_n\)</span> such that</p>
+<p id="p-388">Let <span class="process-math">\(V\)</span> be a finite-dimensional vector space, and let <span class="process-math">\(U\)</span> be any subspace of <span class="process-math">\(V\text{.}\)</span> Then there exists a subspace <span class="process-math">\(W\subseteq V\)</span> such that <span class="process-math">\(U\oplus W = V\text{.}\)</span></p></article><article class="hiddenproof" id="proof-15"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-15"><h4 class="heading"><span class="type">Proof<span class="period">.</span></span></h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-15"><article class="hiddenproof"><p id="p-389">Let <span class="process-math">\(\{\uu_1,\ldots, \uu_m\}\)</span> be a basis of <span class="process-math">\(U\text{.}\)</span> Since <span class="process-math">\(U\subseteq V\text{,}\)</span> the set <span class="process-math">\(\{\uu_1,\ldots, \uu_m\}\)</span> is a linearly independent subset of <span class="process-math">\(V\text{.}\)</span> Since any linearly independent set can be extended to a basis of <span class="process-math">\(V\text{,}\)</span> there exist vectors <span class="process-math">\(\ww_1,\ldots,\ww_n\)</span> such that</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 \{\uu_1,\ldots, \uu_m,\ww_1,\ldots, \ww_n\}
 \end{equation*}
 </div>
 <p class="continuation">is a basis of <span class="process-math">\(V\text{.}\)</span></p>
-<p id="p-215">Now, let <span class="process-math">\(W = \spn\{\ww_1,\ldots, \ww_n\}\text{.}\)</span> Then <span class="process-math">\(W\)</span> is a subspace, and <span class="process-math">\(\{\ww_1,\ldots, \ww_n\}\)</span> is a basis for <span class="process-math">\(W\text{.}\)</span> (It spans, and must be independent since it's a subset of an independent set.)</p>
-<p id="p-216">Clearly, <span class="process-math">\(U+W=V\text{,}\)</span> since <span class="process-math">\(U+W\)</span> contains the basis for <span class="process-math">\(V\)</span> we've constructed. To show the sum is direct, it suffices to show that <span class="process-math">\(U\cap W = \{\mathbf{0}\}\text{.}\)</span> To that end, suppose that <span class="process-math">\(\vv\in U\cap W\text{.}\)</span> Since <span class="process-math">\(\vv\in U\text{,}\)</span> we have</p>
+<p id="p-390">Now, let <span class="process-math">\(W = \spn\{\ww_1,\ldots, \ww_n\}\text{.}\)</span> Then <span class="process-math">\(W\)</span> is a subspace, and <span class="process-math">\(\{\ww_1,\ldots, \ww_n\}\)</span> is a basis for <span class="process-math">\(W\text{.}\)</span> (It spans, and must be independent since it's a subset of an independent set.)</p>
+<p id="p-391">Clearly, <span class="process-math">\(U+W=V\text{,}\)</span> since <span class="process-math">\(U+W\)</span> contains the basis for <span class="process-math">\(V\)</span> we've constructed. To show the sum is direct, it suffices to show that <span class="process-math">\(U\cap W = \{\mathbf{0}\}\text{.}\)</span> To that end, suppose that <span class="process-math">\(\vv\in U\cap W\text{.}\)</span> Since <span class="process-math">\(\vv\in U\text{,}\)</span> we have</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 \vv=a_1\uu_1+\cdots +a_m\uu_m
@@ -547,7 +605,7 @@ U+W = \{\uu+\ww \,|\, \uu\in U \text{ and } \ww\in W\}\text{.}
 \end{equation*}
 </div>
 <p class="continuation">Since <span class="process-math">\(\{\uu_1,\ldots, \uu_m,\ww_1,\ldots, \ww_n\}\)</span> is a basis for <span class="process-math">\(V\text{,}\)</span> it's independent, and therefore, all of the <span class="process-math">\(a_i,b_j\)</span> must be zero, and therefore, <span class="process-math">\(\vv=\mathbf{0}\text{.}\)</span></p></article></div>
-<p id="p-217">The subspace <span class="process-math">\(W\)</span> constructed in the theorem above is called a <dfn class="terminology">complement</dfn> of <span class="process-math">\(U\text{.}\)</span> It is not unique; indeed, it depends on the choice of basis vectors. For example, if <span class="process-math">\(U\)</span> is a one-dimensional subspace of <span class="process-math">\(\R^2\text{;}\)</span> that is, a line, then any other non-parallel line through the origin provides a complement of <span class="process-math">\(U\text{.}\)</span> Later we will see that an especially useful choice of complement is the <dfn class="terminology">orthogonal complement</dfn>.</p></section></section></div></main>
+<p id="p-392">The subspace <span class="process-math">\(W\)</span> constructed in the theorem above is called a <dfn class="terminology">complement</dfn> of <span class="process-math">\(U\text{.}\)</span> It is not unique; indeed, it depends on the choice of basis vectors. For example, if <span class="process-math">\(U\)</span> is a one-dimensional subspace of <span class="process-math">\(\R^2\text{;}\)</span> that is, a line, then any other non-parallel line through the origin provides a complement of <span class="process-math">\(U\text{.}\)</span> Later we will see that an especially useful choice of complement is the <dfn class="terminology">orthogonal complement</dfn>.</p></section></section></div></main>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script>
 </body>

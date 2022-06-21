@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-05-04T13:27:13-06:00       *-->
+<!--*       on 2022-06-20T21:40:06-06:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -14,20 +14,25 @@
 <meta name="robots" content="noindex, nofollow">
 </head>
 <body class="ignore-math">
-<h4 class="heading"><span class="type">Paragraph</span></h4>
-<p>Again, since <span class="process-math">\(T(\mathbf{0})=\mathbf{0}\text{,}\)</span> we see that <span class="process-math">\(\mathbf{0}\in \im T\text{,}\)</span> so <span class="process-math">\(\im T\)</span> is nonempty. If <span class="process-math">\(\ww_1,\ww_2\in \im T\text{,}\)</span> then there exist <span class="process-math">\(\vv_1,\vv_2\in V\)</span> such that <span class="process-math">\(T(\vv_1)=\ww_1\)</span> and <span class="process-math">\(T(\vv_2)=\ww_2\text{.}\)</span> It follows that</p>
+<h3 class="heading"><span class="type">Paragraph</span></h3>
+<p>Computationally, questions about linear independence are just questions about homogeneous systems of linear equations. For example, suppose we want to know if the vectors</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
-\ww_1+\ww_2 = T(\vv_1)+T(\vv_2) = T(\vv_1+\vv_2)\text{,}
+\uu=\bbm 1\\-1\\4\ebm, \vv=\bbm 0\\2\\-3\ebm, \ww=\bbm 4\\0\\-3\ebm
 \end{equation*}
 </div>
-<p class="continuation">so <span class="process-math">\(\ww_1+\ww_2\in \im T\text{.}\)</span> Similarly, if <span class="process-math">\(c\)</span> is any scalar and <span class="process-math">\(\ww=T(\vv)\in\im T\text{,}\)</span> then</p>
+<p class="continuation">are linearly independent in <span class="process-math">\(\mathbb{R}^3\text{.}\)</span> This question leads to the vector equation</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
-c\ww=cT(\vv)=T(c\vv)\text{,}
+x\uu+y\vv+z\ww=\mathbf{0}\text{,}
 \end{equation*}
 </div>
-<p class="continuation">so <span class="process-math">\(c\ww\in \im T\text{.}\)</span></p>
-<span class="incontext"><a href="sec-kernel-image.html#p-275" class="internal">in-context</a></span>
+<p class="continuation">which becomes the matrix equation</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\bbm 1\amp0\amp4\\-1\amp2\amp0\\4\amp-3\amp-3\ebm\bbm x\\y\\z\ebm = \bbm 0\\0\\0\ebm\text{.}
+\end{equation*}
+</div>
+<span class="incontext"><a href="sec-independence.html#p-275" class="internal">in-context</a></span>
 </body>
 </html>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-05-04T13:26:58-06:00       *-->
+<!--*       on 2022-06-20T21:40:02-06:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -15,7 +15,7 @@
 <meta name="Keywords" content="Authored in PreTeXt">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta property="og:type" content="book">
-<meta property="book:title" content="Lecture Notes for Math 3410, with Computational Examples">
+<meta property="book:title" content="Linear Algebra">
 <meta property="book:author" content="Sean Fitzpatrick">
 <script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>window.MathJax = {
   tex: {
@@ -70,7 +70,38 @@ sagecell.makeSagecell({inputLocation: 'pre.sagecell-sage',
 <link href="https://pretextbook.org/css/0.4/style_default.css" rel="stylesheet" type="text/css">
 <link href="https://pretextbook.org/css/0.4/colors_default.css" rel="stylesheet" type="text/css">
 <link href="https://pretextbook.org/css/0.4/setcolors.css" rel="stylesheet" type="text/css">
-<!-- 2019-10-12: Temporary - CSS file for experiments with styling --><link href="developer.css" rel="stylesheet" type="text/css">
+<!--** eBookCongig is necessary to configure interactive       **-->
+<!--** Runestone components to run locally in reader's browser **-->
+<!--** No external communication:                              **-->
+<!--**     log level is 0, Runestone Services are disabled     **-->
+<script type="text/javascript">
+eBookConfig = {};
+eBookConfig.useRunestoneServices = false;
+eBookConfig.host = 'http://127.0.0.1:8000';
+eBookConfig.course = 'PTX Course: Title Here';
+eBookConfig.basecourse = 'PTX Base Course';
+eBookConfig.isLoggedIn = false;
+eBookConfig.email = '';
+eBookConfig.isInstructor = false;
+eBookConfig.logLevel = 0;
+eBookConfig.username = '';
+eBookConfig.readings = null;
+eBookConfig.activities = null;
+eBookConfig.downloadsEnabled = false;
+eBookConfig.allow_pairs = false;
+eBookConfig.enableScratchAC = false;
+eBookConfig.build_info = "";
+eBookConfig.python3 = null;
+eBookConfig.acDefaultLanguage = 'python';
+eBookConfig.runestone_version = '5.0.1';
+eBookConfig.jobehost = '';
+eBookConfig.proxyuri_runs = '';
+eBookConfig.proxyuri_files = '';
+eBookConfig.enable_chatcodes =  false;
+</script>
+<!--*** Runestone Services ***-->
+<script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.2.1/runtime.b0f8547c48f16a9f.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.2.1/637.d54be67956c5c660.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.2.1/runestone.0e9550fe42760516.bundle.js"></script><link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/6.2.1/637.fafafbd97df8a0d1.css">
+<link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/6.2.1/runestone.e4d5592da655219f.css">
 </head>
 <body class="pretext-book ignore-math has-toc has-sidebar-left">
 <a class="assistive" href="#content">Skip to main content</a><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\spn}{\operatorname{span}}
@@ -107,10 +138,12 @@ sagecell.makeSagecell({inputLocation: 'pre.sagecell-sage',
 \newcommand{\lt}{&lt;}
 \newcommand{\gt}{&gt;}
 \newcommand{\amp}{&amp;}
+\definecolor{fillinmathshade}{gray}{0.9}
+\newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
 \)</span></div>
 <header id="masthead" class="smallbuttons"><div class="banner"><div class="container">
 <a id="logo-link" href=""></a><div class="title-container">
-<h1 class="heading"><a href="linear-algebra.html"><span class="title">Lecture Notes for Math 3410, with Computational Examples</span></a></h1>
+<h1 class="heading"><a href="linear-algebra.html"><span class="title">Linear Algebra:</span> <span class="subtitle">A second course, featuring proofs and Python</span></a></h1>
 <p class="byline">Sean Fitzpatrick</p>
 </div>
 </div></div>
@@ -206,34 +239,54 @@ true);
 <main class="main"><div id="content" class="pretext-content"><section class="section" id="sec-independence"><h2 class="heading hide-type">
 <span class="type">Section</span> <span class="codenumber">1.5</span> <span class="title">Linear Independence</span>
 </h2>
-<p id="p-111">In any vector space <span class="process-math">\(V\text{,}\)</span> we say that a set of vectors</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-\{\vv_1,\ldots,\vv_k\}
-\end{equation*}
-</div>
-<p class="continuation">is <dfn class="terminology">linearly independent</dfn> if for any scalars <span class="process-math">\(c_1,\ldots, c_k\)</span></p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-c_1\vv_1+\cdots + c_k\vv_k = \mathbf{0} \quad\Rightarrow\quad c_1=\cdots = c_k=0\text{.}
-\end{equation*}
-</div>
-<p id="p-112">This means that no vector in the set can be written as a linear combination of the other vectors in that set. We will soon see that when looking for vectors that span a subspace, it is especially useful to find a spanning set that is also linearly independent. The following lemma establishes some basic properties of independent sets.</p>
-<article class="lemma theorem-like" id="lemma-1"><h3 class="heading">
-<span class="type">Lemma</span><span class="space"> </span><span class="codenumber">1.5.1</span><span class="period">.</span>
+<p id="p-257">Recall that in <a href="" class="xref" data-knowl="./knowl/ex-subspace-lines-and-planes.html" title="Example 1.2.4">Example 1.2.4</a>, we had to take care to insist that the vectors spanning our plane were not parallel. Otherwise, what we thought was a plane would, in fact, be only a line. Similarly, we said that a line is given by the set of all vectors of the form <span class="process-math">\(t\vv\text{,}\)</span> where <span class="process-math">\(t\)</span> is a scalar, and <span class="process-math">\(\vv\)</span> <em class="emphasis">is not the zero vector</em>. Otherwise, if <span class="process-math">\(\vv=\zer\text{,}\)</span> we would have <span class="process-math">\(t\vv=\zer\)</span> for all <span class="process-math">\(t\in\R\text{,}\)</span> and our “line” would be the trivial subspace.</p>
+<p id="p-258">When we define a subspace as the span of a set of vectors, we want to have an idea of the size (or perhaps complexity) of the subspace. Certainly the number of vectors we use to generate the span gives a measure of this, but it is not the whole story: we also need to know how many of these vectors “depend” on other vectors in the generating set. As <a href="" class="xref" data-knowl="./knowl/theorem-surplus-span.html" title="Theorem 1.3.8">Theorem 1.3.8</a> tells us, when one of the vectors in our generating set can be written as a linear combination of the others, we can remove it as a generator without changing the span.</p>
+<p id="p-259">Given a set of vectors <span class="process-math">\(S=\{\vv_1,\vv_2,\ldots, \vv_k\}\text{,}\)</span> an important question is therefore: can any of these vectors be written as a linear combination of other vectors in the set? If the answer is no, we say that <span class="process-math">\(S\)</span> is <dfn class="terminology">linearly independent</dfn>. This is a difficult condition to check, however: first, we would have to show that <span class="process-math">\(\vv_1\)</span> cannot be written as a linear combination of <span class="process-math">\(\vv_2,\ldots, \vv_k\text{.}\)</span> Then, that <span class="process-math">\(\vv_2\)</span> cannot be written in terms of <span class="process-math">\(\vv_1,\vv_3,\ldots, \vv_k\text{,}\)</span> and so on.</p>
+<p id="p-260">This could amount to solving <span class="process-math">\(k\)</span> different systems of equations in <span class="process-math">\(k-1\)</span> variables! But the systems are not all unrelated. The equation <span class="process-math">\(\vv_1=c_2\vv_2+\cdots+c_k\vv_k\)</span> can be rewritten as <span class="process-math">\(c_1\vv_1-c_2\vv_2-\cdots -c_k\vv_k=\zer\text{,}\)</span> where we happen to have set <span class="process-math">\(c_1=1\text{.}\)</span></p>
+<p id="p-261">In fact, we can do the same thing for each of these systems, and in each case we end up with the same thing: a single <em class="emphasis">homogeneous</em> system with one extra variable. (We get back each of the systems we started with by setting one of the variables equal to <span class="process-math">\(1\text{.}\)</span>) This not only is far more efficient, it changes the question: it is no longer a question of <em class="emphasis">existence</em> of solutions to a collection of non-homogeneous systems, but a question of <em class="emphasis">uniqueness</em> for the solution of a single homogeneous system.</p>
+<article class="definition definition-like" id="def-independent"><h3 class="heading">
+<span class="type">Definition</span><span class="space"> </span><span class="codenumber">1.5.1</span><span class="period">.</span>
 </h3>
-<p id="p-113">In any vector space <span class="process-math">\(V\text{:}\)</span></p>
+<p id="p-262">Let <span class="process-math">\(\{\vv_1,\ldots,\vv_k\}\)</span> be a set of vectors in a vector space <span class="process-math">\(V\text{.}\)</span> We say that this set is <dfn class="terminology">linearly independent</dfn> if, for scalars <span class="process-math">\(c_1,\ldots, c_k\text{,}\)</span> the equation</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+c_1\vv_1+\cdots + c_k\vv_k = \mathbf{0}
+\end{equation*}
+</div>
+<p class="continuation">implies that <span class="process-math">\(c_1=0, c_2=0,\ldots, c_k=0\text{.}\)</span></p></article><article class="exercise exercise-like" id="exercise-16"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">1.5.2</span><span class="period">.</span>
+</h3>
+<div class="runestone "><ul data-component="multiplechoice" data-multipleanswers="false" id="">
+<p id="p-263">If <span class="process-math">\(c_1\vv_1+\cdots +c_k\vv_k=\zer\text{,}\)</span> where <span class="process-math">\(c_1=0,\ldots, c_k=0\text{,}\)</span> then <span class="process-math">\(\{\vv_1,\ldots, \vv_k\}\)</span> is linearly independent.</p>
+<li data-component="answer" id="_opt_t"><p>True.</p></li>
+<li data-component="feedback" id="_opt_t"><p id="p-264">The definition of independence is a conditional statement: <em class="emphasis">if</em> <span class="process-math">\(c_1\vv_1+\cdots + c_k\vv_k = \mathbf{0}\text{,}\)</span> <em class="emphasis">then</em> <span class="process-math">\(c_1=0,\ldots, c_k=0\text{.}\)</span> It is important to get the order of the logic correct here, as the converse is always true.</p></li>
+<li data-component="answer" id="_opt_f" data-correct=""><p>False.</p></li>
+<li data-component="feedback" id="_opt_f"><p id="p-264">The definition of independence is a conditional statement: <em class="emphasis">if</em> <span class="process-math">\(c_1\vv_1+\cdots + c_k\vv_k = \mathbf{0}\text{,}\)</span> <em class="emphasis">then</em> <span class="process-math">\(c_1=0,\ldots, c_k=0\text{.}\)</span> It is important to get the order of the logic correct here, as the converse is always true.</p></li>
+</ul></div></article><aside class="aside aside-like" id="aside-1"><p id="p-265">Recall that the <em class="emphasis">trivial solution</em>, where all variables are zero, is <em class="emphasis">always</em> a solution to a homogeneous system of linear equations. When checking for independence (or writing proofs of related theorems), it is vitally important that we do not assume in advance that our scalars are zero. Otherwise, we are simply making the assertion that <span class="process-math">\(0\vv_1+\cdots+0\vv_k=\zer\text{,}\)</span> which is, indeed, trivial.</p>
+<p id="p-266">When we prove linear independence, we are trying to show that the trivial solution is the <em class="emphasis">only</em> solution.</p></aside><p id="p-267">Note that the definition of independence asserts that there can be no “non-trivial” linear combinations that add up to the zero vector. Indeed, if even one scalar can be nonzero, then we can solve for the corresponding vector. Say, for example, that we have a solution to <span class="process-math">\(c_1\vv_1+c_2\vv_2\cdots + c_k\vv_k = \mathbf{0}\)</span> with <span class="process-math">\(c_1\neq 0\text{.}\)</span> Then we can move all other vectors to the right-hand side, and multiply both sides by <span class="process-math">\(1/c_1\)</span> to give</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\vv_1 = -\frac{c_2}{c_1}\vv_2-\cdots - \frac{c_k}{c_1}\vv_k\text{.}
+\end{equation*}
+</div>
+<p id="p-268">When looking for vectors that span a subspace, it is useful to find a spanning set that is also linearly independent. Otherwise, as <a href="" class="xref" data-knowl="./knowl/theorem-surplus-span.html" title="Theorem 1.3.8">Theorem 1.3.8</a> tells us, we will have some “redundant” vectors, in the sense that removing them as generators does not change the span.</p>
+<article class="lemma theorem-like" id="lemma-1"><h3 class="heading">
+<span class="type">Lemma</span><span class="space"> </span><span class="codenumber">1.5.3</span><span class="period">.</span>
+</h3>
+<p id="p-269">In any vector space <span class="process-math">\(V\text{:}\)</span></p>
 <ol class="decimal">
-<li id="li-33"><p id="p-114">If <span class="process-math">\(\vv\neq\mathbf{0}\text{,}\)</span> then <span class="process-math">\(\{\vv\}\)</span> is independent.</p></li>
-<li id="li-34"><p id="p-115">If <span class="process-math">\(S\subseteq V\)</span> contains the zero vector, then <span class="process-math">\(S\)</span> is dependent.</p></li>
-</ol></article><p id="p-116">The definition of linear independence tells us that if <span class="process-math">\(\{\vv_1,\ldots, \vv_k\}\)</span> is an independent set of vectors, then there is only one way to write <span class="process-math">\(\mathbf{0}\)</span> as a linear combination of these vectors; namely,</p>
+<li id="li-52"><p id="p-270">If <span class="process-math">\(\vv\neq\mathbf{0}\text{,}\)</span> then <span class="process-math">\(\{\vv\}\)</span> is independent.</p></li>
+<li id="li-53"><p id="p-271">If <span class="process-math">\(S\subseteq V\)</span> contains the zero vector, then <span class="process-math">\(S\)</span> is dependent.</p></li>
+</ol></article><article class="hiddenproof" id="proof-8"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-8"><h3 class="heading"><span class="title">Strategy.</span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-8"><article class="hiddenproof"><p id="p-272">This time, we will outline the strategy, and leave the execution to you. Both parts are about linear combinations. What does independence look like for a single vector? We would need to show that if <span class="process-math">\(c\vv=\zer\)</span> for some scalar <span class="process-math">\(c\text{,}\)</span> then <span class="process-math">\(c=0\text{.}\)</span> Now recall that in <a href="" class="xref" data-knowl="./knowl/ex-more-props.html" title="Exercise 1.1.9">Exercise 1.1.9</a>, we showed that if <span class="process-math">\(c\vv=\zer\text{,}\)</span> either <span class="process-math">\(c=0\)</span> or <span class="process-math">\(\vv=\zer\text{.}\)</span> We're assuming <span class="process-math">\(\vv=\zer\text{,}\)</span> so what does that tell you about <span class="process-math">\(c\text{?}\)</span></p>
+<p id="p-273">In the second part, if we have a linear combination involving the zero vector, does the value of the scalar in front of <span class="process-math">\(\zer\)</span> matter? (Can it change the value of the linear combination?) If not, is there any reason that scalar would have to be zero?</p></article></div>
+<p id="p-274">The definition of linear independence tells us that if <span class="process-math">\(\{\vv_1,\ldots, \vv_k\}\)</span> is an independent set of vectors, then there is only one way to write <span class="process-math">\(\mathbf{0}\)</span> as a linear combination of these vectors; namely,</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 \mathbf{0} = 0\vv_1+0\vv_2+\cdots +0\vv_k\text{.}
 \end{equation*}
 </div>
 <p class="continuation">In fact, more is true: <em class="emphasis">any</em> vector in the span of a linearly independent set can be written in only one way as a linear combination of those vectors.</p>
-<p id="p-117">Computationally, questions about linear independence are just questions about homogeneous systems of linear equations. For example, suppose we want to know if the vectors</p>
+<p id="p-275">Computationally, questions about linear independence are just questions about homogeneous systems of linear equations. For example, suppose we want to know if the vectors</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 \uu=\bbm 1\\-1\\4\ebm, \vv=\bbm 0\\2\\-3\ebm, \ww=\bbm 4\\0\\-3\ebm
@@ -251,59 +304,59 @@ x\uu+y\vv+z\ww=\mathbf{0}\text{,}
 \bbm 1\amp0\amp4\\-1\amp2\amp0\\4\amp-3\amp-3\ebm\bbm x\\y\\z\ebm = \bbm 0\\0\\0\ebm\text{.}
 \end{equation*}
 </div>
-<p id="p-118">We now apply some basic theory from linear algebra. A unique (and therefore, trivial) solution to this system is guaranteed if the matrix <span class="process-math">\(A = \bbm 1\amp0\amp4\\-1\amp2\amp0\\4\amp-3\amp-3\ebm\)</span> is invertible, since in that case we have <span class="process-math">\(\bbm x\\y\\z\ebm = A^{-1}\mathbf{0} = \mathbf{0}\text{.}\)</span></p>
-<p id="p-119">This approach is problematic, however, since it won't work if we have 2 vectors, or 4. Instead, we look at the reduced row-echelon form. A unique solution corresponds to having a leading 1 in each column of <span class="process-math">\(A\text{.}\)</span> Let's check this condition.</p>
+<p id="p-276">We now apply some basic theory from linear algebra. A unique (and therefore, trivial) solution to this system is guaranteed if the matrix <span class="process-math">\(A = \bbm 1\amp0\amp4\\-1\amp2\amp0\\4\amp-3\amp-3\ebm\)</span> is invertible, since in that case we have <span class="process-math">\(\bbm x\\y\\z\ebm = A^{-1}\mathbf{0} = \mathbf{0}\text{.}\)</span></p>
+<p id="p-277">This approach is problematic, however, since it won't work if we have 2 vectors, or 4. Instead, we look at the reduced row-echelon form. A unique solution corresponds to having a leading 1 in each column of <span class="process-math">\(A\text{.}\)</span> Let's check this condition.</p>
 <pre class="ptx-sagecell sagecell-sage" id="sage-16"><script type="text/x-sage">from sympy import Matrix,init_printing
 init_printing()
 A = Matrix(3,3,[1,0,4,-1,2,0,4,-3,-3])
 A.rref()
 </script></pre>
-<p id="p-120">One observation is useful here, and will lead to a better understanding of independence. First, it would be impossible to have 4 or more linearly independent vectors in <span class="process-math">\(\mathbb{R}^3\text{.}\)</span> Why? (How many leading ones can you have in a <span class="process-math">\(3\times 4\)</span> matrix?) Second, having two or fewer vectors makes it more likely that the set is independent.</p>
-<p id="p-121">The largest set of linearly independent vectors possible in <span class="process-math">\(\mathbb{R}^3\)</span> contains three vectors. You might have also observed that the smallest number of vectors needed to span <span class="process-math">\(\mathbb{R}^3\)</span> is 3. Hmm. Seems like there's something interesting going on here. But first, some more computation.</p>
-<article class="exercise exercise-like" id="exercise-10"><h3 class="heading">
-<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">1.5.2</span><span class="period">.</span>
+<p id="p-278">One observation is useful here, and will lead to a better understanding of independence. First, it would be impossible to have 4 or more linearly independent vectors in <span class="process-math">\(\mathbb{R}^3\text{.}\)</span> Why? (How many leading ones can you have in a <span class="process-math">\(3\times 4\)</span> matrix?) Second, having two or fewer vectors makes it more likely that the set is independent.</p>
+<p id="p-279">The largest set of linearly independent vectors possible in <span class="process-math">\(\mathbb{R}^3\)</span> contains three vectors. You might have also observed that the smallest number of vectors needed to span <span class="process-math">\(\mathbb{R}^3\)</span> is 3. Hmm. Seems like there's something interesting going on here. But first, some more computation.</p>
+<article class="exercise exercise-like" id="exercise-17"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">1.5.4</span><span class="period">.</span>
 </h3>
-<p id="p-122">Determine whether the set <span class="process-math">\(\left\{\bbm 1\\2\\0\ebm, \bbm -1\\0\\3\ebm,\bbm -1\\4\\9\ebm\right\}\)</span> is linearly independent in <span class="process-math">\(\R^3\text{.}\)</span></p>
+<p id="p-280">Determine whether the set <span class="process-math">\(\left\{\bbm 1\\2\\0\ebm, \bbm -1\\0\\3\ebm,\bbm -1\\4\\9\ebm\right\}\)</span> is linearly independent in <span class="process-math">\(\R^3\text{.}\)</span></p>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-4" id="solution-4"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-4"><div class="solution solution-like">
-<p id="p-123">Again, we set up a matrix and reduce:</p>
+<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-19" id="solution-19"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-19"><div class="solution solution-like">
+<p id="p-281">Again, we set up a matrix and reduce:</p>
 <pre class="ptx-sagecell hidden-sagecell-sage" id="sage-17"><script type="text/x-sage">from sympy import Matrix,init_printing
 init_printing()
 A = Matrix(3,3,[1,-1,-1,2,0,4,0,3,9])
 A.rref()
 </script></pre>
-<p id="p-124">Notice that this time we don't get a unique solution, so we can conclude that these vectors are <em class="emphasis">not</em> independent. Furthermore, you can probably deduce from the above that we have <span class="process-math">\(2\vv_1+3\vv_2-\vv_3=\mathbf{0}\text{.}\)</span> Now suppose that <span class="process-math">\(\ww\in\spn\{\vv_1,\vv_2,\vv_3\}\text{.}\)</span> In how many ways can we write <span class="process-math">\(\ww\)</span> as a linear combination of these vectors?</p>
+<p id="p-282">Notice that this time we don't get a unique solution, so we can conclude that these vectors are <em class="emphasis">not</em> independent. Furthermore, you can probably deduce from the above that we have <span class="process-math">\(2\vv_1+3\vv_2-\vv_3=\mathbf{0}\text{.}\)</span> Now suppose that <span class="process-math">\(\ww\in\spn\{\vv_1,\vv_2,\vv_3\}\text{.}\)</span> In how many ways can we write <span class="process-math">\(\ww\)</span> as a linear combination of these vectors?</p>
 </div></div>
-</div></article><article class="exercise exercise-like" id="exercise-11"><h3 class="heading">
-<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">1.5.3</span><span class="period">.</span>
+</div></article><article class="exercise exercise-like" id="exercise-18"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">1.5.5</span><span class="period">.</span>
 </h3>
-<p id="p-125">Which of the following subsets of <span class="process-math">\(P_2(\mathbb{R})\)</span> are independent?</p>
-<div class="displaymath process-math" data-contains-math-knowls="" id="md-10">
+<p id="p-283">Which of the following subsets of <span class="process-math">\(P_2(\mathbb{R})\)</span> are independent?</p>
+<div class="displaymath process-math" data-contains-math-knowls="" id="md-17">
 \begin{gather*}
 \text{(a) } S_1 = \{x^2+1, x+1, x\}\\
 \text{(b) } S_2 = \{x^2-x+3, 2x^2+x+5, x^2+5x+1\}
 \end{gather*}
 </div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-5" id="solution-5"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-5"><div class="solution solution-like">
-<p id="p-126">In each case, we set up the defining equation for independence, collect terms, and then analyze the resulting system of equations. (If you work with polynomials often enough, you can probably jump straight to the matrix. For now, let's work out the details.)</p>
-<p id="p-127">Suppose</p>
+<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-20" id="solution-20"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-20"><div class="solution solution-like">
+<p id="p-284">In each case, we set up the defining equation for independence, collect terms, and then analyze the resulting system of equations. (If you work with polynomials often enough, you can probably jump straight to the matrix. For now, let's work out the details.)</p>
+<p id="p-285">Suppose</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 r(x^2+1)+s(x+1)+tx = 0\text{.}
 \end{equation*}
 </div>
 <p class="continuation">Then <span class="process-math">\(rx^2+(s+t)x+(r+s)=0=0x^2+0x+0\text{,}\)</span> so</p>
-<div class="displaymath process-math" data-contains-math-knowls="" id="md-11">
+<div class="displaymath process-math" data-contains-math-knowls="" id="md-18">
 \begin{align*}
 r \amp =0\\
 s+t \amp =0\\
 r+s\amp =0\text{.}
 \end{align*}
 </div>
-<p id="p-128">And in this case, we don't even need to ask the computer. The first equation gives <span class="process-math">\(r=0\)</span> right away, and putting that into the third equation gives <span class="process-math">\(s=0\text{,}\)</span> and the second equation then gives <span class="process-math">\(t=0\text{.}\)</span></p>
-<p id="p-129">Since <span class="process-math">\(r=s=t=0\)</span> is the only solution, the set is independent.</p>
-<p id="p-130">Repeating for <span class="process-math">\(S_2\)</span> leads to the equation</p>
+<p id="p-286">And in this case, we don't even need to ask the computer. The first equation gives <span class="process-math">\(r=0\)</span> right away, and putting that into the third equation gives <span class="process-math">\(s=0\text{,}\)</span> and the second equation then gives <span class="process-math">\(t=0\text{.}\)</span></p>
+<p id="p-287">Since <span class="process-math">\(r=s=t=0\)</span> is the only solution, the set is independent.</p>
+<p id="p-288">Repeating for <span class="process-math">\(S_2\)</span> leads to the equation</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 (r+2s+t)x^2+(-r+s+5t)x+(3r+5s+t)1=0.
@@ -316,10 +369,10 @@ A = Matrix(3,3,[1,2,1,-1,1,5,3,5,1])
 A.rref()
 </script></pre>
 </div></div>
-</div></article><article class="exercise exercise-like" id="exercise-12"><h3 class="heading">
-<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">1.5.4</span><span class="period">.</span>
+</div></article><article class="exercise exercise-like" id="exercise-19"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">1.5.6</span><span class="period">.</span>
 </h3>
-<p id="p-131">Determine whether or not the set</p>
+<p id="p-289">Determine whether or not the set</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 \left\{\bbm -1\amp 0\\0\amp -1\ebm, \bbm 1\amp -1\\ -1\amp 1\ebm,
@@ -328,17 +381,24 @@ A.rref()
 </div>
 <p class="continuation">is linearly independent in <span class="process-math">\(M_2(\mathbb{R})\text{.}\)</span></p>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-6" id="solution-6"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-6"><div class="solution solution-like">
-<p id="p-132">Again, we set a linear combination equal to the zero vector, and combine:</p>
-<div class="displaymath process-math" data-contains-math-knowls="" id="md-12">
+<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-21" id="solution-21"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-21"><div class="solution solution-like">
+<p id="p-290">Again, we set a linear combination equal to the zero vector, and combine:</p>
+<div class="displaymath process-math" data-contains-math-knowls="" id="md-19">
 \begin{align*}
 a\bbm -1\amp 0\\0\amp -1\ebm +b\bbm 1\amp -1\\ -1\amp 1\ebm
 +c\bbm 1\amp 1\\1\amp 1\ebm +d \bbm 0\amp -1\\-1\amp 0\ebm = \bbm 0\amp 0\\ 0\amp 0\ebm\\
 \bbm -a+b+c\amp -b+c-d\\-b+c-d\amp -a+b+c\ebm = \bbm 0\amp 0\\0\amp 0\ebm\text{.}
 \end{align*}
 </div>
-<p id="p-133">We could proceed, but we might instead notice right away that equations 1 and 4 are identical, and so are equations 2 and 3. With only two distinct equations and 4 unknowns, we're certain to find nontrivial solutions.</p>
+<p id="p-291">We could proceed, but we might instead notice right away that equations 1 and 4 are identical, and so are equations 2 and 3. With only two distinct equations and 4 unknowns, we're certain to find nontrivial solutions.</p>
 </div></div>
+</div></article><p id="p-292">We end with one last exercise, which provides a result that often comes in handy.</p>
+<article class="exercise exercise-like" id="ex-independent-subset"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">1.5.7</span><span class="period">.</span>
+</h3>
+<p id="p-293">Prove that any nonempty subset of a linearly independent set is linearly independent.</p>
+<div class="solutions">
+<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-11" id="hint-11"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-11"><div class="hint solution-like"><p id="p-294">Start by assigning labels: let the larger set be <span class="process-math">\(\{\vv_1,\vv_2,\ldots, \vv_n\}\text{,}\)</span> and let the smaller set be <span class="process-math">\(\{\vv_1, \ldots, \vv_m\}\text{,}\)</span> where <span class="process-math">\(m\leq n\text{.}\)</span> What happens if the smaller set is not independent?</p></div></div>
 </div></article></section></div></main>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script>

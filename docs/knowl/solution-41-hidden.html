@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-05-04T13:27:18-06:00       *-->
+<!--*       on 2022-06-20T21:40:07-06:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -12,76 +12,37 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="robots" content="noindex, nofollow">
+<script>// Make *any* pre with class 'sagecell-sage' an executable Sage cell
+// Their results will be linked, only within language type
+sagecell.makeSagecell({inputLocation: 'pre.sagecell-sage',
+                       linked: true,
+                       languages: ['sage'],
+                       evalButtonText: 'Evaluate (Sage)'});
+</script>
 </head>
 <body class="ignore-math"><div class="solution solution-like">
-<p>Confirming that <span class="process-math">\(A^H=A\)</span> is almost immediate. We will use the computer below to compute the eigenvalues and eigenvectors of <span class="process-math">\(A\text{,}\)</span> but it's useful to attempt this at least once by hand. We have</p>
+<p>Clearly, all three vectors are nonzero. To confirm the set is orthogonal, we simply compute dot products:</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{align*}
-\det(zI-A) \amp = \det\bbm z-4 \amp -3+i\\-3-i\amp z-1\ebm\\
-\amp (z-4)(z-1)-(-3-i)(-3+i)\\
-\amp z^2-5z+4-10\\
-\amp (z+1)(z-6)\text{,}
+(1,0,1,0)\dotp (-1,0,1,1)\amp =-1+0+1+0=0\\
+(-1,0,1,1)\dotp (1,1,-1,2)\amp =-1+0-1+2=0\\
+(1,0,1,0)\dotp (1,1,-1,2) \amp = 1+0-1+0=0\text{.}
 \end{align*}
 </div>
-<p class="continuation">so the eigenvalues are <span class="process-math">\(\lambda_1=-1\)</span> and <span class="process-math">\(\lambda_2=6\text{,}\)</span> which are both real, as expected.</p>
-<p>Finding eigenvectors can seem trickier than with real numbers, mostly because it is no longer immediately apparent when one row or a matrix is a multiple of another. But we know that the rows of <span class="process-math">\(A-\lambda I\)</span> must be parallel for a <span class="process-math">\(2\times 2\)</span> matrix, which lets proceed nonetheless.</p>
-<p>For <span class="process-math">\(\lambda_1=-1\text{,}\)</span> we have</p>
+<p>To find a fourth vector, we proceed as follows. Let <span class="process-math">\(\xx=(a,b,c,d)\text{.}\)</span> We want <span class="process-math">\(\xx\)</span> to be orthogonal to the three vectors in our set. Computing dot products, we must have:</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-A + I =\bbm 5 \amp 3-i\\3+i\amp 2\ebm\text{.}
-\end{equation*}
+\begin{align*}
+(a,b,c,d)\dotp (1,0,1,0) \amp = a+c=0 \\
+(a,b,c,d)\dotp (-1,0,1,1) \amp = -a+c+d=0 \\
+(a,b,c,d)\dotp (1,1,-1,2) \amp = a+b-c+2d=0\text{.}
+\end{align*}
 </div>
-<p class="continuation">There are two ways one can proceed from here. We could use row operations to get to the reduced row-echelon form of <span class="process-math">\(A\text{.}\)</span> If we take this approach, we multiply row 1 by <span class="process-math">\(\frac15\text{,}\)</span> and then take <span class="process-math">\(-3-i\)</span> times the new row 1 and add it to row 2, to create a zero, and so on.</p>
-<p>Easier is to realize that if we haven't made a mistake calculating our eigenvalues, then the above matrix can't be invertible, so there must be some nonzero vector in the kernel. If <span class="process-math">\((A+I)\bbm a\\b\ebm=\bbm0\\0\ebm\text{,}\)</span> then we must have</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-5a+(3-i)b=0\text{,}
-\end{equation*}
-</div>
-<p class="continuation">when we multiply by the first row of <span class="process-math">\(A\text{.}\)</span> This suggests that we take <span class="process-math">\(a=3-i\)</span> and <span class="process-math">\(b=-5\text{,}\)</span> to get <span class="process-math">\(\zz = \bbm 3-i\\-5\ebm\)</span> as our first eigenvector. To make sure we've done things correctly, we multiply by the second row of <span class="process-math">\(A+I\text{:}\)</span></p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-(3+i)(3-i)+2(-5) = 10-10 = 0\text{.}
-\end{equation*}
-</div>
-<p class="continuation">Success! Now we move onto the second eigenvalue.</p>
-<p>For <span class="process-math">\(\lambda_2=6\text{,}\)</span> we get</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-A-6I = \bbm -2\amp 3-i\\3+i\amp -5\ebm\text{.}
-\end{equation*}
-</div>
-<p class="continuation">If we attempt to read off the answer like last time, the first row of <span class="process-math">\(A-6I\)</span> suggests the vector <span class="process-math">\(\ww = \bbm 3-i\\2\ebm\text{.}\)</span> Checking the second row to confirm, we find:</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-(3+i)(3-i)-5(2) = 10-10=0\text{,}
-\end{equation*}
-</div>
-<p class="continuation">as before.</p>
-<p>Finally, we note that</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-\langle \zz, \ww\rangle = (3-i)\overline{(3-i)}+(-5)(2) = (3-i)(3+i)-10 = 0\text{,}
-\end{equation*}
-</div>
-<p class="continuation">so the two eigenvectors are orthogonal, as expected. We have</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-\len{\zz}=\sqrt{10+25}=\sqrt{35} \quad \text{ and } \quad \len{\ww}=\sqrt{10+4}=\sqrt{14}\text{,}
-\end{equation*}
-</div>
-<p class="continuation">so our orthogonal matrix is</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-U = \bbm \frac{3-i}{\sqrt{35}}\amp \frac{3-i}{\sqrt{14}}\\-\frac{5}{\sqrt{35}}\amp \frac{2}{\sqrt{14}}\ebm\text{.}
-\end{equation*}
-</div>
-<p class="continuation">With a bit of effort, we can finally confirm that</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-U^HAU = \bbm -1\amp 0\\0\amp 6\ebm\text{,}
-\end{equation*}
-</div>
-<p class="continuation">as expected.</p>
+<p class="continuation">This is simply a homogeneous system of three equations in four variables. Using the Sage cell below, we find that our vector must satisfy <span class="process-math">\(a=\frac12 d, b = -3d, c=-\frac12 d\text{.}\)</span></p>
+<pre class="ptx-sagecell sagecell-sage" id="sage-45"><script type="text/x-sage">from sympy import Matrix, init_printing
+init_printing()
+A=Matrix(3,4,[1,0,1,0,-1,0,1,1,1,1,-1,2])
+A.rref()
+</script></pre>
+<p>One possible nonzero solution is to take <span class="process-math">\(d=2\text{,}\)</span> giving <span class="process-math">\(\xx=(1,-6,-1,2)\text{.}\)</span> We'll leave the verification that this vector works as an easy exercise.</p>
 </div></body>
 </html>

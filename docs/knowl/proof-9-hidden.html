@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-05-04T13:27:12-06:00       *-->
+<!--*       on 2022-06-20T21:40:06-06:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -13,31 +13,21 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="robots" content="noindex, nofollow">
 </head>
-<body class="ignore-math"><article class="hiddenproof"><p>Let <span class="process-math">\(\{\uu_1,\ldots, \uu_m\}\)</span> be a basis of <span class="process-math">\(U\text{.}\)</span> Since <span class="process-math">\(U\subseteq V\text{,}\)</span> the set <span class="process-math">\(\{\uu_1,\ldots, \uu_m\}\)</span> is a linearly independent subset of <span class="process-math">\(V\text{.}\)</span> Since any linearly independent set can be extended to a basis of <span class="process-math">\(V\text{,}\)</span> there exist vectors <span class="process-math">\(\ww_1,\ldots,\ww_n\)</span> such that</p>
+<body class="ignore-math"><article class="hiddenproof"><p>We won't give a complete proof of this theorem. The idea is straightforward, but checking all the details takes some work. Since <span class="process-math">\(\{\vv_1,\ldots, \vv_k\}\)</span> is a spanning set, each of the vectors in our independent set can be written as a linear combination of <span class="process-math">\(\vv_1,\ldots, \vv_k\text{.}\)</span> In particular, we can write</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
-\{\uu_1,\ldots, \uu_m,\ww_1,\ldots, \ww_n\}
+\ww_1 = a_1\vv_1+a_2\vv_2+\cdots + a_n\vv_n
 \end{equation*}
 </div>
-<p class="continuation">is a basis of <span class="process-math">\(V\text{.}\)</span></p>
-<p>Now, let <span class="process-math">\(W = \spn\{\ww_1,\ldots, \ww_n\}\text{.}\)</span> Then <span class="process-math">\(W\)</span> is a subspace, and <span class="process-math">\(\{\ww_1,\ldots, \ww_n\}\)</span> is a basis for <span class="process-math">\(W\text{.}\)</span> (It spans, and must be independent since it's a subset of an independent set.)</p>
-<p>Clearly, <span class="process-math">\(U+W=V\text{,}\)</span> since <span class="process-math">\(U+W\)</span> contains the basis for <span class="process-math">\(V\)</span> we've constructed. To show the sum is direct, it suffices to show that <span class="process-math">\(U\cap W = \{\mathbf{0}\}\text{.}\)</span> To that end, suppose that <span class="process-math">\(\vv\in U\cap W\text{.}\)</span> Since <span class="process-math">\(\vv\in U\text{,}\)</span> we have</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
+<p class="continuation">for scalars <span class="process-math">\(a_1,\ldots, a_n\text{,}\)</span> and these scalars can't all be zero. (Why? And why is this important?)</p>
+<p>The next step is to argue that <span class="process-math">\(V=\{\ww_1,\vv_2,\ldots, \vv_n\}\text{;}\)</span> that is, that we can replace <span class="process-math">\(\vv_1\)</span> by <span class="process-math">\(\ww_1\)</span> without changing the span. This will involve chasing some linear combinations, and remember that we need to check both inclusions to prove set equality. (This step requires us to have assumed that the scalar <span class="process-math">\(a_1\)</span> is nonzero. Do you see why?)</p>
+<p>Next, we similarly replace <span class="process-math">\(\vv_2\)</span> with <span class="process-math">\(\ww_2\text{.}\)</span> Note that we can write</p>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/ex-independent-subset.html">
 \begin{equation*}
-\vv=a_1\uu_1+\cdots +a_m\uu_m
+\ww_2=a\ww_1+b_2\vv_2+\cdots + b_n\vv_n\text{,}
 \end{equation*}
 </div>
-<p class="continuation">for scalars <span class="process-math">\(a_1,\ldots, a_m\text{.}\)</span> Since <span class="process-math">\(\vv\in W\text{,}\)</span> we can write</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-\vv=b_1\ww_1+\cdots + b_n\ww_n
-\end{equation*}
-</div>
-<p class="continuation">for scalars <span class="process-math">\(b_1,\ldots, b_n\text{.}\)</span> But then</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-\mathbf{0}=\vv-\vv=a_1\uu_1+\cdots a_m\uu_m-b_1\ww_1-\cdots -b_n\ww_n.
-\end{equation*}
-</div>
-<p class="continuation">Since <span class="process-math">\(\{\uu_1,\ldots, \uu_m,\ww_1,\ldots, \ww_n\}\)</span> is a basis for <span class="process-math">\(V\text{,}\)</span> it's independent, and therefore, all of the <span class="process-math">\(a_i,b_j\)</span> must be zero, and therefore, <span class="process-math">\(\vv=\mathbf{0}\text{.}\)</span></p></article></body>
+<p class="continuation">and at least one of the <span class="process-math">\(b_i\)</span> must be nonzero. (Why can't they all be zero? What does <a href="" class="xref" data-knowl="./knowl/ex-independent-subset.html" title="Exercise 1.5.7">Exercise 1.5.7</a> tell you about <span class="process-math">\(\{\ww_1,\ww_2\}\text{?}\)</span>)</p>
+<p>If we assume that <span class="process-math">\(b_2\)</span> is one of the nonzero scalars, we can solve for <span class="process-math">\(\vv_2\)</span> in the equation above, and replace <span class="process-math">\(\vv_2\)</span> by <span class="process-math">\(\ww_2\)</span> in our spanning set. At this point, you will have successfully argued that <span class="process-math">\(V=\spn\{\ww_1,\ww_2,\vv_3,\ldots, \vv_n\}\text{.}\)</span></p>
+<p>Now, we repeat the process. If <span class="process-math">\(m\leq n\text{,}\)</span> we eventually run out of <span class="process-math">\(\ww_i\)</span> vectors, and all is well. The question is, what goes wrong if <span class="process-math">\(m\gt n\text{?}\)</span> Then we run out of <span class="process-math">\(\vv_j\)</span> vectors first. We'll be able to write <span class="process-math">\(V=\spn\{\ww_1,\ldots, \ww_n\}\text{,}\)</span> and there will be some vectors <span class="process-math">\(\ww_{n+1},\ldots, \ww_m\)</span> leftover. Why is this a problem? (What assumption about the <span class="process-math">\(\ww_i\)</span> will we contradict?)</p></article></body>
 </html>

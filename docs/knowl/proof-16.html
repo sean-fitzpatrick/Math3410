@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-05-04T13:27:15-06:00       *-->
+<!--*       on 2022-06-20T21:40:07-06:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -14,13 +14,27 @@
 <meta name="robots" content="noindex, nofollow">
 </head>
 <body class="ignore-math">
-<article class="hiddenproof"><h4 class="heading"><span class="type">Proof</span></h4>
-<p>Let <span class="process-math">\(\yy=c_1\vv_1+\cdots + c_k\vv_k\text{.}\)</span> Taking the dot product of both sides of this equation with <span class="process-math">\(\vv_i\)</span> gives</p>
+<article class="hiddenproof"><h3 class="heading"><span class="type">Proof</span></h3>
+<ol class="decimal">
+<li>
+<p>Since <span class="process-math">\(\mathbf{0}_V+\mathbf{0}_V = \mathbf{0}_V\text{,}\)</span> we have</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
-\vv_i\dotp\yy = c_i(\vv_i\dotp\vv_i)\text{,}
+T(\mathbf{0}_V) = T(\mathbf{0}_V+\mathbf{0}_V) = T(\mathbf{0}_V)+T(\mathbf{0}_V)\text{.}
 \end{equation*}
 </div>
-<p class="continuation">since the dot product of <span class="process-math">\(\vv_i\)</span> with <span class="process-math">\(\vv_j\)</span> for <span class="process-math">\(i\neq j\)</span> is zero.</p></article><span class="incontext"><a href="sec-orthogonal-sets.html#proof-16" class="internal">in-context</a></span>
+<p class="continuation">Adding <span class="process-math">\(-T(\mathbf{0}_V)\)</span> to both sides of the above gives us <span class="process-math">\(\mathbf{0}_W = T(\mathbf{0}_V)\text{.}\)</span></p>
+</li>
+<li>
+<p>The addition property of a linear transformation can be extended to sums of three or more vectors using associativity. Therefore, we have</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{align*}
+T(c_1\vv_1+\cdots + c_n\vv_n) \amp = T(c_1\vv_1)+ \cdots T(c_n\vv_n)\\
+\amp = c_1T(\vv_1)+\cdots +c_nT(\vv_n)\text{,}
+\end{align*}
+</div>
+<p class="continuation">where the second line follows from the scalar multiplication property.</p>
+</li>
+</ol></article><span class="incontext"><a href="sec-lin-tran-intro.html#proof-16" class="internal">in-context</a></span>
 </body>
 </html>

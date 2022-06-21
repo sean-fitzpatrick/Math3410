@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-05-04T13:27:15-06:00       *-->
+<!--*       on 2022-06-20T21:40:06-06:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -12,37 +12,28 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="robots" content="noindex, nofollow">
-<script>// Make *any* pre with class 'sagecell-sage' an executable Sage cell
-// Their results will be linked, only within language type
-sagecell.makeSagecell({inputLocation: 'pre.sagecell-sage',
-                       linked: true,
-                       languages: ['sage'],
-                       evalButtonText: 'Evaluate (Sage)'});
-</script>
 </head>
-<body class="ignore-math"><div class="solution solution-like">
-<p>Clearly, all three vectors are nonzero. To confirm the set is orthogonal, we simply compute dot products:</p>
+<body class="ignore-math"><div class="solution solution-like"><ol class="lower-alpha">
+<li><p>By definition, <span class="process-math">\(U_1 = \spn \{1+x,x+x^2\}\text{,}\)</span> and these vectors are independent, since neither is a scalar multiple of the other. Since there are two vectors in this basis, <span class="process-math">\(\dim U_1 = 2\text{.}\)</span></p></li>
+<li>
+<p>If <span class="process-math">\(p(1)=0\text{,}\)</span> then <span class="process-math">\(p(x)=(x-1)q(x)\)</span> for some polynomial <span class="process-math">\(q\text{.}\)</span> Since <span class="process-math">\(U_2\)</span> is a subspace of <span class="process-math">\(P_2\text{,}\)</span> the degree of <span class="process-math">\(q\)</span> is at most 2. Therefore, <span class="process-math">\(q(x)=ax+b\)</span> for some <span class="process-math">\(a,b\in\R\text{,}\)</span> and</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
-\begin{align*}
-(1,0,1,0)\dotp (-1,0,1,1)\amp =-1+0+1+0=0\\
-(-1,0,1,1)\dotp (1,1,-1,2)\amp =-1+0-1+2=0\\
-(1,0,1,0)\dotp (1,1,-1,2) \amp = 1+0-1+0=0\text{.}
-\end{align*}
+\begin{equation*}
+p(x) = (x-1)(ax+b) = a(x^2-x)+b(x-1)\text{.}
+\end{equation*}
 </div>
-<p>To find a fourth vector, we proceed as follows. Let <span class="process-math">\(\xx=(a,b,c,d)\text{.}\)</span> We want <span class="process-math">\(\xx\)</span> to be orthogonal to the three vectors in our set. Computing dot products, we must have:</p>
+<p class="continuation">Since <span class="process-math">\(p\)</span> was arbitrary, this shows that <span class="process-math">\(U_2 = \spn\{x^2-x,x-1\}\text{.}\)</span></p>
+<p>The set <span class="process-math">\(\{x^2-x,x-1\}\)</span> is also independent, since neither vector is a scalar multiple of the other. Therefore, this set is a basis, and <span class="process-math">\(\dim U_2=2\text{.}\)</span></p>
+</li>
+<li>
+<p>If <span class="process-math">\(p(x)=p(-x)\text{,}\)</span> then <span class="process-math">\(p(x)\)</span> is an even polynomial, and therefore <span class="process-math">\(p(x)=a+bx^2\)</span> for <span class="process-math">\(a,b\in\R\text{.}\)</span> (If you didn't know this it's easily verified: if</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
-\begin{align*}
-(a,b,c,d)\dotp (1,0,1,0) \amp = a+c=0 \\
-(a,b,c,d)\dotp (-1,0,1,1) \amp = -a+c+d=0 \\
-(a,b,c,d)\dotp (1,1,-1,2) \amp = a+b-c+2d=0\text{.}
-\end{align*}
+\begin{equation*}
+a+bx+cx^2 = a+b(-x)+c(-x)^2\text{,}
+\end{equation*}
 </div>
-<p class="continuation">This is simply a homogeneous system of three equations in four variables. Using the Sage cell below, we find that our vector must satisfy <span class="process-math">\(a=\frac12 d, b = -3d, c=-\frac12 d\text{.}\)</span></p>
-<pre class="ptx-sagecell sagecell-sage" id="sage-45"><script type="text/x-sage">from sympy import Matrix, init_printing
-init_printing()
-A=Matrix(3,4,[1,0,1,0,-1,0,1,1,1,1,-1,2])
-A.rref()
-</script></pre>
-<p>One possible nonzero solution is to take <span class="process-math">\(d=2\text{,}\)</span> giving <span class="process-math">\(\xx=(1,-6,-1,2)\text{.}\)</span> We'll leave the verification that this vector works as an easy exercise.</p>
-</div></body>
+<p class="continuation">we can immediately cancel <span class="process-math">\(a\)</span> from each side, and since <span class="process-math">\((-x)^2=x^2\text{,}\)</span> we can cancel <span class="process-math">\(cx^2\)</span> as well. This leaves <span class="process-math">\(bx=-bx\text{,}\)</span> or <span class="process-math">\(2bx=0\text{,}\)</span> which implies that <span class="process-math">\(b=0\text{.}\)</span>)</p>
+<p>It follows that the set <span class="process-math">\(\{1,x^2\}\)</span> spans <span class="process-math">\(U_3\text{,}\)</span> and since this is a subset of the standard basis <span class="process-math">\(\{1,x,x^2\}\)</span> of <span class="process-math">\(P_2\text{,}\)</span> it must be independent, and is therefore a basis of <span class="process-math">\(U_3\text{,}\)</span> letting us conclude that <span class="process-math">\(\dim U_3=2\text{.}\)</span></p>
+</li>
+</ol></div></body>
 </html>

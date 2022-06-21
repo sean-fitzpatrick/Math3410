@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-05-04T13:27:15-06:00       *-->
+<!--*       on 2022-06-20T21:40:07-06:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -15,22 +15,19 @@
 </head>
 <body class="ignore-math">
 <h4 class="heading"><span class="type">Paragraph</span></h4>
-<p>The process of creating unit vectors does typically introduce square root coefficients in our vectors. This can seem undesirable, but there remains value in having an orthonormal basis. For example, suppose we wanted to write the vector <span class="process-math">\(\vv=(3,5,-1,2)\)</span> in terms of our basis. We can quickly compute</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{align*}
-\vv\dotp\hat{u}_1 \amp = \frac{3}{\sqrt{2}}-\frac{1}{\sqrt{2}}=\sqrt{2}\\
-\vv\dotp\hat{u}_2 \amp = -\frac{3}{\sqrt{3}}-\frac{1}{\sqrt{3}}+\frac{2}{\sqrt{3}}=-\frac{2}{\sqrt{3}}\\
-\vv\dotp\hat{u}_3 \amp = \frac{3}{\sqrt{7}}+\frac{5}{\sqrt{7}}+\frac{1}{\sqrt{7}}+\frac{4}{\sqrt{7}} = \frac{11}{\sqrt{7}}\\
-\vv\dotp\hat{u}_4 \amp = \frac{3}{\sqrt{42}}-\frac{30}{\sqrt{42}}+\frac{1}{\sqrt{42}}+\frac{4}{\sqrt{42}} = -\frac{22}{\sqrt{42}}\text{,}
-\end{align*}
-</div>
-<p class="continuation">and so</p>
+<p>Again, since <span class="process-math">\(T(\mathbf{0})=\mathbf{0}\text{,}\)</span> we see that <span class="process-math">\(\mathbf{0}\in \im T\text{,}\)</span> so <span class="process-math">\(\im T\)</span> is nonempty. If <span class="process-math">\(\ww_1,\ww_2\in \im T\text{,}\)</span> then there exist <span class="process-math">\(\vv_1,\vv_2\in V\)</span> such that <span class="process-math">\(T(\vv_1)=\ww_1\)</span> and <span class="process-math">\(T(\vv_2)=\ww_2\text{.}\)</span> It follows that</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
-\vv = \sqrt{2}\hat{u}_1-\frac{2}{\sqrt{3}}\hat{u}_2+\frac{11}{\sqrt{7}}\hat{u}_3-\frac{22}{\sqrt{42}}\hat{u}_4\text{.}
+\ww_1+\ww_2 = T(\vv_1)+T(\vv_2) = T(\vv_1+\vv_2)\text{,}
 \end{equation*}
 </div>
-<p class="continuation">There's still work to be done, but it is comparatively simpler than solving the corresponding system of equations.</p>
-<span class="incontext"><a href="sec-orthogonal-sets.html#p-450" class="internal">in-context</a></span>
+<p class="continuation">so <span class="process-math">\(\ww_1+\ww_2\in \im T\text{.}\)</span> Similarly, if <span class="process-math">\(c\)</span> is any scalar and <span class="process-math">\(\ww=T(\vv)\in\im T\text{,}\)</span> then</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+c\ww=cT(\vv)=T(c\vv)\text{,}
+\end{equation*}
+</div>
+<p class="continuation">so <span class="process-math">\(c\ww\in \im T\text{.}\)</span></p>
+<span class="incontext"><a href="sec-kernel-image.html#p-450" class="internal">in-context</a></span>
 </body>
 </html>

@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-05-04T13:27:18-06:00       *-->
+<!--*       on 2022-06-20T21:40:08-06:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -14,14 +14,27 @@
 <meta name="robots" content="noindex, nofollow">
 </head>
 <body class="ignore-math">
-<h5 class="heading"><span class="type">Paragraph</span></h5>
-<p>For an <span class="process-math">\(n\times n\)</span> matrix <span class="process-math">\(A\text{,}\)</span> we might not be able to diagonalize <span class="process-math">\(A\)</span> (with a single orthonormal basis). However, it turns out that it's <em class="emphasis">always</em> possible to find a pair of orthonormal bases <span class="process-math">\(\{e_1,\ldots, e_n\}, \{f_1,\ldots, f_n\}\)</span> such that</p>
+<h4 class="heading"><span class="type">Paragraph</span></h4>
+<p>We wish for this to be zero for all possible values of <span class="process-math">\(a\)</span> and <span class="process-math">\(b\text{.}\)</span> Therefore, we must have</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{align*}
+2c_1+c_3+c_4\amp =0\\
+c_1+3c_2-2c_4\amp =0\text{.}
+\end{align*}
+</div>
+<p class="continuation">Solving gives us <span class="process-math">\(c_1=-\frac12 c_3-\frac12 c_4\)</span> and <span class="process-math">\(c_2=\frac16 c_3+\frac56 c_4\text{,}\)</span> so</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{align*}
+\phi \amp = \left(-\frac12 c_3-\frac12 c_4\right)\phi_1 +\left(\frac16 c_3+\frac56 c_4\right)\phi_2 + c_3\phi_3 + c_4\phi_4\\
+\amp  = c_3\left(-\frac12 \phi_1 + \frac16 \phi_2+\phi_3\right)+c_4\left(-\frac12\phi_1+\frac56 \phi_2 + \phi_4\right)\text{.}
+\end{align*}
+</div>
+<p class="continuation">This gives us the following basis for <span class="process-math">\(U^0\text{:}\)</span></p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
-Ax = \sigma_1(x\cdot e_1)f_1+\cdots + \sigma_n(x\cdot e_n)f_n\text{.}
+\left\{\phi_3-\frac12 \phi_1+\frac16 \phi_2, \phi_4-\frac12\phi_1+\frac56\phi_3\right\}\text{.}
 \end{equation*}
 </div>
-<p class="continuation">In matrix form, <span class="process-math">\(A = P\Sigma_A Q^T\)</span> for orthogonal matrices <span class="process-math">\(P,Q\text{.}\)</span></p>
-<span class="incontext"><a href="section-matrix-factor.html#p-710" class="internal">in-context</a></span>
+<span class="incontext"><a href="worksheet-dual-basis.html#p-710" class="internal">in-context</a></span>
 </body>
 </html>

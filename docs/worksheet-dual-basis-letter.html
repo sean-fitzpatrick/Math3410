@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-05-04T13:27:03-06:00       *-->
+<!--*       on 2022-06-20T21:40:03-06:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -15,7 +15,7 @@
 <meta name="Keywords" content="Authored in PreTeXt">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta property="og:type" content="book">
-<meta property="book:title" content="Lecture Notes for Math 3410, with Computational Examples">
+<meta property="book:title" content="Linear Algebra">
 <meta property="book:author" content="Sean Fitzpatrick">
 <script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>window.MathJax = {
   tex: {
@@ -64,7 +64,38 @@
 <link href="https://pretextbook.org/css/0.4/style_default.css" rel="stylesheet" type="text/css">
 <link href="https://pretextbook.org/css/0.4/colors_default.css" rel="stylesheet" type="text/css">
 <link href="https://pretextbook.org/css/0.4/setcolors.css" rel="stylesheet" type="text/css">
-<!-- 2019-10-12: Temporary - CSS file for experiments with styling --><link href="developer.css" rel="stylesheet" type="text/css">
+<!--** eBookCongig is necessary to configure interactive       **-->
+<!--** Runestone components to run locally in reader's browser **-->
+<!--** No external communication:                              **-->
+<!--**     log level is 0, Runestone Services are disabled     **-->
+<script type="text/javascript">
+eBookConfig = {};
+eBookConfig.useRunestoneServices = false;
+eBookConfig.host = 'http://127.0.0.1:8000';
+eBookConfig.course = 'PTX Course: Title Here';
+eBookConfig.basecourse = 'PTX Base Course';
+eBookConfig.isLoggedIn = false;
+eBookConfig.email = '';
+eBookConfig.isInstructor = false;
+eBookConfig.logLevel = 0;
+eBookConfig.username = '';
+eBookConfig.readings = null;
+eBookConfig.activities = null;
+eBookConfig.downloadsEnabled = false;
+eBookConfig.allow_pairs = false;
+eBookConfig.enableScratchAC = false;
+eBookConfig.build_info = "";
+eBookConfig.python3 = null;
+eBookConfig.acDefaultLanguage = 'python';
+eBookConfig.runestone_version = '5.0.1';
+eBookConfig.jobehost = '';
+eBookConfig.proxyuri_runs = '';
+eBookConfig.proxyuri_files = '';
+eBookConfig.enable_chatcodes =  false;
+</script>
+<!--*** Runestone Services ***-->
+<script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.2.1/runtime.b0f8547c48f16a9f.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.2.1/637.d54be67956c5c660.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.2.1/runestone.0e9550fe42760516.bundle.js"></script><link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/6.2.1/637.fafafbd97df8a0d1.css">
+<link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/6.2.1/runestone.e4d5592da655219f.css">
 </head>
 <body class="pretext-book ignore-math has-toc has-sidebar-left standalone worksheet letter">
 <a class="assistive" href="#content">Skip to main content</a><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\spn}{\operatorname{span}}
@@ -101,10 +132,12 @@
 \newcommand{\lt}{&lt;}
 \newcommand{\gt}{&gt;}
 \newcommand{\amp}{&amp;}
+\definecolor{fillinmathshade}{gray}{0.9}
+\newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
 \)</span></div>
 <header id="masthead" class="smallbuttons"><div class="banner"><div class="container">
 <a id="logo-link" href=""></a><div class="title-container">
-<h1 class="heading"><a href="linear-algebra.html"><span class="title">Lecture Notes for Math 3410, with Computational Examples</span></a></h1>
+<h1 class="heading"><a href="linear-algebra.html"><span class="title">Linear Algebra:</span> <span class="subtitle">A second course, featuring proofs and Python</span></a></h1>
 <p class="byline">Sean Fitzpatrick</p>
 </div>
 </div></div>
@@ -202,107 +235,107 @@ true);
 <a href="worksheet-dual-basis-a4.html" class="a4">A4</a><a href="worksheet-dual-basis-letter.html" class="us">US</a>
 </div>
 </h2>
-<section class="onepage" id="page-11"><div class="introduction" id="introduction-9">
-<p id="p-500">Let <span class="process-math">\(V\)</span> be a vector space over <span class="process-math">\(\R\text{.}\)</span> (That is, scalars are real numbers, rather than, say, complex.) A linear transformation <span class="process-math">\(\phi:V\to \R\)</span> is called a <dfn class="terminology">linear functional</dfn>.</p>
-<p id="p-501">Here are some examples of linear functionals:</p>
+<section class="onepage" id="page-11"><div class="introduction" id="introduction-15">
+<p id="p-675">Let <span class="process-math">\(V\)</span> be a vector space over <span class="process-math">\(\R\text{.}\)</span> (That is, scalars are real numbers, rather than, say, complex.) A linear transformation <span class="process-math">\(\phi:V\to \R\)</span> is called a <dfn class="terminology">linear functional</dfn>.</p>
+<p id="p-676">Here are some examples of linear functionals:</p>
 <ul class="disc">
-<li id="li-99"><p id="p-502">The map <span class="process-math">\(\phi:\R^3\to \R\)</span> given by <span class="process-math">\(\phi(x,y,z) = 3x-2y+5z\text{.}\)</span></p></li>
-<li id="li-100"><p id="p-503">The evaluation map <span class="process-math">\(ev_a:P_n(\R)\to \R\)</span> given by <span class="process-math">\(ev_a(p) = p(a)\text{.}\)</span> (For example, <span class="process-math">\(ev_2(3-4x+5x^2) = 2-4(2)+5(2^2) = 14\text{.}\)</span>)</p></li>
-<li id="li-101"><p id="p-504">The map <span class="process-math">\(\phi:\mathcal{C}[a,b]\to \R\)</span> given by <span class="process-math">\(\phi(f) = \int_a^b f(x)\,dx\text{,}\)</span> where <span class="process-math">\(\mathcal{C}[a,b]\)</span> denotes the space of all continuous functions on <span class="process-math">\([a,b]\text{.}\)</span></p></li>
+<li id="li-118"><p id="p-677">The map <span class="process-math">\(\phi:\R^3\to \R\)</span> given by <span class="process-math">\(\phi(x,y,z) = 3x-2y+5z\text{.}\)</span></p></li>
+<li id="li-119"><p id="p-678">The evaluation map <span class="process-math">\(ev_a:P_n(\R)\to \R\)</span> given by <span class="process-math">\(ev_a(p) = p(a)\text{.}\)</span> (For example, <span class="process-math">\(ev_2(3-4x+5x^2) = 2-4(2)+5(2^2) = 14\text{.}\)</span>)</p></li>
+<li id="li-120"><p id="p-679">The map <span class="process-math">\(\phi:\mathcal{C}[a,b]\to \R\)</span> given by <span class="process-math">\(\phi(f) = \int_a^b f(x)\,dx\text{,}\)</span> where <span class="process-math">\(\mathcal{C}[a,b]\)</span> denotes the space of all continuous functions on <span class="process-math">\([a,b]\text{.}\)</span></p></li>
 </ul>
-<p id="p-505">Note that for any vector spaces <span class="process-math">\(V,W\text{,}\)</span> the set <span class="process-math">\(\mathcal{L}(V,W)\)</span> of linear transformations from <span class="process-math">\(V\)</span> to <span class="process-math">\(W\)</span> is itself a vector space, if we define</p>
+<p id="p-680">Note that for any vector spaces <span class="process-math">\(V,W\text{,}\)</span> the set <span class="process-math">\(\mathcal{L}(V,W)\)</span> of linear transformations from <span class="process-math">\(V\)</span> to <span class="process-math">\(W\)</span> is itself a vector space, if we define</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 (S+T)(v) = S(v)+T(v),\quad \text{ and } \quad (kT)(v)=k(T(v))\text{.}
 \end{equation*}
 </div>
 <p class="continuation">In particular, given a vector space <span class="process-math">\(V\text{,}\)</span> we denote the set of all linear functionals on <span class="process-math">\(V\)</span> by <span class="process-math">\(V^*=\mathcal{L}(V,\R)\text{,}\)</span> and call this the <em class="emphasis">dual space</em> of <span class="process-math">\(V\text{.}\)</span></p>
-<p id="p-506">We make the following observations:</p>
+<p id="p-681">We make the following observations:</p>
 <ul class="disc">
-<li id="li-102"><p id="p-507">If <span class="process-math">\(\dim V=n\)</span> and <span class="process-math">\(\dim W=m\text{,}\)</span> then <span class="process-math">\(\mathcal{L}(V,W)\)</span> is isomorphic to the space <span class="process-math">\(M_{mn}\)</span> of <span class="process-math">\(m\times n\)</span> matrices, so it has dimension <span class="process-math">\(mn\text{.}\)</span></p></li>
-<li id="li-103"><p id="p-508">Since <span class="process-math">\(\dim \R=1\text{,}\)</span> if <span class="process-math">\(V\)</span> is finite-dimensional, then <span class="process-math">\(V^*=\mathcal{L}(V,\R)\)</span> has dimension <span class="process-math">\(1n=n\text{.}\)</span></p></li>
-<li id="li-104"><p id="p-509">Since <span class="process-math">\(\dim V^*=\dim V\text{,}\)</span> <span class="process-math">\(V\)</span> and <span class="process-math">\(V^*\)</span> are isomorphic.</p></li>
+<li id="li-121"><p id="p-682">If <span class="process-math">\(\dim V=n\)</span> and <span class="process-math">\(\dim W=m\text{,}\)</span> then <span class="process-math">\(\mathcal{L}(V,W)\)</span> is isomorphic to the space <span class="process-math">\(M_{mn}\)</span> of <span class="process-math">\(m\times n\)</span> matrices, so it has dimension <span class="process-math">\(mn\text{.}\)</span></p></li>
+<li id="li-122"><p id="p-683">Since <span class="process-math">\(\dim \R=1\text{,}\)</span> if <span class="process-math">\(V\)</span> is finite-dimensional, then <span class="process-math">\(V^*=\mathcal{L}(V,\R)\)</span> has dimension <span class="process-math">\(1n=n\text{.}\)</span></p></li>
+<li id="li-123"><p id="p-684">Since <span class="process-math">\(\dim V^*=\dim V\text{,}\)</span> <span class="process-math">\(V\)</span> and <span class="process-math">\(V^*\)</span> are isomorphic.</p></li>
 </ul>
-<p id="p-510">Here is a basic example that is intended as a guide to your intuition regarding dual spaces. Take <span class="process-math">\(V = \R^3\text{.}\)</span> Given any <span class="process-math">\(v\in V\text{,}\)</span> define a map <span class="process-math">\(\phi_{v}:V\to \R\)</span> by <span class="process-math">\(\phi_{v}(w) = v\dotp w\)</span> (the usual dot product).</p>
-<p id="p-511">One way to think about this: if we write <span class="process-math">\(v\in V\)</span> as a column vector <span class="process-math">\(\bbm v_1\\v_2\\v_3\ebm\text{,}\)</span> then we can identify <span class="process-math">\(\phi_{v}\)</span> with <span class="process-math">\(v^T\text{,}\)</span> where the action is via multiplication:</p>
+<p id="p-685">Here is a basic example that is intended as a guide to your intuition regarding dual spaces. Take <span class="process-math">\(V = \R^3\text{.}\)</span> Given any <span class="process-math">\(v\in V\text{,}\)</span> define a map <span class="process-math">\(\phi_{v}:V\to \R\)</span> by <span class="process-math">\(\phi_{v}(w) = v\dotp w\)</span> (the usual dot product).</p>
+<p id="p-686">One way to think about this: if we write <span class="process-math">\(v\in V\)</span> as a column vector <span class="process-math">\(\bbm v_1\\v_2\\v_3\ebm\text{,}\)</span> then we can identify <span class="process-math">\(\phi_{v}\)</span> with <span class="process-math">\(v^T\text{,}\)</span> where the action is via multiplication:</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 \phi_{v}(w) = \bbm v_1\amp v_2\amp v_3\ebm\bbm w_1\\w_2\\w_3\ebm = v_1w_1+v_2w_2+v_3w_3\text{.}
 \end{equation*}
 </div>
 <p class="continuation">It turns out that this example can be generalized, but the definition of <span class="process-math">\(\phi_v\)</span> involves the dot product, which is particular to <span class="process-math">\(\R^n\text{.}\)</span></p>
-<p id="p-512">There is a generalization of the dot product, known as an inner product. (See Chapter 10 of Nicholson, for example.) On any inner product space, we can associate each vector <span class="process-math">\(v\in V\)</span> to a linear functional <span class="process-math">\(\phi_v\)</span> using the procedure above.</p>
-<p id="p-513">Another way to work concretely with dual vectors (without the need for inner products) is to define things in terms of a basis.</p>
-<p id="p-514">Given a basis <span class="process-math">\(\{v_1,v_2,\ldots, v_n\}\)</span> of <span class="process-math">\(V\text{,}\)</span> we define the corresponding <dfn class="terminology">dual basis</dfn> <span class="process-math">\(\{\phi_1,\phi_2,\ldots, \phi_n\}\)</span> of <span class="process-math">\(V^*\)</span> by</p>
+<p id="p-687">There is a generalization of the dot product, known as an inner product. (See Chapter 10 of Nicholson, for example.) On any inner product space, we can associate each vector <span class="process-math">\(v\in V\)</span> to a linear functional <span class="process-math">\(\phi_v\)</span> using the procedure above.</p>
+<p id="p-688">Another way to work concretely with dual vectors (without the need for inner products) is to define things in terms of a basis.</p>
+<p id="p-689">Given a basis <span class="process-math">\(\{v_1,v_2,\ldots, v_n\}\)</span> of <span class="process-math">\(V\text{,}\)</span> we define the corresponding <dfn class="terminology">dual basis</dfn> <span class="process-math">\(\{\phi_1,\phi_2,\ldots, \phi_n\}\)</span> of <span class="process-math">\(V^*\)</span> by</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 \phi_i(v_j) = \begin{cases} 1, \amp \text{ if } i=j\\ 0, \amp \text{ if } i\neq j\end{cases}\text{.}
 \end{equation*}
 </div>
 <p class="continuation">Note that each <span class="process-math">\(\phi_j\)</span> is well-defined, since any linear transformation can be defined by giving its values on a basis.</p>
-<p id="p-515">For the standard basis on <span class="process-math">\(\R^n\text{,}\)</span> note that the corresponding dual basis functionals are given by</p>
+<p id="p-690">For the standard basis on <span class="process-math">\(\R^n\text{,}\)</span> note that the corresponding dual basis functionals are given by</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 \phi_j(x_1,x_2,\ldots, x_n) = x_j\text{.}
 \end{equation*}
 </div>
 <p class="continuation">That is, these are the <em class="emphasis">coordinate functions</em> on <span class="process-math">\(\R^n\text{.}\)</span></p>
-</div></section><section class="onepage" id="page-12"><article class="exercise exercise-like" id="exercise-50"><h3 class="heading"><span class="codenumber">1<span class="period">.</span></span></h3>
-<p id="p-516">Show that the dual basis is indeed a basis for <span class="process-math">\(V^*\text{.}\)</span></p>
-<div class="workspace" data-space="2.5in"></div></article><p id="p-520">Next, let <span class="process-math">\(V\)</span> and <span class="process-math">\(W\)</span> be vector spaces, and let <span class="process-math">\(T:V\to W\)</span> be a linear transformation. For any such <span class="process-math">\(T\text{,}\)</span> we can define the <em class="emphasis">dual map</em> <span class="process-math">\(T^*:W^*\to V^*\)</span> by <span class="process-math">\(T^*(\phi) = \phi\circ T\)</span> for each <span class="process-math">\(\phi\in W^*\text{.}\)</span></p>
-<article class="exercise exercise-like" id="exercise-51"><h3 class="heading"><span class="codenumber">2<span class="period">.</span></span></h3>
-<p id="p-521">Confirm that (a) <span class="process-math">\(T^*(\phi)\)</span> does indeed define an element of <span class="process-math">\(V^*\text{;}\)</span> that is, a linear map from <span class="process-math">\(V\)</span> to <span class="process-math">\(\R\text{,}\)</span> and (b) that <span class="process-math">\(T^*\)</span> is linear.</p>
-<div class="workspace" data-space="2.5in"></div></article><article class="exercise exercise-like" id="exercise-52"><h3 class="heading"><span class="codenumber">3<span class="period">.</span></span></h3>
-<p id="p-525">Let <span class="process-math">\(V=P(\R)\)</span> be the space of all polynomials, and let <span class="process-math">\(D:V\to V\)</span> be the derivative transformation <span class="process-math">\(D(p(x))=p'(x)\text{.}\)</span> Let <span class="process-math">\(\phi:V\to \R\)</span> be the linear functional defined by <span class="process-math">\(\phi(p(x)) = \int_0^1 p(x)\,dx\text{.}\)</span></p>
-<p id="p-526">What is the linear functional <span class="process-math">\(D^*(\phi)\text{?}\)</span></p>
-<div class="workspace" data-space="2.5in"></div></article></section><section class="onepage" id="page-13"><article class="exercise exercise-like" id="exercise-53"><h3 class="heading"><span class="codenumber">4<span class="period">.</span></span></h3>
-<p id="p-528">Show that dual maps satisfy the following properties: for any <span class="process-math">\(S,T\in \mathcal{L}(V,W)\)</span> and <span class="process-math">\(k\in \R\text{,}\)</span></p>
+</div></section><section class="onepage" id="page-12"><article class="exercise exercise-like" id="exercise-59"><h3 class="heading"><span class="codenumber">1<span class="period">.</span></span></h3>
+<p id="p-691">Show that the dual basis is indeed a basis for <span class="process-math">\(V^*\text{.}\)</span></p>
+<div class="workspace" data-space="2.5in"></div></article><p id="p-695">Next, let <span class="process-math">\(V\)</span> and <span class="process-math">\(W\)</span> be vector spaces, and let <span class="process-math">\(T:V\to W\)</span> be a linear transformation. For any such <span class="process-math">\(T\text{,}\)</span> we can define the <em class="emphasis">dual map</em> <span class="process-math">\(T^*:W^*\to V^*\)</span> by <span class="process-math">\(T^*(\phi) = \phi\circ T\)</span> for each <span class="process-math">\(\phi\in W^*\text{.}\)</span></p>
+<article class="exercise exercise-like" id="exercise-60"><h3 class="heading"><span class="codenumber">2<span class="period">.</span></span></h3>
+<p id="p-696">Confirm that (a) <span class="process-math">\(T^*(\phi)\)</span> does indeed define an element of <span class="process-math">\(V^*\text{;}\)</span> that is, a linear map from <span class="process-math">\(V\)</span> to <span class="process-math">\(\R\text{,}\)</span> and (b) that <span class="process-math">\(T^*\)</span> is linear.</p>
+<div class="workspace" data-space="2.5in"></div></article><article class="exercise exercise-like" id="exercise-61"><h3 class="heading"><span class="codenumber">3<span class="period">.</span></span></h3>
+<p id="p-700">Let <span class="process-math">\(V=P(\R)\)</span> be the space of all polynomials, and let <span class="process-math">\(D:V\to V\)</span> be the derivative transformation <span class="process-math">\(D(p(x))=p'(x)\text{.}\)</span> Let <span class="process-math">\(\phi:V\to \R\)</span> be the linear functional defined by <span class="process-math">\(\phi(p(x)) = \int_0^1 p(x)\,dx\text{.}\)</span></p>
+<p id="p-701">What is the linear functional <span class="process-math">\(D^*(\phi)\text{?}\)</span></p>
+<div class="workspace" data-space="2.5in"></div></article></section><section class="onepage" id="page-13"><article class="exercise exercise-like" id="exercise-62"><h3 class="heading"><span class="codenumber">4<span class="period">.</span></span></h3>
+<p id="p-703">Show that dual maps satisfy the following properties: for any <span class="process-math">\(S,T\in \mathcal{L}(V,W)\)</span> and <span class="process-math">\(k\in \R\text{,}\)</span></p>
 <ol class="lower-alpha">
-<li id="li-105"><p id="p-derived-li-105"><span class="process-math">\(\displaystyle (S+T)^* = S^*+T^*\)</span></p></li>
-<li id="li-106"><p id="p-derived-li-106"><span class="process-math">\(\displaystyle (kS)^* = kS^*\)</span></p></li>
+<li id="li-124"><p id="p-derived-li-124"><span class="process-math">\(\displaystyle (S+T)^* = S^*+T^*\)</span></p></li>
+<li id="li-125"><p id="p-derived-li-125"><span class="process-math">\(\displaystyle (kS)^* = kS^*\)</span></p></li>
 <li id="list-property-last"><p id="p-derived-list-property-last"><span class="process-math">\(\displaystyle (ST)^* = T^*S^*\)</span></p></li>
 </ol>
-<p id="p-529">In item <a href="" class="xref" data-knowl="./knowl/list-property-last.html" title="Item 3.3.4.c">Item 3.3.4.c</a>, assume <span class="process-math">\(S\in \mathcal{L}(V,W)\)</span> and <span class="process-math">\(T\in \mathcal{L}(U,V)\text{.}\)</span> (Reminder: the notation <span class="process-math">\(ST\)</span> is sometimes referred to as the “product” of <span class="process-math">\(S\)</span> and <span class="process-math">\(T\text{,}\)</span> in analogy with matrices, but actually represents the composition <span class="process-math">\(S\circ T\text{.}\)</span>)</p>
-<div class="workspace" data-space="3in"></div></article><p id="p-531">We have one topic remaining in relation to dual spaces: determining the kernel and image of a dual map <span class="process-math">\(T^*\)</span> (in terms of the kernel and image of <span class="process-math">\(T\)</span>). Let <span class="process-math">\(V\)</span> be a vector space, and let <span class="process-math">\(U\)</span> be a subspace of <span class="process-math">\(V\text{.}\)</span> Any such subspace determines an important subspace of <span class="process-math">\(V^*\text{:}\)</span> the <dfn class="terminology">annihilator</dfn> of <span class="process-math">\(U\text{,}\)</span> denoted by <span class="process-math">\(U^0\)</span> and defined by</p>
+<p id="p-704">In item <a href="" class="xref" data-knowl="./knowl/list-property-last.html" title="Item 3.3.4.c">Item 3.3.4.c</a>, assume <span class="process-math">\(S\in \mathcal{L}(V,W)\)</span> and <span class="process-math">\(T\in \mathcal{L}(U,V)\text{.}\)</span> (Reminder: the notation <span class="process-math">\(ST\)</span> is sometimes referred to as the “product” of <span class="process-math">\(S\)</span> and <span class="process-math">\(T\text{,}\)</span> in analogy with matrices, but actually represents the composition <span class="process-math">\(S\circ T\text{.}\)</span>)</p>
+<div class="workspace" data-space="3in"></div></article><p id="p-706">We have one topic remaining in relation to dual spaces: determining the kernel and image of a dual map <span class="process-math">\(T^*\)</span> (in terms of the kernel and image of <span class="process-math">\(T\)</span>). Let <span class="process-math">\(V\)</span> be a vector space, and let <span class="process-math">\(U\)</span> be a subspace of <span class="process-math">\(V\text{.}\)</span> Any such subspace determines an important subspace of <span class="process-math">\(V^*\text{:}\)</span> the <dfn class="terminology">annihilator</dfn> of <span class="process-math">\(U\text{,}\)</span> denoted by <span class="process-math">\(U^0\)</span> and defined by</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 U^0 = \{\phi\in V^* \,|\, \phi(u)=0 \text{ for all } u\in U\}\text{.}
 \end{equation*}
 </div>
-<article class="exercise exercise-like" id="exercise-54"><h3 class="heading"><span class="codenumber">5<span class="period">.</span></span></h3>
-<p id="p-532">Determine a basis (in terms of the standard dual basis for <span class="process-math">\((\R^4)^*\)</span>) for the annihilator <span class="process-math">\(U^0\)</span> of the subspace <span class="process-math">\(U\subseteq \R^4\)</span> given by</p>
+<article class="exercise exercise-like" id="exercise-63"><h3 class="heading"><span class="codenumber">5<span class="period">.</span></span></h3>
+<p id="p-707">Determine a basis (in terms of the standard dual basis for <span class="process-math">\((\R^4)^*\)</span>) for the annihilator <span class="process-math">\(U^0\)</span> of the subspace <span class="process-math">\(U\subseteq \R^4\)</span> given by</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 U = \{(2a+b,3b,a,a-2b)\,|\, a,b\in\R\}\text{.}
 \end{equation*}
 </div>
 <div class="workspace" data-space="3in"></div></article></section><section class="onepage" id="page-14"><div class="conclusion" id="conclusion-1">
-<p id="p-536">Here is a fun theorem about annihilators that I won't ask you to prove.</p>
+<p id="p-711">Here is a fun theorem about annihilators that I won't ask you to prove.</p>
 <article class="theorem theorem-like" id="thm-anihilator-dimension"><h3 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">3.3.1</span><span class="period">.</span>
 </h3>
-<p id="p-537">Let <span class="process-math">\(V\)</span> be a finite dimensional vector space. For any subspace <span class="process-math">\(U\)</span> of <span class="process-math">\(V\text{,}\)</span></p>
+<p id="p-712">Let <span class="process-math">\(V\)</span> be a finite dimensional vector space. For any subspace <span class="process-math">\(U\)</span> of <span class="process-math">\(V\text{,}\)</span></p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 \dim U + \dim U^0 = \dim V\text{.}
 \end{equation*}
-</div></article><p id="p-538">Here's an outline of the proof. For any subspace <span class="process-math">\(U\subseteq V\text{,}\)</span> we can define the <em class="emphasis">inclusion</em> map <span class="process-math">\(i:U\to V\text{,}\)</span> given by <span class="process-math">\(i(u)=u\text{.}\)</span> (This is not the identity on <span class="process-math">\(V\)</span> since it's only defined on <span class="process-math">\(U\text{.}\)</span> In particular, it is not onto unless <span class="process-math">\(U=V\text{,}\)</span> although it is clearly one-to-one.)</p>
-<p id="p-539">Then <span class="process-math">\(i^*\)</span> is a map from <span class="process-math">\(V^*\)</span> to <span class="process-math">\(U^*\text{.}\)</span> Moreover, note that for any <span class="process-math">\(\phi\in V^*\text{,}\)</span> <span class="process-math">\(i^*(\phi)\in U^*\)</span> satisfies, for any <span class="process-math">\(u\in U\text{,}\)</span></p>
+</div></article><p id="p-713">Here's an outline of the proof. For any subspace <span class="process-math">\(U\subseteq V\text{,}\)</span> we can define the <em class="emphasis">inclusion</em> map <span class="process-math">\(i:U\to V\text{,}\)</span> given by <span class="process-math">\(i(u)=u\text{.}\)</span> (This is not the identity on <span class="process-math">\(V\)</span> since it's only defined on <span class="process-math">\(U\text{.}\)</span> In particular, it is not onto unless <span class="process-math">\(U=V\text{,}\)</span> although it is clearly one-to-one.)</p>
+<p id="p-714">Then <span class="process-math">\(i^*\)</span> is a map from <span class="process-math">\(V^*\)</span> to <span class="process-math">\(U^*\text{.}\)</span> Moreover, note that for any <span class="process-math">\(\phi\in V^*\text{,}\)</span> <span class="process-math">\(i^*(\phi)\in U^*\)</span> satisfies, for any <span class="process-math">\(u\in U\text{,}\)</span></p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 i^*(\phi)(u) = \phi(i(u))=\phi(u)\text{.}
 \end{equation*}
 </div>
 <p class="continuation">Thus, <span class="process-math">\(\phi\in \ker i^*\)</span> if and only if <span class="process-math">\(i^*(\phi)=0\text{,}\)</span> which is if and only if <span class="process-math">\(\phi(u)=0\)</span> for all <span class="process-math">\(u\in U\text{,}\)</span> which is if and only if <span class="process-math">\(\phi\in U^0\text{.}\)</span> Therefore, <span class="process-math">\(\ker i^* = U^0\text{.}\)</span></p>
-<p id="p-540">By the dimension theorem, we have:</p>
+<p id="p-715">By the dimension theorem, we have:</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 \dim V^* = \dim \ker i^* + \dim \operatorname{im} i^*\text{.}
 \end{equation*}
 </div>
 <p class="continuation">With a bit of work, one can show that <span class="process-math">\(\operatorname{im} i^* = U^*\text{,}\)</span> and we get the result from the fact that <span class="process-math">\(\dim V^*=\dim V\)</span> and <span class="process-math">\(\dim U^* = \dim U\text{.}\)</span></p>
-<p id="p-541">There are a number of interesting results of this flavour. For example, one can show that a map <span class="process-math">\(T\)</span> is injective if and only if <span class="process-math">\(T^*\)</span> is surjective, and vice-versa.</p>
-<p id="p-542">One final, optional task: return to the example of <span class="process-math">\(\R^n\text{,}\)</span> viewed as column vectors, and consider a matrix transformation <span class="process-math">\(T_A:\R^n\to \R^m\)</span> given by <span class="process-math">\(T_A(\vec{x}) = A\vec{x}\)</span> as usual. Viewing <span class="process-math">\((\R^n)^*\)</span> as row vectors, convince yourself that <span class="process-math">\((T_A)^* = T_{A^T}\text{;}\)</span> that is, that what we've really been talking about all along is just the transpose of a matrix!</p>
+<p id="p-716">There are a number of interesting results of this flavour. For example, one can show that a map <span class="process-math">\(T\)</span> is injective if and only if <span class="process-math">\(T^*\)</span> is surjective, and vice-versa.</p>
+<p id="p-717">One final, optional task: return to the example of <span class="process-math">\(\R^n\text{,}\)</span> viewed as column vectors, and consider a matrix transformation <span class="process-math">\(T_A:\R^n\to \R^m\)</span> given by <span class="process-math">\(T_A(\vec{x}) = A\vec{x}\)</span> as usual. Viewing <span class="process-math">\((\R^n)^*\)</span> as row vectors, convince yourself that <span class="process-math">\((T_A)^* = T_{A^T}\text{;}\)</span> that is, that what we've really been talking about all along is just the transpose of a matrix!</p>
 </div></section></section></div></main>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script>

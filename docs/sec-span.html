@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-05-04T13:26:58-06:00       *-->
+<!--*       on 2022-06-20T21:40:02-06:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -15,7 +15,7 @@
 <meta name="Keywords" content="Authored in PreTeXt">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta property="og:type" content="book">
-<meta property="book:title" content="Lecture Notes for Math 3410, with Computational Examples">
+<meta property="book:title" content="Linear Algebra">
 <meta property="book:author" content="Sean Fitzpatrick">
 <script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>window.MathJax = {
   tex: {
@@ -70,7 +70,38 @@ sagecell.makeSagecell({inputLocation: 'pre.sagecell-sage',
 <link href="https://pretextbook.org/css/0.4/style_default.css" rel="stylesheet" type="text/css">
 <link href="https://pretextbook.org/css/0.4/colors_default.css" rel="stylesheet" type="text/css">
 <link href="https://pretextbook.org/css/0.4/setcolors.css" rel="stylesheet" type="text/css">
-<!-- 2019-10-12: Temporary - CSS file for experiments with styling --><link href="developer.css" rel="stylesheet" type="text/css">
+<!--** eBookCongig is necessary to configure interactive       **-->
+<!--** Runestone components to run locally in reader's browser **-->
+<!--** No external communication:                              **-->
+<!--**     log level is 0, Runestone Services are disabled     **-->
+<script type="text/javascript">
+eBookConfig = {};
+eBookConfig.useRunestoneServices = false;
+eBookConfig.host = 'http://127.0.0.1:8000';
+eBookConfig.course = 'PTX Course: Title Here';
+eBookConfig.basecourse = 'PTX Base Course';
+eBookConfig.isLoggedIn = false;
+eBookConfig.email = '';
+eBookConfig.isInstructor = false;
+eBookConfig.logLevel = 0;
+eBookConfig.username = '';
+eBookConfig.readings = null;
+eBookConfig.activities = null;
+eBookConfig.downloadsEnabled = false;
+eBookConfig.allow_pairs = false;
+eBookConfig.enableScratchAC = false;
+eBookConfig.build_info = "";
+eBookConfig.python3 = null;
+eBookConfig.acDefaultLanguage = 'python';
+eBookConfig.runestone_version = '5.0.1';
+eBookConfig.jobehost = '';
+eBookConfig.proxyuri_runs = '';
+eBookConfig.proxyuri_files = '';
+eBookConfig.enable_chatcodes =  false;
+</script>
+<!--*** Runestone Services ***-->
+<script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.2.1/runtime.b0f8547c48f16a9f.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.2.1/637.d54be67956c5c660.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.2.1/runestone.0e9550fe42760516.bundle.js"></script><link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/6.2.1/637.fafafbd97df8a0d1.css">
+<link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/6.2.1/runestone.e4d5592da655219f.css">
 </head>
 <body class="pretext-book ignore-math has-toc has-sidebar-left">
 <a class="assistive" href="#content">Skip to main content</a><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\spn}{\operatorname{span}}
@@ -107,10 +138,12 @@ sagecell.makeSagecell({inputLocation: 'pre.sagecell-sage',
 \newcommand{\lt}{&lt;}
 \newcommand{\gt}{&gt;}
 \newcommand{\amp}{&amp;}
+\definecolor{fillinmathshade}{gray}{0.9}
+\newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
 \)</span></div>
 <header id="masthead" class="smallbuttons"><div class="banner"><div class="container">
 <a id="logo-link" href=""></a><div class="title-container">
-<h1 class="heading"><a href="linear-algebra.html"><span class="title">Lecture Notes for Math 3410, with Computational Examples</span></a></h1>
+<h1 class="heading"><a href="linear-algebra.html"><span class="title">Linear Algebra:</span> <span class="subtitle">A second course, featuring proofs and Python</span></a></h1>
 <p class="byline">Sean Fitzpatrick</p>
 </div>
 </div></div>
@@ -206,35 +239,50 @@ true);
 <main class="main"><div id="content" class="pretext-content"><section class="section" id="sec-span"><h2 class="heading hide-type">
 <span class="type">Section</span> <span class="codenumber">1.3</span> <span class="title">Span</span>
 </h2>
-<p id="p-69">Recall that a <dfn class="terminology">linear combination</dfn> of a set of vectors <span class="process-math">\(\vv_1,\ldots, \vv_k\)</span> is a vector expression of the form</p>
+<p id="p-201">Recall that a <dfn class="terminology">linear combination</dfn> of a set of vectors <span class="process-math">\(\vv_1,\ldots, \vv_k\)</span> is a vector expression of the form</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 \ww=c_1\vv_1+c_2\vv_2+\cdots +c_k\vv_k,
 \end{equation*}
 </div>
 <p class="continuation">where <span class="process-math">\(c_1,\ldots, c_k\)</span> are scalars.</p>
-<p id="p-70">The <dfn class="terminology">span</dfn> of those same vectors is the set of all possible linear combinations:</p>
+<p id="p-202">It's important to make sure you don't get lost in the notation here. Be sure that you can keep track of which symbols are vectors, and which are scalars! Note that in a sense, this is the most general sort of expression you can form using the two operations of a vector space, addition, and scalar multiplication. We multiply some collection of vectors by scalars, and then use addition to “combine” them into a single vector.</p>
+<article class="example example-like" id="example-5"><h3 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">1.3.1</span><span class="period">.</span>
+</h3>
+<p id="p-203">In <span class="process-math">\(\R^3\text{,}\)</span> let <span class="process-math">\(\uu = \bbm 1\\0\\3\ebm\text{,}\)</span> <span class="process-math">\(\vv = \bbm -1\\2\\1\ebm\text{,}\)</span> and <span class="process-math">\(\ww = \bbm 0\\3\\1\ebm\text{.}\)</span> With scalars <span class="process-math">\(3,-2,4\)</span> we can form the linear combination</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
-\spn\{\vv_1,\ldots, \vv_k\} = \{c_1\vv_1+ \cdots + c_k\vv_k \,|\, c_1,\ldots, c_k \in \mathbb{F}\}.
+3\uu-2\vv+4\ww = \bbm 3\\0\\9\ebm+\bbm 2\\-4\\-2\ebm + \bbm 0\\12\\4\ebm = \bbm 5\\8\\11\ebm\text{.}
 \end{equation*}
 </div>
-<p class="continuation">Therefore, the questions “Is the vector <span class="process-math">\(\ww\)</span> in <span class="process-math">\(\spn\{\vv_1,\ldots, \vv_k\}\text{?}\)</span>” is really asking, “Can <span class="process-math">\(\ww\)</span> be written as a linear combination of <span class="process-math">\(\vv_1,\ldots, \vv_k\text{?}\)</span>”</p>
-<p id="p-71">With the appropriate setup, all such questions become questions about solving systems of equations. Here, we will look at a few such examples.</p>
-<article class="exercise exercise-like" id="exercise-2"><h3 class="heading">
-<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">1.3.1</span><span class="period">.</span>
+<p class="continuation">Notice how the end result is a single vector, and we've lost all information regarding the vectors it came from. Sometimes we want the end result, but often we are more interested in details of the linear combination itself.</p>
+<p id="p-204">In the vector space of all real-valued continuous functions on <span class="process-math">\(\R\text{,}\)</span> we can consider linear combinations such as <span class="process-math">\(f(x)=3e^{2x}+4\sin(3x)-3\cos(3x)\text{.}\)</span> (This might, for example, be a particular solution to some differential equation.) Note that in this example, there is no nice way to “combine” these functions into a single term.</p></article><p id="p-205">The <dfn class="terminology">span</dfn> of those same vectors is the set of all possible linear combinations that can be formed:</p>
+<article class="definition definition-like" id="def-span"><h3 class="heading">
+<span class="type">Definition</span><span class="space"> </span><span class="codenumber">1.3.2</span><span class="period">.</span><span class="space"> </span><span class="title">Span.</span>
 </h3>
-<p id="p-72">Determine whether the vector <span class="process-math">\(\bbm 2\\3\ebm\)</span> is in the span of the vectors <span class="process-math">\(\bbm 1\\1\ebm,\bbm -1\\2\ebm\text{.}\)</span></p>
+<p id="p-206">Let <span class="process-math">\(\vv_1,\ldots, \vv_k\)</span> be a set of vectors in a vector space <span class="process-math">\(V\text{.}\)</span> The <dfn class="terminology">span</dfn> of this set of vectors is the subset of <span class="process-math">\(V\)</span> defined by</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\spn\{\vv_1,\ldots, \vv_k\} = \{c_1\vv_1+ \cdots + c_k\vv_k \,|\, c_1,\ldots, c_k \in \mathbb{F}\}\text{.}
+\end{equation*}
+</div></article><p id="p-207">The vectors <span class="process-math">\(\vv_1,\ldots, \vv_k\)</span> can be thought of as the <dfn class="terminology">generators</dfn> of the span. Every other vector in the set can be obtained as a linear combination of these vectors. Note that even though we have finitely many generators, because the set (usually <span class="process-math">\(\R\)</span>) from which we choose our scalars is infinite, there are infinitely many elements in the span.</p>
+<p id="p-208">Since span is defined in terms of linear combinations, what the question “Is the vector <span class="process-math">\(\ww\)</span> in <span class="process-math">\(\spn\{\vv_1,\ldots, \vv_k\}\text{?}\)</span>” is really asking is, “Can <span class="process-math">\(\ww\)</span> be written as a linear combination of <span class="process-math">\(\vv_1,\ldots, \vv_k\text{?}\)</span>”</p>
+<p id="p-209">With the appropriate setup, all such questions become questions about solving systems of equations. Here, we will look at a few such examples.</p>
+<article class="exercise exercise-like" id="exercise-8"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">1.3.3</span><span class="period">.</span>
+</h3>
+<p id="p-210">Determine whether the vector <span class="process-math">\(\bbm 2\\3\ebm\)</span> is in the span of the vectors <span class="process-math">\(\bbm 1\\1\ebm,\bbm -1\\2\ebm\text{.}\)</span></p>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-2" id="solution-2"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-2"><div class="solution solution-like">
-<p id="p-73">This is really asking: are there scalars <span class="process-math">\(s,t\)</span> such that</p>
+<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-17" id="solution-17"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-17"><div class="solution solution-like">
+<p id="p-211">This is really asking: are there scalars <span class="process-math">\(s,t\)</span> such that</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 s\bbm 1\\1\ebm + t\bbm -1\\2\ebm = \bbm 2\\3\ebm\text{?}
 \end{equation*}
 </div>
 <p class="continuation">And this, in turn, is equivalent to the system</p>
-<div class="displaymath process-math" data-contains-math-knowls="" id="md-6">
+<div class="displaymath process-math" data-contains-math-knowls="" id="md-11">
 \begin{align*}
 s -t \amp=2 \\
 s+2t \amp=3 \text{,}
@@ -247,13 +295,13 @@ s+2t \amp=3 \text{,}
 \end{equation*}
 </div>
 <p class="continuation">Solving the system confirms that there is indeed a solution, so the answer to our original question is yes.</p>
-<p id="p-74">To confirm the above example (and see what the solution is), we can use the computer. This first code cell loads the <code class="code-inline tex2jax_ignore">sympy</code> Python library, and then configures the output to look nice. For details on the code used below, see <a href="ch-computation.html" class="internal" title="Appendix A: Computational Tools">the Appendix</a>.</p>
+<p id="p-212">To confirm the above example (and see what the solution is), we can use the computer. This first code cell loads the <code class="code-inline tex2jax_ignore">sympy</code> Python library, and then configures the output to look nice. For details on the code used below, see <a href="ch-computation.html" class="internal" title="Appendix A: Computational Tools">the Appendix</a>.</p>
 <pre class="ptx-sagecell hidden-sagecell-sage" id="sage-1"><script type="text/x-sage">from sympy import Matrix, init_printing
 init_printing()
 A = Matrix(2,3,[1,-1,2,1,2,3])
 A.rref()
 </script></pre>
-<p id="p-75">The above code produces the reduced row-echelon form of the augmented matrix for our system. (The tuple <span class="process-math">\((0,1)\)</span> lists the pivot columns — note that Python indexes the columns starting at <span class="process-math">\(0\)</span> rather than <span class="process-math">\(1\text{.}\)</span>) Do you remember how to get the answer from here? Here's another approach.</p>
+<p id="p-213">The above code produces the reduced row-echelon form of the augmented matrix for our system. (The tuple <span class="process-math">\((0,1)\)</span> lists the pivot columns — note that Python indexes the columns starting at <span class="process-math">\(0\)</span> rather than <span class="process-math">\(1\text{.}\)</span>) Do you remember how to get the answer from here? Here's another approach.</p>
 <pre class="ptx-sagecell hidden-sagecell-sage" id="sage-2"><script type="text/x-sage">B = Matrix(2,2,[1,-1,1,2])
 B
 </script></pre>
@@ -262,14 +310,14 @@ X = (B**-1)*C
 X
 </script></pre>
 </div></div>
-</div></article><p id="p-76">Our next example involves polynomials. At first this looks like a different problem, but it's essentially the same once we set it up.</p>
-<article class="exercise exercise-like" id="exercise-3"><h3 class="heading">
-<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">1.3.2</span><span class="period">.</span>
+</div></article><p id="p-214">Our next example involves polynomials. At first this looks like a different problem, but it's essentially the same once we set it up.</p>
+<article class="exercise exercise-like" id="exercise-9"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">1.3.4</span><span class="period">.</span>
 </h3>
-<p id="p-77">Determine whether <span class="process-math">\(p(x)=1+x+4x^2\)</span> belongs to <span class="process-math">\(\spn\{1+2x-x^2,3+5x+2x^2\}\text{.}\)</span></p>
+<p id="p-215">Determine whether <span class="process-math">\(p(x)=1+x+4x^2\)</span> belongs to <span class="process-math">\(\spn\{1+2x-x^2,3+5x+2x^2\}\text{.}\)</span></p>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-3" id="solution-3"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-3"><div class="solution solution-like">
-<p id="p-78">We seek scalars <span class="process-math">\(s,t\)</span> such that</p>
+<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-18" id="solution-18"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-18"><div class="solution solution-like">
+<p id="p-216">We seek scalars <span class="process-math">\(s,t\)</span> such that</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 s(1+2x-2x^2)+t(3+5x+2x^2)=1+x+4x^2\text{.}
@@ -282,79 +330,121 @@ s(1+2x-2x^2)+t(3+5x+2x^2)=1+x+4x^2\text{.}
 \end{equation*}
 </div>
 <p class="continuation">These two polynomials are equal if and only if we can solve the system</p>
-<div class="displaymath process-math" data-contains-math-knowls="" id="md-7">
+<div class="displaymath process-math" data-contains-math-knowls="" id="md-12">
 \begin{align*}
 s+3t \amp = 1 \\
 2s+5t \amp =1\\
 -2s+2t \amp =4\text{.}
 \end{align*}
 </div>
-<p id="p-79">We can solve this computationally using matrices again.</p>
+<p id="p-217">We can solve this computationally using matrices again.</p>
 <pre class="ptx-sagecell hidden-sagecell-sage" id="sage-4"><script type="text/x-sage">from sympy import Matrix, init_printing
 init_printing()
 M = Matrix(3,3,[1,3,1,2,5,1,-2,2,4])
 M.rref()
 </script></pre>
-<p id="p-80">So, what's the answer? Is <span class="process-math">\(p(x)\)</span> in the span? Can we determine what polynomials are in the span? Let's consider a general polynomial <span class="process-math">\(q(x)=a+bx+cx^2\text{.}\)</span> A bit of thought tells us that the coefficients <span class="process-math">\(a,b,c\)</span> should replace the constants <span class="process-math">\(1,1,4\)</span> above.</p>
+<p id="p-218">So, what's the answer? Is <span class="process-math">\(p(x)\)</span> in the span? Can we determine what polynomials are in the span? Let's consider a general polynomial <span class="process-math">\(q(x)=a+bx+cx^2\text{.}\)</span> A bit of thought tells us that the coefficients <span class="process-math">\(a,b,c\)</span> should replace the constants <span class="process-math">\(1,1,4\)</span> above.</p>
 <pre class="ptx-sagecell hidden-sagecell-sage" id="sage-5"><script type="text/x-sage">from sympy import symbols
 a, b, c = symbols('a b c', real = True, constant = True)
 N = Matrix(3,3,[1,3,a,2,5,b,-2,2,c])
 N
 </script></pre>
-<p id="p-81">Asking the computer to reduce this matrix to <abbr class="initialism">RREF</abbr> won't produce the desired result. But we can always specify row operations.</p>
+<p id="p-219">Asking the computer to reduce this matrix to <abbr class="initialism">RREF</abbr> won't produce the desired result. But we can always specify row operations.</p>
 <pre class="ptx-sagecell hidden-sagecell-sage" id="sage-6"><script type="text/x-sage">N1 = N.elementary_row_op(op='n->n+km',row=1,k=-2,row2=0)
 N1
 </script></pre>
-<p id="p-82">In the <code class="code-inline tex2jax_ignore">elementary_row_op</code> function called above, we are asking the computer to change row <span class="process-math">\(1\)</span> (the second row) by adding <span class="process-math">\(-2\)</span> times row <span class="process-math">\(0\)</span> )the first row). See <a href="sec-sympy.html#subsec-sympy-matrix" class="internal" title="Subsection A.3.2: Matrices in SymPy">Section A.3.2</a> for complete details on this syntax.</p>
-<p id="p-83">Now we repeat. Here is another cell to work with:</p>
+<p id="p-220">In the <code class="code-inline tex2jax_ignore">elementary_row_op</code> function called above, we are asking the computer to change row <span class="process-math">\(1\)</span> (the second row) by adding <span class="process-math">\(-2\)</span> times row <span class="process-math">\(0\)</span> )the first row). See <a href="sec-sympy.html#subsec-sympy-matrix" class="internal" title="Subsection A.3.2: Matrices in SymPy">Section A.3.2</a> for complete details on this syntax.</p>
+<p id="p-221">Now we repeat. Here is another cell to work with:</p>
 <pre class="ptx-sagecell hidden-sagecell-sage" id="sage-7"><script type="text/x-sage"></script></pre>
-<p id="p-84">Another option is to replace the <code class="code-inline tex2jax_ignore">rref()</code> function with the <code class="code-inline tex2jax_ignore">echelon_form()</code> function, which doesn't simplify quite as far:</p>
+<p id="p-222">Another option is to replace the <code class="code-inline tex2jax_ignore">rref()</code> function with the <code class="code-inline tex2jax_ignore">echelon_form()</code> function, which doesn't simplify quite as far:</p>
 <pre class="ptx-sagecell hidden-sagecell-sage" id="sage-8"><script type="text/x-sage">a, b, c = symbols('a b c', real = True, constant = True)
 N = Matrix(3,3,[1,3,a,2,5,b,-2,2,c])
 N.echelon_form()
 </script></pre>
-<p id="p-85">For a consistent system, we need <span class="process-math">\(c=14a-8b\text{.}\)</span></p>
+<p id="p-223">For a consistent system, we need <span class="process-math">\(c=14a-8b\text{.}\)</span></p>
 </div></div>
-</div></article><p id="p-86">One of the reasons we care about linear combinations and span is that it gives us an easy means of generating subspaces, as the following theorem suggests.</p>
+</div></article><p id="p-224">One of the reasons we care about linear combinations and span is that it gives us an easy means of generating subspaces, as the following theorem suggests.</p>
 <article class="theorem theorem-like" id="thm-span-is-subspace"><h3 class="heading">
-<span class="type">Theorem</span><span class="space"> </span><span class="codenumber">1.3.3</span><span class="period">.</span>
+<span class="type">Theorem</span><span class="space"> </span><span class="codenumber">1.3.5</span><span class="period">.</span>
 </h3>
-<p id="p-87">Let <span class="process-math">\(V\)</span> be a vector space, and let <span class="process-math">\(\vv_1,\vv_2,\ldots, \vv_k\)</span> be vectors in <span class="process-math">\(V\text{.}\)</span> Then:</p>
+<p id="p-225">Let <span class="process-math">\(V\)</span> be a vector space, and let <span class="process-math">\(\vv_1,\vv_2,\ldots, \vv_k\)</span> be vectors in <span class="process-math">\(V\text{.}\)</span> Then:</p>
 <ol class="decimal">
-<li id="li-31"><p id="p-88"><span class="process-math">\(U=\spn\{\vv_1,\vv_2,\ldots, \vv_k\}\)</span> is a subspace of <span class="process-math">\(V\text{.}\)</span></p></li>
-<li id="li-32"><p id="p-89"><span class="process-math">\(U\)</span> is the <em class="emphasis">smallest</em> subspace of  <span class="process-math">\(V\)</span> containing <span class="process-math">\(\vv_1,\ldots, \vv_k\text{,}\)</span> in the sense that if <span class="process-math">\(W\subseteq V\)</span> is a subspace and <span class="process-math">\(\vv_1,\ldots, \vv_k\in W\text{,}\)</span> then <span class="process-math">\(U\subseteq W\text{.}\)</span></p></li>
-</ol></article><article class="hiddenproof" id="proof-3"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-3"><h3 class="heading"><span class="type">Proof<span class="period">.</span></span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-3"><article class="hiddenproof"><p id="p-90">Let <span class="process-math">\(U=\spn\{\vv_1,\vv_2,\ldots, \vv_k\}\text{.}\)</span> Then <span class="process-math">\(0\in U\text{,}\)</span> since <span class="process-math">\(0=0\vv_1+0\vv_2+\cdots + 0\vv_k\text{.}\)</span> If <span class="process-math">\(\uu=a_1\vv_1+a_2\vv_2+\cdots +a_k\vv_k\)</span> and <span class="process-math">\(\ww=b_1\vv_1+b_2\vv_2+\cdots +b_k\vv_k\)</span> are vectors in <span class="process-math">\(U\text{,}\)</span> then</p>
-<div class="displaymath process-math" data-contains-math-knowls="./knowl/thm-subspace-test.html" id="md-8">
+<li id="li-50"><p id="p-226"><span class="process-math">\(U=\spn\{\vv_1,\vv_2,\ldots, \vv_k\}\)</span> is a subspace of <span class="process-math">\(V\text{.}\)</span></p></li>
+<li id="li-51"><p id="p-227"><span class="process-math">\(U\)</span> is the <em class="emphasis">smallest</em> subspace of  <span class="process-math">\(V\)</span> containing <span class="process-math">\(\vv_1,\ldots, \vv_k\text{,}\)</span> in the sense that if <span class="process-math">\(W\subseteq V\)</span> is a subspace and <span class="process-math">\(\vv_1,\ldots, \vv_k\in W\text{,}\)</span> then <span class="process-math">\(U\subseteq W\text{.}\)</span></p></li>
+</ol></article><article class="hiddenproof" id="proof-4"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-4"><h3 class="heading"><span class="title">Strategy.</span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-4"><article class="hiddenproof"><p id="p-228">For the first part, we will rely on our trusty <a href="" class="xref" data-knowl="./knowl/thm-subspace-test.html" title="Theorem 1.2.2: Subspace Test">Subspace Test</a>. The proof is essentially the same as the motivating example from the beginning of <a href="sec-subspace.html" class="internal" title="Section 1.2: Subspaces">Section 1.2</a>, modified to allow an arbitrary number of vectors. First, we will write the zero vector as a linear combination of the given vectors. (What should the scalars be?) Then we check addition and scalar multiplication.</p>
+<p id="p-229">How do we show that a subspace is <em class="emphasis">smallest</em>? As suggested in the statement above, show that if a subspace <span class="process-math">\(W\)</span> contains the vectors <span class="process-math">\(\vv_1,\vv_2,\ldots, \vv_k\text{,}\)</span> then it must contain every vector in <span class="process-math">\(U\text{.}\)</span> This must be the case because <span class="process-math">\(W\)</span> is closed under addition and scalar multiplication, and every vector in <span class="process-math">\(U\)</span> is formed using these operations.</p></article></div>
+<article class="hiddenproof" id="proof-5"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-5"><h3 class="heading"><span class="title">Execution.</span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-5"><article class="hiddenproof"><p id="p-230">Let <span class="process-math">\(U=\spn\{\vv_1,\vv_2,\ldots, \vv_k\}\text{.}\)</span> Then <span class="process-math">\(0\in U\text{,}\)</span> since <span class="process-math">\(0=0\vv_1+0\vv_2+\cdots + 0\vv_k\text{.}\)</span> If <span class="process-math">\(\uu=a_1\vv_1+a_2\vv_2+\cdots +a_k\vv_k\)</span> and <span class="process-math">\(\ww=b_1\vv_1+b_2\vv_2+\cdots +b_k\vv_k\)</span> are vectors in <span class="process-math">\(U\text{,}\)</span> then</p>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/thm-subspace-test.html" id="md-13">
 \begin{align*}
 \uu+\ww \amp =(a_1\vv_1+a_2\vv_2+\cdots +a_k\vv_k)+(b_1\vv_1+b_2\vv_2+\cdots +b_k\vv_k)\\
 \amp = (a_1+b_1)\vv_1+(a_2+b_2)\vv_2+\cdots + (a_k+b_k)\vv_k
 \end{align*}
 </div>
 <p class="continuation">is in <span class="process-math">\(U\text{,}\)</span> and</p>
-<div class="displaymath process-math" data-contains-math-knowls="./knowl/thm-subspace-test.html" id="md-9">
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/thm-subspace-test.html" id="md-14">
 \begin{align*}
 c\uu \amp =c(a_1\vv_1+a_2\vv_2+\cdots +a_k\vv_k)\\
 \amp =(ca_1)\vv_1+(ca_2)\vv_2+\cdots + (ca_k)\vv_k
 \end{align*}
 </div>
-<p class="continuation">is in <span class="process-math">\(U\text{,}\)</span> so by <a href="" class="xref" data-knowl="./knowl/thm-subspace-test.html" title="Theorem 1.2.2">Theorem 1.2.2</a>, <span class="process-math">\(U\)</span> is a subspace.</p>
-<p id="p-91">To see that <span class="process-math">\(U\)</span> is the smallest subspace containing <span class="process-math">\(\vv_1,\ldots, \vv_k\text{,}\)</span> we need only note that if <span class="process-math">\(\vv_1,\ldots, \vv_k\in W\text{,}\)</span> where <span class="process-math">\(W\)</span> is a subspace, then since <span class="process-math">\(W\)</span> is closed under scalar multiplication, we know that <span class="process-math">\(c_1\vv_1,\ldots, c_k\vv_k\)</span> for any scalars <span class="process-math">\(c_1,\ldots, c_k\text{,}\)</span> and since <span class="process-math">\(W\)</span> is closed under addition, <span class="process-math">\(c_1\vv_1+\cdots+c_k\vv_k\in W\text{.}\)</span> Thus, <span class="process-math">\(W\)</span> contains all linear combinations of <span class="process-math">\(\vv_1,\ldots, \vv_k\text{,}\)</span> which is to say that <span class="process-math">\(W\)</span> contains <span class="process-math">\(U\text{.}\)</span></p></article></div>
-<p id="p-92">We end this section with a few non-computational, but useful results, which will be left as exercises to be done in class, or by the reader.</p>
-<article class="exercise exercise-like" id="exercise-4"><h3 class="heading">
-<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">1.3.4</span><span class="period">.</span>
+<p class="continuation">is in <span class="process-math">\(U\text{,}\)</span> so by <a href="" class="xref" data-knowl="./knowl/thm-subspace-test.html" title="Theorem 1.2.2: Subspace Test">Theorem 1.2.2</a>, <span class="process-math">\(U\)</span> is a subspace.</p>
+<p id="p-231">To see that <span class="process-math">\(U\)</span> is the smallest subspace containing <span class="process-math">\(\vv_1,\ldots, \vv_k\text{,}\)</span> we need only note that if <span class="process-math">\(\vv_1,\ldots, \vv_k\in W\text{,}\)</span> where <span class="process-math">\(W\)</span> is a subspace, then since <span class="process-math">\(W\)</span> is closed under scalar multiplication, we know that <span class="process-math">\(c_1\vv_1,\ldots, c_k\vv_k\)</span> for any scalars <span class="process-math">\(c_1,\ldots, c_k\text{,}\)</span> and since <span class="process-math">\(W\)</span> is closed under addition, <span class="process-math">\(c_1\vv_1+\cdots+c_k\vv_k\in W\text{.}\)</span> Thus, <span class="process-math">\(W\)</span> contains all linear combinations of <span class="process-math">\(\vv_1,\ldots, \vv_k\text{,}\)</span> which is to say that <span class="process-math">\(W\)</span> contains <span class="process-math">\(U\text{.}\)</span></p></article></div>
+<article class="exercise exercise-like" id="exercise-10"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">1.3.6</span><span class="period">.</span>
 </h3>
-<p id="p-93">Let <span class="process-math">\(V\)</span> be a vector space, and let <span class="process-math">\(X,Y\subseteq V\text{.}\)</span> Show that if <span class="process-math">\(X\subseteq Y\text{,}\)</span> then <span class="process-math">\(\spn X \subseteq \spn Y\text{.}\)</span></p></article><article class="exercise exercise-like" id="exercise-5"><h3 class="heading">
-<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">1.3.5</span><span class="period">.</span>
+<p id="p-232">Let <span class="process-math">\(V\)</span> be a vector space, and let <span class="process-math">\(X,Y\subseteq V\text{.}\)</span> Show that if <span class="process-math">\(X\subseteq Y\text{,}\)</span> then <span class="process-math">\(\spn X \subseteq \spn Y\text{.}\)</span></p>
+<div class="solutions">
+<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-10" id="hint-10"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-10"><div class="hint solution-like"><p id="p-233">Your goal is to show that any linear combination of vectors in <span class="process-math">\(X\)</span> can also be written as a linear combination of vectors in <span class="process-math">\(Y\text{.}\)</span> What value should you choose for the scalars in front of any vectors that belong to <span class="process-math">\(Y\)</span> but not <span class="process-math">\(X\text{?}\)</span></p></div></div>
+</div></article><article class="exercise exercise-like" id="exercise-11"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">1.3.7</span><span class="period">.</span>
 </h3>
-<p id="p-94">Can <span class="process-math">\(\{(1,2,0), (1,1,1)\}\)</span> span <span class="process-math">\(\{(a,b,0)\,|\, a,b \in\R\}\text{?}\)</span></p></article><article class="theorem theorem-like" id="theorem-surplus-span"><h3 class="heading">
-<span class="type">Theorem</span><span class="space"> </span><span class="codenumber">1.3.6</span><span class="period">.</span>
+<div class="runestone "><ul data-component="multiplechoice" data-multipleanswers="false" id="">
+<p id="p-234">The vectors <span class="process-math">\(\{(1,2,0), (1,1,1)\}\)</span> span <span class="process-math">\(\{(a,b,0)\,|\, a,b \in\R\}\text{.}\)</span></p>
+<li data-component="answer" id="_opt_t"><p>True.</p></li>
+<li data-component="feedback" id="_opt_t"><p id="p-235">The only way to get <span class="process-math">\(0\)</span> as the third component of <span class="process-math">\(s(1,2,0)+t(1,1,1)\)</span> is to set <span class="process-math">\(t=0\text{.}\)</span> But the scalar multiples of <span class="process-math">\((1,2,0)\)</span> do not generate all vectors of the form <span class="process-math">\((a,b,0)\text{.}\)</span></p></li>
+<li data-component="answer" id="_opt_f" data-correct=""><p>False.</p></li>
+<li data-component="feedback" id="_opt_f"><p id="p-235">The only way to get <span class="process-math">\(0\)</span> as the third component of <span class="process-math">\(s(1,2,0)+t(1,1,1)\)</span> is to set <span class="process-math">\(t=0\text{.}\)</span> But the scalar multiples of <span class="process-math">\((1,2,0)\)</span> do not generate all vectors of the form <span class="process-math">\((a,b,0)\text{.}\)</span></p></li>
+</ul></div></article><p id="p-236">We end with a result that will be important as we work on our understanding of the structure of vector spaces.</p>
+<article class="theorem theorem-like" id="theorem-surplus-span"><h3 class="heading">
+<span class="type">Theorem</span><span class="space"> </span><span class="codenumber">1.3.8</span><span class="period">.</span>
 </h3>
-<p id="p-95">Let <span class="process-math">\(V\)</span> be a vector space, and let <span class="process-math">\(\vv_1,\ldots, \vv_k\in V\text{.}\)</span> If <span class="process-math">\(\uu\in \spn\{\vv_1,\ldots, \vv_k\}\text{,}\)</span> then</p>
+<p id="p-237">Let <span class="process-math">\(V\)</span> be a vector space, and let <span class="process-math">\(\vv_1,\ldots, \vv_k\in V\text{.}\)</span> If <span class="process-math">\(\uu\in \spn\{\vv_1,\ldots, \vv_k\}\text{,}\)</span> then</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 \spn\{\uu,\vv_1,\ldots, \vv_k\} = \spn\{\vv_1,\ldots, \vv_k\}\text{.}
 \end{equation*}
-</div></article><p id="p-96">The moral of <a href="" class="xref" data-knowl="./knowl/theorem-surplus-span.html" title="Theorem 1.3.6">Theorem 1.3.6</a> is that one vector in a set is a linear combination of the others, we can remove it from the set without affecting the span. This suggests that we might want to look for the most “efficient” spanning sets – those in which no vector in the set can be written in terms of the others. Such sets are called <dfn class="terminology">linearly independent</dfn>, and they are the subject of <a href="sec-independence.html" class="internal" title="Section 1.5: Linear Independence">Section 1.5</a>.</p></section></div></main>
+</div></article><article class="hiddenproof" id="proof-6"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-6"><h3 class="heading"><span class="title">Strategy.</span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-6"><article class="hiddenproof"><p id="p-238">We need to first recall that the span of a set of vectors is, first and foremost, a set. That means that we are proving the equality of two sets. Recall that this typically requires us to prove that each set is a subset of the other.</p>
+<p id="p-239">This means that we need to show that any linear combination of the vectors <span class="process-math">\(\uu,\vv_1,\ldots, \vv_k\)</span> can be written as a linear combination of the vectors <span class="process-math">\(\vv_1,\ldots, \vv_k\text{,}\)</span> and vice-versa. In one direction, we will need our hypothesis: <span class="process-math">\(\uu\in \spn\{\vv_1,\ldots, \vv_k\}\text{.}\)</span> In the other direction, we come back to a trick we've already seen: adding zero does nothing. That is, if a vector is missing from a linear combination, we can include it, using <span class="process-math">\(0\)</span> for its coefficient.</p></article></div>
+<article class="hiddenproof" id="proof-7"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-7"><h3 class="heading"><span class="title">Execution.</span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-7"><article class="hiddenproof"><p id="p-240">Suppose that <span class="process-math">\(\uu\in \spn\{\vv_1,\ldots, \vv_k\}\text{.}\)</span> This means that <span class="process-math">\(\uu\)</span> can be written as a linear combination of the vectors <span class="process-math">\(\vv_1,\ldots, \vv_k\text{,}\)</span> so there must exist scalars <span class="process-math">\(a_1,\ldots, a_k\)</span> such that</p>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/eq-u-in-span.html" id="eq-u-in-span">
+\begin{equation}
+\uu=a_1\vv_1+a_2\vv_2+\cdots _a_k\vv_k\text{.}\tag{1.3.1}
+\end{equation}
+</div>
+<p class="continuation">Now, let <span class="process-math">\(\ww\in \uu\in \spn\{\uu,\vv_1,\ldots, \vv_k\}\text{.}\)</span> Then we must have</p>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/eq-u-in-span.html">
+\begin{equation*}
+\ww = b\uu+c_1\vv_1+\cdots+c_k\vv_k
+\end{equation*}
+</div>
+<p class="continuation">for scalars <span class="process-math">\(b,c_1,\ldots, c_k\text{.}\)</span> From our hypothesis (using <a href="" class="xref" data-knowl="./knowl/eq-u-in-span.html" title="Equation 1.3.1">(1.3.1)</a>), we get</p>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/eq-u-in-span.html" id="md-15">
+\begin{align*}
+\ww \amp = b(a_1\vv_1+a_2\vv_2+\cdots _a_k\vv_k) +c_1\vv_1+\cdots +\c_k\vv_k\\
+\amp = ((ba_1)\vv_1+\cdots + (ba_k)\vv_k)+(c_1\vv_1+\cdots +\c_k\vv_k)\\
+\amp = (ba_1+c_1)\vv_1+\cdots+(ba_k+c_k)\vv_k\text{.}
+\end{align*}
+</div>
+<p class="continuation">Since <span class="process-math">\(\ww\)</span> can be written as a linear combination of <span class="process-math">\(\vv_1,\ldots, \vv_k\text{,}\)</span> <span class="process-math">\(\ww\in\spn\{\vv_1,\ldots, \vv_k\}\text{,}\)</span> and therefore <span class="process-math">\(\spn\{\uu,\vv_1,\ldots, \vv_k\}\subseteq \spn\{\vv_1,\ldots, \vv_k\}\text{.}\)</span></p>
+<p id="p-241">On the other hand, let <span class="process-math">\(\xx\in \spn\{\vv_1,\ldots, \vv_k\}\text{.}\)</span> Then there exist scalars <span class="process-math">\(c_1,\ldots, c_k\)</span> for which we have</p>
+<div class="displaymath process-math" data-contains-math-knowls="" id="md-16">
+\begin{align*}
+\xx \amp = c_1\vv_1+\cdots +c_k\vv_k\\
+\amp = 0\uu + c_1\vv_1+\cdots + c_k\vv_k\text{.}
+\end{align*}
+</div>
+<p class="continuation">Therefore, <span class="process-math">\(\xx\in\spn\{\uu,\vv_1,\ldots, \vv_k\}\text{,}\)</span> which proves the opposite conclusion, and therefore the result.</p></article></div>
+<p id="p-242">The moral of <a href="" class="xref" data-knowl="./knowl/theorem-surplus-span.html" title="Theorem 1.3.8">Theorem 1.3.8</a> is that one vector in a set is a linear combination of the others, we can remove it from the set without affecting the span. This suggests that we might want to look for the most “efficient” spanning sets – those in which no vector in the set can be written in terms of the others. Such sets are called <dfn class="terminology">linearly independent</dfn>, and they are the subject of <a href="sec-independence.html" class="internal" title="Section 1.5: Linear Independence">Section 1.5</a>.</p></section></div></main>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script>
 </body>

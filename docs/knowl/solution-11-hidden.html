@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-05-04T13:27:11-06:00       *-->
+<!--*       on 2022-06-20T21:40:06-06:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -13,27 +13,20 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="robots" content="noindex, nofollow">
 </head>
-<body class="ignore-math"><div class="solution solution-like"><ol class="lower-alpha">
-<li><p>By definition, <span class="process-math">\(U_1 = \spn \{1+x,x+x^2\}\text{,}\)</span> and these vectors are independent, since neither is a scalar multiple of the other. Since there are two vectors in this basis, <span class="process-math">\(\dim U_1 = 2\text{.}\)</span></p></li>
-<li>
-<p>If <span class="process-math">\(p(1)=0\text{,}\)</span> then <span class="process-math">\(p(x)=(x-1)q(x)\)</span> for some polynomial <span class="process-math">\(q\text{.}\)</span> Since <span class="process-math">\(U_2\)</span> is a subspace of <span class="process-math">\(P_2\text{,}\)</span> the degree of <span class="process-math">\(q\)</span> is at most 2. Therefore, <span class="process-math">\(q(x)=ax+b\)</span> for some <span class="process-math">\(a,b\in\R\text{,}\)</span> and</p>
+<body class="ignore-math"><div class="solution solution-like">
+<p>The main difficulty with this problem is getting the logic of the statement correct, and making sure you know what it is you're trying to prove. The desired conclusion is an <em class="emphasis">or</em> statement, which means it suffices to establish one part or the other. Typically, the way to proceed in these cases is to argue that if the first part is false, then the second must be true. This is how we proceed here.</p>
+<p>Suppose that <span class="process-math">\(c\vv=\zer\text{.}\)</span> If <span class="process-math">\(c=0\text{,}\)</span> then it's true that <span class="process-math">\(c=0\)</span> or <span class="process-math">\(\vv=\zer\text{,}\)</span> so there's nothing to prove. Suppose then that <span class="process-math">\(c\neq 0\text{.}\)</span> Then there exists a real number <span class="process-math">\(\frac1c\)</span> such that <span class="process-math">\(c\bigl(\frac1c\bigr)=1\text{.}\)</span> Multiplying both sides of <span class="process-math">\(c\vv=\zer\)</span> by <span class="process-math">\(\frac1c\text{,}\)</span> we get</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
-p(x) = (x-1)(ax+b) = a(x^2-x)+b(x-1)\text{.}
+\frac1c(c\vv)=\frac1c\zer\text{.}
 \end{equation*}
 </div>
-<p class="continuation">Since <span class="process-math">\(p\)</span> was arbitrary, this shows that <span class="process-math">\(U_2 = \spn\{x^2-x,x-1\}\text{.}\)</span></p>
-<p>The set <span class="process-math">\(\{x^2-x,x-1\}\)</span> is also independent, since neither vector is a scalar multiple of the other. Therefore, this set is a basis, and <span class="process-math">\(\dim U_2=2\text{.}\)</span></p>
-</li>
-<li>
-<p>If <span class="process-math">\(p(x)=p(-x)\text{,}\)</span> then <span class="process-math">\(p(x)\)</span> is an even polynomial, and therefore <span class="process-math">\(p(x)=a+bx^2\)</span> for <span class="process-math">\(a,b\in\R\text{.}\)</span> (If you didn't know this it's easily verified: if</p>
+<p class="continuation">By the previous problem, we know that <span class="process-math">\(\frac1c\zer = \zer\text{,}\)</span> and by axioms S4 and S5, we have</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
-a+bx+cx^2 = a+b(-x)+c(-x)^2\text{,}
+\frac1c(c\vv)=\bigl(\frac1c\cdot c\bigr)\vv = 1\vv = \vv\text{,}
 \end{equation*}
 </div>
-<p class="continuation">we can immediately cancel <span class="process-math">\(a\)</span> from each side, and since <span class="process-math">\((-x)^2=x^2\text{,}\)</span> we can cancel <span class="process-math">\(cx^2\)</span> as well. This leaves <span class="process-math">\(bx=-bx\text{,}\)</span> or <span class="process-math">\(2bx=0\text{,}\)</span> which implies that <span class="process-math">\(b=0\text{.}\)</span>)</p>
-<p>It follows that the set <span class="process-math">\(\{1,x^2\}\)</span> spans <span class="process-math">\(U_3\text{,}\)</span> and since this is a subset of the standard basis <span class="process-math">\(\{1,x,x^2\}\)</span> of <span class="process-math">\(P_2\text{,}\)</span> it must be independent, and is therefore a basis of <span class="process-math">\(U_3\text{,}\)</span> letting us conclude that <span class="process-math">\(\dim U_3=2\text{.}\)</span></p>
-</li>
-</ol></div></body>
+<p class="continuation">showing that <span class="process-math">\(\vv=\zer\text{,}\)</span> and thus <span class="process-math">\(c=0\)</span> or <span class="process-math">\(\vv=\zer\text{.}\)</span> (This is a proof by cases, relying on the tautology <span class="process-math">\(c=0\)</span> or <span class="process-math">\(c\neq 0\text{.}\)</span>)</p>
+</div></body>
 </html>

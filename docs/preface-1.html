@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-05-04T13:26:57-06:00       *-->
+<!--*       on 2022-06-20T21:40:02-06:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -15,7 +15,7 @@
 <meta name="Keywords" content="Authored in PreTeXt">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta property="og:type" content="book">
-<meta property="book:title" content="Lecture Notes for Math 3410, with Computational Examples">
+<meta property="book:title" content="Linear Algebra">
 <meta property="book:author" content="Sean Fitzpatrick">
 <script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>window.MathJax = {
   tex: {
@@ -64,7 +64,38 @@
 <link href="https://pretextbook.org/css/0.4/style_default.css" rel="stylesheet" type="text/css">
 <link href="https://pretextbook.org/css/0.4/colors_default.css" rel="stylesheet" type="text/css">
 <link href="https://pretextbook.org/css/0.4/setcolors.css" rel="stylesheet" type="text/css">
-<!-- 2019-10-12: Temporary - CSS file for experiments with styling --><link href="developer.css" rel="stylesheet" type="text/css">
+<!--** eBookCongig is necessary to configure interactive       **-->
+<!--** Runestone components to run locally in reader's browser **-->
+<!--** No external communication:                              **-->
+<!--**     log level is 0, Runestone Services are disabled     **-->
+<script type="text/javascript">
+eBookConfig = {};
+eBookConfig.useRunestoneServices = false;
+eBookConfig.host = 'http://127.0.0.1:8000';
+eBookConfig.course = 'PTX Course: Title Here';
+eBookConfig.basecourse = 'PTX Base Course';
+eBookConfig.isLoggedIn = false;
+eBookConfig.email = '';
+eBookConfig.isInstructor = false;
+eBookConfig.logLevel = 0;
+eBookConfig.username = '';
+eBookConfig.readings = null;
+eBookConfig.activities = null;
+eBookConfig.downloadsEnabled = false;
+eBookConfig.allow_pairs = false;
+eBookConfig.enableScratchAC = false;
+eBookConfig.build_info = "";
+eBookConfig.python3 = null;
+eBookConfig.acDefaultLanguage = 'python';
+eBookConfig.runestone_version = '5.0.1';
+eBookConfig.jobehost = '';
+eBookConfig.proxyuri_runs = '';
+eBookConfig.proxyuri_files = '';
+eBookConfig.enable_chatcodes =  false;
+</script>
+<!--*** Runestone Services ***-->
+<script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.2.1/runtime.b0f8547c48f16a9f.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.2.1/637.d54be67956c5c660.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.2.1/runestone.0e9550fe42760516.bundle.js"></script><link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/6.2.1/637.fafafbd97df8a0d1.css">
+<link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/6.2.1/runestone.e4d5592da655219f.css">
 </head>
 <body class="pretext-book ignore-math has-toc has-sidebar-left">
 <a class="assistive" href="#content">Skip to main content</a><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\spn}{\operatorname{span}}
@@ -101,10 +132,12 @@
 \newcommand{\lt}{&lt;}
 \newcommand{\gt}{&gt;}
 \newcommand{\amp}{&amp;}
+\definecolor{fillinmathshade}{gray}{0.9}
+\newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
 \)</span></div>
 <header id="masthead" class="smallbuttons"><div class="banner"><div class="container">
 <a id="logo-link" href=""></a><div class="title-container">
-<h1 class="heading"><a href="linear-algebra.html"><span class="title">Lecture Notes for Math 3410, with Computational Examples</span></a></h1>
+<h1 class="heading"><a href="linear-algebra.html"><span class="title">Linear Algebra:</span> <span class="subtitle">A second course, featuring proofs and Python</span></a></h1>
 <p class="byline">Sean Fitzpatrick</p>
 </div>
 </div></div>
@@ -201,11 +234,16 @@ true);
 <section class="preface" id="preface-1"><h2 class="heading hide-type">
 <span class="type">Preface</span> <span class="codenumber"></span> <span class="title">Preface</span>
 </h2>
-<p id="p-1">Linear algebra is a mature, rich subject, full of both fascinating theory and useful applications. One of the things you might have taken away from a first course in the subject is that there's a lot of tedious calculation involved. This is true, if you're a human. But the algorithms you learn in a course like Math 1410 are easily implemented on a computer. If we want to be able to discuss any of the interesting applications of linear algebra, we're going to need to learn how to do linear algebra on a computer.</p>
-<p id="p-2">There are many good mathematical software products that can deal with linear algebra, like Maple, Mathematica, and MatLab. But all of these are proprietary, and expensive. Sage is a popular open source system for mathematics, and students considering further studies in mathematics would do well to learn Sage. Since most people in Math 3410 are probably not considering a career as a mathematician, we'll try to do everything in Python.</p>
-<p id="p-3">Python is a very popular programming language, partly because of its ease of use. Those of you enrolled in Education may find yourself teaching Python to your students one day. Also, if you do want to use Sage, you're in luck: Sage is an amalgamation of many different software tools, including Python. So any Python code you encounter in this course can also be run on Sage. <em class="emphasis">You do not have to be a programmer</em> to run the code in this book. We'll be primarily working with the <dfn class="terminology">SymPy</dfn> Python library, which provides many easy to use functions for operations like determinant and inverse.</p>
-<p id="p-4">These notes originally began as an attempt to make Python-based worksheets that could be exported from PreTeXt to Jupyter, for use in the classroom. It quickly became apparent that something more was needed, and the worksheets morphed into lecture notes. These are intended to serve as a textbook for Math 3410, but with some work they can also be used in class. The notes are written in PreTeXt, and can be converted to both Jupyter notebooks and reveal.js slides.</p>
-<p id="p-5">I initially wrote these notes during the Fall 2019 semester, for Math 3410 at the University of Lethbridge. The original textbook for the course was <em class="emphasis">Linear Algebra with Applications</em>, by Keith Nicholson. This book is available as an open education resource from <a class="external" href="https://lyryx.com/linear-algebra-applications/" target="_blank">Lyryx Learning</a><a href="" data-knowl="" class="id-ref fn-knowl original" data-refid="hk-fn-1" id="fn-1"><sup> 1 </sup></a>. Since these notes followed our course, and the course, to some extent, followed Nicholson's book, the notation, terminology, and (to some extent) organization of content aligns with that in Nicholson. (However, in a few places a careful reader might be able to detect the influence of Sheldon Axler's beautiful <em class="emphasis">Linear Algebra Done Right</em>.)</p></section><div class="hidden-content tex2jax_ignore" id="hk-fn-1"><div class="fn"><code class="code-inline tex2jax_ignore">lyryx.com/linear-algebra-applications/</code></div></div>
+<p id="p-1">This textbook is intended for a second course in linear algebra, for students who have completed a first course focused on procedures rather than proofs. (That is, a course covering systems of equations, matrix algebra, determinants, etc. but not vector spaces.)</p>
+<p id="p-2">Linear algebra is a mature, rich subject, full of both fascinating theory and useful applications. One of the things you might have taken away from a first course in the subject is that there's a lot of tedious calculation involved. This is true, if you're a human. But the algorithms you learned are easily implemented on a computer. If we want to be able to discuss any of the interesting applications of linear algebra, we're going to need to learn how to do linear algebra on a computer.</p>
+<p id="p-3">There are many good mathematical software products that can deal with linear algebra, like Maple, Mathematica, and MatLab. But all of these are proprietary, and expensive. Sage is a popular open source system for mathematics, and students considering further studies in mathematics would do well to learn Sage. Since we want to prepare students for careers other than “mathematician”, we'll try to do everything in Python.</p>
+<p id="p-4">Python is a very popular programming language, partly because of its ease of use. Those of you enrolled in Education may find yourself teaching Python to your students one day. Also, if you do want to use Sage, you're in luck: Sage is an amalgamation of many different software tools, including Python. So any Python code you encounter in this course can also be run on Sage. <em class="emphasis">You do not have to be a programmer</em> to run the code in this book. We'll be primarily working with the <dfn class="terminology">SymPy</dfn> Python library, which provides many easy to use functions for operations like determinant and inverse.</p>
+<p id="p-5">These notes originally began as an attempt to make Python-based worksheets that could be exported from PreTeXt to Jupyter, for use in the classroom. It quickly became apparent that something more was needed, and the worksheets morphed into lecture notes. These are intended to serve as a textbook for Math 3410, but with some work they can also be used in class. The notes are written in PreTeXt, and can be converted to both Jupyter notebooks and reveal.js slides.</p>
+<p id="p-6">It should be noted that Jupyter conversion is not perfect. In particular, wherever there are code cells present within an example or exercise, the resulting notebook will not be valid. However, all of the <em class="emphasis">worksheets</em> in the book will successfully convert to Jupyter notebooks, and are intended to be used as such.</p>
+<p id="p-7">I initially wrote these notes during the Fall 2019 semester, for Math 3410 at the University of Lethbridge. The original textbook for the course was <em class="emphasis">Linear Algebra with Applications</em>, by Keith Nicholson. This book is available as an open education resource from <a class="external" href="https://lyryx.com/linear-algebra-applications/" target="_blank">Lyryx Learning</a><a href="" data-knowl="" class="id-ref fn-knowl original" data-refid="hk-fn-1" id="fn-1"><sup> 1 </sup></a>.</p>
+<p id="p-8">Since the notes were written for a course that used Nicholson's textbook, the influence of his book is evident throughout. In particular, much of the notation agrees with that of Nicholson, and there are places where I refer to his book for further details. I taught a previous offering of this course using Sheldon Axler's beautiful <em class="emphasis">Linear Algebra Done Right</em>, which certainly had an effect on how I view the subject, and it is quite likely that this has impacted how I present some of the material in this book.</p>
+<p id="p-9">This new edition of the book features exercises written using some of the interactive features provided by the partnership between PreTeXt and <a class="external" href="https://runestone.academy/" target="_blank">Runestone</a><a href="" data-knowl="" class="id-ref fn-knowl original" data-refid="hk-fn-2" id="fn-2"><sup> 2 </sup></a>. I have also tried to provide additional guidance on understanding (and constructing) the proofs that appear in an upper division course on linear algebra.</p></section><div class="hidden-content tex2jax_ignore" id="hk-fn-1"><div class="fn"><code class="code-inline tex2jax_ignore">lyryx.com/linear-algebra-applications/</code></div></div>
+<div class="hidden-content tex2jax_ignore" id="hk-fn-2"><div class="fn"><code class="code-inline tex2jax_ignore">runestone.academy</code></div></div>
 </div></main>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script>

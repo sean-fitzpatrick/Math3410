@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-05-04T13:27:15-06:00       *-->
+<!--*       on 2022-06-20T21:40:06-06:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -15,34 +15,17 @@
 </head>
 <body class="ignore-math">
 <div class="solution solution-like">
-<h4 class="heading">
-<span class="type">Solution</span><span class="space"> </span><span class="codenumber">3.1.14.1</span><span class="period">.</span>
-</h4>
-<p>We compute</p>
+<h3 class="heading">
+<span class="type">Solution</span><span class="space"> </span><span class="codenumber">1.6.14.1</span><span class="period">.</span>
+</h3>
+<p>By the previous theorem, we can form a basis by adding vectors from the standard basis</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
-\begin{align*}
-\left(\frac{\vv\dotp\xx_1}{\len{\xx_1}^2}\right)\xx_1
-\amp +\left(\frac{\vv\dotp\xx_2}{\len{\xx_2}^2}\right)\xx_2
-+\left(\frac{\vv\dotp\xx_3}{\len{\xx_3}^2}\right)\xx_3\\
-\amp = \frac{4}{2}\xx_1+\frac{-9}{3}\xx_2+\frac{-28}{7}\xx_3\\
-\amp = 2(1,0,1,0)-3(-1,0,1,1)-4(1,1,-1,2)\\
-\amp = (1,-4,3,-11) = \vv\text{,}
-\end{align*}
+\begin{equation*}
+\left\{\bbm 1\amp 0\\0\amp 0\ebm, \bbm 0\amp 1\\0\amp 0\ebm, \bbm 0\amp 0\\1\amp 0\ebm, \bbm 0\amp 0\\0\amp 1\ebm\right\}\text{.}
+\end{equation*}
 </div>
-<p class="continuation">so <span class="process-math">\(\vv\in\spn\{\xx_1,\xx_2,\xx_3\}\text{.}\)</span></p>
-<p>On the other hand, repeating the same calculation with <span class="process-math">\(\ww\text{,}\)</span> we find</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{align*}
-\left(\frac{\vv\dotp\xx_1}{\len{\xx_1}^2}\right)\xx_1
-\amp +\left(\frac{\vv\dotp\xx_2}{\len{\xx_2}^2}\right)\xx_2
-+\left(\frac{\vv\dotp\xx_3}{\len{\xx_3}^2}\right)\xx_3\\
-\amp =\frac12 (1,0,1,0)-\frac53 (-1,0,1,1) +\frac47 (1,1,-1,2)\\
-\amp = \left(\frac{73}{42},\frac47,-\frac{115}{42},-\frac{11}{21}\right)\neq \ww\text{,}
-\end{align*}
+<p class="continuation">It's easy to check that <span class="process-math">\(\bbm 1\amp 0\\0\amp 0\ebm\)</span> is not in the span of <span class="process-math">\(\{\vv,\ww\}\text{.}\)</span> To get a basis, we need one more vector. Observe that all three of our vectors so far have a zero in the <span class="process-math">\((2,1)\)</span>-entry. Thus, <span class="process-math">\(\bbm 0\amp 0\\1\amp 0\ebm\)</span> cannot be in the span of the first three vectors, and adding it gives us our basis.</p>
 </div>
-<p class="continuation">so <span class="process-math">\(\ww\notin\spn\{\xx_1,\xx_2,\xx_3\}\text{.}\)</span></p>
-<p>Soon, we'll see that the quantity we computed when showing that <span class="process-math">\(\ww\notin\spn\{\xx_1,\xx_2,\xx_3\}\)</span> is, in fact, the <em class="emphasis">orthogonal projection</em> of <span class="process-math">\(\ww\)</span> onto the subspace <span class="process-math">\(\spn\{\xx_1,\xx_2,\xx_3\}\text{.}\)</span></p>
-</div>
-<span class="incontext"><a href="sec-orthogonal-sets.html#solution-27" class="internal">in-context</a></span>
+<span class="incontext"><a href="sec-dimension.html#solution-27" class="internal">in-context</a></span>
 </body>
 </html>
