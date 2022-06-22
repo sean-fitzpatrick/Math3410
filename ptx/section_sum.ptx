@@ -257,11 +257,9 @@
 
   </theorem>
 
-
   <p>
-    If <m>U\cap W = \{\mathbf{0}\}</m>, we say that the sum is a <term>direct sum</term>,
-    and write it as <m>U\oplus W</m>.
-    The following theorem might help us understand why direct sums are singled out for special attention:
+    By choosing bases for two subspaces <m>U</m> and <m>W</m> of a finite-dimensional vector space,
+    we can obtain the following cool dimension-counting result:
   </p>
 
   <theorem xml:id="thm-sum-dimension">
@@ -355,8 +353,60 @@
     but <em>not uniquely</em>, in general: in the above proof,
     we can change the values of the coefficients <m>a_i</m> and <m>c_i</m>,
     as long as the sum <m>a_i+c_i</m> remains unchanged.
-    Note that these are the coefficients of the basis vectors for <m>U\cap W</m>.
+    Note that these are the coefficients of the basis vectors for <m>U\cap W</m>,
+    so we can avoid this ambiguity if <m>U</m> and <m>W</m> have no nonzero vectors in common.
   </p>
+
+  <exercise>
+    <introduction>
+      <p>
+        Let <m>V=\R^3</m>, and let <m>U=\{(x,y,0)\,|\,x,y,\in\R\}, W=\{(0,y,z)\,|\,y,z\in\R\}</m>
+        be two subspaces.
+      </p>
+    </introduction>
+    <task>
+      <statement>
+        <p>
+          Determine the intersection <m>U\cap W</m>.
+        </p>
+      </statement>
+      <solution>
+        <p>
+          If <m>(x,y,z)\in U</m>, then <m>z=0</m>, and if <m>(x,y,z)\in W</m>, then <m>x=0</m>.
+          Therefore, <m>(x,y,z)\in U\cap W</m> if and only if <m>x=z=0</m>, so
+          <m>U\cap W = \{(0,y,0)\,|\, y\in\R\}</m>.
+        </p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>
+          Write the vector <m>\vv=(1,1,1)</m> in the form <m>\vv=\uu+\ww</m>,
+          where <m>\uu\in U</m> and <m>\ww\in W</m>, in at least two different ways.
+        </p>
+      </statement>
+      <solution>
+        <p>
+          There are in fact infinitely many ways to do this. Three possible ways include:
+          <md>
+            <mrow>\vv \amp = (1,1,0)+(0,0,1) </mrow>
+            <mrow> \amp = (1,0,0)+(0,1,1)</mrow>
+            <mrow> \amp = \left(1,\frac12,0\right)+\left(0,\frac12,1\right)</mrow>
+          </md>.
+        </p>
+      </solution>
+    </task>
+  </exercise>
+
+  <definition xml:id="def-direct-sum">
+    <statement>
+      <p>
+        Let <m>U</m> and <m>W</m> be subspaces of a vector space <m>V</m>.
+        If <m>U\cap W =\{\zer\}</m>, we say that the sum <m>U+W</m>
+        is a <term>direct sum</term>, which we denote by <m>U\oplus W</m>.
+      </p>
+    </statement>
+  </definition>
 
   <p>
     If the sum is direct, then we have simply <m>\dim(U\oplus W) = \dim U + \dim W</m>.
@@ -365,7 +415,7 @@
     where <m>\uu\in U</m> and <m>\ww\in W</m>, since we no longer have the ambiguity resulting from the basis vectors in <m>U\cap W</m>.
   </p>
 
-  <theorem xml:id="thm-direct-sum">
+  <theorem xml:id="thm-unique-sum">
     <statement>
       <p>
         For any subspaces <m>U,W</m> of a vector space <m>V</m>,
@@ -460,9 +510,15 @@
 
       </p>
     </proof>
-
-
   </theorem>
+
+  <aside>
+    <p>
+      If a basis has been chosen for <m>V</m>,
+      one way to construct a complement to a subspace <m>U</m> is to determine which elements of the basis for <m>V</m> are not in <m>U</m>.
+      These vectors will form a basis for a complement of <m>U</m>.
+    </p>
+  </aside>
 
   <p>
     The subspace <m>W</m> constructed in the theorem above is called a <term>complement</term> of <m>U</m>.
@@ -471,4 +527,200 @@
     then any other non-parallel line through the origin provides a complement of <m>U</m>.
     Later we will see that an especially useful choice of complement is the <term>orthogonal complement</term>.
   </p>
+
+  <definition xml:id="def-subspace-complement">
+    <statement>
+      <p>
+        Let <m>U</m> be a subspace of a vector space <m>V</m>.
+        We say that a subspace <m>W</m> of <m>V</m> is a <term>complement</term> of <m>U</m>
+        if <m>U\oplus W=V</m>.
+      </p>
+    </statement>
+  </definition>
+
+  <exercise>
+    <introduction>
+      <p>
+        Let <m>U</m> be the subspace of <m>P_3(\R)</m> consisting of all polynomials <m>p(x)</m> with <m>p(1)=0</m>.
+      </p>
+    </introduction>
+    <task>
+      <statement>
+        <p>
+          Determine a basis for <m>U</m>.
+        </p>
+      </statement>
+      <hint>
+        <p>
+          Use the factor theorem.
+        </p>
+      </hint>
+      <solution>
+        <p>
+          Since <m>p(1)=0</m>, we know that <m>p(x)=(x-1)q(x)</m>, for some <m>q(x)=ax^2+bx+c</m>.
+          Thus, <m>p(x)=ax^2(x-1)+bx(x-1)+c(x-1)</m>, so a basis is given by
+          <m>\{(x-1),x(x-1),x^2(x-1)\}</m>.
+        </p>
+        <p>
+          (Another option is <m>\{(x-1),(x-1)^2,(x-1)^3\}</m>.)
+        </p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>
+          Find a complement of <m>U</m>.
+        </p>
+      </statement>
+      <hint>
+        <p>
+          What is the dimension of <m>U</m>? (So what must be the dimension of its complement?)
+          What condition ensures that a polynomial does not belong to <m>U</m>?
+        </p>
+      </hint>
+      <solution>
+        <p>
+          Since <m>\dim U=3</m> and <m>\dim P_3(\R)=4</m>,
+          we know that any complement of <m>U</m> must be one-dimensional.
+        </p>
+        <p>
+          Therefore, a basis for a complement <m>W</m> of <m>U</m> is given by any polynomial in <m>P_3(\R)</m> that is not in <m>U</m>.
+          In particular, we can choose any polynomial <m>p(x)</m> with <m>p(1)\neq 0</m>; for example, <m>p(x)=x</m>.
+          Therefore, <m>W=\{ax\,|\, a\in\R\}</m> is a complement of <m>U</m>.
+        </p>
+      </solution>
+    </task>
+  </exercise>
+
+  <exercise>
+    <introduction>
+      <p>
+        Let <m>U</m> be the subspace of <m>\R^5</m> define by
+        <me>
+          U = \{(x_1,x_2,x_3,x_4,x_5)\,|\, x_1=3x_3, \text{ and } 3x_2-5x_4=x_5\}
+        </me>.
+      </p>
+    </introduction>
+    <task>
+      <statement>
+        <p>
+          Determine a basis for <m>U</m>.
+        </p>
+      </statement>
+      <hint>
+        <p>
+          Try plugging in the given conditions, and then decomposing the vector into pieces with one variable each.
+        </p>
+      </hint>
+      <solution>
+        <p>
+          If <m>\uu\in U</m>, then
+          <md>
+            <mrow>\uu \amp = (3x_3,x_2,x_3,x_4,3x_2-5x_4)</mrow>
+            <mrow> \amp = (0,x_2,0,0,3x_2)+(3x_3,0,x_3,0,0)+(0,0,0,x_4,-5x_4)</mrow>
+            <mrow> \amp = x_2(0,1,0,0,3)+x_3(3,0,1,0,0)+x_4(0,0,0,1,-5)</mrow>
+          </md>.
+        </p>
+        <p>
+          This shows that <m>U=\spn \{(0,1,0,0,3), (3,0,1,0,0), (0,0,0,1,-5)\}</m>.
+          These vectors are also linearly independent,
+          since each one has its first leading (nonzero) entry in a different position.
+          (Think about what this implies for the <init>RREF</init> of the resulting matrix.)
+        </p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>
+          Find a complement of <m>U</m>.
+        </p>
+      </statement>
+      <hint>
+        <p>
+          One way to solve this is to ask yourself,
+          what vectors are <em>not</em> in the span of the basis you found above?
+          You can do this by solving an appropriate system of equations.
+        </p>
+      </hint>
+      <solution>
+        <p>
+          Since <m>\dim U = 3</m>, any complement of <m>U</m> must have dimension 2.
+          We therefore need to find two independent vectors that do not belong to <m>U</m>.
+        </p>
+        <p>
+          Recall that <m>U</m> is defined by two conditions:
+          <m>x_1=3x_3</m> and <m>3x_2-5x_4=x_5</m>.
+          Therefore, a vector is <em>not</em> in <m>U</m> if <m>x_1\neq x_3</m>,
+          <em>or</em> <m>x_5\neq 3x_2-5x_4</m>.
+          This suggests that we define two vectors, each of which violates one of these conditions.
+        </p>
+        <p>
+          For the first, let us take <m>\xx=(1,0,1,0,0)</m>.
+          This is not in <m>U</m> because <m>1\neq 3(1)</m>.
+          For the second, let us take <m>\yy=(0,1,0,1,1)</m>.
+          This is not in <m>U</m> because <m>1\neq 3(1)-5(1)</m>.
+          We know that <m>\{\xx,\yy\}</m> is linearly independent,
+          because each vector has nonzero entries in different positions.
+          Therefore, <m>W=\spn\{\xx,\yy\}</m> is a complement of <m>U</m>,
+          since it is spanned by vectors not in <m>U</m>, and it has the correct dimension.
+        </p>
+      </solution>
+    </task>
+  </exercise>
+
+  <exercise>
+    <statement>
+      <p>
+        Suppose <m>U</m> and <m>W</m> are 4-dimensional subspaces of <m>\R^6</m>.
+        What is the minimum dimension of <m>U\cap W</m>?
+      </p>
+    </statement>
+    <choices>
+      <choice correct="no">
+        <statement>
+          <p>
+            <m>1</m>
+          </p>
+        </statement>
+        <feedback>
+          <p>
+            What would <xref ref="thm-sum-dimension"/> say about <m>\dim U+W</m> in this case?
+            Why is that not possible?
+          </p>
+        </feedback>
+      </choice>
+      <choice correct="yes">
+        <statement>
+          <p>
+            <m>2</m>
+          </p>
+        </statement>
+        <feedback>
+          <p>
+            Good job! If <m>\dim U+W = 6</m> (the largest it possibly can),
+            then <m>\dim U\cap W = \dim U+\dim W-\dim (U+W) = 4+4-6=2</m>.
+            If <m>U+W</m> is not all of <m>\R^6</m>, then <m>\dim (U\cap W)</m> could be 3 or 4.
+          </p>
+        </feedback>
+      </choice>
+      <choice correct="no">
+        <statement>
+          <p>
+            <m>3</m>
+          </p>
+        </statement>
+        <feedback>
+          <p>
+            While this is a possible dimension for <m>U\cap W</m>,
+            it is not the <em>smallest</em> possible dimension.
+          </p>
+        </feedback>
+      </choice>
+    </choices>
+    <hint>
+      <p>
+        Use <xref ref="thm-sum-dimension"/>.
+      </p>
+    </hint>
+  </exercise>
 </section>
