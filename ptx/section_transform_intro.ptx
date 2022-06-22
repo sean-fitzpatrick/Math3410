@@ -32,15 +32,17 @@
     </statement>
   </definition>
 
-  <p>
-    Note on notation: it is common usage to drop the usual parentheses of function notation
-    when working with linear transformations, as long as this does not cause confusion.
-    That is, one might write <m>T\vv</m> instead of <m>T(\vv)</m>,
-    but one should never write <m>T\vv+\ww</m> in place of <m>T(\vv+\ww)</m>,
-    for the same reason that one should never write <m>2x+y</m> in place of <m>2(x+y)</m>.
-    Mathematicians often think of linear transformations in terms of matrix multiplication,
-    which probably explains this notation to some extent.
-  </p>
+  <aside>
+    <p>
+      Note on notation: it is common usage to drop the usual parentheses of function notation
+      when working with linear transformations, as long as this does not cause confusion.
+      That is, one might write <m>T\vv</m> instead of <m>T(\vv)</m>,
+      but one should never write <m>T\vv+\ww</m> in place of <m>T(\vv+\ww)</m>,
+      for the same reason that one should never write <m>2x+y</m> in place of <m>2(x+y)</m>.
+      Mathematicians often think of linear transformations in terms of matrix multiplication,
+      which probably explains this notation to some extent.
+    </p>
+  </aside>
 
   <p>
     The properties of a linear transformation tell us that a linear map <m>T</m>
@@ -73,6 +75,19 @@
       </p>
     </statement>
     <proof>
+      <title>Strategy</title>
+      <p>
+        For the first part, remember that old trick we've used a couple of times before:
+        <m>\zer + \zer = \zer</m>. What happens if you apply <m>T</m> to both sides of this equation?
+      </p>
+      <p>
+        For the second part, note that the addition property of a linear transformation looks an awful lot like a distributive property,
+        and we can distribute over a sum of three or more vectors using the associative property.
+        You'll want to deal with the addition first, and then the scalar multiplication.
+      </p>
+    </proof>
+
+    <proof>
       <p>
         <ol>
           <li>
@@ -89,7 +104,7 @@
               The addition property of a linear transformation can be extended to sums of three or more vectors using associativity.
               Therefore, we have
               <md>
-                <mrow>T(c_1\vv_1+\cdots + c_n\vv_n) \amp = T(c_1\vv_1)+ \cdots T(c_n\vv_n)</mrow>
+                <mrow>T(c_1\vv_1+\cdots + c_n\vv_n) \amp = T(c_1\vv_1)+ \cdots + T(c_n\vv_n)</mrow>
                 <mrow> \amp = c_1T(\vv_1)+\cdots +c_nT(\vv_n)</mrow>
               </md>,
               where the second line follows from the scalar multiplication property.
@@ -98,9 +113,38 @@
         </ol>
       </p>
     </proof>
-
   </theorem>
 
+  <aside>
+    <p>
+      Technically, we skipped over some details in the above proof:
+      how exactly, is associativity being applied?
+      It turns out there's actually a proof by induction lurking in the background!
+    </p>
+
+    <p>
+      By definition, we know that <m>T(\vv_1+\vv_2)=T(\vv_1)+T(\vv_2)</m>.
+      For three vectors,
+      <md>
+        <mrow>T(\vv_1+\vv_2+\vv_3) \amp = T(\vv_1+(\vv_2+\vv_3))</mrow>
+        <mrow> \amp = T(\vv_1)+T(\vv_2+\vv_3)</mrow>
+        <mrow> \amp = T(\vv_1)+(T(\vv_2)+T(\vv_3))</mrow>
+        <mrow> \amp = T(\vv_1)+T(\vv_2)+T(\vv_3)</mrow>
+      </md>.
+    </p>
+
+    <p>
+      For an abitrary number of vectors <m>n\geq 3</m>,
+      we can assume that distribution over addition works for <m>n-1</m> vectors,
+      and then use associativity to write
+      <me>
+        \vv_1+\vv_2+\cdots +\vv_n = \vv_1+(\vv_2+\cdots +\vv_n)
+      </me>.
+      The right-hand side is technically a sum of two vectors,
+      so we can apply the definition of a linear transformation directly,
+      and then apply our induction hypothesis to <m>T(\vv_2+\cdots + \vv_n)</m>.
+    </p>
+  </aside>
 
   <example xml:id="ex-matrix-trans">
     <statement>
@@ -115,7 +159,9 @@
 
       <p>
         Let <m>B = \{\mathbf{e}_1,\ldots, \mathbf{e}_n\}</m> denote the standard basis of <m>\R^n</m>.
-        Recall that <m>A\mathbf{e}_i</m> is equal to the <m>i</m>th column of <m>A</m>.
+        (See <xref ref="ex-standard-basis"/>.)
+        Recall (or convince yourself, with a couple of examples)
+        that <m>A\mathbf{e}_i</m> is equal to the <m>i</m>th column of <m>A</m>.
         Thus, if we know the value of a linear transformation <m>T:\R^n\to \R^m</m> on each basis vector,
         we can immediately determine the matrix <m>A</m> such that <m>T=T_A</m>:
         <me>
@@ -221,6 +267,103 @@
       </li>
     </ul>
   </p>
+
+  <exercise>
+    <statement>
+      <p>
+        Which of the following are linear transformations?
+      </p>
+    </statement>
+    <choices>
+      <choice correct="no">
+        <statement>
+          <p>
+            The function <m>T:\R^2\to \R^2</m> given by <m>T(x,y)=(x-y, x+2y+1)</m>.
+          </p>
+        </statement>
+        <feedback>
+          <p>
+            Since <m>T(0,0)=(0,1)\neq (0,0)</m>, this can't be a linear transformation.
+          </p>
+        </feedback>
+      </choice>
+      <choice correct="yes">
+        <statement>
+          <p>
+            The function <m>f:P_2(\R)\to \R^2</m> given by <m>f(p(x))=(p(1),p(2))</m>.
+          </p>
+        </statement>
+        <feedback>
+          <p>
+            This looks unusual, but it's linear!
+            You can check that <m>f(p(x)+q(x))=f(p(x))+f(q(x))</m>, and <m>f(cp(x))=cf(p(x))</m>.
+          </p>
+        </feedback>
+      </choice>
+      <choice correct="no">
+        <statement>
+          <p>
+            The function <m>g:\R^2\to \R^2</m> given by <m>g(x,y)=(2x-y,2xy)</m>.
+          </p>
+        </statement>
+        <feedback>
+          <p>
+            Although this function preserves the zero vector,
+            it doesn't preserve addition or scalar multiplication.
+            For example, <m>g(1,0)+g(0,1)=(2,0)+(-1,0)=(1,0)</m>,
+            but <m>g((1,0)+(0,1))=g(1,1)=(1,2)</m>.
+          </p>
+        </feedback>
+      </choice>
+      <choice correct="yes">
+        <statement>
+          <p>
+            The function <m>M:P_2(\R)\to P_3(\R)</m> given by <m>M(p(x))=xp(x)</m>.
+          </p>
+        </statement>
+        <feedback>
+          <p>
+            Multiplication by <m>x</m> might feel non-linear,
+            but remember that <m>x</m> is not a <q>variable</q> as far as the transformation is concerned!
+            It's more of a placeholder. Try checking the definition directly.
+          </p>
+        </feedback>
+      </choice>
+      <choice correct="no">
+        <statement>
+          <p>
+            The function <m>D:M_{2\times 2}(\R)\to\R</m> given by <m>D(A)=\det(A)</m>.
+          </p>
+        </statement>
+        <feedback>
+          <p>
+            Remember that <m>\det(A+B)\neq \det(A)+\det(B)</m> in general!
+          </p>
+        </feedback>
+      </choice>
+      <choice correct="yes">
+        <statement>
+          <p>
+            The function <m>f:\R\to V</m> given by <m>f(x)=e^x</m>,
+            where <m>V=(0,\infty)</m>, with the vector space structure defined in <xref ref="ex-positive-reals-vecsp"/>.
+          </p>
+        </statement>
+        <feedback>
+          <p>
+            An exponential function that's linear? Seems impossible,
+            but remember that <q>addition</q> <m>x\oplus y</m> in <m>V</m> is really multiplication,
+            so <m>f(x+y)=e^{x+y}=e^xe^y=f(x)\oplus f(y)</m>, and similarly, <m>f(cx)=c\odot f(x)</m>.
+          </p>
+        </feedback>
+      </choice>
+    </choices>
+    <hint>
+      <p>
+        Usually, you can expect a linear transformation to involve homogeneous linear expressions.
+        Things like products, powers, and added constants are usually clues that something is nonlinear.
+      </p>
+    </hint>
+  </exercise>
 
   <p>
     For finite-dimensional vector spaces, it is often convenient to work in terms of a basis.
