@@ -668,11 +668,11 @@
     </task>
   </exercise>
 
-  <exercise>
+  <exercise xml:id="ex-using-sum-dimension">
     <statement>
       <p>
         Suppose <m>U</m> and <m>W</m> are 4-dimensional subspaces of <m>\R^6</m>.
-        What is the minimum dimension of <m>U\cap W</m>?
+        What are all possible dimensions of <m>U\cap W</m>?
       </p>
     </statement>
     <choices>
@@ -699,11 +699,10 @@
           <p>
             Good job! If <m>\dim U+W = 6</m> (the largest it possibly can),
             then <m>\dim U\cap W = \dim U+\dim W-\dim (U+W) = 4+4-6=2</m>.
-            If <m>U+W</m> is not all of <m>\R^6</m>, then <m>\dim (U\cap W)</m> could be 3 or 4.
           </p>
         </feedback>
       </choice>
-      <choice correct="no">
+      <choice correct="yes">
         <statement>
           <p>
             <m>3</m>
@@ -711,8 +710,31 @@
         </statement>
         <feedback>
           <p>
-            While this is a possible dimension for <m>U\cap W</m>,
-            it is not the <em>smallest</em> possible dimension.
+            Yes! This will be the case if <m>\dim U+W = 5</m>.
+          </p>
+        </feedback>
+      </choice>
+      <choice correct="yes">
+        <statement>
+          <p>
+            <m>4</m>
+          </p>
+        </statement>
+        <feedback>
+          <p>
+            Correct! If <m>U\subseteq W</m>, then <m>U=W=U+W=U\cap W</m>, all with dimension <m>4</m>.
+          </p>
+        </feedback>
+      </choice>
+      <choice correct="no">
+        <statement>
+          <p>
+            <m>5</m>
+          </p>
+        </statement>
+        <feedback>
+          <p>
+            Since <m>U+W</m> contains both <m>U</m> and <m>W</m>, its dimension cannot be less than <m>4</m>.
           </p>
         </feedback>
       </choice>
