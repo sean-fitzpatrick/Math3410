@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-06-21T16:34:10-06:00       *-->
+<!--*       on 2022-06-22T10:04:22-06:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -15,17 +15,19 @@
 </head>
 <body class="ignore-math">
 <article class="hiddenproof"><h4 class="heading"><span class="type">Proof</span></h4>
-<ol class="decimal">
-<li>
-<p>For any <span class="process-math">\(i=1,\ldots m\text{,}\)</span> we have</p>
+<p>Suppose <span class="process-math">\(S=\{\vv_1,\vv_2,\ldots, \vv_k\}\)</span> is orthogonal, and suppose</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
-\vv_{m+1}\dotp\vv_i = \xx\dotp\vv_i - \frac{\xx\dotp\vv_i}{\len{\vv_i}^2}(\vv_i\dotp\vv_i)=0\text{,}
+c_1\vv_1+c_2\vv_2+\cdots + c_k\vv_k = \mathbf{0}
 \end{equation*}
 </div>
-<p class="continuation">since <span class="process-math">\(\vv_i\dotp\vv_j = 0\)</span> for <span class="process-math">\(i\neq j\text{.}\)</span></p>
-</li>
-<li><p>It follows from the <a href="" class="xref" data-knowl="./knowl/thm-fourier-expansion.html" title="Theorem 3.1.13: Fourier expansion theorem">Fourier expansion theorem</a> that <span class="process-math">\(\vv_{m+1}=\mathbf{0}\)</span> if and only if <span class="process-math">\(\xx\in\spn\{\vv_1,\ldots, \vv_m\}\text{,}\)</span> and the fact that <span class="process-math">\(\{\vv_1,\ldots, \vv_m,\vv_{m+1}\}\)</span> is an orthogonal set then follows from the first part.</p></li>
-</ol></article><span class="incontext"><a href="sec-ortho-projection.html#proof-36" class="internal">in-context</a></span>
+<p class="continuation">for scalars <span class="process-math">\(c_1,c_2,\ldots, c_k\text{.}\)</span> Taking the dot product of both sides of the above equation with <span class="process-math">\(\vv_1\)</span> gives</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{align*}
+c_1(\vv_1\dotp \vv_1)+c_2(\vv_1\dotp \vv_2)+\cdots +c_k(\vv_1\dotp \vv_k) \amp =\vv_1\dotp \mathbf{0}\\
+c_1\len{\vv_1}^2+0+\cdots + 0\amp = 0 \text{.}
+\end{align*}
+</div>
+<p class="continuation">Since <span class="process-math">\(\len{\vv_1}^2\neq 0\text{,}\)</span> we must have <span class="process-math">\(c_1=0\text{.}\)</span> We similarly find that all the remaining scalars are zero by taking the dot product with <span class="process-math">\(\vv_2,\ldots, \vv_k\text{.}\)</span></p></article><span class="incontext"><a href="sec-orthogonal-sets.html#proof-36" class="internal">in-context</a></span>
 </body>
 </html>

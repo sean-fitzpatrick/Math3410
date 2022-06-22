@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-06-21T16:34:11-06:00       *-->
+<!--*       on 2022-06-22T10:04:23-06:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -15,26 +15,21 @@
 </head>
 <body class="ignore-math">
 <h5 class="heading"><span class="type">Paragraph</span></h5>
-<ol class="decimal">
-<li>
-<p>Suppose <span class="process-math">\(A\zz = \lambda\zz\)</span> for some <span class="process-math">\(\lambda\in\C\)</span> and <span class="process-math">\(\zz\neq \mathbf{0}\text{.}\)</span> Then</p>
+<p>We have <span class="process-math">\(\bar{A}=\bbm 4\amp 1+i\amp -2-3i\\1-i\amp 5 \amp -7i\\-2+3i\amp 7i\amp -4\ebm\text{,}\)</span> so</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
-\lambda \langle \zz,\zz\rangle  = \langle \lambda\zz,\zz\rangle = \langle A\zz,\zz \rangle = \langle \zz, A\zz\rangle = \langle \zz,\lambda\zz\rangle = \bar{\lambda}\langle \zz,\zz\rangle\text{.}
+A^H = (\bar{A})^T = \bbm 4\amp 1-i\amp -2+3i\\1+i\amp 5\amp 7i\\-2-3i\amp -7i\amp -4\ebm = A\text{,}
 \end{equation*}
 </div>
-<p class="continuation">Thus, <span class="process-math">\((\lambda-\bar{\lambda})\len{\zz}^2=0\text{,}\)</span> and since <span class="process-math">\(\len{z}\neq 0\text{,}\)</span> we must have <span class="process-math">\(\bar{\lambda}=\lambda\text{,}\)</span> which means <span class="process-math">\(\lambda\in\R\text{.}\)</span></p>
-</li>
-<li>
-<p>Similarly, suppose <span class="process-math">\(\lambda_1,\lambda_2\)</span> are eigenvalues of <span class="process-math">\(A\text{,}\)</span> with corresponding eigenvectors <span class="process-math">\(\zz,\ww\text{.}\)</span> Then</p>
+<p class="continuation">and</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-\lambda_1\langle \zz,\ww\rangle = \langle \lambda_1\zz,\ww\rangle = \langle A\zz,\ww\rangle =\langle \zz,A\ww\rangle = \langle \zz,\lambda_2\ww\rangle = \bar{\lambda_2}\langle\zz,\ww\rangle\text{.}
-\end{equation*}
+\begin{align*}
+BB^H \amp =\frac14\bbm 1+i\amp \sqrt{2}\\1-i\amp\sqrt{2}i\ebm\bbm 1-i\amp 1+i\\\sqrt{2}\amp-\sqrt{2}i\ebm \\
+\amp =\frac14\bbm (1+i)(1-i)+2\amp (1+i)(1+i)-2i\\(1-i)(1-i)+2i\amp (1-i)(1+i)+2\ebm\\
+\amp =\frac14\bbm 4\amp 0\\0\amp 4\ebm = \bbm 1\amp 0\\0\amp 1\ebm\text{,}
+\end{align*}
 </div>
-<p class="continuation">This gives us <span class="process-math">\((\lambda_1-\bar{\lambda_2})\langle \zz,\ww\rangle=0\text{.}\)</span> And since we already know <span class="process-math">\(\lambda_2\)</span> must be real, and <span class="process-math">\(\lambda_1\neq \lambda_2\text{,}\)</span> we must have <span class="process-math">\(\langle \zz,\ww\rangle = 0\text{.}\)</span></p>
-</li>
-</ol>
+<p class="continuation">so that <span class="process-math">\(B^H = B^{-1}\text{.}\)</span></p>
 <span class="incontext"><a href="sec-complex.html#p-898" class="internal">in-context</a></span>
 </body>
 </html>

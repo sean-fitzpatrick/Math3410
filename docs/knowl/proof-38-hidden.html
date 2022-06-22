@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-06-21T16:34:10-06:00       *-->
+<!--*       on 2022-06-22T10:04:22-06:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -13,18 +13,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="robots" content="noindex, nofollow">
 </head>
-<body class="ignore-math"><article class="hiddenproof"><p>We have</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{align*}
-P^{-1}AP \amp = P^{-1}A\bbm \xx_1\amp \cdots \amp \xx_n\ebm\\
-\amp =\bbm (P^{-1}A)\xx_1\amp \cdots \amp (P^{-1}A)\xx_n\ebm\text{.}
-\end{align*}
-</div>
-<p class="continuation">For <span class="process-math">\(1\leq i\leq k\text{,}\)</span> we have</p>
+<body class="ignore-math"><article class="hiddenproof"><ol class="decimal">
+<li>
+<p>For any <span class="process-math">\(i=1,\ldots m\text{,}\)</span> we have</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
-(P^{-1}A)(\xx_i) = P^{-1}(A\xx_i) = P^{-1}(\lambda_i\xx_i)=\lambda_i(P^{-1}\xx_i)\text{.}
+\vv_{m+1}\dotp\vv_i = \xx\dotp\vv_i - \frac{\xx\dotp\vv_i}{\len{\vv_i}^2}(\vv_i\dotp\vv_i)=0\text{,}
 \end{equation*}
 </div>
-<p class="continuation">But <span class="process-math">\(P^{-1}\xx_i\)</span> is the <span class="process-math">\(i\)</span>th column of <span class="process-math">\(P^{-1}P = I_n\text{,}\)</span> which proves the result.</p></article></body>
+<p class="continuation">since <span class="process-math">\(\vv_i\dotp\vv_j = 0\)</span> for <span class="process-math">\(i\neq j\text{.}\)</span></p>
+</li>
+<li><p>It follows from the <a href="" class="xref" data-knowl="./knowl/thm-fourier-expansion.html" title="Theorem 3.1.13: Fourier expansion theorem">Fourier expansion theorem</a> that <span class="process-math">\(\vv_{m+1}=\mathbf{0}\)</span> if and only if <span class="process-math">\(\xx\in\spn\{\vv_1,\ldots, \vv_m\}\text{,}\)</span> and the fact that <span class="process-math">\(\{\vv_1,\ldots, \vv_m,\vv_{m+1}\}\)</span> is an orthogonal set then follows from the first part.</p></li>
+</ol></article></body>
 </html>

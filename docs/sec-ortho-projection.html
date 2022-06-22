@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-06-21T16:34:05-06:00       *-->
+<!--*       on 2022-06-22T10:04:17-06:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -240,10 +240,10 @@ true);
 <main class="main"><div id="content" class="pretext-content"><section class="section" id="sec-ortho-projection"><h2 class="heading hide-type">
 <span class="type">Section</span> <span class="codenumber">3.2</span> <span class="title">Orthogonal Projection</span>
 </h2>
-<section class="introduction" id="introduction-15"><p id="p-689">In <a href="" class="xref" data-knowl="./knowl/ex-test-span.html" title="Exercise 3.1.14">Exercise 3.1.14</a>, we saw that <a href="" class="xref" data-knowl="./knowl/thm-fourier-expansion.html" title="Theorem 3.1.13: Fourier expansion theorem">Fourier expansion theorem</a> gives us an efficient way of testing whether or not a given vector belongs to the span of an orthogonal set. When the answer is “no”, the quantity we compute while testing turns out to be very useful: it gives the <em class="emphasis">orthogonal projection</em> of that vector onto the span of our orthogonal set. This turns out to be exactly the ingredient needed to solve certain minimum distance problems.</p></section><section class="subsection" id="subsection-5"><h3 class="heading hide-type">
+<section class="introduction" id="introduction-15"><p id="p-700">In <a href="" class="xref" data-knowl="./knowl/ex-test-span.html" title="Exercise 3.1.14">Exercise 3.1.14</a>, we saw that <a href="" class="xref" data-knowl="./knowl/thm-fourier-expansion.html" title="Theorem 3.1.13: Fourier expansion theorem">Fourier expansion theorem</a> gives us an efficient way of testing whether or not a given vector belongs to the span of an orthogonal set. When the answer is “no”, the quantity we compute while testing turns out to be very useful: it gives the <em class="emphasis">orthogonal projection</em> of that vector onto the span of our orthogonal set. This turns out to be exactly the ingredient needed to solve certain minimum distance problems.</p></section><section class="subsection" id="subsection-5"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">3.2.1</span> <span class="title">The Gram-Schmidt Procedure</span>
 </h3>
-<p id="p-690">You may recall the following from elementary linear algebra, or vector calculus. Given an nonzero vector <span class="process-math">\(\uu\)</span> and a vector <span class="process-math">\(\vv\text{,}\)</span> the <em class="emphasis">projection</em> of <span class="process-math">\(\vv\)</span> onto <span class="process-math">\(\uu\)</span> is given by</p>
+<p id="p-701">You may recall the following from elementary linear algebra, or vector calculus. Given an nonzero vector <span class="process-math">\(\uu\)</span> and a vector <span class="process-math">\(\vv\text{,}\)</span> the <em class="emphasis">projection</em> of <span class="process-math">\(\vv\)</span> onto <span class="process-math">\(\uu\)</span> is given by</p>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/thm-fourier-expansion.html">
 \begin{equation*}
 \proj{\uu}{\vv} = \left(\frac{\vv\dotp\uu}{\len{\uu}^2}\right)\uu\text{.}
@@ -253,7 +253,7 @@ true);
 <article class="theorem theorem-like" id="thm-orthogonal-lemma"><h4 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">3.2.1</span><span class="period">.</span><span class="space"> </span><span class="title">Orthogonal Lemma.</span>
 </h4>
-<p id="p-691">Let <span class="process-math">\(\{\vv_1,\vv_2,\ldots, \vv_m\}\)</span> be an orthogonal set of vectors in <span class="process-math">\(\R^n\text{,}\)</span> and let <span class="process-math">\(\xx\)</span> be any vector in <span class="process-math">\(\R^n\text{.}\)</span> Define the vector <span class="process-math">\(\vv_{m+1}\)</span> by</p>
+<p id="p-702">Let <span class="process-math">\(\{\vv_1,\vv_2,\ldots, \vv_m\}\)</span> be an orthogonal set of vectors in <span class="process-math">\(\R^n\text{,}\)</span> and let <span class="process-math">\(\xx\)</span> be any vector in <span class="process-math">\(\R^n\text{.}\)</span> Define the vector <span class="process-math">\(\vv_{m+1}\)</span> by</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 \vv_{m+1} = \xx-\left(\frac{\xx\dotp\vv_1}{\len{\vv_1}^2}\vv_1+\cdots + \frac{\xx\dotp\vv_m}{\len{\vv_m}^2}\vv_m\right)\text{.}
@@ -261,11 +261,11 @@ true);
 </div>
 <p class="continuation">Then:</p>
 <ol class="decimal">
-<li id="li-109"><p id="p-692"><span class="process-math">\(\vv_{m+1}\dotp \vv_i = 0\)</span> for each <span class="process-math">\(i=1,\ldots, m\text{.}\)</span></p></li>
-<li id="li-110"><p id="p-693">If <span class="process-math">\(\xx\notin\spn\{\vv_1,\ldots, \vv_m\}\text{,}\)</span> then <span class="process-math">\(\vv_{m+1}\neq \mathbf{0}\text{,}\)</span> and therefore, <span class="process-math">\(\{\vv_1,\ldots, \vv_m,\vv_{m+1}\}\)</span> is an orthogonal set.</p></li>
-</ol></article><article class="hiddenproof" id="proof-36"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-36"><h4 class="heading"><span class="type">Proof<span class="period">.</span></span></h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-36"><article class="hiddenproof"><ol id="p-694" class="decimal">
+<li id="li-109"><p id="p-703"><span class="process-math">\(\vv_{m+1}\dotp \vv_i = 0\)</span> for each <span class="process-math">\(i=1,\ldots, m\text{.}\)</span></p></li>
+<li id="li-110"><p id="p-704">If <span class="process-math">\(\xx\notin\spn\{\vv_1,\ldots, \vv_m\}\text{,}\)</span> then <span class="process-math">\(\vv_{m+1}\neq \mathbf{0}\text{,}\)</span> and therefore, <span class="process-math">\(\{\vv_1,\ldots, \vv_m,\vv_{m+1}\}\)</span> is an orthogonal set.</p></li>
+</ol></article><article class="hiddenproof" id="proof-38"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-38"><h4 class="heading"><span class="type">Proof<span class="period">.</span></span></h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-38"><article class="hiddenproof"><ol id="p-705" class="decimal">
 <li id="li-111">
-<p id="p-695">For any <span class="process-math">\(i=1,\ldots m\text{,}\)</span> we have</p>
+<p id="p-706">For any <span class="process-math">\(i=1,\ldots m\text{,}\)</span> we have</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 \vv_{m+1}\dotp\vv_i = \xx\dotp\vv_i - \frac{\xx\dotp\vv_i}{\len{\vv_i}^2}(\vv_i\dotp\vv_i)=0\text{,}
@@ -273,21 +273,21 @@ true);
 </div>
 <p class="continuation">since <span class="process-math">\(\vv_i\dotp\vv_j = 0\)</span> for <span class="process-math">\(i\neq j\text{.}\)</span></p>
 </li>
-<li id="li-112"><p id="p-696">It follows from the <a href="" class="xref" data-knowl="./knowl/thm-fourier-expansion.html" title="Theorem 3.1.13: Fourier expansion theorem">Fourier expansion theorem</a> that <span class="process-math">\(\vv_{m+1}=\mathbf{0}\)</span> if and only if <span class="process-math">\(\xx\in\spn\{\vv_1,\ldots, \vv_m\}\text{,}\)</span> and the fact that <span class="process-math">\(\{\vv_1,\ldots, \vv_m,\vv_{m+1}\}\)</span> is an orthogonal set then follows from the first part.</p></li>
+<li id="li-112"><p id="p-707">It follows from the <a href="" class="xref" data-knowl="./knowl/thm-fourier-expansion.html" title="Theorem 3.1.13: Fourier expansion theorem">Fourier expansion theorem</a> that <span class="process-math">\(\vv_{m+1}=\mathbf{0}\)</span> if and only if <span class="process-math">\(\xx\in\spn\{\vv_1,\ldots, \vv_m\}\text{,}\)</span> and the fact that <span class="process-math">\(\{\vv_1,\ldots, \vv_m,\vv_{m+1}\}\)</span> is an orthogonal set then follows from the first part.</p></li>
 </ol></article></div>
-<p id="p-697">It follows from the <a href="" class="xref" data-knowl="./knowl/thm-orthogonal-lemma.html" title="Theorem 3.2.1: Orthogonal Lemma">Orthogonal Lemma</a> that for any subspace <span class="process-math">\(U\subseteq \R^n\text{,}\)</span> any set of orthogonal vectors in <span class="process-math">\(U\)</span> can be extended to an orthogonal basis of <span class="process-math">\(U\text{.}\)</span> Since any set containing a single nonzero vector is orthogonal, it follows that every subspace has an orthogonal basis. (If <span class="process-math">\(U=\{\mathbf{0}\}\text{,}\)</span> we consider the empty basis to be orthogonal.)</p>
-<p id="p-698">The procedure for creating an orthogonal basis is clear. Start with a single nonzero vector <span class="process-math">\(\vv_1\in U\text{.}\)</span> If <span class="process-math">\(U\neq \spn\{\vv_1\}\text{,}\)</span> choose a vector <span class="process-math">\(\xx_1\in U\)</span> with <span class="process-math">\(\xx_1\notin\spn\{\vv_1\}\text{.}\)</span> The <a href="" class="xref" data-knowl="./knowl/thm-orthogonal-lemma.html" title="Theorem 3.2.1: Orthogonal Lemma">Orthogonal Lemma</a> then provides us with a vector</p>
+<p id="p-708">It follows from the <a href="" class="xref" data-knowl="./knowl/thm-orthogonal-lemma.html" title="Theorem 3.2.1: Orthogonal Lemma">Orthogonal Lemma</a> that for any subspace <span class="process-math">\(U\subseteq \R^n\text{,}\)</span> any set of orthogonal vectors in <span class="process-math">\(U\)</span> can be extended to an orthogonal basis of <span class="process-math">\(U\text{.}\)</span> Since any set containing a single nonzero vector is orthogonal, it follows that every subspace has an orthogonal basis. (If <span class="process-math">\(U=\{\mathbf{0}\}\text{,}\)</span> we consider the empty basis to be orthogonal.)</p>
+<p id="p-709">The procedure for creating an orthogonal basis is clear. Start with a single nonzero vector <span class="process-math">\(\vv_1\in U\text{.}\)</span> If <span class="process-math">\(U\neq \spn\{\vv_1\}\text{,}\)</span> choose a vector <span class="process-math">\(\xx_1\in U\)</span> with <span class="process-math">\(\xx_1\notin\spn\{\vv_1\}\text{.}\)</span> The <a href="" class="xref" data-knowl="./knowl/thm-orthogonal-lemma.html" title="Theorem 3.2.1: Orthogonal Lemma">Orthogonal Lemma</a> then provides us with a vector</p>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/thm-orthogonal-lemma.html ./knowl/thm-orthogonal-lemma.html">
 \begin{equation*}
 \vv_2 = \xx_1-\frac{\xx_1\dotp\vv_1}{\len{\vv_1}^2}\vv_1
 \end{equation*}
 </div>
 <p class="continuation">such that <span class="process-math">\(\{\vv_1,\vv_2\}\)</span> is orthogonal. If <span class="process-math">\(U=\spn\{\vv_1,\vv_2\}\text{,}\)</span> we're done. Otherwise, we repeat the process, choosing <span class="process-math">\(\xx_2\notin\spn\{\vv_1,\vv_2\}\text{,}\)</span> and then using the <a href="" class="xref" data-knowl="./knowl/thm-orthogonal-lemma.html" title="Theorem 3.2.1: Orthogonal Lemma">Orthogonal Lemma</a> to obtain <span class="process-math">\(\vv_3\text{,}\)</span> and so on, until an orthogonal basis is obtained.</p>
-<p id="p-699">With one minor modification, the above procedure provides us with a major result. Suppose <span class="process-math">\(U\)</span> is a subspace of <span class="process-math">\(\R^n\text{,}\)</span> and start with <em class="emphasis">any</em> basis <span class="process-math">\(\{\xx_1,\ldots, \xx_m\}\)</span> of <span class="process-math">\(U\text{.}\)</span> By choosing our <span class="process-math">\(\xx_i\)</span> in the procedure above to be these basis vectors, we obtain the <em class="emphasis">Gram-Schmidt algorithm</em> for constructing an orthogonal basis.</p>
+<p id="p-710">With one minor modification, the above procedure provides us with a major result. Suppose <span class="process-math">\(U\)</span> is a subspace of <span class="process-math">\(\R^n\text{,}\)</span> and start with <em class="emphasis">any</em> basis <span class="process-math">\(\{\xx_1,\ldots, \xx_m\}\)</span> of <span class="process-math">\(U\text{.}\)</span> By choosing our <span class="process-math">\(\xx_i\)</span> in the procedure above to be these basis vectors, we obtain the <em class="emphasis">Gram-Schmidt algorithm</em> for constructing an orthogonal basis.</p>
 <article class="theorem theorem-like" id="thm-gram-schmidt"><h4 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">3.2.2</span><span class="period">.</span><span class="space"> </span><span class="title">Gram-Schmidt Orthonormalization Algorithm.</span>
 </h4>
-<p id="p-700">Let <span class="process-math">\(U\)</span> be a subspace of <span class="process-math">\(\R^n\text{,}\)</span> and let <span class="process-math">\(\{\xx_1,\ldots, \xx_m\}\)</span> be a basis of <span class="process-math">\(U\text{.}\)</span> Define vectors <span class="process-math">\(\vv_1,\ldots, \vv_m\)</span> in <span class="process-math">\(U\)</span> as follows:</p>
+<p id="p-711">Let <span class="process-math">\(U\)</span> be a subspace of <span class="process-math">\(\R^n\text{,}\)</span> and let <span class="process-math">\(\{\xx_1,\ldots, \xx_m\}\)</span> be a basis of <span class="process-math">\(U\text{.}\)</span> Define vectors <span class="process-math">\(\vv_1,\ldots, \vv_m\)</span> in <span class="process-math">\(U\)</span> as follows:</p>
 <div class="displaymath process-math" data-contains-math-knowls="" id="md-46">
 \begin{align*}
 \vv_1 \amp = \xx_1 \\
@@ -302,7 +302,7 @@ true);
 \begin{equation*}
 \spn\{\vv_1,\ldots, \vv_k\} = \spn\{\xx_1,\ldots, \xx_k\}\text{.}
 \end{equation*}
-</div></article><p id="p-701">Of course, once we've used Gram-Schmidt to find an orthogonal basis, we can normalize each vector to get an orthonormal basis. The Gram-Schmidt algorithm is ideal when we know how to find <em class="emphasis">a</em> basis for a subspace, but we need to know an orthogonal basis. For example, suppose we want an orthonormal basis for the nullspace of the matrix</p>
+</div></article><p id="p-712">Of course, once we've used Gram-Schmidt to find an orthogonal basis, we can normalize each vector to get an orthonormal basis. The Gram-Schmidt algorithm is ideal when we know how to find <em class="emphasis">a</em> basis for a subspace, but we need to know an orthogonal basis. For example, suppose we want an orthonormal basis for the nullspace of the matrix</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 A = \bbm 2 \amp -1 \amp 3 \amp 0 \amp 5\\0 \amp 2 \amp -3  \amp 1 \amp 4\\ -4 \amp 2 \amp -6 \amp 0 \amp -10\\ 2 \amp 1 \amp 0 \amp 1 \amp 9\ebm\text{.}
@@ -317,7 +317,7 @@ A = Matrix([[2,-1,3,0,5],
             [2,1,0,1,9]])
 A.nullspace()
 </script></pre>
-<p id="p-702">Let's make that basis look a little nicer by using some scalar multiplication to clear fractions.</p>
+<p id="p-713">Let's make that basis look a little nicer by using some scalar multiplication to clear fractions.</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 B=\left\{\xx_1=\bbm 3\\-6\\-4\\0\\0\ebm, \xx_2=\bbm 1\\2\\0\\-4\\0\ebm, \xx_3=\bbm 7\\4\\0\\0\\-2\ebm\right\}
@@ -341,28 +341,28 @@ B=\left\{\xx_1=\bbm 3\\-6\\-4\\0\\0\ebm, \xx_2=\bbm 1\\2\\0\\-4\\0\ebm, \xx_3=\b
 B = A.nullspace()
 GramSchmidt(B)
 </script></pre>
-<p id="p-703">Oh wait, you wanted that normalized? Turns out the <code class="code-inline tex2jax_ignore">GramSchmidt</code> function has an optional argument of true or false. The default is false, which is to not normalize. Setting it to true gives an orthonormal basis:</p>
+<p id="p-714">Oh wait, you wanted that normalized? Turns out the <code class="code-inline tex2jax_ignore">GramSchmidt</code> function has an optional argument of true or false. The default is false, which is to not normalize. Setting it to true gives an orthonormal basis:</p>
 <pre class="ptx-sagecell sagecell-sage" id="sage-48"><script type="text/x-sage">GramSchmidt(B,true)
 </script></pre>
-<p id="p-704">OK, so that's nice, and fairly intimidating looking. Did it work? We can specify the vectors in our list by giving their positions, which are 0, 1, and 2, respectively.</p>
+<p id="p-715">OK, so that's nice, and fairly intimidating looking. Did it work? We can specify the vectors in our list by giving their positions, which are 0, 1, and 2, respectively.</p>
 <pre class="ptx-sagecell sagecell-sage" id="sage-49"><script type="text/x-sage">L=GramSchmidt(B)
 L[0],L[1],L[2]
 </script></pre>
-<p id="p-705">Let's compute dot products:</p>
+<p id="p-716">Let's compute dot products:</p>
 <pre class="ptx-sagecell sagecell-sage" id="sage-50"><script type="text/x-sage">L[0].dot(L[1]),L[1].dot(L[2]),L[0].dot(L[2])
 </script></pre>
-<p id="p-706">Let's also confirm that these are indeed in the nullspace.</p>
+<p id="p-717">Let's also confirm that these are indeed in the nullspace.</p>
 <pre class="ptx-sagecell sagecell-sage" id="sage-51"><script type="text/x-sage">A*L[0],A*L[1],A*L[2]
 </script></pre>
-<p id="p-707">Boom. Let's try another example. This time we'll keep the vectors a little smaller in case you want to try it by hand.</p>
+<p id="p-718">Boom. Let's try another example. This time we'll keep the vectors a little smaller in case you want to try it by hand.</p>
 <article class="exercise exercise-like" id="exercise-57"><h4 class="heading">
 <span class="type">Exercise</span><span class="space"> </span><span class="codenumber">3.2.3</span><span class="period">.</span>
 </h4>
-<p id="p-708">Confirm that the set <span class="process-math">\(B=\{(1,-2,1), (3,0,-2), (-1,1,2)\}\)</span> is a basis for <span class="process-math">\(\R^3\text{,}\)</span> and use the <a href="" class="xref" data-knowl="./knowl/thm-gram-schmidt.html" title="Theorem 3.2.2: Gram-Schmidt Orthonormalization Algorithm">Gram-Schmidt Orthonormalization Algorithm</a> to find an orthonormal basis.</p>
+<p id="p-719">Confirm that the set <span class="process-math">\(B=\{(1,-2,1), (3,0,-2), (-1,1,2)\}\)</span> is a basis for <span class="process-math">\(\R^3\text{,}\)</span> and use the <a href="" class="xref" data-knowl="./knowl/thm-gram-schmidt.html" title="Theorem 3.2.2: Gram-Schmidt Orthonormalization Algorithm">Gram-Schmidt Orthonormalization Algorithm</a> to find an orthonormal basis.</p>
 <div class="solutions">
 <a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-43" id="solution-43"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-43"><div class="solution solution-like">
-<p id="p-709">First, note that we can actually jump right into the Gram-Schmidt procedure. If the set <span class="process-math">\(B\)</span> is not a basis, then it won't be independent, and when we attempt to construct the third vector in our orthonormal basis, its projection on the the subspace spanned by the first two will be the same as the original vector, and we'll get zero when we subtract the two.</p>
-<p id="p-710">We let <span class="process-math">\(\xx_1=(1,-2,1), \xx_2=(3,0,-2), \xx_3=(-1,1,2)\text{,}\)</span> and set <span class="process-math">\(\vv_1=\xx_1\text{.}\)</span> Then we have</p>
+<p id="p-720">First, note that we can actually jump right into the Gram-Schmidt procedure. If the set <span class="process-math">\(B\)</span> is not a basis, then it won't be independent, and when we attempt to construct the third vector in our orthonormal basis, its projection on the the subspace spanned by the first two will be the same as the original vector, and we'll get zero when we subtract the two.</p>
+<p id="p-721">We let <span class="process-math">\(\xx_1=(1,-2,1), \xx_2=(3,0,-2), \xx_3=(-1,1,2)\text{,}\)</span> and set <span class="process-math">\(\vv_1=\xx_1\text{.}\)</span> Then we have</p>
 <div class="displaymath process-math" data-contains-math-knowls="" id="md-48">
 \begin{align*}
 \vv_2 \amp = \xx_2-\left(\frac{\xx_2\dotp \vv_1}{\len{\vv_1}^2}\right)\vv_1 \\
@@ -370,7 +370,7 @@ L[0],L[1],L[2]
 \amp = \frac16(17,2,-3) \text{.}
 \end{align*}
 </div>
-<p id="p-711">Next, we compute <span class="process-math">\(\vv_3\text{.}\)</span></p>
+<p id="p-722">Next, we compute <span class="process-math">\(\vv_3\text{.}\)</span></p>
 <div class="displaymath process-math" data-contains-math-knowls="" id="md-49">
 \begin{align*}
 \vv_3 \amp = \xx_3-\left(\frac{\xx_3\dotp \vv_1}{\len{\vv_1}^2}\right)\vv_1 - \left(\frac{\xx_3\dotp \vv_2}{\len{\vv_2}^2}\right)\vv_2\\
@@ -380,14 +380,14 @@ L[0],L[1],L[2]
 \amp = \frac{1}{606}(277,488,1187)\text{.}
 \end{align*}
 </div>
-<p id="p-712">OK. Now, given the frequency with which typos occur in this text, and the fact that I tried to do the above problem in my head while typing (with an occasional calculator check), there's a good chance there's a mistake somewhere. Let's check our work.</p>
+<p id="p-723">OK. Now, given the frequency with which typos occur in this text, and the fact that I tried to do the above problem in my head while typing (with an occasional calculator check), there's a good chance there's a mistake somewhere. Let's check our work.</p>
 <pre class="ptx-sagecell hidden-sagecell-sage" id="sage-52"><script type="text/x-sage">from sympy import Matrix, init_printing, GramSchmidt
 init_printing()
 L=(Matrix([1,-2,1]),Matrix([3,0,-2]),Matrix([-1,1,2]))
 GramSchmidt(L)
 </script></pre>
 </div></div>
-</div></article><aside class="aside aside-like" id="aside-2"><p id="p-713">You'll notice that I used <span class="process-math">\(6\vv_2\)</span> rather than <span class="process-math">\(\vv_2\)</span> in the calculation of <span class="process-math">\(\vv_3\text{.}\)</span> This lets me avoid fractions (momentarily), and doesn't affect the answer, since for any nonzero scalar <span class="process-math">\(c\text{,}\)</span></p>
+</div></article><aside class="aside aside-like" id="aside-2"><p id="p-724">You'll notice that I used <span class="process-math">\(6\vv_2\)</span> rather than <span class="process-math">\(\vv_2\)</span> in the calculation of <span class="process-math">\(\vv_3\text{.}\)</span> This lets me avoid fractions (momentarily), and doesn't affect the answer, since for any nonzero scalar <span class="process-math">\(c\text{,}\)</span></p>
 <div class="displaymath process-math" data-contains-math-knowls="" id="md-50">
 \begin{align*}
 \left(\frac{c\vv\dotp \xx}{\len{c\vv}^2}\right)\amp(c\vv)\\
@@ -397,31 +397,31 @@ GramSchmidt(L)
 </div></aside></section><section class="subsection" id="pars-projections"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">3.2.2</span> <span class="title">Projections</span>
 </h3>
-<p id="p-714">We hinted above that the calculations we've been doing have a lot to do with projection. Since any single nonzero vector forms an orthogonal basis for its span, the projection</p>
+<p id="p-725">We hinted above that the calculations we've been doing have a lot to do with projection. Since any single nonzero vector forms an orthogonal basis for its span, the projection</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 \proj{\uu}{\vv}=\left(\frac{\uu\dotp\vv}{\len{\uu}^2}\right)\uu
 \end{equation*}
 </div>
 <p class="continuation">can be viewed as the orthogonal projection of the vector <span class="process-math">\(\vv\text{,}\)</span> not onto the vector <span class="process-math">\(\uu\text{,}\)</span> but onto the subspace <span class="process-math">\(\spn\{\uu\}\text{.}\)</span> This is, after all, how we viewed projections in elementary linear algebra: we drop the perpendicular from the tip of <span class="process-math">\(\vv\)</span> onto the <em class="emphasis">line</em> in the direction of <span class="process-math">\(\uu\text{.}\)</span></p>
-<p id="p-715">Now that we know how to define an orthogonal basis for a subspace, we can define orthogonal projection onto subspaces of dimension greater than one.</p>
+<p id="p-726">Now that we know how to define an orthogonal basis for a subspace, we can define orthogonal projection onto subspaces of dimension greater than one.</p>
 <article class="definition definition-like" id="def-ortho-projection"><h4 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">3.2.4</span><span class="period">.</span>
 </h4>
-<p id="p-716">Let <span class="process-math">\(U\)</span> be a subspace of <span class="process-math">\(\R^n\)</span> with orthogonal basis <span class="process-math">\(\{\uu_1,\ldots, \uu_k\}\text{.}\)</span> For any vector <span class="process-math">\(\vv\in \R^n\text{,}\)</span> we define the <dfn class="terminology">orthogonal projection</dfn> of <span class="process-math">\(\vv\)</span> onto <span class="process-math">\(U\)</span> by</p>
+<p id="p-727">Let <span class="process-math">\(U\)</span> be a subspace of <span class="process-math">\(\R^n\)</span> with orthogonal basis <span class="process-math">\(\{\uu_1,\ldots, \uu_k\}\text{.}\)</span> For any vector <span class="process-math">\(\vv\in \R^n\text{,}\)</span> we define the <dfn class="terminology">orthogonal projection</dfn> of <span class="process-math">\(\vv\)</span> onto <span class="process-math">\(U\)</span> by</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 \proj{U}{\vv} = \sum_{i=1}^k\left(\frac{\uu_i\dotp\vv}{\len{\uu_i}^2}\right)\uu_i\text{.}
 \end{equation*}
-</div></article><p id="p-717">Note that <span class="process-math">\(\proj{U}{\vv}\)</span> is indeed an element of <span class="process-math">\(U\text{,}\)</span> since it's a linear combination of its basis vectors. In the case of the trivial subspace <span class="process-math">\(U=\{\mathbf{0}\}\text{,}\)</span> we define orthogonal projection of any vector to be <span class="process-math">\(\mathbf{0}\text{,}\)</span> since really, what other choice do we have? (This case isn't really of any interest, we just like being thorough.)</p>
-<p id="p-718">Let's see how this might be put to use in a classic problem: finding the distance from a point to a plane.</p>
-<aside class="aside aside-like" id="aside-3"><p id="p-719">One limitation of this approach to projection is that we must project onto a <em class="emphasis">subspace</em>. Given a plane like <span class="process-math">\(x-2y+4z=4\text{,}\)</span> we would need to modify our approach. One way to do it would be to find a point on the plane, and then try to translate everything to the origin. It's interesting to think about how this might be accomplished (in particular, in what direction would the translation have to be performed?) but someone external to the questions we're interested in here.</p></aside><article class="example example-like" id="example-10"><h4 class="heading">
+</div></article><p id="p-728">Note that <span class="process-math">\(\proj{U}{\vv}\)</span> is indeed an element of <span class="process-math">\(U\text{,}\)</span> since it's a linear combination of its basis vectors. In the case of the trivial subspace <span class="process-math">\(U=\{\mathbf{0}\}\text{,}\)</span> we define orthogonal projection of any vector to be <span class="process-math">\(\mathbf{0}\text{,}\)</span> since really, what other choice do we have? (This case isn't really of any interest, we just like being thorough.)</p>
+<p id="p-729">Let's see how this might be put to use in a classic problem: finding the distance from a point to a plane.</p>
+<aside class="aside aside-like" id="aside-3"><p id="p-730">One limitation of this approach to projection is that we must project onto a <em class="emphasis">subspace</em>. Given a plane like <span class="process-math">\(x-2y+4z=4\text{,}\)</span> we would need to modify our approach. One way to do it would be to find a point on the plane, and then try to translate everything to the origin. It's interesting to think about how this might be accomplished (in particular, in what direction would the translation have to be performed?) but someone external to the questions we're interested in here.</p></aside><article class="example example-like" id="example-10"><h4 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">3.2.5</span><span class="period">.</span>
 </h4>
-<p id="p-720">Find the distance from the point <span class="process-math">\((3,1,-2)\)</span> to the plane <span class="process-math">\(P\)</span> defined by <span class="process-math">\(x-2y+4z=0\text{.}\)</span></p>
+<p id="p-731">Find the distance from the point <span class="process-math">\((3,1,-2)\)</span> to the plane <span class="process-math">\(P\)</span> defined by <span class="process-math">\(x-2y+4z=0\text{.}\)</span></p>
 <div class="solutions">
 <a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-44" id="solution-44"><span class="type">Solution</span><span class="space"> </span><span class="codenumber">1</span><span class="period">.</span><span class="space"> </span><span class="title">Using projection onto a normal vector</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-44"><div class="solution solution-like">
-<p id="p-721">In an elementary linear algebra (or calculus) course, we would solve this problem as follows. First, we would need two vectors parallel to the plane. If <span class="process-math">\(\bbm x\\y\\z\ebm\)</span> lies in the plane, then <span class="process-math">\(x-2y+4z=0\text{,}\)</span> so <span class="process-math">\(x=2y-4z\text{,}\)</span> and</p>
+<p id="p-732">In an elementary linear algebra (or calculus) course, we would solve this problem as follows. First, we would need two vectors parallel to the plane. If <span class="process-math">\(\bbm x\\y\\z\ebm\)</span> lies in the plane, then <span class="process-math">\(x-2y+4z=0\text{,}\)</span> so <span class="process-math">\(x=2y-4z\text{,}\)</span> and</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 \bbm x\\y\\z\ebm = \bbm 2y-4z\\y\\z\ebm = y\bbm 2\\1\\0\ebm + z\bbm -4\\0\\1\ebm\text{,}
@@ -439,7 +439,7 @@ GramSchmidt(L)
 \xx = \left(\frac{\mathbf{p}\dotp\mathbf{n}}{\len{\mathbf{n}}^2}\right)\mathbf{n} = \frac{-7}{21}\bbm 1\\-2\\4\ebm =\bbm-1/3\\2/3\\-4/3\ebm\text{.}
 \end{equation*}
 </div>
-<p id="p-722">Now, this vector is <em class="emphasis">parallel</em> to <span class="process-math">\(\mathbf{n}\text{,}\)</span> so it's perpendicular to the plane. Subtracting it from <span class="process-math">\(\mathbf{p}\)</span> gives a vector parallel to the plane, and this is the position vector for the point we seek.</p>
+<p id="p-733">Now, this vector is <em class="emphasis">parallel</em> to <span class="process-math">\(\mathbf{n}\text{,}\)</span> so it's perpendicular to the plane. Subtracting it from <span class="process-math">\(\mathbf{p}\)</span> gives a vector parallel to the plane, and this is the position vector for the point we seek.</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 \mathbf{q}=\mathbf{p}-\xx=\bbm 3\\1\\-2\ebm-\bbm -1/3\\-2/3\\-4/3\ebm = \bbm 10/3\\1/3\\-2/3\ebm
@@ -448,7 +448,7 @@ GramSchmidt(L)
 <p class="continuation">so the closest point is <span class="process-math">\(Q=\bigl(\frac{10}{3},\frac13,-\frac{2}{3}\bigr)\text{.}\)</span> We weren't asked for it, but note that if we wanted the distance from the point <span class="process-math">\(P\)</span> to the plane, this is given by <span class="process-math">\(\len{\xx}=\frac13\sqrt{21}\text{.}\)</span></p>
 </div></div>
 <a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-45" id="solution-45"><span class="type">Solution</span><span class="space"> </span><span class="codenumber">2</span><span class="period">.</span><span class="space"> </span><span class="title">Using orthogonal projection</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-45"><div class="solution solution-like">
-<p id="p-723">Let's solve the same problem using orthogonal projection. First, we have to deal with the fact that the vectors <span class="process-math">\(\uu\)</span> and <span class="process-math">\(\vv\)</span> are probably not orthogonal. To get around this, we replace <span class="process-math">\(\vv\)</span> with</p>
+<p id="p-734">Let's solve the same problem using orthogonal projection. First, we have to deal with the fact that the vectors <span class="process-math">\(\uu\)</span> and <span class="process-math">\(\vv\)</span> are probably not orthogonal. To get around this, we replace <span class="process-math">\(\vv\)</span> with</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 \ww = \vv-\left(\frac{\vv\dotp\uu}{\len{\uu}^2}\right)\uu = \bbm -4\\0\\1\ebm+\frac 85\bbm 2\\1\\0\ebm = \bbm -4/5\\8/5\\1\ebm\text{.}
@@ -464,27 +464,27 @@ GramSchmidt(L)
 </div>
 <p class="continuation">Lo and behold, we get the same answer as before.</p>
 </div></div>
-</div></article><p id="p-724">The only problem with <a href="" class="xref" data-knowl="./knowl/def-ortho-projection.html" title="Definition 3.2.4">Definition 3.2.4</a> is that it appears to depend on the choice of orthogonal basis. To see that it doesn't, we need one more definition.</p>
+</div></article><p id="p-735">The only problem with <a href="" class="xref" data-knowl="./knowl/def-ortho-projection.html" title="Definition 3.2.4">Definition 3.2.4</a> is that it appears to depend on the choice of orthogonal basis. To see that it doesn't, we need one more definition.</p>
 <article class="definition definition-like" id="def-ortho-comp"><h4 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">3.2.6</span><span class="period">.</span>
 </h4>
-<p id="p-725">For any subspace <span class="process-math">\(U\)</span> of <span class="process-math">\(\R^n\text{,}\)</span> we define the <dfn class="terminology">orthogonal complement</dfn> of <span class="process-math">\(U\text{,}\)</span> denoted <span class="process-math">\(U^\bot\text{,}\)</span> by</p>
+<p id="p-736">For any subspace <span class="process-math">\(U\)</span> of <span class="process-math">\(\R^n\text{,}\)</span> we define the <dfn class="terminology">orthogonal complement</dfn> of <span class="process-math">\(U\text{,}\)</span> denoted <span class="process-math">\(U^\bot\text{,}\)</span> by</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 U^\bot = \{\xx\in\R^n \,|\, \xx\dotp\yy = 0 \text{ for all } \yy\in U\}\text{.}
 \end{equation*}
-</div></article><p id="p-726">The term “complement” comes from terminology we mentioned early on, but didn't spend much time on. <a href="" class="xref" data-knowl="./knowl/thm-construct-complement.html" title="Theorem 1.7.8">Theorem 1.7.8</a> told us that for any subspace <span class="process-math">\(U\)</span> of a vector space <span class="process-math">\(V\text{,}\)</span> it is possible to construct another subspace <span class="process-math">\(W\)</span> of <span class="process-math">\(V\)</span> such that <span class="process-math">\(V = U\oplus W\text{.}\)</span> The subspace <span class="process-math">\(W\)</span> is known as a complement of <span class="process-math">\(U\text{.}\)</span> A complement is not unique, but the orthogonal complement is. As you might guess from the name, <span class="process-math">\(U^\bot\)</span> is also a subspace of <span class="process-math">\(\R^n\text{.}\)</span></p>
+</div></article><p id="p-737">The term “complement” comes from terminology we mentioned early on, but didn't spend much time on. <a href="" class="xref" data-knowl="./knowl/thm-construct-complement.html" title="Theorem 1.7.8">Theorem 1.7.8</a> told us that for any subspace <span class="process-math">\(U\)</span> of a vector space <span class="process-math">\(V\text{,}\)</span> it is possible to construct another subspace <span class="process-math">\(W\)</span> of <span class="process-math">\(V\)</span> such that <span class="process-math">\(V = U\oplus W\text{.}\)</span> The subspace <span class="process-math">\(W\)</span> is known as a complement of <span class="process-math">\(U\text{.}\)</span> A complement is not unique, but the orthogonal complement is. As you might guess from the name, <span class="process-math">\(U^\bot\)</span> is also a subspace of <span class="process-math">\(\R^n\text{.}\)</span></p>
 <article class="exercise exercise-like" id="exercise-58"><h4 class="heading">
 <span class="type">Exercise</span><span class="space"> </span><span class="codenumber">3.2.7</span><span class="period">.</span>
 </h4>
-<p id="p-727">Show that <span class="process-math">\(U^\bot\)</span> is a subspace of <span class="process-math">\(\R^n\text{.}\)</span></p></article><article class="theorem theorem-like" id="thm-projection"><h4 class="heading">
+<p id="p-738">Show that <span class="process-math">\(U^\bot\)</span> is a subspace of <span class="process-math">\(\R^n\text{.}\)</span></p></article><article class="theorem theorem-like" id="thm-projection"><h4 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">3.2.8</span><span class="period">.</span><span class="space"> </span><span class="title">Projection Theorem.</span>
 </h4>
-<p id="p-728">Let <span class="process-math">\(U\)</span> be a subspace of <span class="process-math">\(\R^n\text{,}\)</span> let <span class="process-math">\(\xx\)</span> be any vector in <span class="process-math">\(\R^n\text{,}\)</span> and let <span class="process-math">\(\mathbf{p}=\proj{U}{\xx}\text{.}\)</span> Then:</p>
+<p id="p-739">Let <span class="process-math">\(U\)</span> be a subspace of <span class="process-math">\(\R^n\text{,}\)</span> let <span class="process-math">\(\xx\)</span> be any vector in <span class="process-math">\(\R^n\text{,}\)</span> and let <span class="process-math">\(\mathbf{p}=\proj{U}{\xx}\text{.}\)</span> Then:</p>
 <ol class="decimal">
-<li id="li-113"><p id="p-729"><span class="process-math">\(\mathbf{p}\in U\text{,}\)</span> and <span class="process-math">\(\xx-\mathbf{p}\in U^\bot\text{.}\)</span></p></li>
+<li id="li-113"><p id="p-740"><span class="process-math">\(\mathbf{p}\in U\text{,}\)</span> and <span class="process-math">\(\xx-\mathbf{p}\in U^\bot\text{.}\)</span></p></li>
 <li id="li-114">
-<p id="p-730"><span class="process-math">\(\mathbf{p}\)</span> is the <em class="emphasis">closest</em> vector in <span class="process-math">\(U\)</span> to the vector <span class="process-math">\(\xx\text{,}\)</span> in the sense that the distance <span class="process-math">\(d(\mathbf{p},\xx)\)</span> is minimal among all vectors in <span class="process-math">\(U\text{.}\)</span> That is, for all <span class="process-math">\(\uu\neq \mathbf{p}\in U\text{,}\)</span> we have</p>
+<p id="p-741"><span class="process-math">\(\mathbf{p}\)</span> is the <em class="emphasis">closest</em> vector in <span class="process-math">\(U\)</span> to the vector <span class="process-math">\(\xx\text{,}\)</span> in the sense that the distance <span class="process-math">\(d(\mathbf{p},\xx)\)</span> is minimal among all vectors in <span class="process-math">\(U\text{.}\)</span> That is, for all <span class="process-math">\(\uu\neq \mathbf{p}\in U\text{,}\)</span> we have</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 \len{\xx-\mathbf{p}}\lt\len{\xx-\uu}\text{.}
@@ -494,10 +494,10 @@ U^\bot = \{\xx\in\R^n \,|\, \xx\dotp\yy = 0 \text{ for all } \yy\in U\}\text{.}
 </ol></article><article class="exercise exercise-like" id="exercise-59"><h4 class="heading">
 <span class="type">Exercise</span><span class="space"> </span><span class="codenumber">3.2.9</span><span class="period">.</span>
 </h4>
-<p id="p-731">Show that <span class="process-math">\(U\cap U^\bot = \{\mathbf{0}\}\text{.}\)</span> Use this fact to show that <a href="" class="xref" data-knowl="./knowl/def-ortho-projection.html" title="Definition 3.2.4">Definition 3.2.4</a> does not depend on the choice orthogonal basis.</p>
+<p id="p-742">Show that <span class="process-math">\(U\cap U^\bot = \{\mathbf{0}\}\text{.}\)</span> Use this fact to show that <a href="" class="xref" data-knowl="./knowl/def-ortho-projection.html" title="Definition 3.2.4">Definition 3.2.4</a> does not depend on the choice orthogonal basis.</p>
 <div class="solutions">
 <a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-15" id="hint-15"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-15"><div class="hint solution-like">
-<p id="p-732">Suppose we find vectors <span class="process-math">\(\mathbf{p}\)</span> and <span class="process-math">\(\mathbf{p}'\)</span> using basis <span class="process-math">\(B\)</span> and <span class="process-math">\(B'\text{.}\)</span> Note that <span class="process-math">\(\mathbf{p}-\mathbf{p}'\in U\text{,}\)</span> but also that</p>
+<p id="p-743">Suppose we find vectors <span class="process-math">\(\mathbf{p}\)</span> and <span class="process-math">\(\mathbf{p}'\)</span> using basis <span class="process-math">\(B\)</span> and <span class="process-math">\(B'\text{.}\)</span> Note that <span class="process-math">\(\mathbf{p}-\mathbf{p}'\in U\text{,}\)</span> but also that</p>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/thm-projection.html">
 \begin{equation*}
 \mathbf{p}-\mathbf{p}' = (\mathbf{p}-\xx)-(\mathbf{p}'-\xx)
@@ -505,17 +505,17 @@ U^\bot = \{\xx\in\R^n \,|\, \xx\dotp\yy = 0 \text{ for all } \yy\in U\}\text{.}
 </div>
 <p class="continuation">Now use <a href="" class="xref" data-knowl="./knowl/thm-projection.html" title="Theorem 3.2.8: Projection Theorem">Theorem 3.2.8</a></p>
 </div></div>
-</div></article><p id="p-733">Finally, we note one more useful fact. The process of sending a vector to its orthogonal projection defines an operator on <span class="process-math">\(\R^n\text{,}\)</span> and yes, it's linear.</p>
+</div></article><p id="p-744">Finally, we note one more useful fact. The process of sending a vector to its orthogonal projection defines an operator on <span class="process-math">\(\R^n\text{,}\)</span> and yes, it's linear.</p>
 <article class="theorem theorem-like" id="thm-proj-operator"><h4 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">3.2.10</span><span class="period">.</span>
 </h4>
-<p id="p-734">Let <span class="process-math">\(U\)</span> be a subspace of <span class="process-math">\(\R^n\text{,}\)</span> and define a function <span class="process-math">\(P_U:\R^n\to \R^n\)</span> by</p>
+<p id="p-745">Let <span class="process-math">\(U\)</span> be a subspace of <span class="process-math">\(\R^n\text{,}\)</span> and define a function <span class="process-math">\(P_U:\R^n\to \R^n\)</span> by</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 P_U(\xx) = \proj{U}{\xx} \text{ for any } \xx\in\R^n\text{.}
 \end{equation*}
 </div>
-<p class="continuation">Then <span class="process-math">\(T\)</span> is a linear operator such that <span class="process-math">\(U=\im P_U\)</span> and <span class="process-math">\(U^\bot = \ker P_U\text{.}\)</span></p></article><p id="p-735">Note: it follows from this result and the <a href="" class="xref" data-knowl="./knowl/thm-dimension-lintrans.html" title="Theorem 2.2.7: Dimension Theorem">Dimension Theorem</a> that</p>
+<p class="continuation">Then <span class="process-math">\(T\)</span> is a linear operator such that <span class="process-math">\(U=\im P_U\)</span> and <span class="process-math">\(U^\bot = \ker P_U\text{.}\)</span></p></article><p id="p-746">Note: it follows from this result and the <a href="" class="xref" data-knowl="./knowl/thm-dimension-lintrans.html" title="Theorem 2.2.7: Dimension Theorem">Dimension Theorem</a> that</p>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/thm-dimension-lintrans.html ./knowl/thm-construct-complement.html">
 \begin{equation*}
 \dim U + \dim U^\bot = n\text{,}
@@ -531,10 +531,10 @@ P_U(\xx) = \proj{U}{\xx} \text{ for any } \xx\in\R^n\text{.}
 <article class="exercise exercise-like" id="exercise-60"><h4 class="heading">
 <span class="type">Exercise</span><span class="space"> </span><span class="codenumber">3.2.11</span><span class="period">.</span>
 </h4>
-<p id="p-736">Let <span class="process-math">\(U = \{(a-b+3c, 2a+b, 3c, 4a-b+3c,a-4c)\,|\, a,b,c\in\R\}\subseteq \R^5\text{.}\)</span> Determine a basis for <span class="process-math">\(U^\bot\text{.}\)</span></p>
+<p id="p-747">Let <span class="process-math">\(U = \{(a-b+3c, 2a+b, 3c, 4a-b+3c,a-4c)\,|\, a,b,c\in\R\}\subseteq \R^5\text{.}\)</span> Determine a basis for <span class="process-math">\(U^\bot\text{.}\)</span></p>
 <div class="solutions">
 <a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-46" id="solution-46"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-46"><div class="solution solution-like">
-<p id="p-737">First, we note that for a general element of <span class="process-math">\(U\text{,}\)</span> we have</p>
+<p id="p-748">First, we note that for a general element of <span class="process-math">\(U\text{,}\)</span> we have</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 (a-b+3c, 2a+b, 3c, 4a-b+3c,a-4c) = a(1,2,0,4,1)+b(-1,1,0,-1,0)+c(3,0,3,3,-4)\text{.}

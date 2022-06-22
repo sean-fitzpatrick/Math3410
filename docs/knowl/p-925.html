@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-06-21T16:34:11-06:00       *-->
+<!--*       on 2022-06-22T10:04:23-06:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -14,19 +14,14 @@
 <meta name="robots" content="noindex, nofollow">
 </head>
 <body class="ignore-math">
-<h5 class="heading"><span class="type">Paragraph</span></h5>
-<p>By <a href="" class="xref" data-knowl="./knowl/thm-schurr.html" title="Theorem 4.4.13">Theorem 4.4.13</a>, there exists a unitary matrix <span class="process-math">\(U\)</span> such that <span class="process-math">\(A = UTU^H\text{,}\)</span> where <span class="process-math">\(T\)</span> is upper triangular, and has the eigenvalues of <span class="process-math">\(A\)</span> as diagonal entries. Since <span class="process-math">\(c_A(A)=c_A(UTU^H)=Uc_A(T)U^H\text{,}\)</span> and <span class="process-math">\(c_A(x)=c_T(x)\)</span> (since <span class="process-math">\(A\)</span> and <span class="process-math">\(T\)</span> are similar) it suffices to show that <span class="process-math">\(c_A(A)=0\)</span> when <span class="process-math">\(A\)</span> is upper-triangular. (If you like, we are showing that <span class="process-math">\(C_T(T)=0\text{,}\)</span> and deducing that <span class="process-math">\(c_A(A)=0\text{.}\)</span>) But if <span class="process-math">\(A\)</span> is upper-triangular, so is <span class="process-math">\(xI_A\text{,}\)</span> and therefore, <span class="process-math">\(\det(xI-A)\)</span> is just the product of the diagonal entries. That is,</p>
-<div class="displaymath process-math" data-contains-math-knowls="./knowl/thm-schurr.html">
+<h4 class="heading"><span class="type">Paragraph</span></h4>
+<p>Try the above modifications, in sequence. First, replacing the second line by <code class="code-inline tex2jax_ignore">L[0]</code> will give the first list item, which is another list:</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
-c_A(x) = (x-\lambda_1)(x-\lambda_2)\cdots (x-\lambda_n)\text{,}
+\left(-1,1,\left[\bbm -\frac35+\frac{i}{5}\ebm\right]\right)\text{.}
 \end{equation*}
 </div>
-<p class="continuation">so</p>
-<div class="displaymath process-math" data-contains-math-knowls="./knowl/thm-schurr.html">
-\begin{equation*}
-c_A(A) = (A-\lambda_1I)(A-\lambda_2I)\cdots (A-\lambda_nI)\text{.}
-\end{equation*}
-</div>
+<p class="continuation">We want the third item in the list, so try <code class="code-inline tex2jax_ignore">(L[0])[2]</code>. But note the extra set of brackets! There could (in theory) be more than one eigenvector, so this is a list with one item. To finally get the vector out, try <code class="code-inline tex2jax_ignore">((L[0])[2])[0]</code>. (There is probably a better way to do this. Someone who is more fluent in Python is welcome to advise.)</p>
 <span class="incontext"><a href="sec-complex.html#p-925" class="internal">in-context</a></span>
 </body>
 </html>

@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-06-21T16:34:09-06:00       *-->
+<!--*       on 2022-06-22T10:04:21-06:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -13,36 +13,31 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="robots" content="noindex, nofollow">
 </head>
-<body class="ignore-math"><article class="hiddenproof"><ol class="decimal">
-<li>
-<p>To show that <span class="process-math">\(\ker T\)</span> is a subspace, first note that <span class="process-math">\(\mathbf{0}\in \ker T\text{,}\)</span> since <span class="process-math">\(T(\mathbf{0})=\mathbf{0}\)</span> for any linear transformation <span class="process-math">\(T\text{.}\)</span> If <span class="process-math">\(\vv,\ww\in \ker T\text{,}\)</span> then <span class="process-math">\(T(\vv)=\mathbf{0}\)</span> and <span class="process-math">\(T(\ww)=0\text{,}\)</span> and therefore,</p>
+<body class="ignore-math"><article class="hiddenproof"><p>Let <span class="process-math">\(\{\uu_1,\ldots, \uu_m\}\)</span> be a basis of <span class="process-math">\(U\text{.}\)</span> Since <span class="process-math">\(U\subseteq V\text{,}\)</span> the set <span class="process-math">\(\{\uu_1,\ldots, \uu_m\}\)</span> is a linearly independent subset of <span class="process-math">\(V\text{.}\)</span> Since any linearly independent set can be extended to a basis of <span class="process-math">\(V\text{,}\)</span> there exist vectors <span class="process-math">\(\ww_1,\ldots,\ww_n\)</span> such that</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
-T(\vv+\ww)=T(\vv)+T(\ww)=\mathbf{0}+\mathbf{0}=\mathbf{0}\text{.}
+\{\uu_1,\ldots, \uu_m,\ww_1,\ldots, \ww_n\}
 \end{equation*}
 </div>
-<p class="continuation">Similarly, for any scalar <span class="process-math">\(c\)</span> and <span class="process-math">\(\vv\in \ker T\text{,}\)</span></p>
+<p class="continuation">is a basis of <span class="process-math">\(V\text{.}\)</span></p>
+<p>Now, let <span class="process-math">\(W = \spn\{\ww_1,\ldots, \ww_n\}\text{.}\)</span> Then <span class="process-math">\(W\)</span> is a subspace, and <span class="process-math">\(\{\ww_1,\ldots, \ww_n\}\)</span> is a basis for <span class="process-math">\(W\text{.}\)</span> (It spans, and must be independent since it's a subset of an independent set.)</p>
+<p>Clearly, <span class="process-math">\(U+W=V\text{,}\)</span> since <span class="process-math">\(U+W\)</span> contains the basis for <span class="process-math">\(V\)</span> we've constructed. To show the sum is direct, it suffices to show that <span class="process-math">\(U\cap W = \{\mathbf{0}\}\text{.}\)</span> To that end, suppose that <span class="process-math">\(\vv\in U\cap W\text{.}\)</span> Since <span class="process-math">\(\vv\in U\text{,}\)</span> we have</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
-T(c\vv)=cT(\vv)=c\mathbf{0}=\mathbf{0}\text{.}
+\vv=a_1\uu_1+\cdots +a_m\uu_m
 \end{equation*}
 </div>
-<p class="continuation">By the subspace test, <span class="process-math">\(\ker T\)</span> is a subspace.</p>
-</li>
-<li>
-<p>Again, since <span class="process-math">\(T(\mathbf{0})=\mathbf{0}\text{,}\)</span> we see that <span class="process-math">\(\mathbf{0}\in \im T\text{,}\)</span> so <span class="process-math">\(\im T\)</span> is nonempty. If <span class="process-math">\(\ww_1,\ww_2\in \im T\text{,}\)</span> then there exist <span class="process-math">\(\vv_1,\vv_2\in V\)</span> such that <span class="process-math">\(T(\vv_1)=\ww_1\)</span> and <span class="process-math">\(T(\vv_2)=\ww_2\text{.}\)</span> It follows that</p>
+<p class="continuation">for scalars <span class="process-math">\(a_1,\ldots, a_m\text{.}\)</span> Since <span class="process-math">\(\vv\in W\text{,}\)</span> we can write</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
-\ww_1+\ww_2 = T(\vv_1)+T(\vv_2) = T(\vv_1+\vv_2)\text{,}
+\vv=b_1\ww_1+\cdots + b_n\ww_n
 \end{equation*}
 </div>
-<p class="continuation">so <span class="process-math">\(\ww_1+\ww_2\in \im T\text{.}\)</span> Similarly, if <span class="process-math">\(c\)</span> is any scalar and <span class="process-math">\(\ww=T(\vv)\in\im T\text{,}\)</span> then</p>
+<p class="continuation">for scalars <span class="process-math">\(b_1,\ldots, b_n\text{.}\)</span> But then</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
-c\ww=cT(\vv)=T(c\vv)\text{,}
+\mathbf{0}=\vv-\vv=a_1\uu_1+\cdots a_m\uu_m-b_1\ww_1-\cdots -b_n\ww_n.
 \end{equation*}
 </div>
-<p class="continuation">so <span class="process-math">\(c\ww\in \im T\text{.}\)</span></p>
-</li>
-</ol></article></body>
+<p class="continuation">Since <span class="process-math">\(\{\uu_1,\ldots, \uu_m,\ww_1,\ldots, \ww_n\}\)</span> is a basis for <span class="process-math">\(V\text{,}\)</span> it's independent, and therefore, all of the <span class="process-math">\(a_i,b_j\)</span> must be zero, and therefore, <span class="process-math">\(\vv=\mathbf{0}\text{.}\)</span></p></article></body>
 </html>
