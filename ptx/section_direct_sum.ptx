@@ -145,58 +145,23 @@
       giving two different representations of a vector as an element of <m>U+W</m>.
     </p>
 
-    <theorem xml:id="thm-unique-sum">
-      <statement>
-        <p>
-          Let <m>U</m> and <m>W</m> be subspaces of a vector space <m>V</m>.
-          Let <m>\vv\in U+W</m>. Then there exist <em>unique</em> vectors
-          <m>\uu\in U, \ww\in W</m> such that <m>\vv = \uu+\ww</m>
-          if and only if <m>U\cap W = \{\mathbf{0}\}</m>.
-        </p>
-      </statement>
+    <p>
+      We proved in <xref ref="thm-unique-sum"/> in <xref ref="sec-subspace-combine"/>
+      that for any <m>\vv\in U+W</m>, there exist <em>unique</em> vectors
+      <m>\uu\in U</m> and <m>\ww\in W</m> such that <m>\vv=\uu+\ww</m>,
+      if and only if <m>U\cap W=\{\zer\}</m>.
+    </p>
 
-      <proof>
-        <p>
-          Suppose <m>U+W</m> has the property that if <m>\vv\in U+W</m>,
-          then there exist unique <m>\uu\in U,\ww\in W</m> such that <m>\vv=\uu+\ww</m>.
-          Suppose <m>\mathbf{x}\in U\cap W</m>. Then <m>\xx\in U</m> and <m>\xx\in W</m>,
-          which implies that <m>-\xx\in W</m>, since <m>W</m> is a subspace.
-          Then we can write
-          <me>
-            \mathbf{0} = \xx + (-\xx)
-          </me>,
-          with <m>\xx\in U</m> and <m>-\xx\in W</m>. But we also know that <m>\mathbf{0}\in U</m> and <m>\mathbf{0}\in W</m>,
-          so we can also write <m>\mathbf{0}=\mathbf{0}+\mathbf{0}</m>.
-          Since we can only write <m>\mathbf{0}</m> in one way as a sum of a vector in <m>U</m> and a vector in <m>W</m>,
-          we must have <m>\xx=\mathbf{0}</m>, showing that <m>U\cap W = \{\mathbf{0}\}</m>.
-        </p>
-
-        <p>
-          Conversely, suppose that <m>U\cap W = \{\zer\}</m>, and let <m>\vv\in U+W</m>.
-          Suppose that there exist vectors <m>\uu_1,\uu_2\in U</m> and <m>\ww_1,\ww_2\in W</m>
-          such that <m>\vv = \uu_1+\ww_1=\uu_2+\ww_2</m>. But then <m>\uu_1-\uu_2=\ww_2-\ww_1</m>,
-          and since <m>\uu_1-\uu_2\in U</m> and <m>\ww_2-\ww_1\in W</m>,
-          we have <m>\uu_1-\uu_2=\ww_2-\ww_1\in U\cap W</m>. Since <m>U\cap W=\{\zer\}</m>,
-          we have <m>\uu_1-\uu_2=\zer</m> and <m>\ww_2-\ww_1=\zer</m>,
-          so <m>\uu_1=\uu_2</m> and <m>\ww_1=\ww_2</m>.
-        </p>
-      </proof>
-
-    </theorem>
-
-    <definition xml:id="def-direct-sum">
-      <statement>
-        <p>
-          We say that a sum <m>U+W</m> is a <term>direct sum</term>,
-          and write this sum as <m>U\oplus W</m>, if <m>U\cap W = \{\mathbf{0}\}</m>.
-        </p>
-      </statement>
-    </definition>
+    <p>
+      In <xref ref="def-direct-sum"/>, we said that a sum <m>U+W</m> where <m>U\cap W=\{\zer\}</m>
+      is called a <term>direct sum</term>, written as <m>U\oplus W</m>.
+    </p>
 
     <p>
       Typically we are interested in the case that the two subspaces sum to <m>V</m>.
-      If <m>V = U\oplus W</m>, we say that <m>W</m> is a <term>complement</term> of <m>U</m>,
-      and that <m>U\oplus W</m> is a direct sum decomposition of <m>V</m>.
+      Recall from <xref ref="def-subspace-complement"/> that if <m>V = U\oplus W</m>,
+      we say that <m>W</m> is a <term>complement</term> of <m>U</m>.
+      We also say that <m>U\oplus W</m> is a direct sum decomposition of <m>V</m>.
       Of course, the orthogonal complement <m>U^\bot</m> of a subspace <m>U</m>
       is a complement in this sense, if <m>V</m> is equipped with an inner product.
       (Without an inner product we have no concept of <q>orthogonal</q>.)
