@@ -263,6 +263,7 @@
     and write it as <m>U\oplus W</m>.
     The following theorem might help us understand why direct sums are singled out for special attention:
   </p>
+
   <theorem xml:id="thm-sum-dimension">
     <statement>
       <p>
@@ -273,14 +274,95 @@
         </me>.
       </p>
     </statement>
-
+    <proof>
+      <title>Strategy</title>
+      <p>
+        This is a proof that would be difficult (if not impossible) without using a basis.
+        Your first thought might be to choose bases for the subspaces <m>U</m> and <m>W</m>,
+        but this runs into trouble: some of the basis vectors for <m>U</m> might be in <m>W</m>,
+        and vice-versa.
+      </p>
+      <p>
+        Of course, those vectors will be in <m>U\cap W</m>, but it gets hard to keep track:
+        without more information (and we have none, since we want to be completely general),
+        how do we tell which basis vectors are in the intersection, and how many?
+      </p>
+      <p>
+        Instead, we <em>start</em> with a basis for <m>U\cap W</m>.
+        This is useful, because <m>U\cap W</m> is a subspace of both <m>U</m> and <m>W</m>.
+        So any basis for <m>U\cap W</m> can be extended to a basis of <m>U</m>,
+        and it can also be extended to a basis of <m>W</m>.
+      </p>
+      <p>
+        The rest of the proof relies on making sure that neither of these extensions have any vectors in common,
+        and that putting everything together gives a basis for <m>U+W</m>.
+        (This amounts to going back to the definition of a basis:
+        we need to show that it's linearly independent, and that it spans <m>U+W</m>.)
+      </p>
+    </proof>
+    <proof>
+      <p>
+        Let <m>B_1 = \{\xx_1,\ldots, \xx_k\}</m> be a basis for <m>U\cap W</m>.
+        Extend <m>B_1</m> to a basis <m>B_2=\{\xx_1,\ldots, \xx_k,\uu_1,\ldots,\uu_m\}</m> of <m>U</m>,
+        and to a basis <m>B_3=\{\xx_1,\ldots, \xx_k,\ww_1,\ldots, \ww_n\}</m> of <m>W</m>.
+        Note that we have <m>\dim (U\cap W)=k</m>, <m>\dim U = k+m</m>, and <m>\dim W=k+n</m>.
+      </p>
+      <p>
+        Now, consider the set <m>B=\{\xx_1,\ldots, \xx_k,\uu_1,\ldots, \uu_m,\ww_1,\ldots, \ww_n\}</m>.
+        We claim that <m>B</m> is a basis for <m>U+W</m>.
+        We know that <m>B_2</m> is linearly independent, since it's a basis for <m>U</m>,
+        and that <m>B=B_2\cup\{\ww_1,\ldots, \ww_n\}</m>.
+        It remains to show that none of the <m>\ww_i</m> are in the span of <m>B_2</m>;
+        if so, then <m>B</m> is independent by <xref ref="lemma-independent"/>.
+      </p>
+      <p>
+        Since <m>\spn B_2=U</m>, it suffices to show that none of the <m>\ww_i</m> belong to <m>U</m>.
+        But we know that <m>\ww_i\in W</m>, so if <m>\ww_i\in U</m>, then <m>\ww_i\in U\cap W</m>.
+        But if <m>\ww_i\in U\cap W</m>, then <m>\ww_i\in \spn B_1</m>,
+        which would imply that <m>B_3</m> is linearly dependent,
+        and since <m>B_3</m> is a basis, this is impossible.
+      </p>
+      <p>
+        Next, we need to show that <m>\spn B = U+W</m>.
+        Let <m>\vv\in U+W</m>; then <m>\vv=\uu+\ww</m> for some <m>\uu\in U</m> and <m>\ww\in W</m>.
+        Since <m>\uu\in U</m>, there exist scalars <m>a_1,\ldots, a_k, b_1,\ldots, b_m</m> such that
+        <me>
+          \uu=a_1\xx_1+\cdots + a_k\xx_k+b_1\uu_1+\cdots+b_m\uu_m
+        </me>,
+        and since <m>\ww\in W</m>, there exist scalars <m>c_1,\ldots, c_k,d_1,\ldots, d_n</m> such that
+        <me>
+          \ww=c_1\xx_1+\cdots +c_k\xx_k+d_1\ww_1+\cdots +d_n\ww_n
+        </me>.
+        Thus,
+        <me>
+          \vv = \uu+\ww = (a_1+c_1)\xx_1+\cdots+(a_k+c_k)\xx_k+b_1\uu_1+\cdots +b_m\uu_m+d_1\ww_1+\cdots + d_n\ww_n
+        </me>,
+        which shows that <m>\vv\in \spn B</m>.
+      </p>
+      <p>
+        Finally, we check that this gives the dimension as claimed. We have
+        <me>
+          \dim U + \dim W - \dim (U\cap W) = (k+m)+(k+n)-k=k+m+n=\dim(U+W)
+        </me>,
+        since there are <m>k</m> vectors in <m>B_1</m>, <m>k+m</m> vectors in <m>B_2</m>,
+        <m>k+n</m> vectors in <m>B_3</m>, and <m>k+m+n</m> vectors in <m>B</m>.
+      </p>
+    </proof>
   </theorem>
+
+  <p>
+    Notice how a vector <m>\vv\in U+W</m> can be written as a sum of a vector in <m>U</m> and a vector <m>W</m>,
+    but <em>not uniquely</em>, in general: in the above proof,
+    we can change the values of the coefficients <m>a_i</m> and <m>c_i</m>,
+    as long as the sum <m>a_i+c_i</m> remains unchanged.
+    Note that these are the coefficients of the basis vectors for <m>U\cap W</m>.
+  </p>
 
   <p>
     If the sum is direct, then we have simply <m>\dim(U\oplus W) = \dim U + \dim W</m>.
     The other reason why direct sums are preferable, is that any <m>\vv\in U\oplus W</m>
     can be written <em>uniquely</em> as <m>\vv=\uu+\ww</m>
-    where <m>\uu\in U</m> and <m>\ww\in W</m>.
+    where <m>\uu\in U</m> and <m>\ww\in W</m>, since we no longer have the ambiguity resulting from the basis vectors in <m>U\cap W</m>.
   </p>
 
   <theorem xml:id="thm-direct-sum">
@@ -305,6 +387,7 @@
         since <m>U</m> is a subspace, and similarly,
         <m>\ww=\ww_1-\ww_2\in W</m>.
         But we also have <m>\ww=-\uu</m>, which implies that <m>\ww\in U</m>.
+        (Since <m>-\uu</m> is in <m>U</m>, and this is the same vector as <m>\ww</m>.)
         Therefore, <m>\ww\in U\cap W</m>, which implies that <m>\ww=\mathbf{0}</m>,
         so <m>\ww_1=\ww_2</m>.
         But we must also then have <m>\uu=\mathbf{0}</m>, so <m>\uu_1=\uu_2</m>.
