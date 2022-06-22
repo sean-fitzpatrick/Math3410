@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-06-22T10:04:23-06:00       *-->
+<!--*       on 2022-06-22T13:18:25-06:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -15,7 +15,19 @@
 </head>
 <body class="ignore-math">
 <h4 class="heading"><span class="type">Paragraph</span></h4>
-<p>This gives us a basis for <span class="process-math">\(\R^3\)</span> consisting of eigenvalues of <span class="process-math">\(A\text{,}\)</span> but we want an orthogonal basis. Note that the eigenvector corresponding to <span class="process-math">\(\lambda = 0\)</span> is orthogonal to both of the eigenvectors corresponding to <span class="process-math">\(\lambda =9\text{.}\)</span> But these eigenvectors are not orthogonal to each other. To get an orthogonal basis for <span class="process-math">\(E_9(A)\text{,}\)</span> we apply the Gram-Schmidt algorithm.</p>
-<span class="incontext"><a href="subsec-ortho-diag.html#p-844" class="internal">in-context</a></span>
+<p>We begin with the characteristic polynomial. We have</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{align*}
+\det(xI_n - A) \amp =\det\bbm x \amp -1\amp -1\\-1\amp x \amp -1\\-1\amp -1\amp x\ebm\\
+\amp = x \begin{vmatrix}x \amp -1\\-1\amp x\end{vmatrix}
++1\begin{vmatrix}-1\amp -1\\-1\amp x\end{vmatrix}
+-1\begin{vmatrix}-1\amp x\\-1\amp -1\end{vmatrix}\\
+\amp = x(x^2-1)+(-x-1)-(1+x)\\
+\amp x(x-1)(x+1)-2(x+1)\\
+\amp (x+1)[x^2-x-2]\\
+\amp (x+1)^2(x-2)\text{.}
+\end{align*}
+</div>
+<span class="incontext"><a href="subsec-eigen-basics.html#p-844" class="internal">in-context</a></span>
 </body>
 </html>

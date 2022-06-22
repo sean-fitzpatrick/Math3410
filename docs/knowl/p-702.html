@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-06-22T10:04:22-06:00       *-->
+<!--*       on 2022-06-22T13:18:24-06:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -14,18 +14,32 @@
 <meta name="robots" content="noindex, nofollow">
 </head>
 <body class="ignore-math">
-<h5 class="heading"><span class="type">Paragraph</span></h5>
-<p>Let <span class="process-math">\(\{\vv_1,\vv_2,\ldots, \vv_m\}\)</span> be an orthogonal set of vectors in <span class="process-math">\(\R^n\text{,}\)</span> and let <span class="process-math">\(\xx\)</span> be any vector in <span class="process-math">\(\R^n\text{.}\)</span> Define the vector <span class="process-math">\(\vv_{m+1}\)</span> by</p>
+<h4 class="heading"><span class="type">Paragraph</span></h4>
+<p>The first of the above inequalities is called the <em class="emphasis">Cauchy-Schwarz inequality</em>, which be viewed as a manifestation of the formula</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
-\vv_{m+1} = \xx-\left(\frac{\xx\dotp\vv_1}{\len{\vv_1}^2}\vv_1+\cdots + \frac{\xx\dotp\vv_m}{\len{\vv_m}^2}\vv_m\right)\text{.}
+\xx\dotp \yy = \len{\xx}\len{\yy}\cos\theta\text{,}
 \end{equation*}
 </div>
-<p class="continuation">Then:</p>
-<ol class="decimal">
-<li><p><span class="process-math">\(\vv_{m+1}\dotp \vv_i = 0\)</span> for each <span class="process-math">\(i=1,\ldots, m\text{.}\)</span></p></li>
-<li><p>If <span class="process-math">\(\xx\notin\spn\{\vv_1,\ldots, \vv_m\}\text{,}\)</span> then <span class="process-math">\(\vv_{m+1}\neq \mathbf{0}\text{,}\)</span> and therefore, <span class="process-math">\(\{\vv_1,\ldots, \vv_m,\vv_{m+1}\}\)</span> is an orthogonal set.</p></li>
-</ol>
-<span class="incontext"><a href="sec-ortho-projection.html#p-702" class="internal">in-context</a></span>
+<p class="continuation">since after all, <span class="process-math">\(\lvert \cos\theta\rvert\leq 1\)</span> for any angle <span class="process-math">\(\theta\text{.}\)</span> For a direct proof, we note that for any scalars <span class="process-math">\(r,s\)</span> we have</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\len{r\xx\pm s\yy}^2 = r^2\len{\xx}^2\pm 2rs\xx\dotp\yy+s^2\len{\yy}^2\text{.}
+\end{equation*}
+</div>
+<p class="continuation">Putting <span class="process-math">\(r=\len{\yy}, s=\len{\xx}\)</span> gives</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\len{s\xx\pm r\yy}^2 = 2rs(rs\pm\xx\dotp\yy)\text{.}
+\end{equation*}
+</div>
+<p class="continuation">Since the left-hand side is non-negative, we must have</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\xx\yy\leq \len{\xx}\len{\yy} \quad \text{ and } -\len{\xx}\len{\yy}\leq \xx\dotp\yy\text{,}
+\end{equation*}
+</div>
+<p class="continuation">and the result follows.</p>
+<span class="incontext"><a href="sec-orthogonal-sets.html#p-702" class="internal">in-context</a></span>
 </body>
 </html>

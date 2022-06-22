@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-06-22T10:04:24-06:00       *-->
+<!--*       on 2022-06-22T13:18:25-06:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -14,37 +14,37 @@
 <meta name="robots" content="noindex, nofollow">
 </head>
 <body class="ignore-math"><div class="solution solution-like">
-<p>We have</p>
+<p>We begin with the characteristic polynomial. We have</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{align*}
-T(1) \amp = (1,0) = 1(1,0)+0(1,-1) \\
-T(1-x) \amp= (1,-2) = -1(1,0)+2(1,-1) \\
-T((1-x)^2) = T(1-2+x^2) \amp = (2, -4) = -2(1,0)+4(1,-1)\text{.}
+\det(xI_n - A) \amp =\det\bbm x \amp -1\amp -1\\-1\amp x \amp -1\\-1\amp -1\amp x\ebm\\
+\amp = x \begin{vmatrix}x \amp -1\\-1\amp x\end{vmatrix}
++1\begin{vmatrix}-1\amp -1\\-1\amp x\end{vmatrix}
+-1\begin{vmatrix}-1\amp x\\-1\amp -1\end{vmatrix}\\
+\amp = x(x^2-1)+(-x-1)-(1+x)\\
+\amp x(x-1)(x+1)-2(x+1)\\
+\amp (x+1)[x^2-x-2]\\
+\amp (x+1)^2(x-2)\text{.}
 \end{align*}
 </div>
-<p class="continuation">Thus,</p>
+<p>The roots of the characteristic polynomial are our eigenvalues, so we have <span class="process-math">\(\lambda_1=-1\)</span> and <span class="process-math">\(\lambda_2=2\text{.}\)</span> Note that the first eigenvalue comes from a repeated root. This is typically where things get interesting. If an eigenvalue does not come from a repeated root, then there will only be one (independent) eigenvector that corresponds to it. (That is, <span class="process-math">\(\dim E_\lambda(A)=1\text{.}\)</span>) If an eigenvalue is repeated, it could have more than one eigenvector, but this is not guaranteed.</p>
+<p>We find that <span class="process-math">\(A-(-1)I_n = \bbm 1\amp 1\amp 1\\1\amp 1\amp 1\\1\amp 1\amp 1\ebm\text{,}\)</span> which has reduced row-echelon form <span class="process-math">\(\bbm 1\amp 1\amp 1\\0\amp 0\amp 0\\0\amp 0\amp 0\ebm\text{.}\)</span> Solving for the nullspace, we find that there are two independent eigenvectors:</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
-\begin{align*}
-M_{DB}(T) \amp = \bbm C_D(T(1))\amp C_D(T(1-x)) \amp C_D(T((1-x)^2))\ebm\\
-\amp = \bbm 1\amp -1\amp -2\\0\amp 2\amp 4\ebm\text{.}
-\end{align*}
+\begin{equation*}
+\xx_{1,1}=\bbm 1\\-1\\0\ebm, \quad \text{ and } \quad \xx_{1,2}=\bbm 1\\0\\-1\ebm\text{,}
+\end{equation*}
 </div>
-<p class="continuation">To confirm, note that</p>
+<p class="continuation">so</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
-\begin{align*}
-M_{DB}(T)C_B\amp (a+bx+cx^2)\\
-\amp = M_{DB}(T)C_B((a+b+c)-(b+2c)(1-x)+c(1-x)^2)\\
-\amp = \bbm 1\amp -1\amp -2\\0\amp 2\amp 4\ebm\bbm a+b+c\\ -b-2c\\c\ebm\\
-\amp \bbm (a+b+c)+(b+2c)-2c\\0-2(b+2c)+4c\ebm = \bbm a+2b+c\\-2b\ebm\text{,}
-\end{align*}
+\begin{equation*}
+E_{-1}(A) = \spn\left\{\bbm 1\\-1\\0\ebm, \bbm 1\\0\\-1\ebm\right\}\text{.}
+\end{equation*}
 </div>
-<p class="continuation">while on the other hand,</p>
+<p>For the second eigenvector, we have <span class="process-math">\(A-2I = \bbm -2\amp 1\amp 1\\1\amp -2\amp 1\\1\amp 1\amp -2\ebm\text{,}\)</span> which has reduced row-echelon form <span class="process-math">\(\bbm 1\amp 0\amp -1\\0\amp 1\amp -1\\0\amp 0\amp 0\ebm\text{.}\)</span> An eigenvector in this case is given by</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
-\begin{align*}
-C_D(T(a+bx+cx^2)) \amp= C_D(a+c,2b)\\
-\amp = C_D((a+2b+c)(1,0)-2b(1,-1))\\
-\amp = \bbm a+2b+c\\-2b\ebm\text{.}
-\end{align*}
+\begin{equation*}
+\xx_2 = \bbm 1\\1\\1\ebm\text{.}
+\end{equation*}
 </div>
 </div></body>
 </html>

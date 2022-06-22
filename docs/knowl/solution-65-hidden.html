@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-06-22T10:04:25-06:00       *-->
+<!--*       on 2022-06-22T13:18:26-06:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -21,116 +21,84 @@ sagecell.makeSagecell({inputLocation: 'pre.sagecell-sage',
 </script>
 </head>
 <body class="ignore-math"><div class="solution solution-like">
-<p>First, we need the characteristic polynomial.</p>
-<pre class="ptx-sagecell sagecell-sage" id="sage-125"><script type="text/x-sage">from sympy import Matrix,init_printing,factor
-init_printing()
-A = Matrix([[7,1,-3,2,1],
-            [-6,2,4,-2,-2],
-            [0,1,3,1,-1],
-            [-8,-1,6,0,-3],
-            [-4,0,3,-1,1]])
-p = A.charpoly().as_expr()
-factor(p)
-</script></pre>
-<p>The characteristic polynomial of <span class="process-math">\(A\)</span> is given by</p>
+<p>We need to write the input <span class="process-math">\(2+3x-4x^2\)</span> in terms of the basis <span class="process-math">\(B\text{.}\)</span> This amounts to solving the system of equations given by</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
-c_A(x)=(x-2)^2(x-3)^3\text{.}
+a(1+x)+b(2-x)+c(2x+x^2)=2+3x-4x^2\text{.}
 \end{equation*}
 </div>
-<p class="continuation">We thus have two eigenvalues: <span class="process-math">\(2\text{,}\)</span> of multiplicity <span class="process-math">\(2\text{,}\)</span> and <span class="process-math">\(3\text{,}\)</span> of multiplicity <span class="process-math">\(3\text{.}\)</span> We next find the <span class="process-math">\(E_2(A)\)</span> eigenspace.</p>
-<pre class="ptx-sagecell sagecell-sage" id="sage-126"><script type="text/x-sage">from sympy import eye
-N2 = A-2*eye(5)
-E2 = N2.nullspace()
-E2
-</script></pre>
-<p>The computer gives us</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-E_2(A)=\nll(A-2I) = \spn\{\xx_1\}, \text{ where } \xx_1=\bbm -1\\0\\-1\\1\\0\ebm\text{,}
-\end{equation*}
-</div>
-<p class="continuation">so we have only one independent eigenvector, which means that <span class="process-math">\(G_2(A)=\nll(A-2I)^2\text{.}\)</span></p>
-<p>Following <a href="" class="xref" data-knowl="./knowl/jordan-chain-basis.html" title="Insight 5.6.5: Finding a chain basis">Insight 5.6.5</a>, we extend <span class="process-math">\(\{\xx_1\}\)</span> to a basis of <span class="process-math">\(G_2(A)\)</span> by solving the system</p>
-<div class="displaymath process-math" data-contains-math-knowls="./knowl/jordan-chain-basis.html">
-\begin{equation*}
-(A-2I)\xx = \xx_1\text{.}
-\end{equation*}
-</div>
-<pre class="ptx-sagecell sagecell-sage" id="sage-127"><script type="text/x-sage">B2 = N2.col_insert(5,E2[0])
-B2.rref()
-</script></pre>
-<p>Using the results above from the computer (or Gaussian elimination), we find a general solution</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-\xx = \bbm -t\\-1\\-t\\t\\0\ebm = t\bbm -1\\0\\-1\\1\\0\ebm + \bbm 0\\-1\\0\\0\\0\ebm\text{.}
-\end{equation*}
-</div>
-<p class="continuation">Note that our solution is of the form <span class="process-math">\(\xx = t\xx_1+\xx_2\text{.}\)</span> We set <span class="process-math">\(t=0\text{,}\)</span> and get <span class="process-math">\(\xx_2 = \bbm 0\amp -1\amp 0\amp 0\amp 0\ebm^T\text{.}\)</span></p>
-<p>Next, we consider the eigenvalue <span class="process-math">\(\lambda=3\text{.}\)</span> The computer gives us the following:</p>
-<pre class="ptx-sagecell sagecell-sage" id="sage-128"><script type="text/x-sage">N3 = A-3*eye(5)
-E3 = N3.nullspace()
-E3
-</script></pre>
-<p>Rescaling to remove fractions, we find</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-E_3(A) = \nll(A-3I) = \spn\{\yy_1,\yy_2\}, \text{ where } \yy_1 = \bbm 1\\-2\\2\\2\\0\ebm, \yy_2 = \bbm -1\\2\\0\\0\\2\ebm\text{.}
-\end{equation*}
-</div>
-<p class="continuation">Again, we're one eigenvector short of the multiplicity, so we need to consider <span class="process-math">\(G_3(A)=\nll(A-3I)^3\text{.}\)</span></p>
-<p>In the next cell, note that we doubled the eigenvectors in <code class="code-inline tex2jax_ignore">E3</code> to avoid fractions. To follow the solution in our example, we append <code class="code-inline tex2jax_ignore">2*E3[0]</code>, and reduce the resulting matrix. You should find that using the eigenvector <span class="process-math">\(\yy_1\)</span> corresponding to <code class="code-inline tex2jax_ignore">E3[0]</code> leads to an inconsistent system. Once you confirm this, replace <code class="code-inline tex2jax_ignore">E3[0]</code> with <code class="code-inline tex2jax_ignore">E3[1]</code> and re-run the cell to see that we get an inconsistent system using <span class="process-math">\(\yy_2\)</span> as well!</p>
-<pre class="ptx-sagecell sagecell-sage" id="sage-129"><script type="text/x-sage">B3 = N3.col_insert(5,2*E3[0])
-B3.rref()
-</script></pre>
-<p>The systems <span class="process-math">\((A-3I)\yy = \yy_1\)</span> and <span class="process-math">\((A-3I)\yy=\yy_2\)</span> are both inconsistent, but we can salvage the situation by replacing the eigenvector <span class="process-math">\(\yy_2\)</span> by some linear combination <span class="process-math">\(\zz_2 = a\yy_1+b\yy_2\text{.}\)</span> We row-reduce, and look for values of <span class="process-math">\(a\)</span> and <span class="process-math">\(b\)</span> that give a consistent system.</p>
-<p>The <code class="code-inline tex2jax_ignore">rref</code> command takes things a bit farther than we'd like, so we use the command <code class="code-inline tex2jax_ignore">echelon_form()</code> instead. Note that if <span class="process-math">\(a=b\text{,}\)</span> the system is inconsistent.</p>
-<pre class="ptx-sagecell sagecell-sage" id="sage-130"><script type="text/x-sage">from sympy import Symbol
-a = Symbol('a')
-b = Symbol('b')
-C3 = N3.col_insert(5,a*E3[0]+b*E3[1])
-C3.echelon_form()
-</script></pre>
-<p>We find that <span class="process-math">\(a=b\)</span> does the job, so we set</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-\zz_2 = \yy_1+\yy_2 = \bbm 0\\0\\2\\2\\2\ebm\text{.}
-\end{equation*}
-</div>
-<pre class="ptx-sagecell sagecell-sage" id="sage-131"><script type="text/x-sage">D3 = N3.col_insert(5,E3[0]+E3[1])
-D3.rref()
-</script></pre>
-<p>Solving the system <span class="process-math">\((A-3I)\zz = \yy_1+\yy_2\text{,}\)</span> using the code above, we find</p>
+<p class="continuation">Of course, we can easily set up and solve this system, but let's try to be systematic, and obtain a more useful result for future problems. Since we can easily determine how to write any polynomial in terms of the standard basis <span class="process-math">\(\{1,x,x^2\}\text{,}\)</span> it suffices to know how to write these three polynomials in terms of our basis.</p>
+<p>At first, this seems like more work. After all, we now have three systems to solve:</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{align*}
-\zz \amp = \bbm \frac12 +\frac12 s-\frac12 t\\1-s+t\\1+s\\s\\t\ebm\\
-\amp = \bbm \frac12\\1\\1\\0\\0\ebm + s\bbm\frac12\\-1\\1\\1\\0\ebm+t\bbm -\frac12\\1\\0\\0\\1\ebm\\
-\amp = \bbm \frac12\\1\\1\\0\\0\ebm \frac{s}{2}\yy_1+\frac{t}{2}\yy_2\text{.}
+a_1(x+1)+b_1(2-x)+c_1(2x+x^2) \amp =1\\
+a_2(x+1)+b_2(2-x)+c_2(2x+x^2) \amp =x\\
+a_3(x+1)+b_3(2-x)+c_3(2x+x^2) \amp =x^2\text{.}
 \end{align*}
 </div>
-<p>We let <span class="process-math">\(\zz_3 = \bbm 1 \\ 2 \\ 2 \\ 0 \\ 0\ebm\text{,}\)</span> and check that</p>
+<p class="continuation">However, all three systems have the same coefficient matrix, so we can solve them simultaneously, by adding three “constants” columns to our augmented matrix.</p>
+<p>We get the matrix</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
-A\zz_3 = 3\zz_3+\zz_2\text{,}
+\left[\begin{matrix}1\amp 2\amp 0\\1\amp -1\amp 2\\0\amp 0\amp 1\end{matrix}
+\right\rvert\left.\begin{matrix}1\amp 0\amp 0\\0\amp 1\amp 0\\0\amp 0\amp 1\end{matrix}\right]\text{.}
 \end{equation*}
 </div>
-<p class="continuation">as required:</p>
-<pre class="ptx-sagecell sagecell-sage" id="sage-132"><script type="text/x-sage">Z3 = Matrix(5,1,[1,2,2,0,0])
-A*Z3-3*Z3-2*(E3[0]+E3[1])
-</script></pre>
-<p>This gives us the basis <span class="process-math">\(B = \{\xx_1,\xx_2,\yy_1,\zz_2,\zz_3\}\)</span> for <span class="process-math">\(\R^5\text{,}\)</span> and with respect to this basis, we have the Jordan canonical form</p>
+<p class="continuation">But this is exactly the augmented matrix we'd right down if we were trying to find the inverse of the matrix</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
-M_B(T) = \bbm 2 \amp 1\amp 0\amp 0 \amp 0\\
-0 \amp 2\amp 0\amp 0 \amp 0\\
-0 \amp 0\amp 3\amp 0 \amp 0\\
-0 \amp 0\amp 0\amp 3 \amp 1\\
-0 \amp 0\amp 0\amp 0 \amp 3\ebm\text{.}
+P=\bbm 1\amp 2\amp 0\\1\amp -1\amp 2\\0\amp 0\amp 1\ebm
 \end{equation*}
 </div>
-<p>Now that we've done all the work required for <a href="" class="xref" data-knowl="./knowl/ex-jordan-form1.html" title="Example 5.6.6">Example 5.6.6</a>, we should confess that there was an easier way all along:</p>
-<pre class="ptx-sagecell sagecell-sage" id="sage-133"><script type="text/x-sage">A.jordan_form()
+<p class="continuation">whose columns are the coefficient representations of our given basis vectors in terms of the standard basis.</p>
+<p>To compute <span class="process-math">\(P^{-1}\text{,}\)</span> we use the computer:</p>
+<pre class="ptx-sagecell sagecell-sage" id="sage-109"><script type="text/x-sage">from sympy import Matrix, init_printing
+init_printing()
+P = Matrix(3,3,[1,2,0,1,-1,2,0,0,1])
+P**-1
 </script></pre>
-<p>The <code class="code-inline tex2jax_ignore">jordan_form()</code> command returns a pair <span class="process-math">\(P,J\text{,}\)</span> where <span class="process-math">\(J\)</span> is the Jordan canonical form of <span class="process-math">\(A\text{,}\)</span> and <span class="process-math">\(P\)</span> is an invertible matrix such that <span class="process-math">\(P^{-1}AP=J\text{.}\)</span> You might find that the computer's answer is not quite the same as ours. This is because the Jordan canonical form is only unique up to permutation of the Jordan blocks. Changing the order of the blocks amounts to changing the order of the columns of <span class="process-math">\(P\text{,}\)</span> which are given by a basis of (generalized eigenvectors).</p>
+<p>Next, we find <span class="process-math">\(M(T)P^{-1}\text{:}\)</span></p>
+<pre class="ptx-sagecell sagecell-sage" id="sage-110"><script type="text/x-sage">M = Matrix(2,3,[3,0,3,-1,-2,2])
+v = Matrix(3,1,[2,3,-4])
+M*P**-1
+</script></pre>
+<p>This matrix first converts the coefficient vector for a polynomial <span class="process-math">\(p(x)\)</span> with respect to the standard basis into the coefficient vector for our given basis <span class="process-math">\(B\text{,}\)</span> and then multiplies by the matrix representing our transformation. The result will be the coefficient vector for <span class="process-math">\(T(p(x))\)</span> with respect to the basis <span class="process-math">\(D\text{.}\)</span></p>
+<p>The polynomial <span class="process-math">\(p(x) = 2+3x-4x^2\)</span> has coefficient vector <span class="process-math">\(\bbm 2\\3\\-4\ebm\)</span> with respect to the standard basis. We find that <span class="process-math">\(M(T)P^{-1}\bbm 2\\3\\-4\ebm = \bbm 12\\-10\ebm\text{:}\)</span></p>
+<pre class="ptx-sagecell sagecell-sage" id="sage-111"><script type="text/x-sage">M = Matrix(2,3,[3,0,3,-1,-2,2])
+v = Matrix(3,1,[2,3,-4])
+(M*P**-1)*v
+</script></pre>
+<p>The coefficients <span class="process-math">\(12\)</span> and <span class="process-math">\(-10\)</span> are the coefficients of <span class="process-math">\(T(p(x))\)</span> with repsect to the basis <span class="process-math">\(D\text{.}\)</span> Thus,</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+T(2+3x-4x^2) = 12(0,1)-10(-1,1) = (10,2)\text{.}
+\end{equation*}
+</div>
+<p class="continuation">Note that in the last step we gave the “simplified” answer <span class="process-math">\((10,2)\text{,}\)</span> which is simplified primarily in that it is expressed with respect to the standard basis.</p>
+<p>Note that we can also introduce the matrix <span class="process-math">\(Q = \bbm 0\amp -1\\1\amp 1\ebm\)</span> whose columns are the coefficient vectors of the vectors in the basis <span class="process-math">\(D\)</span> with respect to the standard basis. The effect of multiplying by <span class="process-math">\(Q\)</span> is to convert from coefficients with respect to <span class="process-math">\(D\)</span> into a coefficient vector with respect to the standard basis. We can then write a new matrix <span class="process-math">\(\hat{M}(T) = QM(T)P^{-1}\text{;}\)</span> this new matrix is now the matrix representation of <span class="process-math">\(T\)</span> with respect to the <em class="emphasis">standard</em> bases of <span class="process-math">\(P_2(\R)\)</span> and <span class="process-math">\(\R^2\text{.}\)</span></p>
+<pre class="ptx-sagecell sagecell-sage" id="sage-112"><script type="text/x-sage">Q = Matrix(2,2,[0,-1,1,1])
+Q*M*P**-1
+</script></pre>
+<p>We check that</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\hat{M}(T)\bbm 2\\3\\-4\ebm = \bbm 10\\2\ebm\text{,}
+\end{equation*}
+</div>
+<p class="continuation">as before.</p>
+<pre class="ptx-sagecell sagecell-sage" id="sage-113"><script type="text/x-sage">(Q*M*P**-1)*v
+</script></pre>
+<p>We find that <span class="process-math">\(\tilde{M}(T) = \bbm 1\amp 0\amp -2\\0\amp 2\amp 1\ebm\text{.}\)</span> This lets us determine that for a general polynomial <span class="process-math">\(p(x) = a+bx+cx^2\text{,}\)</span></p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\hat{M}(T)\bbm a\\b\\c\ebm = \bbm a-2c\\2b+c\ebm\text{,}
+\end{equation*}
+</div>
+<p class="continuation">and therefore, our original transformation must have been</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+T(a+bx+cx^2)=(a-2c,2b+c)\text{.}
+\end{equation*}
+</div>
 </div></body>
 </html>

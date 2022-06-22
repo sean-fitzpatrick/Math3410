@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-06-22T10:04:24-06:00       *-->
+<!--*       on 2022-06-22T13:18:26-06:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -14,14 +14,8 @@
 <meta name="robots" content="noindex, nofollow">
 </head>
 <body class="ignore-math">
-<h5 class="heading"><span class="type">Paragraph</span></h5>
-<p>For an <span class="process-math">\(n\times n\)</span> matrix <span class="process-math">\(A\text{,}\)</span> we might not be able to diagonalize <span class="process-math">\(A\)</span> (with a single orthonormal basis). However, it turns out that it's <em class="emphasis">always</em> possible to find a pair of orthonormal bases <span class="process-math">\(\{e_1,\ldots, e_n\}, \{f_1,\ldots, f_n\}\)</span> such that</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-Ax = \sigma_1(x\cdot e_1)f_1+\cdots + \sigma_n(x\cdot e_n)f_n\text{.}
-\end{equation*}
-</div>
-<p class="continuation">In matrix form, <span class="process-math">\(A = P\Sigma_A Q^T\)</span> for orthogonal matrices <span class="process-math">\(P,Q\text{.}\)</span></p>
-<span class="incontext"><a href="section-matrix-factor.html#p-959" class="internal">in-context</a></span>
+<h4 class="heading"><span class="type">Paragraph</span></h4>
+<p>If you want to cut down on the manual labour involved, we can make use of some of the other tools SymPy provides. In the next cell, we're going to assign the output of <code class="code-inline tex2jax_ignore">A.eigenvects()</code> to a list. The only trouble is that the output of the eigenvector command is a list of lists. Each list item is a list <code class="code-inline tex2jax_ignore">(eigenvalue, multiplicity, [eigenvectors])</code>.</p>
+<span class="incontext"><a href="sec-complex.html#p-959" class="internal">in-context</a></span>
 </body>
 </html>

@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-06-22T10:04:22-06:00       *-->
+<!--*       on 2022-06-22T13:18:24-06:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -15,18 +15,41 @@
 </head>
 <body class="ignore-math">
 <div class="solution solution-like">
-<h4 class="heading">
-<span class="type">Solution</span><span class="space"> </span><span class="codenumber">3.1.6.1</span><span class="period">.</span>
-</h4>
-<p>If <span class="process-math">\(\xx=\mathbf{0}\text{,}\)</span> then the result follows immediately from the dot product formula in <a href="" class="xref" data-knowl="./knowl/def-dot-prod-norm.html" title="Definition 3.1.1">Definition 3.1.1</a>. Conversely, suppose <span class="process-math">\(\xx\dotp \vv_i=0\)</span> for each <span class="process-math">\(i\text{.}\)</span> Since the <span class="process-math">\(\vv_i\)</span> span <span class="process-math">\(\R^n\text{,}\)</span> there must exist scalars <span class="process-math">\(c_1,c_2,\ldots, c_k\)</span> such that <span class="process-math">\(\xx=c_1\vv_1+c_2\vv_2+\cdots+c_k\vv_k\text{.}\)</span> But then</p>
-<div class="displaymath process-math" data-contains-math-knowls="./knowl/def-dot-prod-norm.html">
-\begin{align*}
-\xx\dotp\xx \amp = \xx\dotp (c_1\vv_1+c_2\vv_2+\cdots+c_k\vv_k) \\
-\amp = c_1(\xx\dotp \vv_1)+ c_2(\xx\dotp \vv_2)+\cdots +c_k(\xx\dotp \vv_k)\\
-\amp = c_1(0)+c_2(0)+\cdots + c_k(0)=0\text{.}
-\end{align*}
+<h3 class="heading">
+<span class="type">Solution</span><span class="space"> </span><span class="codenumber">2.2.5.1</span><span class="period">.</span>
+</h3>
+<ol class="decimal">
+<li>
+<p>We have <span class="process-math">\(T(0)=0\)</span> since <span class="process-math">\(0^T=0\text{.}\)</span> Using proerties of the transpose and matrix algebra, we have</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+T(A+B) = (A+B)-(A+B)^T = (A-A^T)+(B-B^T) = T(A)+T(B)
+\end{equation*}
 </div>
+<p class="continuation">and</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+T(kA) = (kA) - (kA)^T = kA-kA^T = k(A-A^T) = kT(A)\text{.}
+\end{equation*}
 </div>
-<span class="incontext"><a href="sec-orthogonal-sets.html#solution-40" class="internal">in-context</a></span>
+</li>
+<li><p>It's clear that if <span class="process-math">\(A^T=A\text{,}\)</span> then <span class="process-math">\(T(A)=0\text{.}\)</span> On the other hand, if <span class="process-math">\(T(A)=0\text{,}\)</span> then <span class="process-math">\(A-A^T=0\text{,}\)</span> so <span class="process-math">\(A=A^T\text{.}\)</span> Thus, the kernel consists of all symmetric matrices.</p></li>
+<li>
+<p>If <span class="process-math">\(B=T(A)=A-A^T\text{,}\)</span> then</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+B^T = (A-A^T)^T = A^T-A = -B\text{,}
+\end{equation*}
+</div>
+<p class="continuation">so certainly every matrix in <span class="process-math">\(\im A\)</span> is skew-symmetric. On the other hand, if <span class="process-math">\(B\)</span> is skew-symmetric, then <span class="process-math">\(B=T(\frac12 B)\text{,}\)</span> since</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+T\Bigl(\frac12 B\Bigr) = \frac12 T(B) = \frac12(B-B^T) = \frac12(B-(-B))= B\text{.}
+\end{equation*}
+</div>
+</li>
+</ol>
+</div>
+<span class="incontext"><a href="sec-kernel-image.html#solution-40" class="internal">in-context</a></span>
 </body>
 </html>
