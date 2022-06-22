@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-06-22T13:18:26-06:00       *-->
+<!--*       on 2022-06-22T15:52:21-06:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -14,8 +14,12 @@
 <meta name="robots" content="noindex, nofollow">
 </head>
 <body class="ignore-math">
-<h3 class="heading"><span class="type">Paragraph</span></h3>
-<p>The product <span class="process-math">\(\Sigma_A Q^T\)</span> will be the same in both cases, and the matrix <span class="process-math">\(P\)</span> is the same as well.</p>
-<span class="incontext"><a href="worksheet-svd.html#p-1058" class="internal">in-context</a></span>
+<h5 class="heading"><span class="type">Paragraph</span></h5>
+<p>A lot of the methods we're looking at here involve more sophisticated numerical techniques than SymPy is designed to handle. If we wanted to spend time on these topics, we'd have to learn a bit about the NumPy package, which has built in tools for finding things like polar decomposition and singular value decomposition. However, SymPy does know how to do <span class="process-math">\(QR\)</span> factorization. After defining a matrix <code class="code-inline tex2jax_ignore">A</code>, we can use the command</p>
+<pre class="code-display tex2jax_ignore">
+          Q, R = A.QRdecomposition()
+        </pre>
+<p class="continuation">.</p>
+<span class="incontext"><a href="section-matrix-factor.html#p-1058" class="internal">in-context</a></span>
 </body>
 </html>

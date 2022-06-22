@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-06-22T13:18:26-06:00       *-->
+<!--*       on 2022-06-22T15:52:21-06:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -15,13 +15,18 @@
 </head>
 <body class="ignore-math">
 <h5 class="heading"><span class="type">Paragraph</span></h5>
-<p>For an <span class="process-math">\(n\times n\)</span> matrix <span class="process-math">\(A\text{,}\)</span> we might not be able to diagonalize <span class="process-math">\(A\)</span> (with a single orthonormal basis). However, it turns out that it's <em class="emphasis">always</em> possible to find a pair of orthonormal bases <span class="process-math">\(\{e_1,\ldots, e_n\}, \{f_1,\ldots, f_n\}\)</span> such that</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
+<p>By <a href="" class="xref" data-knowl="./knowl/thm-schurr.html" title="Theorem 4.4.13">Theorem 4.4.13</a>, there exists a unitary matrix <span class="process-math">\(U\)</span> such that <span class="process-math">\(A = UTU^H\text{,}\)</span> where <span class="process-math">\(T\)</span> is upper triangular, and has the eigenvalues of <span class="process-math">\(A\)</span> as diagonal entries. Since <span class="process-math">\(c_A(A)=c_A(UTU^H)=Uc_A(T)U^H\text{,}\)</span> and <span class="process-math">\(c_A(x)=c_T(x)\)</span> (since <span class="process-math">\(A\)</span> and <span class="process-math">\(T\)</span> are similar) it suffices to show that <span class="process-math">\(c_A(A)=0\)</span> when <span class="process-math">\(A\)</span> is upper-triangular. (If you like, we are showing that <span class="process-math">\(C_T(T)=0\text{,}\)</span> and deducing that <span class="process-math">\(c_A(A)=0\text{.}\)</span>) But if <span class="process-math">\(A\)</span> is upper-triangular, so is <span class="process-math">\(xI_A\text{,}\)</span> and therefore, <span class="process-math">\(\det(xI-A)\)</span> is just the product of the diagonal entries. That is,</p>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/thm-schurr.html">
 \begin{equation*}
-Ax = \sigma_1(x\cdot e_1)f_1+\cdots + \sigma_n(x\cdot e_n)f_n\text{.}
+c_A(x) = (x-\lambda_1)(x-\lambda_2)\cdots (x-\lambda_n)\text{,}
 \end{equation*}
 </div>
-<p class="continuation">In matrix form, <span class="process-math">\(A = P\Sigma_A Q^T\)</span> for orthogonal matrices <span class="process-math">\(P,Q\text{.}\)</span></p>
-<span class="incontext"><a href="section-matrix-factor.html#p-994" class="internal">in-context</a></span>
+<p class="continuation">so</p>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/thm-schurr.html">
+\begin{equation*}
+c_A(A) = (A-\lambda_1I)(A-\lambda_2I)\cdots (A-\lambda_nI)\text{.}
+\end{equation*}
+</div>
+<span class="incontext"><a href="sec-complex.html#p-994" class="internal">in-context</a></span>
 </body>
 </html>
