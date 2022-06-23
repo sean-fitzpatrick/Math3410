@@ -371,10 +371,10 @@
     From the textbook, we have the following nice example.
   </p>
 
-  <example>
+  <exercise>
     <statement>
       <p>
-        Let <m>T:M_{nn}\to M_{nn}</m> be defined by <m>T(A)=A-A^T</m>. Then
+        Let <m>T:M_{nn}\to M_{nn}</m> be defined by <m>T(A)=A-A^T</m>. Show that:
         <ol>
           <li>
             <p>
@@ -395,6 +395,15 @@
         </ol>
       </p>
     </statement>
+    <hint>
+      <p>
+        You can use the fact that the transpose is linear: <m>(A+B)^T=A^T+B^T</m> and <m>(cA)^T=cA^T</m>.
+      </p>
+      <p>
+        A matrix is symmetric if <m>A^T=A</m>, or in other words, <m>A-A^T=0</m>.
+        A matrix is skew-symmetric if <m>A^T=-A</m>.
+      </p>
+    </hint>
     <solution>
       <p>
         <ol>
@@ -437,7 +446,7 @@
         </ol>
       </p>
     </solution>
-  </example>
+  </exercise>
 
   <p>
     Recall that a function <m>f:A\to B</m> is <term>injective</term> (or one-to-one)
@@ -607,7 +616,7 @@
       <block order="4">
         <p>
           Therefore, <m>W\subseteq \spn\{T(\vv_1),\ldots, T(\vv_n)\}</m>,
-          and since <m>\spn\{T(\vv_1),\ldots, T(\vv_n)\}\sbuseteq W</m>,
+          and since <m>\spn\{T(\vv_1),\ldots, T(\vv_n)\}\subseteq W</m>,
           we have <m>W=\spn\{T(\vv_1),\ldots, T(\vv_n)\}</m>.
         </p>
       </block>
@@ -770,7 +779,7 @@
         Select all statements below that are <em>true</em>:
       </p>
     </statement>
-    <choices>
+    <choices randomize="yes">
       <choice correct="no">
         <statement>
           <p>
@@ -888,7 +897,7 @@
       <p>
         What makes the other direction harder is that you need to prove an <em>existence</em> statement.
         To show that a transformation with the required property exists, you're going to need to <em>construct</em> it!
-        To do so, try defining your transfromation in terms of a basis.
+        To do so, try defining your transformation in terms of a basis.
       </p>
     </hint>
     <solution>
