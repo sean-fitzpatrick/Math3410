@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-06-22T15:52:19-06:00       *-->
+<!--*       on 2022-06-23T08:44:12-06:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -15,43 +15,7 @@
 </head>
 <body class="ignore-math">
 <h4 class="heading"><span class="type">Paragraph</span></h4>
-<ol class="decimal">
-<li>
-<p>Suppose <span class="process-math">\(T:V\to W\)</span> is injective. Then <span class="process-math">\(\ker T = \{0\}\text{,}\)</span> so</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-\dim V = 0 + \dim \im T \leq \dim W\text{,}
-\end{equation*}
-</div>
-<p class="continuation">since <span class="process-math">\(\im T\)</span> is a subspace of <span class="process-math">\(W\text{.}\)</span></p>
-<p>Conversely, suppose <span class="process-math">\(\dim V\leq \dim W\text{.}\)</span> Choose a basis <span class="process-math">\(\{\vv_1,\ldots, \vv_m\}\)</span> of <span class="process-math">\(V\text{,}\)</span> and a basis <span class="process-math">\(\{\ww_1,\ldots, \ww_n\}\)</span> of <span class="process-math">\(W\text{,}\)</span> where <span class="process-math">\(m\leq n\text{.}\)</span> By <a href="" class="xref" data-knowl="./knowl/thm-define-using-basis.html" title="Theorem 2.1.6">Theorem 2.1.6</a>, there exists a linear transformation <span class="process-math">\(T:V\to W\)</span> with <span class="process-math">\(T(\vv_i)=\ww_i\)</span> for <span class="process-math">\(i=1,\ldots, m\text{.}\)</span> (The main point here is that we run out of basis vectors for <span class="process-math">\(V\)</span> before we run out of basis vectors for <span class="process-math">\(W\text{.}\)</span>) This map is injective: if <span class="process-math">\(T(\vv)=\mathbf{0}\text{,}\)</span> write <span class="process-math">\(\vv=c_1\vv_1+\cdots + c_m\vv_m\text{.}\)</span> Then</p>
-<div class="displaymath process-math" data-contains-math-knowls="./knowl/thm-define-using-basis.html">
-\begin{align*}
-\mathbf{0} \amp = T(\vv)\\
-\amp = T(c_1\vv_1+\cdots + c_m\vv_m)\\
-\amp = c_1T(\vv_1)+\cdots + c_mT(\vv_m)\\
-\amp = c_1\ww_1+\cdots +c_m\ww_m\text{.}
-\end{align*}
-</div>
-<p class="continuation">Since <span class="process-math">\(\{\ww_1,\ldots, \ww_m\}\)</span> is a subset of a basis, it's independent. Therefore, the scalars <span class="process-math">\(c_i\)</span> must all be zero, and therefore <span class="process-math">\(\vv=\mathbf{0}\text{.}\)</span></p>
-</li>
-<li>
-<p>Suppose <span class="process-math">\(T:V\to W\)</span> is surjective. Then <span class="process-math">\(\dim \im T = \dim W\text{,}\)</span> so</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-\dim V = \dim \ker T + \dim W \geq  \dim W\text{.}
-\end{equation*}
-</div>
-<p class="continuation">Conversely, suppose <span class="process-math">\(\dim V\geq \dim W\text{.}\)</span> Again, choose a basis <span class="process-math">\(\{\vv_1,\ldots, \vv_m\}\)</span> of <span class="process-math">\(V\text{,}\)</span> and a basis <span class="process-math">\(\{\ww_1,\ldots, \ww_n\}\)</span> of <span class="process-math">\(W\text{,}\)</span> where this time, <span class="process-math">\(m\geq n\text{.}\)</span> We can define a linear transformation as follows:</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-T(\vv_1)=\ww_1,\ldots, T(\vv_n)=\ww_n, \text{ and } T(\vv_j) = \mathbf{0} \text{ for } j&gt;n.
-\end{equation*}
-</div>
-<p class="continuation">It's easy to check that this map is a surjection: given <span class="process-math">\(\ww\in W\text{,}\)</span> we can write it in terms of our basis as <span class="process-math">\(\ww=c_1\ww_1+\cdots + c_n\ww_n\text{.}\)</span> Using these same scalars, we can define <span class="process-math">\(\vv=c_1\vv_1+\cdots + c_n\vv_n\in V\)</span> such that <span class="process-math">\(T(\vv)=\ww\text{.}\)</span></p>
-<p>Note that it's not important how we define <span class="process-math">\(T(\vv_j)\)</span> when <span class="process-math">\(j&gt;n\text{.}\)</span> The point is that this time, we run out of basis vectors for <span class="process-math">\(W\)</span> before we run out of basis vectors for <span class="process-math">\(V\text{.}\)</span> Once each vector in the basis of <span class="process-math">\(W\)</span> is in the image of <span class="process-math">\(T\text{,}\)</span> we're guaranteed that <span class="process-math">\(T\)</span> is surjective, and we can define the value of <span class="process-math">\(T\)</span> on any remaining basis vectors however we want.</p>
-</li>
-</ol>
+<p>The trick with this proof is that we aren't assuming <span class="process-math">\(V\)</span> is finite-dimensional, so we can't start with a basis of <span class="process-math">\(V\text{.}\)</span> But we do know that <span class="process-math">\(\im T\)</span> is finite-dimensional, so we start with a basis <span class="process-math">\(\{\ww_1,\ldots, \ww_m\}\)</span> of <span class="process-math">\(\im T\text{.}\)</span> Of course, every vector in <span class="process-math">\(\im T\)</span> is the image of some vector in <span class="process-math">\(V\text{,}\)</span> so we can write <span class="process-math">\(\ww_i =T(\vv_i)\text{,}\)</span> where <span class="process-math">\(\vv_i\in V\text{,}\)</span> for <span class="process-math">\(i=1,2,\ldots, m\text{.}\)</span></p>
 <span class="incontext"><a href="sec-kernel-image.html#p-629" class="internal">in-context</a></span>
 </body>
 </html>

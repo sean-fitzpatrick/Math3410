@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-06-22T15:52:16-06:00       *-->
+<!--*       on 2022-06-23T08:44:08-06:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -250,24 +250,24 @@ true);
 </div>
 </h2>
 <section class="onepage" id="page-15"><div class="introduction" id="introduction-25">
-<p id="p-1078">For this worksheet, the reader is directed to Section 8.6 of <em class="emphasis">Linear Algebra with Applications</em>, by Keith Nicholson, and, of course, to <a href="section-matrix-factor.html" class="internal" title="Section 4.5: Matrix Factorizations and Eigenvalues">Section 4.5</a>. (See also <a class="external" href="https://www.juanklopper.com/wp-content/uploads/2015/03/III_05_Singular_value_decomposition.html" target="_blank">notebook by Dr. Juan H Klopper</a><a href="" data-knowl="" class="id-ref fn-knowl original" data-refid="hk-fn-9" id="fn-9"><sup> 1 </sup></a>.)</p>
-<p id="p-1079">In <a href="section-matrix-factor.html" class="internal" title="Section 4.5: Matrix Factorizations and Eigenvalues">Section 4.5</a> we saw that the <code class="code-inline tex2jax_ignore">svd</code> algorithm in the mpmath library does things a little bit differently than Nicholson. If we start with a square matrix <span class="process-math">\(A\text{,}\)</span> the results are the same, but if <span class="process-math">\(A\)</span> is not square, the decomposition <span class="process-math">\(A = P\Sigma_A Q^T\)</span> looks a little different. In particular, if <span class="process-math">\(A\)</span> is <span class="process-math">\(m\times n\text{,}\)</span> the matrix <span class="process-math">\(\Sigma_A\)</span> defined in Nicholson will also be <span class="process-math">\(m\times n\text{,}\)</span> but it will contain some rows or columns of zeros that are added to get the desired size. The matrix <span class="process-math">\(Q\)</span> is an orthogonal <span class="process-math">\(n\times n\)</span> matrix whose columns are an orthonormal basis of eigenvectors for <span class="process-math">\(A^TA\text{.}\)</span> The matrix <span class="process-math">\(P\)</span> is an orthogonal <span class="process-math">\(m\times m\)</span> matrix whose columns are an orthonormal basis of <span class="process-math">\(\R^m\text{.}\)</span> (The first <span class="process-math">\(r\)</span> columns of <span class="process-math">\(P\)</span> are given by <span class="process-math">\(A\vecq_i\text{,}\)</span> where <span class="process-math">\(\vecq_i\)</span> is the eigenvector of <span class="process-math">\(A^TA\)</span> corresponding to the positive singular value <span class="process-math">\(\sigma_i\text{.}\)</span>)</p>
-<p id="p-1080">The <code class="code-inline tex2jax_ignore">svd</code> algorithm provided by mpmath replaces <span class="process-math">\(\Sigma_A\)</span> by the <span class="process-math">\(m\times m\)</span> diagonal matrix of singular values. The matrix <span class="process-math">\(Q\)</span> is replaced by the <span class="process-math">\(m\times n\)</span> matrix whose columns are the first <span class="process-math">\(m\)</span> eigenvectors of <span class="process-math">\(A^TA\text{.}\)</span> (Note that the rank of <span class="process-math">\(A^TA\)</span> is equal to the rank of <span class="process-math">\(A\text{,}\)</span> which is equal to the number of nonzero eigenvectors of <span class="process-math">\(A^TA\)</span> (counted with multiplicity).) So we will have <span class="process-math">\(m\geq r\text{,}\)</span> where <span class="process-math">\(r\)</span> is the number of nonzero singular values.</p>
-<p id="p-1081">The product <span class="process-math">\(\Sigma_A Q^T\)</span> will be the same in both cases, and the matrix <span class="process-math">\(P\)</span> is the same as well.</p>
+<p id="p-1090">For this worksheet, the reader is directed to Section 8.6 of <em class="emphasis">Linear Algebra with Applications</em>, by Keith Nicholson, and, of course, to <a href="section-matrix-factor.html" class="internal" title="Section 4.5: Matrix Factorizations and Eigenvalues">Section 4.5</a>. (See also <a class="external" href="https://www.juanklopper.com/wp-content/uploads/2015/03/III_05_Singular_value_decomposition.html" target="_blank">notebook by Dr. Juan H Klopper</a><a href="" data-knowl="" class="id-ref fn-knowl original" data-refid="hk-fn-9" id="fn-9"><sup> 1 </sup></a>.)</p>
+<p id="p-1091">In <a href="section-matrix-factor.html" class="internal" title="Section 4.5: Matrix Factorizations and Eigenvalues">Section 4.5</a> we saw that the <code class="code-inline tex2jax_ignore">svd</code> algorithm in the mpmath library does things a little bit differently than Nicholson. If we start with a square matrix <span class="process-math">\(A\text{,}\)</span> the results are the same, but if <span class="process-math">\(A\)</span> is not square, the decomposition <span class="process-math">\(A = P\Sigma_A Q^T\)</span> looks a little different. In particular, if <span class="process-math">\(A\)</span> is <span class="process-math">\(m\times n\text{,}\)</span> the matrix <span class="process-math">\(\Sigma_A\)</span> defined in Nicholson will also be <span class="process-math">\(m\times n\text{,}\)</span> but it will contain some rows or columns of zeros that are added to get the desired size. The matrix <span class="process-math">\(Q\)</span> is an orthogonal <span class="process-math">\(n\times n\)</span> matrix whose columns are an orthonormal basis of eigenvectors for <span class="process-math">\(A^TA\text{.}\)</span> The matrix <span class="process-math">\(P\)</span> is an orthogonal <span class="process-math">\(m\times m\)</span> matrix whose columns are an orthonormal basis of <span class="process-math">\(\R^m\text{.}\)</span> (The first <span class="process-math">\(r\)</span> columns of <span class="process-math">\(P\)</span> are given by <span class="process-math">\(A\vecq_i\text{,}\)</span> where <span class="process-math">\(\vecq_i\)</span> is the eigenvector of <span class="process-math">\(A^TA\)</span> corresponding to the positive singular value <span class="process-math">\(\sigma_i\text{.}\)</span>)</p>
+<p id="p-1092">The <code class="code-inline tex2jax_ignore">svd</code> algorithm provided by mpmath replaces <span class="process-math">\(\Sigma_A\)</span> by the <span class="process-math">\(m\times m\)</span> diagonal matrix of singular values. The matrix <span class="process-math">\(Q\)</span> is replaced by the <span class="process-math">\(m\times n\)</span> matrix whose columns are the first <span class="process-math">\(m\)</span> eigenvectors of <span class="process-math">\(A^TA\text{.}\)</span> (Note that the rank of <span class="process-math">\(A^TA\)</span> is equal to the rank of <span class="process-math">\(A\text{,}\)</span> which is equal to the number of nonzero eigenvectors of <span class="process-math">\(A^TA\)</span> (counted with multiplicity).) So we will have <span class="process-math">\(m\geq r\text{,}\)</span> where <span class="process-math">\(r\)</span> is the number of nonzero singular values.</p>
+<p id="p-1093">The product <span class="process-math">\(\Sigma_A Q^T\)</span> will be the same in both cases, and the matrix <span class="process-math">\(P\)</span> is the same as well.</p>
 </div>
-<p id="p-1082">This time, rather than using the mpmath algorithm, we will work through the process as outlined in Nicholson step-by-step. First, we will work through (again) Example 8.6.1 in Nicholson. Let <span class="process-math">\(A = \bbm 1\amp 0\amp 1\\-1\amp 1\amp 0\ebm\text{.}\)</span> First, we get the singular values:</p>
+<p id="p-1094">This time, rather than using the mpmath algorithm, we will work through the process as outlined in Nicholson step-by-step. First, we will work through (again) Example 8.6.1 in Nicholson. Let <span class="process-math">\(A = \bbm 1\amp 0\amp 1\\-1\amp 1\amp 0\ebm\text{.}\)</span> First, we get the singular values:</p>
 <pre class="ptx-sagecell sagecell-sage" id="sage-99"><script type="text/x-sage">from sympy import Matrix,init_printing
 init_printing()
 A = Matrix([[1,0,1],[-1,1,0]])
 L0=A.singular_values()
 L0
 </script></pre>
-<p id="p-1083">Next, we get the eigenvalues and eigenvectors of <span class="process-math">\(A^TA\text{:}\)</span></p>
+<p id="p-1095">Next, we get the eigenvalues and eigenvectors of <span class="process-math">\(A^TA\text{:}\)</span></p>
 <pre class="ptx-sagecell sagecell-sage" id="sage-100"><script type="text/x-sage">B = (A.T)*A
 L1=B.eigenvects()
 L1
 </script></pre>
-<p id="p-1084">Now we need to normalize the eigenvectors, in the correct order. Note that the eigenvectors were listed in <em class="emphasis">increasing</em> order of eigenvalue, so we need to reverse the order. Note that <code class="code-inline tex2jax_ignore">L1</code> is a list of lists. The eigenvector is the third entry (index 2) in the list (eigenvalue, multiplicity, eigenvector). We also need to turn list elements into matrices. So, for example the second eigenvector is <code class="code-inline tex2jax_ignore">Matrix(L1[1][2])</code>.</p>
+<p id="p-1096">Now we need to normalize the eigenvectors, in the correct order. Note that the eigenvectors were listed in <em class="emphasis">increasing</em> order of eigenvalue, so we need to reverse the order. Note that <code class="code-inline tex2jax_ignore">L1</code> is a list of lists. The eigenvector is the third entry (index 2) in the list (eigenvalue, multiplicity, eigenvector). We also need to turn list elements into matrices. So, for example the second eigenvector is <code class="code-inline tex2jax_ignore">Matrix(L1[1][2])</code>.</p>
 <pre class="ptx-sagecell sagecell-sage" id="sage-101"><script type="text/x-sage">R1=Matrix(L1[2][2])
 R2=Matrix(L1[1][2])
 R3=Matrix(L1[0][2])
@@ -275,16 +275,16 @@ Q1 = (1/R1.norm())*R1
 Q2 = (1/R2.norm())*R2
 Q3 = (1/R3.norm())*R3
 Q1,Q2,Q3
-</script></pre></section><section class="onepage" id="page-16"><p id="p-1085">Next, we can assemble these vectors into a matrix, and confirm that it's orthogonal.</p>
+</script></pre></section><section class="onepage" id="page-16"><p id="p-1097">Next, we can assemble these vectors into a matrix, and confirm that it's orthogonal.</p>
 <pre class="ptx-sagecell sagecell-sage" id="sage-102"><script type="text/x-sage">from sympy import BlockMatrix
 Q = Matrix(BlockMatrix([Q1,Q2,Q3]))
 Q,Q*Q.T
 </script></pre>
-<p id="p-1086">We've made the matrix <span class="process-math">\(Q\text{!}\)</span> Next, we construct <span class="process-math">\(\Sigma_A\text{.}\)</span> This we will do by hand.</p>
+<p id="p-1098">We've made the matrix <span class="process-math">\(Q\text{!}\)</span> Next, we construct <span class="process-math">\(\Sigma_A\text{.}\)</span> This we will do by hand.</p>
 <pre class="ptx-sagecell sagecell-sage" id="sage-103"><script type="text/x-sage">SigA = Matrix([[L0[0],0,0],[0,L0[1],0]])
 SigA
 </script></pre>
-<p id="p-1087">Alternatively, you could do <code class="code-inline tex2jax_ignore">SigA = diag(L0[0],L0[1]).row_join(Matrix([0,0]))</code>. Finally, we need to make the matrix <span class="process-math">\(P\text{.}\)</span> First, we find the vectors <span class="process-math">\(A\vecq_1, A\vecq_2\)</span> and normalize. (Note that <span class="process-math">\(A\vecq_3=\zer\text{,}\)</span> so this vector is unneeded, as expected.)</p>
+<p id="p-1099">Alternatively, you could do <code class="code-inline tex2jax_ignore">SigA = diag(L0[0],L0[1]).row_join(Matrix([0,0]))</code>. Finally, we need to make the matrix <span class="process-math">\(P\text{.}\)</span> First, we find the vectors <span class="process-math">\(A\vecq_1, A\vecq_2\)</span> and normalize. (Note that <span class="process-math">\(A\vecq_3=\zer\text{,}\)</span> so this vector is unneeded, as expected.)</p>
 <pre class="ptx-sagecell sagecell-sage" id="sage-104"><script type="text/x-sage">S1 = A*Q1
 S2 = A*Q2
 P1 = (1/S1.norm())*S1
@@ -292,10 +292,10 @@ P2 = (1/S2.norm())*S2
 P = Matrix(BlockMatrix([P1,P2]))
 P
 </script></pre>
-<p id="p-1088">Note that the matrix <span class="process-math">\(P\)</span> is already the correct size, because <span class="process-math">\(\rank(A)=2\dim(\R^2)\text{.}\)</span> In general, for an <span class="process-math">\(m\times n\)</span> matrix <span class="process-math">\(A\text{,}\)</span> if <span class="process-math">\(\rank(A)=r\lt m\text{,}\)</span> we would have to extend the set <span class="process-math">\(\{\vecp_1,\ldots, \vecp_r\}\)</span> to a basis for <span class="process-math">\(\R^m\text{.}\)</span> Finally, we check that our matrices work as advertised.</p>
+<p id="p-1100">Note that the matrix <span class="process-math">\(P\)</span> is already the correct size, because <span class="process-math">\(\rank(A)=2\dim(\R^2)\text{.}\)</span> In general, for an <span class="process-math">\(m\times n\)</span> matrix <span class="process-math">\(A\text{,}\)</span> if <span class="process-math">\(\rank(A)=r\lt m\text{,}\)</span> we would have to extend the set <span class="process-math">\(\{\vecp_1,\ldots, \vecp_r\}\)</span> to a basis for <span class="process-math">\(\R^m\text{.}\)</span> Finally, we check that our matrices work as advertised.</p>
 <pre class="ptx-sagecell sagecell-sage" id="sage-105"><script type="text/x-sage">P*SigA*(Q.T)
 </script></pre>
-<p id="p-1089">For convenience, here is all of the above code, with all print commands (except the last one) removed. This can be run as a single code cell.</p>
+<p id="p-1101">For convenience, here is all of the above code, with all print commands (except the last one) removed. This can be run as a single code cell.</p>
 <figure class="listing figure-like" id="listing-svd"><div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><pre class="program"><code class="language-none">from sympy import Matrix,BlockMatrix,init_printing
 init_printing()
 A = Matrix([[1,0,1],[-1,1,0]])
@@ -318,7 +318,7 @@ P = Matrix(BlockMatrix([P1,P2]))
 P,SigA,Q,P*SigA*Q.T
 </code></pre></div>
 <figcaption><span class="type">Listing</span><span class="space"> </span><span class="codenumber">4.6.1<span class="period">.</span></span><span class="space"> </span>SymPy code for a singular value decomposition example</figcaption></figure></section><section class="onepage" id="page-17"><article class="exercise exercise-like" id="exercise-77"><h3 class="heading"><span class="codenumber">1<span class="period">.</span></span></h3>
-<p id="p-1090">Do Exercise 8.6.9 in Nicholson: compute the SVD for the matrices</p>
+<p id="p-1102">Do Exercise 8.6.9 in Nicholson: compute the SVD for the matrices</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 \bbm 1\amp -1\\1\amp 0\\0\amp 1\ebm \quad \quad \bbm 1\amp 1\amp 1\\-1\amp 0\amp -2 \\1\amp 2\amp 0\ebm\text{.}
@@ -326,10 +326,10 @@ P,SigA,Q,P*SigA*Q.T
 </div>
 <p class="continuation">Note that for these matrices, you will need to do some additional work to extend the <span class="process-math">\(\vecp_i\)</span> vectors to an orthonormal basis. You can adapt the code above, but you will have to think about how to implement additional code to construct any extra vectors you need.</p>
 <div class="workspace" data-space="7in"></div></article><pre class="ptx-sagecell sagecell-sage" id="sage-106"><script type="text/x-sage"></script></pre></section><section class="onepage" id="page-18"><article class="exercise exercise-like" id="exercise-78"><h3 class="heading"><span class="codenumber">2<span class="period">.</span></span></h3>
-<p id="p-1091">Either by reading Nicholson or by searching online (or both), come up with a couple of answers to the question: “Why are people interested in the singular value decomposition?”</p>
+<p id="p-1103">Either by reading Nicholson or by searching online (or both), come up with a couple of answers to the question: “Why are people interested in the singular value decomposition?”</p>
 <div class="workspace" data-space="3.5in"></div></article><pre class="ptx-sagecell sagecell-html" id="sage-107"><script type="text/x-sage"></script></pre>
 <article class="exercise exercise-like" id="exercise-79"><h3 class="heading"><span class="codenumber">3<span class="period">.</span></span></h3>
-<p id="p-1092">(Optional) If you are interested, learn how to compute the <abbr class="initialism">SVD</abbr> using tools from the NumPy and SciPy libraries instead.</p>
+<p id="p-1104">(Optional) If you are interested, learn how to compute the <abbr class="initialism">SVD</abbr> using tools from the NumPy and SciPy libraries instead.</p>
 <div class="workspace" data-space="3.5in"></div></article><pre class="ptx-sagecell sagecell-html" id="sage-108"><script type="text/x-sage"></script></pre></section></section><div class="hidden-content tex2jax_ignore" id="hk-fn-9"><div class="fn"><code class="code-inline tex2jax_ignore">www.juanklopper.com/wp-content/uploads/2015/03/III_05_Singular_value_decomposition.html</code></div></div>
 </div></main>
 </div>

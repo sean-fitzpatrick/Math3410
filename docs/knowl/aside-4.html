@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-06-22T15:52:19-06:00       *-->
+<!--*       on 2022-06-23T08:44:13-06:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -14,22 +14,13 @@
 <meta name="robots" content="noindex, nofollow">
 </head>
 <body class="ignore-math">
-<aside class="aside aside-like"><p>Technically, we skipped over some details in the above proof: how exactly, is associativity being applied? It turns out there's actually a proof by induction lurking in the background!</p>
-<p>By definition, we know that <span class="process-math">\(T(\vv_1+\vv_2)=T(\vv_1)+T(\vv_2)\text{.}\)</span> For three vectors,</p>
+<aside class="aside aside-like"><p>You'll notice that I used <span class="process-math">\(6\vv_2\)</span> rather than <span class="process-math">\(\vv_2\)</span> in the calculation of <span class="process-math">\(\vv_3\text{.}\)</span> This lets me avoid fractions (momentarily), and doesn't affect the answer, since for any nonzero scalar <span class="process-math">\(c\text{,}\)</span></p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{align*}
-T(\vv_1+\vv_2+\vv_3) \amp = T(\vv_1+(\vv_2+\vv_3))\\
-\amp = T(\vv_1)+T(\vv_2+\vv_3)\\
-\amp = T(\vv_1)+(T(\vv_2)+T(\vv_3))\\
-\amp = T(\vv_1)+T(\vv_2)+T(\vv_3)\text{.}
+\left(\frac{c\vv\dotp \xx}{\len{c\vv}^2}\right)\amp(c\vv)\\
+\amp= \left(\frac{c(\vv\dotp\xx)}{c^2\len{\vv}^2}\right)(c\vv)\\
+\amp=\left(\frac{\vv\dotp\xx}{\len{\vv^2}}\right)\vv\text{.}
 \end{align*}
-</div>
-<p>For an abitrary number of vectors <span class="process-math">\(n\geq 3\text{,}\)</span> we can assume that distribution over addition works for <span class="process-math">\(n-1\)</span> vectors, and then use associativity to write</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-\vv_1+\vv_2+\cdots +\vv_n = \vv_1+(\vv_2+\cdots +\vv_n)\text{.}
-\end{equation*}
-</div>
-<p class="continuation">The right-hand side is technically a sum of two vectors, so we can apply the definition of a linear transformation directly, and then apply our induction hypothesis to <span class="process-math">\(T(\vv_2+\cdots + \vv_n)\text{.}\)</span></p></aside><span class="incontext"><a href="sec-lin-tran-intro.html#aside-4" class="internal">in-context</a></span>
+</div></aside><span class="incontext"><a href="sec-ortho-projection.html#aside-4" class="internal">in-context</a></span>
 </body>
 </html>
