@@ -115,36 +115,38 @@
     </proof>
   </theorem>
 
-  <aside>
-    <p>
-      Technically, we skipped over some details in the above proof:
-      how exactly, is associativity being applied?
-      It turns out there's actually a proof by induction lurking in the background!
-    </p>
+  <remark>
+    <statement>
+      <p>
+        Technically, we skipped over some details in the above proof:
+        how exactly, is associativity being applied?
+        It turns out there's actually a proof by induction lurking in the background!
+      </p>
 
-    <p>
-      By definition, we know that <m>T(\vv_1+\vv_2)=T(\vv_1)+T(\vv_2)</m>.
-      For three vectors,
-      <md>
-        <mrow>T(\vv_1+\vv_2+\vv_3) \amp = T(\vv_1+(\vv_2+\vv_3))</mrow>
-        <mrow> \amp = T(\vv_1)+T(\vv_2+\vv_3)</mrow>
-        <mrow> \amp = T(\vv_1)+(T(\vv_2)+T(\vv_3))</mrow>
-        <mrow> \amp = T(\vv_1)+T(\vv_2)+T(\vv_3)</mrow>
-      </md>.
-    </p>
+      <p>
+        By definition, we know that <m>T(\vv_1+\vv_2)=T(\vv_1)+T(\vv_2)</m>.
+        For three vectors,
+        <md>
+          <mrow>T(\vv_1+\vv_2+\vv_3) \amp = T(\vv_1+(\vv_2+\vv_3))</mrow>
+          <mrow> \amp = T(\vv_1)+T(\vv_2+\vv_3)</mrow>
+          <mrow> \amp = T(\vv_1)+(T(\vv_2)+T(\vv_3))</mrow>
+          <mrow> \amp = T(\vv_1)+T(\vv_2)+T(\vv_3)</mrow>
+        </md>.
+      </p>
 
-    <p>
-      For an abitrary number of vectors <m>n\geq 3</m>,
-      we can assume that distribution over addition works for <m>n-1</m> vectors,
-      and then use associativity to write
-      <me>
-        \vv_1+\vv_2+\cdots +\vv_n = \vv_1+(\vv_2+\cdots +\vv_n)
-      </me>.
-      The right-hand side is technically a sum of two vectors,
-      so we can apply the definition of a linear transformation directly,
-      and then apply our induction hypothesis to <m>T(\vv_2+\cdots + \vv_n)</m>.
-    </p>
-  </aside>
+      <p>
+        For an abitrary number of vectors <m>n\geq 3</m>,
+        we can assume that distribution over addition works for <m>n-1</m> vectors,
+        and then use associativity to write
+        <me>
+          \vv_1+\vv_2+\cdots +\vv_n = \vv_1+(\vv_2+\cdots +\vv_n)
+        </me>.
+        The right-hand side is technically a sum of two vectors,
+        so we can apply the definition of a linear transformation directly,
+        and then apply our induction hypothesis to <m>T(\vv_2+\cdots + \vv_n)</m>.
+      </p>
+    </statement>
+  </remark>
 
   <example xml:id="ex-matrix-trans">
     <statement>
@@ -274,7 +276,7 @@
         Which of the following are linear transformations?
       </p>
     </statement>
-    <choices>
+    <choices randomize="yes">
       <choice correct="no">
         <statement>
           <p>
@@ -383,53 +385,57 @@
   </theorem>
 
   <p>
-    <alert>Caution</alert>: If the above spanning set is not also independent,
+    <alert>Caution:</alert> If the above spanning set is not also independent,
     then we can't just define the values <m>T(\vv_i)</m> however we want.
     For example, suppose we want to define <m>T:\R^2\to\R^2</m>,
-    and we set <m>\R^2=\spn{(1,2),(4,-1),(5,1)}</m>.
+    and we set <m>\R^2=\spn\{(1,2),(4,-1),(5,1)\}</m>.
     If <m>T(1,2)=(3,4)</m> and <m>T(4,-1)=(-2,2)</m>,
     then we <em>must</em> have <m>T(5,1)=(1,6)</m>.
     Why? Because <m>(5,1)=(1,2)+(4,1)</m>, and if <m>T</m> is to be linear,
     then we have to have <m>T((1,2)+(4,-1))=T(1,2)+T(4,-1)</m>.
   </p>
 
-  <p>
-    If for some reason we already know that our transformation is linear,
-    we might still be concerned about the fact that if a spanning set is not independent,
-    there will be more than one way to express a vector as linear combination of vectors in that set.
-    If we define <m>T</m> by giving its values on a spanning set, will it be well-defined?
-    (That is, could we get two different values for <m>T(\vv)</m> by expressing <m>\vv</m> in terms of the spanning set in two different ways?)
-    Suppose that we have scalars <m>a_1,\ldots, a_n, b_1,\ldots, b_n</m> such that
-    <md>
-      <mrow>\vv \amp = a_1\vv_1+\cdots + a_n\vv_n \quad \text{ and }</mrow>
-      <mrow>\vv \amp = b_1\vv_1+\cdots + b_n\vv_n</mrow>
-    </md>
-    We then have
-    <md>
-      <mrow>a_1T(\vv_1)+\cdots + a_nT(\vv_n) \amp =T(a_1\vv_1+\cdots + a_n\vv_n) </mrow>
-      <mrow> \amp =T(b_1\vv_1+\cdots +b_n\vv_n)</mrow>
-      <mrow>  \amp =b_1T(\vv_1)+\cdots +b_nT(\vv_n)</mrow>
-    </md>.
-  </p>
+  <remark>
+    <statement>
+      <p>
+        If for some reason we already know that our transformation is linear,
+        we might still be concerned about the fact that if a spanning set is not independent,
+        there will be more than one way to express a vector as linear combination of vectors in that set.
+        If we define <m>T</m> by giving its values on a spanning set, will it be well-defined?
+        (That is, could we get two different values for <m>T(\vv)</m> by expressing <m>\vv</m> in terms of the spanning set in two different ways?)
+        Suppose that we have scalars <m>a_1,\ldots, a_n, b_1,\ldots, b_n</m> such that
+        <md>
+          <mrow>\vv \amp = a_1\vv_1+\cdots + a_n\vv_n \quad \text{ and }</mrow>
+          <mrow>\vv \amp = b_1\vv_1+\cdots + b_n\vv_n</mrow>
+        </md>
+        We then have
+        <md>
+          <mrow>a_1T(\vv_1)+\cdots + a_nT(\vv_n) \amp =T(a_1\vv_1+\cdots + a_n\vv_n) </mrow>
+          <mrow> \amp =T(b_1\vv_1+\cdots +b_n\vv_n)</mrow>
+          <mrow>  \amp =b_1T(\vv_1)+\cdots +b_nT(\vv_n)</mrow>
+        </md>.
+      </p>
 
-  <p>
-    Of course, we can avoid all of this unpleasantness by using a <em>basis</em>
-    to define a transformation. Given a basis <m>B = \{\vv_1,\ldots, \vv_n\}</m>
-    for a vector space <m>V</m>, we can define a transformation <m>T:V\to W</m>
-    by setting <m>T(\vv_i)=\ww_i</m> for some choice of vectors <m>\ww_1,\ldots, \ww_n</m>
-    and defining
-    <me>
-      T(c_1\vv_1+\cdots +c_n\vv_n)=c_1T(\vv_1)+\cdots + c_nT(\vv_n)
-    </me>.
-    Because each vector <m>\vv\in V</m> can be written <em>uniquely</em> in terms of a basis,
-    we know that our transformation is well-defined.
-  </p>
+      <p>
+        Of course, we can avoid all of this unpleasantness by using a <em>basis</em>
+        to define a transformation. Given a basis <m>B = \{\vv_1,\ldots, \vv_n\}</m>
+        for a vector space <m>V</m>, we can define a transformation <m>T:V\to W</m>
+        by setting <m>T(\vv_i)=\ww_i</m> for some choice of vectors <m>\ww_1,\ldots, \ww_n</m>
+        and defining
+        <me>
+          T(c_1\vv_1+\cdots +c_n\vv_n)=c_1T(\vv_1)+\cdots + c_nT(\vv_n)
+        </me>.
+        Because each vector <m>\vv\in V</m> can be written <em>uniquely</em> in terms of a basis,
+        we know that our transformation is well-defined.
+      </p>
+    </statement>
+  </remark>
 
   <p>
     The next theorem seems like an obvious consequence of the above,
     and indeed, one might wonder where the assumption of a basis is needed.
     The distinction here is that the vectors <m>\ww_1,\ldots, \ww_n\in W</m>
-    are chosen in advance, and then we set <m>T(vec{b}_i)=\ww_i</m>,
+    are chosen in advance, and then we <em>define</em> <m>T</m> by setting <m>T(\mathbf{b}_i)=\ww_i</m>,
     rather than simply defining each <m>\ww_i</m> as <m>T(\mathbf{b}_i)</m>.
   </p>
 
@@ -459,7 +465,7 @@
       <p>
         Suppose <m>T:\R^2\to \R^2</m> is a linear transformation.
         If <m>T\bbm 1\\0\ebm = \bbm 3\\-4\ebm</m> and <m>T\bbm 0\\1\ebm =\bbm 5\\2\ebm</m>,
-        find <m>T=\bbm -2\\4\ebm</m>.
+        find <m>T\bbm -2\\4\ebm</m>.
       </p>
     </statement>
     <solution>
@@ -629,35 +635,101 @@
     <statement>
       <p>
         Let <m>T:V\to W</m> be a linear transformation.
-        Prove that for any vectors <m>\vv_1,\ldots, \vv_n\in V</m>,
+        Rearrange the blocks below to create a proof of the following statement:
+      </p>
+      <p>
+        For any vectors <m>\vv_1,\ldots, \vv_n\in V</m>,
         if <m>\{T(\vv_1),\ldots, T(\vv_n)\}</m> is linearly independent in <m>W</m>,
         then <m>\{\vv_1,\ldots, \vv_n\}</m> is linearly independent in <m>V</m>.
       </p>
     </statement>
-    <solution>
+    <blocks>
+      <block order="">
+        <p>
+          Suppose that <m>\{T(\vv_1),\ldots, T(\vv_n)\}</m> is linearly independent.
+        </p>
+      </block>
+      <block order="">
+        <p>
+          We want to show that <m>\{\vv_1,\ldots, \vv_n\}</m>
+          is linearly independent, so suppose that we have
+          <me>
+            c_1\vv_1+\cdots + c_n\vv_n=\mathbf{0}
+          </me>
+          for some scalars <m>c_1,\ldots, c_n</m>.
+        </p>
+      </block>
+      <block order="">
+        <p>
+          We apply <m>T</m> to both sides of the equation above, giving us:
+          <me>
+            T(c_1\vv_1+\cdots + c_n\vv_n)=T(\mathbf{0})
+          </me>.
+        </p>
+      </block>
+      <block order="">
+        <p>
+          Now we make use of both parts of <xref ref="thm-lt-props">Theorem</xref> to get
+          <me>
+            c_1T(\vv_1)+\cdots +c_nT(\vv_n) = \mathbf{0}
+          </me>.
+        </p>
+      </block>
+      <block order="">
+        <p>
+          By hypothesis, the vectors <m>T(\vv_i)</m> are linearly independent,
+          so we must have <m>c_1=0,c_2=0,\ldots, c_n=0</m>.
+        </p>
+      </block>
+      <block order="">
+        <p>
+          Since the only solution to <m>c_1\vv_1+\cdots + c_n\vv_n=\zer</m>
+          is <m>c_1=0,\ldots, c_n=0</m>, the set <m>\{\vv_1,\ldots, \vv_n\}</m>
+          is linearly independent.
+        </p>
+      </block>
+    </blocks>
+    <hint>
       <p>
-        Let us suppose that <m>\{T(\vv_1),\ldots, T(\vv_n)\}</m> is linearly independent.
-        We want to show that the set <m>\{\vv_1,\ldots, \vv_n\}</m>
-        is linearly independent. To that end, suppose that we have
-        <me>
-          c_1\vv_1+\cdots + c_n\vv_n=\mathbf{0}
-        </me>
-        for some scalars <m>c_1,\ldots, c_n</m> (that we want to show must all equal zero).
+        This is mostly a matter of using <xref ref="thm-lt-props">Theorem</xref>,
+        but it's important to get the logic correct.
+        We have a conditional statement of the form <m>P\Rightarrow Q</m>,
+        where both <m>P</m> (<q>the set <m>\{T(\vv_1),\ldots, T(\vv_n)\}</m> is independent</q>)
+        and <m>Q</m> (<q>the set <m>\{\vv_1,\ldots, \vv_n\}</m> is independent</q>)
+        are themselves conditional statements.
       </p>
-
       <p>
-        We want to make use of our hypothesis, so we need to bring the linear map <m>T</m> into the picture.
-        We apply <m>T</m> to both sides of the equation above, giving us:
-        <me>
-          T(c_1\vv_1+\cdots + c_n\vv_n)=T(\mathbf{0})
-        </me>.
-        Now we make use of both parts of <xref ref="thm-lt-props">Theorem</xref> to get
-        <me>
-          c_1T(\vv_1)+\cdots +c_nT(\vv_n) = \mathbf{0}
-        </me>.
-        By our hypothesis that the <m>T(\vv_i)</m> are independent,
-        we must conclude that all the scalars are zero, and we're done.
+        The overall structure therefore looks like <m>(A\Rightarrow B)\Rightarrow (C\Rightarrow D)</m>.
+        A direct proof should be structured as follows:
+        <ol>
+          <li>
+            <p>
+              Assume the main hypothesis: <m>A\Rightarrow B</m>.
+            </p>
+          </li>
+          <li>
+            <p>
+              Assume the <q>sub</q>-hypothesis <m>C</m>.
+            </p>
+          </li>
+          <li>
+            <p>
+              Figure out how to show that <m>C\Rightarrow A</m>.
+              (This is the <q>apply <m>T</m> to both sides</q> step.)
+            </p>
+          </li>
+          <li>
+            <p>
+              If we know <m>A</m>, and we've assumed <m>A\Rightarrow B</m>, we know <m>B</m>.
+            </p>
+          </li>
+          <li>
+            <p>
+              Figure out how to show that <m>B\Rightarrow D</m>.
+            </p>
+          </li>
+        </ol>
       </p>
-    </solution>
+    </hint>
   </exercise>
 </section>
