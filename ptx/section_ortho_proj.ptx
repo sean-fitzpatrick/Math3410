@@ -45,7 +45,7 @@
             <li>
               <p>
                 If <m>\xx\notin\spn\{\vv_1,\ldots, \vv_m\}</m>,
-                then <m>\vv_{m+1}\neq \mathbf{0}</m>,
+                then <m>\vv_{m+1}\neq \zer</m>,
                 and therefore, <m>\{\vv_1,\ldots, \vv_m,\vv_{m+1}\}</m> is an orthogonal set.
               </p>
             </li>
@@ -67,7 +67,7 @@
 
             <li>
               <p>
-                It follows from the <xref ref="thm-fourier-expansion" text="title"/> that <m>\vv_{m+1}=\mathbf{0}</m>
+                It follows from the <xref ref="thm-fourier-expansion" text="title"/> that <m>\vv_{m+1}=\zer</m>
                 if and only if <m>\xx\in\spn\{\vv_1,\ldots, \vv_m\}</m>,
                 and the fact that <m>\{\vv_1,\ldots, \vv_m,\vv_{m+1}\}</m>
                 is an orthogonal set then follows from the first part.
@@ -83,7 +83,7 @@
       any set of orthogonal vectors in <m>U</m> can be extended to an orthogonal basis of <m>U</m>.
       Since any set containing a single nonzero vector is orthogonal,
       it follows that every subspace has an orthogonal basis.
-      (If <m>U=\{\mathbf{0}\}</m>, we consider the empty basis to be orthogonal.)
+      (If <m>U=\{\zer\}</m>, we consider the empty basis to be orthogonal.)
     </p>
 
     <p>
@@ -356,7 +356,7 @@
 
     <p>
       Note that <m>\proj{U}{\vv}</m> is indeed an element of <m>U</m>, since it's a linear combination of its basis vectors.
-      In the case of the trivial subspace <m>U=\{\mathbf{0}\}</m>, we define orthogonal projection of any vector to be <m>\mathbf{0}</m>,
+      In the case of the trivial subspace <m>U=\{\zer\}</m>, we define orthogonal projection of any vector to be <m>\zer</m>,
       since really, what other choice do we have? (This case isn't really of any interest, we just like being thorough.)
     </p>
 
@@ -505,7 +505,7 @@
     <exercise>
       <statement>
         <p>
-          Show that <m>U\cap U^\bot = \{\mathbf{0}\}</m>.
+          Show that <m>U\cap U^\bot = \{\zer\}</m>.
           Use this fact to show that <xref ref="def-ortho-projection"/> does not depend on the choice orthogonal basis.
         </p>
       </statement>
@@ -544,7 +544,7 @@
       <me>
         \dim U + \dim U^\bot = n
       </me>,
-      and since <m>U\cap U^\bot = \{\mathbf{0}\}</m>, <m>U^\bot</m> is indeed a complement of <m>U</m>
+      and since <m>U\cap U^\bot = \{\zer\}</m>, <m>U^\bot</m> is indeed a complement of <m>U</m>
       in the sense introduced in <xref ref="thm-construct-complement">Theorem</xref>.
       It's also fairly easy to see that <m>\dim U + \dim U^\bot = n</m> directly.
       If <m>\ww\in U^\bot</m>, and <m>\{\uu_1,\ldots, \uu_k\}</m>

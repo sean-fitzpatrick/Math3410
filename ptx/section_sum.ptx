@@ -419,16 +419,16 @@
     <statement>
       <p>
         For any subspaces <m>U,W</m> of a vector space <m>V</m>,
-        <m>U\cap W = \{\mathbf{0}\}</m> if and only if for every <m>\vv\in U+W</m>
+        <m>U\cap W = \{\zer\}</m> if and only if for every <m>\vv\in U+W</m>
         there exist unique <m>\uu\in U, \ww\in W</m> such that <m>\vv=\uu+\ww</m>.
       </p>
     </statement>
     <proof>
       <p>
-        Suppose that <m>U\cap W = \{\mathbf{0}\}</m>, and suppose that we have
+        Suppose that <m>U\cap W = \{\zer\}</m>, and suppose that we have
         <m>\vv = \uu_1+\ww_1 = \uu_2+\ww_2</m>,
         for <m>\uu_1,\uu_2\in U,\ww_1,\ww_2\in W</m>.
-        Then <m>\mathbf{0}=(\uu_1-\uu_2)+(\ww_1-\ww_2)</m>,
+        Then <m>\zer=(\uu_1-\uu_2)+(\ww_1-\ww_2)</m>,
         which implies that
         <me>
           \ww_1-\ww_2 = -(\uu_1-\uu_2)
@@ -438,9 +438,9 @@
         <m>\ww=\ww_1-\ww_2\in W</m>.
         But we also have <m>\ww=-\uu</m>, which implies that <m>\ww\in U</m>.
         (Since <m>-\uu</m> is in <m>U</m>, and this is the same vector as <m>\ww</m>.)
-        Therefore, <m>\ww\in U\cap W</m>, which implies that <m>\ww=\mathbf{0}</m>,
+        Therefore, <m>\ww\in U\cap W</m>, which implies that <m>\ww=\zer</m>,
         so <m>\ww_1=\ww_2</m>.
-        But we must also then have <m>\uu=\mathbf{0}</m>, so <m>\uu_1=\uu_2</m>.
+        But we must also then have <m>\uu=\zer</m>, so <m>\uu_1=\uu_2</m>.
       </p>
 
       <p>
@@ -448,10 +448,10 @@
         with <m>\uu\in U</m> and <m>\ww\in W</m>. Suppose that <m>\mathbf{a}\in U\cap W</m>.
         Then <m>\mathbf{a}\in U</m> and <m>\mathbf{a}\in W</m>, so we also have <m>-\mathbf{a}\in W</m>,
         since <m>W</m> is a subspace.
-        But then <m>\mathbf{0}=\mathbf{a}+(-\mathbf{a})</m>, where <m>\mathbf{a}\in U</m> and <m>-\mathbf{a}\in W</m>.
-        On the other hand, <m>\mathbf{0}=\mathbf{0}+\mathbf{0}</m>,
-        and <m>\mathbf{0}</m> belongs to both <m>U</m> and <m>W</m>. It follows that <m>\mathbf{a}=\mathbf{0}</m>.
-        Since <m>\mathbf{a}</m> was arbitrary, <m>U\cap W = \{\mathbf{0}\}</m>.
+        But then <m>\zer=\mathbf{a}+(-\mathbf{a})</m>, where <m>\mathbf{a}\in U</m> and <m>-\mathbf{a}\in W</m>.
+        On the other hand, <m>\zer=\zer+\zer</m>,
+        and <m>\zer</m> belongs to both <m>U</m> and <m>W</m>. It follows that <m>\mathbf{a}=\zer</m>.
+        Since <m>\mathbf{a}</m> was arbitrary, <m>U\cap W = \{\zer\}</m>.
       </p>
     </proof>
 
@@ -491,7 +491,7 @@
 
       <p>
         Clearly, <m>U+W=V</m>, since <m>U+W</m> contains the basis for <m>V</m> we've constructed.
-        To show the sum is direct, it suffices to show that <m>U\cap W = \{\mathbf{0}\}</m>.
+        To show the sum is direct, it suffices to show that <m>U\cap W = \{\zer\}</m>.
         To that end, suppose that <m>\vv\in U\cap W</m>.
         Since <m>\vv\in U</m>, we have
         <me>
@@ -503,10 +503,10 @@
         </me>
         for scalars <m>b_1,\ldots, b_n</m>. But then
         <me>
-          \mathbf{0}=\vv-\vv=a_1\uu_1+\cdots a_m\uu_m-b_1\ww_1-\cdots -b_n\ww_n.
+          \zer=\vv-\vv=a_1\uu_1+\cdots a_m\uu_m-b_1\ww_1-\cdots -b_n\ww_n.
         </me>
         Since <m>\{\uu_1,\ldots, \uu_m,\ww_1,\ldots, \ww_n\}</m> is a basis for <m>V</m>,
-        it's independent, and therefore, all of the <m>a_i,b_j</m> must be zero, and therefore, <m>\vv=\mathbf{0}</m>.
+        it's independent, and therefore, all of the <m>a_i,b_j</m> must be zero, and therefore, <m>\vv=\zer</m>.
 
       </p>
     </proof>

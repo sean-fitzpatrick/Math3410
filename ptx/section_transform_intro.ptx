@@ -60,7 +60,7 @@
         <ol>
           <li>
             <p>
-              <m>T(\mathbf{0}_V) = \mathbf{0}_W</m>, and
+              <m>T(\zer_V) = \zer_W</m>, and
             </p>
           </li>
           <li>
@@ -92,11 +92,11 @@
         <ol>
           <li>
             <p>
-              Since <m>\mathbf{0}_V+\mathbf{0}_V = \mathbf{0}_V</m>, we have
+              Since <m>\zer_V+\zer_V = \zer_V</m>, we have
               <me>
-                T(\mathbf{0}_V) = T(\mathbf{0}_V+\mathbf{0}_V) = T(\mathbf{0}_V)+T(\mathbf{0}_V)
+                T(\zer_V) = T(\zer_V+\zer_V) = T(\zer_V)+T(\zer_V)
               </me>.
-              Adding <m>-T(\mathbf{0}_V)</m> to both sides of the above gives us <m>\mathbf{0}_W = T(\mathbf{0}_V)</m>.
+              Adding <m>-T(\zer_V)</m> to both sides of the above gives us <m>\zer_W = T(\zer_V)</m>.
             </p>
           </li>
           <li>
@@ -196,7 +196,7 @@
       <li>
         <p>
           For any vector spaces <m>V,W</m> we can define the <term>zero transformation</term> <m>0:V\to W</m>
-          by <m>0(\vv)=\mathbf{0}</m> for all <m>\vv\in V</m>.
+          by <m>0(\vv)=\zer</m> for all <m>\vv\in V</m>.
         </p>
       </li>
       <li>
@@ -213,8 +213,8 @@
         </p>
 
         <p>
-          To see that this is linear, note that <m>E_a(0)=\mathbf{0}(a)=0</m>,
-          where <m>\mathbf{0}</m> denotes the zero function;
+          To see that this is linear, note that <m>E_a(0)=\zer(a)=0</m>,
+          where <m>\zer</m> denotes the zero function;
           for any <m>f,g\in V</m>,
           <me>
             E_a(f+g)=(f+g)(a)=f(a)+g(a)=E_a(f)+E_a(g)
@@ -644,44 +644,44 @@
       </p>
     </statement>
     <blocks>
-      <block order="">
+      <block order="6">
         <p>
           Suppose that <m>\{T(\vv_1),\ldots, T(\vv_n)\}</m> is linearly independent.
         </p>
       </block>
-      <block order="">
+      <block order="3">
         <p>
           We want to show that <m>\{\vv_1,\ldots, \vv_n\}</m>
           is linearly independent, so suppose that we have
           <me>
-            c_1\vv_1+\cdots + c_n\vv_n=\mathbf{0}
+            c_1\vv_1+\cdots + c_n\vv_n=\zer
           </me>
           for some scalars <m>c_1,\ldots, c_n</m>.
         </p>
       </block>
-      <block order="">
+      <block order="5">
         <p>
           We apply <m>T</m> to both sides of the equation above, giving us:
           <me>
-            T(c_1\vv_1+\cdots + c_n\vv_n)=T(\mathbf{0})
+            T(c_1\vv_1+\cdots + c_n\vv_n)=T(\zer)
           </me>.
         </p>
       </block>
-      <block order="">
+      <block order="2">
         <p>
           Now we make use of both parts of <xref ref="thm-lt-props">Theorem</xref> to get
           <me>
-            c_1T(\vv_1)+\cdots +c_nT(\vv_n) = \mathbf{0}
+            c_1T(\vv_1)+\cdots +c_nT(\vv_n) = \zer
           </me>.
         </p>
       </block>
-      <block order="">
+      <block order="1">
         <p>
           By hypothesis, the vectors <m>T(\vv_i)</m> are linearly independent,
           so we must have <m>c_1=0,c_2=0,\ldots, c_n=0</m>.
         </p>
       </block>
-      <block order="">
+      <block order="4">
         <p>
           Since the only solution to <m>c_1\vv_1+\cdots + c_n\vv_n=\zer</m>
           is <m>c_1=0,\ldots, c_n=0</m>, the set <m>\{\vv_1,\ldots, \vv_n\}</m>
@@ -725,7 +725,7 @@
           </li>
           <li>
             <p>
-              Figure out how to show that <m>B\Rightarrow D</m>.
+              Realize that <m>B\Rightarrow D</m>.
             </p>
           </li>
         </ol>
