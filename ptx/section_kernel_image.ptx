@@ -4,7 +4,7 @@
   <title>Kernel and Image</title>
 
   <p>
-    Given any linear transformation <m>T:V\to W</m> we can associate two important subspaces:
+    Given any linear transformation <m>T:V\to W</m> we can associate two important sets:
     the <term>kernel</term> of <m>T</m> (also known as the <term>nullspace</term>),
     and the <term>image</term> of <m>T</m> (also known as the <term>range</term>).
   </p>
@@ -15,7 +15,7 @@
         Let <m>T:V\to W</m> be a linear transformation. The <term>kernel</term> of <m>T</m>,
         denoted <m>\ker T</m>, is defined by
         <me>
-          \ker T = \{\vv\in V \,|\, T(\vv)=\mathbf{0}\}
+          \ker T = \{\vv\in V \,|\, T(\vv)=\zer\}
         </me>.
         The <term>image</term> of <m>T</m>, denoted <m>\im T</m>, is defined by
         <me>
@@ -25,10 +25,75 @@
     </statement>
   </definition>
 
-  <p>
-    Note that the kernel of <m>T</m> is just the set of all vectors <m>T</m> sends to zero.
-    The image of <m>T</m> is the range of <m>T</m> in the usual sense of the range of a function.
-  </p>
+  <remark>
+    <statement>
+      <p>
+        <alert>Caution:</alert> the kernel is the set of vectors that <m>T</m> <em>sends</em> to zero.
+        Saying that <m>\vv\in \ker T</m> does <em>not</em>
+        mean that <m>\vv=\zer</m>; it means that <m>T(\vv)=\zer</m>.
+        Although it's true that <m>T(\zer)=\zer</m> for any linear transformation,
+        the kernel can contain vectors <em>other</em> than the zero vector.
+      </p>
+      <p>
+        In fact, as we'll see in <xref ref="thm-injective-kernel"/> below,
+        the case where the kernel contains only the zero vector is an important special case.
+      </p>
+    </statement>
+  </remark>
+
+  <remark xml:id="rem-using-ker-im">
+    <title>How to use these definitions</title>
+    <p>
+      As you read through the theorems and examples in this section,
+      think carefully about how the definitions of kernel and image are used.
+    </p>
+
+    <p>
+      For a linear transformation <m>T:V\to W</m>:
+      <ul>
+        <li>
+          <p>
+            If you assume <m>\vv\in\ker T</m>: you are asserting that <m>T(\vv)=\zer</m>.
+            Similarly, to prove <m>\vv\in \ker T</m>, you must show that <m>T(\vv)=\zer</m>.
+          </p>
+        </li>
+        <li>
+          <p>
+            If your hypothesis is that <m>U=\ker T</m> for some subspace <m>U\subseteq V</m>,
+            you can assume that <m>T(\uu)=\zer</m> for any <m>\uu\in U</m>.
+          </p>
+        </li>
+        <li>
+          <p>
+            If you need to prove that <m>U=\ker T</m> for some subspace <m>U</m>,
+            then you need to prove that if <m>\uu\in U</m>, then <m>T(\uu)=\zer</m>,
+            and if <m>T(\uu)=\zer</m>, then <m>\uu\in U</m>.
+          </p>
+        </li>
+        <li>
+          <p>
+            If you assume <m>\ww\in\im T</m>: you are asserting that there exists some <m>\vv\in V</m>,
+            such that <m>T(\vv)=\ww</m>, and to prove that <m>\ww\in \im T</m>,
+            you must find some <m>\vv\in V</m> such that <m>T(\vv)=\ww</m>.
+          </p>
+        </li>
+        <li>
+          <p>
+            If your hypothesis is that <m>U=\im T</m> for some subspace <m>U\subseteq W</m>,
+            then you are assuming that for every <m>\uu\in U</m>,
+            there is some <m>\vv\in V</m> such that <m>T(\vv)=\uu</m>.
+          </p>
+        </li>
+        <li>
+          <p>
+            If you need to prove that <m>\im T=U</m> for some subspace <m>U</m>,
+            then you need to show that for every <m>\uu\in U</m>, there is some <m>\vv\in V</m> with <m>T(\vv)=\uu</m>,
+            and that <m>T(\vv)\in U</m> for every <m>\vv\in V</m>.
+          </p>
+        </li>
+      </ul>
+    </p>
+  </remark>
 
   <theorem xml:id="thm-ker-img-subspace">
     <statement>
@@ -48,22 +113,40 @@
         </ol>
       </p>
     </statement>
+    <proof>
+      <title>Strategy</title>
+      <p>
+        Both parts of the proof rely on the <xref ref="thm-subspace-test" text="title"/>.
+        So for each set, we first need to explain why it contains the zero vector.
+        Next comes closure under addition: assume you have to elements of the set,
+        then use the definition to explain what that means.
+      </p>
+
+      <p>
+        Now you have to show that the sum of those elements belongs to the set as well.
+        It's fairly safe to assume that this is going to involve the addition property of a linear transformation!
+      </p>
+
+      <p>
+        Scalar multiplication is handled similarly, but using the scalar multiplication property of <m>T</m>.
+      </p>
+    </proof>
 
     <proof>
       <p>
         <ol>
           <li>
             <p>
-              To show that <m>\ker T</m> is a subspace, first note that <m>\mathbf{0}\in \ker T</m>,
-              since <m>T(\mathbf{0})=\mathbf{0}</m> for any linear transformation <m>T</m>.
-              If <m>\vv,\ww\in \ker T</m>, then <m>T(\vv)=\mathbf{0}</m>
+              To show that <m>\ker T</m> is a subspace, first note that <m>\zer\in \ker T</m>,
+              since <m>T(\zer)=\zer</m> for any linear transformation <m>T</m>.
+              Now, suppose that <m>\vv,\ww\in \ker T</m>; this means that <m>T(\vv)=\zer</m>
               and <m>T(\ww)=0</m>, and therefore,
               <me>
-                T(\vv+\ww)=T(\vv)+T(\ww)=\mathbf{0}+\mathbf{0}=\mathbf{0}
+                T(\vv+\ww)=T(\vv)+T(\ww)=\zer+\zer=\zer
               </me>.
-              Similarly, for any scalar <m>c</m> and <m>\vv\in \ker T</m>,
+              Similarly, for any scalar <m>c</m>, if <m>\vv\in \ker T</m> then <m>T(\vv)=\zer</m>, so
               <me>
-                T(c\vv)=cT(\vv)=c\mathbf{0}=\mathbf{0}
+                T(c\vv)=cT(\vv)=c\zer=\zer
               </me>.
               By the subspace test, <m>\ker T</m> is a subspace.
             </p>
@@ -71,15 +154,15 @@
 
           <li>
             <p>
-              Again, since <m>T(\mathbf{0})=\mathbf{0}</m>, we see that <m>\mathbf{0}\in \im T</m>,
-              so <m>\im T</m> is nonempty.
-              If <m>\ww_1,\ww_2\in \im T</m>, then there exist <m>\vv_1,\vv_2\in V</m>
+              Again, since <m>T(\zer)=\zer</m>, we see that <m>\zer\in \im T</m>.
+              (That is, <m>T(\zer_V)=\zer_W</m>, so <m>\zer_W\in \im T</m>.)
+              Now suppose that <m>\ww_1,\ww_2\in \im T</m>. This means that there exist <m>\vv_1,\vv_2\in V</m>
               such that <m>T(\vv_1)=\ww_1</m> and <m>T(\vv_2)=\ww_2</m>.
               It follows that
               <me>
                 \ww_1+\ww_2 = T(\vv_1)+T(\vv_2) = T(\vv_1+\vv_2)
               </me>,
-              so <m>\ww_1+\ww_2\in \im T</m>.
+              so <m>\ww_1+\ww_2\in \im T</m>, since it's the image of <m>\vv_1+\vv_2</m>.
               Similarly, if <m>c</m> is any scalar and <m>\ww=T(\vv)\in\im T</m>,
               then
               <me>
@@ -94,36 +177,42 @@
 
   </theorem>
 
-  <p>
-    A familiar setting that you may already have encountered in a previous linear algebra course is that of a matrix transformation.
-    Let <m>A</m> be an <m>m\times n</m> matrix. Then we can define <m>T:\R^n\to \R^m</m>
-    by <m>T(\xx)=A\xx</m>, where elements of <m>\R^n,\R^m</m> are considered as column vectors.
-    We then have
-    <me>
-      \ker T = \nll(A) = \{\xx\in \R^n \,|\, A\xx=\mathbf{0}\}
-    </me>
-    and
-    <me>
-      \im T = \csp(A) = \{A\xx\,|\, \xx\in \R^n\}
-    </me>,
-    where <m>\csp(A)</m> denotes the <term>column space</term> of <m>A</m>.
-    Recall further that if we write <m>A</m> in terms of its columns as
-    <me>
-      A = \bbm C_1 \amp C_2 \amp \cdots \amp C_n\ebm
-    </me>
-    and a vector <m>\xx\in \R^n</m> as <m>\xx=\bbm x_1\\x_2\\\vdots \\x_n\ebm</m>,
-    then
-    <me>
-      A\xx = x_1C_1+x_2C_2+\cdots +x_nC_n
-    </me>.
-    Thus, any element of <m>\csp(A)</m> is a linear combination of its columns,
-    explaining the name <em>column space</em>.
-  </p>
+  <example>
+    <title>Null space and column space</title>
+    <statement>
+      <p>
+        A familiar setting that you may already have encountered in a previous linear algebra course
+        (or <xref ref="ex-matrix-trans"/>) is that of a matrix transformation.
+        Let <m>A</m> be an <m>m\times n</m> matrix. Then we can define <m>T:\R^n\to \R^m</m>
+        by <m>T(\xx)=A\xx</m>, where elements of <m>\R^n,\R^m</m> are considered as column vectors.
+        We then have
+        <me>
+          \ker T = \nll(A) = \{\xx\in \R^n \,|\, A\xx=\zer\}
+        </me>
+        and
+        <me>
+          \im T = \csp(A) = \{A\xx\,|\, \xx\in \R^n\}
+        </me>,
+        where <m>\csp(A)</m> denotes the <term>column space</term> of <m>A</m>.
+        Recall further that if we write <m>A</m> in terms of its columns as
+        <me>
+          A = \bbm C_1 \amp C_2 \amp \cdots \amp C_n\ebm
+        </me>
+        and a vector <m>\xx\in \R^n</m> as <m>\xx=\bbm x_1\\x_2\\\vdots \\x_n\ebm</m>,
+        then
+        <me>
+          A\xx = x_1C_1+x_2C_2+\cdots +x_nC_n
+        </me>.
+        Thus, any element of <m>\csp(A)</m> is a linear combination of its columns,
+        explaining the name <em>column space</em>.
+      </p>
+    </statement>
+  </example>
 
   <p>
     Determining <m>\nll(A)</m> and <m>\csp(A)</m> for a given matrix <m>A</m> is,
     unsurprisingly, a matter of reducing <m>A</m> to row-echelon form.
-    Finding <m>\nll(A)</m> is simply a matter of describing the set of all solutions to the homogeneous system <m>A\xx=\mathbf{0}</m>.
+    Finding <m>\nll(A)</m> comes down to describing the set of all solutions to the homogeneous system <m>A\xx=\zer</m>.
     Finding <m>\csp(A)</m> relies on the following theorem.
   </p>
 
@@ -142,130 +231,106 @@
   </theorem>
 
   <p>
-    The truth of this theorem is demonstrated in Section 5.4 of the text by Nicholson.
-    To see why it works, we need to remember a few basic facts from elementary linear algebra.
-    First, recall that performing an elementary row operation on a matrix <m>A</m>
-    is equivalent to multiplying on the left by an elementary matrix <m>E</m>
-    defined using the same row operation.
+    For a proof of this result, see Section 5.4 of <em>Linear Algebra with Applications</em>,
+    by Keith Nicholson. The proof is fairly long and technical, so we omit it here.
   </p>
 
-  <p>
-    Since every elementary matrix is invertible, and any product of invertible matrices is invertible,
-    and we can transform <m>A</m> into a row-echelon matrix <m>R</m> using elementary row operations,
-    it follows that <m>R = UA</m> for an invertible matrix <m>U</m>; indeed,
-    we have <m>U = E_kE_{k-1}\cdots E_2E_1</m>, where <m>E_1,\ldots, E_k</m>
-    are the elementary matrices corresponding to the row operations used to carry <m>A</m> to <m>R</m>.
-  </p>
+  <example xml:id="ex-col-null">
+    <statement>
+      <p>
+        Consider the linear transformation <m>T:\R^4\to \R^3</m> defined by the matrix
+        <me>
+          A = \bbm 1 \amp 3 \amp 0 \amp -2\\
+                  -2 \amp -1 \amp 2 \amp 0\\
+                   1 \amp 8 \amp 2 \amp -6\ebm
+        </me>.
+        Let's determine the <init>RREF</init> of <m>A</m>:
+      </p>
 
-  <p>
-    A basis for <m>\csp(R)</m> is given by the columns of <m>R</m> containing the leading ones.
-    The reason for this is as follows. First, recall that each nonzero row begins with a leading one.
-    So if the leading ones of <m>R</m> are in columns <m>i_1,\ldots, i_k</m>,
-    then there are <m>k</m> nonzero rows.
-    Since all rows of zeros go at the bottom, each column in <m>R</m> has its last <m>m-k</m> entries identically zero.
-    Thus,
-    <me>
-      \csp(R)\subseteq \left\{\bbm a_1\\\vdots \\a_k\\0\\\vdots 0\ebm\in \R^m \,|\, a_1,\ldots, a_k\in\R\right\}
-    </me>,
-    so <m>\dim \csp(R)\leq k</m>. But the columns containing leading ones are easily shown to be independent,
-    so they form a basis of <m>\csp(R)</m>, which therefore has dimension <m>k=\operatorname{rank}(A)</m>.
-  </p>
+      <sage>
+        <input>
+          from sympy import Matrix,init_printing
+          init_printing()
+          A=Matrix(3,4,[1,3,0,-2,-2,-1,2,0,1,8,2,-6])
+          A.rref()
+        </input>
+        <output>
+          \[\bbm 1\amp 0\amp -\frac65 \amp \frac25\\ 0\amp 1\amp \frac25 \amp -\frac45\\0\amp 0\amp 0\amp 0\ebm,(0,1)\]
+        </output>
+      </sage>
 
-  <p>
-    Next, since <m>R=UA</m>, where <m>U</m> is invertible, if <m>R=\bbm Y_1\amp Y_2\amp \cdots \amp Y_n\ebm</m>
-    and <m>A = \bbm C_1\amp C_2\amp \cdots \amp C_n\ebm</m>, then <m>C_i = U^{-1}Y_i</m> for each <m>i</m>.
-    It follows from the fact that <m>U</m> is invertible and that the columns containing leading ones in <m>R</m>
-    form a basis for <m>\csp(R)</m> that the corresponding columns in <m>A</m> form a basis for <m>\csp(A)</m>.
-    (For details, see Section 5.4 in Nicholson.)
-  </p>
+      <p>
+        We see that there are leading ones in the first and second column.
+        Therefore, <m>\csp(A) = \im(T) = \spn\left\{\bbm 1\\-2\\1\ebm, \bbm 3\\-1\\8\ebm\right\}</m>.
+        Indeed, note that
+        <me>
+          \bbm 0\\2\\2\ebm = -\frac65\bbm 1\\-2\\1\ebm + \frac25\bbm 3\\-1\\8\ebm
+        </me>
+        and
+        <me>
+          \bbm -2\\0\\-6\ebm = \frac25\bbm 1\\-2\\1\ebm -\frac45\bbm 3\\-1\\8\ebm
+        </me>,
+        so that indeed, the third and fourth columns are in the span of the first and second.
+      </p>
 
-  <p>
-    For example, consider the linear transformation <m>T:\R^4\to \R^3</m> defined by the matrix
-    <me>
-      A = \bbm 1 \amp 3 \amp 0 \amp -2\\
-              -2 \amp -1 \amp 2 \amp 0\\
-               1 \amp 8 \amp 2 \amp -6\ebm
-    </me>.
-    Let's determine the <init>RREF</init> of <m>A</m>:
-  </p>
+      <p>
+        Furthermore, we can determine the nullspace: if <m>A\xx=\zer</m> where
+        <m>\xx=\bbm x_1\\x_2\\x_3\\x_4\ebm</m>, then we must have
+        <md>
+          <mrow>x_1 \amp =\frac65 x_3-\frac25 x_4</mrow>
+          <mrow>x_2 \amp =-\frac25 x_3+\frac 45 x_4</mrow>
+        </md>,
+        so
+        <me>
+          \xx = \bbm \frac65x_3-\frac25x_4\\ -\frac25x_3+\frac45x_4\\x_3\\x_4\ebm = \frac{x_3}{5}\bbm 6\\-2\\5\\0\ebm + \frac{x_4}{5}\bbm -2\\4\\0\\5\ebm
+        </me>.
+        It follows that a basis for <m>\nll(A)=\ker T</m> is <m>\left\{\bbm 6\\-2\\5\\0\ebm, \bbm -2\\4\\0\\5\ebm\right\}</m>.
+      </p>
+    </statement>
+  </example>
 
-  <sage>
-    <input>
-      from sympy import Matrix,init_printing
-      init_printing()
-      A=Matrix(3,4,[1,3,0,-2,-2,-1,2,0,1,8,2,-6])
-      A.rref()
-    </input>
-    <output>
-      \[\bbm 1\amp 0\amp -\frac65 \amp \frac25\\ 0\amp 1\amp \frac25 \amp -\frac45\\0\amp 0\amp 0\amp 0\ebm,(0,1)\]
-    </output>
-  </sage>
+  <remark>
+    <statement>
+      <p>
+        The SymPy library for Python has built-in functions for computing nullspace and column space.
+        But it's probably worth your while to know how to determine these from the <init>RREF</init> of a matrix,
+        without additional help from the computer.
+        That said, let's see how the computer's output compares to what we found in <xref ref="ex-col-null"/>.
+      </p>
 
-  <p>
-    We see that there are leading ones in the first and second column.
-    Therefore, <m>\csp(A) = \im(T) = \spn\left\{\bbm 1\\-2\\1\ebm, \bbm 3\\-1\\8\ebm\right\}</m>.
-    Indeed, note that
-    <me>
-      \bbm 0\\2\\2\ebm = -\frac65\bbm 1\\-2\\1\ebm + \frac25\bbm 3\\-1\\8\ebm
-    </me>
-    and
-    <me>
-      \bbm -2\\0\\-6\ebm = \frac25\bbm 1\\-2\\1\ebm -\frac45\bbm 3\\-1\\8\ebm
-    </me>,
-    so that indeed, the third and fourth columns are in the span of the first and second.
-  </p>
+      <sage>
+        <input>
+          A.nullspace()
+        </input>
+        <output>
+          \[\left[\bbm \frac65\\-\frac25\\1\\0\ebm, \bbm -\frac25\\ \frac45\\0\\1\ebm\right]\]
+        </output>
+      </sage>
 
-  <p>
-    Furthermore, we can determine the nullspace: if <m>A\xx=\mathbf{0}</m> where
-    <m>\xx=\bbm x_1\\x_2\\x_3\\x_4\ebm</m>, then we must have
-    <md>
-      <mrow>x_1 \amp =\frac65 x_3-\frac25 x_4</mrow>
-      <mrow>x_2 \amp =-\frac25 x_3+\frac 45 x_4</mrow>
-    </md>,
-    so
-    <me>
-      \xx = \bbm \frac65x_3-\frac25x_4\\ -\frac25x_3+\frac45x_4\\x_3\\x_4\ebm = \frac{x_3}{5}\bbm 6\\-2\\5\\0\ebm + \frac{x_4}{5}\bbm -2\\4\\0\\5\ebm
-    </me>.
-    It follows that a basis for <m>\nll(A)=\ker T</m> is <m>\left\{\bbm 6\\-2\\5\\0\ebm, \bbm -2\\4\\0\\5\ebm\right\}</m>.
-  </p>
+      <sage>
+        <input>
+          A.columnspace()
+        </input>
+        <output>
+          \[\left[\bbm 1\\-2\\1\ebm, \bbm 3\\-1\\8\ebm\right]\]
+        </output>
+      </sage>
 
-  <p>
-    Incidentally, the SymPy library for Python has built-in functions for computing nullspace and column space.
-    But it's probably worth your while to know how to determine these from the <init>RREF</init> of a matrix,
-    without additional help from the computer.
-    That said, let's see how the computer's output compares to what we found:
-  </p>
-
-  <sage>
-    <input>
-      A.nullspace()
-    </input>
-    <output>
-      \[\left[\bbm \frac65\\-\frac25\\1\\0\ebm, \bbm -\frac25\\ \frac45\\0\\1\ebm\right]\]
-    </output>
-  </sage>
-
-  <sage>
-    <input>
-      A.columnspace()
-    </input>
-    <output>
-      \[\left[\bbm 1\\-2\\1\ebm, \bbm 3\\-1\\8\ebm\right]\]
-    </output>
-  </sage>
-
-  <p>
-    Note that the output from the computer simply states the basis for each space.
-    Of course, for computational purposes, this is typically good enough.
-  </p>
+      <p>
+        Note that the output from the computer simply states the basis for each space.
+        Of course, for computational purposes, this is typically good enough.
+      </p>
+    </statement>
+  </remark>
 
   <p>
     An important result that comes out while trying to show that the <q>pivot columns</q>
     of a matrix (the ones that end up with leading ones in the <init>RREF</init>) are a basis for the column space
     is that the column rank (defined as the dimension of <m>\csp(A)</m>) and the row rank
-    (the dimension of the space spanned by the columns of <m>A</m>) are equal.
+    (the dimension of the space spanned by the rows of <m>A</m>) are equal.
     One can therefore speak unambiguously about the <term>rank</term> of a matrix <m>A</m>,
-    and it is just as it's defined in a first course in linear algebra: the number of leading ones in the <init>RREF</init> of <m>A</m>.
+    and it is just as it's defined in a first course in linear algebra:
+    the number of leading ones in the <init>RREF</init> of <m>A</m>.
   </p>
 
   <p>
@@ -285,8 +350,8 @@
         and the <term>nullity</term> of <m>T</m> is defined by
         <me>
           \operatorname{nullity} T = \dim \ker T
-        </me>.
-
+        </me>,
+        provided that the kernel and image of <m>T</m> are finite-dimensional.
       </p>
     </statement>
   </definition>
@@ -375,78 +440,225 @@
   </example>
 
   <p>
-    You'll recall from a course like Math 2000 that in the study of functions,
-    the properties of being injective (one-to-one) and surjective (onto)
-    are important. They're important for linear transformations as well,
-    and defined in exactly the same way.
+    Recall that a function <m>f:A\to B</m> is <term>injective</term> (or one-to-one)
+    if for any <m>x_1,x_2\in A</m>, <m>f(x_1)=f(x_2)</m> implies that <m>x_1=x_2</m>.
+    (In other words, no two different inputs give the same output.)
+    We say that <m>f</m> is <term>surjective</term> (or onto) if <m>f(A)=B</m>.
+    (That is, if the range of <m>f</m> is the entire codomain <m>B</m>.)
+    These properties are important considerations for the discussion of inverse functions.
   </p>
 
   <p>
-    It's clear that being surjective is closely tied to image.
-    Indeed, by definition, <m>T:V\to W</m> is onto if <m>\im T = W</m>.
-    What might not be immediately obvious is that the kernel tells us if a linear map is injective.
+    For a linear transformation <m>T</m>, the property of surjectivity is tied to <m>\im T</m>
+    by definition: <m>T:V\to W</m> is onto if <m>\im T = W</m>.
+    What might not be immediately obvious is that the kernel tells us if a linear transformation is injective.
   </p>
 
   <theorem xml:id="thm-injective-kernel">
     <statement>
       <p>
         Let <m>T:V\to W</m> be a linear transformation.
-        Then <m>T</m> is injective if and only if <m>\ker T = \{\mathbf{0}\}</m>.
+        Then <m>T</m> is injective if and only if <m>\ker T = \{\zer\}</m>.
       </p>
     </statement>
+    <proof>
+      <title>Strategy</title>
+      <p>
+        We have an <q>if and only if</q> statement, so we have to make sure to consider both directions.
+        The basic idea is this: we know that <m>\zer</m> is always in the kernel,
+        so if the kernel contains any other vector <m>\vv</m>,
+        we would have <m>T(\vv)=T(\zer)=\zer</m>, and <m>T</m> would not be injective.
+      </p>
+      <p>
+        There is one trick to keep in mind: the statement <m>T(\vv_1)=T(\vv_2)</m>
+        is equivalent to <m>T(\vv_1)-T(\vv_2)=\zer</m>, and since <m>T</m> is linear,
+        <m>T(\vv_1)-T(\vv_2)=T(\vv_1-\vv_2)</m>.
+      </p>
+    </proof>
 
     <proof>
       <p>
         Suppose <m>T</m> is injective, and let <m>\vv\in \ker T</m>.
-        Then <m>T(\vv)=\mathbf{0}</m>. On the other hand, we know that <m>T(\mathbf{0})=\mathbf{0}</m>,
-        and since <m>T</m> is injective, we must have <m>\vv=\mathbf{0}</m>.
+        Then <m>T(\vv)=\zer</m>. On the other hand, we know that <m>T(\zer)=\zer=T(\vv)</m>.
+        Since <m>T</m> is injective, we must have <m>\vv=\zer</m>.
 
         Conversely, suppose that <m>\ker T = \{0\}</m> and that <m>T(\vv_1)=T(\vv_2)</m>
         for some <m>\vv_1,\vv_2\in V</m>. Then
         <me>
-          \mathbf{0} = T(\vv_1)-T(\vv_2) = T(\vv_1-\vv_2)
+          \zer = T(\vv_1)-T(\vv_2) = T(\vv_1-\vv_2)
         </me>,
         so <m>\vv_1-\vv_2\in \ker T</m>.
-        Therefore, we must have <m>\vv_1-\vv_2=\mathbf{0}</m>,
+        Therefore, we must have <m>\vv_1-\vv_2=\zer</m>,
         so <m>\vv_1=\vv_2</m>, and it follows that <m>T</m> is injective.
       </p>
     </proof>
-
   </theorem>
 
-  <p>
-    Let us return to the case of a matrix transformation <m>T_A:\R^n\to \R^m</m>.
-    Notice that <m>\ker T_A</m> is simply the set of all solutions to <m>A\xx=\mathbf{0}</m>,
-    while <m>\im T_A</m> is the set of all <m>\yy\in\R^m</m> for which <m>A\xx=\yy</m>
-    <em>has</em> a solution.
-  </p>
+  <exercise xml:id="ex-injective-independent">
+    <statement>
+      <p>
+        Rearrange the blocks below to produce a valid proof of the following statement:
+      </p>
+      <p>
+        If <m>T:V\to W</m> is injective and
+        <m>\{\vv_1,\vv_2,\ldots, \vv_n\}</m> is linearly independent in <m>V</m>,
+        then <m>\{T(\vv_1),T(\vv_2),\ldots, T(\vv_n)\}</m> is linearly independent in <m>W</m>.
+      </p>
+    </statement>
+    <blocks>
+      <block order="3">
+        <p>
+          Suppose <m>T:V\to W</m> is injective and <m>\{\vv_1,\ldots, \vv_n\}\subseteq V</m> is independent.
+        </p>
+      </block>
+      <block order="6">
+        <p>
+          Assume that <m>c_1T(\vv_1)+\cdots + c_nT(\vv_n)=\zer</m>,
+          for some scalars <m>c_1,c_2,\ldots, c_n</m>.
+        </p>
+      </block>
+      <block order="1">
+        <p>
+          Since <m>T</m> is linear,
+          <me>
+            \zer = c_1T(\vv_1)+\cdots + c_nT(\vv_n)=T(c_1\vv_1+ \ldots + c_n\vv_n)
+          </me>.
+        </p>
+      </block>
+      <block order="4">
+        <p>
+          Therefore, <m>c_1\vv_1+\cdots + c_n\vv_n\in \ker T</m>.
+        </p>
+      </block>
+      <block order="7">
+        <p>
+          Since <m>T</m> is injective, <m>\ker T = \{\zer\}</m>.
+        </p>
+      </block>
+      <block order="2">
+        <p>
+          Therefore, <m>c_1\vv_1+\cdots + c_n\vv_n=\zer</m>.
+        </p>
+      </block>
+      <block order="5">
+        <p>
+          Since <m>\{\vv_1,\ldots, \vv_n\}</m> is independent, we must have
+          <m>c_1=0,\ldots, c_n=0</m>.
+        </p>
+      </block>
+      <block order="8">
+        <p>
+          It follows that <m>\{T(\vv_1),\ldots, T(\vv_n)\}</m> is linearly independent.
+        </p>
+      </block>
+    </blocks>
+    <hint>
+      <p>
+        Remember that your goal is to show that <m>\{T(\vv_1),\ldots, T(\vv_n)\}</m>
+        is linearly independent, so after you assume your hypotheses,
+        you should begin by setting a linear combination of these vectors equal to zero.
+      </p>
+    </hint>
+  </exercise>
 
-  <p>
-    Recall from the discussion above that <m>\rank A = \dim \csp(A) = \dim \im T_A</m>.
-    It follows that <m>T_A</m> is surjective if and only if <m>\rank A = m</m>.
-    On the other hand, <m>T_A</m> is injective if and only if <m>\rank A = n</m>,
-    because we know that the system <m>A\xx=\mathbf{0}</m> has a unique solution if and only if each column of <m>A</m> contains a leading one.
-  </p>
+  <exercise xml:id="ex-surjective-span">
+    <statement>
+      <p>
+        Rearrange the blocks below to produce a valid proof of the following statement:
+      </p>
+      <p>
+        If <m>T:V\to W</m> is surjective and <m>V=\spn\{\vv_1,\ldots, \vv_n\}</m>,
+        then <m>W = \spn\{T(\vv_1),\ldots, T(\vv_n)\}</m>.
+      </p>
+    </statement>
+    <blocks>
+      <block order="2">
+        <p>
+          Suppose <m>T</m> is surjective, and <m>\{\vv_1,\ldots, \vv_n\}</m> is independent.
+        </p>
+      </block>
+      <block order="5">
+        <p>
+          Let <m>\ww\in W</m> be any vector.
+        </p>
+      </block>
+      <block order="1">
+        <p>
+          Since <m>T</m> is a surjection, there is some <m>\vv\in V</m> such that <m>T(\vv)=\ww</m>.
+        </p>
+      </block>
+      <block order="3">
+        <p>
+          Since <m>V=\spn\{\vv_1,\ldots, \vv_n\}</m> and <m>\vv\in V</m>,
+          there are scalars <m>c_1,\ldots, c_n</m> such that <m>\vv=c_1\vv_1+\cdots +c_n\vv_n</m>.
+        </p>
+      </block>
+      <block order="6">
+        <p>
+          Since <m>T</m> is linear,
+          <md>
+            <mrow>\ww \amp = T(\vv) </mrow>
+            <mrow> \amp = T(c_1\vv_1+\cdots +c_n\vv_n)</mrow>
+            <mrow> \amp = c_1T(\vv_1)+\cdots +c_nT(\vv_n)</mrow>
+          </md>,
+          so <m>\ww\in \spn\{T(\vv_1),\ldots, T(\vv_n)\}</m>.
+        </p>
+      </block>
+      <block order="4">
+        <p>
+          Therefore, <m>W\subseteq \spn\{T(\vv_1),\ldots, T(\vv_n)\}</m>,
+          and since <m>\spn\{T(\vv_1),\ldots, T(\vv_n)\}\sbuseteq W</m>,
+          we have <m>W=\spn\{T(\vv_1),\ldots, T(\vv_n)\}</m>.
+        </p>
+      </block>
+    </blocks>
+    <hint>
+      <p>
+        You need to show that any <m>\ww\in W</m> can be written as a linear combination of the <m>T(\vv_i)</m>.
+        Because <m>T</m> is surjective, you know that <m>\ww=T(\vv)</m> for some <m>\vv\in V</m>.
+      </p>
+    </hint>
+  </exercise>
 
-  <p>
-    This has some interesting consequences. If <m>m=n</m> (that is, if <m>A</m> is square),
-    then each increase in <m>\dim \nll(A)</m> produces a corresponding decrease in <m>\dim \csp(A)</m>,
-    since both correspond to the <q>loss</q> of a leading one. Moreover, if <m>\rank A = n</m>,
-    then <m>T_A</m> is both injective and surjective.
-    Recall that a function is invertible if and only if it is both injective and surjective.
-    It should come as no surprise that invertibility of <m>T_A</m> (as a function)
-    is equivalent to invertibility of <m>A</m> (as a matrix).
-  </p>
+  <remark>
+    <statement>
+      <p>
+        For the case of a matrix transformation <m>T_A:\R^n\to \R^m</m>,
+        notice that <m>\ker T_A</m> is simply the set of all solutions to <m>A\xx=\zer</m>,
+        while <m>\im T_A</m> is the set of all <m>\yy\in\R^m</m> for which <m>A\xx=\yy</m>
+        <em>has</em> a solution.
+      </p>
 
-  <p>
-    Also, note that if <m>m \lt n</m>, then <m>\rank A\leq m \lt n</m>,
-    so <m>T_A</m> could be surjective, but can't possibly be injective.
-    On the other hand, if <m>m\gt n</m>, then <m>\rank A\leq n \lt m</m>,
-    so <m>T_A</m> could be injective, but can't possibly be surjective.
-    These results generalize to linear transformations between any finite-dimensional vector spaces.
-    The first step towards this is the following theorem,
-    which is sometimes known as the Fundamental Theorem of Linear Transformations.
-  </p>
+      <p>
+        Recall from the discussion preceding <xref ref="def-rank-transformation"/>
+        that <m>\rank A = \dim \csp(A) = \dim \im T_A</m>.
+        It follows that <m>T_A</m> is surjective if and only if <m>\rank A = m</m>.
+        On the other hand, <m>T_A</m> is injective if and only if <m>\rank A = n</m>,
+        because we know that the system <m>A\xx=\zer</m> has a unique solution
+        if and only if each column of <m>A</m> contains a leading one.
+      </p>
+
+      <p>
+        This has some interesting consequences. If <m>m=n</m> (that is, if <m>A</m> is square),
+        then each increase in <m>\dim \nll(A)</m> produces a corresponding decrease in <m>\dim \csp(A)</m>,
+        since both correspond to the <q>loss</q> of a leading one. Moreover, if <m>\rank A = n</m>,
+        then <m>T_A</m> is both injective and surjective.
+        Recall that a function is invertible if and only if it is both injective and surjective.
+        It should come as no surprise that invertibility of <m>T_A</m> (as a function)
+        is equivalent to invertibility of <m>A</m> (as a matrix).
+      </p>
+
+      <p>
+        Also, note that if <m>m \lt n</m>, then <m>\rank A\leq m \lt n</m>,
+        so <m>T_A</m> could be surjective, but can't possibly be injective.
+        On the other hand, if <m>m\gt n</m>, then <m>\rank A\leq n \lt m</m>,
+        so <m>T_A</m> could be injective, but can't possibly be surjective.
+        These results generalize to linear transformations between any finite-dimensional vector spaces.
+        The first step towards this is the following theorem,
+        which is sometimes known as the Fundamental Theorem of Linear Transformations.
+      </p>
+    </statement>
+  </remark>
 
   <theorem xml:id="thm-dimension-lintrans">
     <title>Dimension Theorem</title>
@@ -489,17 +701,17 @@
       <p>
         To see that it's independent, suppose that
         <me>
-          a_1\uu_1+\cdots + a_n\uu_n+b_1\vv_1+\cdots +b_m\vv_m=\mathbf{0}
+          a_1\uu_1+\cdots + a_n\uu_n+b_1\vv_1+\cdots +b_m\vv_m=\zer
         </me>.
-        Applying <m>T</m> to this equation, and noting that <m>T(\uu_i)=\mathbf{0}</m>
+        Applying <m>T</m> to this equation, and noting that <m>T(\uu_i)=\zer</m>
         for each <m>i</m>, by definition of the <m>\uu_i</m>, we get
         <me>
-          b_1T(\vv_1)+\cdots +b_mT(\vv_m)=\mathbf{0}
+          b_1T(\vv_1)+\cdots +b_mT(\vv_m)=\zer
         </me>.
         We assumed that the vectors <m>T(\vv_i)</m> were independent,
         so all the <m>b_i</m> must be zero. But then we get
         <me>
-          a_1\uu_1+\cdots +a_n\uu_n=\mathbf{0}
+          a_1\uu_1+\cdots +a_n\uu_n=\zer
         </me>,
         and since the <m>\uu_i</m> are independent, all the <m>a_i</m> must be zero.
       </p>
@@ -521,7 +733,7 @@
         is that we're off by something in the kernel.
         Indeed, <xref ref="eqn-almost-span"/> can be re-written as
         <me>
-          T(\xx-c_1\vv_1-\cdots -c_m\vv_m) = \mathbf{0}
+          T(\xx-c_1\vv_1-\cdots -c_m\vv_m) = \zer
         </me>,
         so <m>\xx-c_1\vv_1-\cdots -c_m\vv_m\in\ker T</m>.
         But we have a basis for <m>\ker T</m>, so we can write
@@ -535,7 +747,6 @@
         which completes the proof.
       </p>
     </proof>
-
   </theorem>
 
   <p>
@@ -553,6 +764,81 @@
     and the Dimension Theorem lets us determine <m>\dim\im T</m> if we know <m>\dim V</m> and <m>\dim \ker T</m>.
   </p>
 
+  <exercise>
+    <statement>
+      <p>
+        Select all statements below that are <em>true</em>:
+      </p>
+    </statement>
+    <choices>
+      <choice correct="no">
+        <statement>
+          <p>
+            If <m>\vv\in \ker T</m>, then <m>\vv=\zer</m>.
+          </p>
+        </statement>
+        <feedback>
+          <p>
+            Remember that <m>\vv\in \ker T</m> implies <m>T(\vv)=\zer</m>;
+            this does not necessarily mean <m>\vv=\zer</m>.
+          </p>
+        </feedback>
+      </choice>
+      <choice correct="no">
+        <statement>
+          <p>
+            If <m>T:\R^4\to\R^6</m> is injective, then it is surjective.
+          </p>
+        </statement>
+        <feedback>
+          <p>
+            By the dimension theorem, the dimension of <m>\im T</m> cannot be greater than 4,
+            so <m>T</m> can never be surjective.
+          </p>
+        </feedback>
+      </choice>
+      <choice correct="yes">
+        <statement>
+          <p>
+            If <m>T:\R^4\to P_3(\R)</m> is injective, then it is surjective.
+          </p>
+        </statement>
+        <feedback>
+          <p>
+            Correct! If <m>T</m> is injective, then <m>\dim\ker T=0</m>,
+            so by the dimension theorem, <m>\dim \im T=\dim \R^4=4</m>.
+            Since <m>\dim P_3(\R)=4</m> as well, <m>\im T=P_3(\R)</m>.
+          </p>
+        </feedback>
+      </choice>
+      <choice correct="no">
+        <statement>
+          <p>
+            It is possible to have an injective linear transformation <m>T:\R^4\to\R^3</m>.
+          </p>
+        </statement>
+        <feedback>
+          <p>
+            The maximum dimension of <m>\im T</m> is 3, so the minimum dimension of <m>\ker T</m> is 1.
+          </p>
+        </feedback>
+      </choice>
+      <choice correct="yes">
+        <statement>
+          <p>
+            If <m>T:V\to W</m> is surjective, then <m>\dim V\geq \dim W</m>.
+          </p>
+        </statement>
+        <feedback>
+          <p>
+            Correct! If <m>T</m> is surjective, then <m>\im T=W</m>,
+            so <m>\dim V = \dim \ker T +\dim \im T = \dim \ker T+\dim W\geq \dim W</m>.
+          </p>
+        </feedback>
+      </choice>
+    </choices>
+  </exercise>
+
   <p>
     A useful consequence of this result is that if we know <m>V</m> is finite-dimensional,
     we can order any basis such that the first vectors in the list are a basis of <m>\ker T</m>,
@@ -560,7 +846,7 @@
   </p>
 
   <p>
-    Note that one consequence of the dimension theorem is that we must have
+    Another consequence of the dimension theorem is that we must have
     <me>
       \dim \ker T\leq \dim V \quad \text{ and } \quad \dim \im T\leq \dim V
     </me>.
@@ -569,6 +855,11 @@
     In the case of a matrix transformation <m>T_A</m>,
     this means that the rank of <m>T_A</m> is at most the minimum of <m>\dim V</m> and <m>\dim W</m>.
     This once again has consequences for the existence and uniqueness of solutions for linear systems with the coefficient matrix <m>A</m>.
+  </p>
+
+  <p>
+    We end with an exercise that is both challenging and useful.
+    Do your best to come up with a proof before looking at the solution.
   </p>
 
   <exercise xml:id="ex-dimension-injection-surjection">
@@ -589,6 +880,17 @@
         </ol>
       </p>
     </statement>
+    <hint>
+      <p>
+        You're dealing with <q>if and only if</q> statements, so be sure to prove both directions.
+        In each case, one direction follows immediately from the dimension theorem.
+      </p>
+      <p>
+        What makes the other direction harder is that you need to prove an <em>existence</em> statement.
+        To show that a transformation with the required property exists, you're going to need to <em>construct</em> it!
+        To do so, try defining your transfromation in terms of a basis.
+      </p>
+    </hint>
     <solution>
       <p>
         <ol>
@@ -608,17 +910,17 @@
               By <xref ref="thm-define-using-basis">Theorem</xref>, there exists a linear transformation
               <m>T:V\to W</m> with <m>T(\vv_i)=\ww_i</m> for <m>i=1,\ldots, m</m>.
               (The main point here is that we run out of basis vectors for <m>V</m> before we run out of basis vectors for <m>W</m>.)
-              This map is injective: if <m>T(\vv)=\mathbf{0}</m>,
+              This map is injective: if <m>T(\vv)=\zer</m>,
               write <m>\vv=c_1\vv_1+\cdots + c_m\vv_m</m>.
               Then
               <md>
-                <mrow>\mathbf{0} \amp = T(\vv)</mrow>
+                <mrow>\zer \amp = T(\vv)</mrow>
                 <mrow> \amp = T(c_1\vv_1+\cdots + c_m\vv_m)</mrow>
                 <mrow>  \amp = c_1T(\vv_1)+\cdots + c_mT(\vv_m)</mrow>
                 <mrow>  \amp = c_1\ww_1+\cdots +c_m\ww_m</mrow>
               </md>.
               Since <m>\{\ww_1,\ldots, \ww_m\}</m> is a subset of a basis, it's independent.
-              Therefore, the scalars <m>c_i</m> must all be zero, and therefore <m>\vv=\mathbf{0}</m>.
+              Therefore, the scalars <m>c_i</m> must all be zero, and therefore <m>\vv=\zer</m>.
             </p>
           </li>
 
@@ -634,7 +936,7 @@
               where this time, <m>m\geq n</m>.
               We can define a linear transformation as follows:
               <me>
-                T(\vv_1)=\ww_1,\ldots, T(\vv_n)=\ww_n, \text{ and } T(\vv_j) = \mathbf{0} \text{ for } j>n.
+                T(\vv_1)=\ww_1,\ldots, T(\vv_n)=\ww_n, \text{ and } T(\vv_j) = \zer \text{ for } j>n.
               </me>
               It's easy to check that this map is a surjection:
               given <m>\ww\in W</m>, we can write it in terms of our basis as <m>\ww=c_1\ww_1+\cdots + c_n\ww_n</m>.
