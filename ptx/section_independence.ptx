@@ -55,7 +55,7 @@
         We say that this set is <term>linearly independent</term> if,
         for scalars <m>c_1,\ldots, c_k</m>, the equation
         <me>
-          c_1\vv_1+\cdots + c_k\vv_k = \mathbf{0}
+          c_1\vv_1+\cdots + c_k\vv_k = \zer
         </me>
         implies that <m>c_1=0, c_2=0,\ldots, c_k=0</m>.
       </p>
@@ -76,7 +76,7 @@
     <feedback>
       <p>
         The definition of independence is a conditional statement:
-        <em>if</em> <m>c_1\vv_1+\cdots + c_k\vv_k = \mathbf{0}</m>,
+        <em>if</em> <m>c_1\vv_1+\cdots + c_k\vv_k = \zer</m>,
         <em>then</em> <m>c_1=0,\ldots, c_k=0</m>.
         It is important to get the order of the logic correct here,
         as the converse is always true.
@@ -104,7 +104,7 @@
     Note that the definition of independence asserts that there can be no
     <q>non-trivial</q> linear combinations that add up to the zero vector.
     Indeed, if even one scalar can be nonzero, then we can solve for the corresponding vector.
-    Say, for example, that we have a solution to <m>c_1\vv_1+c_2\vv_2\cdots + c_k\vv_k = \mathbf{0}</m>
+    Say, for example, that we have a solution to <m>c_1\vv_1+c_2\vv_2\cdots + c_k\vv_k = \zer</m>
     with <m>c_1\neq 0</m>. Then we can move all other vectors to the right-hand side,
     and multiply both sides by <m>1/c_1</m> to give
     <me>
@@ -126,7 +126,7 @@
         <ol>
           <li>
             <p>
-              If <m>\vv\neq\mathbf{0}</m>, then <m>\{\vv\}</m> is independent.
+              If <m>\vv\neq\zer</m>, then <m>\{\vv\}</m> is independent.
             </p>
           </li>
           <li>
@@ -161,43 +161,48 @@
 
   <p>
     The definition of linear independence tells us that if <m>\{\vv_1,\ldots, \vv_k\}</m>
-    is an independent set of vectors, then there is only one way to write <m>\mathbf{0}</m>
+    is an independent set of vectors, then there is only one way to write <m>\zer</m>
     as a linear combination of these vectors; namely,
     <me>
-      \mathbf{0} = 0\vv_1+0\vv_2+\cdots +0\vv_k
+      \zer = 0\vv_1+0\vv_2+\cdots +0\vv_k
     </me>.
     In fact, more is true: <em>any</em> vector in the span of a linearly independent set
     can be written in only one way as a linear combination of those vectors.
   </p>
 
-  <p>
-    Computationally, questions about linear independence are just questions
-    about homogeneous systems of linear equations.
-    For example, suppose we want to know if the vectors
-    <me>
-      \uu=\bbm 1\\-1\\4\ebm, \vv=\bbm 0\\2\\-3\ebm, \ww=\bbm 4\\0\\-3\ebm
-    </me>
-    are linearly independent in <m>\mathbb{R}^3</m>.
-    This question leads to the vector equation
-    <me>
-      x\uu+y\vv+z\ww=\mathbf{0}
-    </me>,
-    which becomes the matrix equation
-    <me>
-      \bbm 1\amp0\amp4\\-1\amp2\amp0\\4\amp-3\amp-3\ebm\bbm x\\y\\z\ebm = \bbm 0\\0\\0\ebm
-    </me>.
-  </p>
+  <remark xml:id="rem-independent-homogeneous">
+    <statement>
+      <p>
+        Computationally, questions about linear independence are just questions
+        about homogeneous systems of linear equations.
+        For example, suppose we want to know if the vectors
+        <me>
+          \uu=\bbm 1\\-1\\4\ebm, \vv=\bbm 0\\2\\-3\ebm, \ww=\bbm 4\\0\\-3\ebm
+        </me>
+        are linearly independent in <m>\mathbb{R}^3</m>.
+        This question leads to the vector equation
+        <me>
+          x\uu+y\vv+z\ww=\zer
+        </me>,
+        which becomes the matrix equation
+        <me>
+          \bbm 1\amp0\amp4\\-1\amp2\amp0\\4\amp-3\amp-3\ebm\bbm x\\y\\z\ebm = \bbm 0\\0\\0\ebm
+        </me>.
+      </p>
+
+      <p>
+        We now apply some basic theory from linear algebra.
+        A unique (and therefore, trivial) solution to this system is guaranteed if the matrix
+        <m>A = \bbm 1\amp0\amp4\\-1\amp2\amp0\\4\amp-3\amp-3\ebm</m> is invertible,
+        since in that case we have <m>\bbm x\\y\\z\ebm = A^{-1}\zer = \zer</m>.
+      </p>
+    </statement>
+  </remark>
 
   <p>
-    We now apply some basic theory from linear algebra.
-    A unique (and therefore, trivial) solution to this system is guaranteed if the matrix
-    <m>A = \bbm 1\amp0\amp4\\-1\amp2\amp0\\4\amp-3\amp-3\ebm</m> is invertible,
-    since in that case we have <m>\bbm x\\y\\z\ebm = A^{-1}\mathbf{0} = \mathbf{0}</m>.
-  </p>
-
-  <p>
-    This approach is problematic, however, since it won't work if we have 2 vectors, or 4.
-    Instead, we look at the reduced row-echelon form.
+    The approach in <xref ref="rem-independent-homogeneous"/> is problematic,
+    however, since it won't work if we have 2 vectors, or 4.
+    In general, we should look at the reduced row-echelon form.
     A unique solution corresponds to having a leading 1 in each column of <m>A</m>.
     Let's check this condition.
   </p>
@@ -253,7 +258,7 @@
 
       <p>
         Notice that this time we don't get a unique solution, so we can conclude that these vectors are <em>not</em> independent.
-        Furthermore, you can probably deduce from the above that we have <m>2\vv_1+3\vv_2-\vv_3=\mathbf{0}</m>.
+        Furthermore, you can probably deduce from the above that we have <m>2\vv_1+3\vv_2-\vv_3=\zer</m>.
         Now suppose that <m>\ww\in\spn\{\vv_1,\vv_2,\vv_3\}</m>.
         In how many ways can we write <m>\ww</m> as a linear combination of these vectors?
       </p>

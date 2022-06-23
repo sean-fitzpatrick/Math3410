@@ -189,65 +189,69 @@
     </statement>
   </example>
 
-  <p>
-    Often we define subsets of a vector space by an equation.
-    For example, instead of specifying a plane through the origin in <m>\R^3</m>
-    using a pair of vectors, as we did in <xref ref="ex-subspace-lines-and-planes"/>,
-    we could define it using a single equation, of the form <m>ax+by+cz=0</m>,
-    where <m>a,b,c\in\R</m>, and <m>(x,y,z)</m> are coordinates in <m>\R^3</m>.
-  </p>
+  <remark>
+    <statement>
+      <p>
+        Often we define subsets of a vector space by an equation.
+        For example, instead of specifying a plane through the origin in <m>\R^3</m>
+        using a pair of vectors, as we did in <xref ref="ex-subspace-lines-and-planes"/>,
+        we could define it using a single equation, of the form <m>ax+by+cz=0</m>,
+        where <m>a,b,c\in\R</m>, and <m>(x,y,z)</m> are coordinates in <m>\R^3</m>.
+      </p>
 
-  <p>
-    Given a vector space <m>V</m> and some equation (or other condition) that defines a subset,
-    one of the things we need to be able to do is determine whether or not the subset is in fact a subspace.
-    We do so using <xref ref="thm-subspace-test"/>.
-    Applying the subspace test is relatively straightforward,
-    but we would also like to develop some intiution to help us decide whether or not a subset is likely to be a subspace,
-    before attempting a proof.
-  </p>
+      <p>
+        Given a vector space <m>V</m> and some equation (or other condition) that defines a subset,
+        one of the things we need to be able to do is determine whether or not the subset is in fact a subspace.
+        We do so using <xref ref="thm-subspace-test" text="title"/>.
+        Applying the subspace test is relatively straightforward,
+        but we would also like to develop some intiution to help us decide whether or not a subset is likely to be a subspace,
+        before attempting a proof.
+      </p>
 
-  <p>
-    There are a few relatively easy things we can check before we begin:
-    <ol>
-      <li>
-        <p>
-          Does the subset contain the zero vector?
-        </p>
-        <p>
-          This is part of the subspace test, of course, but it tends to be easy to check,
-          and if the answer is no, then we've already ruled out the possibility that this subset could be a subspace.
-        </p>
-      </li>
-      <li>
-        <p>
-          Is the equation defining the subset linear?
-        </p>
-        <p>
-          If not, your subset is probably not a subspace, and you should look for a counterexample.
-          For example, the set <m>\{(x,y)\in\R^2 \,|\, y=x^2\}</m> contains zero,
-          but it is defined by the nonlinear equation <m>y=x^2</m>.
-          This tells us that our set is unlikely to be a subspace, but we still have to demonstrate this.
-          Typically, we do so by showing that one of the two closure axioms fails.
-          For example, we know that <m>(1,1)</m> and <m>(2,4)</m> belong to the subset,
-          but <m>(1,1)+(2,4)=(3,5)</m>, and since <m>5\neq 3^2</m>,
-          the subset is not closed under addition, and therefore is not a subspace.
-        </p>
-      </li>
-      <li>
-        <p>
-          Is the equation defining the subset homogeneous?
-        </p>
-        <p>
-          Even if an equation is linear, it may fail to define a subspace due to the special role played by the zero vector.
-          For example, the plane in <m>\R^3</m> defined by the equation <m>x+2y-5z=4</m> is not a subspace.
-          The fastest way to see this is to note that the equation is not satisfied by the zero vector!
-          But both closure conditions fail as well. For example, the point <m>(2,1,0)</m> is on the plane.
-          But <m>2(2,1,0)=(4,2,0)</m> is not, since <m>4+2(2)-5(0)=8\neq 4</m>.
-        </p>
-      </li>
-    </ol>
-  </p>
-
+      <p>
+        There are a few relatively easy things we can check before we begin:
+        <ol>
+          <li>
+            <p>
+              Does the subset contain the zero vector?
+            </p>
+            <p>
+              This is part of the subspace test, of course, but it tends to be easy to check,
+              and if the answer is no, then we've already ruled out the possibility that this subset could be a subspace.
+            </p>
+          </li>
+          <li>
+            <p>
+              Is the equation defining the subset linear?
+            </p>
+            <p>
+              If not, your subset is probably not a subspace, and you should look for a counterexample.
+              For example, the set <m>\{(x,y)\in\R^2 \,|\, y=x^2\}</m> contains zero,
+              but it is defined by the nonlinear equation <m>y=x^2</m>.
+              This tells us that our set is unlikely to be a subspace, but we still have to demonstrate this.
+              Typically, we do so by showing that one of the two closure axioms fails.
+              For example, we know that <m>(1,1)</m> and <m>(2,4)</m> belong to the subset,
+              but <m>(1,1)+(2,4)=(3,5)</m>, and since <m>5\neq 3^2</m>,
+              the subset is not closed under addition, and therefore is not a subspace.
+            </p>
+          </li>
+          <li>
+            <p>
+              Is the equation defining the subset homogeneous?
+            </p>
+            <p>
+              Even if an equation is linear, it may fail to define a subspace due to the special role played by the zero vector.
+              For example, the plane in <m>\R^3</m> defined by the equation <m>x+2y-5z=4</m> is not a subspace.
+              The fastest way to see this is to note that the equation is not satisfied by the zero vector!
+              But both closure conditions fail as well. For example, the point <m>(2,1,0)</m> is on the plane.
+              But <m>2(2,1,0)=(4,2,0)</m> is not, since <m>4+2(2)-5(0)=8\neq 4</m>.
+            </p>
+          </li>
+        </ol>
+      </p>
+    </statement>
+  </remark>
+  
   <exercise xml:id="ex-subspace-check">
     <introduction>
       <p>
