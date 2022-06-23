@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-06-23T14:01:35-06:00       *-->
+<!--*       on 2022-06-23T15:55:36-06:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -14,8 +14,20 @@
 <meta name="robots" content="noindex, nofollow">
 </head>
 <body class="ignore-math">
-<h4 class="heading"><span class="type">Paragraph</span></h4>
-<p>Now that we know how to extract the eigenvectors, we can normalize them, and join them to make a matrix. The norm of a vector is simnply <code class="code-inline tex2jax_ignore">v.norm()</code>, and to join column vectors <code class="code-inline tex2jax_ignore">u1</code> and <code class="code-inline tex2jax_ignore">u2</code> to make a matrix, we can use the command <code class="code-inline tex2jax_ignore">u1.row_join(u2)</code>. We already defined the matrix <code class="code-inline tex2jax_ignore">A</code> and list <code class="code-inline tex2jax_ignore">L</code> above, but here is the whole routine in one cell, in case you didn't run all the cells above.</p>
+<h5 class="heading"><span class="type">Paragraph</span></h5>
+<p>Note that the property <span class="process-math">\(A^H=A\)</span> is equivalent to <span class="process-math">\(A^T=\bar{A}\text{.}\)</span> This gives us</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\langle A\zz,\ww\rangle = (A\zz)^T\bar{\ww} = (\zz^TA^T)\bar{\ww} = (\zz^T\bar{A})\bar{\ww}=\zz^T(\overline{A\ww}) = \langle \zz,\ww\rangle\text{.}
+\end{equation*}
+</div>
+<p class="continuation">Conversely, suppose <span class="process-math">\(\langle A\zz,\ww\rangle = \langle \zz, A\ww\rangle\)</span> for all <span class="process-math">\(\zz,\ww\in \C^n\text{,}\)</span> and let <span class="process-math">\(\basis{e}{n}\)</span> denote the standard basis for <span class="process-math">\(\C^n\text{.}\)</span> Then</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+a_{ji}=\langle A\mathbf{e}_i,\mathbf{e}_j\rangle = \langle \mathbf{e}_i,A\mathbf{e}_j\rangle = \overline{a_{ij}}\text{,}
+\end{equation*}
+</div>
+<p class="continuation">which shows that <span class="process-math">\(A^T=\bar{A}\text{.}\)</span></p>
 <span class="incontext"><a href="sec-complex.html#p-1041" class="internal">in-context</a></span>
 </body>
 </html>

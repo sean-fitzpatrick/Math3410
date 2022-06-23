@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-06-23T14:01:35-06:00       *-->
+<!--*       on 2022-06-23T15:55:35-06:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -13,11 +13,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="robots" content="noindex, nofollow">
 </head>
-<body class="ignore-math"><article class="hiddenproof"><p>The first two follow directly from properties of the determinant and trace. For the last, note that if <span class="process-math">\(B = P^{-1}AP\text{,}\)</span> then</p>
+<body class="ignore-math"><article class="hiddenproof"><ol class="decimal">
+<li>
+<p>For any <span class="process-math">\(i=1,\ldots m\text{,}\)</span> we have</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
-P^{-1}(xI_n-A)P = P^{-1}(xI_n)P-P^{-1}AP = xI_n B\text{,}
+\vv_{m+1}\dotp\vv_i = \xx\dotp\vv_i - \frac{\xx\dotp\vv_i}{\len{\vv_i}^2}(\vv_i\dotp\vv_i)=0\text{,}
 \end{equation*}
 </div>
-<p class="continuation">so <span class="process-math">\(xI_n-B\sim xI_n-A\text{,}\)</span> and therefore <span class="process-math">\(\det(xI_n-B)=\det(xI_n-A)\text{.}\)</span></p></article></body>
+<p class="continuation">since <span class="process-math">\(\vv_i\dotp\vv_j = 0\)</span> for <span class="process-math">\(i\neq j\text{.}\)</span></p>
+</li>
+<li><p>It follows from the <a href="" class="xref" data-knowl="./knowl/thm-fourier-expansion.html" title="Theorem 3.1.13: Fourier expansion theorem">Fourier expansion theorem</a> that <span class="process-math">\(\vv_{m+1}=\zer\)</span> if and only if <span class="process-math">\(\xx\in\spn\{\vv_1,\ldots, \vv_m\}\text{,}\)</span> and the fact that <span class="process-math">\(\{\vv_1,\ldots, \vv_m,\vv_{m+1}\}\)</span> is an orthogonal set then follows from the first part.</p></li>
+</ol></article></body>
 </html>

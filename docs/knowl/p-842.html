@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-06-23T14:01:34-06:00       *-->
+<!--*       on 2022-06-23T15:55:35-06:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -15,12 +15,18 @@
 </head>
 <body class="ignore-math">
 <h5 class="heading"><span class="type">Paragraph</span></h5>
-<p>Let <span class="process-math">\(U\)</span> be a subspace of <span class="process-math">\(\R^n\)</span> with orthogonal basis <span class="process-math">\(\{\uu_1,\ldots, \uu_k\}\text{.}\)</span> For any vector <span class="process-math">\(\vv\in \R^n\text{,}\)</span> we define the <dfn class="terminology">orthogonal projection</dfn> of <span class="process-math">\(\vv\)</span> onto <span class="process-math">\(U\)</span> by</p>
+<ol class="decimal">
+<li>
+<p>For any <span class="process-math">\(i=1,\ldots m\text{,}\)</span> we have</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
-\proj{U}{\vv} = \sum_{i=1}^k\left(\frac{\uu_i\dotp\vv}{\len{\uu_i}^2}\right)\uu_i\text{.}
+\vv_{m+1}\dotp\vv_i = \xx\dotp\vv_i - \frac{\xx\dotp\vv_i}{\len{\vv_i}^2}(\vv_i\dotp\vv_i)=0\text{,}
 \end{equation*}
 </div>
+<p class="continuation">since <span class="process-math">\(\vv_i\dotp\vv_j = 0\)</span> for <span class="process-math">\(i\neq j\text{.}\)</span></p>
+</li>
+<li><p>It follows from the <a href="" class="xref" data-knowl="./knowl/thm-fourier-expansion.html" title="Theorem 3.1.13: Fourier expansion theorem">Fourier expansion theorem</a> that <span class="process-math">\(\vv_{m+1}=\zer\)</span> if and only if <span class="process-math">\(\xx\in\spn\{\vv_1,\ldots, \vv_m\}\text{,}\)</span> and the fact that <span class="process-math">\(\{\vv_1,\ldots, \vv_m,\vv_{m+1}\}\)</span> is an orthogonal set then follows from the first part.</p></li>
+</ol>
 <span class="incontext"><a href="sec-ortho-projection.html#p-842" class="internal">in-context</a></span>
 </body>
 </html>
