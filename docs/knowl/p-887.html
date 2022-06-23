@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-06-23T08:44:13-06:00       *-->
+<!--*       on 2022-06-23T14:01:35-06:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -15,13 +15,21 @@
 </head>
 <body class="ignore-math">
 <h4 class="heading"><span class="type">Paragraph</span></h4>
-<p>Let <span class="process-math">\(\{\xx_1,\ldots, \xx_k\}\)</span> be a set of linearly independent eigenvectors of a matrix <span class="process-math">\(A\text{,}\)</span> with corresponding eigenvalues <span class="process-math">\(\lambda_1,\ldots, \lambda_k\)</span> (not necessarily distinct). Extend this set to a basis <span class="process-math">\(\{\xx_1,\ldots, \xx_k,\xx_{k+1},\ldots, \xx_n\}\text{,}\)</span> and let <span class="process-math">\(P=\bbm \xx_1\amp \cdots \amp \xx_n\ebm\)</span> be the matrix whose columns are the basis vectors. (Note that <span class="process-math">\(P\)</span> is necessarily invertible.) Then</p>
+<p>Given <span class="process-math">\(v_1, v_2\in V\text{,}\)</span> we have</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{align*}
+(T^*\phi)(v_1+v_2) \amp = \phi(T(v_1+v_2))=\phi(T(v_1)+T(v_2)) \quad \text{ because } T \text{ is linear}\\
+\amp =\phi(T(v_1))+\phi(T(v_2)) \quad \text{ because } \phi \text{ is linear}\\
+\amp =(T^*\phi)(v_1)+(T^*\phi)(v_2)\text{.}
+\end{align*}
+</div>
+<p class="continuation">Similarly, for any scalar <span class="process-math">\(c\text{,}\)</span></p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
-P^{-1}AP = \bbm \diag(\lambda_1,\ldots, \lambda_k) \amp B\\0\amp A_1\ebm\text{,}
+(T^*\phi)(cv) = \phi(T(cv))=\phi(cT(v))=c(\phi(T(v)))=c((T^*\phi)(v))\text{.}
 \end{equation*}
 </div>
-<p class="continuation">where <span class="process-math">\(B\)</span> has size <span class="process-math">\(k\times (n-k)\text{,}\)</span> and <span class="process-math">\(A_1\)</span> has size <span class="process-math">\((n-k)\times (n-k)\text{.}\)</span></p>
-<span class="incontext"><a href="subsec-eigen-basics.html#p-887" class="internal">in-context</a></span>
+<p class="continuation">This shows that <span class="process-math">\(T^*\phi\in V^*\text{.}\)</span></p>
+<span class="incontext"><a href="worksheet-dual-basis.html#p-887" class="internal">in-context</a></span>
 </body>
 </html>

@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-06-23T08:44:13-06:00       *-->
+<!--*       on 2022-06-23T14:01:35-06:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -14,15 +14,20 @@
 <meta name="robots" content="noindex, nofollow">
 </head>
 <body class="ignore-math">
-<h4 class="heading"><span class="type">Paragraph</span></h4>
-<p>Arithmetic with complex numbers is defined by</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{align*}
-(x_1+iy_1)+(x_2+iy_2) \amp = (x_1+x_2)+i(y_1+y_2) \\
-(x_1+iy_1)(x_2+iy_2) \amp = (x_1x_2-y_1y_2)+i(x_1y_2+x_2y_1)\text{.}
-\end{align*}
+<h3 class="heading"><span class="type">Paragraph</span></h3>
+<p>We can use <a href="" class="xref" data-knowl="./knowl/lem-block-eigen.html" title="Lemma 4.1.8">Lemma 4.1.8</a> to prove that <span class="process-math">\(\dim E_\lambda(A)\leq m\)</span> as follows. Suppose <span class="process-math">\(\{\xx_1,\ldots, \xx_k\}\)</span> is a basis for <span class="process-math">\(E_\lambda(A)\text{.}\)</span> Then this is a linearly independent set of eigenvectors, so our lemma guarantees the existence of a matrix <span class="process-math">\(P\)</span> such that</p>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/lem-block-eigen.html">
+\begin{equation*}
+P^{-1}AP = \bbm \lambda I_k \amp B\\0\amp A_1\ebm\text{.}
+\end{equation*}
 </div>
-<p class="continuation">The multiplication rule looks complicated, but it's really just “<abbr class="initialism">FOIL</abbr>”, along with the fact that <span class="process-math">\(i^2=-1\text{.}\)</span> Note that if <span class="process-math">\(c=c+i0\)</span> is real, we have <span class="process-math">\(c(x+iy)=(cx)+i(cy)\text{,}\)</span> so that <span class="process-math">\(\C\)</span> has the structure of a two dimensional vector space over <span class="process-math">\(\R\)</span> (isomorphic to <span class="process-math">\(\R^2\)</span>).</p>
-<span class="incontext"><a href="sec-complex.html#p-934" class="internal">in-context</a></span>
+<p class="continuation">Let <span class="process-math">\(\tilde{A}=P^{-1}AP\text{.}\)</span> On the one hand, since <span class="process-math">\(\tilde{A}\sim A\text{,}\)</span> we have <span class="process-math">\(c_A(x)=c_{\tilde{A}}(x)\text{.}\)</span> On the other hand,</p>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/lem-block-eigen.html">
+\begin{equation*}
+\det(xI_n-\tilde{A}) = \det\bbm (x-\lambda)I_k \amp -B\\0 \amp xI_{n-k}-A_1\ebm = (x-\lambda)^k\det(xI_{n-k}-A_1)\text{.}
+\end{equation*}
+</div>
+<p class="continuation">This shows that <span class="process-math">\(c_A(x)\)</span> is divisible by <span class="process-math">\((x-\lambda)^k\text{.}\)</span> Since <span class="process-math">\(m\)</span> is the largest integer such that <span class="process-math">\(c_A(x)\)</span> is divisible by <span class="process-math">\((x-\lambda)^m\text{,}\)</span> we must have <span class="process-math">\(\dim E_\lambda(A)=k\leq m\text{.}\)</span></p>
+<span class="incontext"><a href="subsec-eigen-basics.html#p-934" class="internal">in-context</a></span>
 </body>
 </html>

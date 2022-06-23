@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-06-23T08:44:05-06:00       *-->
+<!--*       on 2022-06-23T14:01:27-06:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -289,8 +289,11 @@ s\vv+t\ww = s\vv+t(c\vv) = s\vv+(tc)\vv = (s+tc)\vv\text{,}
 <p id="p-178">If you encountered the <em class="emphasis">cross product</em> in your first course in linear algebra, or in a calculus course, then you can state the “non-parallel” condition by the requirement that <span class="process-math">\(\vv\times\ww\neq\zer\text{.}\)</span> The vector <span class="process-math">\(\vv\times\ww\)</span> is then a <em class="emphasis">normal vector</em> for the plane.</p>
 </li>
 <li id="li-46"><p id="p-179">The entire vector space <span class="process-math">\(\R^3\subseteq\R^3\)</span> also counts as a subspace: every vector space is a subspace of itself.</p></li>
-</ol></article><p id="p-180">Often we define subsets of a vector space by an equation. For example, instead of specifying a plane through the origin in <span class="process-math">\(\R^3\)</span> using a pair of vectors, as we did in <a href="" class="xref" data-knowl="./knowl/ex-subspace-lines-and-planes.html" title="Example 1.2.4">Example 1.2.4</a>, we could define it using a single equation, of the form <span class="process-math">\(ax+by+cz=0\text{,}\)</span> where <span class="process-math">\(a,b,c\in\R\text{,}\)</span> and <span class="process-math">\((x,y,z)\)</span> are coordinates in <span class="process-math">\(\R^3\text{.}\)</span></p>
-<p id="p-181">Given a vector space <span class="process-math">\(V\)</span> and some equation (or other condition) that defines a subset, one of the things we need to be able to do is determine whether or not the subset is in fact a subspace. We do so using <a href="" class="xref" data-knowl="./knowl/thm-subspace-test.html" title="Theorem 1.2.2: Subspace Test">Theorem 1.2.2</a>. Applying the subspace test is relatively straightforward, but we would also like to develop some intiution to help us decide whether or not a subset is likely to be a subspace, before attempting a proof.</p>
+</ol></article><article class="remark remark-like" id="remark-1"><h3 class="heading">
+<span class="type">Remark</span><span class="space"> </span><span class="codenumber">1.2.5</span><span class="period">.</span>
+</h3>
+<p id="p-180">Often we define subsets of a vector space by an equation. For example, instead of specifying a plane through the origin in <span class="process-math">\(\R^3\)</span> using a pair of vectors, as we did in <a href="" class="xref" data-knowl="./knowl/ex-subspace-lines-and-planes.html" title="Example 1.2.4">Example 1.2.4</a>, we could define it using a single equation, of the form <span class="process-math">\(ax+by+cz=0\text{,}\)</span> where <span class="process-math">\(a,b,c\in\R\text{,}\)</span> and <span class="process-math">\((x,y,z)\)</span> are coordinates in <span class="process-math">\(\R^3\text{.}\)</span></p>
+<p id="p-181">Given a vector space <span class="process-math">\(V\)</span> and some equation (or other condition) that defines a subset, one of the things we need to be able to do is determine whether or not the subset is in fact a subspace. We do so using <a href="" class="xref" data-knowl="./knowl/thm-subspace-test.html" title="Theorem 1.2.2: Subspace Test">Subspace Test</a>. Applying the subspace test is relatively straightforward, but we would also like to develop some intiution to help us decide whether or not a subset is likely to be a subspace, before attempting a proof.</p>
 <p id="p-182">There are a few relatively easy things we can check before we begin:</p>
 <ol class="decimal">
 <li id="li-47">
@@ -305,9 +308,8 @@ s\vv+t\ww = s\vv+t(c\vv) = s\vv+(tc)\vv = (s+tc)\vv\text{,}
 <p id="p-187">Is the equation defining the subset homogeneous?</p>
 <p id="p-188">Even if an equation is linear, it may fail to define a subspace due to the special role played by the zero vector. For example, the plane in <span class="process-math">\(\R^3\)</span> defined by the equation <span class="process-math">\(x+2y-5z=4\)</span> is not a subspace. The fastest way to see this is to note that the equation is not satisfied by the zero vector! But both closure conditions fail as well. For example, the point <span class="process-math">\((2,1,0)\)</span> is on the plane. But <span class="process-math">\(2(2,1,0)=(4,2,0)\)</span> is not, since <span class="process-math">\(4+2(2)-5(0)=8\neq 4\text{.}\)</span></p>
 </li>
-</ol>
-<article class="exercise exercise-like" id="ex-subspace-check"><h3 class="heading">
-<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">1.2.5</span><span class="period">.</span>
+</ol></article><article class="exercise exercise-like" id="ex-subspace-check"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">1.2.6</span><span class="period">.</span>
 </h3>
 <div class="introduction" id="introduction-5"><p id="p-189">Determine whether or not the following subsets of vector spaces are subspaces.</p></div>
 <article class="task exercise-like" id="task-13"><h4 class="heading"><span class="codenumber">(a)</span></h4>
@@ -316,7 +318,7 @@ s\vv+t\ww = s\vv+t(c\vv) = s\vv+(tc)\vv = (s+tc)\vv\text{,}
 <p id="p-194">The set of all vectors <span class="process-math">\((x,y,z)\in\R^3\)</span> such that <span class="process-math">\(xyz=0\text{.}\)</span></p></article><article class="task exercise-like" id="task-16"><h4 class="heading"><span class="codenumber">(d)</span></h4>
 <p id="p-196">The set of all vectors <span class="process-math">\((x,y,z)\in\R^3\)</span> such that <span class="process-math">\(x+y=z\text{.}\)</span></p></article></article><p id="p-198">Let's try a few more examples.</p>
 <article class="example example-like" id="example-4"><h3 class="heading">
-<span class="type">Example</span><span class="space"> </span><span class="codenumber">1.2.6</span><span class="period">.</span>
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">1.2.7</span><span class="period">.</span>
 </h3>
 <div class="introduction" id="introduction-6"><p id="p-199">Determine whether or not the following subsets are subspaces.</p></div>
 <article class="task exercise-like" id="task-17"><h4 class="heading"><span class="codenumber">(a)</span></h4>
@@ -354,7 +356,7 @@ a+b+c+d=8a+4b+2c+d\text{,}
 <p id="p-209">To see that this is the case, consider closure under addition. The matrices <span class="process-math">\(A=\bbm 1\amp 0\\0\amp 0\ebm\)</span> and <span class="process-math">\(B=\bbm 0\amp 0\\0\amp 1\ebm\)</span> both have determinant <span class="process-math">\(0\text{,}\)</span> but <span class="process-math">\(A+B=\bbm 1\amp 0\\0\amp 1\ebm\)</span> has determinant 1. Therefore, <span class="process-math">\(A\)</span> and <span class="process-math">\(B\)</span> both belong to the set, but <span class="process-math">\(A+B\)</span> does not.</p>
 </div></div>
 </div></article></article><p id="p-210">In the next section, we'll encounter perhaps the most fruitful source of subspaces: sets of linear combinations (or <em class="emphasis">spans</em>). We will see that such sets are always subspaces, so if we can identify a subset as a span, we know automatically that it is a subspace.</p>
-<p id="p-211">For example, in the last part of <a href="" class="xref" data-knowl="./knowl/ex-subspace-check.html" title="Exercise 1.2.5">Exercise 1.2.5</a> above, if the vector <span class="process-math">\((x,y,z)\)</span> satisfies <span class="process-math">\(x+y=z\text{,}\)</span> then we have</p>
+<p id="p-211">For example, in the last part of <a href="" class="xref" data-knowl="./knowl/ex-subspace-check.html" title="Exercise 1.2.6">Exercise 1.2.6</a> above, if the vector <span class="process-math">\((x,y,z)\)</span> satisfies <span class="process-math">\(x+y=z\text{,}\)</span> then we have</p>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/ex-subspace-check.html">
 \begin{equation*}
 (x,y,z)=(x,y,x+y)=(x,0,x)+(0,y,y)=x(1,0,1)+y(0,1,1)\text{,}

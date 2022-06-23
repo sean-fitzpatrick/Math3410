@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-06-23T08:44:15-06:00       *-->
+<!--*       on 2022-06-23T14:01:36-06:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -15,18 +15,20 @@
 </head>
 <body class="ignore-math">
 <h4 class="heading"><span class="type">Paragraph</span></h4>
-<p>Finding this matrix requires us to first write the vectors in <span class="process-math">\(B\)</span> in terms of the vectors in <span class="process-math">\(D\text{.}\)</span> However, it's much easier to do this the other way around. We easily find</p>
-<div class="displaymath process-math" data-contains-math-knowls="./knowl/thm-change-matrix.html">
+<p>We get the matrix</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
-P_{B\leftarrow D} = \bbm 1\amp 0\amp 2\\1\amp 1\amp -3\\0\amp 1\amp 1\ebm\text{,}
+\left[\begin{matrix}1\amp 2\amp 0\\1\amp -1\amp 2\\0\amp 0\amp 1\end{matrix}
+\right\rvert\left.\begin{matrix}1\amp 0\amp 0\\0\amp 1\amp 0\\0\amp 0\amp 1\end{matrix}\right]\text{.}
 \end{equation*}
 </div>
-<p class="continuation">and by <a href="" class="xref" data-knowl="./knowl/thm-change-matrix.html" title="Theorem 5.2.6">Theorem 5.2.6</a>, we have</p>
-<div class="displaymath process-math" data-contains-math-knowls="./knowl/thm-change-matrix.html">
+<p class="continuation">But this is exactly the augmented matrix we'd right down if we were trying to find the inverse of the matrix</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
-P_{D\leftarrow B} = (P_{B\leftarrow D})^{-1} = \frac16\bbm 4\amp 2\amp -2\\-1\amp 1\amp 5\\1\amp -1\amp 1\ebm\text{.}
+P=\bbm 1\amp 2\amp 0\\1\amp -1\amp 2\\0\amp 0\amp 1\ebm
 \end{equation*}
 </div>
-<span class="incontext"><a href="sec-matrix-operator.html#p-1171" class="internal">in-context</a></span>
+<p class="continuation">whose columns are the coefficient representations of our given basis vectors in terms of the standard basis.</p>
+<span class="incontext"><a href="sec-matrix-of-transformation.html#p-1171" class="internal">in-context</a></span>
 </body>
 </html>

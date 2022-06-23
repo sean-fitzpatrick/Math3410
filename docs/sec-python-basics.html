@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-06-23T08:44:09-06:00       *-->
+<!--*       on 2022-06-23T14:01:31-06:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -241,41 +241,41 @@ true);
 <section class="section" id="sec-python-basics"><h2 class="heading hide-type">
 <span class="type">Section</span> <span class="codenumber">A.2</span> <span class="title">Python basics</span>
 </h2>
-<p id="p-1291">OK, so you've logged into Syzygy and you're ready to write some code. What does basic code look like in Python? The good news is that you don't need to be a programmer to do linear algebra in Python. Python includes many different <em class="emphasis">libraries</em> that keep most of the code under the hood, so all you have to remember is what command you need to use to accomplish a task. That said, it won't hurt to learn a little bit of basic coding.</p>
-<p id="p-1292">Basic arithmetic operations are understood, and you can simply type them in. Hit <code class="code-inline tex2jax_ignore">shift+enter</code> in a code cell to execute the code and see the result.</p>
+<p id="p-1336">OK, so you've logged into Syzygy and you're ready to write some code. What does basic code look like in Python? The good news is that you don't need to be a programmer to do linear algebra in Python. Python includes many different <em class="emphasis">libraries</em> that keep most of the code under the hood, so all you have to remember is what command you need to use to accomplish a task. That said, it won't hurt to learn a little bit of basic coding.</p>
+<p id="p-1337">Basic arithmetic operations are understood, and you can simply type them in. Hit <code class="code-inline tex2jax_ignore">shift+enter</code> in a code cell to execute the code and see the result.</p>
 <pre class="ptx-sagecell sagecell-sage" id="sage-135"><script type="text/x-sage">3+4
 </script></pre>
 <pre class="ptx-sagecell sagecell-sage" id="sage-136"><script type="text/x-sage">3*4
 </script></pre>
 <pre class="ptx-sagecell sagecell-sage" id="sage-137"><script type="text/x-sage">3**4
 </script></pre>
-<p id="p-1293">OK, great. But sometimes we want to do calculations with more than one step. For that, we can assign variables.</p>
+<p id="p-1338">OK, great. But sometimes we want to do calculations with more than one step. For that, we can assign variables.</p>
 <pre class="ptx-sagecell sagecell-sage" id="sage-138"><script type="text/x-sage">a = 14
 b = -9
 c = a+b
 print(a, b, c)
 </script></pre>
-<p id="p-1294">Sometimes you might need input that's a string, rather than a number. We can do that, too.</p>
+<p id="p-1339">Sometimes you might need input that's a string, rather than a number. We can do that, too.</p>
 <pre class="ptx-sagecell sagecell-sage" id="sage-139"><script type="text/x-sage">string_var = "Hey, look at my string!"
 print(string_var)
 </script></pre>
-<p id="p-1295">Another basic construction is a list. Getting the hang of lists is useful, because in a sense, matrices are just really fancy lists.</p>
+<p id="p-1340">Another basic construction is a list. Getting the hang of lists is useful, because in a sense, matrices are just really fancy lists.</p>
 <pre class="ptx-sagecell sagecell-sage" id="sage-140"><script type="text/x-sage">empty_list = list()
 this_too = []
 list_of_zeros = [0]*7
 print(list_of_zeros)
 </script></pre>
-<p id="p-1296">Once you have an empty list, you might want to add something to it. This can be done with the <code class="code-inline tex2jax_ignore">append</code> command.</p>
+<p id="p-1341">Once you have an empty list, you might want to add something to it. This can be done with the <code class="code-inline tex2jax_ignore">append</code> command.</p>
 <pre class="ptx-sagecell sagecell-sage" id="sage-141"><script type="text/x-sage">empty_list.append(3)
 print(empty_list)
 print(len(empty_list))
 </script></pre>
-<p id="p-1297">Go back and re-run the above code cell two or three more times. What happens? Probably you can guess what the <code class="code-inline tex2jax_ignore">len</code> command is for. Now let's get really carried away and do some “for real” coding, like loops!</p>
+<p id="p-1342">Go back and re-run the above code cell two or three more times. What happens? Probably you can guess what the <code class="code-inline tex2jax_ignore">len</code> command is for. Now let's get really carried away and do some “for real” coding, like loops!</p>
 <pre class="ptx-sagecell sagecell-sage" id="sage-142"><script type="text/x-sage">for i in range(10):
     empty_list.append(i)
 print(empty_list)
 </script></pre>
-<p id="p-1298">Notice the indentation in the second line. This is how Python handles things like for loops, with indentation rather than bracketing. We could say more about lists but perhaps it's time to talk about matrices. For further reading, you can <a class="external" href="https://developers.google.com/edu/python/lists" target="_blank">start here</a><a href="" data-knowl="" class="id-ref fn-knowl original" data-refid="hk-fn-13" id="fn-13"><sup> 1 </sup></a>.</p></section><div class="hidden-content tex2jax_ignore" id="hk-fn-13"><div class="fn"><code class="code-inline tex2jax_ignore">developers.google.com/edu/python/lists</code></div></div>
+<p id="p-1343">Notice the indentation in the second line. This is how Python handles things like for loops, with indentation rather than bracketing. We could say more about lists but perhaps it's time to talk about matrices. For further reading, you can <a class="external" href="https://developers.google.com/edu/python/lists" target="_blank">start here</a><a href="" data-knowl="" class="id-ref fn-knowl original" data-refid="hk-fn-13" id="fn-13"><sup> 1 </sup></a>.</p></section><div class="hidden-content tex2jax_ignore" id="hk-fn-13"><div class="fn"><code class="code-inline tex2jax_ignore">developers.google.com/edu/python/lists</code></div></div>
 </div></main>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script>

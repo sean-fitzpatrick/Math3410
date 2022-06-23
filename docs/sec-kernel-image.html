@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-06-23T08:44:06-06:00       *-->
+<!--*       on 2022-06-23T14:01:28-06:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -240,14 +240,14 @@ true);
 <main class="main"><div id="content" class="pretext-content"><section class="section" id="sec-kernel-image"><h2 class="heading hide-type">
 <span class="type">Section</span> <span class="codenumber">2.2</span> <span class="title">Kernel and Image</span>
 </h2>
-<p id="p-586">Given any linear transformation <span class="process-math">\(T:V\to W\)</span> we can associate two important subspaces: the <dfn class="terminology">kernel</dfn> of <span class="process-math">\(T\)</span> (also known as the <dfn class="terminology">nullspace</dfn>), and the <dfn class="terminology">image</dfn> of <span class="process-math">\(T\)</span> (also known as the <dfn class="terminology">range</dfn>).</p>
+<p id="p-586">Given any linear transformation <span class="process-math">\(T:V\to W\)</span> we can associate two important sets: the <dfn class="terminology">kernel</dfn> of <span class="process-math">\(T\)</span> (also known as the <dfn class="terminology">nullspace</dfn>), and the <dfn class="terminology">image</dfn> of <span class="process-math">\(T\)</span> (also known as the <dfn class="terminology">range</dfn>).</p>
 <article class="definition definition-like" id="def-kernel-image"><h3 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">2.2.1</span><span class="period">.</span>
 </h3>
 <p id="p-587">Let <span class="process-math">\(T:V\to W\)</span> be a linear transformation. The <dfn class="terminology">kernel</dfn> of <span class="process-math">\(T\text{,}\)</span> denoted <span class="process-math">\(\ker T\text{,}\)</span> is defined by</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
-\ker T = \{\vv\in V \,|\, T(\vv)=\mathbf{0}\}\text{.}
+\ker T = \{\vv\in V \,|\, T(\vv)=\zer\}\text{.}
 \end{equation*}
 </div>
 <p class="continuation">The <dfn class="terminology">image</dfn> of <span class="process-math">\(T\text{,}\)</span> denoted <span class="process-math">\(\im T\text{,}\)</span> is defined by</p>
@@ -255,38 +255,56 @@ true);
 \begin{equation*}
 \im T = \{T(\vv) \,|\, \vv\in V\}\text{.}
 \end{equation*}
-</div></article><p id="p-588">Note that the kernel of <span class="process-math">\(T\)</span> is just the set of all vectors <span class="process-math">\(T\)</span> sends to zero. The image of <span class="process-math">\(T\)</span> is the range of <span class="process-math">\(T\)</span> in the usual sense of the range of a function.</p>
-<article class="theorem theorem-like" id="thm-ker-img-subspace"><h3 class="heading">
-<span class="type">Theorem</span><span class="space"> </span><span class="codenumber">2.2.2</span><span class="period">.</span>
+</div></article><article class="remark remark-like" id="remark-5"><h3 class="heading">
+<span class="type">Remark</span><span class="space"> </span><span class="codenumber">2.2.2</span><span class="period">.</span>
 </h3>
-<p id="p-589">For any linear transformation <span class="process-math">\(T:V\to W\text{,}\)</span></p>
+<p id="p-588"><em class="alert">Caution:</em> the kernel is the set of vectors that <span class="process-math">\(T\)</span> <em class="emphasis">sends</em> to zero. Saying that <span class="process-math">\(\vv\in \ker T\)</span> does <em class="emphasis">not</em> mean that <span class="process-math">\(\vv=\zer\text{;}\)</span> it means that <span class="process-math">\(T(\vv)=\zer\text{.}\)</span> Although it's true that <span class="process-math">\(T(\zer)=\zer\)</span> for any linear transformation, the kernel can contain vectors <em class="emphasis">other</em> than the zero vector.</p>
+<p id="p-589">In fact, as we'll see in <a href="" class="xref" data-knowl="./knowl/thm-injective-kernel.html" title="Theorem 2.2.11">Theorem 2.2.11</a> below, the case where the kernel contains only the zero vector is an important special case.</p></article><article class="remark remark-like" id="rem-using-ker-im"><h3 class="heading">
+<span class="type">Remark</span><span class="space"> </span><span class="codenumber">2.2.3</span><span class="period">.</span><span class="space"> </span><span class="title">How to use these definitions.</span>
+</h3>
+<p id="p-590">As you read through the theorems and examples in this section, think carefully about how the definitions of kernel and image are used.</p>
+<p id="p-591">For a linear transformation <span class="process-math">\(T:V\to W\text{:}\)</span></p>
+<ul class="disc">
+<li id="li-87"><p id="p-592">If you assume <span class="process-math">\(\vv\in\ker T\text{:}\)</span> you are asserting that <span class="process-math">\(T(\vv)=\zer\text{.}\)</span> Similarly, to prove <span class="process-math">\(\vv\in \ker T\text{,}\)</span> you must show that <span class="process-math">\(T(\vv)=\zer\text{.}\)</span></p></li>
+<li id="li-88"><p id="p-593">If your hypothesis is that <span class="process-math">\(U=\ker T\)</span> for some subspace <span class="process-math">\(U\subseteq V\text{,}\)</span> you can assume that <span class="process-math">\(T(\uu)=\zer\)</span> for any <span class="process-math">\(\uu\in U\text{.}\)</span></p></li>
+<li id="li-89"><p id="p-594">If you need to prove that <span class="process-math">\(U=\ker T\)</span> for some subspace <span class="process-math">\(U\text{,}\)</span> then you need to prove that if <span class="process-math">\(\uu\in U\text{,}\)</span> then <span class="process-math">\(T(\uu)=\zer\text{,}\)</span> and if <span class="process-math">\(T(\uu)=\zer\text{,}\)</span> then <span class="process-math">\(\uu\in U\text{.}\)</span></p></li>
+<li id="li-90"><p id="p-595">If you assume <span class="process-math">\(\ww\in\im T\text{:}\)</span> you are asserting that there exists some <span class="process-math">\(\vv\in V\text{,}\)</span> such that <span class="process-math">\(T(\vv)=\ww\text{,}\)</span> and to prove that <span class="process-math">\(\ww\in \im T\text{,}\)</span> you must find some <span class="process-math">\(\vv\in V\)</span> such that <span class="process-math">\(T(\vv)=\ww\text{.}\)</span></p></li>
+<li id="li-91"><p id="p-596">If your hypothesis is that <span class="process-math">\(U=\im T\)</span> for some subspace <span class="process-math">\(U\subseteq W\text{,}\)</span> then you are assuming that for every <span class="process-math">\(\uu\in U\text{,}\)</span> there is some <span class="process-math">\(\vv\in V\)</span> such that <span class="process-math">\(T(\vv)=\uu\text{.}\)</span></p></li>
+<li id="li-92"><p id="p-597">If you need to prove that <span class="process-math">\(\im T=U\)</span> for some subspace <span class="process-math">\(U\text{,}\)</span> then you need to show that for every <span class="process-math">\(\uu\in U\text{,}\)</span> there is some <span class="process-math">\(\vv\in V\)</span> with <span class="process-math">\(T(\vv)=\uu\text{,}\)</span> and that <span class="process-math">\(T(\vv)\in U\)</span> for every <span class="process-math">\(\vv\in V\text{.}\)</span></p></li>
+</ul></article><article class="theorem theorem-like" id="thm-ker-img-subspace"><h3 class="heading">
+<span class="type">Theorem</span><span class="space"> </span><span class="codenumber">2.2.4</span><span class="period">.</span>
+</h3>
+<p id="p-598">For any linear transformation <span class="process-math">\(T:V\to W\text{,}\)</span></p>
 <ol class="decimal">
-<li id="li-87"><p id="p-590"><span class="process-math">\(\ker T\)</span> is a subspace of <span class="process-math">\(V\text{.}\)</span></p></li>
-<li id="li-88"><p id="p-591"><span class="process-math">\(\im T\)</span> is a subspace of <span class="process-math">\(W\text{.}\)</span></p></li>
-</ol></article><article class="hiddenproof" id="proof-33"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-33"><h3 class="heading"><span class="type">Proof<span class="period">.</span></span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-33"><article class="hiddenproof"><ol id="p-592" class="decimal">
-<li id="li-89">
-<p id="p-593">To show that <span class="process-math">\(\ker T\)</span> is a subspace, first note that <span class="process-math">\(\mathbf{0}\in \ker T\text{,}\)</span> since <span class="process-math">\(T(\mathbf{0})=\mathbf{0}\)</span> for any linear transformation <span class="process-math">\(T\text{.}\)</span> If <span class="process-math">\(\vv,\ww\in \ker T\text{,}\)</span> then <span class="process-math">\(T(\vv)=\mathbf{0}\)</span> and <span class="process-math">\(T(\ww)=0\text{,}\)</span> and therefore,</p>
+<li id="li-93"><p id="p-599"><span class="process-math">\(\ker T\)</span> is a subspace of <span class="process-math">\(V\text{.}\)</span></p></li>
+<li id="li-94"><p id="p-600"><span class="process-math">\(\im T\)</span> is a subspace of <span class="process-math">\(W\text{.}\)</span></p></li>
+</ol></article><article class="hiddenproof" id="proof-33"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-33"><h3 class="heading"><span class="title">Strategy.</span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-33"><article class="hiddenproof"><p id="p-601">Both parts of the proof rely on the <a href="" class="xref" data-knowl="./knowl/thm-subspace-test.html" title="Theorem 1.2.2: Subspace Test">Subspace Test</a>. So for each set, we first need to explain why it contains the zero vector. Next comes closure under addition: assume you have to elements of the set, then use the definition to explain what that means.</p>
+<p id="p-602">Now you have to show that the sum of those elements belongs to the set as well. It's fairly safe to assume that this is going to involve the addition property of a linear transformation!</p>
+<p id="p-603">Scalar multiplication is handled similarly, but using the scalar multiplication property of <span class="process-math">\(T\text{.}\)</span></p></article></div>
+<article class="hiddenproof" id="proof-34"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-34"><h3 class="heading"><span class="type">Proof<span class="period">.</span></span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-34"><article class="hiddenproof"><ol id="p-604" class="decimal">
+<li id="li-95">
+<p id="p-605">To show that <span class="process-math">\(\ker T\)</span> is a subspace, first note that <span class="process-math">\(\zer\in \ker T\text{,}\)</span> since <span class="process-math">\(T(\zer)=\zer\)</span> for any linear transformation <span class="process-math">\(T\text{.}\)</span> Now, suppose that <span class="process-math">\(\vv,\ww\in \ker T\text{;}\)</span> this means that <span class="process-math">\(T(\vv)=\zer\)</span> and <span class="process-math">\(T(\ww)=0\text{,}\)</span> and therefore,</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
-T(\vv+\ww)=T(\vv)+T(\ww)=\mathbf{0}+\mathbf{0}=\mathbf{0}\text{.}
+T(\vv+\ww)=T(\vv)+T(\ww)=\zer+\zer=\zer\text{.}
 \end{equation*}
 </div>
-<p class="continuation">Similarly, for any scalar <span class="process-math">\(c\)</span> and <span class="process-math">\(\vv\in \ker T\text{,}\)</span></p>
+<p class="continuation">Similarly, for any scalar <span class="process-math">\(c\text{,}\)</span> if <span class="process-math">\(\vv\in \ker T\)</span> then <span class="process-math">\(T(\vv)=\zer\text{,}\)</span> so</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
-T(c\vv)=cT(\vv)=c\mathbf{0}=\mathbf{0}\text{.}
+T(c\vv)=cT(\vv)=c\zer=\zer\text{.}
 \end{equation*}
 </div>
 <p class="continuation">By the subspace test, <span class="process-math">\(\ker T\)</span> is a subspace.</p>
 </li>
-<li id="li-90">
-<p id="p-594">Again, since <span class="process-math">\(T(\mathbf{0})=\mathbf{0}\text{,}\)</span> we see that <span class="process-math">\(\mathbf{0}\in \im T\text{,}\)</span> so <span class="process-math">\(\im T\)</span> is nonempty. If <span class="process-math">\(\ww_1,\ww_2\in \im T\text{,}\)</span> then there exist <span class="process-math">\(\vv_1,\vv_2\in V\)</span> such that <span class="process-math">\(T(\vv_1)=\ww_1\)</span> and <span class="process-math">\(T(\vv_2)=\ww_2\text{.}\)</span> It follows that</p>
+<li id="li-96">
+<p id="p-606">Again, since <span class="process-math">\(T(\zer)=\zer\text{,}\)</span> we see that <span class="process-math">\(\zer\in \im T\text{.}\)</span> (That is, <span class="process-math">\(T(\zer_V)=\zer_W\text{,}\)</span> so <span class="process-math">\(\zer_W\in \im T\text{.}\)</span>) Now suppose that <span class="process-math">\(\ww_1,\ww_2\in \im T\text{.}\)</span> This means that there exist <span class="process-math">\(\vv_1,\vv_2\in V\)</span> such that <span class="process-math">\(T(\vv_1)=\ww_1\)</span> and <span class="process-math">\(T(\vv_2)=\ww_2\text{.}\)</span> It follows that</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 \ww_1+\ww_2 = T(\vv_1)+T(\vv_2) = T(\vv_1+\vv_2)\text{,}
 \end{equation*}
 </div>
-<p class="continuation">so <span class="process-math">\(\ww_1+\ww_2\in \im T\text{.}\)</span> Similarly, if <span class="process-math">\(c\)</span> is any scalar and <span class="process-math">\(\ww=T(\vv)\in\im T\text{,}\)</span> then</p>
+<p class="continuation">so <span class="process-math">\(\ww_1+\ww_2\in \im T\text{,}\)</span> since it's the image of <span class="process-math">\(\vv_1+\vv_2\text{.}\)</span> Similarly, if <span class="process-math">\(c\)</span> is any scalar and <span class="process-math">\(\ww=T(\vv)\in\im T\text{,}\)</span> then</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 c\ww=cT(\vv)=T(c\vv)\text{,}
@@ -295,52 +313,48 @@ c\ww=cT(\vv)=T(c\vv)\text{,}
 <p class="continuation">so <span class="process-math">\(c\ww\in \im T\text{.}\)</span></p>
 </li>
 </ol></article></div>
-<p id="p-595">A familiar setting that you may already have encountered in a previous linear algebra course is that of a matrix transformation. Let <span class="process-math">\(A\)</span> be an <span class="process-math">\(m\times n\)</span> matrix. Then we can define <span class="process-math">\(T:\R^n\to \R^m\)</span> by <span class="process-math">\(T(\xx)=A\xx\text{,}\)</span> where elements of <span class="process-math">\(\R^n,\R^m\)</span> are considered as column vectors. We then have</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
+<article class="example example-like" id="example-8"><h3 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">2.2.5</span><span class="period">.</span><span class="space"> </span><span class="title">Null space and column space.</span>
+</h3>
+<p id="p-607">A familiar setting that you may already have encountered in a previous linear algebra course (or <a href="" class="xref" data-knowl="./knowl/ex-matrix-trans.html" title="Example 2.1.4">Example 2.1.4</a>) is that of a matrix transformation. Let <span class="process-math">\(A\)</span> be an <span class="process-math">\(m\times n\)</span> matrix. Then we can define <span class="process-math">\(T:\R^n\to \R^m\)</span> by <span class="process-math">\(T(\xx)=A\xx\text{,}\)</span> where elements of <span class="process-math">\(\R^n,\R^m\)</span> are considered as column vectors. We then have</p>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/ex-matrix-trans.html">
 \begin{equation*}
-\ker T = \nll(A) = \{\xx\in \R^n \,|\, A\xx=\mathbf{0}\}
+\ker T = \nll(A) = \{\xx\in \R^n \,|\, A\xx=\zer\}
 \end{equation*}
 </div>
 <p class="continuation">and</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/ex-matrix-trans.html">
 \begin{equation*}
 \im T = \csp(A) = \{A\xx\,|\, \xx\in \R^n\}\text{,}
 \end{equation*}
 </div>
 <p class="continuation">where <span class="process-math">\(\csp(A)\)</span> denotes the <dfn class="terminology">column space</dfn> of <span class="process-math">\(A\text{.}\)</span> Recall further that if we write <span class="process-math">\(A\)</span> in terms of its columns as</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/ex-matrix-trans.html">
 \begin{equation*}
 A = \bbm C_1 \amp C_2 \amp \cdots \amp C_n\ebm
 \end{equation*}
 </div>
 <p class="continuation">and a vector <span class="process-math">\(\xx\in \R^n\)</span> as <span class="process-math">\(\xx=\bbm x_1\\x_2\\\vdots \\x_n\ebm\text{,}\)</span> then</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/ex-matrix-trans.html">
 \begin{equation*}
 A\xx = x_1C_1+x_2C_2+\cdots +x_nC_n\text{.}
 \end{equation*}
 </div>
-<p class="continuation">Thus, any element of <span class="process-math">\(\csp(A)\)</span> is a linear combination of its columns, explaining the name <em class="emphasis">column space</em>.</p>
-<p id="p-596">Determining <span class="process-math">\(\nll(A)\)</span> and <span class="process-math">\(\csp(A)\)</span> for a given matrix <span class="process-math">\(A\)</span> is, unsurprisingly, a matter of reducing <span class="process-math">\(A\)</span> to row-echelon form. Finding <span class="process-math">\(\nll(A)\)</span> is simply a matter of describing the set of all solutions to the homogeneous system <span class="process-math">\(A\xx=\mathbf{0}\text{.}\)</span> Finding <span class="process-math">\(\csp(A)\)</span> relies on the following theorem.</p>
+<p class="continuation">Thus, any element of <span class="process-math">\(\csp(A)\)</span> is a linear combination of its columns, explaining the name <em class="emphasis">column space</em>.</p></article><p id="p-608">Determining <span class="process-math">\(\nll(A)\)</span> and <span class="process-math">\(\csp(A)\)</span> for a given matrix <span class="process-math">\(A\)</span> is, unsurprisingly, a matter of reducing <span class="process-math">\(A\)</span> to row-echelon form. Finding <span class="process-math">\(\nll(A)\)</span> comes down to describing the set of all solutions to the homogeneous system <span class="process-math">\(A\xx=\zer\text{.}\)</span> Finding <span class="process-math">\(\csp(A)\)</span> relies on the following theorem.</p>
 <article class="theorem theorem-like" id="thm-colspace"><h3 class="heading">
-<span class="type">Theorem</span><span class="space"> </span><span class="codenumber">2.2.3</span><span class="period">.</span>
+<span class="type">Theorem</span><span class="space"> </span><span class="codenumber">2.2.6</span><span class="period">.</span>
 </h3>
-<p id="p-597">Let <span class="process-math">\(A\)</span> be an <span class="process-math">\(m\times n\)</span> matrix with columns <span class="process-math">\(C_1,C_2,\ldots, C_n\text{.}\)</span> If the reduced row-echelon form of <span class="process-math">\(A\)</span> has leading ones in columns <span class="process-math">\(j_1,j_2,\ldots, j_k\text{,}\)</span> then</p>
+<p id="p-609">Let <span class="process-math">\(A\)</span> be an <span class="process-math">\(m\times n\)</span> matrix with columns <span class="process-math">\(C_1,C_2,\ldots, C_n\text{.}\)</span> If the reduced row-echelon form of <span class="process-math">\(A\)</span> has leading ones in columns <span class="process-math">\(j_1,j_2,\ldots, j_k\text{,}\)</span> then</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 \{C_{j_1},C_{j_2},\ldots, C_{j_k}\}
 \end{equation*}
 </div>
-<p class="continuation">is a basis for <span class="process-math">\(\csp(A)\text{.}\)</span></p></article><p id="p-598">The truth of this theorem is demonstrated in Section 5.4 of the text by Nicholson. To see why it works, we need to remember a few basic facts from elementary linear algebra. First, recall that performing an elementary row operation on a matrix <span class="process-math">\(A\)</span> is equivalent to multiplying on the left by an elementary matrix <span class="process-math">\(E\)</span> defined using the same row operation.</p>
-<p id="p-599">Since every elementary matrix is invertible, and any product of invertible matrices is invertible, and we can transform <span class="process-math">\(A\)</span> into a row-echelon matrix <span class="process-math">\(R\)</span> using elementary row operations, it follows that <span class="process-math">\(R = UA\)</span> for an invertible matrix <span class="process-math">\(U\text{;}\)</span> indeed, we have <span class="process-math">\(U = E_kE_{k-1}\cdots E_2E_1\text{,}\)</span> where <span class="process-math">\(E_1,\ldots, E_k\)</span> are the elementary matrices corresponding to the row operations used to carry <span class="process-math">\(A\)</span> to <span class="process-math">\(R\text{.}\)</span></p>
-<p id="p-600">A basis for <span class="process-math">\(\csp(R)\)</span> is given by the columns of <span class="process-math">\(R\)</span> containing the leading ones. The reason for this is as follows. First, recall that each nonzero row begins with a leading one. So if the leading ones of <span class="process-math">\(R\)</span> are in columns <span class="process-math">\(i_1,\ldots, i_k\text{,}\)</span> then there are <span class="process-math">\(k\)</span> nonzero rows. Since all rows of zeros go at the bottom, each column in <span class="process-math">\(R\)</span> has its last <span class="process-math">\(m-k\)</span> entries identically zero. Thus,</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-\csp(R)\subseteq \left\{\bbm a_1\\\vdots \\a_k\\0\\\vdots 0\ebm\in \R^m \,|\, a_1,\ldots, a_k\in\R\right\}\text{,}
-\end{equation*}
-</div>
-<p class="continuation">so <span class="process-math">\(\dim \csp(R)\leq k\text{.}\)</span> But the columns containing leading ones are easily shown to be independent, so they form a basis of <span class="process-math">\(\csp(R)\text{,}\)</span> which therefore has dimension <span class="process-math">\(k=\operatorname{rank}(A)\text{.}\)</span></p>
-<p id="p-601">Next, since <span class="process-math">\(R=UA\text{,}\)</span> where <span class="process-math">\(U\)</span> is invertible, if <span class="process-math">\(R=\bbm Y_1\amp Y_2\amp \cdots \amp Y_n\ebm\)</span> and <span class="process-math">\(A = \bbm C_1\amp C_2\amp \cdots \amp C_n\ebm\text{,}\)</span> then <span class="process-math">\(C_i = U^{-1}Y_i\)</span> for each <span class="process-math">\(i\text{.}\)</span> It follows from the fact that <span class="process-math">\(U\)</span> is invertible and that the columns containing leading ones in <span class="process-math">\(R\)</span> form a basis for <span class="process-math">\(\csp(R)\)</span> that the corresponding columns in <span class="process-math">\(A\)</span> form a basis for <span class="process-math">\(\csp(A)\text{.}\)</span> (For details, see Section 5.4 in Nicholson.)</p>
-<p id="p-602">For example, consider the linear transformation <span class="process-math">\(T:\R^4\to \R^3\)</span> defined by the matrix</p>
+<p class="continuation">is a basis for <span class="process-math">\(\csp(A)\text{.}\)</span></p></article><p id="p-610">For a proof of this result, see Section 5.4 of <em class="emphasis">Linear Algebra with Applications</em>, by Keith Nicholson. The proof is fairly long and technical, so we omit it here.</p>
+<article class="example example-like" id="ex-col-null"><h3 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">2.2.7</span><span class="period">.</span>
+</h3>
+<p id="p-611">Consider the linear transformation <span class="process-math">\(T:\R^4\to \R^3\)</span> defined by the matrix</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 A = \bbm 1 \amp 3 \amp 0 \amp -2\\
@@ -354,7 +368,7 @@ init_printing()
 A=Matrix(3,4,[1,3,0,-2,-2,-1,2,0,1,8,2,-6])
 A.rref()
 </script></pre>
-<p id="p-603">We see that there are leading ones in the first and second column. Therefore, <span class="process-math">\(\csp(A) = \im(T) = \spn\left\{\bbm 1\\-2\\1\ebm, \bbm 3\\-1\\8\ebm\right\}\text{.}\)</span> Indeed, note that</p>
+<p id="p-612">We see that there are leading ones in the first and second column. Therefore, <span class="process-math">\(\csp(A) = \im(T) = \spn\left\{\bbm 1\\-2\\1\ebm, \bbm 3\\-1\\8\ebm\right\}\text{.}\)</span> Indeed, note that</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 \bbm 0\\2\\2\ebm = -\frac65\bbm 1\\-2\\1\ebm + \frac25\bbm 3\\-1\\8\ebm
@@ -367,7 +381,7 @@ A.rref()
 \end{equation*}
 </div>
 <p class="continuation">so that indeed, the third and fourth columns are in the span of the first and second.</p>
-<p id="p-604">Furthermore, we can determine the nullspace: if <span class="process-math">\(A\xx=\mathbf{0}\)</span> where <span class="process-math">\(\xx=\bbm x_1\\x_2\\x_3\\x_4\ebm\text{,}\)</span> then we must have</p>
+<p id="p-613">Furthermore, we can determine the nullspace: if <span class="process-math">\(A\xx=\zer\)</span> where <span class="process-math">\(\xx=\bbm x_1\\x_2\\x_3\\x_4\ebm\text{,}\)</span> then we must have</p>
 <div class="displaymath process-math" data-contains-math-knowls="" id="md-33">
 \begin{align*}
 x_1 \amp =\frac65 x_3-\frac25 x_4\\
@@ -380,19 +394,20 @@ x_2 \amp =-\frac25 x_3+\frac 45 x_4\text{,}
 \xx = \bbm \frac65x_3-\frac25x_4\\ -\frac25x_3+\frac45x_4\\x_3\\x_4\ebm = \frac{x_3}{5}\bbm 6\\-2\\5\\0\ebm + \frac{x_4}{5}\bbm -2\\4\\0\\5\ebm\text{.}
 \end{equation*}
 </div>
-<p class="continuation">It follows that a basis for <span class="process-math">\(\nll(A)=\ker T\)</span> is <span class="process-math">\(\left\{\bbm 6\\-2\\5\\0\ebm, \bbm -2\\4\\0\\5\ebm\right\}\text{.}\)</span></p>
-<p id="p-605">Incidentally, the SymPy library for Python has built-in functions for computing nullspace and column space. But it's probably worth your while to know how to determine these from the <abbr class="initialism">RREF</abbr> of a matrix, without additional help from the computer. That said, let's see how the computer's output compares to what we found:</p>
+<p class="continuation">It follows that a basis for <span class="process-math">\(\nll(A)=\ker T\)</span> is <span class="process-math">\(\left\{\bbm 6\\-2\\5\\0\ebm, \bbm -2\\4\\0\\5\ebm\right\}\text{.}\)</span></p></article><article class="remark remark-like" id="remark-7"><h3 class="heading">
+<span class="type">Remark</span><span class="space"> </span><span class="codenumber">2.2.8</span><span class="period">.</span>
+</h3>
+<p id="p-614">The SymPy library for Python has built-in functions for computing nullspace and column space. But it's probably worth your while to know how to determine these from the <abbr class="initialism">RREF</abbr> of a matrix, without additional help from the computer. That said, let's see how the computer's output compares to what we found in <a href="" class="xref" data-knowl="./knowl/ex-col-null.html" title="Example 2.2.7">Example 2.2.7</a>.</p>
 <pre class="ptx-sagecell sagecell-sage" id="sage-26"><script type="text/x-sage">A.nullspace()
 </script></pre>
 <pre class="ptx-sagecell sagecell-sage" id="sage-27"><script type="text/x-sage">A.columnspace()
 </script></pre>
-<p id="p-606">Note that the output from the computer simply states the basis for each space. Of course, for computational purposes, this is typically good enough.</p>
-<p id="p-607">An important result that comes out while trying to show that the “pivot columns” of a matrix (the ones that end up with leading ones in the <abbr class="initialism">RREF</abbr>) are a basis for the column space is that the column rank (defined as the dimension of <span class="process-math">\(\csp(A)\)</span>) and the row rank (the dimension of the space spanned by the columns of <span class="process-math">\(A\)</span>) are equal. One can therefore speak unambiguously about the <dfn class="terminology">rank</dfn> of a matrix <span class="process-math">\(A\text{,}\)</span> and it is just as it's defined in a first course in linear algebra: the number of leading ones in the <abbr class="initialism">RREF</abbr> of <span class="process-math">\(A\text{.}\)</span></p>
-<p id="p-608">For a general linear transformation, we can't necessarily speak in terms of rows and columns, but if <span class="process-math">\(T:V\to W\)</span> is linear, and either <span class="process-math">\(V\)</span> or <span class="process-math">\(W\)</span> is finite-dimensional, then we can define the rank of <span class="process-math">\(T\)</span> as follows.</p>
+<p id="p-615">Note that the output from the computer simply states the basis for each space. Of course, for computational purposes, this is typically good enough.</p></article><p id="p-616">An important result that comes out while trying to show that the “pivot columns” of a matrix (the ones that end up with leading ones in the <abbr class="initialism">RREF</abbr>) are a basis for the column space is that the column rank (defined as the dimension of <span class="process-math">\(\csp(A)\)</span>) and the row rank (the dimension of the space spanned by the rows of <span class="process-math">\(A\)</span>) are equal. One can therefore speak unambiguously about the <dfn class="terminology">rank</dfn> of a matrix <span class="process-math">\(A\text{,}\)</span> and it is just as it's defined in a first course in linear algebra: the number of leading ones in the <abbr class="initialism">RREF</abbr> of <span class="process-math">\(A\text{.}\)</span></p>
+<p id="p-617">For a general linear transformation, we can't necessarily speak in terms of rows and columns, but if <span class="process-math">\(T:V\to W\)</span> is linear, and either <span class="process-math">\(V\)</span> or <span class="process-math">\(W\)</span> is finite-dimensional, then we can define the rank of <span class="process-math">\(T\)</span> as follows.</p>
 <article class="definition definition-like" id="def-rank-transformation"><h3 class="heading">
-<span class="type">Definition</span><span class="space"> </span><span class="codenumber">2.2.4</span><span class="period">.</span>
+<span class="type">Definition</span><span class="space"> </span><span class="codenumber">2.2.9</span><span class="period">.</span>
 </h3>
-<p id="p-609">Let <span class="process-math">\(T:V\to W\)</span> be a linear transformation. Then the <dfn class="terminology">rank</dfn> of <span class="process-math">\(T\)</span> is defined by</p>
+<p id="p-618">Let <span class="process-math">\(T:V\to W\)</span> be a linear transformation. Then the <dfn class="terminology">rank</dfn> of <span class="process-math">\(T\)</span> is defined by</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 \operatorname{rank} T = \dim \im T\text{,}
@@ -401,23 +416,24 @@ x_2 \amp =-\frac25 x_3+\frac 45 x_4\text{,}
 <p class="continuation">and the <dfn class="terminology">nullity</dfn> of <span class="process-math">\(T\)</span> is defined by</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
-\operatorname{nullity} T = \dim \ker T\text{.}
+\operatorname{nullity} T = \dim \ker T\text{,}
 \end{equation*}
-</div></article><p id="p-610">Note that if <span class="process-math">\(W\)</span> is finite-dimensional, then so is <span class="process-math">\(\im T\text{,}\)</span> since it's a subspace of <span class="process-math">\(W\text{.}\)</span> On the other hand, if <span class="process-math">\(V\)</span> is finite-dimensional, then we can find a basis <span class="process-math">\(\{\vv_1,\ldots, \vv_n\}\)</span> of <span class="process-math">\(V\text{,}\)</span> and the set <span class="process-math">\(\{T(\vv_1),\ldots, T(\vv_n)\}\)</span> will span <span class="process-math">\(\im T\text{,}\)</span> so again the image is finite-dimensional, so the rank of <span class="process-math">\(T\)</span> is finite. It is possible for either the rank or the nullity of a transformation to be infinite.</p>
-<p id="p-611">Knowing that the kernel and image of an operator are subspaces gives us an easy way to define subspaces. From the textbook, we have the following nice example.</p>
-<article class="example example-like" id="example-8"><h3 class="heading">
-<span class="type">Example</span><span class="space"> </span><span class="codenumber">2.2.5</span><span class="period">.</span>
+</div>
+<p class="continuation">provided that the kernel and image of <span class="process-math">\(T\)</span> are finite-dimensional.</p></article><p id="p-619">Note that if <span class="process-math">\(W\)</span> is finite-dimensional, then so is <span class="process-math">\(\im T\text{,}\)</span> since it's a subspace of <span class="process-math">\(W\text{.}\)</span> On the other hand, if <span class="process-math">\(V\)</span> is finite-dimensional, then we can find a basis <span class="process-math">\(\{\vv_1,\ldots, \vv_n\}\)</span> of <span class="process-math">\(V\text{,}\)</span> and the set <span class="process-math">\(\{T(\vv_1),\ldots, T(\vv_n)\}\)</span> will span <span class="process-math">\(\im T\text{,}\)</span> so again the image is finite-dimensional, so the rank of <span class="process-math">\(T\)</span> is finite. It is possible for either the rank or the nullity of a transformation to be infinite.</p>
+<p id="p-620">Knowing that the kernel and image of an operator are subspaces gives us an easy way to define subspaces. From the textbook, we have the following nice example.</p>
+<article class="example example-like" id="example-10"><h3 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">2.2.10</span><span class="period">.</span>
 </h3>
-<p id="p-612">Let <span class="process-math">\(T:M_{nn}\to M_{nn}\)</span> be defined by <span class="process-math">\(T(A)=A-A^T\text{.}\)</span> Then</p>
+<p id="p-621">Let <span class="process-math">\(T:M_{nn}\to M_{nn}\)</span> be defined by <span class="process-math">\(T(A)=A-A^T\text{.}\)</span> Then</p>
 <ol class="decimal">
-<li id="li-91"><p id="p-613"><span class="process-math">\(T\)</span> is a linear map.</p></li>
-<li id="li-92"><p id="p-614"><span class="process-math">\(\ker T\)</span> is equal to the set of all symmetric matrices.</p></li>
-<li id="li-93"><p id="p-615"><span class="process-math">\(\im T\)</span> is equal to the set of all skew-symmetric matrices.</p></li>
+<li id="li-97"><p id="p-622"><span class="process-math">\(T\)</span> is a linear map.</p></li>
+<li id="li-98"><p id="p-623"><span class="process-math">\(\ker T\)</span> is equal to the set of all symmetric matrices.</p></li>
+<li id="li-99"><p id="p-624"><span class="process-math">\(\im T\)</span> is equal to the set of all skew-symmetric matrices.</p></li>
 </ol>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-39" id="solution-39"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-39"><div class="solution solution-like"><ol id="p-616" class="decimal">
-<li id="li-94">
-<p id="p-617">We have <span class="process-math">\(T(0)=0\)</span> since <span class="process-math">\(0^T=0\text{.}\)</span> Using proerties of the transpose and matrix algebra, we have</p>
+<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-39" id="solution-39"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-39"><div class="solution solution-like"><ol id="p-625" class="decimal">
+<li id="li-100">
+<p id="p-626">We have <span class="process-math">\(T(0)=0\)</span> since <span class="process-math">\(0^T=0\text{.}\)</span> Using proerties of the transpose and matrix algebra, we have</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 T(A+B) = (A+B)-(A+B)^T = (A-A^T)+(B-B^T) = T(A)+T(B)
@@ -430,9 +446,9 @@ T(kA) = (kA) - (kA)^T = kA-kA^T = k(A-A^T) = kT(A)\text{.}
 \end{equation*}
 </div>
 </li>
-<li id="li-95"><p id="p-618">It's clear that if <span class="process-math">\(A^T=A\text{,}\)</span> then <span class="process-math">\(T(A)=0\text{.}\)</span> On the other hand, if <span class="process-math">\(T(A)=0\text{,}\)</span> then <span class="process-math">\(A-A^T=0\text{,}\)</span> so <span class="process-math">\(A=A^T\text{.}\)</span> Thus, the kernel consists of all symmetric matrices.</p></li>
-<li id="li-96">
-<p id="p-619">If <span class="process-math">\(B=T(A)=A-A^T\text{,}\)</span> then</p>
+<li id="li-101"><p id="p-627">It's clear that if <span class="process-math">\(A^T=A\text{,}\)</span> then <span class="process-math">\(T(A)=0\text{.}\)</span> On the other hand, if <span class="process-math">\(T(A)=0\text{,}\)</span> then <span class="process-math">\(A-A^T=0\text{,}\)</span> so <span class="process-math">\(A=A^T\text{.}\)</span> Thus, the kernel consists of all symmetric matrices.</p></li>
+<li id="li-102">
+<p id="p-628">If <span class="process-math">\(B=T(A)=A-A^T\text{,}\)</span> then</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 B^T = (A-A^T)^T = A^T-A = -B\text{,}
@@ -446,63 +462,125 @@ T\Bigl(\frac12 B\Bigr) = \frac12 T(B) = \frac12(B-B^T) = \frac12(B-(-B))= B\text
 </div>
 </li>
 </ol></div></div>
-</div></article><p id="p-620">You'll recall from a course like Math 2000 that in the study of functions, the properties of being injective (one-to-one) and surjective (onto) are important. They're important for linear transformations as well, and defined in exactly the same way.</p>
-<p id="p-621">It's clear that being surjective is closely tied to image. Indeed, by definition, <span class="process-math">\(T:V\to W\)</span> is onto if <span class="process-math">\(\im T = W\text{.}\)</span> What might not be immediately obvious is that the kernel tells us if a linear map is injective.</p>
+</div></article><p id="p-629">Recall that a function <span class="process-math">\(f:A\to B\)</span> is <dfn class="terminology">injective</dfn> (or one-to-one) if for any <span class="process-math">\(x_1,x_2\in A\text{,}\)</span> <span class="process-math">\(f(x_1)=f(x_2)\)</span> implies that <span class="process-math">\(x_1=x_2\text{.}\)</span> (In other words, no two different inputs give the same output.) We say that <span class="process-math">\(f\)</span> is <dfn class="terminology">surjective</dfn> (or onto) if <span class="process-math">\(f(A)=B\text{.}\)</span> (That is, if the range of <span class="process-math">\(f\)</span> is the entire codomain <span class="process-math">\(B\text{.}\)</span>) These properties are important considerations for the discussion of inverse functions.</p>
+<p id="p-630">For a linear transformation <span class="process-math">\(T\text{,}\)</span> the property of surjectivity is tied to <span class="process-math">\(\im T\)</span> by definition: <span class="process-math">\(T:V\to W\)</span> is onto if <span class="process-math">\(\im T = W\text{.}\)</span> What might not be immediately obvious is that the kernel tells us if a linear transformation is injective.</p>
 <article class="theorem theorem-like" id="thm-injective-kernel"><h3 class="heading">
-<span class="type">Theorem</span><span class="space"> </span><span class="codenumber">2.2.6</span><span class="period">.</span>
+<span class="type">Theorem</span><span class="space"> </span><span class="codenumber">2.2.11</span><span class="period">.</span>
 </h3>
-<p id="p-622">Let <span class="process-math">\(T:V\to W\)</span> be a linear transformation. Then <span class="process-math">\(T\)</span> is injective if and only if <span class="process-math">\(\ker T = \{\mathbf{0}\}\text{.}\)</span></p></article><article class="hiddenproof" id="proof-34"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-34"><h3 class="heading"><span class="type">Proof<span class="period">.</span></span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-34"><article class="hiddenproof"><p id="p-623">Suppose <span class="process-math">\(T\)</span> is injective, and let <span class="process-math">\(\vv\in \ker T\text{.}\)</span> Then <span class="process-math">\(T(\vv)=\mathbf{0}\text{.}\)</span> On the other hand, we know that <span class="process-math">\(T(\mathbf{0})=\mathbf{0}\text{,}\)</span> and since <span class="process-math">\(T\)</span> is injective, we must have <span class="process-math">\(\vv=\mathbf{0}\text{.}\)</span> Conversely, suppose that <span class="process-math">\(\ker T = \{0\}\)</span> and that <span class="process-math">\(T(\vv_1)=T(\vv_2)\)</span> for some <span class="process-math">\(\vv_1,\vv_2\in V\text{.}\)</span> Then</p>
+<p id="p-631">Let <span class="process-math">\(T:V\to W\)</span> be a linear transformation. Then <span class="process-math">\(T\)</span> is injective if and only if <span class="process-math">\(\ker T = \{\zer\}\text{.}\)</span></p></article><article class="hiddenproof" id="proof-35"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-35"><h3 class="heading"><span class="title">Strategy.</span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-35"><article class="hiddenproof"><p id="p-632">We have an “if and only if” statement, so we have to make sure to consider both directions. The basic idea is this: we know that <span class="process-math">\(\zer\)</span> is always in the kernel, so if the kernel contains any other vector <span class="process-math">\(\vv\text{,}\)</span> we would have <span class="process-math">\(T(\vv)=T(\zer)=\zer\text{,}\)</span> and <span class="process-math">\(T\)</span> would not be injective.</p>
+<p id="p-633">There is one trick to keep in mind: the statement <span class="process-math">\(T(\vv_1)=T(\vv_2)\)</span> is equivalent to <span class="process-math">\(T(\vv_1)-T(\vv_2)=\zer\text{,}\)</span> and since <span class="process-math">\(T\)</span> is linear, <span class="process-math">\(T(\vv_1)-T(\vv_2)=T(\vv_1-\vv_2)\text{.}\)</span></p></article></div>
+<article class="hiddenproof" id="proof-36"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-36"><h3 class="heading"><span class="type">Proof<span class="period">.</span></span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-36"><article class="hiddenproof"><p id="p-634">Suppose <span class="process-math">\(T\)</span> is injective, and let <span class="process-math">\(\vv\in \ker T\text{.}\)</span> Then <span class="process-math">\(T(\vv)=\zer\text{.}\)</span> On the other hand, we know that <span class="process-math">\(T(\zer)=\zer=T(\vv)\text{.}\)</span> Since <span class="process-math">\(T\)</span> is injective, we must have <span class="process-math">\(\vv=\zer\text{.}\)</span> Conversely, suppose that <span class="process-math">\(\ker T = \{0\}\)</span> and that <span class="process-math">\(T(\vv_1)=T(\vv_2)\)</span> for some <span class="process-math">\(\vv_1,\vv_2\in V\text{.}\)</span> Then</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
-\mathbf{0} = T(\vv_1)-T(\vv_2) = T(\vv_1-\vv_2)\text{,}
+\zer = T(\vv_1)-T(\vv_2) = T(\vv_1-\vv_2)\text{,}
 \end{equation*}
 </div>
-<p class="continuation">so <span class="process-math">\(\vv_1-\vv_2\in \ker T\text{.}\)</span> Therefore, we must have <span class="process-math">\(\vv_1-\vv_2=\mathbf{0}\text{,}\)</span> so <span class="process-math">\(\vv_1=\vv_2\text{,}\)</span> and it follows that <span class="process-math">\(T\)</span> is injective.</p></article></div>
-<p id="p-624">Let us return to the case of a matrix transformation <span class="process-math">\(T_A:\R^n\to \R^m\text{.}\)</span> Notice that <span class="process-math">\(\ker T_A\)</span> is simply the set of all solutions to <span class="process-math">\(A\xx=\mathbf{0}\text{,}\)</span> while <span class="process-math">\(\im T_A\)</span> is the set of all <span class="process-math">\(\yy\in\R^m\)</span> for which <span class="process-math">\(A\xx=\yy\)</span> <em class="emphasis">has</em> a solution.</p>
-<p id="p-625">Recall from the discussion above that <span class="process-math">\(\rank A = \dim \csp(A) = \dim \im T_A\text{.}\)</span> It follows that <span class="process-math">\(T_A\)</span> is surjective if and only if <span class="process-math">\(\rank A = m\text{.}\)</span> On the other hand, <span class="process-math">\(T_A\)</span> is injective if and only if <span class="process-math">\(\rank A = n\text{,}\)</span> because we know that the system <span class="process-math">\(A\xx=\mathbf{0}\)</span> has a unique solution if and only if each column of <span class="process-math">\(A\)</span> contains a leading one.</p>
-<p id="p-626">This has some interesting consequences. If <span class="process-math">\(m=n\)</span> (that is, if <span class="process-math">\(A\)</span> is square), then each increase in <span class="process-math">\(\dim \nll(A)\)</span> produces a corresponding decrease in <span class="process-math">\(\dim \csp(A)\text{,}\)</span> since both correspond to the “loss” of a leading one. Moreover, if <span class="process-math">\(\rank A = n\text{,}\)</span> then <span class="process-math">\(T_A\)</span> is both injective and surjective. Recall that a function is invertible if and only if it is both injective and surjective. It should come as no surprise that invertibility of <span class="process-math">\(T_A\)</span> (as a function) is equivalent to invertibility of <span class="process-math">\(A\)</span> (as a matrix).</p>
-<p id="p-627">Also, note that if <span class="process-math">\(m \lt n\text{,}\)</span> then <span class="process-math">\(\rank A\leq m \lt n\text{,}\)</span> so <span class="process-math">\(T_A\)</span> could be surjective, but can't possibly be injective. On the other hand, if <span class="process-math">\(m\gt n\text{,}\)</span> then <span class="process-math">\(\rank A\leq n \lt m\text{,}\)</span> so <span class="process-math">\(T_A\)</span> could be injective, but can't possibly be surjective. These results generalize to linear transformations between any finite-dimensional vector spaces. The first step towards this is the following theorem, which is sometimes known as the Fundamental Theorem of Linear Transformations.</p>
-<article class="theorem theorem-like" id="thm-dimension-lintrans"><h3 class="heading">
-<span class="type">Theorem</span><span class="space"> </span><span class="codenumber">2.2.7</span><span class="period">.</span><span class="space"> </span><span class="title">Dimension Theorem.</span>
+<p class="continuation">so <span class="process-math">\(\vv_1-\vv_2\in \ker T\text{.}\)</span> Therefore, we must have <span class="process-math">\(\vv_1-\vv_2=\zer\text{,}\)</span> so <span class="process-math">\(\vv_1=\vv_2\text{,}\)</span> and it follows that <span class="process-math">\(T\)</span> is injective.</p></article></div>
+<article class="exercise exercise-like" id="ex-injective-independent"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">2.2.12</span><span class="period">.</span>
 </h3>
-<p id="p-628">Let <span class="process-math">\(T:V\to W\)</span> be any linear transformation such that <span class="process-math">\(\ker T\)</span> and <span class="process-math">\(\im T\)</span> are finite-dimensional. Then <span class="process-math">\(V\)</span> is finite-dimensional, and</p>
+<div class="runestone" style="max-width: none;"><div data-component="parsons" class="parsons" id="ex-injective-independent">
+<div class="parsons_question parsons-text">
+<p id="p-635">Rearrange the blocks below to produce a valid proof of the following statement:</p>
+<p id="p-636">If <span class="process-math">\(T:V\to W\)</span> is injective and <span class="process-math">\(\{\vv_1,\vv_2,\ldots, \vv_n\}\)</span> is linearly independent in <span class="process-math">\(V\text{,}\)</span> then <span class="process-math">\(\{T(\vv_1),T(\vv_2),\ldots, T(\vv_n)\}\)</span> is linearly independent in <span class="process-math">\(W\text{.}\)</span></p>
+</div>
+<pre class="parsonsblocks" data-question_label="" style="visibility: hidden;" data-language="natural" data-noindent="true"><p id="p-637">Suppose <span class="process-math">\(T:V\to W\)</span> is injective and <span class="process-math">\(\{\vv_1,\ldots, \vv_n\}\subseteq V\)</span> is independent.</p>
+---
+<p id="p-638">Assume that <span class="process-math">\(c_1T(\vv_1)+\cdots + c_nT(\vv_n)=\zer\text{,}\)</span> for some scalars <span class="process-math">\(c_1,c_2,\ldots, c_n\text{.}\)</span></p>
+---
+<p id="p-639">Since <span class="process-math">\(T\)</span> is linear,</p><div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\zer = c_1T(\vv_1)+\cdots + c_nT(\vv_n)=T(c_1\vv_1+ \ldots + c_n\vv_n)\text{.}
+\end{equation*}
+</div>
+---
+<p id="p-640">Therefore, <span class="process-math">\(c_1\vv_1+\cdots + c_n\vv_n\in \ker T\text{.}\)</span></p>
+---
+<p id="p-641">Since <span class="process-math">\(T\)</span> is injective, <span class="process-math">\(\ker T = \{\zer\}\text{.}\)</span></p>
+---
+<p id="p-642">Therefore, <span class="process-math">\(c_1\vv_1+\cdots + c_n\vv_n=\zer\text{.}\)</span></p>
+---
+<p id="p-643">Since <span class="process-math">\(\{\vv_1,\ldots, \vv_n\}\)</span> is independent, we must have <span class="process-math">\(c_1=0,\ldots, c_n=0\text{.}\)</span></p>
+---
+<p id="p-644">It follows that <span class="process-math">\(\{T(\vv_1),\ldots, T(\vv_n)\}\)</span> is linearly independent.</p></pre>
+</div></div>
+<div class="solutions">
+<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-21" id="hint-21"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-21"><div class="hint solution-like"><p id="p-645">Remember that your goal is to show that <span class="process-math">\(\{T(\vv_1),\ldots, T(\vv_n)\}\)</span> is linearly independent, so after you assume your hypotheses, you should begin by setting a linear combination of these vectors equal to zero.</p></div></div>
+</div></article><article class="exercise exercise-like" id="ex-surjective-span"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">2.2.13</span><span class="period">.</span>
+</h3>
+<div class="runestone" style="max-width: none;"><div data-component="parsons" class="parsons" id="ex-surjective-span">
+<div class="parsons_question parsons-text">
+<p id="p-646">Rearrange the blocks below to produce a valid proof of the following statement:</p>
+<p id="p-647">If <span class="process-math">\(T:V\to W\)</span> is surjective and <span class="process-math">\(V=\spn\{\vv_1,\ldots, \vv_n\}\text{,}\)</span> then <span class="process-math">\(W = \spn\{T(\vv_1),\ldots, T(\vv_n)\}\text{.}\)</span></p>
+</div>
+<pre class="parsonsblocks" data-question_label="" style="visibility: hidden;" data-language="natural" data-noindent="true"><p id="p-648">Suppose <span class="process-math">\(T\)</span> is surjective, and <span class="process-math">\(\{\vv_1,\ldots, \vv_n\}\)</span> is independent.</p>
+---
+<p id="p-649">Let <span class="process-math">\(\ww\in W\)</span> be any vector.</p>
+---
+<p id="p-650">Since <span class="process-math">\(T\)</span> is a surjection, there is some <span class="process-math">\(\vv\in V\)</span> such that <span class="process-math">\(T(\vv)=\ww\text{.}\)</span></p>
+---
+<p id="p-651">Since <span class="process-math">\(V=\spn\{\vv_1,\ldots, \vv_n\}\)</span> and <span class="process-math">\(\vv\in V\text{,}\)</span> there are scalars <span class="process-math">\(c_1,\ldots, c_n\)</span> such that <span class="process-math">\(\vv=c_1\vv_1+\cdots +c_n\vv_n\text{.}\)</span></p>
+---
+<p id="p-652">Since <span class="process-math">\(T\)</span> is linear,</p><div class="displaymath process-math" data-contains-math-knowls="" id="md-34">
+\begin{align*}
+\ww \amp = T(\vv) \\
+\amp = T(c_1\vv_1+\cdots +c_n\vv_n)\\
+\amp = c_1T(\vv_1)+\cdots +c_nT(\vv_n)\text{,}
+\end{align*}
+</div><p class="continuation">so <span class="process-math">\(\ww\in \spn\{T(\vv_1),\ldots, T(\vv_n)\}\text{.}\)</span></p>
+---
+<p id="p-653">Therefore, <span class="process-math">\(W\subseteq \spn\{T(\vv_1),\ldots, T(\vv_n)\}\text{,}\)</span> and since <span class="process-math">\(\spn\{T(\vv_1),\ldots, T(\vv_n)\}\sbuseteq W\text{,}\)</span> we have <span class="process-math">\(W=\spn\{T(\vv_1),\ldots, T(\vv_n)\}\text{.}\)</span></p></pre>
+</div></div>
+<div class="solutions">
+<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-22" id="hint-22"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-22"><div class="hint solution-like"><p id="p-654">You need to show that any <span class="process-math">\(\ww\in W\)</span> can be written as a linear combination of the <span class="process-math">\(T(\vv_i)\text{.}\)</span> Because <span class="process-math">\(T\)</span> is surjective, you know that <span class="process-math">\(\ww=T(\vv)\)</span> for some <span class="process-math">\(\vv\in V\text{.}\)</span></p></div></div>
+</div></article><article class="remark remark-like" id="remark-8"><h3 class="heading">
+<span class="type">Remark</span><span class="space"> </span><span class="codenumber">2.2.14</span><span class="period">.</span>
+</h3>
+<p id="p-655">For the case of a matrix transformation <span class="process-math">\(T_A:\R^n\to \R^m\text{,}\)</span> notice that <span class="process-math">\(\ker T_A\)</span> is simply the set of all solutions to <span class="process-math">\(A\xx=\zer\text{,}\)</span> while <span class="process-math">\(\im T_A\)</span> is the set of all <span class="process-math">\(\yy\in\R^m\)</span> for which <span class="process-math">\(A\xx=\yy\)</span> <em class="emphasis">has</em> a solution.</p>
+<p id="p-656">Recall from the discussion preceding <a href="" class="xref" data-knowl="./knowl/def-rank-transformation.html" title="Definition 2.2.9">Definition 2.2.9</a> that <span class="process-math">\(\rank A = \dim \csp(A) = \dim \im T_A\text{.}\)</span> It follows that <span class="process-math">\(T_A\)</span> is surjective if and only if <span class="process-math">\(\rank A = m\text{.}\)</span> On the other hand, <span class="process-math">\(T_A\)</span> is injective if and only if <span class="process-math">\(\rank A = n\text{,}\)</span> because we know that the system <span class="process-math">\(A\xx=\zer\)</span> has a unique solution if and only if each column of <span class="process-math">\(A\)</span> contains a leading one.</p>
+<p id="p-657">This has some interesting consequences. If <span class="process-math">\(m=n\)</span> (that is, if <span class="process-math">\(A\)</span> is square), then each increase in <span class="process-math">\(\dim \nll(A)\)</span> produces a corresponding decrease in <span class="process-math">\(\dim \csp(A)\text{,}\)</span> since both correspond to the “loss” of a leading one. Moreover, if <span class="process-math">\(\rank A = n\text{,}\)</span> then <span class="process-math">\(T_A\)</span> is both injective and surjective. Recall that a function is invertible if and only if it is both injective and surjective. It should come as no surprise that invertibility of <span class="process-math">\(T_A\)</span> (as a function) is equivalent to invertibility of <span class="process-math">\(A\)</span> (as a matrix).</p>
+<p id="p-658">Also, note that if <span class="process-math">\(m \lt n\text{,}\)</span> then <span class="process-math">\(\rank A\leq m \lt n\text{,}\)</span> so <span class="process-math">\(T_A\)</span> could be surjective, but can't possibly be injective. On the other hand, if <span class="process-math">\(m\gt n\text{,}\)</span> then <span class="process-math">\(\rank A\leq n \lt m\text{,}\)</span> so <span class="process-math">\(T_A\)</span> could be injective, but can't possibly be surjective. These results generalize to linear transformations between any finite-dimensional vector spaces. The first step towards this is the following theorem, which is sometimes known as the Fundamental Theorem of Linear Transformations.</p></article><article class="theorem theorem-like" id="thm-dimension-lintrans"><h3 class="heading">
+<span class="type">Theorem</span><span class="space"> </span><span class="codenumber">2.2.15</span><span class="period">.</span><span class="space"> </span><span class="title">Dimension Theorem.</span>
+</h3>
+<p id="p-659">Let <span class="process-math">\(T:V\to W\)</span> be any linear transformation such that <span class="process-math">\(\ker T\)</span> and <span class="process-math">\(\im T\)</span> are finite-dimensional. Then <span class="process-math">\(V\)</span> is finite-dimensional, and</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 \dim V = \dim \ker T + \dim \im T\text{.}
 \end{equation*}
-</div></article><article class="hiddenproof" id="proof-35"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-35"><h3 class="heading"><span class="type">Proof<span class="period">.</span></span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-35"><article class="hiddenproof"><p id="p-629">The trick with this proof is that we aren't assuming <span class="process-math">\(V\)</span> is finite-dimensional, so we can't start with a basis of <span class="process-math">\(V\text{.}\)</span> But we do know that <span class="process-math">\(\im T\)</span> is finite-dimensional, so we start with a basis <span class="process-math">\(\{\ww_1,\ldots, \ww_m\}\)</span> of <span class="process-math">\(\im T\text{.}\)</span> Of course, every vector in <span class="process-math">\(\im T\)</span> is the image of some vector in <span class="process-math">\(V\text{,}\)</span> so we can write <span class="process-math">\(\ww_i =T(\vv_i)\text{,}\)</span> where <span class="process-math">\(\vv_i\in V\text{,}\)</span> for <span class="process-math">\(i=1,2,\ldots, m\text{.}\)</span></p>
-<p id="p-630">Since <span class="process-math">\(\{T(\vv_1),\ldots, T(\vv_m)\}\)</span> is a basis, it is linearly independent. The results of <a href="" class="xref" data-knowl="./knowl/ex_lintrans-indep.html" title="Exercise 2.1.13">Exercise 2.1.13</a> tell us that the set <span class="process-math">\(\{\vv_1,\ldots, \vv_m\}\)</span> must therefore be independent.</p>
-<p id="p-631">We now introduce a basis <span class="process-math">\(\{\uu_1,\ldots, \uu_n\}\)</span> of <span class="process-math">\(\ker T\text{,}\)</span> which we also know to be finite-dimensional. If we can show that the set <span class="process-math">\(\{\uu_1,\ldots, \uu_n,\vv_1,\ldots, \vv_m\}\)</span> is a basis for <span class="process-math">\(V\text{,}\)</span> we'd be done, since the number of vectors in this basis is <span class="process-math">\(\dim\ker T + \dim \im T\text{.}\)</span> We must therefore show that this set is independent, and that it spans <span class="process-math">\(V\text{.}\)</span></p>
-<p id="p-632">To see that it's independent, suppose that</p>
+</div></article><article class="hiddenproof" id="proof-37"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-37"><h3 class="heading"><span class="type">Proof<span class="period">.</span></span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-37"><article class="hiddenproof"><p id="p-660">The trick with this proof is that we aren't assuming <span class="process-math">\(V\)</span> is finite-dimensional, so we can't start with a basis of <span class="process-math">\(V\text{.}\)</span> But we do know that <span class="process-math">\(\im T\)</span> is finite-dimensional, so we start with a basis <span class="process-math">\(\{\ww_1,\ldots, \ww_m\}\)</span> of <span class="process-math">\(\im T\text{.}\)</span> Of course, every vector in <span class="process-math">\(\im T\)</span> is the image of some vector in <span class="process-math">\(V\text{,}\)</span> so we can write <span class="process-math">\(\ww_i =T(\vv_i)\text{,}\)</span> where <span class="process-math">\(\vv_i\in V\text{,}\)</span> for <span class="process-math">\(i=1,2,\ldots, m\text{.}\)</span></p>
+<p id="p-661">Since <span class="process-math">\(\{T(\vv_1),\ldots, T(\vv_m)\}\)</span> is a basis, it is linearly independent. The results of <a href="" class="xref" data-knowl="./knowl/ex_lintrans-indep.html" title="Exercise 2.1.13">Exercise 2.1.13</a> tell us that the set <span class="process-math">\(\{\vv_1,\ldots, \vv_m\}\)</span> must therefore be independent.</p>
+<p id="p-662">We now introduce a basis <span class="process-math">\(\{\uu_1,\ldots, \uu_n\}\)</span> of <span class="process-math">\(\ker T\text{,}\)</span> which we also know to be finite-dimensional. If we can show that the set <span class="process-math">\(\{\uu_1,\ldots, \uu_n,\vv_1,\ldots, \vv_m\}\)</span> is a basis for <span class="process-math">\(V\text{,}\)</span> we'd be done, since the number of vectors in this basis is <span class="process-math">\(\dim\ker T + \dim \im T\text{.}\)</span> We must therefore show that this set is independent, and that it spans <span class="process-math">\(V\text{.}\)</span></p>
+<p id="p-663">To see that it's independent, suppose that</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
-a_1\uu_1+\cdots + a_n\uu_n+b_1\vv_1+\cdots +b_m\vv_m=\mathbf{0}\text{.}
+a_1\uu_1+\cdots + a_n\uu_n+b_1\vv_1+\cdots +b_m\vv_m=\zer\text{.}
 \end{equation*}
 </div>
-<p class="continuation">Applying <span class="process-math">\(T\)</span> to this equation, and noting that <span class="process-math">\(T(\uu_i)=\mathbf{0}\)</span> for each <span class="process-math">\(i\text{,}\)</span> by definition of the <span class="process-math">\(\uu_i\text{,}\)</span> we get</p>
+<p class="continuation">Applying <span class="process-math">\(T\)</span> to this equation, and noting that <span class="process-math">\(T(\uu_i)=\zer\)</span> for each <span class="process-math">\(i\text{,}\)</span> by definition of the <span class="process-math">\(\uu_i\text{,}\)</span> we get</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
-b_1T(\vv_1)+\cdots +b_mT(\vv_m)=\mathbf{0}\text{.}
+b_1T(\vv_1)+\cdots +b_mT(\vv_m)=\zer\text{.}
 \end{equation*}
 </div>
 <p class="continuation">We assumed that the vectors <span class="process-math">\(T(\vv_i)\)</span> were independent, so all the <span class="process-math">\(b_i\)</span> must be zero. But then we get</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
-a_1\uu_1+\cdots +a_n\uu_n=\mathbf{0}\text{,}
+a_1\uu_1+\cdots +a_n\uu_n=\zer\text{,}
 \end{equation*}
 </div>
 <p class="continuation">and since the <span class="process-math">\(\uu_i\)</span> are independent, all the <span class="process-math">\(a_i\)</span> must be zero.</p>
-<p id="p-633">To see that these vectors span, choose any <span class="process-math">\(\xx\in V\text{.}\)</span> Since <span class="process-math">\(T(\xx)\in \im T\text{,}\)</span> there exist scalars <span class="process-math">\(c_1,\ldots, c_m\)</span> such that</p>
+<p id="p-664">To see that these vectors span, choose any <span class="process-math">\(\xx\in V\text{.}\)</span> Since <span class="process-math">\(T(\xx)\in \im T\text{,}\)</span> there exist scalars <span class="process-math">\(c_1,\ldots, c_m\)</span> such that</p>
 <div class="displaymath process-math" data-contains-math-knowls="" id="eqn-almost-span">
 \begin{equation}
 T(\xx)=c_1T(\vv_1)+\cdots +c_mT(\vv_m)\text{.}\tag{2.2.1}
 \end{equation}
 </div>
 <p class="continuation">We'd like to be able to conclude from this that <span class="process-math">\(\xx=c_1\vv_1+\cdots +c_m\vv_m\text{,}\)</span> but this would be false, unless <span class="process-math">\(T\)</span> was known to be injective (which it isn't). Failure to be injective involves the kernel -- how do we bring that into the picture?</p>
-<p id="p-634">The trick is to realize that the reason we might have <span class="process-math">\(\xx\neq c_1\vv_1+\cdots +c_m\vv_m\)</span> is that we're off by something in the kernel. Indeed, <a href="" class="xref" data-knowl="./knowl/eqn-almost-span.html" title="Equation 2.2.1">(2.2.1)</a> can be re-written as</p>
+<p id="p-665">The trick is to realize that the reason we might have <span class="process-math">\(\xx\neq c_1\vv_1+\cdots +c_m\vv_m\)</span> is that we're off by something in the kernel. Indeed, <a href="" class="xref" data-knowl="./knowl/eqn-almost-span.html" title="Equation 2.2.1">(2.2.1)</a> can be re-written as</p>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/eqn-almost-span.html">
 \begin{equation*}
-T(\xx-c_1\vv_1-\cdots -c_m\vv_m) = \mathbf{0}\text{,}
+T(\xx-c_1\vv_1-\cdots -c_m\vv_m) = \zer\text{,}
 \end{equation*}
 </div>
 <p class="continuation">so <span class="process-math">\(\xx-c_1\vv_1-\cdots -c_m\vv_m\in\ker T\text{.}\)</span> But we have a basis for <span class="process-math">\(\ker T\text{,}\)</span> so we can write</p>
@@ -518,52 +596,72 @@ T(\xx-c_1\vv_1-\cdots -c_m\vv_m) = \mathbf{0}\text{,}
 \end{equation*}
 </div>
 <p class="continuation">which completes the proof.</p></article></div>
-<p id="p-635">This is sometimes known as the <em class="emphasis">Rank-Nullity Theorem</em>, since it can be stated in the form</p>
+<p id="p-666">This is sometimes known as the <em class="emphasis">Rank-Nullity Theorem</em>, since it can be stated in the form</p>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/thm-subspace-dim.html">
 \begin{equation*}
 \dim V = \rank T + \operatorname{nullity} T\text{.}
 \end{equation*}
 </div>
 <p class="continuation">We will see that this result is frequently useful for providing simple arguments that establish otherwise difficult results. A basic situation where the theorem is useful is as follows: we are given <span class="process-math">\(T:V\to W\text{,}\)</span> where the dimensions of <span class="process-math">\(V\)</span> and <span class="process-math">\(W\)</span> are known. Since <span class="process-math">\(\im T\)</span> is a subspace of <span class="process-math">\(W\text{,}\)</span> we know from <a href="" class="xref" data-knowl="./knowl/thm-subspace-dim.html" title="Theorem 1.6.18">Theorem 1.6.18</a> that <span class="process-math">\(T\)</span> is onto if and only if <span class="process-math">\(\dim \im T = \dim W\text{.}\)</span> In many cases it is easier to compute <span class="process-math">\(\ker T\)</span> than it is <span class="process-math">\(\im T\text{,}\)</span> and the Dimension Theorem lets us determine <span class="process-math">\(\dim\im T\)</span> if we know <span class="process-math">\(\dim V\)</span> and <span class="process-math">\(\dim \ker T\text{.}\)</span></p>
-<p id="p-636">A useful consequence of this result is that if we know <span class="process-math">\(V\)</span> is finite-dimensional, we can order any basis such that the first vectors in the list are a basis of <span class="process-math">\(\ker T\text{,}\)</span> and the images of the remaining vectors produce a basis of <span class="process-math">\(\im T\text{.}\)</span></p>
-<p id="p-637">Note that one consequence of the dimension theorem is that we must have</p>
+<article class="exercise exercise-like" id="exercise-44"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">2.2.16</span><span class="period">.</span>
+</h3>
+<div class="runestone "><ul data-component="multiplechoice" id="" data-multipleanswers="true">
+<p id="p-667">Select all statements below that are <em class="emphasis">true</em>:</p>
+<li data-component="answer" id="_opt_a"><p id="p-668">If <span class="process-math">\(\vv\in \ker T\text{,}\)</span> then <span class="process-math">\(\vv=\zer\text{.}\)</span></p></li>
+<li data-component="feedback" id="_opt_a"><p id="p-669">Remember that <span class="process-math">\(\vv\in \ker T\)</span> implies <span class="process-math">\(T(\vv)=\zer\text{;}\)</span> this does not necessarily mean <span class="process-math">\(\vv=\zer\text{.}\)</span></p></li>
+<li data-component="answer" id="_opt_b"><p id="p-670">If <span class="process-math">\(T:\R^4\to\R^6\)</span> is injective, then it is surjective.</p></li>
+<li data-component="feedback" id="_opt_b"><p id="p-671">By the dimension theorem, the dimension of <span class="process-math">\(\im T\)</span> cannot be greater than 4, so <span class="process-math">\(T\)</span> can never be surjective.</p></li>
+<li data-component="answer" id="_opt_c" data-correct=""><p id="p-672">If <span class="process-math">\(T:\R^4\to P_3(\R)\)</span> is injective, then it is surjective.</p></li>
+<li data-component="feedback" id="_opt_c"><p id="p-673">Correct! If <span class="process-math">\(T\)</span> is injective, then <span class="process-math">\(\dim\ker T=0\text{,}\)</span> so by the dimension theorem, <span class="process-math">\(\dim \im T=\dim \R^4=4\text{.}\)</span> Since <span class="process-math">\(\dim P_3(\R)=4\)</span> as well, <span class="process-math">\(\im T=P_3(\R)\text{.}\)</span></p></li>
+<li data-component="answer" id="_opt_d"><p id="p-674">It is possible to have an injective linear transformation <span class="process-math">\(T:\R^4\to\R^3\text{.}\)</span></p></li>
+<li data-component="feedback" id="_opt_d"><p id="p-675">The maximum dimension of <span class="process-math">\(\im T\)</span> is 3, so the minimum dimension of <span class="process-math">\(\ker T\)</span> is 1.</p></li>
+<li data-component="answer" id="_opt_e" data-correct=""><p id="p-676">If <span class="process-math">\(T:V\to W\)</span> is surjective, then <span class="process-math">\(\dim V\geq \dim W\text{.}\)</span></p></li>
+<li data-component="feedback" id="_opt_e"><p id="p-677">Correct! If <span class="process-math">\(T\)</span> is surjective, then <span class="process-math">\(\im T=W\text{,}\)</span> so <span class="process-math">\(\dim V = \dim \ker T +\dim \im T = \dim \ker T+\dim W\geq \dim W\text{.}\)</span></p></li>
+</ul></div></article><p id="p-678">A useful consequence of this result is that if we know <span class="process-math">\(V\)</span> is finite-dimensional, we can order any basis such that the first vectors in the list are a basis of <span class="process-math">\(\ker T\text{,}\)</span> and the images of the remaining vectors produce a basis of <span class="process-math">\(\im T\text{.}\)</span></p>
+<p id="p-679">Another consequence of the dimension theorem is that we must have</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 \dim \ker T\leq \dim V \quad \text{ and } \quad \dim \im T\leq \dim V\text{.}
 \end{equation*}
 </div>
 <p class="continuation">Of course, we must also have <span class="process-math">\(\dim\im T\leq \dim W\text{,}\)</span> since <span class="process-math">\(\im T\)</span> is a subspace of <span class="process-math">\(W\text{.}\)</span> In the case of a matrix transformation <span class="process-math">\(T_A\text{,}\)</span> this means that the rank of <span class="process-math">\(T_A\)</span> is at most the minimum of <span class="process-math">\(\dim V\)</span> and <span class="process-math">\(\dim W\text{.}\)</span> This once again has consequences for the existence and uniqueness of solutions for linear systems with the coefficient matrix <span class="process-math">\(A\text{.}\)</span></p>
+<p id="p-680">We end with an exercise that is both challenging and useful. Do your best to come up with a proof before looking at the solution.</p>
 <article class="exercise exercise-like" id="ex-dimension-injection-surjection"><h3 class="heading">
-<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">2.2.8</span><span class="period">.</span>
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">2.2.17</span><span class="period">.</span>
 </h3>
-<p id="p-638">Let <span class="process-math">\(V\)</span> and <span class="process-math">\(W\)</span> be finite-dimensional vector spaces. Prove the following:</p>
+<p id="p-681">Let <span class="process-math">\(V\)</span> and <span class="process-math">\(W\)</span> be finite-dimensional vector spaces. Prove the following:</p>
 <ol class="decimal">
-<li id="li-97"><p id="p-639"><span class="process-math">\(\dim V\leq \dim W\)</span> if and only if there exists an injection <span class="process-math">\(T:V\to W\text{.}\)</span></p></li>
-<li id="li-98"><p id="p-640"><span class="process-math">\(\dim V\geq \dim W\)</span> if and only if there exists a surjection <span class="process-math">\(T:V\to W\text{.}\)</span></p></li>
+<li id="li-103"><p id="p-682"><span class="process-math">\(\dim V\leq \dim W\)</span> if and only if there exists an injection <span class="process-math">\(T:V\to W\text{.}\)</span></p></li>
+<li id="li-104"><p id="p-683"><span class="process-math">\(\dim V\geq \dim W\)</span> if and only if there exists a surjection <span class="process-math">\(T:V\to W\text{.}\)</span></p></li>
 </ol>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-40" id="solution-40"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-40"><div class="solution solution-like"><ol id="p-641" class="decimal">
-<li id="li-99">
-<p id="p-642">Suppose <span class="process-math">\(T:V\to W\)</span> is injective. Then <span class="process-math">\(\ker T = \{0\}\text{,}\)</span> so</p>
+<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-23" id="hint-23"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-23"><div class="hint solution-like">
+<p id="p-684">You're dealing with “if and only if” statements, so be sure to prove both directions. In each case, one direction follows immediately from the dimension theorem.</p>
+<p id="p-685">What makes the other direction harder is that you need to prove an <em class="emphasis">existence</em> statement. To show that a transformation with the required property exists, you're going to need to <em class="emphasis">construct</em> it! To do so, try defining your transfromation in terms of a basis.</p>
+</div></div>
+<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-40" id="solution-40"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-40"><div class="solution solution-like"><ol id="p-686" class="decimal">
+<li id="li-105">
+<p id="p-687">Suppose <span class="process-math">\(T:V\to W\)</span> is injective. Then <span class="process-math">\(\ker T = \{0\}\text{,}\)</span> so</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 \dim V = 0 + \dim \im T \leq \dim W\text{,}
 \end{equation*}
 </div>
 <p class="continuation">since <span class="process-math">\(\im T\)</span> is a subspace of <span class="process-math">\(W\text{.}\)</span></p>
-<p id="p-643">Conversely, suppose <span class="process-math">\(\dim V\leq \dim W\text{.}\)</span> Choose a basis <span class="process-math">\(\{\vv_1,\ldots, \vv_m\}\)</span> of <span class="process-math">\(V\text{,}\)</span> and a basis <span class="process-math">\(\{\ww_1,\ldots, \ww_n\}\)</span> of <span class="process-math">\(W\text{,}\)</span> where <span class="process-math">\(m\leq n\text{.}\)</span> By <a href="" class="xref" data-knowl="./knowl/thm-define-using-basis.html" title="Theorem 2.1.8">Theorem 2.1.8</a>, there exists a linear transformation <span class="process-math">\(T:V\to W\)</span> with <span class="process-math">\(T(\vv_i)=\ww_i\)</span> for <span class="process-math">\(i=1,\ldots, m\text{.}\)</span> (The main point here is that we run out of basis vectors for <span class="process-math">\(V\)</span> before we run out of basis vectors for <span class="process-math">\(W\text{.}\)</span>) This map is injective: if <span class="process-math">\(T(\vv)=\mathbf{0}\text{,}\)</span> write <span class="process-math">\(\vv=c_1\vv_1+\cdots + c_m\vv_m\text{.}\)</span> Then</p>
-<div class="displaymath process-math" data-contains-math-knowls="./knowl/thm-define-using-basis.html" id="md-34">
+<p id="p-688">Conversely, suppose <span class="process-math">\(\dim V\leq \dim W\text{.}\)</span> Choose a basis <span class="process-math">\(\{\vv_1,\ldots, \vv_m\}\)</span> of <span class="process-math">\(V\text{,}\)</span> and a basis <span class="process-math">\(\{\ww_1,\ldots, \ww_n\}\)</span> of <span class="process-math">\(W\text{,}\)</span> where <span class="process-math">\(m\leq n\text{.}\)</span> By <a href="" class="xref" data-knowl="./knowl/thm-define-using-basis.html" title="Theorem 2.1.8">Theorem 2.1.8</a>, there exists a linear transformation <span class="process-math">\(T:V\to W\)</span> with <span class="process-math">\(T(\vv_i)=\ww_i\)</span> for <span class="process-math">\(i=1,\ldots, m\text{.}\)</span> (The main point here is that we run out of basis vectors for <span class="process-math">\(V\)</span> before we run out of basis vectors for <span class="process-math">\(W\text{.}\)</span>) This map is injective: if <span class="process-math">\(T(\vv)=\zer\text{,}\)</span> write <span class="process-math">\(\vv=c_1\vv_1+\cdots + c_m\vv_m\text{.}\)</span> Then</p>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/thm-define-using-basis.html" id="md-35">
 \begin{align*}
-\mathbf{0} \amp = T(\vv)\\
+\zer \amp = T(\vv)\\
 \amp = T(c_1\vv_1+\cdots + c_m\vv_m)\\
 \amp = c_1T(\vv_1)+\cdots + c_mT(\vv_m)\\
 \amp = c_1\ww_1+\cdots +c_m\ww_m\text{.}
 \end{align*}
 </div>
-<p class="continuation">Since <span class="process-math">\(\{\ww_1,\ldots, \ww_m\}\)</span> is a subset of a basis, it's independent. Therefore, the scalars <span class="process-math">\(c_i\)</span> must all be zero, and therefore <span class="process-math">\(\vv=\mathbf{0}\text{.}\)</span></p>
+<p class="continuation">Since <span class="process-math">\(\{\ww_1,\ldots, \ww_m\}\)</span> is a subset of a basis, it's independent. Therefore, the scalars <span class="process-math">\(c_i\)</span> must all be zero, and therefore <span class="process-math">\(\vv=\zer\text{.}\)</span></p>
 </li>
-<li id="li-100">
-<p id="p-644">Suppose <span class="process-math">\(T:V\to W\)</span> is surjective. Then <span class="process-math">\(\dim \im T = \dim W\text{,}\)</span> so</p>
+<li id="li-106">
+<p id="p-689">Suppose <span class="process-math">\(T:V\to W\)</span> is surjective. Then <span class="process-math">\(\dim \im T = \dim W\text{,}\)</span> so</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 \dim V = \dim \ker T + \dim W \geq  \dim W\text{.}
@@ -572,11 +670,11 @@ T(\xx-c_1\vv_1-\cdots -c_m\vv_m) = \mathbf{0}\text{,}
 <p class="continuation">Conversely, suppose <span class="process-math">\(\dim V\geq \dim W\text{.}\)</span> Again, choose a basis <span class="process-math">\(\{\vv_1,\ldots, \vv_m\}\)</span> of <span class="process-math">\(V\text{,}\)</span> and a basis <span class="process-math">\(\{\ww_1,\ldots, \ww_n\}\)</span> of <span class="process-math">\(W\text{,}\)</span> where this time, <span class="process-math">\(m\geq n\text{.}\)</span> We can define a linear transformation as follows:</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
-T(\vv_1)=\ww_1,\ldots, T(\vv_n)=\ww_n, \text{ and } T(\vv_j) = \mathbf{0} \text{ for } j&gt;n.
+T(\vv_1)=\ww_1,\ldots, T(\vv_n)=\ww_n, \text{ and } T(\vv_j) = \zer \text{ for } j&gt;n.
 \end{equation*}
 </div>
 <p class="continuation">It's easy to check that this map is a surjection: given <span class="process-math">\(\ww\in W\text{,}\)</span> we can write it in terms of our basis as <span class="process-math">\(\ww=c_1\ww_1+\cdots + c_n\ww_n\text{.}\)</span> Using these same scalars, we can define <span class="process-math">\(\vv=c_1\vv_1+\cdots + c_n\vv_n\in V\)</span> such that <span class="process-math">\(T(\vv)=\ww\text{.}\)</span></p>
-<p id="p-645">Note that it's not important how we define <span class="process-math">\(T(\vv_j)\)</span> when <span class="process-math">\(j&gt;n\text{.}\)</span> The point is that this time, we run out of basis vectors for <span class="process-math">\(W\)</span> before we run out of basis vectors for <span class="process-math">\(V\text{.}\)</span> Once each vector in the basis of <span class="process-math">\(W\)</span> is in the image of <span class="process-math">\(T\text{,}\)</span> we're guaranteed that <span class="process-math">\(T\)</span> is surjective, and we can define the value of <span class="process-math">\(T\)</span> on any remaining basis vectors however we want.</p>
+<p id="p-690">Note that it's not important how we define <span class="process-math">\(T(\vv_j)\)</span> when <span class="process-math">\(j&gt;n\text{.}\)</span> The point is that this time, we run out of basis vectors for <span class="process-math">\(W\)</span> before we run out of basis vectors for <span class="process-math">\(V\text{.}\)</span> Once each vector in the basis of <span class="process-math">\(W\)</span> is in the image of <span class="process-math">\(T\text{,}\)</span> we're guaranteed that <span class="process-math">\(T\)</span> is surjective, and we can define the value of <span class="process-math">\(T\)</span> on any remaining basis vectors however we want.</p>
 </li>
 </ol></div></div>
 </div></article></section></div></main>
