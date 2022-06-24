@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-06-23T15:55:37-06:00       *-->
+<!--*       on 2022-06-24T11:24:16-06:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -14,34 +14,14 @@
 <meta name="robots" content="noindex, nofollow">
 </head>
 <body class="ignore-math">
-<h3 class="heading"><span class="type">Paragraph</span></h3>
-<p>As we saw above, this gives us the result, but doesn't shed much light on the problem, unless we have an easy way to write vectors in terms of the basis <span class="process-math">\(B\text{.}\)</span> Let's revisit the problem. Instead of using the given basis <span class="process-math">\(B\text{,}\)</span> let's use the standard basis <span class="process-math">\(B_0 = \{1,x,x^2\}\text{.}\)</span> We quickly find</p>
+<h4 class="heading"><span class="type">Paragraph</span></h4>
+<p>The coefficients <span class="process-math">\(12\)</span> and <span class="process-math">\(-10\)</span> are the coefficients of <span class="process-math">\(T(p(x))\)</span> with repsect to the basis <span class="process-math">\(D\text{.}\)</span> Thus,</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
-T(1)=1+x+x^2, T(x) = x, \text{ and } T(x^2)=x\text{,}
+T(2+3x-4x^2) = 12(0,1)-10(-1,1) = (10,2)\text{.}
 \end{equation*}
 </div>
-<p class="continuation">so with respect to the standard basis, <span class="process-math">\(M_{B_0}(T) = \bbm 1\amp 0\amp 0\\1\amp 1\amp 1\\1\amp 0\amp 0\ebm\text{.}\)</span> Now, recall that</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-M_{B}(T)=P^{-1}\bbm C_{B_0}T(1-x)\amp C_{B_0}(T(x+3x^2)\amp C_{B_0}(T(2-x^2))\ebm
-\end{equation*}
-</div>
-<p class="continuation">and note that for any polynomial <span class="process-math">\(p(x)\text{,}\)</span> <span class="process-math">\(C_{B_0}T(p(x)) = M_{B_0}C_{B_0}(p(x))\text{.}\)</span> But</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-\bbm C_{B_0}(1-x) \amp C_{B_0}(x+3x^2)\amp C_{B_0}(2-x^2)\ebm = P\text{,}
-\end{equation*}
-</div>
-<p class="continuation">so we get</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{align*}
-M_B(T) \amp = P^{-1}\bbm C_{B_0}T(1-x)\amp C_{B_0}(T(x+3x^2)\amp C_{B_0}(T(2-x^2))\ebm\\
-\amp = P^{-1}\bbm M_{B_0}C_{B_0}(1-x)\amp M_{B_0}C_{B_0}(x+3x^2)\amp M_{B_0}C_{B_0}(2-x^2)\ebm \\
-\amp = P^{-1}M_{B_0}\bbm C_{B_0}(1-x) \amp C_{B_0}(x+3x^2)\amp C_{B_0}(2-x^2)\ebm\\
-\amp = P^{-1}M_{B_0}P\text{.}
-\end{align*}
-</div>
-<span class="incontext"><a href="sec-matrix-operator.html#p-1229" class="internal">in-context</a></span>
+<p class="continuation">Note that in the last step we gave the “simplified” answer <span class="process-math">\((10,2)\text{,}\)</span> which is simplified primarily in that it is expressed with respect to the standard basis.</p>
+<span class="incontext"><a href="sec-matrix-of-transformation.html#p-1229" class="internal">in-context</a></span>
 </body>
 </html>

@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-06-23T15:55:32-06:00       *-->
+<!--*       on 2022-06-24T11:24:12-06:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -14,19 +14,8 @@
 <meta name="robots" content="noindex, nofollow">
 </head>
 <body class="ignore-math"><div class="solution solution-like">
-<p>At first glance, it may not be clear whether the condition <span class="process-math">\(p(1)=p(2)\)</span> is linear. One approach is to write out our polynomial in terms of coefficients. If <span class="process-math">\(p(x)=ax^3+bx^2+cx+d\text{,}\)</span> then <span class="process-math">\(p(1)=p(2)\)</span> implies</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-a+b+c+d=8a+4b+2c+d\text{,}
-\end{equation*}
-</div>
-<p class="continuation">or <span class="process-math">\(7a+3b+c=0\text{,}\)</span> which is a homogeneous linear equation. This isn't yet a proof — we still have to apply the subspace test!</p>
-<p>We can use the subspace test in terms of coefficients with the condition <span class="process-math">\(7a+3b+c=0\text{,}\)</span> or we can use the original condition directly. First, the zero polynomial <span class="process-math">\(\zer\)</span> satisfies <span class="process-math">\(\zer(1)=\zer(2)\text{,}\)</span> since it's equal to zero everywhere. Next, suppose we have polynomials <span class="process-math">\(p(x),q(x)\)</span> with <span class="process-math">\(p(1)=p(2)\)</span> and <span class="process-math">\(q(1)=q(2)\text{.}\)</span> Then</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-(p+q)(1)=p(1)+q(1)=p(2)+q(2)=(p+q)(2)\text{,}
-\end{equation*}
-</div>
-<p class="continuation">and for any scalar <span class="process-math">\(c\text{,}\)</span> <span class="process-math">\((cp)(1)=c(p(1))=c(p(2))=(cp)(2)\text{.}\)</span> This shows that the set is closed under both addition and scalar multiplication.</p>
+<p>The clue here that this is not a subspace is the presence of the 2 in the second component. Typically for a subspace, we expect to see linear expressions involving our variables, but in linear algebra, the adjective <em class="emphasis">linear</em> doesn't imply the inclusion of constant terms the way it does in calculus. The reason, again, is the special role of zero in a vector space.</p>
+<p>While it's true that this set doesn't contain the zero vector (which rules it out as a subspace), it's not as obvious: perhaps there are values of <span class="process-math">\(x\)</span> and <span class="process-math">\(y\)</span> that give us <span class="process-math">\(x+y+2=0\text{,}\)</span> and <span class="process-math">\(x-y=0, 2x-3y=0\)</span> as well? Solving a system of equations would tell us that indeed, this is not possible.</p>
+<p>We could also show that the closure conditions fail. Putting <span class="process-math">\(x=1, y=0\)</span> gives the element <span class="process-math">\((1,3,2)\text{,}\)</span> and putting <span class="process-math">\(x=0,y=1\)</span> gives the element <span class="process-math">\((-1,3,-3)\text{.}\)</span> Adding these, we get the vector <span class="process-math">\((0,6,-1)\text{.}\)</span> Why is this not in the set? We would need <span class="process-math">\(x-y=0\text{,}\)</span> so <span class="process-math">\(x=y\text{.}\)</span> Then <span class="process-math">\(x+y+2=2x+2=6\)</span> implies <span class="process-math">\(x=y=2\text{,}\)</span> but <span class="process-math">\(2(2)-3(2)=-2\neq -3\text{.}\)</span></p>
 </div></body>
 </html>

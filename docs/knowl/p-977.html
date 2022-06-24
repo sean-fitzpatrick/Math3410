@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-06-23T15:55:36-06:00       *-->
+<!--*       on 2022-06-24T11:24:15-06:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -15,7 +15,19 @@
 </head>
 <body class="ignore-math">
 <h4 class="heading"><span class="type">Paragraph</span></h4>
-<p>We get <span class="process-math">\(c_A(x)=x(x-9)^2\text{,}\)</span> so our eigenvalues are <span class="process-math">\(0\)</span> and <span class="process-math">\(9\text{.}\)</span> For <span class="process-math">\(0\)</span> we have <span class="process-math">\(E_0(A) = \nll(A)\text{:}\)</span></p>
-<span class="incontext"><a href="subsec-ortho-diag.html#p-977" class="internal">in-context</a></span>
+<p>We begin with the characteristic polynomial. We have</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{align*}
+\det(xI_n - A) \amp =\det\bbm x \amp -1\amp -1\\-1\amp x \amp -1\\-1\amp -1\amp x\ebm\\
+\amp = x \begin{vmatrix}x \amp -1\\-1\amp x\end{vmatrix}
++1\begin{vmatrix}-1\amp -1\\-1\amp x\end{vmatrix}
+-1\begin{vmatrix}-1\amp x\\-1\amp -1\end{vmatrix}\\
+\amp = x(x^2-1)+(-x-1)-(1+x)\\
+\amp x(x-1)(x+1)-2(x+1)\\
+\amp (x+1)[x^2-x-2]\\
+\amp (x+1)^2(x-2)\text{.}
+\end{align*}
+</div>
+<span class="incontext"><a href="subsec-eigen-basics.html#p-977" class="internal">in-context</a></span>
 </body>
 </html>

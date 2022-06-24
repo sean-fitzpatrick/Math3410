@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-06-23T15:55:29-06:00       *-->
+<!--*       on 2022-06-24T11:24:09-06:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -180,7 +180,8 @@ true);
 </li>
 <li class="link">
 <a href="ch-vector-space.html" data-scroll="ch-vector-space" class="internal"><span class="codenumber">1</span> <span class="title">Vector spaces</span></a><ul>
-<li><a href="sec-vec-sp.html" data-scroll="sec-vec-sp" class="internal">Abstract vector spaces</a></li>
+<li><a href="sec-vec-sp.html" data-scroll="sec-vec-sp" class="internal">Definition and examples</a></li>
+<li><a href="sec-vsp-properties.html" data-scroll="sec-vsp-properties" class="internal">Properties</a></li>
 <li><a href="sec-subspace.html" data-scroll="sec-subspace" class="internal">Subspaces</a></li>
 <li><a href="sec-span.html" data-scroll="sec-span" class="internal">Span</a></li>
 <li><a href="worksheet-span.html" data-scroll="worksheet-span" class="internal">Worksheet: understanding span</a></li>
@@ -239,7 +240,7 @@ true);
 <main class="main"><div id="content" class="pretext-content"><section class="section" id="subsec-ortho-diag"><h2 class="heading hide-type">
 <span class="type">Section</span> <span class="codenumber">4.2</span> <span class="title">Diagonalization of symmetric matrices</span>
 </h2>
-<p id="p-958">Recall that an <span class="process-math">\(n\times n\)</span> matrix <span class="process-math">\(A\)</span> is <dfn class="terminology">symmetric</dfn> if <span class="process-math">\(A^T=A\text{.}\)</span> Symmetry of <span class="process-math">\(A\)</span> is equivalent to the following: for any vectors <span class="process-math">\(\xx,\yy\in\R^n\text{,}\)</span></p>
+<p id="p-989">Recall that an <span class="process-math">\(n\times n\)</span> matrix <span class="process-math">\(A\)</span> is <dfn class="terminology">symmetric</dfn> if <span class="process-math">\(A^T=A\text{.}\)</span> Symmetry of <span class="process-math">\(A\)</span> is equivalent to the following: for any vectors <span class="process-math">\(\xx,\yy\in\R^n\text{,}\)</span></p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 \xx\dotp (A\yy) = (A\xx)\dotp \yy\text{.}
@@ -252,13 +253,13 @@ true);
 \end{equation*}
 </div>
 <p class="continuation">For inner product spaces, the above is taken as the <em class="emphasis">definition</em> of what it means for an operator to be symmetric.</p>
-<article class="exercise exercise-like" id="exercise-78"><h3 class="heading">
+<article class="exercise exercise-like" id="exercise-81"><h3 class="heading">
 <span class="type">Exercise</span><span class="space"> </span><span class="codenumber">4.2.1</span><span class="period">.</span>
 </h3>
-<p id="p-959">Prove that if <span class="process-math">\(\xx\dotp(A\yy)=(A\xx)\dotp \yy\)</span> for any <span class="process-math">\(\xx,\yy\in\R^n\text{,}\)</span> then <span class="process-math">\(A\)</span> is symmetric.</p>
+<p id="p-990">Prove that if <span class="process-math">\(\xx\dotp(A\yy)=(A\xx)\dotp \yy\)</span> for any <span class="process-math">\(\xx,\yy\in\R^n\text{,}\)</span> then <span class="process-math">\(A\)</span> is symmetric.</p>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-58" id="solution-58"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-58"><div class="solution solution-like">
-<p id="p-960">Take <span class="process-math">\(\xx=\mathbf{e}_i\)</span> and <span class="process-math">\(\yy=\mathbf{e}_j\text{,}\)</span> where <span class="process-math">\(\{\mathbf{e}_1,\ldots, \mathbf{e}_n\}\)</span> is the standard basis for <span class="process-math">\(\R^n\text{.}\)</span> Then with <span class="process-math">\(A = [a_{ij}]\)</span> we have</p>
+<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-59" id="solution-59"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-59"><div class="solution solution-like">
+<p id="p-991">Take <span class="process-math">\(\xx=\mathbf{e}_i\)</span> and <span class="process-math">\(\yy=\mathbf{e}_j\text{,}\)</span> where <span class="process-math">\(\{\mathbf{e}_1,\ldots, \mathbf{e}_n\}\)</span> is the standard basis for <span class="process-math">\(\R^n\text{.}\)</span> Then with <span class="process-math">\(A = [a_{ij}]\)</span> we have</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 a_{ij} =\mathbf{e}_i\dotp(A\mathbf{e}_j) = (A\mathbf{e}_i)\dotp \mathbf{e}_j = a_{ji}\text{,}
@@ -266,11 +267,11 @@ a_{ij} =\mathbf{e}_i\dotp(A\mathbf{e}_j) = (A\mathbf{e}_i)\dotp \mathbf{e}_j = a
 </div>
 <p class="continuation">which shows that <span class="process-math">\(A^T=A\text{.}\)</span></p>
 </div></div>
-</div></article><p id="p-961">A useful property of symmetric matrices, mentioned earlier, is that eigenvectors corresponding to distinct eigenvalues are orthogonal.</p>
+</div></article><p id="p-992">A useful property of symmetric matrices, mentioned earlier, is that eigenvectors corresponding to distinct eigenvalues are orthogonal.</p>
 <article class="theorem theorem-like" id="thm-ortho-eigen-symm"><h3 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">4.2.2</span><span class="period">.</span>
 </h3>
-<p id="p-962">If <span class="process-math">\(A\)</span> is a symmetric matrix, then eigenvectors corresponding to <em class="emphasis">distinct</em> eigenvalues are orthogonal.</p></article><article class="hiddenproof" id="proof-45"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-45"><h3 class="heading"><span class="type">Proof<span class="period">.</span></span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-45"><article class="hiddenproof"><p id="p-963">To see this, suppose <span class="process-math">\(A\)</span> is symmetric, and that we have</p>
+<p id="p-993">If <span class="process-math">\(A\)</span> is a symmetric matrix, then eigenvectors corresponding to <em class="emphasis">distinct</em> eigenvalues are orthogonal.</p></article><article class="hiddenproof" id="proof-48"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-48"><h3 class="heading"><span class="type">Proof<span class="period">.</span></span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-48"><article class="hiddenproof"><p id="p-994">To see this, suppose <span class="process-math">\(A\)</span> is symmetric, and that we have</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 A\xx_1=\lambda_1\xx_1\quad \text{ and } A\xx_2=\lambda_2\xx_2\text{,}
@@ -283,15 +284,15 @@ A\xx_1=\lambda_1\xx_1\quad \text{ and } A\xx_2=\lambda_2\xx_2\text{,}
 \end{equation*}
 </div>
 <p class="continuation">It follows that <span class="process-math">\((\lambda_1-\lambda_2)(\xx_1\dotp \xx_2)=0\text{,}\)</span> and since <span class="process-math">\(\lambda_1\neq \lambda_2\text{,}\)</span> we must have <span class="process-math">\(\xx_1\dotp \xx_2=0\text{.}\)</span></p></article></div>
-<p id="p-964">The procedure for diagonalizing a matrix is as follows: assuming that <span class="process-math">\(\dim E_\lambda(A)\)</span> is equal to the multiplicity of <span class="process-math">\(\lambda\)</span> for each distinct eigenvalue <span class="process-math">\(\lambda\text{,}\)</span> we find a basis for <span class="process-math">\(E_\lambda(A)\text{.}\)</span> The union of the bases for each eigenspace is then a basis of eigenvectors for <span class="process-math">\(\R^n\text{,}\)</span> and the matrix <span class="process-math">\(P\)</span> whose columns are those eigenvectors will satisfy <span class="process-math">\(P^{-1}AP = D\text{,}\)</span> where <span class="process-math">\(D\)</span> is a diagonal matrix whose diagonal entries are the eigenvalues of <span class="process-math">\(A\text{.}\)</span></p>
-<p id="p-965">If <span class="process-math">\(A\)</span> is symmetric, we know that eigenvectors from <em class="emphasis">different</em> eigenspaces will be orthogonal to each other. If we further choose an orthogonal basis of eigenvectors for each eigenspace (which is possible via the Gram-Schmidt procedure), then we can construct an orthogonal basis of eigenvectors for <span class="process-math">\(\R^n\text{.}\)</span> Furthermore, if we normalize each vector, then we'll have an orthonormal basis. The matrix <span class="process-math">\(P\)</span> whose columns consist of these orthonormal basis vectors has a name.</p>
+<p id="p-995">The procedure for diagonalizing a matrix is as follows: assuming that <span class="process-math">\(\dim E_\lambda(A)\)</span> is equal to the multiplicity of <span class="process-math">\(\lambda\)</span> for each distinct eigenvalue <span class="process-math">\(\lambda\text{,}\)</span> we find a basis for <span class="process-math">\(E_\lambda(A)\text{.}\)</span> The union of the bases for each eigenspace is then a basis of eigenvectors for <span class="process-math">\(\R^n\text{,}\)</span> and the matrix <span class="process-math">\(P\)</span> whose columns are those eigenvectors will satisfy <span class="process-math">\(P^{-1}AP = D\text{,}\)</span> where <span class="process-math">\(D\)</span> is a diagonal matrix whose diagonal entries are the eigenvalues of <span class="process-math">\(A\text{.}\)</span></p>
+<p id="p-996">If <span class="process-math">\(A\)</span> is symmetric, we know that eigenvectors from <em class="emphasis">different</em> eigenspaces will be orthogonal to each other. If we further choose an orthogonal basis of eigenvectors for each eigenspace (which is possible via the Gram-Schmidt procedure), then we can construct an orthogonal basis of eigenvectors for <span class="process-math">\(\R^n\text{.}\)</span> Furthermore, if we normalize each vector, then we'll have an orthonormal basis. The matrix <span class="process-math">\(P\)</span> whose columns consist of these orthonormal basis vectors has a name.</p>
 <article class="definition definition-like" id="def-orthogonal-matrix"><h3 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">4.2.3</span><span class="period">.</span>
 </h3>
-<p id="p-966">A matrix <span class="process-math">\(P\)</span> is called <dfn class="terminology">orthogonal</dfn> if <span class="process-math">\(P^T = P^{-1}\text{.}\)</span></p></article><article class="theorem theorem-like" id="thm-ortho-matrix"><h3 class="heading">
+<p id="p-997">A matrix <span class="process-math">\(P\)</span> is called <dfn class="terminology">orthogonal</dfn> if <span class="process-math">\(P^T = P^{-1}\text{.}\)</span></p></article><article class="theorem theorem-like" id="thm-ortho-matrix"><h3 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">4.2.4</span><span class="period">.</span>
 </h3>
-<p id="p-967">A matrix <span class="process-math">\(P\)</span> is orthogonal if and only if the columns of <span class="process-math">\(P\)</span> form an orthonormal basis for <span class="process-math">\(\R^n\text{.}\)</span></p></article><p id="p-968">A fun fact is that if the columns of <span class="process-math">\(P\)</span> are orthonormal, then so are the rows. But this is not true if we ask for the columns to be merely orthogonal. For example, the columns of <span class="process-math">\(A = \bbm 1\amp 0\amp 5\\-2\amp 1\amp 2\\1\amp 2\amp -1\ebm \)</span> are orthogonal, but (as you can check) the rows are not. But if we normalize the columns, we get</p>
+<p id="p-998">A matrix <span class="process-math">\(P\)</span> is orthogonal if and only if the columns of <span class="process-math">\(P\)</span> form an orthonormal basis for <span class="process-math">\(\R^n\text{.}\)</span></p></article><p id="p-999">A fun fact is that if the columns of <span class="process-math">\(P\)</span> are orthonormal, then so are the rows. But this is not true if we ask for the columns to be merely orthogonal. For example, the columns of <span class="process-math">\(A = \bbm 1\amp 0\amp 5\\-2\amp 1\amp 2\\1\amp 2\amp -1\ebm \)</span> are orthogonal, but (as you can check) the rows are not. But if we normalize the columns, we get</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 P = \bbm 1/\sqrt{6}\amp 0 \amp 1/\sqrt{30}\\-2/\sqrt{6}\amp 1/\sqrt{5}\amp 2/\sqrt{30}\\1/\sqrt{6}\amp 2/\sqrt{5}\amp -1/\sqrt{30}\ebm\text{,}
@@ -301,46 +302,46 @@ P = \bbm 1/\sqrt{6}\amp 0 \amp 1/\sqrt{30}\\-2/\sqrt{6}\amp 1/\sqrt{5}\amp 2/\sq
 <article class="definition definition-like" id="def-ortho-diag"><h3 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">4.2.5</span><span class="period">.</span>
 </h3>
-<p id="p-969">An <span class="process-math">\(n\times n\)</span> matrix <span class="process-math">\(A\)</span> is said to be <em class="emphasis">orthogonally diagonalizable</em> if there exists an orthogonal matrix <span class="process-math">\(P\)</span> such that <span class="process-math">\(P^TAP\)</span> is diagonal.</p></article><p id="p-970">The above definition leads to the following result, also known as the Principal Axes Theorem.</p>
+<p id="p-1000">An <span class="process-math">\(n\times n\)</span> matrix <span class="process-math">\(A\)</span> is said to be <em class="emphasis">orthogonally diagonalizable</em> if there exists an orthogonal matrix <span class="process-math">\(P\)</span> such that <span class="process-math">\(P^TAP\)</span> is diagonal.</p></article><p id="p-1001">The above definition leads to the following result, also known as the Principal Axes Theorem.</p>
 <article class="theorem theorem-like" id="thm-real-spectral"><h3 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">4.2.6</span><span class="period">.</span><span class="space"> </span><span class="title">Real Spectral Theorem.</span>
 </h3>
-<p id="p-971">The following are equivalent for a real <span class="process-math">\(n\times n\)</span> matrix <span class="process-math">\(A\text{:}\)</span></p>
+<p id="p-1002">The following are equivalent for a real <span class="process-math">\(n\times n\)</span> matrix <span class="process-math">\(A\text{:}\)</span></p>
 <ol class="decimal">
-<li id="li-143"><p id="p-972"><span class="process-math">\(A\)</span> is symmetric.</p></li>
-<li id="li-144"><p id="p-973">There is an orthonormal basis for <span class="process-math">\(\R^n\)</span> consisting of eigenvectors of <span class="process-math">\(A\text{.}\)</span></p></li>
-<li id="li-145"><p id="p-974"><span class="process-math">\(A\)</span> is orthogonally diagonalizable.</p></li>
-</ol></article><article class="exercise exercise-like" id="exercise-79"><h3 class="heading">
+<li id="li-143"><p id="p-1003"><span class="process-math">\(A\)</span> is symmetric.</p></li>
+<li id="li-144"><p id="p-1004">There is an orthonormal basis for <span class="process-math">\(\R^n\)</span> consisting of eigenvectors of <span class="process-math">\(A\text{.}\)</span></p></li>
+<li id="li-145"><p id="p-1005"><span class="process-math">\(A\)</span> is orthogonally diagonalizable.</p></li>
+</ol></article><article class="exercise exercise-like" id="exercise-82"><h3 class="heading">
 <span class="type">Exercise</span><span class="space"> </span><span class="codenumber">4.2.7</span><span class="period">.</span>
 </h3>
-<p id="p-975">Determine the eigenvalues of <span class="process-math">\(A=\bbm 5\amp -2\amp -4\\-2\amp 8\amp -2\\-4\amp -2\amp 5\ebm\text{,}\)</span> and find an orthogonal matrix <span class="process-math">\(P\)</span> such that <span class="process-math">\(P^TAP\)</span> is diagonal.</p>
+<p id="p-1006">Determine the eigenvalues of <span class="process-math">\(A=\bbm 5\amp -2\amp -4\\-2\amp 8\amp -2\\-4\amp -2\amp 5\ebm\text{,}\)</span> and find an orthogonal matrix <span class="process-math">\(P\)</span> such that <span class="process-math">\(P^TAP\)</span> is diagonal.</p>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-59" id="solution-59"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-59"><div class="solution solution-like">
-<p id="p-976">We'll solve this problem with the help of the computer.</p>
+<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-60" id="solution-60"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-60"><div class="solution solution-like">
+<p id="p-1007">We'll solve this problem with the help of the computer.</p>
 <pre class="ptx-sagecell hidden-sagecell-sage" id="sage-54"><script type="text/x-sage">from sympy import Matrix,init_printing,factor
 init_printing()
 A = Matrix(3,3,[5,-2,-4,-2,8,-2,-4,-2,5])
 p=A.charpoly().as_expr()
 factor(p)
 </script></pre>
-<p id="p-977">We get <span class="process-math">\(c_A(x)=x(x-9)^2\text{,}\)</span> so our eigenvalues are <span class="process-math">\(0\)</span> and <span class="process-math">\(9\text{.}\)</span> For <span class="process-math">\(0\)</span> we have <span class="process-math">\(E_0(A) = \nll(A)\text{:}\)</span></p>
+<p id="p-1008">We get <span class="process-math">\(c_A(x)=x(x-9)^2\text{,}\)</span> so our eigenvalues are <span class="process-math">\(0\)</span> and <span class="process-math">\(9\text{.}\)</span> For <span class="process-math">\(0\)</span> we have <span class="process-math">\(E_0(A) = \nll(A)\text{:}\)</span></p>
 <pre class="ptx-sagecell hidden-sagecell-sage" id="sage-55"><script type="text/x-sage">A.nullspace()
 </script></pre>
-<p id="p-978">For <span class="process-math">\(9\)</span> we have <span class="process-math">\(E_9(A) = \nll(A-9I)\text{.}\)</span></p>
+<p id="p-1009">For <span class="process-math">\(9\)</span> we have <span class="process-math">\(E_9(A) = \nll(A-9I)\text{.}\)</span></p>
 <pre class="ptx-sagecell hidden-sagecell-sage" id="sage-56"><script type="text/x-sage">from sympy import eye
 B=A-9*eye(3)
 B.nullspace()
 </script></pre>
-<p id="p-979">The approach above is useful as we're trying to remind ourselves how eigenvalues and eigenvectors are defined and computed. Eventually we might want to be more efficient. Fortunately, there's a command for that.</p>
+<p id="p-1010">The approach above is useful as we're trying to remind ourselves how eigenvalues and eigenvectors are defined and computed. Eventually we might want to be more efficient. Fortunately, there's a command for that.</p>
 <pre class="ptx-sagecell hidden-sagecell-sage" id="sage-57"><script type="text/x-sage">A.eigenvects()
 </script></pre>
-<p id="p-980">Note that the output above lists each eigenvalue, followed by its multiplicity, and then the associated eigenvectors.</p>
-<p id="p-981">This gives us a basis for <span class="process-math">\(\R^3\)</span> consisting of eigenvalues of <span class="process-math">\(A\text{,}\)</span> but we want an orthogonal basis. Note that the eigenvector corresponding to <span class="process-math">\(\lambda = 0\)</span> is orthogonal to both of the eigenvectors corresponding to <span class="process-math">\(\lambda =9\text{.}\)</span> But these eigenvectors are not orthogonal to each other. To get an orthogonal basis for <span class="process-math">\(E_9(A)\text{,}\)</span> we apply the Gram-Schmidt algorithm.</p>
+<p id="p-1011">Note that the output above lists each eigenvalue, followed by its multiplicity, and then the associated eigenvectors.</p>
+<p id="p-1012">This gives us a basis for <span class="process-math">\(\R^3\)</span> consisting of eigenvalues of <span class="process-math">\(A\text{,}\)</span> but we want an orthogonal basis. Note that the eigenvector corresponding to <span class="process-math">\(\lambda = 0\)</span> is orthogonal to both of the eigenvectors corresponding to <span class="process-math">\(\lambda =9\text{.}\)</span> But these eigenvectors are not orthogonal to each other. To get an orthogonal basis for <span class="process-math">\(E_9(A)\text{,}\)</span> we apply the Gram-Schmidt algorithm.</p>
 <pre class="ptx-sagecell hidden-sagecell-sage" id="sage-58"><script type="text/x-sage">from sympy import GramSchmidt
 L=B.nullspace()
 GramSchmidt(L)
 </script></pre>
-<p id="p-982">This gives us an orthogonal basis of eigenvectors. Scaling to clear fractions, we have</p>
+<p id="p-1013">This gives us an orthogonal basis of eigenvectors. Scaling to clear fractions, we have</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 \left\{\bbm 2\\1\\2\ebm, \bbm -1\\2\\0\ebm, \bbm -4\\-2\\5\ebm\right\}
@@ -350,7 +351,7 @@ GramSchmidt(L)
 <pre class="ptx-sagecell hidden-sagecell-sage" id="sage-59"><script type="text/x-sage">L=[Matrix(3,1,[-1,0,1]),Matrix(3,1,[-1,2,0])]
 GramSchmidt(L)
 </script></pre>
-<p id="p-983">That gives us the (slightly nicer) basis</p>
+<p id="p-1014">That gives us the (slightly nicer) basis</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 \left\{\bbm 2\\1\\2\ebm, \bbm -1\\0\\1\ebm, \bbm 1\\-4\\1\ebm\right\}\text{.}
@@ -366,11 +367,11 @@ B = \left\{\frac{1}{3}\bbm 2\\1\\2\ebm, \frac{1}{\sqrt{2}}\bbm -1\\0\\1\ebm, \fr
 <pre class="ptx-sagecell hidden-sagecell-sage" id="sage-60"><script type="text/x-sage">P=Matrix(3,3,[2/3, -1/sqrt(2),1/sqrt(18), 1/3,0,-4/sqrt(18),2/3,1/sqrt(2),1/sqrt(18)])
 P,P*P.transpose()
 </script></pre>
-<p id="p-984">Since <span class="process-math">\(PP^T=I_3\text{,}\)</span> we can conclude that <span class="process-math">\(P^T=P^{-1}\text{,}\)</span> so <span class="process-math">\(P\)</span> is orthogonal, as required. Finally, we diagonalize <span class="process-math">\(A\text{.}\)</span></p>
+<p id="p-1015">Since <span class="process-math">\(PP^T=I_3\text{,}\)</span> we can conclude that <span class="process-math">\(P^T=P^{-1}\text{,}\)</span> so <span class="process-math">\(P\)</span> is orthogonal, as required. Finally, we diagonalize <span class="process-math">\(A\text{.}\)</span></p>
 <pre class="ptx-sagecell hidden-sagecell-sage" id="sage-61"><script type="text/x-sage">Q=P.transpose()
 Q*A*P
 </script></pre>
-<p id="p-985">Incidentally, the SymPy library for Python does have a diagaonalization routine; however, it does not do orthogonal diagonalization by default. Here is what it provides for our matrix <span class="process-math">\(A\text{.}\)</span></p>
+<p id="p-1016">Incidentally, the SymPy library for Python does have a diagaonalization routine; however, it does not do orthogonal diagonalization by default. Here is what it provides for our matrix <span class="process-math">\(A\text{.}\)</span></p>
 <pre class="ptx-sagecell hidden-sagecell-sage" id="sage-62"><script type="text/x-sage">A.diagonalize()
 </script></pre>
 </div></div>

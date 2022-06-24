@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-06-23T15:55:36-06:00       *-->
+<!--*       on 2022-06-24T11:24:16-06:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -15,19 +15,42 @@
 </head>
 <body class="ignore-math">
 <article class="hiddenproof"><h4 class="heading"><span class="type">Proof</span></h4>
-<p>By <a href="" class="xref" data-knowl="./knowl/thm-schurr.html" title="Theorem 4.4.13">Theorem 4.4.13</a>, there exists a unitary matrix <span class="process-math">\(U\)</span> such that <span class="process-math">\(A = UTU^H\text{,}\)</span> where <span class="process-math">\(T\)</span> is upper triangular, and has the eigenvalues of <span class="process-math">\(A\)</span> as diagonal entries. Since <span class="process-math">\(c_A(A)=c_A(UTU^H)=Uc_A(T)U^H\text{,}\)</span> and <span class="process-math">\(c_A(x)=c_T(x)\)</span> (since <span class="process-math">\(A\)</span> and <span class="process-math">\(T\)</span> are similar) it suffices to show that <span class="process-math">\(c_A(A)=0\)</span> when <span class="process-math">\(A\)</span> is upper-triangular. (If you like, we are showing that <span class="process-math">\(C_T(T)=0\text{,}\)</span> and deducing that <span class="process-math">\(c_A(A)=0\text{.}\)</span>) But if <span class="process-math">\(A\)</span> is upper-triangular, so is <span class="process-math">\(xI_A\text{,}\)</span> and therefore, <span class="process-math">\(\det(xI-A)\)</span> is just the product of the diagonal entries. That is,</p>
-<div class="displaymath process-math" data-contains-math-knowls="./knowl/thm-schurr.html">
+<ol class="decimal">
+<li>
+<p>Using the distributive properties of matrix multiplication and the transpose,</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{align*}
+\langle \zz_1+\zz_2,\zz_3\rangle \amp= (\zz_1+\zz_2)^T\bar{\zz_3}\\
+\amp =(\zz_1^T+\zz_2^T)\bar{\zz_3}\\
+\amp =\zz_1^T\bar{\zz_3}+\zz_2^T\bar{\zz_3}\\
+\amp =\langle \zz_1,\zz_3\rangle + \langle \zz_2,\zz_3\rangle\text{.}
+\end{align*}
+</div>
+<p class="continuation">The proof is similar when addition is in the second component. (But not identical -- you'll need the fact that the complex conjugate is distributive, rather than the transpose.)</p>
+</li>
+<li>
+<p>These again follow from writing the inner product as a matrix product.</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
-c_A(x) = (x-\lambda_1)(x-\lambda_2)\cdots (x-\lambda_n)\text{,}
+\langle \alpha\zz_1,\zz_2\rangle = (\alpha \zz_1)^T\bar{\zz_2} = \alpha(\zz_1^T\bar{\zz_2}) = \alpha\langle\zz_1,\zz_2\rangle\text{,}
 \end{equation*}
 </div>
-<p class="continuation">so</p>
-<div class="displaymath process-math" data-contains-math-knowls="./knowl/thm-schurr.html">
+<p class="continuation">and</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
-c_A(A) = (A-\lambda_1I)(A-\lambda_2I)\cdots (A-\lambda_nI)\text{.}
+\langle \zz_1,\alpha\zz_2\rangle = \zz_1^T\overline{\alpha \zz_2} = \zz_1^T(\bar{\alpha}\bar{\zz_2}) = \bar{\alpha}(\zz_1^T\zz_2)=\alpha\langle \zz_1,\zz_2\rangle\text{.}
 \end{equation*}
 </div>
-<p>Since the first column of <span class="process-math">\(A\)</span> is <span class="process-math">\(\bbm \lambda_1\amp 0 \amp \cdots \amp 0\ebm^T\text{,}\)</span> the first column of <span class="process-math">\(A-\lambda_1I\)</span> is identically zero. The second column of <span class="process-math">\(A-\lambda_2I\)</span> similarly has the form <span class="process-math">\(\bbm k\amp 0\amp\cdots\amp 0\ebm\)</span> for some number <span class="process-math">\(k\text{.}\)</span></p>
-<p>It follows that the first two columns of <span class="process-math">\((A-\lambda_1I)(A-\lambda_2I)\)</span> are identically zero. Since only the first two entries in the third column of <span class="process-math">\((A-\lambda_3I)\)</span> can be nonzero, we find that the first three columns of <span class="process-math">\((A-\lambda_1I)(A-\lambda_2I)(A-\lambda_3I)\)</span> are zero, and so on.</p></article><span class="incontext"><a href="sec-complex.html#proof-49" class="internal">in-context</a></span>
+</li>
+<li>
+<p>Note that for any vectors <span class="process-math">\(\zz,\ww\text{,}\)</span> <span class="process-math">\(\zz^T\ww\)</span> is a number, and therefore equal to its own transpose. Thus, we have <span class="process-math">\(\zz^T\ww = (\zz^T\ww)^T=\ww^T\zz\text{,}\)</span> and</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\overline{\langle \zz_1,\zz_2\rangle} = \overline{\zz_1^T\bar{\zz_2}} = \overline{\bar{\zz_2}^T\zz_1} = \zz_2^T\overline{\zz_1}=\langle \zz_2,\zz_1\rangle\text{.}
+\end{equation*}
+</div>
+</li>
+<li><p>This was already demonstrated above.</p></li>
+</ol></article><span class="incontext"><a href="sec-complex.html#proof-49" class="internal">in-context</a></span>
 </body>
 </html>

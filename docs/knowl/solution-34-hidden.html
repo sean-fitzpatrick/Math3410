@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-06-23T15:55:33-06:00       *-->
+<!--*       on 2022-06-24T11:24:12-06:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -14,8 +14,14 @@
 <meta name="robots" content="noindex, nofollow">
 </head>
 <body class="ignore-math"><div class="solution solution-like">
-<p>Since <span class="process-math">\(\dim U = 3\text{,}\)</span> any complement of <span class="process-math">\(U\)</span> must have dimension 2. We therefore need to find two independent vectors that do not belong to <span class="process-math">\(U\text{.}\)</span></p>
-<p>Recall that <span class="process-math">\(U\)</span> is defined by two conditions: <span class="process-math">\(x_1=3x_3\)</span> and <span class="process-math">\(3x_2-5x_4=x_5\text{.}\)</span> Therefore, a vector is <em class="emphasis">not</em> in <span class="process-math">\(U\)</span> if <span class="process-math">\(x_1\neq x_3\text{,}\)</span> <em class="emphasis">or</em> <span class="process-math">\(x_5\neq 3x_2-5x_4\text{.}\)</span> This suggests that we define two vectors, each of which violates one of these conditions.</p>
-<p>For the first, let us take <span class="process-math">\(\xx=(1,0,1,0,0)\text{.}\)</span> This is not in <span class="process-math">\(U\)</span> because <span class="process-math">\(1\neq 3(1)\text{.}\)</span> For the second, let us take <span class="process-math">\(\yy=(0,1,0,1,1)\text{.}\)</span> This is not in <span class="process-math">\(U\)</span> because <span class="process-math">\(1\neq 3(1)-5(1)\text{.}\)</span> We know that <span class="process-math">\(\{\xx,\yy\}\)</span> is linearly independent, because each vector has nonzero entries in different positions. Therefore, <span class="process-math">\(W=\spn\{\xx,\yy\}\)</span> is a complement of <span class="process-math">\(U\text{,}\)</span> since it is spanned by vectors not in <span class="process-math">\(U\text{,}\)</span> and it has the correct dimension.</p>
+<p>If <span class="process-math">\(\uu\in U\text{,}\)</span> then</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{align*}
+\uu \amp = (3x_3,x_2,x_3,x_4,3x_2-5x_4)\\
+\amp = (0,x_2,0,0,3x_2)+(3x_3,0,x_3,0,0)+(0,0,0,x_4,-5x_4)\\
+\amp = x_2(0,1,0,0,3)+x_3(3,0,1,0,0)+x_4(0,0,0,1,-5)\text{.}
+\end{align*}
+</div>
+<p>This shows that <span class="process-math">\(U=\spn \{(0,1,0,0,3), (3,0,1,0,0), (0,0,0,1,-5)\}\text{.}\)</span> These vectors are also linearly independent, since each one has its first leading (nonzero) entry in a different position. (Think about what this implies for the <abbr class="initialism">RREF</abbr> of the resulting matrix.)</p>
 </div></body>
 </html>

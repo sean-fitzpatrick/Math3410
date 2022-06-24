@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-06-23T15:55:36-06:00       *-->
+<!--*       on 2022-06-24T11:24:14-06:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -13,17 +13,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="robots" content="noindex, nofollow">
 </head>
-<body class="ignore-math"><article class="hiddenproof"><p>To see this, suppose <span class="process-math">\(A\)</span> is symmetric, and that we have</p>
+<body class="ignore-math"><article class="hiddenproof"><ol class="decimal">
+<li>
+<p>For any <span class="process-math">\(i=1,\ldots m\text{,}\)</span> we have</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
-A\xx_1=\lambda_1\xx_1\quad \text{ and } A\xx_2=\lambda_2\xx_2\text{,}
+\vv_{m+1}\dotp\vv_i = \xx\dotp\vv_i - \frac{\xx\dotp\vv_i}{\len{\vv_i}^2}(\vv_i\dotp\vv_i)=0\text{,}
 \end{equation*}
 </div>
-<p class="continuation">with <span class="process-math">\(\xx_1\neq\zer,\xx_2\neq \zer\text{,}\)</span> and <span class="process-math">\(\lambda_1\neq \lambda_2\text{.}\)</span> We then have, since <span class="process-math">\(A\)</span> is symmetric, and using the result above,</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-\lambda_1(\xx_1\dotp \xx_2) = (\lambda_1\xx_1)\dotp \xx_2 = (A\xx_1)\dotp \xx_2 = \xx_1\dotp(A\xx_2) = \xx_1(\lambda_2\xx_2) = \lambda_2(\xx_1\dotp\xx_2)\text{.}
-\end{equation*}
-</div>
-<p class="continuation">It follows that <span class="process-math">\((\lambda_1-\lambda_2)(\xx_1\dotp \xx_2)=0\text{,}\)</span> and since <span class="process-math">\(\lambda_1\neq \lambda_2\text{,}\)</span> we must have <span class="process-math">\(\xx_1\dotp \xx_2=0\text{.}\)</span></p></article></body>
+<p class="continuation">since <span class="process-math">\(\vv_i\dotp\vv_j = 0\)</span> for <span class="process-math">\(i\neq j\text{.}\)</span></p>
+</li>
+<li><p>It follows from the <a href="" class="xref" data-knowl="./knowl/thm-fourier-expansion.html" title="Theorem 3.1.17: Fourier expansion theorem">Fourier expansion theorem</a> that <span class="process-math">\(\vv_{m+1}=\zer\)</span> if and only if <span class="process-math">\(\xx\in\spn\{\vv_1,\ldots, \vv_m\}\text{,}\)</span> and the fact that <span class="process-math">\(\{\vv_1,\ldots, \vv_m,\vv_{m+1}\}\)</span> is an orthogonal set then follows from the first part.</p></li>
+</ol></article></body>
 </html>

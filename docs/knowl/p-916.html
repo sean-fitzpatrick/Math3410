@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-06-23T15:55:35-06:00       *-->
+<!--*       on 2022-06-24T11:24:15-06:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -14,26 +14,22 @@
 <meta name="robots" content="noindex, nofollow">
 </head>
 <body class="ignore-math">
-<h4 class="heading"><span class="type">Paragraph</span></h4>
-<p>Let <span class="process-math">\(\phi\in W^*\text{.}\)</span> We have</p>
+<h5 class="heading"><span class="type">Paragraph</span></h5>
+<p>First, we note that for a general element of <span class="process-math">\(U\text{,}\)</span> we have</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
-(S+T)^*(\phi) = \phi\circ(S+T) = \phi\circ S+\phi\circ T = S^*\phi+T^*\phi\text{,}
+(a-b+3c, 2a+b, 3c, 4a-b+3c,a-4c) = a(1,2,0,4,1)+b(-1,1,0,-1,0)+c(3,0,3,3,-4)\text{.}
 \end{equation*}
 </div>
-<p class="continuation">since <span class="process-math">\(\phi\)</span> is linear. Similarly,</p>
+<p class="continuation">If <span class="process-math">\(\ww = (x_1,x_2,x_3,x_4,x_5)\in U^\bot\text{,}\)</span> then we must have</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-(kS)^*(\phi) = \phi\circ (kS) = k(\phi\circ S) = k(S^*\phi)\text{.}
-\end{equation*}
+\begin{align*}
+\ww\dotp (1,2,0,4,1) \amp = x_1+2x_2+4x_4+x_5=0 \\
+\ww\dotp (-1,1,0,-1,0) \amp =-x_1+x_2-x_4=0\\
+\ww\dotp (3,0,3,3,-4) \amp =3x_1+3x_3+3x_4-4x_5 = 0\text{.}
+\end{align*}
 </div>
-<p class="continuation">Finally, we have</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-(ST)^*\phi = \phi\circ(ST) = \phi\circ(S\circ T) = (\phi\circ S)\circ T = T^*(\phi\circ S) = T^*(S^*\phi) = (T^*S^*)(\phi),\text{.}
-\end{equation*}
-</div>
-<p class="continuation">since composition is associative.</p>
-<span class="incontext"><a href="worksheet-dual-basis.html#p-916" class="internal">in-context</a></span>
+<p class="continuation">To find a basis for <span class="process-math">\(U^\bot\text{,}\)</span> we simply need to find the nullspace of the coefficient matrix for this system, which we do below.</p>
+<span class="incontext"><a href="sec-ortho-projection.html#p-916" class="internal">in-context</a></span>
 </body>
 </html>

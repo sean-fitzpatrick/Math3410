@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-06-23T15:55:37-06:00       *-->
+<!--*       on 2022-06-24T11:24:17-06:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -15,7 +15,33 @@
 </head>
 <body class="ignore-math">
 <h4 class="heading"><span class="type">Paragraph</span></h4>
-<p>In <a href="" class="xref" data-knowl="./knowl/def-direct-sum.html" title="Definition 1.7.8">Definition 1.7.8</a>, we said that a sum <span class="process-math">\(U+W\)</span> where <span class="process-math">\(U\cap W=\{\zer\}\)</span> is called a <dfn class="terminology">direct sum</dfn>, written as <span class="process-math">\(U\oplus W\text{.}\)</span></p>
-<span class="incontext"><a href="sec-direct-sum.html#p-1256" class="internal">in-context</a></span>
+<p>Let <span class="process-math">\(P = \bbm 1\amp 0\amp 2\\-1\amp 1\amp 0\\0\amp 3\amp -1\ebm\)</span> be the matrix whose columns are given by the coefficient representations of the polynomials in <span class="process-math">\(B\)</span> with respect to the <em class="emphasis">standard basis</em> <span class="process-math">\(B_0=\{1,x,x^2\}\text{.}\)</span> For <span class="process-math">\(T(1-x)=1+x^2\)</span> we need to solve the equation</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+a(1-x)+b(x+3x^2)+c(2-x^2)=1+x^2
+\end{equation*}
+</div>
+<p class="continuation">for scalars <span class="process-math">\(a,b,c\text{.}\)</span> But this is equivalent to the system</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{align*}
+a+2c \amp =1\\
+-a+b \amp =0\\
+3b-c \amp =1\text{,}
+\end{align*}
+</div>
+<p class="continuation">which, in turn, is equivalent to the matrix equation</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\bbm 1\amp 0\amp 2\\-1\amp 1\amp 0\\0\amp 3\amp -1\ebm\bbm a\\b\\c\ebm = \bbm 1\\0\\1\ebm\text{;}
+\end{equation*}
+</div>
+<p class="continuation">that is, <span class="process-math">\(PC_B(1+x^2) = C_{B_0}(1+x^2)\text{.}\)</span> Thus,</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+C_B(1+x^2) = \bbm a\\b\\c\ebm = P^{-1}C_{B_0}(1+x^2) = P^{-1}\bbm 1\\0\\1\ebm\text{.}
+\end{equation*}
+</div>
+<p class="continuation">Similarly, <span class="process-math">\(C_B(4x)=P^{-1}\bbm 0\\4\\0\ebm = P^{-1}C_{B_0}(4x)\text{,}\)</span> and <span class="process-math">\(C_B(2+x+2x^2)=P^{-1}\bbm 2\\1\\2\ebm = P^{-1}C_{B_0}(2+x+2x^2)\text{.}\)</span> Using the computer, we find:</p>
+<span class="incontext"><a href="sec-matrix-operator.html#p-1256" class="internal">in-context</a></span>
 </body>
 </html>

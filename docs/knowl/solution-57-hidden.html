@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-06-23T15:55:35-06:00       *-->
+<!--*       on 2022-06-24T11:24:15-06:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -14,36 +14,33 @@
 <meta name="robots" content="noindex, nofollow">
 </head>
 <body class="ignore-math"><div class="solution solution-like">
-<p>We begin with the characteristic polynomial. We have</p>
+<p>As per the hint, suppose <span class="process-math">\(\phi = c_1\phi_1+c_2\phi_2+c_3\phi_3+c_4\phi_4\text{,}\)</span> and that <span class="process-math">\(\phi\in U^0\text{.}\)</span> Then</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{align*}
-\det(xI_n - A) \amp =\det\bbm x \amp -1\amp -1\\-1\amp x \amp -1\\-1\amp -1\amp x\ebm\\
-\amp = x \begin{vmatrix}x \amp -1\\-1\amp x\end{vmatrix}
-+1\begin{vmatrix}-1\amp -1\\-1\amp x\end{vmatrix}
--1\begin{vmatrix}-1\amp x\\-1\amp -1\end{vmatrix}\\
-\amp = x(x^2-1)+(-x-1)-(1+x)\\
-\amp x(x-1)(x+1)-2(x+1)\\
-\amp (x+1)[x^2-x-2]\\
-\amp (x+1)^2(x-2)\text{.}
+\phi(2a+b,3b,a,a-2b) \amp  = c_1\phi_1(2a+b,3b,a,a-2b)+c_2\phi_2(2a+b,3b,a,a-2b)\\
+\amp \quad + c_3\phi_3(2a+b,3b,a,a-2b)+c_4\phi_4(2a+b,3b,a,a-2b)\\
+\amp  = c_1(2a+b)+c_2(3b)+c_3(a)+c_4(a-2b)\\
+\amp  = a(2c_1+c_3+c_4)+b(c_1+3c_2-2c_4)\text{.}
 \end{align*}
 </div>
-<p>The roots of the characteristic polynomial are our eigenvalues, so we have <span class="process-math">\(\lambda_1=-1\)</span> and <span class="process-math">\(\lambda_2=2\text{.}\)</span> Note that the first eigenvalue comes from a repeated root. This is typically where things get interesting. If an eigenvalue does not come from a repeated root, then there will only be one (independent) eigenvector that corresponds to it. (That is, <span class="process-math">\(\dim E_\lambda(A)=1\text{.}\)</span>) If an eigenvalue is repeated, it could have more than one eigenvector, but this is not guaranteed.</p>
-<p>We find that <span class="process-math">\(A-(-1)I_n = \bbm 1\amp 1\amp 1\\1\amp 1\amp 1\\1\amp 1\amp 1\ebm\text{,}\)</span> which has reduced row-echelon form <span class="process-math">\(\bbm 1\amp 1\amp 1\\0\amp 0\amp 0\\0\amp 0\amp 0\ebm\text{.}\)</span> Solving for the nullspace, we find that there are two independent eigenvectors:</p>
+<p>We wish for this to be zero for all possible values of <span class="process-math">\(a\)</span> and <span class="process-math">\(b\text{.}\)</span> Therefore, we must have</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-\xx_{1,1}=\bbm 1\\-1\\0\ebm, \quad \text{ and } \quad \xx_{1,2}=\bbm 1\\0\\-1\ebm\text{,}
-\end{equation*}
+\begin{align*}
+2c_1+c_3+c_4\amp =0\\
+c_1+3c_2-2c_4\amp =0\text{.}
+\end{align*}
 </div>
-<p class="continuation">so</p>
+<p class="continuation">Solving gives us <span class="process-math">\(c_1=-\frac12 c_3-\frac12 c_4\)</span> and <span class="process-math">\(c_2=\frac16 c_3+\frac56 c_4\text{,}\)</span> so</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-E_{-1}(A) = \spn\left\{\bbm 1\\-1\\0\ebm, \bbm 1\\0\\-1\ebm\right\}\text{.}
-\end{equation*}
+\begin{align*}
+\phi \amp = \left(-\frac12 c_3-\frac12 c_4\right)\phi_1 +\left(\frac16 c_3+\frac56 c_4\right)\phi_2 + c_3\phi_3 + c_4\phi_4\\
+\amp  = c_3\left(-\frac12 \phi_1 + \frac16 \phi_2+\phi_3\right)+c_4\left(-\frac12\phi_1+\frac56 \phi_2 + \phi_4\right)\text{.}
+\end{align*}
 </div>
-<p>For the second eigenvector, we have <span class="process-math">\(A-2I = \bbm -2\amp 1\amp 1\\1\amp -2\amp 1\\1\amp 1\amp -2\ebm\text{,}\)</span> which has reduced row-echelon form <span class="process-math">\(\bbm 1\amp 0\amp -1\\0\amp 1\amp -1\\0\amp 0\amp 0\ebm\text{.}\)</span> An eigenvector in this case is given by</p>
+<p class="continuation">This gives us the following basis for <span class="process-math">\(U^0\text{:}\)</span></p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
-\xx_2 = \bbm 1\\1\\1\ebm\text{.}
+\left\{\phi_3-\frac12 \phi_1+\frac16 \phi_2, \phi_4-\frac12\phi_1+\frac56\phi_3\right\}\text{.}
 \end{equation*}
 </div>
 </div></body>

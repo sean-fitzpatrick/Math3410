@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-06-23T15:55:36-06:00       *-->
+<!--*       on 2022-06-24T11:24:16-06:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -15,7 +15,13 @@
 </head>
 <body class="ignore-math">
 <h5 class="heading"><span class="type">Paragraph</span></h5>
-<p>One way to compute the polar decomposition is using the Singular Value Decomposition (see Nicholson's text). Note that both <span class="process-math">\(P\)</span> and <span class="process-math">\(\sqrt{A^TA}\)</span> can be diagonalized, but usually not with the same orthonormal basis.</p>
+<p>Example 8.6.1 in Nicolson shows that for the matrix <span class="process-math">\(A = \begin{bmatrix}1\amp 0\amp 1\\-1\amp 1\amp 0\end{bmatrix}\)</span> we should have</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+P = \frac{1}{\sqrt{2}}\bbm 1\amp 1\\-1\amp 1\ebm, \Sigma_A = \bbm \sqrt{3}\amp 0\amp 0\\0\amp 1\amp 0\ebm, Q = \frac{1}{\sqrt{6}}\bbm2\amp -1\amp 1\\0\amp \sqrt{3}\amp \sqrt{3}\\-\sqrt{2}\amp -\sqrt{2}\amp \sqrt{2}\ebm\text{.}
+\end{equation*}
+</div>
+<p class="continuation">Let us test this on the computer. First, we import the <code class="code-inline tex2jax_ignore">mpmath</code> library, and define <span class="process-math">\(A\text{.}\)</span> (Importantly, the <code class="code-inline tex2jax_ignore">svd</code> routine from <code class="code-inline tex2jax_ignore">mpmath</code> will accept a SymPy matrix as input. We do not, for example, have to first convert it to a NumPy array.) Since both SymPy and mpmath have similar functions, we <code class="code-inline tex2jax_ignore">import as</code>  for both libraries, so we can distinguish between them as needed.</p>
 <span class="incontext"><a href="section-matrix-factor.html#p-1134" class="internal">in-context</a></span>
 </body>
 </html>

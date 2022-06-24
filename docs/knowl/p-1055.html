@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-06-23T15:55:36-06:00       *-->
+<!--*       on 2022-06-24T11:24:16-06:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -15,19 +15,18 @@
 </head>
 <body class="ignore-math">
 <h5 class="heading"><span class="type">Paragraph</span></h5>
-<p>Easier is to realize that if we haven't made a mistake calculating our eigenvalues, then the above matrix can't be invertible, so there must be some nonzero vector in the kernel. If <span class="process-math">\((A+I)\bbm a\\b\ebm=\bbm0\\0\ebm\text{,}\)</span> then we must have</p>
+<p>These again follow from writing the inner product as a matrix product.</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
-5a+(3-i)b=0\text{,}
+\langle \alpha\zz_1,\zz_2\rangle = (\alpha \zz_1)^T\bar{\zz_2} = \alpha(\zz_1^T\bar{\zz_2}) = \alpha\langle\zz_1,\zz_2\rangle\text{,}
 \end{equation*}
 </div>
-<p class="continuation">when we multiply by the first row of <span class="process-math">\(A\text{.}\)</span> This suggests that we take <span class="process-math">\(a=3-i\)</span> and <span class="process-math">\(b=-5\text{,}\)</span> to get <span class="process-math">\(\zz = \bbm 3-i\\-5\ebm\)</span> as our first eigenvector. To make sure we've done things correctly, we multiply by the second row of <span class="process-math">\(A+I\text{:}\)</span></p>
+<p class="continuation">and</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
-(3+i)(3-i)+2(-5) = 10-10 = 0\text{.}
+\langle \zz_1,\alpha\zz_2\rangle = \zz_1^T\overline{\alpha \zz_2} = \zz_1^T(\bar{\alpha}\bar{\zz_2}) = \bar{\alpha}(\zz_1^T\zz_2)=\alpha\langle \zz_1,\zz_2\rangle\text{.}
 \end{equation*}
 </div>
-<p class="continuation">Success! Now we move onto the second eigenvalue.</p>
 <span class="incontext"><a href="sec-complex.html#p-1055" class="internal">in-context</a></span>
 </body>
 </html>

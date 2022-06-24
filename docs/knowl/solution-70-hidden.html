@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-06-23T15:55:38-06:00       *-->
+<!--*       on 2022-06-24T11:24:17-06:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -12,125 +12,25 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="robots" content="noindex, nofollow">
-<script>// Make *any* pre with class 'sagecell-sage' an executable Sage cell
-// Their results will be linked, only within language type
-sagecell.makeSagecell({inputLocation: 'pre.sagecell-sage',
-                       linked: true,
-                       languages: ['sage'],
-                       evalButtonText: 'Evaluate (Sage)'});
-</script>
 </head>
 <body class="ignore-math"><div class="solution solution-like">
-<p>First, we need the characteristic polynomial.</p>
-<pre class="ptx-sagecell sagecell-sage" id="sage-125"><script type="text/x-sage">from sympy import Matrix,init_printing,factor
-init_printing()
-A = Matrix([[7,1,-3,2,1],
-            [-6,2,4,-2,-2],
-            [0,1,3,1,-1],
-            [-8,-1,6,0,-3],
-            [-4,0,3,-1,1]])
-p = A.charpoly().as_expr()
-factor(p)
-</script></pre>
-<p>The characteristic polynomial of <span class="process-math">\(A\)</span> is given by</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-c_A(x)=(x-2)^2(x-3)^3\text{.}
-\end{equation*}
-</div>
-<p class="continuation">We thus have two eigenvalues: <span class="process-math">\(2\text{,}\)</span> of multiplicity <span class="process-math">\(2\text{,}\)</span> and <span class="process-math">\(3\text{,}\)</span> of multiplicity <span class="process-math">\(3\text{.}\)</span> We next find the <span class="process-math">\(E_2(A)\)</span> eigenspace.</p>
-<pre class="ptx-sagecell sagecell-sage" id="sage-126"><script type="text/x-sage">from sympy import eye
-N2 = A-2*eye(5)
-E2 = N2.nullspace()
-E2
-</script></pre>
-<p>The computer gives us</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-E_2(A)=\nll(A-2I) = \spn\{\xx_1\}, \text{ where } \xx_1=\bbm -1\\0\\-1\\1\\0\ebm\text{,}
-\end{equation*}
-</div>
-<p class="continuation">so we have only one independent eigenvector, which means that <span class="process-math">\(G_2(A)=\nll(A-2I)^2\text{.}\)</span></p>
-<p>Following <a href="" class="xref" data-knowl="./knowl/jordan-chain-basis.html" title="Insight 5.6.5: Finding a chain basis">Insight 5.6.5</a>, we extend <span class="process-math">\(\{\xx_1\}\)</span> to a basis of <span class="process-math">\(G_2(A)\)</span> by solving the system</p>
-<div class="displaymath process-math" data-contains-math-knowls="./knowl/jordan-chain-basis.html">
-\begin{equation*}
-(A-2I)\xx = \xx_1\text{.}
-\end{equation*}
-</div>
-<pre class="ptx-sagecell sagecell-sage" id="sage-127"><script type="text/x-sage">B2 = N2.col_insert(5,E2[0])
-B2.rref()
-</script></pre>
-<p>Using the results above from the computer (or Gaussian elimination), we find a general solution</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-\xx = \bbm -t\\-1\\-t\\t\\0\ebm = t\bbm -1\\0\\-1\\1\\0\ebm + \bbm 0\\-1\\0\\0\\0\ebm\text{.}
-\end{equation*}
-</div>
-<p class="continuation">Note that our solution is of the form <span class="process-math">\(\xx = t\xx_1+\xx_2\text{.}\)</span> We set <span class="process-math">\(t=0\text{,}\)</span> and get <span class="process-math">\(\xx_2 = \bbm 0\amp -1\amp 0\amp 0\amp 0\ebm^T\text{.}\)</span></p>
-<p>Next, we consider the eigenvalue <span class="process-math">\(\lambda=3\text{.}\)</span> The computer gives us the following:</p>
-<pre class="ptx-sagecell sagecell-sage" id="sage-128"><script type="text/x-sage">N3 = A-3*eye(5)
-E3 = N3.nullspace()
-E3
-</script></pre>
-<p>Rescaling to remove fractions, we find</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-E_3(A) = \nll(A-3I) = \spn\{\yy_1,\yy_2\}, \text{ where } \yy_1 = \bbm 1\\-2\\2\\2\\0\ebm, \yy_2 = \bbm -1\\2\\0\\0\\2\ebm\text{.}
-\end{equation*}
-</div>
-<p class="continuation">Again, we're one eigenvector short of the multiplicity, so we need to consider <span class="process-math">\(G_3(A)=\nll(A-3I)^3\text{.}\)</span></p>
-<p>In the next cell, note that we doubled the eigenvectors in <code class="code-inline tex2jax_ignore">E3</code> to avoid fractions. To follow the solution in our example, we append <code class="code-inline tex2jax_ignore">2*E3[0]</code>, and reduce the resulting matrix. You should find that using the eigenvector <span class="process-math">\(\yy_1\)</span> corresponding to <code class="code-inline tex2jax_ignore">E3[0]</code> leads to an inconsistent system. Once you confirm this, replace <code class="code-inline tex2jax_ignore">E3[0]</code> with <code class="code-inline tex2jax_ignore">E3[1]</code> and re-run the cell to see that we get an inconsistent system using <span class="process-math">\(\yy_2\)</span> as well!</p>
-<pre class="ptx-sagecell sagecell-sage" id="sage-129"><script type="text/x-sage">B3 = N3.col_insert(5,2*E3[0])
-B3.rref()
-</script></pre>
-<p>The systems <span class="process-math">\((A-3I)\yy = \yy_1\)</span> and <span class="process-math">\((A-3I)\yy=\yy_2\)</span> are both inconsistent, but we can salvage the situation by replacing the eigenvector <span class="process-math">\(\yy_2\)</span> by some linear combination <span class="process-math">\(\zz_2 = a\yy_1+b\yy_2\text{.}\)</span> We row-reduce, and look for values of <span class="process-math">\(a\)</span> and <span class="process-math">\(b\)</span> that give a consistent system.</p>
-<p>The <code class="code-inline tex2jax_ignore">rref</code> command takes things a bit farther than we'd like, so we use the command <code class="code-inline tex2jax_ignore">echelon_form()</code> instead. Note that if <span class="process-math">\(a=b\text{,}\)</span> the system is inconsistent.</p>
-<pre class="ptx-sagecell sagecell-sage" id="sage-130"><script type="text/x-sage">from sympy import Symbol
-a = Symbol('a')
-b = Symbol('b')
-C3 = N3.col_insert(5,a*E3[0]+b*E3[1])
-C3.echelon_form()
-</script></pre>
-<p>We find that <span class="process-math">\(a=b\)</span> does the job, so we set</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-\zz_2 = \yy_1+\yy_2 = \bbm 0\\0\\2\\2\\2\ebm\text{.}
-\end{equation*}
-</div>
-<pre class="ptx-sagecell sagecell-sage" id="sage-131"><script type="text/x-sage">D3 = N3.col_insert(5,E3[0]+E3[1])
-D3.rref()
-</script></pre>
-<p>Solving the system <span class="process-math">\((A-3I)\zz = \yy_1+\yy_2\text{,}\)</span> using the code above, we find</p>
+<p>Since we don't know the map <span class="process-math">\(T\)</span> or anything about the bases <span class="process-math">\(B_U,B_W\text{,}\)</span> we're looking for a fairly general statement here. Since <span class="process-math">\(U\)</span> is <span class="process-math">\(T\)</span>-invariant, we must have <span class="process-math">\(T(\uu_i)\in U\)</span> for each <span class="process-math">\(i=1,\ldots, m\text{.}\)</span> Similarly, <span class="process-math">\(T(\ww_j)\in W\)</span> for each <span class="process-math">\(j=1,\ldots, n\text{.}\)</span> This means that we have</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{align*}
-\zz \amp = \bbm \frac12 +\frac12 s-\frac12 t\\1-s+t\\1+s\\s\\t\ebm\\
-\amp = \bbm \frac12\\1\\1\\0\\0\ebm + s\bbm\frac12\\-1\\1\\1\\0\ebm+t\bbm -\frac12\\1\\0\\0\\1\ebm\\
-\amp = \bbm \frac12\\1\\1\\0\\0\ebm \frac{s}{2}\yy_1+\frac{t}{2}\yy_2\text{.}
+T(\uu_1) \amp = a_{11}\uu_1 + \cdots + a_{m1}\uu_m + 0\ww_1+\cdots + 0\ww_n\\
+\amp \vdots \\
+T(\uu_m) \amp = a_{1m}\uu_1 + \cdots + a_{mm}\uu_m+0\ww_1+\cdots + 0\ww_n\\
+T(\ww_1) \amp = 0\uu_1 + \cdots + 0\uu_m+b_{11}\ww_1 + \cdots + b_{n1}\ww_n \\
+\amp \vdots \\
+T(\ww_n) \amp = 0\uu_1 + \cdots + 0\uu_m+b_{1n}\ww_1 + \cdots + b_{nn}\ww_n
 \end{align*}
 </div>
-<p>We let <span class="process-math">\(\zz_3 = \bbm 1 \\ 2 \\ 2 \\ 0 \\ 0\ebm\text{,}\)</span> and check that</p>
+<p class="continuation">for some scalars <span class="process-math">\(a_{ij},b_{ij}\text{.}\)</span> If we set <span class="process-math">\(A = [a_{ij}]_{m\times m}\)</span> and <span class="process-math">\(B = [b_{ij}]_{n\times n}\text{,}\)</span> then we have</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
-A\zz_3 = 3\zz_3+\zz_2\text{,}
+M_B(T) = \bbm A \amp 0\\0\amp B\ebm\text{.}
 \end{equation*}
 </div>
-<p class="continuation">as required:</p>
-<pre class="ptx-sagecell sagecell-sage" id="sage-132"><script type="text/x-sage">Z3 = Matrix(5,1,[1,2,2,0,0])
-A*Z3-3*Z3-2*(E3[0]+E3[1])
-</script></pre>
-<p>This gives us the basis <span class="process-math">\(B = \{\xx_1,\xx_2,\yy_1,\zz_2,\zz_3\}\)</span> for <span class="process-math">\(\R^5\text{,}\)</span> and with respect to this basis, we have the Jordan canonical form</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-M_B(T) = \bbm 2 \amp 1\amp 0\amp 0 \amp 0\\
-0 \amp 2\amp 0\amp 0 \amp 0\\
-0 \amp 0\amp 3\amp 0 \amp 0\\
-0 \amp 0\amp 0\amp 3 \amp 1\\
-0 \amp 0\amp 0\amp 0 \amp 3\ebm\text{.}
-\end{equation*}
-</div>
-<p>Now that we've done all the work required for <a href="" class="xref" data-knowl="./knowl/ex-jordan-form1.html" title="Example 5.6.6">Example 5.6.6</a>, we should confess that there was an easier way all along:</p>
-<pre class="ptx-sagecell sagecell-sage" id="sage-133"><script type="text/x-sage">A.jordan_form()
-</script></pre>
-<p>The <code class="code-inline tex2jax_ignore">jordan_form()</code> command returns a pair <span class="process-math">\(P,J\text{,}\)</span> where <span class="process-math">\(J\)</span> is the Jordan canonical form of <span class="process-math">\(A\text{,}\)</span> and <span class="process-math">\(P\)</span> is an invertible matrix such that <span class="process-math">\(P^{-1}AP=J\text{.}\)</span> You might find that the computer's answer is not quite the same as ours. This is because the Jordan canonical form is only unique up to permutation of the Jordan blocks. Changing the order of the blocks amounts to changing the order of the columns of <span class="process-math">\(P\text{,}\)</span> which are given by a basis of (generalized eigenvectors).</p>
+<p class="continuation">Moreover, we can also see that <span class="process-math">\(A = M_{B_U}(T|_U)\text{,}\)</span> and <span class="process-math">\(B = M_{B_W}(T|_W)\text{.}\)</span></p>
 </div></body>
 </html>

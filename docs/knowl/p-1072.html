@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-06-23T15:55:36-06:00       *-->
+<!--*       on 2022-06-24T11:24:16-06:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -15,7 +15,19 @@
 </head>
 <body class="ignore-math">
 <h5 class="heading"><span class="type">Paragraph</span></h5>
-<p>Let <span class="process-math">\(A\)</span> be an <span class="process-math">\(n\times n\)</span> complex matrix, and let <span class="process-math">\(c_A(x)\)</span> denote the characteristic polynomial of <span class="process-math">\(A\text{.}\)</span> Then we have <span class="process-math">\(c_A(A)=0\text{.}\)</span></p>
+<p>Note that the property <span class="process-math">\(A^H=A\)</span> is equivalent to <span class="process-math">\(A^T=\bar{A}\text{.}\)</span> This gives us</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\langle A\zz,\ww\rangle = (A\zz)^T\bar{\ww} = (\zz^TA^T)\bar{\ww} = (\zz^T\bar{A})\bar{\ww}=\zz^T(\overline{A\ww}) = \langle \zz,\ww\rangle\text{.}
+\end{equation*}
+</div>
+<p class="continuation">Conversely, suppose <span class="process-math">\(\langle A\zz,\ww\rangle = \langle \zz, A\ww\rangle\)</span> for all <span class="process-math">\(\zz,\ww\in \C^n\text{,}\)</span> and let <span class="process-math">\(\basis{e}{n}\)</span> denote the standard basis for <span class="process-math">\(\C^n\text{.}\)</span> Then</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+a_{ji}=\langle A\mathbf{e}_i,\mathbf{e}_j\rangle = \langle \mathbf{e}_i,A\mathbf{e}_j\rangle = \overline{a_{ij}}\text{,}
+\end{equation*}
+</div>
+<p class="continuation">which shows that <span class="process-math">\(A^T=\bar{A}\text{.}\)</span></p>
 <span class="incontext"><a href="sec-complex.html#p-1072" class="internal">in-context</a></span>
 </body>
 </html>

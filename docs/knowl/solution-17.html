@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-06-23T15:55:32-06:00       *-->
+<!--*       on 2022-06-24T11:24:12-06:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -23,53 +23,42 @@ sagecell.makeSagecell({inputLocation: 'pre.sagecell-sage',
 <body class="ignore-math">
 <div class="solution solution-like">
 <h3 class="heading">
-<span class="type">Solution</span><span class="space"> </span><span class="codenumber">1.3.4.1</span><span class="period">.</span>
+<span class="type">Solution</span><span class="space"> </span><span class="codenumber">1.4.3.1</span><span class="period">.</span>
 </h3>
-<p>We seek scalars <span class="process-math">\(s,t\)</span> such that</p>
+<p>This is really asking: are there scalars <span class="process-math">\(s,t\)</span> such that</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
-s(1+2x-2x^2)+t(3+5x+2x^2)=1+x+4x^2\text{.}
+s\bbm 1\\1\ebm + t\bbm -1\\2\ebm = \bbm 2\\3\ebm\text{?}
 \end{equation*}
 </div>
-<p class="continuation">On the left-hand side, we expand and gather terms:</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-(s+3t)+(2s+5t)x+(-2s+2t)x^2 = 1+x+4x^2\text{.}
-\end{equation*}
-</div>
-<p class="continuation">These two polynomials are equal if and only if we can solve the system</p>
+<p class="continuation">And this, in turn, is equivalent to the system</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{align*}
-s+3t \amp = 1 \\
-2s+5t \amp =1\\
--2s+2t \amp =4\text{.}
+s -t \amp=2 \\
+s+2t \amp=3 \text{,}
 \end{align*}
 </div>
-<p>We can solve this computationally using matrices again.</p>
-<pre class="ptx-sagecell sagecell-sage" id="sage-4"><script type="text/x-sage">from sympy import Matrix, init_printing
+<p class="continuation">which is the same as the matrix equation</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\bbm 1\amp -1\\1\amp 2\ebm\bbm s\\t\ebm = \bbm 2\\3\ebm.
+\end{equation*}
+</div>
+<p class="continuation">Solving the system confirms that there is indeed a solution, so the answer to our original question is yes.</p>
+<p>To confirm the above example (and see what the solution is), we can use the computer. This first code cell loads the <code class="code-inline tex2jax_ignore">sympy</code> Python library, and then configures the output to look nice. For details on the code used below, see <a href="ch-computation.html" class="internal" title="Appendix A: Computational Tools">the Appendix</a>.</p>
+<pre class="ptx-sagecell sagecell-sage" id="sage-1"><script type="text/x-sage">from sympy import Matrix, init_printing
 init_printing()
-M = Matrix(3,3,[1,3,1,2,5,1,-2,2,4])
-M.rref()
+A = Matrix(2,3,[1,-1,2,1,2,3])
+A.rref()
 </script></pre>
-<p>So, what's the answer? Is <span class="process-math">\(p(x)\)</span> in the span? Can we determine what polynomials are in the span? Let's consider a general polynomial <span class="process-math">\(q(x)=a+bx+cx^2\text{.}\)</span> A bit of thought tells us that the coefficients <span class="process-math">\(a,b,c\)</span> should replace the constants <span class="process-math">\(1,1,4\)</span> above.</p>
-<pre class="ptx-sagecell sagecell-sage" id="sage-5"><script type="text/x-sage">from sympy import symbols
-a, b, c = symbols('a b c', real = True, constant = True)
-N = Matrix(3,3,[1,3,a,2,5,b,-2,2,c])
-N
+<p>The above code produces the reduced row-echelon form of the augmented matrix for our system. (The tuple <span class="process-math">\((0,1)\)</span> lists the pivot columns — note that Python indexes the columns starting at <span class="process-math">\(0\)</span> rather than <span class="process-math">\(1\text{.}\)</span>) Do you remember how to get the answer from here? Here's another approach.</p>
+<pre class="ptx-sagecell sagecell-sage" id="sage-2"><script type="text/x-sage">B = Matrix(2,2,[1,-1,1,2])
+B
 </script></pre>
-<p>Asking the computer to reduce this matrix to <abbr class="initialism">RREF</abbr> won't produce the desired result. But we can always specify row operations.</p>
-<pre class="ptx-sagecell sagecell-sage" id="sage-6"><script type="text/x-sage">N1 = N.elementary_row_op(op='n->n+km',row=1,k=-2,row2=0)
-N1
+<pre class="ptx-sagecell sagecell-sage" id="sage-3"><script type="text/x-sage">C = Matrix(2,1,[2,3])
+X = (B**-1)*C
+X
 </script></pre>
-<p>In the <code class="code-inline tex2jax_ignore">elementary_row_op</code> function called above, we are asking the computer to change row <span class="process-math">\(1\)</span> (the second row) by adding <span class="process-math">\(-2\)</span> times row <span class="process-math">\(0\)</span> )the first row). See <a href="sec-sympy.html#subsec-sympy-matrix" class="internal" title="Subsection A.3.2: Matrices in SymPy">Section A.3.2</a> for complete details on this syntax.</p>
-<p>Now we repeat. Here is another cell to work with:</p>
-<pre class="ptx-sagecell sagecell-sage" id="sage-7"><script type="text/x-sage"></script></pre>
-<p>Another option is to replace the <code class="code-inline tex2jax_ignore">rref()</code> function with the <code class="code-inline tex2jax_ignore">echelon_form()</code> function, which doesn't simplify quite as far:</p>
-<pre class="ptx-sagecell sagecell-sage" id="sage-8"><script type="text/x-sage">a, b, c = symbols('a b c', real = True, constant = True)
-N = Matrix(3,3,[1,3,a,2,5,b,-2,2,c])
-N.echelon_form()
-</script></pre>
-<p>For a consistent system, we need <span class="process-math">\(c=14a-8b\text{.}\)</span></p>
 </div>
 <span class="incontext"><a href="sec-span.html#solution-17" class="internal">in-context</a></span>
 </body>
