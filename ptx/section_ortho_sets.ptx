@@ -16,8 +16,10 @@
       you may not have thought all that carefully about what, exactly,
       is responsible for making the connection between algebra and geometry.
       It turns out that the missing link is the humble dot product.
-      This should be plausible after a bit of thought.
-      After all, you probably encountered the following result, perhaps as a consequence of the law of cosines:
+    </p>
+
+    <p>
+      You probably encountered the following result, perhaps as a consequence of the law of cosines:
       for any two vectors <m>\uu,\vv\in\R^2</m>,
       <me>
         \uu\dotp\vv = \len{\uu}\,\len{\vv}\cos\theta
@@ -76,7 +78,8 @@
 
     <p>
       It should be no surprise that all the familiar properties of the dot product work just as well in any dimension.
-      The folowing properties are all easily confirmed by routine computation.
+      The folowing properties can be confirmed by direct computation,
+      so the proof is left as an exercise.
     </p>
 
     <theorem xml:id="thm-dot-props">
@@ -121,6 +124,11 @@
           compute <m>(4\xx-3\yy)\dotp (\xx+5\yy)</m>.
         </p>
       </statement>
+      <hint>
+        <p>
+          Use properties of the dot product to expand and simplify.
+        </p>
+      </hint>
       <solution>
         <p>
           Note that the distributive property, together with symmetry,
@@ -144,6 +152,11 @@
           </me>.
         </p>
       </statement>
+      <hint>
+        <p>
+          Use properties of the dot product to expand and simplify.
+        </p>
+      </hint>
       <solution>
         <p>
           This is simply an exercise in properties of the dot product. We have
@@ -163,6 +176,12 @@
           Prove that <m>\xx=\zer</m> if and only if <m>\xx\dotp \vv_i=0</m> for each <m>i=1,2,\ldots, k</m>.
         </p>
       </statement>
+      <hint>
+        <p>
+          Don't forget to prove both directions!
+          Note that the hypothesis allows you to write <m>\xx</m> as a linear combination of the <m>\vv_i</m>.
+        </p>
+      </hint>
       <solution>
         <p>
           If <m>\xx=\zer</m>, then the result follows immediately from the dot product formula in <xref ref="def-dot-prod-norm"/>.
@@ -180,7 +199,7 @@
 
     <p>
       There are two important inequalities associated to the dot product and norm.
-      We state them both in the following theorem.
+      We state them both in the following theorem, without proof.
     </p>
 
     <theorem xml:id="thm-cauchy-triangle">
@@ -201,29 +220,29 @@
     </theorem>
 
     <p>
-      The first of the above inequalities is called the <em>Cauchy-Schwarz inequality</em>, which be viewed as a manifestation of the formula
+      The first of the above inequalities is called the <em>Cauchy-Schwarz inequality</em>,
+      which be viewed as a manifestation of the formula
       <me>
         \xx\dotp \yy = \len{\xx}\len{\yy}\cos\theta
       </me>,
       since after all, <m>\lvert \cos\theta\rvert\leq 1</m> for any angle <m>\theta</m>.
-      For a direct proof, we note that for any scalars <m>r,s</m> we have
-      <me>
-        \len{r\xx\pm s\yy}^2 = r^2\len{\xx}^2\pm 2rs\xx\dotp\yy+s^2\len{\yy}^2
-      </me>.
-      Putting <m>r=\len{\yy}, s=\len{\xx}</m> gives
-      <me>
-        \len{s\xx\pm r\yy}^2 = 2rs(rs\pm\xx\dotp\yy)
-      </me>.
-      Since the left-hand side is non-negative, we must have
-      <me>
-        \xx\yy\leq \len{\xx}\len{\yy} \quad \text{ and } -\len{\xx}\len{\yy}\leq \xx\dotp\yy
-      </me>,
-      and the result follows.
+    </p>
+
+    <p>
+      The usual proof involves some algebraic trickery;
+      the interested reader is invited to search online for the Cauchy-Schwarz inequality,
+      where they will find no shortage of websites offering proofs.
     </p>
 
     <p>
       The second result, called the  <em>triangle inequality</em>,
-      follows immediately from the Cauchy-Scwarz inequality and <xref ref="ex-norm-sum-square"/>.
+      follows immediately from the Cauchy-Scwarz inequality and <xref ref="ex-norm-sum-square"/>:
+      <me>
+        \len{\xx+\yy}^2 = \len{\xx}^2+2\xx\dotp\yy+\len{\yy^2}\leq \len{\xx}^2+2\len{\xx}\len{\yy}+\len{\yy}^2=(\len{\xx}+\len{\yy})^2
+      </me>.
+    </p>
+
+    <p>
       The triangle inequality gets its name from the <q>tip-to-tail</q> picture for vector addition.
       Essentially, it tells us that the length of any side of a triangle must be less than the sum of the lengths of the other two sides.
       The importance of the triangle inequality is that it tells us that the norm can be used to define distance.
@@ -241,47 +260,122 @@
       </statement>
     </definition>
 
-    <p>
-      Using properties of the norm, we can show that this distance function meets the criteria of what's called a <em>metric</em>.
-      A metric is any function that takes a pair of vectors (or points) as input, and returns a number as output,
-      with the following properties:
-      <ol>
-        <li>
-          <p>
-            <m>d(\xx,\yy)=d(\yy,\xx)</m> for any <m>\xx,\yy</m>
-          </p>
-        </li>
-        <li>
-          <p>
-            <m>d(\xx,\yy)\geq 0</m>, and <m>d(\xx,\yy)=0</m> if and only if <m>\xx=\yy</m>
-          </p>
-        </li>
-        <li>
-          <p>
-            <m>d(\xx,\yy)\leq d(\xx,\zz)+d(\zz,\yy)</m> for any <m>\xx,\yy,\zz</m>
-          </p>
-        </li>
-      </ol>
-      We leave it as an exercise to confirm that the distance function defined above is a metric.
-    </p>
+    <remark>
+      <p>
+        Using properties of the norm, we can show that this distance function meets the criteria of what's called a <em>metric</em>.
+        A metric is any function that takes a pair of vectors (or points) as input, and returns a number as output,
+        with the following properties:
+        <ol>
+          <li>
+            <p>
+              <m>d(\xx,\yy)=d(\yy,\xx)</m> for any <m>\xx,\yy</m>
+            </p>
+          </li>
+          <li>
+            <p>
+              <m>d(\xx,\yy)\geq 0</m>, and <m>d(\xx,\yy)=0</m> if and only if <m>\xx=\yy</m>
+            </p>
+          </li>
+          <li>
+            <p>
+              <m>d(\xx,\yy)\leq d(\xx,\zz)+d(\zz,\yy)</m> for any <m>\xx,\yy,\zz</m>
+            </p>
+          </li>
+        </ol>
+        We leave it as an exercise to confirm that the distance function defined above is a metric.
+      </p>
 
-    <p>
-      In more advanced courses (<eg/> topology or analysis) you might go into detailed study of these structures.
-      There are three interrelated structures: inner products, norms, and metrics.
-      You might consider questions like: does every norm come from an inner product? Does every metric come from a norm?
-      (No.) Things get even more interesting for infinite-dimensional spaces.
-      Of special interest are spaces such as <em>Hilbert spaces</em> (a special type of infinite-dimensional inner product space)
-      and <em>Banach spaces</em> (a special type of infinite-dimensional normed space).
-    </p>
+      <p>
+        In more advanced courses (<eg/> topology or analysis) you might go into detailed study of these structures.
+        There are three interrelated structures: inner products, norms, and metrics.
+        You might consider questions like: does every norm come from an inner product? Does every metric come from a norm?
+        (No.) Things get even more interesting for infinite-dimensional spaces.
+        Of special interest are spaces such as <em>Hilbert spaces</em> (a special type of infinite-dimensional inner product space)
+        and <em>Banach spaces</em> (a special type of infinite-dimensional normed space).
+      </p>
+    </remark>
+
+    <exercise>
+      <statement>
+        <p>
+          Select all vectors that are orthogonal to the vector <m>(2,1,-3)</m>
+        </p>
+      </statement>
+      <choices randomize="yes">
+        <choice correct="yes">
+          <statement>
+            <p>
+              <m>(1,1,1)</m>
+            </p>
+          </statement>
+          <feedback>
+            <p>
+              Yes! <m>2(1)+1(1)-3(1)=0</m>.
+            </p>
+          </feedback>
+        </choice>
+        <choice correct="no">
+          <statement>
+            <p>
+              <m>(3,1,2)</m>
+            </p>
+          </statement>
+          <feedback>
+            <p>
+              You should find that the dot product is <m>1</m>, not <m>0</m>,
+              so these vectors are not orthogonal.
+            </p>
+          </feedback>
+        </choice>
+        <choice correct="no">
+          <statement>
+            <p>
+              <m>(0,0)</m>
+            </p>
+          </statement>
+          <feedback>
+            <p>
+              You might be tempted to say that the zero vector is orthoginal to everything,
+              but we can't compare vectors from different vector spaces!
+            </p>
+          </feedback>
+        </choice>
+        <choice correct="yes">
+          <statement>
+            <p>
+              <m>(0,-3,-1)</m>
+            </p>
+          </statement>
+          <feedback>
+            <p>
+              Yes! We have to be careful of signs here: <m>2(0)+1(-3)+(-3)(-1)=0-3+3=0</m>.
+            </p>
+          </feedback>
+        </choice>
+      </choices>
+    </exercise>
+
+    <exercise>
+      <statement correct="no">
+        <p>
+          If <m>\uu</m> is orthogonal to <m>\vv</m> and <m>\vv</m> is orthogonal to <m>\ww</m>,
+          then <m>\uu</m> is orthoginal to <m>\ww</m>.
+        </p>
+      </statement>
+      <feedback>
+        <p>
+          Consider <m>\uu=(1,0,0)</m>, <m>\vv=(0,1,0)</m>, and <m>\ww=(1,0,1)</m>.
+        </p>
+      </feedback>
+    </exercise>
   </subsection>
 
   <subsection xml:id="subsec-ortho-sets">
     <title>Orthogonal sets of vectors</title>
     <p>
-      In earlier chapters, we've seen that among different sets of vectors one could consider,
-      independent sets and spanning sets are both worthy of study.
-      One of the main themes of this chapter is that <em>orthogonal</em> sets are equally worthy,
-      and in many cases, easier to work with.
+      In <xref ref="ch-vector-space"/>, we learn that linear independence and span are important concepts associated to a set of vectors.
+      In this chapter, we learn what it means for a set of vectors to be <em>orthogonal</em>,
+      and try to understand why this concept is just as important as independence and span.
     </p>
 
     <definition xml:id="def-ortho-set">
@@ -315,6 +409,12 @@
           Can you find a fourth vector that is orthogonal to each vector in this set?
         </p>
       </statement>
+      <hint>
+        <p>
+          The dot product of the fourth vector with each vector above must be zero.
+          Can you turn this requirement into a system of equations?
+        </p>
+      </hint>
       <solution>
         <p>
           Clearly, all three vectors are nonzero. To confirm the set is orthogonal, we simply compute dot products:
@@ -353,9 +453,24 @@
 
         <p>
           One possible nonzero solution is to take <m>d=2</m>, giving <m>\xx=(1,-6,-1,2)</m>.
-          We'll leave the verification that this vector works as an easy exercise.
+          We'll leave the verification that this vector works as an exercise.
         </p>
       </solution>
+    </exercise>
+
+    <exercise>
+      <statement correct="no">
+        <p>
+          If <m>\{\vv,\ww\}</m> and <m>\{\xx,\yy\}</m> are orthogonal sets of vectors in <m>\R^n</m>,
+          then <m>\{\vv,\ww,\xx,\yy\}</m> is an orthogonal set of vectors.
+        </p>
+      </statement>
+      <feedback>
+        <p>
+          Try to construct an example. The vector <m>\xx</m> has to be orthogonal to <m>\yy</m>,
+          but is there any reason it has to be orthogonal to <m>\vv</m> or <m>\ww</m>?
+        </p>
+      </feedback>
     </exercise>
 
     <p>
@@ -369,6 +484,21 @@
           Any orthogonal set of vectors is linearly independent.
         </p>
       </statement>
+      <proof>
+        <title>Strategy</title>
+        <p>
+          Any proof of linear independence should start by defining our set of vectors,
+          and assuming that a linear combination of these vectors is equal to the zero vector,
+          with the goal of showing that the scalars have to be zero.
+        </p>
+
+        <p>
+          Set up the equation (say, <m>c_1\vv_1+\cdots c_n\vv_n=\zer</m>),
+          with the assumption that your set of vectors is orthogonal.
+          What happens if you take the dot product of both sides with one of these vectors?
+        </p>
+      </proof>
+
       <proof>
         <p>
           Suppose <m>S=\{\vv_1,\vv_2,\ldots, \vv_k\}</m> is orthogonal, and suppose
@@ -388,9 +518,14 @@
     </theorem>
 
     <p>
-      Another useful consequence of orthogonality: recall that in two dimensions,
-      we have the Pythagorean Theorem for right-angled triangles,
-      but have to settle for the Law of Cosines otherwise.
+      Another useful consequence of orthogonality: in two dimensions,
+      we have the Pythagorean Theorem for right-angled triangles.
+      If the <q>legs</q> of the triangle are identified with vectors <m>\xx</m> and <m>\yy</m>,
+      and the hypotenuse with <m>\zz</m>, then <m>\len{\xx}^2+\len{\yy}^2=\len{\zz}^2</m>,
+      since <m>\xx\dotp \yy=0</m>.
+    </p>
+
+    <p>
       In <m>n</m> dimensions, we have the following, which follows from the fact that all <q>cross terms</q>
       (dot products of different vectors) will vanish.
     </p>
@@ -405,6 +540,17 @@
         </p>
       </statement>
     </theorem>
+    <proof>
+      <title>Strategy</title>
+      <p>
+        Remember that
+        <me>
+          \len{\xx_1+\cdots + \xx_k}^2 = (\xx_1+\cdots +\xx_k)\dotp (\xx_1+\cdots +\xx_k)
+        </me>,
+        and use the distributive property of the dot product,
+        along with the fact that each pair of different vectors is orthogonal.
+      </p>
+    </proof>
 
     <p>
       Our final initial result about orthogonal sets of vectors relates to span.
@@ -430,6 +576,14 @@
         </p>
       </statement>
       <proof>
+        <title>Strategy</title>
+        <p>
+          Take the same approach you used in the proof of <xref ref="thm-ortho-independent"/>,
+          but this time, with a nonzero vector on the right-hand side.
+        </p>
+      </proof>
+
+      <proof>
         <p>
           Let <m>\yy=c_1\vv_1+\cdots + c_k\vv_k</m>.
           Taking the dot product of both sides of this equation with <m>\vv_i</m>
@@ -453,6 +607,9 @@
         <p>
           Determine whether or not the vectors <m>\vv=(1,-4,3,-11), \ww=(3,1,-4,2)</m>
           belong to the span of the vectors <m>\xx_1=(1,0,1,0), \xx_2=(-1,0,1,1), \xx_3=(1,1,-1,2)</m>.
+        </p>
+
+        <p>
           (We confirmed that these vectors form an orthogonal set in <xref ref="ex-orthogonal-set"/>.)
         </p>
       </statement>
@@ -492,7 +649,8 @@
     <p>
       The Fourier expansion is especially simple if our basis vectors have norm one,
       since the denominators in each coefficient disappear.
-      Recall (from elementary linear algebra) that for any nonzero vector <m>\vv</m>,
+      Recall that a <term>unit vector</term> in <m>\R^n</m> is any vector <m>\xx</m> with <m>\len{\xx}=1</m>.
+      For any nonzero vector <m>\vv</m>,
       a <em>unit vector</em> (that is, a vector of norm one) in the direction of <m>\vv</m> is given by
       <me>
         \hat{u} = \frac{1}{\len{\vv}}\vv
@@ -500,6 +658,32 @@
       We often say that the vector <m>\uu</m> is <em>normalized</em>.
       (The convention of using a <q>hat</q> for unit vectors is common but not universal.)
     </p>
+
+    <exercise>
+      <statement>
+        <p>
+          Match each vector on the left with a parallel unit vector on the right.
+        </p>
+      </statement>
+      <matches>
+        <match order="3">
+          <premise><m>\langle 2, -1, 2\rangle</m></premise>
+          <response><m>\left\langle \frac23, -\frac13, \frac23\right\rangle</m></response>
+        </match>
+        <match order="1">
+          <premise><m>\langle 3,0,-4\rangle</m></premise>
+          <response><m>\left\langle \frac35, 0,-\frac45\right\rangle</m></response>
+        </match>
+        <match order="4">
+          <premise><m>\langle 1,2,1</m></premise>
+          <response><m>\left\langle \frac{1}{\sqrt{6}},\frac{2}{\sqrt{6}},\frac{1}{\sqrt{6}}\right\rangle</m></response>
+        </match>
+        <match order="2">
+          <premise><m>\langle 2,0,1\rangle</m></premise>
+          <response><m>\left\langle \frac{2}{\sqrt{5}},0,\frac{1}{\sqrt{5}}\right\rangle</m></response>
+        </match>
+      </matches>
+    </exercise>
 
     <definition xml:id="def-onb">
       <statement>
