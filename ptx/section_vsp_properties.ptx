@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<section xml:id="sec-vsp-properties">
+  <title>Properties</title>
+
+  <p>
+    There are a number of other algebraic properties that are common to all vector spaces;
+    for example, it is true that <m>0\vv = \zer</m> for all vectors <m>\vv</m> in any vector space <m>V</m>.
+    The reason these are not included is that the ten axioms in <xref ref="def-vector-space"/>
+    are the ones deemed <q>essential</q> <ndash /> all other properties can be deduced from the axioms.
+    To demonstrate, we next give the proof that <m>0\vv = \zer</m>.
+  </p>
+
+  <p>
+    The focus on proofs may be one place where your second course in linear algebra differs from your first.
+    Learning to write proofs (and to know when a proof you have written is valid)
+    is a difficult skill that takes time to develop.
+    Some of the proofs in this section are <q>clever</q>,
+    in the sense that they require you to apply vector space axioms in ways that may not seem obvious.
+    Proofs in later sections will more often be more straightforward <q>direct</q> proofs of conditional (if <ellipsis/> then) statements,
+    although they may not feel straightforward on your first encounter.
+  </p>
+
+  <theorem xml:id="thm-zero-mult">
+    <statement>
+      <p>
+        In any vector space <m>V</m>, we have <m>0\vv = \zer</m> for all <m>\vv\in V</m>
+      </p>
+    </statement>
+    <proof>
+      <title>Strategy</title>
+      <p>
+        The goal is to show that multiplying by the scalar <m>0</m> produces the vector <m>\zer</m>.
+        We all learn early on that <q>anything times zero is zero</q>, but why is this true?
+        A few strategies that show up frequently when working with the axioms are:
+        <ol>
+          <li>
+            <p>
+              Adding zero (the scalar, or the vector) does nothing, including when you add it to itself.
+            </p>
+          </li>
+          <li>
+            <p>
+              We can always add the same thing to both sides of an equation.
+            </p>
+          </li>
+          <li>
+            <p>
+              Liberal use of the distributive property!
+            </p>
+          </li>
+        </ol>
+      </p>
+
+      <p>
+        What we do here is to start with a very simple statement: <m>0+0=0</m>.
+        The reason for doing so is that when we multiply by <m>0+0</m>,
+        we have an opportunity to use the distributive property.
+      </p>
+    </proof>
+
+    <proof>
+
+      <p>
+        Since <m>0+0=0</m>, we have <m>0\vv=(0+0)\vv</m>.
+        Using the distributive axiom S3, this becomes
+        <me>
+          0\vv + 0\vv = 0\vv
+        </me>.
+         By axiom A5, there is an element <m>-0\vv\in V</m> such that <m>0\vv+(-0\vv)=\zer</m>.
+         Adding this to both sides of the equation above, we get:
+         <me>
+           (0\vv+0\vv)+(-0\vv) = 0\vv+(-0\vv)
+         </me>.
+         Now, apply the associative property (A3) on the left, and A5 on the right, to get
+         <me>
+           0\vv + (0\vv+(-0\vv)) = \zer
+         </me>.
+         Using A5 again on the left, we get <m>0\vv+\zer = \zer</m>.
+         Finally, axiom A4 guarantees <m>0\vv = 0\vv+\zer = \zer</m>.
+      </p>
+    </proof>
+
+  </theorem>
+
+  <exercise xml:id="ex-more-props">
+    <introduction>
+      <p>
+        Tactics similar to the ones used in <xref ref="thm-zero-mult"/> can be used to establish the following results,
+        which we leave as an exercise.
+        Solutions are included, but it will be worth your while in the long run to wrestle with these.
+      </p>
+      <p>
+        Show that the following properties are valid in any vector space <m>V</m>:
+      </p>
+    </introduction>
+    <task>
+      <statement>
+        <p>
+          If <m>\uu+\vv=\uu+\ww</m>, then <m>\vv=\ww</m>.
+        </p>
+      </statement>
+      <hint>
+        <p>
+          Remember that every vector <m>\uu</m> in a vector space has an additive inverse <m>-\uu</m>.
+        </p>
+      </hint>
+      <solution>
+        <p>
+          Suppose <m>\uu+\vv=\uu+\ww</m>. By adding <m>-\uu</m> on the left of each side, we obtain:
+          <md>
+            <mrow>-\uu+(\uu+\vv) \amp =-\uu+(\uu+\ww)</mrow>
+            <mrow>(-\uu+\uu)+\vv \amp =(-\uu+\uu)+\ww \quad \text{ by A3}</mrow>
+            <mrow> \zer+\vv \amp =\zer+\ww \quad \text{ by A5}</mrow>
+            <mrow> \vv \amp =\ww \quad \text{ by A4}</mrow>
+          </md>,
+          which is what we needed to show.
+        </p>
+      </solution>
+    </task>
+
+    <task xml:id="part-mult-zero">
+      <statement>
+        <p>
+          For any scalar <m>c</m>, <m>c\zer=\zer</m>.
+        </p>
+      </statement>
+      <hint>
+        <p>
+          Your approach should be quite similar to the one used in <xref ref="thm-zero-mult"/>.
+        </p>
+      </hint>
+      <solution>
+        <p>
+          We have <m>c\zer = c(\zer+\zer) = c\zer +c\zer</m>, by A4 and S2, respectively.
+          Adding <m>-c\zer</m> to both sides gives us
+          <me>
+            -c\zer+c\zer = -c\zer+(c\zer+c\zer)
+          </me>.
+          Using associativity (A3), this becomes
+          <me>
+            -c\zer+c\zer = (-c\zer+c\zer)+c\zer
+          </me>,
+          and since <m>-c\zer+c\zer=\zer</m> by A5, we get <m>\zer =\zer+c\zer</m>.
+          Finally, we apply A4 on the right hand side to get <m>\zer=c\zer</m>,
+          as required.
+        </p>
+      </solution>
+    </task>
+
+    <task>
+      <statement>
+        <p>
+          The zero vector is the unique vector such that <m>\vv+\zer=\vv</m> for all <m>\vv\in V</m>.
+        </p>
+      </statement>
+      <hint>
+        <p>
+          If you want to prove something is unique, try assuming that you have more than one!
+          If any two different elements with the same property have to be equal,
+          then all such elements must, in fact, be the same element.
+        </p>
+      </hint>
+      <solution>
+        <p>
+          Suppose there are two vectors <m>\zer_1,\zer_2</m> that act as additive identities.
+          Then
+          <md>
+            <mrow>\zer_1 \amp = \zer_1+\zer_2 \quad \text{ since } \vv+\zer_2=\vv \text{ for any } \vv</mrow>
+            <mrow>  \amp =\zer_2+\zer_1 \quad \text{ by axiom A2}</mrow>
+            <mrow>  \amp \zer_2 \quad \text{ since } \vv+\zer_1=\vv \text{ for any } \vv</mrow>
+          </md>
+          So any two vectors satisfying the property in A4 must, in fact, be the same.
+        </p>
+      </solution>
+    </task>
+
+    <task xml:id="task-negative-unique">
+      <statement>
+        <p>
+          The negative <m>-\vv</m> of any vector <m>\vv</m> is unique.
+        </p>
+      </statement>
+      <solution>
+        <p>
+          Let <m>\vv\in V</m>, and suppose there are vectors <m>\ww_1,\ww_2\in V</m>
+          such that <m>\vv+\ww_1=\zer</m> and <m>\vv+\ww_2=\zer</m>. Then
+          <md>
+            <mrow>\ww_1 \amp = \ww_1+\zer \quad  \text{ by A4}</mrow>
+            <mrow> \amp = \ww_1+(\vv+\ww_2) \quad \text{ by assumption}</mrow>
+            <mrow> \amp = (\ww_1+\vv)+\ww_2 \quad \text{ by A3}</mrow>
+            <mrow> \amp = (\vv+\ww_1)+\ww_2 \quad \text{ by A2}</mrow>
+            <mrow> \amp = \zer+\ww_2 \quad \text{ by assumption}</mrow>
+            <mrow> \amp \ww_2 \quad \text{ by A4}</mrow>
+          </md>.
+        </p>
+      </solution>
+    </task>
+  </exercise>
+
+  <example xml:id="ex-minus-one-negative">
+    <statement>
+      <p>
+        Prove the following statement:
+      </p>
+      <p>
+        Let <m>V</m> be a vector space. For any <m>\vv\in V</m>, <m>(-1)\vv=-\vv</m>.
+      </p>
+      <p>
+        Indicate all axioms needed in the proof.
+      </p>
+    </statement>
+    <solution>
+      <p>
+        This proof will be far more detailed than what you'll see in later sections.
+        (We usually do not bother to take note of the axioms, one by one.)
+        We will also try to explain our reasoning as we go,
+        to help you get used to the sort of careful reasoning involved in a proof.
+        Lines that should actually be included in the proof will be set aside in block quotes.
+      </p>
+
+      <p>
+        First, we are proving a <q>for all</q> (universally quantified) statement.
+        This means we should be careful not to assume anything about the vector we choose,
+        so that our argument can apply to any vector we want:
+      </p>
+
+      <blockquote>
+        <p>
+          Let <m>\vv</m> be any vector in <m>V</m>.
+        </p>
+      </blockquote>
+
+      <p>
+        Next, you might want to remind yourself of the goal:
+        we want to show that <m>(-1)\vv=-\vv</m>.
+        You can state that this is what you want to show, but it's not absolutely necessary to do this.
+        A common trick that shows up in a lot of mathematical proofs is a simple bit of arithmetic:
+        <m>a=b</m> is the same thing as <m>a-b=0</m>!
+        So really, what we want to show is that <m>(-1)\vv+\vv=\zer</m>.
+      </p>
+
+      <p>
+        Now, remember that <m>1\vv=\vv</m>, and <m>0\vv=\zer</m>,
+        so what we want to show is equivalent to <m>(-1)\vv+1\vv=0\vv</m>.
+        Remove the <m>\vv</m>, and we're left with <m>-1+1=0</m>,
+        and that we definitely know is true!
+        (Of course, we can't just <q>remove <m>\vv</m></q>, but we can use the distributive property!)
+      </p>
+
+      <p>
+        This is basically the proof, but we need to state all the axioms we use,
+        and best practice in logical arguments is that we should begin with our assumptions,
+        and statements we agree are true, and proceed from those to the desired conclusion.
+      </p>
+
+      <blockquote>
+        <p>
+          Since we know that <m>-1+1=0</m>, it follows that
+          <me>
+            (-1+1)\vv=0\vv
+          </me>.
+          On the left hand side, we can use the distributive property S3 to get <m>(-1+1)\vv=(-1)\vv+1\vv</m>.
+          On the right hand side, we can use <xref ref="thm-zero-mult"/> to get <m>0\vv=\zer</m>.
+          Therefore,
+          <me>
+            (-1)\vv+1\vv=\zer
+          </me>.
+          By axiom S5, <m>1\vv=\vv</m>, so we have <m>(-1)\vv+\vv=\zer</m>.
+        </p>
+      </blockquote>
+
+      <p>
+        OK, that's more or less where we said we wanted to get to,
+        and then we can just move <m>\vv</m> to the other side as <m>-\vv</m>,
+        and we're done. But we want to be careful to state all axioms!
+        The rest of the proof involves carefully stepping through this process.
+      </p>
+
+      <p>
+        Another way to proceed, which shortcuts this whole process,
+        is to use <xref ref="task-negative-unique" text="type-local"/> of <xref ref="ex-more-props"/>:
+        since the additive inverse of <m>\vv</m> is the unique vector <m>-\vv</m> such that <m>-\vv+\vv=\zer</m>,
+        and <m>(-1)\vv+\vv=\zer</m>, it must be the case that <m>(-1)\vv=-\vv</m>.
+      </p>
+
+      <p>
+        This approach is completely valid, and you are free to use it,
+        but we will take the long route to demonstrate further use of the axioms.
+      </p>
+
+      <blockquote>
+        <p>
+          Since <m>(-1)\vv+\vv=\zer</m>, we can add <m>-\vv</m> to both sides of the equation, giving
+          <me>
+            ((-1)\vv+\vv)+(-\vv)=\zer+(-\vv)
+          </me>.
+          By the associative property (axiom A3), <m>((-1)\vv+\vv)+(-\vv)=(-1)\vv+(\vv+(-\vv))</m>,
+          and by the identity axiom A5, <m>\zer+(-\vv)=-\vv</m>. This gives us
+          <me>
+            (-1)\vv+(\vv+(-\vv))=-\vv
+          </me>.
+          By axiom A5, <m>\vv+(-\vv)=\zer</m>, so <m>(-1)\vv+\zer=-\vv</m>.
+          Finally, we use axiom A4 one last time, and we have our result: <m>(-1)\vv=-\vv</m>.
+        </p>
+      </blockquote>
+    </solution>
+  </example>
+
+  <p>
+    Note that in the above exercise, we could have shortened the proof:
+    In <xref ref="ex-more-props"/> we showed that additive inverses are unique.
+    So once we reach the step where <m>-1\vv+\vv=\zer</m>,
+    we can conclude that <m>-1\vv=-\vv</m>,
+    since <m>-\vv</m> is the unique vector that satisfies this equation.
+  </p>
+
+  <p>
+    To finish off this section, here is one more problem similar to the one above.
+    This result will be useful in the future, and students often find the logic tricky,
+    so it is worth your time to ensure you understand it.
+  </p>
+
+  <exercise xml:id="ex-zero-mult-prop">
+    <statement>
+      <p>
+        Rearrange the blocks to create a valid proof of the following statement:
+      </p>
+      <p>
+        If <m>c\vv=\zer</m>, then either <m>c=0</m> or <m>\vv=\zer</m>.
+      </p>
+    </statement>
+    <blocks>
+      <block order="3">
+        <p>
+          Let <m>c</m> be a scalar, and let <m>\vv\in V</m> be a vector.
+        </p>
+        <p>
+          Suppose that <m>c\vv=\zer</m>.
+        </p>
+      </block>
+      <block order="7">
+        <p>
+          By the law of the excluded middle, either <m>c=0</m>, or <m>c\neq 0</m>.
+        </p>
+      </block>
+      <block order="1">
+        <p>
+          If <m>c=0</m>, then <m>c=0</m> or <m>\vv=\zer</m>, and we're done.
+        </p>
+      </block>
+      <block order="5">
+        <p>
+          Suppose then that <m>c\neq 0</m>.
+        </p>
+      </block>
+      <block order="10">
+        <p>
+          Since <m>c\neq 0</m>, there is a scalar <m>1/c</m> such that <m>(1/c)\cdot c=1</m>.
+        </p>
+      </block>
+      <block order="2">
+        <p>
+          Since <m>c\vv=\zer</m>, <m>(1/c)(c\vv)=(1/c)\zer</m>.
+        </p>
+      </block>
+      <block order="9">
+        <p>
+          Therefore, <m>((1/c)\cdot c)\vv = \zer</m>,
+          using S4 and <xref ref="part-mult-zero" text="type-local"/> of <xref ref="ex-more-props"/>.
+        </p>
+      </block>
+      <block order="4">
+        <p>
+          Since <m>(1/c)\cdot c=1</m>, we have <m>1\vv=\vv =\zer</m>, using S5.
+        </p>
+      </block>
+      <block order="8">
+        <p>
+          Since <m>\vv=\zer</m>, <m>c=0</m> or <m>\vv=\zer</m>.
+        </p>
+      </block>
+      <block order="6">
+        <p>
+          In either case, we conclude that <m>c=0</m> or <m>\vv=\zer</m>,
+          so the result is proven.
+        </p>
+      </block>
+    </blocks>
+
+    <hint>
+      <p>
+        The main difficulty with this problem is getting the logic of the statement correct,
+        and making sure you know what it is you're trying to prove.
+        Consider a proof by cases: either <m>c=0</m> or <m>c\neq 0</m>.
+        In the first case, there is nothing to prove (why?).
+        In the second case, use the fact (see <xref ref="def-field"/>) that for any nonzero scalar <m>c</m>,
+        there exists a scalar <m>1/c</m> such that <m>c\cdot 1/c=1</m>.
+      </p>
+    </hint>
+  </exercise>
+</section>
