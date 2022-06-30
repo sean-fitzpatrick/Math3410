@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-06-24T11:24:07-06:00       *-->
+<!--*       on 2022-06-30T09:10:29-06:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -102,7 +102,7 @@ eBookConfig.enable_chatcodes =  false;
 <script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.2.1/runtime.b0f8547c48f16a9f.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.2.1/637.d54be67956c5c660.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.2.1/runestone.0e9550fe42760516.bundle.js"></script><link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/6.2.1/637.fafafbd97df8a0d1.css">
 <link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/6.2.1/runestone.e4d5592da655219f.css">
 </head>
-<body class="pretext-book ignore-math has-toc has-sidebar-left">
+<body id="linalg" class="pretext-book ignore-math has-toc has-sidebar-left">
 <a class="assistive" href="#content">Skip to main content</a><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\spn}{\operatorname{span}}
 \newcommand{\bbm}{\begin{bmatrix}}
 \newcommand{\ebm}{\end{bmatrix}}
@@ -380,7 +380,7 @@ S_R(a_1,a_2,a_3,\ldots) \amp = (0,a_1,a_2,\ldots)
 <article class="exercise exercise-like" id="exercise-35"><h3 class="heading">
 <span class="type">Exercise</span><span class="space"> </span><span class="codenumber">2.1.5</span><span class="period">.</span>
 </h3>
-<div class="runestone "><ul data-component="multiplechoice" id="" data-multipleanswers="true" data-random="">
+<div class="ptx-runestone-container"><div class="runestone"><ul data-component="multiplechoice" id="" data-multipleanswers="true" data-random="">
 <p id="p-541">Which of the following are linear transformations?</p>
 <li data-component="answer" id="_opt_a"><p id="p-542">The function <span class="process-math">\(T:\R^2\to \R^2\)</span> given by <span class="process-math">\(T(x,y)=(x-y, x+2y+1)\text{.}\)</span></p></li>
 <li data-component="feedback" id="_opt_a"><p id="p-543">Since <span class="process-math">\(T(0,0)=(0,1)\neq (0,0)\text{,}\)</span> this can't be a linear transformation.</p></li>
@@ -394,7 +394,7 @@ S_R(a_1,a_2,a_3,\ldots) \amp = (0,a_1,a_2,\ldots)
 <li data-component="feedback" id="_opt_e"><p id="p-551">Remember that <span class="process-math">\(\det(A+B)\neq \det(A)+\det(B)\)</span> in general!</p></li>
 <li data-component="answer" id="_opt_f" data-correct=""><p id="p-552">The function <span class="process-math">\(f:\R\to V\)</span> given by <span class="process-math">\(f(x)=e^x\text{,}\)</span> where <span class="process-math">\(V=(0,\infty)\text{,}\)</span> with the vector space structure defined in <a href="" class="xref" data-knowl="./knowl/ex-positive-reals-vecsp.html" title="Exercise 1.1.4">Exercise 1.1.4</a>.</p></li>
 <li data-component="feedback" id="_opt_f"><p id="p-553">An exponential function that's linear? Seems impossible, but remember that “addition” <span class="process-math">\(x\oplus y\)</span> in <span class="process-math">\(V\)</span> is really multiplication, so <span class="process-math">\(f(x+y)=e^{x+y}=e^xe^y=f(x)\oplus f(y)\text{,}\)</span> and similarly, <span class="process-math">\(f(cx)=c\odot f(x)\text{.}\)</span></p></li>
-</ul></div>
+</ul></div></div>
 <div class="solutions">
 <a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-19" id="hint-19"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-19"><div class="hint solution-like"><p id="p-554">Usually, you can expect a linear transformation to involve homogeneous linear expressions. Things like products, powers, and added constants are usually clues that something is nonlinear.</p></div></div>
 </div></article><p id="p-555">For finite-dimensional vector spaces, it is often convenient to work in terms of a basis. The properties of a linear transformation tell us that we can completely define any linear transformation by giving its values on a basis. In fact, it's enough to know the value of a transformation on a spanning set. The argument given in <a href="" class="xref" data-knowl="./knowl/ex-matrix-trans.html" title="Example 2.1.4">Example 2.1.4</a> can be applied to any linear transformation, to obtain the following result.</p>
@@ -568,7 +568,7 @@ T(3,2) = \left(\frac53, -1, \frac43\right)\text{.}
 </div></article><article class="exercise exercise-like" id="ex_lintrans-indep"><h3 class="heading">
 <span class="type">Exercise</span><span class="space"> </span><span class="codenumber">2.1.13</span><span class="period">.</span>
 </h3>
-<div class="runestone" style="max-width: none;"><div data-component="parsons" class="parsons" id="ex_lintrans-indep">
+<div class="ptx-runestone-container"><div class="runestone" style="max-width: none;"><div data-component="parsons" class="parsons" id="ex_lintrans-indep">
 <div class="parsons_question parsons-text">
 <p id="p-575">Let <span class="process-math">\(T:V\to W\)</span> be a linear transformation. Rearrange the blocks below to create a proof of the following statement:</p>
 <p id="p-576">For any vectors <span class="process-math">\(\vv_1,\ldots, \vv_n\in V\text{,}\)</span> if <span class="process-math">\(\{T(\vv_1),\ldots, T(\vv_n)\}\)</span> is linearly independent in <span class="process-math">\(W\text{,}\)</span> then <span class="process-math">\(\{\vv_1,\ldots, \vv_n\}\)</span> is linearly independent in <span class="process-math">\(V\text{.}\)</span></p>
@@ -596,7 +596,7 @@ c_1T(\vv_1)+\cdots +c_nT(\vv_n) = \zer\text{.}
 <p id="p-581">By hypothesis, the vectors <span class="process-math">\(T(\vv_i)\)</span> are linearly independent, so we must have <span class="process-math">\(c_1=0,c_2=0,\ldots, c_n=0\text{.}\)</span></p>
 ---
 <p id="p-582">Since the only solution to <span class="process-math">\(c_1\vv_1+\cdots + c_n\vv_n=\zer\)</span> is <span class="process-math">\(c_1=0,\ldots, c_n=0\text{,}\)</span> the set <span class="process-math">\(\{\vv_1,\ldots, \vv_n\}\)</span> is linearly independent.</p></pre>
-</div></div>
+</div></div></div>
 <div class="solutions">
 <a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-20" id="hint-20"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-20"><div class="hint solution-like">
 <p id="p-583">This is mostly a matter of using <a href="" class="xref" data-knowl="./knowl/thm-lt-props.html" title="Theorem 2.1.2">Theorem 2.1.2</a>, but it's important to get the logic correct. We have a conditional statement of the form <span class="process-math">\(P\Rightarrow Q\text{,}\)</span> where both <span class="process-math">\(P\)</span> (“the set <span class="process-math">\(\{T(\vv_1),\ldots, T(\vv_n)\}\)</span> is independent”) and <span class="process-math">\(Q\)</span> (“the set <span class="process-math">\(\{\vv_1,\ldots, \vv_n\}\)</span> is independent”) are themselves conditional statements.</p>
