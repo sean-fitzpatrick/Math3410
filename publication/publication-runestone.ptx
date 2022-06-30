@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<publication>
+    <document-id>linear-algebra</document-id>
+    <source>
+      <directories external="../assets" generated="../generated-assets"/>
+    </source>
+
+    <!-- <numbering> -->
+      <!-- the divisions element describes the numbering of divisions.  -->
+      <!-- @part-structure should be "decorative" or "structural",      -->
+      <!-- were the latter would restart numbering chapters within each -->
+      <!-- part (this only matters if your book has parts).             -->
+      <!-- The attribute @chapter-start give the number of the first    -->
+      <!-- chapter.  @level says how deep (chapter->section->subsection)-->
+      <!-- numbering should appear.                                     -->
+        <!-- For use with a book organized by parts
+      <divisions part-structure="decorative" chapter-start="1" level="3"/>
+        -->
+      <!-- The next elements say how the levels deep to break up the    -->
+      <!-- numbering of the respective elements. Can't be more than the -->
+      <!-- @level on divisions above.                                   -->
+      <!-- <blocks level="2"/>
+      <projects level="0"/>
+      <equations level="1"/>
+      <footnotes level="0"/>
+    </numbering> -->
+
+    <common>
+      <!-- <tableofcontents level="3"/> -->
+      <exercise-divisional hint="yes" answer="yes" solution="no"/>
+      <exercise-worksheet hint="no" answer="no" solution="no"/>
+    </common>
+
+    <!-- HTML-Specific Options -->
+    <html>
+        <platform host="runestone"/>
+        <!-- <calculator model="geogebra-graphing"/> -->
+        <index-page ref="linear-algebra"/>
+        <video privacy="yes"/>
+        <!-- baseurl should not have a trailing slash -->
+        <baseurl href="https://opentext.uleth.ca/Math3410"/>
+        <knowl example="no" exercise-inline="no"/>
+    </html>
+    <!-- PDF-Specific Options -->
+
+    <latex print="no" sides="one">
+      <asymptote links="yes"/>
+    </latex>
+</publication>
