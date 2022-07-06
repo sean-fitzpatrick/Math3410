@@ -653,7 +653,7 @@
       For any nonzero vector <m>\vv</m>,
       a <em>unit vector</em> (that is, a vector of norm one) in the direction of <m>\vv</m> is given by
       <me>
-        \hat{u} = \frac{1}{\len{\vv}}\vv
+        \hat{\uu} = \frac{1}{\len{\vv}}\vv
       </me>.
       We often say that the vector <m>\uu</m> is <em>normalized</em>.
       (The convention of using a <q>hat</q> for unit vectors is common but not universal.)
@@ -683,6 +683,11 @@
           <response><m>\left\langle \frac{2}{\sqrt{5}},0,\frac{1}{\sqrt{5}}\right\rangle</m></response>
         </match>
       </matches>
+      <feedback>
+        <p>
+          Remember that a parallel vector is a scalar multiple of the one you started with.
+        </p>
+      </feedback>
     </exercise>
 
     <definition xml:id="def-onb">
@@ -705,12 +710,12 @@
           and since it's a set of four independent vectors in <m>\R^4</m>,
           it must be a basis. To get an orthonormal basis, we normalize each vector:
           <md>
-            <mrow>\hat{u}_1 \amp = \frac{1}{\sqrt{1^2+0^2+1^2+0^2}}(1,0,1,0) = \frac{1}{\sqrt{2}}(1,0,1,0)</mrow>
-            <mrow>\hat{u}_2 \amp = \frac{1}{\sqrt{(-1)^2+0^2+1^2+1^2}}(-1,0,1,1,) = \frac{1}{\sqrt{3}}(-1,0,1,1)</mrow>
-            <mrow>\hat{u}_3 \amp = \frac{1}{\sqrt{1^2+1^2+(-1)^2+2^2}}(1,1,-1,2) = \frac{1}{\sqrt{7}}(1,1,-1,2)</mrow>
-            <mrow>\hat{u}_4 \amp = \frac{1}{\sqrt{1^2+(-6)^2+(-1)^2+2^2}}(1,-6,-1,2) = \frac{1}{\sqrt{42}}(1,-6,-1,2)</mrow>
+            <mrow>\hat{\uu}_1 \amp = \frac{1}{\sqrt{1^2+0^2+1^2+0^2}}(1,0,1,0) = \frac{1}{\sqrt{2}}(1,0,1,0)</mrow>
+            <mrow>\hat{\uu}_2 \amp = \frac{1}{\sqrt{(-1)^2+0^2+1^2+1^2}}(-1,0,1,1,) = \frac{1}{\sqrt{3}}(-1,0,1,1)</mrow>
+            <mrow>\hat{\uu}_3 \amp = \frac{1}{\sqrt{1^2+1^2+(-1)^2+2^2}}(1,1,-1,2) = \frac{1}{\sqrt{7}}(1,1,-1,2)</mrow>
+            <mrow>\hat{\uu}_4 \amp = \frac{1}{\sqrt{1^2+(-6)^2+(-1)^2+2^2}}(1,-6,-1,2) = \frac{1}{\sqrt{42}}(1,-6,-1,2)</mrow>
           </md>.
-          The set <m>\{\hat{u}_1,\hat{u}_2,\hat{u}_3,\hat{u}_4\}</m> is then an orthonormal basis of <m>\R^4</m>.
+          The set <m>\{\hat{\uu}_1,\hat{\uu}_2,\hat{\uu}_3,\hat{\uu}_4\}</m> is then an orthonormal basis of <m>\R^4</m>.
         </p>
       </statement>
     </example>
@@ -721,14 +726,14 @@
       For example, suppose we wanted to write the vector <m>\vv=(3,5,-1,2)</m> in terms of our basis.
       We can quickly compute
       <md>
-        <mrow>\vv\dotp\hat{u}_1 \amp = \frac{3}{\sqrt{2}}-\frac{1}{\sqrt{2}}=\sqrt{2}</mrow>
-        <mrow>\vv\dotp\hat{u}_2 \amp = -\frac{3}{\sqrt{3}}-\frac{1}{\sqrt{3}}+\frac{2}{\sqrt{3}}=-\frac{2}{\sqrt{3}}</mrow>
-        <mrow>\vv\dotp\hat{u}_3 \amp = \frac{3}{\sqrt{7}}+\frac{5}{\sqrt{7}}+\frac{1}{\sqrt{7}}+\frac{4}{\sqrt{7}} = \frac{11}{\sqrt{7}}</mrow>
-        <mrow>\vv\dotp\hat{u}_4 \amp = \frac{3}{\sqrt{42}}-\frac{30}{\sqrt{42}}+\frac{1}{\sqrt{42}}+\frac{4}{\sqrt{42}} = -\frac{22}{\sqrt{42}}</mrow>
+        <mrow>\vv\dotp\hat{\uu}_1 \amp = \frac{3}{\sqrt{2}}-\frac{1}{\sqrt{2}}=\sqrt{2}</mrow>
+        <mrow>\vv\dotp\hat{\uu}_2 \amp = -\frac{3}{\sqrt{3}}-\frac{1}{\sqrt{3}}+\frac{2}{\sqrt{3}}=-\frac{2}{\sqrt{3}}</mrow>
+        <mrow>\vv\dotp\hat{\uu}_3 \amp = \frac{3}{\sqrt{7}}+\frac{5}{\sqrt{7}}+\frac{1}{\sqrt{7}}+\frac{4}{\sqrt{7}} = \frac{11}{\sqrt{7}}</mrow>
+        <mrow>\vv\dotp\hat{\uu}_4 \amp = \frac{3}{\sqrt{42}}-\frac{30}{\sqrt{42}}+\frac{1}{\sqrt{42}}+\frac{4}{\sqrt{42}} = -\frac{22}{\sqrt{42}}</mrow>
       </md>,
       and so
       <me>
-        \vv = \sqrt{2}\hat{u}_1-\frac{2}{\sqrt{3}}\hat{u}_2+\frac{11}{\sqrt{7}}\hat{u}_3-\frac{22}{\sqrt{42}}\hat{u}_4
+        \vv = \sqrt{2}\hat{\uu}_1-\frac{2}{\sqrt{3}}\hat{\uu}_2+\frac{11}{\sqrt{7}}\hat{\uu}_3-\frac{22}{\sqrt{42}}\hat{\uu}_4
       </me>.
       There's still work to be done, but it is comparatively simpler than solving the corresponding system of equations.
     </p>
