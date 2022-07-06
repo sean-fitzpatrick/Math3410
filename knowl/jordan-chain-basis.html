@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*       on 2022-07-06T10:47:46-06:00       *-->
+<!--*   A recent stable commit (2020-08-09):   *-->
+<!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="insight remark-like"><h3 class="heading">
+<span class="type">Insight</span><span class="space"> </span><span class="codenumber">5.6.5</span><span class="period">.</span><span class="space"> </span><span class="title">Finding a chain basis.</span>
+</h3>
+<p>A Jordan block corresponds to basis vectors <span class="process-math">\(\vv_1,\vv_2,\ldots, \vv_m\)</span> with the following properties:</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{align*}
+T(\vv_1) \amp = \lambda \vv_1\\
+T(\vv_2) \amp = \vv_1+\lambda \vv_2\\
+T(\vv_3) \amp = \vv_2+\lambda \vv_3\text{,}
+\end{align*}
+</div>
+<p class="continuation">and so on. Notice that <span class="process-math">\(\vv_1\)</span> is an eigenvector, and for each <span class="process-math">\(j=2,\ldots, m\text{,}\)</span></p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+(T-\lambda I)\vv_{j} = \vv_{j-1}\text{.}
+\end{equation*}
+</div>
+<p>Notice also that if we set <span class="process-math">\(N=T-\lambda I\text{,}\)</span> then</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\vv_1 = N\vv_2, \vv_2 = N\vv_3, \ldots, \vv_{m-1} = N\vv_m
+\end{equation*}
+</div>
+<p class="continuation">so our basis for <span class="process-math">\(G_\lambda(T)\)</span> is of the form</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\vv, N\vv, N^2\vv, \ldots, N^{m-1}\vv\text{,}
+\end{equation*}
+</div>
+<p class="continuation">where <span class="process-math">\(\vv = \vv_m\text{,}\)</span> and <span class="process-math">\(\vv_1=N^{m-1}\vv\)</span> is an eigenvector. (Note that <span class="process-math">\(N^m\vv = (T-\lambda I)\vv_1=\zer\text{,}\)</span> and indeed <span class="process-math">\(N^m\vv_j=\zer\)</span> for each <span class="process-math">\(j=1,\ldots, m\text{.}\)</span>) Such a basis is known as a <dfn class="terminology">chain basis</dfn>.</p>
+<p>If <span class="process-math">\(\dim E_\lambda(T)\gt 1\)</span> we might have to repeat this process for each eigenvector in a basis for the eigenspace. The full matrix of <span class="process-math">\(T\)</span> might have several Jordan blocks of possibly different sizes for each eigenvalue.</p></article><span class="incontext"><a href="sec-jordan-form.html#jordan-chain-basis" class="internal">in-context</a></span>
+</body>
+</html>

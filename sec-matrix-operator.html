@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*       on 2022-07-06T10:47:38-06:00       *-->
+<!--*   A recent stable commit (2020-08-09):   *-->
+<!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<html lang="en-US">
+<head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>The matrix of a linear operator</title>
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="book">
+<meta property="book:title" content="Linear Algebra">
+<meta property="book:author" content="Sean Fitzpatrick">
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>window.MathJax = {
+  tex: {
+    inlineMath: [['\\(','\\)']],
+    tags: "none",
+    tagSide: "right",
+    tagIndent: ".8em",
+    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'newcommand', 'knowl']}
+  },
+  options: {
+    ignoreHtmlClass: "tex2jax_ignore|ignore-math",
+    processHtmlClass: "process-math",
+    renderActions: {
+        findScript: [10, function (doc) {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
+                var display = !!node.type.match(/; *mode=display/);
+                var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                var text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = {node: text, delim: '', n: 0};
+                math.end = {node: text, delim: '', n: 0};
+                doc.math.push(math);
+            });
+        }, '']
+    },
+  },
+  chtml: {
+    scale: 0.88,
+    mtextInheritFont: true
+  },
+  loader: {
+    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
+    paths: {pretext: "https://pretextbook.org/js/lib"},
+  },
+};
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><script>// Make *any* pre with class 'sagecell-sage' an executable Sage cell
+// Their results will be linked, only within language type
+sagecell.makeSagecell({inputLocation: 'pre.sagecell-sage',
+                       linked: true,
+                       languages: ['sage'],
+                       evalButtonText: 'Evaluate (Sage)'});
+</script><link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/themes/prism.css" rel="stylesheet">
+<script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.13/pretext.js"></script><script>miniversion=0.674</script><script src="https://pretextbook.org/js/0.13/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+</script><link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+<script src="https://cdn.geogebra.org/apps/deployggb.js"></script><link href="https://pretextbook.org/css/0.4/pretext.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/banner_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/toc_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/knowls_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/style_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/colors_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/setcolors.css" rel="stylesheet" type="text/css">
+<!--** eBookCongig is necessary to configure interactive       **-->
+<!--** Runestone components to run locally in reader's browser **-->
+<!--** No external communication:                              **-->
+<!--**     log level is 0, Runestone Services are disabled     **-->
+<script type="text/javascript">
+eBookConfig = {};
+eBookConfig.useRunestoneServices = false;
+eBookConfig.host = 'http://127.0.0.1:8000';
+eBookConfig.course = 'PTX Course: Title Here';
+eBookConfig.basecourse = 'PTX Base Course';
+eBookConfig.isLoggedIn = false;
+eBookConfig.email = '';
+eBookConfig.isInstructor = false;
+eBookConfig.logLevel = 0;
+eBookConfig.username = '';
+eBookConfig.readings = null;
+eBookConfig.activities = null;
+eBookConfig.downloadsEnabled = false;
+eBookConfig.allow_pairs = false;
+eBookConfig.enableScratchAC = false;
+eBookConfig.build_info = "";
+eBookConfig.python3 = null;
+eBookConfig.acDefaultLanguage = 'python';
+eBookConfig.runestone_version = '5.0.1';
+eBookConfig.jobehost = '';
+eBookConfig.proxyuri_runs = '';
+eBookConfig.proxyuri_files = '';
+eBookConfig.enable_chatcodes =  false;
+</script>
+<!--*** Runestone Services ***-->
+<script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.2.1/runtime.b0f8547c48f16a9f.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.2.1/637.d54be67956c5c660.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.2.1/runestone.0e9550fe42760516.bundle.js"></script><link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/6.2.1/637.fafafbd97df8a0d1.css">
+<link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/6.2.1/runestone.e4d5592da655219f.css">
+</head>
+<body id="linalg" class="pretext-book ignore-math has-toc has-sidebar-left">
+<a class="assistive" href="#content">Skip to main content</a><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\spn}{\operatorname{span}}
+\newcommand{\bbm}{\begin{bmatrix}}
+\newcommand{\ebm}{\end{bmatrix}}
+\newcommand{\R}{\mathbb{R}}
+\ifdefined\C
+\renewcommand\C{\mathbb{C}}
+\else
+\newcommand\C{\mathbb{C}}
+\fi
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\nll}{\operatorname{null}}
+\newcommand{\csp}{\operatorname{col}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\dotp}{\!\boldsymbol{\cdot}\!}
+\newcommand{\len}[1]{\lVert #1\rVert}
+\newcommand{\abs}[1]{\lvert #1\rvert}
+\newcommand{\proj}[2]{\operatorname{proj}_{#1}{#2}}
+\newcommand{\bz}{\overline{z}}
+\newcommand{\zz}{\mathbf{z}}
+\newcommand{\uu}{\mathbf{u}}
+\newcommand{\vv}{\mathbf{v}}
+\newcommand{\ww}{\mathbf{w}}
+\newcommand{\xx}{\mathbf{x}}
+\newcommand{\yy}{\mathbf{y}}
+\newcommand{\zer}{\mathbf{0}}
+\newcommand{\vecq}{\mathbf{q}}
+\newcommand{\vecp}{\mathbf{p}}
+\newcommand{\vece}{\mathbf{e}}
+\newcommand{\basis}[2]{\{\mathbf{#1}_1,\mathbf{#1}_2,\ldots,\mathbf{#1}_{#2}\}}
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\definecolor{fillinmathshade}{gray}{0.9}
+\newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
+\)</span></div>
+<header id="masthead" class="smallbuttons"><div class="banner"><div class="container">
+<a id="logo-link" href=""></a><div class="title-container">
+<h1 class="heading"><a href="linear-algebra.html"><span class="title">Linear Algebra:</span> <span class="subtitle">A second course, featuring proofs and Python</span></a></h1>
+<p class="byline">Sean Fitzpatrick</p>
+</div>
+</div></div>
+<nav id="primary-navbar" class="navbar"><div class="container">
+<div class="navbar-top-buttons">
+<button class="sidebar-left-toggle-button button active" aria-label="Show or hide table of contents sidebar">Contents</button><div class="tree-nav toolbar toolbar-divisor-3">
+<button id="calculator-toggle" class="toolbar-item button toggle" title="Show calculator" aria-expanded="false" aria-controls="calculator-container">Calc</button><div id="calculator-container" class="calculator-container" style="display: none; z-index:100;"><div id="geogebra-calculator"></div></div>
+<script>
+var ggbApp = new GGBApplet({"appName": "graphing",
+    "width": 330,
+    "height": 600,
+    "showToolBar": true,
+    "showAlgebraInput": true,
+    "perspective": "G/A",
+    "algebraInputPosition": "bottom",
+    "scaleContainerClass": "calculator-container",
+    "allowUpscale": true,
+    "autoHeight": true,
+    "disableAutoScale": false},
+true);
+</script><span class="threebuttons"><a id="previousbutton" class="previous-button toolbar-item button" href="sec-matrix-of-transformation.html" title="Previous">Prev</a><a id="upbutton" class="up-button button toolbar-item" href="ch-change-basis.html" title="Up">Up</a><a id="nextbutton" class="next-button button toolbar-item" href="sec-direct-sum.html" title="Next">Next</a></span>
+</div>
+</div>
+<div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="sec-matrix-of-transformation.html" title="Previous">Prev</a><a class="up-button button toolbar-item" href="ch-change-basis.html" title="Up">Up</a><a class="next-button button toolbar-item" href="sec-direct-sum.html" title="Next">Next</a>
+</div>
+</div></nav></header><div class="page">
+<div id="sidebar-left" class="sidebar" role="navigation"><div class="sidebar-content">
+<nav id="toc"><ul>
+<li class="link frontmatter">
+<a href="frontmatter-1.html" data-scroll="frontmatter-1" class="internal"><span class="title">Front Matter</span></a><ul>
+<li><a href="colophon-1.html" data-scroll="colophon-1" class="internal">Colophon</a></li>
+<li><a href="preface-1.html" data-scroll="preface-1" class="internal">Preface</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="ch-vector-space.html" data-scroll="ch-vector-space" class="internal"><span class="codenumber">1</span> <span class="title">Vector spaces</span></a><ul>
+<li><a href="sec-vec-sp.html" data-scroll="sec-vec-sp" class="internal">Definition and examples</a></li>
+<li><a href="sec-vsp-properties.html" data-scroll="sec-vsp-properties" class="internal">Properties</a></li>
+<li><a href="sec-subspace.html" data-scroll="sec-subspace" class="internal">Subspaces</a></li>
+<li><a href="sec-span.html" data-scroll="sec-span" class="internal">Span</a></li>
+<li><a href="worksheet-span.html" data-scroll="worksheet-span" class="internal">Worksheet: understanding span</a></li>
+<li><a href="sec-independence.html" data-scroll="sec-independence" class="internal">Linear Independence</a></li>
+<li><a href="sec-dimension.html" data-scroll="sec-dimension" class="internal">Basis and dimension</a></li>
+<li><a href="sec-subspace-combine.html" data-scroll="sec-subspace-combine" class="internal">New subspaces from old</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="ch-linear-trans.html" data-scroll="ch-linear-trans" class="internal"><span class="codenumber">2</span> <span class="title">Linear Transformations</span></a><ul>
+<li><a href="sec-lin-tran-intro.html" data-scroll="sec-lin-tran-intro" class="internal">Definition and examples</a></li>
+<li><a href="sec-kernel-image.html" data-scroll="sec-kernel-image" class="internal">Kernel and Image</a></li>
+<li><a href="sec-isomorphism.html" data-scroll="sec-isomorphism" class="internal">Isomorphisms, composition, and inverses</a></li>
+<li><a href="worksheet-transformations.html" data-scroll="worksheet-transformations" class="internal">Worksheet: matrix transformations</a></li>
+<li><a href="worksheet-recurrence.html" data-scroll="worksheet-recurrence" class="internal">Worksheet: linear recurrences</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="ch-orthogonality.html" data-scroll="ch-orthogonality" class="internal"><span class="codenumber">3</span> <span class="title">Orthogonality and Applications</span></a><ul>
+<li><a href="sec-orthogonal-sets.html" data-scroll="sec-orthogonal-sets" class="internal">Orthogonal sets of vectors</a></li>
+<li><a href="sec-ortho-projection.html" data-scroll="sec-ortho-projection" class="internal">Orthogonal Projection</a></li>
+<li><a href="worksheet-dual-basis.html" data-scroll="worksheet-dual-basis" class="internal">Worksheet: dual basis.</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="ch-diagonalization.html" data-scroll="ch-diagonalization" class="internal"><span class="codenumber">4</span> <span class="title">Diagonalization</span></a><ul>
+<li><a href="subsec-eigen-basics.html" data-scroll="subsec-eigen-basics" class="internal">Eigenvalues and Eigenvectors</a></li>
+<li><a href="subsec-ortho-diag.html" data-scroll="subsec-ortho-diag" class="internal">Diagonalization of symmetric matrices</a></li>
+<li><a href="sec-quadratic.html" data-scroll="sec-quadratic" class="internal">Quadratic forms</a></li>
+<li><a href="sec-complex.html" data-scroll="sec-complex" class="internal">Diagonalization of complex matrices</a></li>
+<li><a href="section-matrix-factor.html" data-scroll="section-matrix-factor" class="internal">Matrix Factorizations and Eigenvalues</a></li>
+<li><a href="worksheet-svd.html" data-scroll="worksheet-svd" class="internal">Worksheet: Singular Value Decomposition</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="ch-change-basis.html" data-scroll="ch-change-basis" class="internal"><span class="codenumber">5</span> <span class="title">Change of Basis</span></a><ul>
+<li><a href="sec-matrix-of-transformation.html" data-scroll="sec-matrix-of-transformation" class="internal">The matrix of a linear transformation</a></li>
+<li><a href="sec-matrix-operator.html" data-scroll="sec-matrix-operator" class="active">The matrix of a linear operator</a></li>
+<li><a href="sec-direct-sum.html" data-scroll="sec-direct-sum" class="internal">Direct Sums and Invariant Subspaces</a></li>
+<li><a href="worksheet-gen-eigen.html" data-scroll="worksheet-gen-eigen" class="internal">Worksheet: generalized eigenvectors</a></li>
+<li><a href="sec-gen-eigen.html" data-scroll="sec-gen-eigen" class="internal">Generalized eigenspaces</a></li>
+<li><a href="sec-jordan-form.html" data-scroll="sec-jordan-form" class="internal">Jordan Canonical Form</a></li>
+</ul>
+</li>
+<li class="link backmatter"><a href="backmatter-1.html" data-scroll="backmatter-1" class="internal"><span class="title">Back Matter</span></a></li>
+<li class="link">
+<a href="ch-computation.html" data-scroll="ch-computation" class="internal"><span class="codenumber">A</span> <span class="title">Computational Tools</span></a><ul>
+<li><a href="section-jupyter.html" data-scroll="section-jupyter" class="internal">Jupyter</a></li>
+<li><a href="sec-python-basics.html" data-scroll="sec-python-basics" class="internal">Python basics</a></li>
+<li><a href="sec-sympy.html" data-scroll="sec-sympy" class="internal">SymPy for linear algebra</a></li>
+</ul>
+</li>
+<li class="link"><a href="solutions-1.html" data-scroll="solutions-1" class="internal"><span class="codenumber">B</span> <span class="title">Solutions to Selected Exercises</span></a></li>
+</ul></nav><div class="extras"><nav><a class="pretext-link" href="https://pretextbook.org">Authored in PreTeXt</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a></nav></div>
+</div></div>
+<main class="main"><div id="content" class="pretext-content"><section class="section" id="sec-matrix-operator"><h2 class="heading hide-type">
+<span class="type">Section</span> <span class="codenumber">5.2</span> <span class="title">The matrix of a linear operator</span>
+</h2>
+<p id="p-1250">Recall that a linear transformation <span class="process-math">\(T:V\to V\)</span> is referred to as a <dfn class="terminology">linear operator</dfn>. Recall also that two matrices <span class="process-math">\(A\)</span> and <span class="process-math">\(B\)</span> are <dfn class="terminology">similar</dfn> if there exists an invertible matrix <span class="process-math">\(P\)</span> such that <span class="process-math">\(B = PAP^{-1}\text{,}\)</span> and that similar matrices have a lot of properties in common. In particular, if <span class="process-math">\(A\)</span> is similar to <span class="process-math">\(B\text{,}\)</span> then <span class="process-math">\(A\)</span> and <span class="process-math">\(B\)</span> have the same trace, determinant, and eigenvalues. One way to understand this is the realization that two matrices are similar if they are representations of the <em class="emphasis">same</em> operator, with respect to <em class="emphasis">different</em> bases.</p>
+<p id="p-1251">Since the domain and codomain of a linear operator are the same, we can consider the matrix <span class="process-math">\(M_{DB}(T)\)</span> where <span class="process-math">\(B\)</span> and <span class="process-math">\(D\)</span> are the <em class="emphasis">same</em> ordered basis. This leads to the next definition.</p>
+<article class="definition definition-like" id="def-operator-matrix"><h3 class="heading">
+<span class="type">Definition</span><span class="space"> </span><span class="codenumber">5.2.1</span><span class="period">.</span>
+</h3>
+<p id="p-1252">Let <span class="process-math">\(T:V\to V\)</span> be a linear operator, and let <span class="process-math">\(B=\basis{b}{n}\)</span> be an ordered basis of <span class="process-math">\(V\text{.}\)</span> The matrix <span class="process-math">\(M_B(T)=M_{BB}(T)\)</span> is called the <dfn class="terminology"><span class="process-math">\(B\)</span>-matrix</dfn> of <span class="process-math">\(T\text{.}\)</span></p></article><p id="p-1253">The following result collects several useful properties of the <span class="process-math">\(B\)</span>-matrix of an operator. Most of these were already encountered for the matrix <span class="process-math">\(M_{DB}(T)\)</span> of a transformation, although not all were stated formally. (Formal statements can be found in the textbook by Nicholson.)</p>
+<article class="theorem theorem-like" id="thm-bmatrix-properties"><h3 class="heading">
+<span class="type">Theorem</span><span class="space"> </span><span class="codenumber">5.2.2</span><span class="period">.</span>
+</h3>
+<p id="p-1254">Let <span class="process-math">\(T:V\to V\)</span> be a linear operator, and let <span class="process-math">\(B=\basis{b}{n}\)</span> be a basis for <span class="process-math">\(V\text{.}\)</span> Then</p>
+<ol class="decimal">
+<li id="li-176"><p id="p-derived-li-176"><span class="process-math">\(C_B(T(\vv))=M_B(T)C_B(\vv)\)</span> for all <span class="process-math">\(\vv\in V\text{.}\)</span></p></li>
+<li id="li-177"><p id="p-derived-li-177">If <span class="process-math">\(S:V\to V\)</span> is another operator, then <span class="process-math">\(M_B(ST)=M_B(S)M_B(T)\text{.}\)</span></p></li>
+<li id="li-178"><p id="p-derived-li-178"><span class="process-math">\(T\)</span> is an isomorphism if and only if <span class="process-math">\(M_B(T)\)</span> is invertible.</p></li>
+<li id="li-179"><p id="p-derived-li-179">If <span class="process-math">\(T\)</span> is an isomorphism, then <span class="process-math">\(M_B(T^{-1}) = [M_B(T)]^{-1}\text{.}\)</span></p></li>
+<li id="li-180"><p id="p-derived-li-180"><span class="process-math">\(M_B(T)=\bbm C_B(T(\mathbf{b}_1)) \amp \cdots \amp C_B(T(\mathbf{b}_n))\ebm\text{.}\)</span></p></li>
+</ol></article><article class="example example-like" id="example-15"><h3 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">5.2.3</span><span class="period">.</span>
+</h3>
+<p id="p-1255">Find the <span class="process-math">\(B\)</span>-matrix of the operator <span class="process-math">\(T:P_2(\R)\to P_2(\R)\)</span> given by <span class="process-math">\(T(p(x))=p(0)(1+x^2)+p(1)x\text{,}\)</span> with respect to the ordered basis</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+B = \{1-x, x+3x^2, 2-x^2\}\text{.}
+\end{equation*}
+</div>
+<div class="solutions">
+<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-67" id="solution-67"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-67"><div class="solution solution-like">
+<p id="p-1256">We compute</p>
+<div class="displaymath process-math" data-contains-math-knowls="" id="md-82">
+\begin{align*}
+T(1-x) \amp = 1(1+x^2)+0(x) = 1+x^2\\
+T(x+3x^2) \amp = 0(1+x^2)+4x=4x\\
+T(2-x^2) \amp = 2(1+x^2)+1(x) = 2+x+2x^2\text{.}
+\end{align*}
+</div>
+<p class="continuation">We now need to write each of these in terms of the basis <span class="process-math">\(B\text{.}\)</span> We can do this by working out how to write each polynomial above in terms of <span class="process-math">\(B\text{.}\)</span> Or we can be systematic.</p>
+<p id="p-1257">Let <span class="process-math">\(P = \bbm 1\amp 0\amp 2\\-1\amp 1\amp 0\\0\amp 3\amp -1\ebm\)</span> be the matrix whose columns are given by the coefficient representations of the polynomials in <span class="process-math">\(B\)</span> with respect to the <em class="emphasis">standard basis</em> <span class="process-math">\(B_0=\{1,x,x^2\}\text{.}\)</span> For <span class="process-math">\(T(1-x)=1+x^2\)</span> we need to solve the equation</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+a(1-x)+b(x+3x^2)+c(2-x^2)=1+x^2
+\end{equation*}
+</div>
+<p class="continuation">for scalars <span class="process-math">\(a,b,c\text{.}\)</span> But this is equivalent to the system</p>
+<div class="displaymath process-math" data-contains-math-knowls="" id="md-83">
+\begin{align*}
+a+2c \amp =1\\
+-a+b \amp =0\\
+3b-c \amp =1\text{,}
+\end{align*}
+</div>
+<p class="continuation">which, in turn, is equivalent to the matrix equation</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\bbm 1\amp 0\amp 2\\-1\amp 1\amp 0\\0\amp 3\amp -1\ebm\bbm a\\b\\c\ebm = \bbm 1\\0\\1\ebm\text{;}
+\end{equation*}
+</div>
+<p class="continuation">that is, <span class="process-math">\(PC_B(1+x^2) = C_{B_0}(1+x^2)\text{.}\)</span> Thus,</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+C_B(1+x^2) = \bbm a\\b\\c\ebm = P^{-1}C_{B_0}(1+x^2) = P^{-1}\bbm 1\\0\\1\ebm\text{.}
+\end{equation*}
+</div>
+<p class="continuation">Similarly, <span class="process-math">\(C_B(4x)=P^{-1}\bbm 0\\4\\0\ebm = P^{-1}C_{B_0}(4x)\text{,}\)</span> and <span class="process-math">\(C_B(2+x+2x^2)=P^{-1}\bbm 2\\1\\2\ebm = P^{-1}C_{B_0}(2+x+2x^2)\text{.}\)</span> Using the computer, we find:</p>
+<pre class="ptx-sagecell hidden-sagecell-sage" id="sage-115"><script type="text/x-sage">from sympy import Matrix, init_printing
+init_printing()
+P = Matrix(3,3,[1,0,2,-1,1,0,0,3,-1])
+M = Matrix(3,3,[1,0,2,0,4,1,1,0,2])
+P**-1, P**-1*M
+</script></pre>
+<p id="p-1258">That is,</p>
+<div class="displaymath process-math" data-contains-math-knowls="" id="md-84">
+\begin{align*}
+M_B(T) \amp =\bbm C_B(T(1-x)) \amp C_B(T(x+3x^2)) \amp C_B(T(2-x^2))\ebm\\
+\amp =\bbm P^{-1}C_{B_0}T(1-x) \amp P^{-1} C_{B_0}T(x+3x^2) \amp P^{-1}C_{B_0}(T(2-x^2))\ebm\\
+\amp =P^{-1}\bbm C_{B_0}(1+x^2) \amp C_{B_0}(4x)\amp C_{B_0}(2+x+2x^2)\ebm\\
+\amp =\bbm 1/7\amp -6/7\amp 3/7\\1/7\amp 1/7\amp 2/7\\3/7\amp 3/7\amp -1/7\ebm
+\bbm 1\amp 0\amp 2\\0\amp 4\amp 1\\1\amp 0\amp 2\ebm\\
+\amp = \bbm 3/7\amp -24/7\amp 0\\3/7\amp 4/7\amp 1\\2/7\amp 12/7\amp 1\ebm\text{.}
+\end{align*}
+</div>
+<p id="p-1259">Let's confirm that this works. Suppose we have</p>
+<div class="displaymath process-math" data-contains-math-knowls="" id="md-85">
+\begin{align*}
+p(x) \amp = C_B^{-1}\bbm a\\b\\c\ebm = a(1-x)+b(x+3x^2)+c(2-x^2)\\
+\amp = (a+2c)+(-a+b)x+(3b-c)x^2\text{.}
+\end{align*}
+</div>
+<p class="continuation">Then <span class="process-math">\(T(p(x))=(a+2c)(1+x^2)+(4b+c)x\text{,}\)</span> and we find</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+C_B(T(p(x))) = P^{-1}\bbm a+2c\\4b+c\\a+2c\ebm = \bbm \frac37 a-\frac{24}{7}b\\\frac37 a+\frac47 b+c\\\frac27 a+\frac{12}{7}b+c\ebm\text{.}
+\end{equation*}
+</div>
+<p class="continuation">On the other hand,</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+M_B(T) = \bbm 3/7\amp -24/7\amp 0\\3/7\amp 4/7\amp 1\\2/7\amp 12/7\amp 1\ebm\bbm a\\b\\c\ebm = \bbm \frac37 a-\frac{24}{7}b\\\frac37 a+\frac47 b+c\\\frac27 a+\frac{12}{7}b+c\ebm\text{.}
+\end{equation*}
+</div>
+<p class="continuation">The results agree, but possibly leave us a little confused.</p>
+</div></div>
+</div></article><p id="p-1260">In general, given an ordered basis <span class="process-math">\(B=\basis{b}{n}\)</span> for a vector space <span class="process-math">\(V\)</span> with standard basis <span class="process-math">\(B_0 = \basis{e}{n}\text{,}\)</span> if we let</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+P = \bbm C_{B_0}(\mathbf{b}_1) \amp \cdots \amp C_{B_0}(\mathbf{b}_n)\ebm\text{,}
+\end{equation*}
+</div>
+<p class="continuation">then</p>
+<div class="displaymath process-math" data-contains-math-knowls="" id="md-86">
+\begin{align*}
+M_B(T) \amp = \bbm C_B(T(\mathbf{b}_1)) \amp \cdots \amp C_B(T(\mathbf{b_n})\ebm\\
+\amp = P^{-1}\bbm C_{B_0}(T(\mathbf{b}_1)) \amp \cdots \amp C_{B_0}(T(\mathbf{b_n})\ebm\text{.}
+\end{align*}
+</div>
+<p id="p-1261">As we saw above, this gives us the result, but doesn't shed much light on the problem, unless we have an easy way to write vectors in terms of the basis <span class="process-math">\(B\text{.}\)</span> Let's revisit the problem. Instead of using the given basis <span class="process-math">\(B\text{,}\)</span> let's use the standard basis <span class="process-math">\(B_0 = \{1,x,x^2\}\text{.}\)</span> We quickly find</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+T(1)=1+x+x^2, T(x) = x, \text{ and } T(x^2)=x\text{,}
+\end{equation*}
+</div>
+<p class="continuation">so with respect to the standard basis, <span class="process-math">\(M_{B_0}(T) = \bbm 1\amp 0\amp 0\\1\amp 1\amp 1\\1\amp 0\amp 0\ebm\text{.}\)</span> Now, recall that</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+M_{B}(T)=P^{-1}\bbm C_{B_0}T(1-x)\amp C_{B_0}(T(x+3x^2)\amp C_{B_0}(T(2-x^2))\ebm
+\end{equation*}
+</div>
+<p class="continuation">and note that for any polynomial <span class="process-math">\(p(x)\text{,}\)</span> <span class="process-math">\(C_{B_0}T(p(x)) = M_{B_0}C_{B_0}(p(x))\text{.}\)</span> But</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\bbm C_{B_0}(1-x) \amp C_{B_0}(x+3x^2)\amp C_{B_0}(2-x^2)\ebm = P\text{,}
+\end{equation*}
+</div>
+<p class="continuation">so we get</p>
+<div class="displaymath process-math" data-contains-math-knowls="" id="md-87">
+\begin{align*}
+M_B(T) \amp = P^{-1}\bbm C_{B_0}T(1-x)\amp C_{B_0}(T(x+3x^2)\amp C_{B_0}(T(2-x^2))\ebm\\
+\amp = P^{-1}\bbm M_{B_0}C_{B_0}(1-x)\amp M_{B_0}C_{B_0}(x+3x^2)\amp M_{B_0}C_{B_0}(2-x^2)\ebm \\
+\amp = P^{-1}M_{B_0}\bbm C_{B_0}(1-x) \amp C_{B_0}(x+3x^2)\amp C_{B_0}(2-x^2)\ebm\\
+\amp = P^{-1}M_{B_0}P\text{.}
+\end{align*}
+</div>
+<p id="p-1262">Now we have a much more efficient method for arriving at the matrix <span class="process-math">\(M_B(T)\text{.}\)</span> The matrix <span class="process-math">\(M_{B_0}(T)\)</span> is easy to determine, the matrix <span class="process-math">\(P\)</span> is easy to determine, and with the help of the computer, it's easy to compute <span class="process-math">\(P^{-1}M_{B_0}P = M_B(T)\text{.}\)</span></p>
+<pre class="ptx-sagecell sagecell-sage" id="sage-116"><script type="text/x-sage">from sympy import Matrix, init_printing
+init_printing()
+M0 = Matrix(3,3,[1,0,0,1,1,1,1,0,0])
+P**-1*M0*P
+</script></pre>
+<article class="exercise exercise-like" id="exercise-93"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">5.2.4</span><span class="period">.</span>
+</h3>
+<p id="p-1263">Determine the matrix of the operator <span class="process-math">\(T:\R^3\to \R^3\)</span> given by</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+T(x,y,z) = (3x-2y+4z,x-5y,2y-7z)
+\end{equation*}
+</div>
+<p class="continuation">with respect to the ordered basis</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+B = \{(1,2,0),(0,-1,2),(1,2,1)\}\text{.}
+\end{equation*}
+</div>
+<p class="continuation">(You may want to use the Sage cell below for computational assistance.)</p>
+<div class="solutions">
+<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-68" id="solution-68"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-68"><div class="solution solution-like">
+<p id="p-1264">With respect to the standard basis, we have</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+M_0=M_{B_0}(T) = \bbm 3\amp -2\amp 4\\1\amp -5\amp 0\\0\amp 2\amp -7\ebm\text{,}
+\end{equation*}
+</div>
+<p class="continuation">and the matrix <span class="process-math">\(P\)</span> is given by <span class="process-math">\(P = \bbm 1\amp 3\amp 1\\2\amp -1\amp 2\\0\amp 2\amp-5\ebm\text{.}\)</span> Thus, we find</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+M_B(T)=P^{-1}M_0P=\bbm 9\amp 56\amp 36\\7\amp 15\amp 15\\-10\amp -46\amp -33\ebm\text{.}
+\end{equation*}
+</div>
+</div></div>
+</div></article><pre class="ptx-sagecell sagecell-sage" id="sage-117"><script type="text/x-sage"></script></pre>
+<p id="p-1265">The matrix <span class="process-math">\(P\)</span> used in the above examples is known as a <em class="emphasis">change</em> matrix. If the columns of <span class="process-math">\(P\)</span> are the coefficient vectors of <span class="process-math">\(B=\basis{b}{n}\)</span> with respect to another basis <span class="process-math">\(D\text{,}\)</span> then we have</p>
+<div class="displaymath process-math" data-contains-math-knowls="" id="md-88">
+\begin{align*}
+P \amp= \bbm C_D(\mathbf{b}_1)\amp\cdots \amp C_D(\mathbf{b}_n)\ebm\\
+\amp = \bbm C_D(1_V(\mathbf{b}_1))\amp \cdots \amp C_D(1_V(\mathbf{b}_n))\ebm\\
+\amp = M_{DB}(1_V)\text{.}
+\end{align*}
+</div>
+<p class="continuation">In other words, <span class="process-math">\(P\)</span> is the matrix of the identity transformation <span class="process-math">\(1_V:V\to V\text{,}\)</span> where we use the basis <span class="process-math">\(B\)</span> for the domain, and the basis <span class="process-math">\(D\)</span> for the codomain.</p>
+<article class="definition definition-like" id="def-change-matrix"><h3 class="heading">
+<span class="type">Definition</span><span class="space"> </span><span class="codenumber">5.2.5</span><span class="period">.</span>
+</h3>
+<p id="p-1266">The <dfn class="terminology">change matrix</dfn> with respect to ordered bases <span class="process-math">\(B,D\)</span> of <span class="process-math">\(V\)</span> is denoted <span class="process-math">\(P_{D\leftarrow B}\text{,}\)</span> and defined by</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+P_{D\leftarrow B} = M_{DB}(1_V)\text{.}
+\end{equation*}
+</div></article><article class="theorem theorem-like" id="thm-change-matrix"><h3 class="heading">
+<span class="type">Theorem</span><span class="space"> </span><span class="codenumber">5.2.6</span><span class="period">.</span>
+</h3>
+<p id="p-1267">Let <span class="process-math">\(B=\basis{b}{n}\)</span> and <span class="process-math">\(D\)</span> be two ordered bases of <span class="process-math">\(V\text{.}\)</span> Then</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+P_{D\leftarrow B} = \bbm C_D(\mathbf{b}_1)\amp \cdots \amp C_D(\mathbf{b}_n)\ebm\text{,}
+\end{equation*}
+</div>
+<p class="continuation">and satisfies <span class="process-math">\(C_D(\vv) = P_{D\leftarrow B}C_B(\vv)\)</span> for all <span class="process-math">\(\vv\in V\text{.}\)</span></p>
+<p id="p-1268">The matrix <span class="process-math">\(P_{D\leftarrow B}\)</span> is invertible, and <span class="process-math">\((P_{D\leftarrow B})^{-1} = P_{B\leftarrow D}\text{.}\)</span> Moreover, if <span class="process-math">\(E\)</span> is a third ordered basis, then</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+P_{E\leftarrow D}P_{D\leftarrow B} = P_{E\leftarrow B}\text{.}
+\end{equation*}
+</div></article><article class="example example-like" id="example-16"><h3 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">5.2.7</span><span class="period">.</span>
+</h3>
+<p id="p-1269">Let <span class="process-math">\(B = \{1,x,x^2\}\)</span> and let <span class="process-math">\(D = \{1+x,x+x^2,2-3x+x^2\}\)</span> be ordered bases of <span class="process-math">\(P_2(\R)\text{.}\)</span> Find the change matrix <span class="process-math">\(P_{D\leftarrow B}\text{.}\)</span></p>
+<div class="solutions">
+<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-69" id="solution-69"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-69"><div class="solution solution-like">
+<p id="p-1270">Finding this matrix requires us to first write the vectors in <span class="process-math">\(B\)</span> in terms of the vectors in <span class="process-math">\(D\text{.}\)</span> However, it's much easier to do this the other way around. We easily find</p>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/thm-change-matrix.html">
+\begin{equation*}
+P_{B\leftarrow D} = \bbm 1\amp 0\amp 2\\1\amp 1\amp -3\\0\amp 1\amp 1\ebm\text{,}
+\end{equation*}
+</div>
+<p class="continuation">and by <a href="" class="xref" data-knowl="./knowl/thm-change-matrix.html" title="Theorem 5.2.6">Theorem 5.2.6</a>, we have</p>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/thm-change-matrix.html">
+\begin{equation*}
+P_{D\leftarrow B} = (P_{B\leftarrow D})^{-1} = \frac16\bbm 4\amp 2\amp -2\\-1\amp 1\amp 5\\1\amp -1\amp 1\ebm\text{.}
+\end{equation*}
+</div>
+</div></div>
+</div></article><p id="p-1271">Note that the change matrix notation is useful for linear transformations between different vector spaces as well. Recall <a href="" class="xref" data-knowl="./knowl/thm-change-basis-transformation.html" title="Theorem 5.1.5">Theorem 5.1.5</a>, which gave the result</p>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/thm-change-basis-transformation.html">
+\begin{equation*}
+M_{D_0B_0}(T) = QM_{D_1B_1}P^{-1}\text{,}
+\end{equation*}
+</div>
+<p class="continuation">where (using our new notation) <span class="process-math">\(P=P_{B_0\leftarrow B_1}\)</span> and <span class="process-math">\(Q=P_{D_0\leftarrow D_1}\text{.}\)</span> In this notation, we have</p>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/thm-change-basis-transformation.html">
+\begin{equation*}
+M_{D_0B_0}(T) = P_{D_0\leftarrow D_1}M_{D_1B_1}(T)P_{B_1\leftarrow B_0}\text{,}
+\end{equation*}
+</div>
+<p class="continuation">which seems more intiutive.</p>
+<p id="p-1272">The above results give a straightforward procedure for determining the matrix of any operator, with respect to any basis, if we let <span class="process-math">\(D\)</span> be the standard basis. The importance of these results is not just their computational simplicity, however. The most important outcome of the above is that if <span class="process-math">\(M_B(T)\)</span> and <span class="process-math">\(M_D(T)\)</span> give the matrix of <span class="process-math">\(T\)</span> with respect to two different bases, then</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+M_B(T) = (P_{D\leftarrow B})^{-1}M_D(T)P_{D\leftarrow B}\text{,}
+\end{equation*}
+</div>
+<p class="continuation">so that the two matrices are <em class="emphasis">similar</em>.</p>
+<p id="p-1273">Recall from <a href="" class="xref" data-knowl="./knowl/thm-similar-properties.html" title="Theorem 4.1.5">Theorem 4.1.5</a> that similar matrices have the same determinant, trace, and eigenvalues. This means that we can unambiguously define the determinant and trace of an  <em class="emphasis">operator</em>, and that we can compute eigenvalues of an operator using any matrix representation of that operator.</p></section></div></main>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script>
+</body>
+</html>

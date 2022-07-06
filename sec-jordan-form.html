@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*       on 2022-07-06T10:47:39-06:00       *-->
+<!--*   A recent stable commit (2020-08-09):   *-->
+<!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<html lang="en-US">
+<head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Jordan Canonical Form</title>
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="book">
+<meta property="book:title" content="Linear Algebra">
+<meta property="book:author" content="Sean Fitzpatrick">
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>window.MathJax = {
+  tex: {
+    inlineMath: [['\\(','\\)']],
+    tags: "none",
+    tagSide: "right",
+    tagIndent: ".8em",
+    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'newcommand', 'knowl']}
+  },
+  options: {
+    ignoreHtmlClass: "tex2jax_ignore|ignore-math",
+    processHtmlClass: "process-math",
+    renderActions: {
+        findScript: [10, function (doc) {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
+                var display = !!node.type.match(/; *mode=display/);
+                var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                var text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = {node: text, delim: '', n: 0};
+                math.end = {node: text, delim: '', n: 0};
+                doc.math.push(math);
+            });
+        }, '']
+    },
+  },
+  chtml: {
+    scale: 0.88,
+    mtextInheritFont: true
+  },
+  loader: {
+    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
+    paths: {pretext: "https://pretextbook.org/js/lib"},
+  },
+};
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><script>// Make *any* pre with class 'sagecell-sage' an executable Sage cell
+// Their results will be linked, only within language type
+sagecell.makeSagecell({inputLocation: 'pre.sagecell-sage',
+                       linked: true,
+                       languages: ['sage'],
+                       evalButtonText: 'Evaluate (Sage)'});
+</script><link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/themes/prism.css" rel="stylesheet">
+<script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.13/pretext.js"></script><script>miniversion=0.674</script><script src="https://pretextbook.org/js/0.13/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+</script><link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+<script src="https://cdn.geogebra.org/apps/deployggb.js"></script><link href="https://pretextbook.org/css/0.4/pretext.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/banner_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/toc_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/knowls_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/style_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/colors_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/setcolors.css" rel="stylesheet" type="text/css">
+<!--** eBookCongig is necessary to configure interactive       **-->
+<!--** Runestone components to run locally in reader's browser **-->
+<!--** No external communication:                              **-->
+<!--**     log level is 0, Runestone Services are disabled     **-->
+<script type="text/javascript">
+eBookConfig = {};
+eBookConfig.useRunestoneServices = false;
+eBookConfig.host = 'http://127.0.0.1:8000';
+eBookConfig.course = 'PTX Course: Title Here';
+eBookConfig.basecourse = 'PTX Base Course';
+eBookConfig.isLoggedIn = false;
+eBookConfig.email = '';
+eBookConfig.isInstructor = false;
+eBookConfig.logLevel = 0;
+eBookConfig.username = '';
+eBookConfig.readings = null;
+eBookConfig.activities = null;
+eBookConfig.downloadsEnabled = false;
+eBookConfig.allow_pairs = false;
+eBookConfig.enableScratchAC = false;
+eBookConfig.build_info = "";
+eBookConfig.python3 = null;
+eBookConfig.acDefaultLanguage = 'python';
+eBookConfig.runestone_version = '5.0.1';
+eBookConfig.jobehost = '';
+eBookConfig.proxyuri_runs = '';
+eBookConfig.proxyuri_files = '';
+eBookConfig.enable_chatcodes =  false;
+</script>
+<!--*** Runestone Services ***-->
+<script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.2.1/runtime.b0f8547c48f16a9f.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.2.1/637.d54be67956c5c660.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.2.1/runestone.0e9550fe42760516.bundle.js"></script><link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/6.2.1/637.fafafbd97df8a0d1.css">
+<link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/6.2.1/runestone.e4d5592da655219f.css">
+</head>
+<body id="linalg" class="pretext-book ignore-math has-toc has-sidebar-left">
+<a class="assistive" href="#content">Skip to main content</a><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\spn}{\operatorname{span}}
+\newcommand{\bbm}{\begin{bmatrix}}
+\newcommand{\ebm}{\end{bmatrix}}
+\newcommand{\R}{\mathbb{R}}
+\ifdefined\C
+\renewcommand\C{\mathbb{C}}
+\else
+\newcommand\C{\mathbb{C}}
+\fi
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\nll}{\operatorname{null}}
+\newcommand{\csp}{\operatorname{col}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\dotp}{\!\boldsymbol{\cdot}\!}
+\newcommand{\len}[1]{\lVert #1\rVert}
+\newcommand{\abs}[1]{\lvert #1\rvert}
+\newcommand{\proj}[2]{\operatorname{proj}_{#1}{#2}}
+\newcommand{\bz}{\overline{z}}
+\newcommand{\zz}{\mathbf{z}}
+\newcommand{\uu}{\mathbf{u}}
+\newcommand{\vv}{\mathbf{v}}
+\newcommand{\ww}{\mathbf{w}}
+\newcommand{\xx}{\mathbf{x}}
+\newcommand{\yy}{\mathbf{y}}
+\newcommand{\zer}{\mathbf{0}}
+\newcommand{\vecq}{\mathbf{q}}
+\newcommand{\vecp}{\mathbf{p}}
+\newcommand{\vece}{\mathbf{e}}
+\newcommand{\basis}[2]{\{\mathbf{#1}_1,\mathbf{#1}_2,\ldots,\mathbf{#1}_{#2}\}}
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\definecolor{fillinmathshade}{gray}{0.9}
+\newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
+\)</span></div>
+<header id="masthead" class="smallbuttons"><div class="banner"><div class="container">
+<a id="logo-link" href=""></a><div class="title-container">
+<h1 class="heading"><a href="linear-algebra.html"><span class="title">Linear Algebra:</span> <span class="subtitle">A second course, featuring proofs and Python</span></a></h1>
+<p class="byline">Sean Fitzpatrick</p>
+</div>
+</div></div>
+<nav id="primary-navbar" class="navbar"><div class="container">
+<div class="navbar-top-buttons">
+<button class="sidebar-left-toggle-button button active" aria-label="Show or hide table of contents sidebar">Contents</button><div class="tree-nav toolbar toolbar-divisor-3">
+<button id="calculator-toggle" class="toolbar-item button toggle" title="Show calculator" aria-expanded="false" aria-controls="calculator-container">Calc</button><div id="calculator-container" class="calculator-container" style="display: none; z-index:100;"><div id="geogebra-calculator"></div></div>
+<script>
+var ggbApp = new GGBApplet({"appName": "graphing",
+    "width": 330,
+    "height": 600,
+    "showToolBar": true,
+    "showAlgebraInput": true,
+    "perspective": "G/A",
+    "algebraInputPosition": "bottom",
+    "scaleContainerClass": "calculator-container",
+    "allowUpscale": true,
+    "autoHeight": true,
+    "disableAutoScale": false},
+true);
+</script><span class="threebuttons"><a id="previousbutton" class="previous-button toolbar-item button" href="sec-gen-eigen.html" title="Previous">Prev</a><a id="upbutton" class="up-button button toolbar-item" href="ch-change-basis.html" title="Up">Up</a><a id="nextbutton" class="next-button button toolbar-item" href="backmatter-1.html" title="Next">Next</a></span>
+</div>
+</div>
+<div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="sec-gen-eigen.html" title="Previous">Prev</a><a class="up-button button toolbar-item" href="ch-change-basis.html" title="Up">Up</a><a class="next-button button toolbar-item" href="backmatter-1.html" title="Next">Next</a>
+</div>
+</div></nav></header><div class="page">
+<div id="sidebar-left" class="sidebar" role="navigation"><div class="sidebar-content">
+<nav id="toc"><ul>
+<li class="link frontmatter">
+<a href="frontmatter-1.html" data-scroll="frontmatter-1" class="internal"><span class="title">Front Matter</span></a><ul>
+<li><a href="colophon-1.html" data-scroll="colophon-1" class="internal">Colophon</a></li>
+<li><a href="preface-1.html" data-scroll="preface-1" class="internal">Preface</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="ch-vector-space.html" data-scroll="ch-vector-space" class="internal"><span class="codenumber">1</span> <span class="title">Vector spaces</span></a><ul>
+<li><a href="sec-vec-sp.html" data-scroll="sec-vec-sp" class="internal">Definition and examples</a></li>
+<li><a href="sec-vsp-properties.html" data-scroll="sec-vsp-properties" class="internal">Properties</a></li>
+<li><a href="sec-subspace.html" data-scroll="sec-subspace" class="internal">Subspaces</a></li>
+<li><a href="sec-span.html" data-scroll="sec-span" class="internal">Span</a></li>
+<li><a href="worksheet-span.html" data-scroll="worksheet-span" class="internal">Worksheet: understanding span</a></li>
+<li><a href="sec-independence.html" data-scroll="sec-independence" class="internal">Linear Independence</a></li>
+<li><a href="sec-dimension.html" data-scroll="sec-dimension" class="internal">Basis and dimension</a></li>
+<li><a href="sec-subspace-combine.html" data-scroll="sec-subspace-combine" class="internal">New subspaces from old</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="ch-linear-trans.html" data-scroll="ch-linear-trans" class="internal"><span class="codenumber">2</span> <span class="title">Linear Transformations</span></a><ul>
+<li><a href="sec-lin-tran-intro.html" data-scroll="sec-lin-tran-intro" class="internal">Definition and examples</a></li>
+<li><a href="sec-kernel-image.html" data-scroll="sec-kernel-image" class="internal">Kernel and Image</a></li>
+<li><a href="sec-isomorphism.html" data-scroll="sec-isomorphism" class="internal">Isomorphisms, composition, and inverses</a></li>
+<li><a href="worksheet-transformations.html" data-scroll="worksheet-transformations" class="internal">Worksheet: matrix transformations</a></li>
+<li><a href="worksheet-recurrence.html" data-scroll="worksheet-recurrence" class="internal">Worksheet: linear recurrences</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="ch-orthogonality.html" data-scroll="ch-orthogonality" class="internal"><span class="codenumber">3</span> <span class="title">Orthogonality and Applications</span></a><ul>
+<li><a href="sec-orthogonal-sets.html" data-scroll="sec-orthogonal-sets" class="internal">Orthogonal sets of vectors</a></li>
+<li><a href="sec-ortho-projection.html" data-scroll="sec-ortho-projection" class="internal">Orthogonal Projection</a></li>
+<li><a href="worksheet-dual-basis.html" data-scroll="worksheet-dual-basis" class="internal">Worksheet: dual basis.</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="ch-diagonalization.html" data-scroll="ch-diagonalization" class="internal"><span class="codenumber">4</span> <span class="title">Diagonalization</span></a><ul>
+<li><a href="subsec-eigen-basics.html" data-scroll="subsec-eigen-basics" class="internal">Eigenvalues and Eigenvectors</a></li>
+<li><a href="subsec-ortho-diag.html" data-scroll="subsec-ortho-diag" class="internal">Diagonalization of symmetric matrices</a></li>
+<li><a href="sec-quadratic.html" data-scroll="sec-quadratic" class="internal">Quadratic forms</a></li>
+<li><a href="sec-complex.html" data-scroll="sec-complex" class="internal">Diagonalization of complex matrices</a></li>
+<li><a href="section-matrix-factor.html" data-scroll="section-matrix-factor" class="internal">Matrix Factorizations and Eigenvalues</a></li>
+<li><a href="worksheet-svd.html" data-scroll="worksheet-svd" class="internal">Worksheet: Singular Value Decomposition</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="ch-change-basis.html" data-scroll="ch-change-basis" class="internal"><span class="codenumber">5</span> <span class="title">Change of Basis</span></a><ul>
+<li><a href="sec-matrix-of-transformation.html" data-scroll="sec-matrix-of-transformation" class="internal">The matrix of a linear transformation</a></li>
+<li><a href="sec-matrix-operator.html" data-scroll="sec-matrix-operator" class="internal">The matrix of a linear operator</a></li>
+<li><a href="sec-direct-sum.html" data-scroll="sec-direct-sum" class="internal">Direct Sums and Invariant Subspaces</a></li>
+<li><a href="worksheet-gen-eigen.html" data-scroll="worksheet-gen-eigen" class="internal">Worksheet: generalized eigenvectors</a></li>
+<li><a href="sec-gen-eigen.html" data-scroll="sec-gen-eigen" class="internal">Generalized eigenspaces</a></li>
+<li><a href="sec-jordan-form.html" data-scroll="sec-jordan-form" class="active">Jordan Canonical Form</a></li>
+</ul>
+</li>
+<li class="link backmatter"><a href="backmatter-1.html" data-scroll="backmatter-1" class="internal"><span class="title">Back Matter</span></a></li>
+<li class="link">
+<a href="ch-computation.html" data-scroll="ch-computation" class="internal"><span class="codenumber">A</span> <span class="title">Computational Tools</span></a><ul>
+<li><a href="section-jupyter.html" data-scroll="section-jupyter" class="internal">Jupyter</a></li>
+<li><a href="sec-python-basics.html" data-scroll="sec-python-basics" class="internal">Python basics</a></li>
+<li><a href="sec-sympy.html" data-scroll="sec-sympy" class="internal">SymPy for linear algebra</a></li>
+</ul>
+</li>
+<li class="link"><a href="solutions-1.html" data-scroll="solutions-1" class="internal"><span class="codenumber">B</span> <span class="title">Solutions to Selected Exercises</span></a></li>
+</ul></nav><div class="extras"><nav><a class="pretext-link" href="https://pretextbook.org">Authored in PreTeXt</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a></nav></div>
+</div></div>
+<main class="main"><div id="content" class="pretext-content"><section class="section" id="sec-jordan-form"><h2 class="heading hide-type">
+<span class="type">Section</span> <span class="codenumber">5.6</span> <span class="title">Jordan Canonical Form</span>
+</h2>
+<p id="p-1339">The results of <a href="" class="xref" data-knowl="./knowl/thm-nullspace-power.html" title="Theorem 5.5.1">Theorem 5.5.1</a> and <a href="" class="xref" data-knowl="./knowl/thm-gen-eigen-decomp.html" title="Theorem 5.5.3">Theorem 5.5.3</a> tell us that for an eigenvalue <span class="process-math">\(\lambda\)</span> of <span class="process-math">\(T:V\to V\)</span> with multiplicity <span class="process-math">\(m\text{,}\)</span> we have a sequence of subspace inclusions</p>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/thm-nullspace-power.html ./knowl/thm-gen-eigen-decomp.html">
+\begin{equation*}
+E_\lambda(T) = \ker (T-\lambda I)\subseteq \ker (T-\lambda I)^2 \subseteq \cdots \subseteq \ker (T-\lambda I)^m = G_\lambda(T)\text{.}
+\end{equation*}
+</div>
+<p class="continuation">Not all subspaces in this sequence are necessarily distinct. Indeed, it is entirely possible that <span class="process-math">\(\dim E_\lambda(T)=m\text{,}\)</span> in which case <span class="process-math">\(E_\lambda(T)=G_\lambda(T)\text{.}\)</span> In geeral there will be some <span class="process-math">\(l\leq m\)</span> such that <span class="process-math">\(\ker (T-\lambda I)^l=G_\lambda(T)\text{.}\)</span></p>
+<p id="p-1340">Our goal in this section is to determine a basis for <span class="process-math">\(G_\lambda(T)\)</span> in a standard way. We begin with a couple of important results, which we state without proof. The first can be found in Axler's book; the second in Nicholson's.</p>
+<article class="theorem theorem-like" id="thm-gen-eigen-props"><h3 class="heading">
+<span class="type">Theorem</span><span class="space"> </span><span class="codenumber">5.6.1</span><span class="period">.</span>
+</h3>
+<p id="p-1341">Suppose <span class="process-math">\(V\)</span> is a complex vector space, and <span class="process-math">\(T:V\to V\)</span> is a linear operator. Let <span class="process-math">\(\lambda_1,\ldots, \lambda_k\)</span> denote the distinct eigenvalues of <span class="process-math">\(T\text{.}\)</span> (We can assume <span class="process-math">\(V\)</span> is real if we also assume that all eigenvalues of <span class="process-math">\(V\)</span> are real.) Then:</p>
+<ol class="decimal">
+<li id="li-189"><p id="p-1342">Generalized eigenvectors corresponding to <em class="emphasis">distinct</em> eigenvalues are linearly independent.</p></li>
+<li id="li-190"><p id="p-derived-li-190"><span class="process-math">\(\displaystyle V = G_{\lambda_1}(T)\oplus G_{\lambda_2}(T)\oplus \cdots \oplus G_{\lambda_k}(T)\)</span></p></li>
+<li id="li-191"><p id="p-1343">Each generalize eigenspace <span class="process-math">\(G_{\lambda_j}(T)\)</span> is <span class="process-math">\(T\)</span>-invariant.</p></li>
+<li id="li-192"><p id="p-1344">Each restriction <span class="process-math">\((T-\lambda_j)|_{G_{\lambda_j}(T)}\)</span> is nilpotent.</p></li>
+</ol></article><article class="theorem theorem-like" id="thm-block-eigen"><h3 class="heading">
+<span class="type">Theorem</span><span class="space"> </span><span class="codenumber">5.6.2</span><span class="period">.</span>
+</h3>
+<p id="p-1345">Let <span class="process-math">\(T:V\to V\)</span> be a linear operator. If the characteristic polynomial of <span class="process-math">\(T\)</span> is given by</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+c_T(x) = (x-\lambda_1)^{m_1}(x-\lambda_2)^{m_2}\cdots (x-\lambda_k)^{m_k}\text{,}
+\end{equation*}
+</div>
+<p class="continuation">then <span class="process-math">\(\dim G_{\lambda_j}(T)=m_j\)</span> for each <span class="process-math">\(j=1,\ldots, k\text{.}\)</span></p>
+<p id="p-1346">Moreover, if we let <span class="process-math">\(B=B_1\cup B_2\cup\cdots \cup B_k\text{,}\)</span> where <span class="process-math">\(B_j\)</span> is any basis for <span class="process-math">\(G_{\lambda_j}(T)\)</span> for <span class="process-math">\(j=1,\ldots, k\text{,}\)</span> then <span class="process-math">\(B\)</span> is a basis for <span class="process-math">\(V\)</span> (this follows immediately from <a href="" class="xref" data-knowl="./knowl/thm-gen-eigen-props.html" title="Theorem 5.6.1">Theorem 5.6.1</a>) and the matrix of <span class="process-math">\(T\)</span> with respect to this basis has the block-diagonal form</p>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/thm-gen-eigen-props.html">
+\begin{equation*}
+M_B(T) = \bbm A_1 \amp 0 \amp \cdots \amp 0\\
+0 \amp A_2 \amp \cdots \amp 0\\
+\vdots\amp\vdots\amp\ddots\amp\vdots\\
+0 \amp 0 \amp \cdots \amp A_k\ebm\text{,}
+\end{equation*}
+</div>
+<p class="continuation">where each <span class="process-math">\(A_j\)</span> has size <span class="process-math">\(m_j\times m_j\text{.}\)</span></p></article><p id="p-1347">A few remarks are called for here.</p>
+<ul class="disc">
+<li id="li-193"><p id="p-1348">One of the ways to see that <span class="process-math">\(\dim G_{\lambda_j}(T)=m_j\)</span> is to consider <span class="process-math">\((M_B(T)-\lambda_j I_n)^{m_j}\text{.}\)</span> This will have the form <span class="process-math">\(\diag(U_1^{m_j}, U_2^{m_j},\ldots, U_k^{m_j})\text{,}\)</span> where <span class="process-math">\(U_i\)</span> is the matrix of <span class="process-math">\((T-\lambda_j)^{m_j}\text{,}\)</span> restricted to <span class="process-math">\(G_{\lambda_i}(T)\text{.}\)</span> If <span class="process-math">\(i\neq j\text{,}\)</span> <span class="process-math">\(T-\lambda_j I\)</span> restricts to an invertible operator on <span class="process-math">\(G_{\lambda_i}(T)\text{,}\)</span> but its restriction to <span class="process-math">\(G_{\lambda_j}(T)\)</span> is nilpotent, by <a href="" class="xref" data-knowl="./knowl/thm-gen-eigen-props.html" title="Theorem 5.6.1">Theorem 5.6.1</a>. So <span class="process-math">\(U_j\)</span> is nilpotent (with <span class="process-math">\(U_j^{m_j}=0\)</span>), and has size <span class="process-math">\(m_j\times m_j\text{,}\)</span> while <span class="process-math">\(U_i\)</span> is invertible if <span class="process-math">\(i\neq j\text{.}\)</span> The matrix <span class="process-math">\((M_B(T)-\lambda_j I)^{m_j}\)</span> thus ends up with a <span class="process-math">\(m_j\times m_j\)</span> block of zeros, so <span class="process-math">\(\dim \ker (T-\lambda_j I)^{m_j}=m_j\text{.}\)</span></p></li>
+<li id="li-194">
+<p id="p-1349">If the previous point wasn't clear, note that with an appropriate choice of basis, the block <span class="process-math">\(A_i\)</span> in <a href="" class="xref" data-knowl="./knowl/thm-block-eigen.html" title="Theorem 5.6.2">Theorem 5.6.2</a> has the form</p>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/thm-block-eigen.html">
+\begin{equation*}
+A_i = \bbm \lambda_i \amp \ast \amp \cdots \amp \ast\\
+0 \amp \lambda_i \amp \cdots \amp \ast\\
+\vdots \amp \vdots \amp \ddots\amp \vdots\\
+0 \amp 0 \amp \cdots \amp \lambda_i\ebm\text{.}
+\end{equation*}
+</div>
+<p class="continuation">Thus, <span class="process-math">\(M_B(T)-\lambda_j I\)</span> will have blocks that are upper triangular, with diagonal entries <span class="process-math">\(\lambda_i-\lambda_j\neq 0\)</span> when <span class="process-math">\(i\neq j\text{,}\)</span> but when <span class="process-math">\(i=j\)</span> we get a matrix that is strictly upper triangular, and therefore nilpotent, since its diagonal entries will be <span class="process-math">\(\lambda_j-\lambda_j=0\text{.}\)</span></p>
+</li>
+<li id="li-195"><p id="p-1350">if <span class="process-math">\(l_j\)</span> is the <em class="emphasis">least</em> integer such that <span class="process-math">\(\ker (A-\lambda_j I)^{l_j}=G_{\lambda_j}(T)\text{,}\)</span> then it is possible to choose the basis of <span class="process-math">\(G_{\lambda_j}(T)\)</span> so that <span class="process-math">\(A_j\)</span> is itself block-diagonal, with the largest block having size <span class="process-math">\(l_j\times l_j\text{.}\)</span> The remainder of this section is devoted to determining how to choose such a basis.</p></li>
+</ul>
+<p id="p-1351">The basic principle for choosing a basis for each generalized eigenspace is as follows. We know that <span class="process-math">\(E_{\lambda}(T)\subseteq G_\lambda(T)\)</span> for each eigenvalue <span class="process-math">\(\lambda\text{.}\)</span> So we start with a basis for <span class="process-math">\(E_\lambda(T)\text{,}\)</span> by finding eigenvectors as usual. If <span class="process-math">\(\ker (T-\lambda I)^2 = \ker (T-\lambda I)\text{,}\)</span> then we're done: <span class="process-math">\(E_\lambda(T)=G_\lambda(T)\text{.}\)</span> Otherwise, we enlarge the basis for <span class="process-math">\(E_\lambda(T)\)</span> to a basis of <span class="process-math">\(\ker T(-\lambda I)^2\text{.}\)</span> If <span class="process-math">\(\ker T(-\lambda I)^3=\ker (T-\lambda I)^2\text{,}\)</span> then we're done, and <span class="process-math">\(G_\lambda(T) = \ker (T-\lambda I)^2\text{.}\)</span> If not, we enlarge our existing basis to a basis of <span class="process-math">\(\ker (T-\lambda I)^3\text{.}\)</span> We continue this process until we reach some power <span class="process-math">\(l\)</span> such that <span class="process-math">\(\ker (T-\lambda I)^l = \ker (T-\lambda I)^{l+1}\text{.}\)</span> (This is guaranteed to happen by <a href="" class="xref" data-knowl="./knowl/thm-nullspace-power.html" title="Theorem 5.5.1">Theorem 5.5.1</a>.) We then conclude that <span class="process-math">\(G_\lambda(T) = \ker (T-\lambda I)^l\text{.}\)</span></p>
+<p id="p-1352">The above produces <em class="emphasis">a</em> basis for <span class="process-math">\(G_\lambda(T)\text{,}\)</span> but we want what is, in some sense, the “best” basis. For our purposes, the best basis is the one in which the matrix of <span class="process-math">\(T\)</span> restricted to each generalized eigenspace is block diagonal, where each block is a <em class="emphasis">Jordan block</em>.</p>
+<article class="definition definition-like" id="def-jordan-block"><h3 class="heading">
+<span class="type">Definition</span><span class="space"> </span><span class="codenumber">5.6.3</span><span class="period">.</span>
+</h3>
+<p id="p-1353">Let <span class="process-math">\(\lambda\)</span> be a scalar. A <dfn class="terminology">Jordan block</dfn> is an <span class="process-math">\(m\times m\)</span> matrix of the form</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+J(m,\lambda) = \bbm \lambda \amp 1 \amp 0 \amp \cdots \amp 0\\
+0 \amp \lambda \amp 1 \amp \cdots \amp 0\\
+\vdots \amp \vdots \amp \ddots \amp \ddots \amp \vdots\\
+0 \amp 0 \amp \cdots \amp \lambda \amp 1\\
+0 \amp 0 \amp 0 \amp \cdots \amp \lambda\ebm\text{.}
+\end{equation*}
+</div>
+<p class="continuation">That is <span class="process-math">\(J(m,\lambda)\)</span> has each diagonal entry equal to <span class="process-math">\(\lambda\text{,}\)</span> and each “superdiagonal” entry (those just above the diagonal) equal to 1, with all other entries equal to zero.</p></article><article class="example example-like" id="example-19"><h3 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">5.6.4</span><span class="period">.</span>
+</h3>
+<p id="p-1354">The following are examples of Jordan blocks:</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+J(2,4)=\bbm 4 \amp 1\\ 0\amp 4\ebm, J(3,\sqrt{2})=\bbm \sqrt{2} \amp 1\amp 0\\0\amp \sqrt{2}\amp 1\\0\amp 0\amp \sqrt{2}\ebm,
+J(4,2i)=\bbm 2i \amp 1\amp 0\amp 0\\0\amp 2i\amp 1\amp 0\\0\amp 0\amp 2i\amp 1\\0\amp 0\amp 0\amp 2i\ebm\text{.}
+\end{equation*}
+</div></article><article class="insight remark-like" id="jordan-chain-basis"><h3 class="heading">
+<span class="type">Insight</span><span class="space"> </span><span class="codenumber">5.6.5</span><span class="period">.</span><span class="space"> </span><span class="title">Finding a chain basis.</span>
+</h3>
+<p id="p-1355">A Jordan block corresponds to basis vectors <span class="process-math">\(\vv_1,\vv_2,\ldots, \vv_m\)</span> with the following properties:</p>
+<div class="displaymath process-math" data-contains-math-knowls="" id="md-91">
+\begin{align*}
+T(\vv_1) \amp = \lambda \vv_1\\
+T(\vv_2) \amp = \vv_1+\lambda \vv_2\\
+T(\vv_3) \amp = \vv_2+\lambda \vv_3\text{,}
+\end{align*}
+</div>
+<p class="continuation">and so on. Notice that <span class="process-math">\(\vv_1\)</span> is an eigenvector, and for each <span class="process-math">\(j=2,\ldots, m\text{,}\)</span></p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+(T-\lambda I)\vv_{j} = \vv_{j-1}\text{.}
+\end{equation*}
+</div>
+<p id="p-1356">Notice also that if we set <span class="process-math">\(N=T-\lambda I\text{,}\)</span> then</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\vv_1 = N\vv_2, \vv_2 = N\vv_3, \ldots, \vv_{m-1} = N\vv_m
+\end{equation*}
+</div>
+<p class="continuation">so our basis for <span class="process-math">\(G_\lambda(T)\)</span> is of the form</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\vv, N\vv, N^2\vv, \ldots, N^{m-1}\vv\text{,}
+\end{equation*}
+</div>
+<p class="continuation">where <span class="process-math">\(\vv = \vv_m\text{,}\)</span> and <span class="process-math">\(\vv_1=N^{m-1}\vv\)</span> is an eigenvector. (Note that <span class="process-math">\(N^m\vv = (T-\lambda I)\vv_1=\zer\text{,}\)</span> and indeed <span class="process-math">\(N^m\vv_j=\zer\)</span> for each <span class="process-math">\(j=1,\ldots, m\text{.}\)</span>) Such a basis is known as a <dfn class="terminology">chain basis</dfn>.</p>
+<p id="p-1357">If <span class="process-math">\(\dim E_\lambda(T)\gt 1\)</span> we might have to repeat this process for each eigenvector in a basis for the eigenspace. The full matrix of <span class="process-math">\(T\)</span> might have several Jordan blocks of possibly different sizes for each eigenvalue.</p></article><article class="example example-like" id="ex-jordan-form1"><h3 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">5.6.6</span><span class="period">.</span>
+</h3>
+<p id="p-1358">Determine a Jordan basis for the operator <span class="process-math">\(T:\R^5\to \R^5\)</span> whose matrix with respect to the standard basis is given by</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+A = \bbm 7\amp 1 \amp -3\amp 2\amp 1\\
+-6\amp 2\amp 4\amp -2\amp -2\\
+0 \amp 1\amp 3 \amp 1\amp -1\\
+-8\amp -1\amp 6\amp 0 \amp-3\\
+-4\amp 0\amp 3\amp -1\amp 1\ebm
+\end{equation*}
+</div>
+<div class="solutions">
+<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-71" id="solution-71"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-71"><div class="solution solution-like">
+<p id="p-1359">First, we need the characteristic polynomial.</p>
+<pre class="ptx-sagecell hidden-sagecell-sage" id="sage-125"><script type="text/x-sage">from sympy import Matrix,init_printing,factor
+init_printing()
+A = Matrix([[7,1,-3,2,1],
+            [-6,2,4,-2,-2],
+            [0,1,3,1,-1],
+            [-8,-1,6,0,-3],
+            [-4,0,3,-1,1]])
+p = A.charpoly().as_expr()
+factor(p)
+</script></pre>
+<p id="p-1360">The characteristic polynomial of <span class="process-math">\(A\)</span> is given by</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+c_A(x)=(x-2)^2(x-3)^3\text{.}
+\end{equation*}
+</div>
+<p class="continuation">We thus have two eigenvalues: <span class="process-math">\(2\text{,}\)</span> of multiplicity <span class="process-math">\(2\text{,}\)</span> and <span class="process-math">\(3\text{,}\)</span> of multiplicity <span class="process-math">\(3\text{.}\)</span> We next find the <span class="process-math">\(E_2(A)\)</span> eigenspace.</p>
+<pre class="ptx-sagecell hidden-sagecell-sage" id="sage-126"><script type="text/x-sage">from sympy import eye
+N2 = A-2*eye(5)
+E2 = N2.nullspace()
+E2
+</script></pre>
+<p id="p-1361">The computer gives us</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+E_2(A)=\nll(A-2I) = \spn\{\xx_1\}, \text{ where } \xx_1=\bbm -1\\0\\-1\\1\\0\ebm\text{,}
+\end{equation*}
+</div>
+<p class="continuation">so we have only one independent eigenvector, which means that <span class="process-math">\(G_2(A)=\nll(A-2I)^2\text{.}\)</span></p>
+<p id="p-1362">Following <a href="" class="xref" data-knowl="./knowl/jordan-chain-basis.html" title="Insight 5.6.5: Finding a chain basis">Insight 5.6.5</a>, we extend <span class="process-math">\(\{\xx_1\}\)</span> to a basis of <span class="process-math">\(G_2(A)\)</span> by solving the system</p>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/jordan-chain-basis.html">
+\begin{equation*}
+(A-2I)\xx = \xx_1\text{.}
+\end{equation*}
+</div>
+<pre class="ptx-sagecell hidden-sagecell-sage" id="sage-127"><script type="text/x-sage">B2 = N2.col_insert(5,E2[0])
+B2.rref()
+</script></pre>
+<p id="p-1363">Using the results above from the computer (or Gaussian elimination), we find a general solution</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\xx = \bbm -t\\-1\\-t\\t\\0\ebm = t\bbm -1\\0\\-1\\1\\0\ebm + \bbm 0\\-1\\0\\0\\0\ebm\text{.}
+\end{equation*}
+</div>
+<p class="continuation">Note that our solution is of the form <span class="process-math">\(\xx = t\xx_1+\xx_2\text{.}\)</span> We set <span class="process-math">\(t=0\text{,}\)</span> and get <span class="process-math">\(\xx_2 = \bbm 0\amp -1\amp 0\amp 0\amp 0\ebm^T\text{.}\)</span></p>
+<p id="p-1364">Next, we consider the eigenvalue <span class="process-math">\(\lambda=3\text{.}\)</span> The computer gives us the following:</p>
+<pre class="ptx-sagecell hidden-sagecell-sage" id="sage-128"><script type="text/x-sage">N3 = A-3*eye(5)
+E3 = N3.nullspace()
+E3
+</script></pre>
+<p id="p-1365">Rescaling to remove fractions, we find</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+E_3(A) = \nll(A-3I) = \spn\{\yy_1,\yy_2\}, \text{ where } \yy_1 = \bbm 1\\-2\\2\\2\\0\ebm, \yy_2 = \bbm -1\\2\\0\\0\\2\ebm\text{.}
+\end{equation*}
+</div>
+<p class="continuation">Again, we're one eigenvector short of the multiplicity, so we need to consider <span class="process-math">\(G_3(A)=\nll(A-3I)^3\text{.}\)</span></p>
+<p id="p-1366">In the next cell, note that we doubled the eigenvectors in <code class="code-inline tex2jax_ignore">E3</code> to avoid fractions. To follow the solution in our example, we append <code class="code-inline tex2jax_ignore">2*E3[0]</code>, and reduce the resulting matrix. You should find that using the eigenvector <span class="process-math">\(\yy_1\)</span> corresponding to <code class="code-inline tex2jax_ignore">E3[0]</code> leads to an inconsistent system. Once you confirm this, replace <code class="code-inline tex2jax_ignore">E3[0]</code> with <code class="code-inline tex2jax_ignore">E3[1]</code> and re-run the cell to see that we get an inconsistent system using <span class="process-math">\(\yy_2\)</span> as well!</p>
+<pre class="ptx-sagecell hidden-sagecell-sage" id="sage-129"><script type="text/x-sage">B3 = N3.col_insert(5,2*E3[0])
+B3.rref()
+</script></pre>
+<p id="p-1367">The systems <span class="process-math">\((A-3I)\yy = \yy_1\)</span> and <span class="process-math">\((A-3I)\yy=\yy_2\)</span> are both inconsistent, but we can salvage the situation by replacing the eigenvector <span class="process-math">\(\yy_2\)</span> by some linear combination <span class="process-math">\(\zz_2 = a\yy_1+b\yy_2\text{.}\)</span> We row-reduce, and look for values of <span class="process-math">\(a\)</span> and <span class="process-math">\(b\)</span> that give a consistent system.</p>
+<p id="p-1368">The <code class="code-inline tex2jax_ignore">rref</code> command takes things a bit farther than we'd like, so we use the command <code class="code-inline tex2jax_ignore">echelon_form()</code> instead. Note that if <span class="process-math">\(a=b\text{,}\)</span> the system is inconsistent.</p>
+<pre class="ptx-sagecell hidden-sagecell-sage" id="sage-130"><script type="text/x-sage">from sympy import Symbol
+a = Symbol('a')
+b = Symbol('b')
+C3 = N3.col_insert(5,a*E3[0]+b*E3[1])
+C3.echelon_form()
+</script></pre>
+<p id="p-1369">We find that <span class="process-math">\(a=b\)</span> does the job, so we set</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\zz_2 = \yy_1+\yy_2 = \bbm 0\\0\\2\\2\\2\ebm\text{.}
+\end{equation*}
+</div>
+<pre class="ptx-sagecell hidden-sagecell-sage" id="sage-131"><script type="text/x-sage">D3 = N3.col_insert(5,E3[0]+E3[1])
+D3.rref()
+</script></pre>
+<p id="p-1370">Solving the system <span class="process-math">\((A-3I)\zz = \yy_1+\yy_2\text{,}\)</span> using the code above, we find</p>
+<div class="displaymath process-math" data-contains-math-knowls="" id="md-92">
+\begin{align*}
+\zz \amp = \bbm \frac12 +\frac12 s-\frac12 t\\1-s+t\\1+s\\s\\t\ebm\\
+\amp = \bbm \frac12\\1\\1\\0\\0\ebm + s\bbm\frac12\\-1\\1\\1\\0\ebm+t\bbm -\frac12\\1\\0\\0\\1\ebm\\
+\amp = \bbm \frac12\\1\\1\\0\\0\ebm \frac{s}{2}\yy_1+\frac{t}{2}\yy_2\text{.}
+\end{align*}
+</div>
+<p id="p-1371">We let <span class="process-math">\(\zz_3 = \bbm 1 \\ 2 \\ 2 \\ 0 \\ 0\ebm\text{,}\)</span> and check that</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+A\zz_3 = 3\zz_3+\zz_2\text{,}
+\end{equation*}
+</div>
+<p class="continuation">as required:</p>
+<pre class="ptx-sagecell hidden-sagecell-sage" id="sage-132"><script type="text/x-sage">Z3 = Matrix(5,1,[1,2,2,0,0])
+A*Z3-3*Z3-2*(E3[0]+E3[1])
+</script></pre>
+<p id="p-1372">This gives us the basis <span class="process-math">\(B = \{\xx_1,\xx_2,\yy_1,\zz_2,\zz_3\}\)</span> for <span class="process-math">\(\R^5\text{,}\)</span> and with respect to this basis, we have the Jordan canonical form</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+M_B(T) = \bbm 2 \amp 1\amp 0\amp 0 \amp 0\\
+0 \amp 2\amp 0\amp 0 \amp 0\\
+0 \amp 0\amp 3\amp 0 \amp 0\\
+0 \amp 0\amp 0\amp 3 \amp 1\\
+0 \amp 0\amp 0\amp 0 \amp 3\ebm\text{.}
+\end{equation*}
+</div>
+<p id="p-1373">Now that we've done all the work required for <a href="" class="xref" data-knowl="./knowl/ex-jordan-form1.html" title="Example 5.6.6">Example 5.6.6</a>, we should confess that there was an easier way all along:</p>
+<pre class="ptx-sagecell hidden-sagecell-sage" id="sage-133"><script type="text/x-sage">A.jordan_form()
+</script></pre>
+<p id="p-1374">The <code class="code-inline tex2jax_ignore">jordan_form()</code> command returns a pair <span class="process-math">\(P,J\text{,}\)</span> where <span class="process-math">\(J\)</span> is the Jordan canonical form of <span class="process-math">\(A\text{,}\)</span> and <span class="process-math">\(P\)</span> is an invertible matrix such that <span class="process-math">\(P^{-1}AP=J\text{.}\)</span> You might find that the computer's answer is not quite the same as ours. This is because the Jordan canonical form is only unique up to permutation of the Jordan blocks. Changing the order of the blocks amounts to changing the order of the columns of <span class="process-math">\(P\text{,}\)</span> which are given by a basis of (generalized eigenvectors).</p>
+</div></div>
+</div></article><article class="exercise exercise-like" id="ex-jordan-form2"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">5.6.7</span><span class="period">.</span>
+</h3>
+<p id="p-1375">Determine a Jordan basis for the linear operator <span class="process-math">\(T:\R^4\to\R^4\)</span> given by</p>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/ex-jordan-form1.html">
+\begin{equation*}
+T(w,x,y,z)=(w+x,x,-x+2y,w-x+y+z)\text{.}
+\end{equation*}
+</div>
+<p class="continuation">A code cell is given below in case you want to try performing the operations demonstrated in <a href="" class="xref" data-knowl="./knowl/ex-jordan-form1.html" title="Example 5.6.6">Example 5.6.6</a>.</p>
+<div class="solutions">
+<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-72" id="solution-72"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-72"><div class="solution solution-like">
+<p id="p-1376">With respect to the standard basis of <span class="process-math">\(\R^4\text{,}\)</span> the matrix of <span class="process-math">\(T\)</span> is</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+M = \bbm 1\amp 1\amp 0\amp 0\\0\amp 1\amp 0\amp 0\\0\amp -1\amp 2\amp 0\\1\amp -1\amp 1\amp 1\ebm\text{.}
+\end{equation*}
+</div>
+<p class="continuation">We find (perhaps using the Sage cell provided below, and the code from the example above) that</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+c_T(x)=(x-1)^3(x-2)\text{,}
+\end{equation*}
+</div>
+<p class="continuation">so <span class="process-math">\(T\)</span> has eigenvalues <span class="process-math">\(1\)</span> (of multiplicity <span class="process-math">\(3\)</span>), and <span class="process-math">\(2\)</span> (of multiplicity <span class="process-math">\(1\)</span>).</p>
+<p id="p-1377">We tackle the repeated eigenvalue first. The reduced row-echelon form of <span class="process-math">\(M-I\)</span> is given by</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+R_1 = \bbm 1\amp 0\amp 0\amp 0\\0\amp 1\amp 0\amp 0\\0\amp 0\amp 1\amp 0\\0\amp 0\amp 0\amp 0\ebm\text{,}
+\end{equation*}
+</div>
+<p class="continuation">so</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+E_1(M) = \spn\{\xx_1\}, \text{ where } \xx_1 = \bbm 0\\0\\0\\1\ebm\text{.}
+\end{equation*}
+</div>
+<p class="continuation">We now attempt to solve <span class="process-math">\((M-I)\xx=\xx_1\text{.}\)</span> We find</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\left(\begin{matrix}0\amp 1\amp 0\amp 0\\0\amp 0\amp 0\amp 0\\0\amp -1\amp 1\amp 0\\1\amp -1\amp 1\amp 0\end{matrix}\right|\left.\begin{matrix}0\\0\\0\\1\end{matrix}\right)
+\xrightarrow{\text{RREF}}
+\left(\begin{matrix} 1\amp 0\amp 0\amp 0\\0\amp 1\amp 0\amp 0\\0\amp 0\amp 1\amp 0\\0\amp 0\amp 0\amp 0\end{matrix}\right|\left.\begin{matrix}1\\0\\0\\0\end{matrix}\right)\text{,}
+\end{equation*}
+</div>
+<p class="continuation">so <span class="process-math">\(\xx = t\xx_1+\xx_2\text{,}\)</span> where <span class="process-math">\(\xx_2 = \bbm 1\\0\\0\\0\ebm\text{.}\)</span> We take <span class="process-math">\(\xx_2\)</span> as our first generalized eigenvector. Note that <span class="process-math">\((M-I)^2\xx_2 = (M-I)\xx_1=\zer\text{,}\)</span> so <span class="process-math">\(\xx_2\in \nll (M-I)^2\text{,}\)</span> as expected.</p>
+<p id="p-1378">Finally, we look for an element of <span class="process-math">\(\nll (M-I)^3\)</span> of the form <span class="process-math">\(\xx_3\text{,}\)</span> where <span class="process-math">\((M-I)\xx_3=\xx_2\text{.}\)</span> We set up and solve the system <span class="process-math">\((M-I)\xx=\xx_2\)</span> as follows:</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\left(\begin{matrix}0\amp 1\amp 0\amp 0\\0\amp 0\amp 0\amp 0\\0\amp -1\amp 1\amp 0\\1\amp -1\amp 1\amp 0\end{matrix}\right|\left.\begin{matrix}1\\0\\0\\0\end{matrix}\right)
+\xrightarrow{\text{RREF}}
+\left(\begin{matrix} 1\amp 0\amp 0\amp 0\\0\amp 1\amp 0\amp 0\\0\amp 0\amp 1\amp 0\\0\amp 0\amp 0\amp 0\end{matrix}\right|\left.\begin{matrix}0\\1\\1\\0\end{matrix}\right)\text{,}
+\end{equation*}
+</div>
+<p class="continuation">so <span class="process-math">\(\xx = t\xx_1+\xx_3\text{,}\)</span> where <span class="process-math">\(\xx_3 =\bbm 0\\1\\1\\0\ebm\text{.}\)</span></p>
+<p id="p-1379">Finally, we deal with the eigenvalue <span class="process-math">\(2\text{.}\)</span> The reduced row-echelon form of <span class="process-math">\(M-2I\)</span> is</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+R_2 = \bbm 1\amp 0\amp 0\amp 0\\0\amp 1\amp 0\amp 0\\0\amp 0\amp 1\amp -1\\0\amp 0\amp 0\amp 0\ebm\text{,}
+\end{equation*}
+</div>
+<p class="continuation">so</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+E_2(M) = \spn\{\yy\}, \text{ where } \yy = \bbm 0\\0\\1\\1\ebm\text{.}
+\end{equation*}
+</div>
+<p id="p-1380">Our basis of column vectors is therefore <span class="process-math">\(B=\{\xx_1,\xx_2,\xx_3,\yy\}\text{.}\)</span> Note that by design,</p>
+<div class="displaymath process-math" data-contains-math-knowls="" id="md-93">
+\begin{align*}
+M\xx_1 \amp =\xx_1\\
+M\xx_2 \amp =\xx_1+\xx_2\\
+M\xx_3 \amp= \xx_2+\xx_3\\
+M\yy \amp = 2\yy\text{.}
+\end{align*}
+</div>
+<p class="continuation">The corresponding Jordan basis for <span class="process-math">\(\R^4\)</span> is</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\{(0,0,0,1),(1,0,0,0),(0,1,1,0),(0,0,1,1)\}\text{,}
+\end{equation*}
+</div>
+<p class="continuation">and with respect to this basis, we have</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+M_B(T) = \bbm 1\amp 1\amp 0\amp 0\\
+0\amp 1\amp 1\amp 0\\
+0\amp 0\amp 1\amp 0\\
+0\amp 0\amp 0\amp 2\ebm\text{.}
+\end{equation*}
+</div>
+</div></div>
+</div></article><pre class="ptx-sagecell sagecell-sage" id="sage-134"><script type="text/x-sage"></script></pre>
+<p id="p-1381">One final note: we mentioned above that the minimal polynomial of an operator has the form</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+m_T(x)=(x-\lambda_1)^{l_1}(x-\lambda_2)^{l_2}\cdots (x-\lambda_k)^{l_k}\text{,}
+\end{equation*}
+</div>
+<p class="continuation">where for each <span class="process-math">\(j=1,2,\ldots, k\text{,}\)</span> <span class="process-math">\(l_j\)</span> is the size of the largest Jordan block corresponding to <span class="process-math">\(\lambda_j\text{.}\)</span> Knowing the minimal polynomial therefore tells as a lot about the Jordan canonical form, but not everything. Of course, if <span class="process-math">\(l_j=1\)</span> for all <span class="process-math">\(j\text{,}\)</span> then our operator can be diagaonalized. If <span class="process-math">\(\dim V\leq 4\text{,}\)</span> the minimal polynomial tells us everything, except for the order of the Jordan blocks.</p>
+<p id="p-1382">In <a href="" class="xref" data-knowl="./knowl/ex-jordan-form2.html" title="Exercise 5.6.7">Exercise 5.6.7</a>, the minimal polynomial is <span class="process-math">\(m_T(x)=(x-1)^3(x-2)\text{,}\)</span> the same as the characteristic polynomial. If we knew this in advance, then the only possible Jordan canonical forms would be</p>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/ex-jordan-form2.html">
+\begin{equation*}
+\bbm 1\amp 1\amp 0\amp 0\\
+0\amp 1\amp 1\amp 0\\
+0\amp 0\amp 1\amp 0\\
+0\amp 0\amp 0\amp 2\ebm \text{ or } \bbm 2\amp 0\amp 0\amp 0\\
+0\amp 1\amp 1\amp 0\\
+0\amp 0\amp 1\amp 1\\
+0\amp 0\amp 0\amp 1\ebm\text{.}
+\end{equation*}
+</div>
+<p class="continuation">If instead the minimal polynomial had turned out to be <span class="process-math">\((x-1)^2(x-2)\)</span> (with the same characteristic polynomial), then, up to permutation of the Jordan blocks, our Jordan canonical form would be</p>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/ex-jordan-form2.html">
+\begin{equation*}
+\bbm 1\amp 0\amp 0\amp 0\\0\amp 1\amp 1\amp 0\\0\amp 0\amp 1\amp 0\\0\amp 0\amp 0\amp 2\ebm\text{.}
+\end{equation*}
+</div>
+<p id="p-1383">However, once we hit matrices of size <span class="process-math">\(5\times 5\)</span> or larger, some ambiguity creeps in. For example, suppose <span class="process-math">\(c_A(x) = (x-2)^5\)</span> with <span class="process-math">\(m_A(x)=(x-2)^2\text{.}\)</span> Then the largest Jordan block is <span class="process-math">\(2\times 2\text{,}\)</span> but we could have two <span class="process-math">\(2\times 2\)</span> blocks and a <span class="process-math">\(1\times 1\text{,}\)</span> or three <span class="process-math">\(1\times 1\)</span> blocks and one <span class="process-math">\(2\times 2\text{.}\)</span></p></section></div></main>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script>
+</body>
+</html>

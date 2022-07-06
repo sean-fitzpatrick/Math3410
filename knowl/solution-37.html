@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*       on 2022-07-06T10:47:42-06:00       *-->
+<!--*   A recent stable commit (2020-08-09):   *-->
+<!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<script>// Make *any* pre with class 'sagecell-sage' an executable Sage cell
+// Their results will be linked, only within language type
+sagecell.makeSagecell({inputLocation: 'pre.sagecell-sage',
+                       linked: true,
+                       languages: ['sage'],
+                       evalButtonText: 'Evaluate (Sage)'});
+</script>
+</head>
+<body class="ignore-math">
+<div class="solution solution-like">
+<h3 class="heading">
+<span class="type">Solution</span><span class="space"> </span><span class="codenumber">2.1.10.1</span><span class="period">.</span>
+</h3>
+<p>At first, this example looks the same as the one above, and to some extent, it is. The difference is that this time, we're given the values of <span class="process-math">\(T\)</span> on a basis that is not the standard one. This means we first have to do some work to determine how to write the given vector in terms of the given basis.</p>
+<p>Suppose we have <span class="process-math">\(a\bbm 3\\1\ebm+b\bbm 2\\-5\ebm = \bbm 4\\3\ebm\)</span> for scalars <span class="process-math">\(a,b\text{.}\)</span> This is equivalent to the matrix equation</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\bbm 3\amp 2\\1\amp -5\ebm\bbm a\\b\ebm = \bbm 4\\3\ebm.
+\end{equation*}
+</div>
+<p class="continuation">Solving (perhaps using the code cell below), we get <span class="process-math">\(a=\frac{26}{17}, b = -\frac{5}{17}\text{.}\)</span></p>
+<pre class="ptx-sagecell sagecell-sage" id="sage-23"><script type="text/x-sage">from sympy import Matrix,init_printing
+init_printing()
+A = Matrix(2,2,[3,2,1,-5])
+B = Matrix(2,1,[4,3])
+(A**-1)*B
+</script></pre>
+<p>Therefore,</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+T\bbm 4\\3\ebm = \frac{26}{17}\bbm 1\\4\ebm -\frac{5}{17}\bbm 2\\-1\ebm = \bbm 16/17\\109/17\ebm\text{.}
+\end{equation*}
+</div>
+</div>
+<span class="incontext"><a href="sec-lin-tran-intro.html#solution-37" class="internal">in-context</a></span>
+</body>
+</html>

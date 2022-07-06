@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*       on 2022-07-06T10:47:40-06:00       *-->
+<!--*   A recent stable commit (2020-08-09):   *-->
+<!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math"><div class="solution solution-like">
+<p>This proof will be far more detailed than what you'll see in later sections. (We usually do not bother to take note of the axioms, one by one.) We will also try to explain our reasoning as we go, to help you get used to the sort of careful reasoning involved in a proof. Lines that should actually be included in the proof will be set aside in block quotes.</p>
+<p>First, we are proving a “for all” (universally quantified) statement. This means we should be careful not to assume anything about the vector we choose, so that our argument can apply to any vector we want:</p>
+<blockquote class="blockquote"><p>Let <span class="process-math">\(\vv\)</span> be any vector in <span class="process-math">\(V\text{.}\)</span></p></blockquote>
+<p>Next, you might want to remind yourself of the goal: we want to show that <span class="process-math">\((-1)\vv=-\vv\text{.}\)</span> You can state that this is what you want to show, but it's not absolutely necessary to do this. A common trick that shows up in a lot of mathematical proofs is a simple bit of arithmetic: <span class="process-math">\(a=b\)</span> is the same thing as <span class="process-math">\(a-b=0\text{!}\)</span> So really, what we want to show is that <span class="process-math">\((-1)\vv+\vv=\zer\text{.}\)</span></p>
+<p>Now, remember that <span class="process-math">\(1\vv=\vv\text{,}\)</span> and <span class="process-math">\(0\vv=\zer\text{,}\)</span> so what we want to show is equivalent to <span class="process-math">\((-1)\vv+1\vv=0\vv\text{.}\)</span> Remove the <span class="process-math">\(\vv\text{,}\)</span> and we're left with <span class="process-math">\(-1+1=0\text{,}\)</span> and that we definitely know is true! (Of course, we can't just “remove <span class="process-math">\(\vv\)</span>”, but we can use the distributive property!)</p>
+<p>This is basically the proof, but we need to state all the axioms we use, and best practice in logical arguments is that we should begin with our assumptions, and statements we agree are true, and proceed from those to the desired conclusion.</p>
+<blockquote class="blockquote">
+<p>Since we know that <span class="process-math">\(-1+1=0\text{,}\)</span> it follows that</p>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/thm-zero-mult.html">
+\begin{equation*}
+(-1+1)\vv=0\vv\text{.}
+\end{equation*}
+</div>
+<p class="continuation">On the left hand side, we can use the distributive property S3 to get <span class="process-math">\((-1+1)\vv=(-1)\vv+1\vv\text{.}\)</span> On the right hand side, we can use <a href="" class="xref" data-knowl="./knowl/thm-zero-mult.html" title="Theorem 1.2.1">Theorem 1.2.1</a> to get <span class="process-math">\(0\vv=\zer\text{.}\)</span> Therefore,</p>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/thm-zero-mult.html">
+\begin{equation*}
+(-1)\vv+1\vv=\zer\text{.}
+\end{equation*}
+</div>
+<p class="continuation">By axiom S5, <span class="process-math">\(1\vv=\vv\text{,}\)</span> so we have <span class="process-math">\((-1)\vv+\vv=\zer\text{.}\)</span></p>
+</blockquote>
+<p>OK, that's more or less where we said we wanted to get to, and then we can just move <span class="process-math">\(\vv\)</span> to the other side as <span class="process-math">\(-\vv\text{,}\)</span> and we're done. But we want to be careful to state all axioms! The rest of the proof involves carefully stepping through this process.</p>
+<p>Another way to proceed, which shortcuts this whole process, is to use <a href="" class="xref" data-knowl="./knowl/task-negative-unique.html" title="Part 1.2.2.d">Part d</a> of <a href="" class="xref" data-knowl="./knowl/ex-more-props.html" title="Exercise 1.2.2">Exercise 1.2.2</a>: since the additive inverse of <span class="process-math">\(\vv\)</span> is the unique vector <span class="process-math">\(-\vv\)</span> such that <span class="process-math">\(-\vv+\vv=\zer\text{,}\)</span> and <span class="process-math">\((-1)\vv+\vv=\zer\text{,}\)</span> it must be the case that <span class="process-math">\((-1)\vv=-\vv\text{.}\)</span></p>
+<p>This approach is completely valid, and you are free to use it, but we will take the long route to demonstrate further use of the axioms.</p>
+<blockquote class="blockquote">
+<p>Since <span class="process-math">\((-1)\vv+\vv=\zer\text{,}\)</span> we can add <span class="process-math">\(-\vv\)</span> to both sides of the equation, giving</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+((-1)\vv+\vv)+(-\vv)=\zer+(-\vv)\text{.}
+\end{equation*}
+</div>
+<p class="continuation">By the associative property (axiom A3), <span class="process-math">\(((-1)\vv+\vv)+(-\vv)=(-1)\vv+(\vv+(-\vv))\text{,}\)</span> and by the identity axiom A5, <span class="process-math">\(\zer+(-\vv)=-\vv\text{.}\)</span> This gives us</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+(-1)\vv+(\vv+(-\vv))=-\vv\text{.}
+\end{equation*}
+</div>
+<p class="continuation">By axiom A5, <span class="process-math">\(\vv+(-\vv)=\zer\text{,}\)</span> so <span class="process-math">\((-1)\vv+\zer=-\vv\text{.}\)</span> Finally, we use axiom A4 one last time, and we have our result: <span class="process-math">\((-1)\vv=-\vv\text{.}\)</span></p>
+</blockquote>
+</div></body>
+</html>

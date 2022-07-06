@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*       on 2022-07-06T10:47:40-06:00       *-->
+<!--*   A recent stable commit (2020-08-09):   *-->
+<!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<h3 class="heading"><span class="type">Paragraph</span></h3>
+<ol class="decimal">
+<li>
+<p>Vector addition is <em class="emphasis">commutative</em>. That is, for any vectors <span class="process-math">\(\vv = \langle a, b\rangle\)</span> and <span class="process-math">\(\ww = \langle c,d\rangle\text{,}\)</span> we have <span class="process-math">\(\vv+\ww = \ww+\vv\text{.}\)</span></p>
+<p>This is true because addition is commutative for the real numbers:</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\vv+\ww = \langle a+c, b+d\rangle = \langle c+a, d+b\rangle = \ww+\vv\text{.}
+\end{equation*}
+</div>
+</li>
+<li>
+<p>Vector addition is <em class="emphasis">associative</em>. That is, for any vectors <span class="process-math">\(\uu = \langle a, b\rangle, \vv = \langle c, d\rangle\)</span> and <span class="process-math">\(\ww = \langle p, q\rangle\text{,}\)</span> we have</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\uu+(\vv+\ww) = (\uu+\vv)+\ww\text{.}
+\end{equation*}
+</div>
+<p class="continuation">This tells us that placement of parentheses doesn't matter, which is essential for extending addition (which is defined as an operation on <em class="emphasis">two</em> vectors) to sums of three or more vectors.</p>
+<p>Again, this property is true because it is true for real numbers:</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{align*}
+\uu + (\vv+\ww) \amp = \langle a,b\rangle + \langle c+p,d+q\rangle \\
+\amp = \langle a+(c+p), b+(d+q)\rangle\\
+\amp = \langle (a+c)+p, (b+d)+q\rangle\\
+\amp = \langle a+c, b+d\rangle + \langle p,q\rangle\\
+\amp = (\uu+\vv)+\ww\text{.}
+\end{align*}
+</div>
+</li>
+<li>
+<p>Vector addition has an <em class="emphasis">identity element</em>. This is a vector that has no effect when added to another vector, or in other words, the zero vector. Again, it inherits its property from the behaviour of the real number 0.</p>
+<p>For any <span class="process-math">\(\vv=\langle a,b\rangle\text{,}\)</span> the vector <span class="process-math">\(\zer = \langle 0,0\rangle\)</span> satisfies <span class="process-math">\(\vv+\zer = \zer+\vv=\vv\text{:}\)</span></p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\langle a+0,b+0\rangle = \langle 0+a,0+b\rangle = \langle a,b\rangle\text{.}
+\end{equation*}
+</div>
+</li>
+<li>
+<p>Every vector has an <em class="emphasis">inverse</em> with respect to addition, or, in other words, a <em class="emphasis">negative</em>. Given a vector <span class="process-math">\(\vv = \langle a, b\rangle\text{,}\)</span> the vector <span class="process-math">\(-\vv = \langle -a, -b\rangle\)</span> satisfies</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\vv+(-\vv) = -\vv + \vv = \zer\text{.}
+\end{equation*}
+</div>
+<p class="continuation">(We will leave this one for you to check.)</p>
+</li>
+<li>
+<p>Scalar multiplication is compatible with addition in two different ways. First, it is <em class="emphasis">distributive</em> over vector addition: for any scalar <span class="process-math">\(k\)</span> and vectors <span class="process-math">\(\vv=\langle a, b\rangle, \ww = \langle c,d\rangle\text{,}\)</span> we have <span class="process-math">\(k(\vv+\ww)=k\vv+k\ww\text{.}\)</span></p>
+<p>Unsurprisingly, this property is inherited from the distributive property of the real numbers:</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{align*}
+k(\vv+\ww) \amp = k\langle a+c,b+d\rangle\\
+\amp = \langle k(a+c),k(b+d)\rangle \\
+\amp = \langle ka+kc,kb+kd\rangle\\
+\amp = \langle ka, kb\rangle+\langle kc, kd\rangle\\
+\amp k\langle a,b\rangle + k\langle c,d\rangle = k\vv+k\ww\text{.}
+\end{align*}
+</div>
+</li>
+<li>
+<p>Second, scalar multiplication is also distributive with respect to <em class="emphasis">scalar</em> addition: for any scalars <span class="process-math">\(c\)</span> and <span class="process-math">\(d\)</span> and vector <span class="process-math">\(\vv\text{,}\)</span> we have <span class="process-math">\((c+d)\vv=c\vv+d\vv\text{.}\)</span></p>
+<p>Again, this is because real number addition is distributive:</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{align*}
+(c+d)\langle a, b\rangle \amp = \langle (c+d)a,(c+d)b\rangle\\
+\amp = \langle ca+da, cb+db\rangle \\
+\amp = \langle ca, cb\rangle + \langle da, db\rangle\\
+\amp c\langle a, b\rangle + d\langle a, b\rangle\text{.}
+\end{align*}
+</div>
+</li>
+<li>
+<p>Scalar multiplication is also <em class="emphasis">associative</em>. Given scalars <span class="process-math">\(c,d\)</span> and a vector <span class="process-math">\(\vv=\langle a,b\rangle\text{,}\)</span> we have <span class="process-math">\(c(d\vv) = (cd)\vv\text{.}\)</span></p>
+<p>This is inherited from the associativity of real number multiplication:</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+c(d\vv) = c\langle da, db\rangle =\langle c(da),c(db)\rangle = \langle (cd)a,(cd)b\rangle = (cd)\langle a,b\rangle\text{.}
+\end{equation*}
+</div>
+</li>
+<li><p>Finally, there is a “normalization” result for scalar multiplication. For any vector <span class="process-math">\(\vv\text{,}\)</span> we have <span class="process-math">\(1\vv = \vv\text{.}\)</span> That is, the real number <span class="process-math">\(1\)</span> acts as an identity element with respect to scalar multiplication. (You can check this one yourself.)</p></li>
+</ol>
+<span class="incontext"><a href="sec-vec-sp.html#p-19" class="internal">in-context</a></span>
+</body>
+</html>

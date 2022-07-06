@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*       on 2022-07-06T10:47:35-06:00       *-->
+<!--*   A recent stable commit (2020-08-09):   *-->
+<!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<html lang="en-US">
+<head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Properties</title>
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="book">
+<meta property="book:title" content="Linear Algebra">
+<meta property="book:author" content="Sean Fitzpatrick">
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>window.MathJax = {
+  tex: {
+    inlineMath: [['\\(','\\)']],
+    tags: "none",
+    tagSide: "right",
+    tagIndent: ".8em",
+    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'newcommand', 'knowl']}
+  },
+  options: {
+    ignoreHtmlClass: "tex2jax_ignore|ignore-math",
+    processHtmlClass: "process-math",
+    renderActions: {
+        findScript: [10, function (doc) {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
+                var display = !!node.type.match(/; *mode=display/);
+                var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                var text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = {node: text, delim: '', n: 0};
+                math.end = {node: text, delim: '', n: 0};
+                doc.math.push(math);
+            });
+        }, '']
+    },
+  },
+  chtml: {
+    scale: 0.88,
+    mtextInheritFont: true
+  },
+  loader: {
+    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
+    paths: {pretext: "https://pretextbook.org/js/lib"},
+  },
+};
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/themes/prism.css" rel="stylesheet">
+<script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.13/pretext.js"></script><script>miniversion=0.674</script><script src="https://pretextbook.org/js/0.13/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+</script><link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+<script src="https://cdn.geogebra.org/apps/deployggb.js"></script><link href="https://pretextbook.org/css/0.4/pretext.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/banner_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/toc_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/knowls_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/style_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/colors_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/setcolors.css" rel="stylesheet" type="text/css">
+<!--** eBookCongig is necessary to configure interactive       **-->
+<!--** Runestone components to run locally in reader's browser **-->
+<!--** No external communication:                              **-->
+<!--**     log level is 0, Runestone Services are disabled     **-->
+<script type="text/javascript">
+eBookConfig = {};
+eBookConfig.useRunestoneServices = false;
+eBookConfig.host = 'http://127.0.0.1:8000';
+eBookConfig.course = 'PTX Course: Title Here';
+eBookConfig.basecourse = 'PTX Base Course';
+eBookConfig.isLoggedIn = false;
+eBookConfig.email = '';
+eBookConfig.isInstructor = false;
+eBookConfig.logLevel = 0;
+eBookConfig.username = '';
+eBookConfig.readings = null;
+eBookConfig.activities = null;
+eBookConfig.downloadsEnabled = false;
+eBookConfig.allow_pairs = false;
+eBookConfig.enableScratchAC = false;
+eBookConfig.build_info = "";
+eBookConfig.python3 = null;
+eBookConfig.acDefaultLanguage = 'python';
+eBookConfig.runestone_version = '5.0.1';
+eBookConfig.jobehost = '';
+eBookConfig.proxyuri_runs = '';
+eBookConfig.proxyuri_files = '';
+eBookConfig.enable_chatcodes =  false;
+</script>
+<!--*** Runestone Services ***-->
+<script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.2.1/runtime.b0f8547c48f16a9f.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.2.1/637.d54be67956c5c660.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.2.1/runestone.0e9550fe42760516.bundle.js"></script><link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/6.2.1/637.fafafbd97df8a0d1.css">
+<link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/6.2.1/runestone.e4d5592da655219f.css">
+</head>
+<body id="linalg" class="pretext-book ignore-math has-toc has-sidebar-left">
+<a class="assistive" href="#content">Skip to main content</a><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\spn}{\operatorname{span}}
+\newcommand{\bbm}{\begin{bmatrix}}
+\newcommand{\ebm}{\end{bmatrix}}
+\newcommand{\R}{\mathbb{R}}
+\ifdefined\C
+\renewcommand\C{\mathbb{C}}
+\else
+\newcommand\C{\mathbb{C}}
+\fi
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\nll}{\operatorname{null}}
+\newcommand{\csp}{\operatorname{col}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\dotp}{\!\boldsymbol{\cdot}\!}
+\newcommand{\len}[1]{\lVert #1\rVert}
+\newcommand{\abs}[1]{\lvert #1\rvert}
+\newcommand{\proj}[2]{\operatorname{proj}_{#1}{#2}}
+\newcommand{\bz}{\overline{z}}
+\newcommand{\zz}{\mathbf{z}}
+\newcommand{\uu}{\mathbf{u}}
+\newcommand{\vv}{\mathbf{v}}
+\newcommand{\ww}{\mathbf{w}}
+\newcommand{\xx}{\mathbf{x}}
+\newcommand{\yy}{\mathbf{y}}
+\newcommand{\zer}{\mathbf{0}}
+\newcommand{\vecq}{\mathbf{q}}
+\newcommand{\vecp}{\mathbf{p}}
+\newcommand{\vece}{\mathbf{e}}
+\newcommand{\basis}[2]{\{\mathbf{#1}_1,\mathbf{#1}_2,\ldots,\mathbf{#1}_{#2}\}}
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\definecolor{fillinmathshade}{gray}{0.9}
+\newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
+\)</span></div>
+<header id="masthead" class="smallbuttons"><div class="banner"><div class="container">
+<a id="logo-link" href=""></a><div class="title-container">
+<h1 class="heading"><a href="linear-algebra.html"><span class="title">Linear Algebra:</span> <span class="subtitle">A second course, featuring proofs and Python</span></a></h1>
+<p class="byline">Sean Fitzpatrick</p>
+</div>
+</div></div>
+<nav id="primary-navbar" class="navbar"><div class="container">
+<div class="navbar-top-buttons">
+<button class="sidebar-left-toggle-button button active" aria-label="Show or hide table of contents sidebar">Contents</button><div class="tree-nav toolbar toolbar-divisor-3">
+<button id="calculator-toggle" class="toolbar-item button toggle" title="Show calculator" aria-expanded="false" aria-controls="calculator-container">Calc</button><div id="calculator-container" class="calculator-container" style="display: none; z-index:100;"><div id="geogebra-calculator"></div></div>
+<script>
+var ggbApp = new GGBApplet({"appName": "graphing",
+    "width": 330,
+    "height": 600,
+    "showToolBar": true,
+    "showAlgebraInput": true,
+    "perspective": "G/A",
+    "algebraInputPosition": "bottom",
+    "scaleContainerClass": "calculator-container",
+    "allowUpscale": true,
+    "autoHeight": true,
+    "disableAutoScale": false},
+true);
+</script><span class="threebuttons"><a id="previousbutton" class="previous-button toolbar-item button" href="sec-vec-sp.html" title="Previous">Prev</a><a id="upbutton" class="up-button button toolbar-item" href="ch-vector-space.html" title="Up">Up</a><a id="nextbutton" class="next-button button toolbar-item" href="sec-subspace.html" title="Next">Next</a></span>
+</div>
+</div>
+<div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="sec-vec-sp.html" title="Previous">Prev</a><a class="up-button button toolbar-item" href="ch-vector-space.html" title="Up">Up</a><a class="next-button button toolbar-item" href="sec-subspace.html" title="Next">Next</a>
+</div>
+</div></nav></header><div class="page">
+<div id="sidebar-left" class="sidebar" role="navigation"><div class="sidebar-content">
+<nav id="toc"><ul>
+<li class="link frontmatter">
+<a href="frontmatter-1.html" data-scroll="frontmatter-1" class="internal"><span class="title">Front Matter</span></a><ul>
+<li><a href="colophon-1.html" data-scroll="colophon-1" class="internal">Colophon</a></li>
+<li><a href="preface-1.html" data-scroll="preface-1" class="internal">Preface</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="ch-vector-space.html" data-scroll="ch-vector-space" class="internal"><span class="codenumber">1</span> <span class="title">Vector spaces</span></a><ul>
+<li><a href="sec-vec-sp.html" data-scroll="sec-vec-sp" class="internal">Definition and examples</a></li>
+<li><a href="sec-vsp-properties.html" data-scroll="sec-vsp-properties" class="active">Properties</a></li>
+<li><a href="sec-subspace.html" data-scroll="sec-subspace" class="internal">Subspaces</a></li>
+<li><a href="sec-span.html" data-scroll="sec-span" class="internal">Span</a></li>
+<li><a href="worksheet-span.html" data-scroll="worksheet-span" class="internal">Worksheet: understanding span</a></li>
+<li><a href="sec-independence.html" data-scroll="sec-independence" class="internal">Linear Independence</a></li>
+<li><a href="sec-dimension.html" data-scroll="sec-dimension" class="internal">Basis and dimension</a></li>
+<li><a href="sec-subspace-combine.html" data-scroll="sec-subspace-combine" class="internal">New subspaces from old</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="ch-linear-trans.html" data-scroll="ch-linear-trans" class="internal"><span class="codenumber">2</span> <span class="title">Linear Transformations</span></a><ul>
+<li><a href="sec-lin-tran-intro.html" data-scroll="sec-lin-tran-intro" class="internal">Definition and examples</a></li>
+<li><a href="sec-kernel-image.html" data-scroll="sec-kernel-image" class="internal">Kernel and Image</a></li>
+<li><a href="sec-isomorphism.html" data-scroll="sec-isomorphism" class="internal">Isomorphisms, composition, and inverses</a></li>
+<li><a href="worksheet-transformations.html" data-scroll="worksheet-transformations" class="internal">Worksheet: matrix transformations</a></li>
+<li><a href="worksheet-recurrence.html" data-scroll="worksheet-recurrence" class="internal">Worksheet: linear recurrences</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="ch-orthogonality.html" data-scroll="ch-orthogonality" class="internal"><span class="codenumber">3</span> <span class="title">Orthogonality and Applications</span></a><ul>
+<li><a href="sec-orthogonal-sets.html" data-scroll="sec-orthogonal-sets" class="internal">Orthogonal sets of vectors</a></li>
+<li><a href="sec-ortho-projection.html" data-scroll="sec-ortho-projection" class="internal">Orthogonal Projection</a></li>
+<li><a href="worksheet-dual-basis.html" data-scroll="worksheet-dual-basis" class="internal">Worksheet: dual basis.</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="ch-diagonalization.html" data-scroll="ch-diagonalization" class="internal"><span class="codenumber">4</span> <span class="title">Diagonalization</span></a><ul>
+<li><a href="subsec-eigen-basics.html" data-scroll="subsec-eigen-basics" class="internal">Eigenvalues and Eigenvectors</a></li>
+<li><a href="subsec-ortho-diag.html" data-scroll="subsec-ortho-diag" class="internal">Diagonalization of symmetric matrices</a></li>
+<li><a href="sec-quadratic.html" data-scroll="sec-quadratic" class="internal">Quadratic forms</a></li>
+<li><a href="sec-complex.html" data-scroll="sec-complex" class="internal">Diagonalization of complex matrices</a></li>
+<li><a href="section-matrix-factor.html" data-scroll="section-matrix-factor" class="internal">Matrix Factorizations and Eigenvalues</a></li>
+<li><a href="worksheet-svd.html" data-scroll="worksheet-svd" class="internal">Worksheet: Singular Value Decomposition</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="ch-change-basis.html" data-scroll="ch-change-basis" class="internal"><span class="codenumber">5</span> <span class="title">Change of Basis</span></a><ul>
+<li><a href="sec-matrix-of-transformation.html" data-scroll="sec-matrix-of-transformation" class="internal">The matrix of a linear transformation</a></li>
+<li><a href="sec-matrix-operator.html" data-scroll="sec-matrix-operator" class="internal">The matrix of a linear operator</a></li>
+<li><a href="sec-direct-sum.html" data-scroll="sec-direct-sum" class="internal">Direct Sums and Invariant Subspaces</a></li>
+<li><a href="worksheet-gen-eigen.html" data-scroll="worksheet-gen-eigen" class="internal">Worksheet: generalized eigenvectors</a></li>
+<li><a href="sec-gen-eigen.html" data-scroll="sec-gen-eigen" class="internal">Generalized eigenspaces</a></li>
+<li><a href="sec-jordan-form.html" data-scroll="sec-jordan-form" class="internal">Jordan Canonical Form</a></li>
+</ul>
+</li>
+<li class="link backmatter"><a href="backmatter-1.html" data-scroll="backmatter-1" class="internal"><span class="title">Back Matter</span></a></li>
+<li class="link">
+<a href="ch-computation.html" data-scroll="ch-computation" class="internal"><span class="codenumber">A</span> <span class="title">Computational Tools</span></a><ul>
+<li><a href="section-jupyter.html" data-scroll="section-jupyter" class="internal">Jupyter</a></li>
+<li><a href="sec-python-basics.html" data-scroll="sec-python-basics" class="internal">Python basics</a></li>
+<li><a href="sec-sympy.html" data-scroll="sec-sympy" class="internal">SymPy for linear algebra</a></li>
+</ul>
+</li>
+<li class="link"><a href="solutions-1.html" data-scroll="solutions-1" class="internal"><span class="codenumber">B</span> <span class="title">Solutions to Selected Exercises</span></a></li>
+</ul></nav><div class="extras"><nav><a class="pretext-link" href="https://pretextbook.org">Authored in PreTeXt</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a></nav></div>
+</div></div>
+<main class="main"><div id="content" class="pretext-content"><section class="section" id="sec-vsp-properties"><h2 class="heading hide-type">
+<span class="type">Section</span> <span class="codenumber">1.2</span> <span class="title">Properties</span>
+</h2>
+<p id="p-109">There are a number of other algebraic properties that are common to all vector spaces; for example, it is true that <span class="process-math">\(0\vv = \zer\)</span> for all vectors <span class="process-math">\(\vv\)</span> in any vector space <span class="process-math">\(V\text{.}\)</span> The reason these are not included is that the ten axioms in <a href="" class="xref" data-knowl="./knowl/def-vector-space.html" title="Definition 1.1.1">Definition 1.1.1</a> are the ones deemed “essential” – all other properties can be deduced from the axioms. To demonstrate, we next give the proof that <span class="process-math">\(0\vv = \zer\text{.}\)</span></p>
+<p id="p-110">The focus on proofs may be one place where your second course in linear algebra differs from your first. Learning to write proofs (and to know when a proof you have written is valid) is a difficult skill that takes time to develop. Some of the proofs in this section are “clever”, in the sense that they require you to apply vector space axioms in ways that may not seem obvious. Proofs in later sections will more often be more straightforward “direct” proofs of conditional (if … then) statements, although they may not feel straightforward on your first encounter.</p>
+<article class="theorem theorem-like" id="thm-zero-mult"><h3 class="heading">
+<span class="type">Theorem</span><span class="space"> </span><span class="codenumber">1.2.1</span><span class="period">.</span>
+</h3>
+<p id="p-111">In any vector space <span class="process-math">\(V\text{,}\)</span> we have <span class="process-math">\(0\vv = \zer\)</span> for all <span class="process-math">\(\vv\in V\)</span></p></article><article class="hiddenproof" id="proof-1"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-1"><h3 class="heading"><span class="title">Strategy.</span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-1"><article class="hiddenproof"><p id="p-112">The goal is to show that multiplying by the scalar <span class="process-math">\(0\)</span> produces the vector <span class="process-math">\(\zer\text{.}\)</span> We all learn early on that “anything times zero is zero”, but why is this true? A few strategies that show up frequently when working with the axioms are:</p>
+<ol class="decimal">
+<li id="li-37"><p id="p-113">Adding zero (the scalar, or the vector) does nothing, including when you add it to itself.</p></li>
+<li id="li-38"><p id="p-114">We can always add the same thing to both sides of an equation.</p></li>
+<li id="li-39"><p id="p-115">Liberal use of the distributive property!</p></li>
+</ol>
+<p id="p-116">What we do here is to start with a very simple statement: <span class="process-math">\(0+0=0\text{.}\)</span> The reason for doing so is that when we multiply by <span class="process-math">\(0+0\text{,}\)</span> we have an opportunity to use the distributive property.</p></article></div>
+<article class="hiddenproof" id="proof-2"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-2"><h3 class="heading"><span class="type">Proof<span class="period">.</span></span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-2"><article class="hiddenproof"><p id="p-117">Since <span class="process-math">\(0+0=0\text{,}\)</span> we have <span class="process-math">\(0\vv=(0+0)\vv\text{.}\)</span> Using the distributive axiom S3, this becomes</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+0\vv + 0\vv = 0\vv\text{.}
+\end{equation*}
+</div>
+<p class="continuation">By axiom A5, there is an element <span class="process-math">\(-0\vv\in V\)</span> such that <span class="process-math">\(0\vv+(-0\vv)=\zer\text{.}\)</span> Adding this to both sides of the equation above, we get:</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+(0\vv+0\vv)+(-0\vv) = 0\vv+(-0\vv)\text{.}
+\end{equation*}
+</div>
+<p class="continuation">Now, apply the associative property (A3) on the left, and A5 on the right, to get</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+0\vv + (0\vv+(-0\vv)) = \zer\text{.}
+\end{equation*}
+</div>
+<p class="continuation">Using A5 again on the left, we get <span class="process-math">\(0\vv+\zer = \zer\text{.}\)</span> Finally, axiom A4 guarantees <span class="process-math">\(0\vv = 0\vv+\zer = \zer\text{.}\)</span></p></article></div>
+<article class="exercise exercise-like" id="ex-more-props"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">1.2.2</span><span class="period">.</span>
+</h3>
+<div class="introduction" id="introduction-3">
+<p id="p-118">Tactics similar to the ones used in <a href="" class="xref" data-knowl="./knowl/thm-zero-mult.html" title="Theorem 1.2.1">Theorem 1.2.1</a> can be used to establish the following results, which we leave as an exercise. Solutions are included, but it will be worth your while in the long run to wrestle with these.</p>
+<p id="p-119">Show that the following properties are valid in any vector space <span class="process-math">\(V\text{:}\)</span></p>
+</div>
+<article class="task exercise-like" id="task-9"><h4 class="heading"><span class="codenumber">(a)</span></h4>
+<p id="p-120">If <span class="process-math">\(\uu+\vv=\uu+\ww\text{,}\)</span> then <span class="process-math">\(\vv=\ww\text{.}\)</span></p>
+<div class="solutions">
+<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-6" id="hint-6"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-6"><div class="hint solution-like"><p id="p-121">Remember that every vector <span class="process-math">\(\uu\)</span> in a vector space has an additive inverse <span class="process-math">\(-\uu\text{.}\)</span></p></div></div>
+<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-9" id="solution-9"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-9"><div class="solution solution-like">
+<p id="p-122">Suppose <span class="process-math">\(\uu+\vv=\uu+\ww\text{.}\)</span> By adding <span class="process-math">\(-\uu\)</span> on the left of each side, we obtain:</p>
+<div class="displaymath process-math" data-contains-math-knowls="" id="md-8">
+\begin{align*}
+-\uu+(\uu+\vv) \amp =-\uu+(\uu+\ww)\\
+(-\uu+\uu)+\vv \amp =(-\uu+\uu)+\ww \quad \text{ by A3}\\
+\zer+\vv \amp =\zer+\ww \quad \text{ by A5}\\
+\vv \amp =\ww \quad \text{ by A4}\text{,}
+\end{align*}
+</div>
+<p class="continuation">which is what we needed to show.</p>
+</div></div>
+</div></article><article class="task exercise-like" id="part-mult-zero"><h4 class="heading"><span class="codenumber">(b)</span></h4>
+<p id="p-123">For any scalar <span class="process-math">\(c\text{,}\)</span> <span class="process-math">\(c\zer=\zer\text{.}\)</span></p>
+<div class="solutions">
+<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-7" id="hint-7"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-7"><div class="hint solution-like"><p id="p-124">Your approach should be quite similar to the one used in <a href="" class="xref" data-knowl="./knowl/thm-zero-mult.html" title="Theorem 1.2.1">Theorem 1.2.1</a>.</p></div></div>
+<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-10" id="solution-10"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-10"><div class="solution solution-like">
+<p id="p-125">We have <span class="process-math">\(c\zer = c(\zer+\zer) = c\zer +c\zer\text{,}\)</span> by A4 and S2, respectively. Adding <span class="process-math">\(-c\zer\)</span> to both sides gives us</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+-c\zer+c\zer = -c\zer+(c\zer+c\zer)\text{.}
+\end{equation*}
+</div>
+<p class="continuation">Using associativity (A3), this becomes</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+-c\zer+c\zer = (-c\zer+c\zer)+c\zer\text{,}
+\end{equation*}
+</div>
+<p class="continuation">and since <span class="process-math">\(-c\zer+c\zer=\zer\)</span> by A5, we get <span class="process-math">\(\zer =\zer+c\zer\text{.}\)</span> Finally, we apply A4 on the right hand side to get <span class="process-math">\(\zer=c\zer\text{,}\)</span> as required.</p>
+</div></div>
+</div></article><article class="task exercise-like" id="task-11"><h4 class="heading"><span class="codenumber">(c)</span></h4>
+<p id="p-126">The zero vector is the unique vector such that <span class="process-math">\(\vv+\zer=\vv\)</span> for all <span class="process-math">\(\vv\in V\text{.}\)</span></p>
+<div class="solutions">
+<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-8" id="hint-8"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-8"><div class="hint solution-like"><p id="p-127">If you want to prove something is unique, try assuming that you have more than one! If any two different elements with the same property have to be equal, then all such elements must, in fact, be the same element.</p></div></div>
+<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-11" id="solution-11"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-11"><div class="solution solution-like">
+<p id="p-128">Suppose there are two vectors <span class="process-math">\(\zer_1,\zer_2\)</span> that act as additive identities. Then</p>
+<div class="displaymath process-math" data-contains-math-knowls="" id="md-9">
+\begin{align*}
+\zer_1 \amp = \zer_1+\zer_2 \quad \text{ since } \vv+\zer_2=\vv \text{ for any } \vv\\
+\amp =\zer_2+\zer_1 \quad \text{ by axiom A2}\\
+\amp \zer_2 \quad \text{ since } \vv+\zer_1=\vv \text{ for any } \vv
+\end{align*}
+</div>
+<p class="continuation">So any two vectors satisfying the property in A4 must, in fact, be the same.</p>
+</div></div>
+</div></article><article class="task exercise-like" id="task-negative-unique"><h4 class="heading"><span class="codenumber">(d)</span></h4>
+<p id="p-129">The negative <span class="process-math">\(-\vv\)</span> of any vector <span class="process-math">\(\vv\)</span> is unique.</p>
+<div class="solutions">
+<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-12" id="solution-12"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-12"><div class="solution solution-like">
+<p id="p-130">Let <span class="process-math">\(\vv\in V\text{,}\)</span> and suppose there are vectors <span class="process-math">\(\ww_1,\ww_2\in V\)</span> such that <span class="process-math">\(\vv+\ww_1=\zer\)</span> and <span class="process-math">\(\vv+\ww_2=\zer\text{.}\)</span> Then</p>
+<div class="displaymath process-math" data-contains-math-knowls="" id="md-10">
+\begin{align*}
+\ww_1 \amp = \ww_1+\zer \quad  \text{ by A4}\\
+\amp = \ww_1+(\vv+\ww_2) \quad \text{ by assumption}\\
+\amp = (\ww_1+\vv)+\ww_2 \quad \text{ by A3}\\
+\amp = (\vv+\ww_1)+\ww_2 \quad \text{ by A2}\\
+\amp = \zer+\ww_2 \quad \text{ by assumption}\\
+\amp \ww_2 \quad \text{ by A4}\text{.}
+\end{align*}
+</div>
+</div></div>
+</div></article></article><article class="example example-like" id="ex-minus-one-negative"><h3 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">1.2.3</span><span class="period">.</span>
+</h3>
+<p id="p-131">Prove the following statement:</p>
+<p id="p-132">Let <span class="process-math">\(V\)</span> be a vector space. For any <span class="process-math">\(\vv\in V\text{,}\)</span> <span class="process-math">\((-1)\vv=-\vv\text{.}\)</span></p>
+<p id="p-133">Indicate all axioms needed in the proof.</p>
+<div class="solutions">
+<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-13" id="solution-13"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-13"><div class="solution solution-like">
+<p id="p-134">This proof will be far more detailed than what you'll see in later sections. (We usually do not bother to take note of the axioms, one by one.) We will also try to explain our reasoning as we go, to help you get used to the sort of careful reasoning involved in a proof. Lines that should actually be included in the proof will be set aside in block quotes.</p>
+<p id="p-135">First, we are proving a “for all” (universally quantified) statement. This means we should be careful not to assume anything about the vector we choose, so that our argument can apply to any vector we want:</p>
+<blockquote class="blockquote" id="blockquote-1"><p id="p-136">Let <span class="process-math">\(\vv\)</span> be any vector in <span class="process-math">\(V\text{.}\)</span></p></blockquote>
+<p id="p-137">Next, you might want to remind yourself of the goal: we want to show that <span class="process-math">\((-1)\vv=-\vv\text{.}\)</span> You can state that this is what you want to show, but it's not absolutely necessary to do this. A common trick that shows up in a lot of mathematical proofs is a simple bit of arithmetic: <span class="process-math">\(a=b\)</span> is the same thing as <span class="process-math">\(a-b=0\text{!}\)</span> So really, what we want to show is that <span class="process-math">\((-1)\vv+\vv=\zer\text{.}\)</span></p>
+<p id="p-138">Now, remember that <span class="process-math">\(1\vv=\vv\text{,}\)</span> and <span class="process-math">\(0\vv=\zer\text{,}\)</span> so what we want to show is equivalent to <span class="process-math">\((-1)\vv+1\vv=0\vv\text{.}\)</span> Remove the <span class="process-math">\(\vv\text{,}\)</span> and we're left with <span class="process-math">\(-1+1=0\text{,}\)</span> and that we definitely know is true! (Of course, we can't just “remove <span class="process-math">\(\vv\)</span>”, but we can use the distributive property!)</p>
+<p id="p-139">This is basically the proof, but we need to state all the axioms we use, and best practice in logical arguments is that we should begin with our assumptions, and statements we agree are true, and proceed from those to the desired conclusion.</p>
+<blockquote class="blockquote" id="blockquote-2">
+<p id="p-140">Since we know that <span class="process-math">\(-1+1=0\text{,}\)</span> it follows that</p>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/thm-zero-mult.html">
+\begin{equation*}
+(-1+1)\vv=0\vv\text{.}
+\end{equation*}
+</div>
+<p class="continuation">On the left hand side, we can use the distributive property S3 to get <span class="process-math">\((-1+1)\vv=(-1)\vv+1\vv\text{.}\)</span> On the right hand side, we can use <a href="" class="xref" data-knowl="./knowl/thm-zero-mult.html" title="Theorem 1.2.1">Theorem 1.2.1</a> to get <span class="process-math">\(0\vv=\zer\text{.}\)</span> Therefore,</p>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/thm-zero-mult.html">
+\begin{equation*}
+(-1)\vv+1\vv=\zer\text{.}
+\end{equation*}
+</div>
+<p class="continuation">By axiom S5, <span class="process-math">\(1\vv=\vv\text{,}\)</span> so we have <span class="process-math">\((-1)\vv+\vv=\zer\text{.}\)</span></p>
+</blockquote>
+<p id="p-141">OK, that's more or less where we said we wanted to get to, and then we can just move <span class="process-math">\(\vv\)</span> to the other side as <span class="process-math">\(-\vv\text{,}\)</span> and we're done. But we want to be careful to state all axioms! The rest of the proof involves carefully stepping through this process.</p>
+<p id="p-142">Another way to proceed, which shortcuts this whole process, is to use <a href="" class="xref" data-knowl="./knowl/task-negative-unique.html" title="Part 1.2.2.d">Part d</a> of <a href="" class="xref" data-knowl="./knowl/ex-more-props.html" title="Exercise 1.2.2">Exercise 1.2.2</a>: since the additive inverse of <span class="process-math">\(\vv\)</span> is the unique vector <span class="process-math">\(-\vv\)</span> such that <span class="process-math">\(-\vv+\vv=\zer\text{,}\)</span> and <span class="process-math">\((-1)\vv+\vv=\zer\text{,}\)</span> it must be the case that <span class="process-math">\((-1)\vv=-\vv\text{.}\)</span></p>
+<p id="p-143">This approach is completely valid, and you are free to use it, but we will take the long route to demonstrate further use of the axioms.</p>
+<blockquote class="blockquote" id="blockquote-3">
+<p id="p-144">Since <span class="process-math">\((-1)\vv+\vv=\zer\text{,}\)</span> we can add <span class="process-math">\(-\vv\)</span> to both sides of the equation, giving</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+((-1)\vv+\vv)+(-\vv)=\zer+(-\vv)\text{.}
+\end{equation*}
+</div>
+<p class="continuation">By the associative property (axiom A3), <span class="process-math">\(((-1)\vv+\vv)+(-\vv)=(-1)\vv+(\vv+(-\vv))\text{,}\)</span> and by the identity axiom A5, <span class="process-math">\(\zer+(-\vv)=-\vv\text{.}\)</span> This gives us</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+(-1)\vv+(\vv+(-\vv))=-\vv\text{.}
+\end{equation*}
+</div>
+<p class="continuation">By axiom A5, <span class="process-math">\(\vv+(-\vv)=\zer\text{,}\)</span> so <span class="process-math">\((-1)\vv+\zer=-\vv\text{.}\)</span> Finally, we use axiom A4 one last time, and we have our result: <span class="process-math">\((-1)\vv=-\vv\text{.}\)</span></p>
+</blockquote>
+</div></div>
+</div></article><p id="p-145">Note that in the above exercise, we could have shortened the proof: In <a href="" class="xref" data-knowl="./knowl/ex-more-props.html" title="Exercise 1.2.2">Exercise 1.2.2</a> we showed that additive inverses are unique. So once we reach the step where <span class="process-math">\(-1\vv+\vv=\zer\text{,}\)</span> we can conclude that <span class="process-math">\(-1\vv=-\vv\text{,}\)</span> since <span class="process-math">\(-\vv\)</span> is the unique vector that satisfies this equation.</p>
+<p id="p-146">To finish off this section, here is one more problem similar to the one above. This result will be useful in the future, and students often find the logic tricky, so it is worth your time to ensure you understand it.</p>
+<article class="exercise exercise-like" id="ex-zero-mult-prop"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">1.2.4</span><span class="period">.</span>
+</h3>
+<div class="ptx-runestone-container"><div class="runestone" style="max-width: none;"><div data-component="parsons" class="parsons" id="ex-zero-mult-prop">
+<div class="parsons_question parsons-text">
+<p id="p-147">Rearrange the blocks to create a valid proof of the following statement:</p>
+<p id="p-148">If <span class="process-math">\(c\vv=\zer\text{,}\)</span> then either <span class="process-math">\(c=0\)</span> or <span class="process-math">\(\vv=\zer\text{.}\)</span></p>
+</div>
+<pre class="parsonsblocks" data-question_label="" style="visibility: hidden;" data-language="natural" data-noindent="true"><p id="p-149">Let <span class="process-math">\(c\)</span> be a scalar, and let <span class="process-math">\(\vv\in V\)</span> be a vector.</p> <p id="p-150">Suppose that <span class="process-math">\(c\vv=\zer\text{.}\)</span></p>
+---
+<p id="p-151">By the law of the excluded middle, either <span class="process-math">\(c=0\text{,}\)</span> or <span class="process-math">\(c\neq 0\text{.}\)</span></p>
+---
+<p id="p-152">If <span class="process-math">\(c=0\text{,}\)</span> then <span class="process-math">\(c=0\)</span> or <span class="process-math">\(\vv=\zer\text{,}\)</span> and we're done.</p>
+---
+<p id="p-153">Suppose then that <span class="process-math">\(c\neq 0\text{.}\)</span></p>
+---
+<p id="p-154">Since <span class="process-math">\(c\neq 0\text{,}\)</span> there is a scalar <span class="process-math">\(1/c\)</span> such that <span class="process-math">\((1/c)\cdot c=1\text{.}\)</span></p>
+---
+<p id="p-155">Since <span class="process-math">\(c\vv=\zer\text{,}\)</span> <span class="process-math">\((1/c)(c\vv)=(1/c)\zer\text{.}\)</span></p>
+---
+<p id="p-156">Therefore, <span class="process-math">\(((1/c)\cdot c)\vv = \zer\text{,}\)</span> using S4 and <a href="" class="xref" data-knowl="./knowl/part-mult-zero.html" title="Part 1.2.2.b">Part b</a> of <a href="" class="xref" data-knowl="./knowl/ex-more-props.html" title="Exercise 1.2.2">Exercise 1.2.2</a>.</p>
+---
+<p id="p-157">Since <span class="process-math">\((1/c)\cdot c=1\text{,}\)</span> we have <span class="process-math">\(1\vv=\vv =\zer\text{,}\)</span> using S5.</p>
+---
+<p id="p-158">Since <span class="process-math">\(\vv=\zer\text{,}\)</span> <span class="process-math">\(c=0\)</span> or <span class="process-math">\(\vv=\zer\text{.}\)</span></p>
+---
+<p id="p-159">In either case, we conclude that <span class="process-math">\(c=0\)</span> or <span class="process-math">\(\vv=\zer\text{,}\)</span> so the result is proven.</p></pre>
+</div></div></div>
+<div class="solutions">
+<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-9" id="hint-9"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-9"><div class="hint solution-like"><p id="p-160">The main difficulty with this problem is getting the logic of the statement correct, and making sure you know what it is you're trying to prove. Consider a proof by cases: either <span class="process-math">\(c=0\)</span> or <span class="process-math">\(c\neq 0\text{.}\)</span> In the first case, there is nothing to prove (why?). In the second case, use the fact (see <a href="" class="xref" data-knowl="./knowl/def-field.html" title="Definition 1.1.2">Definition 1.1.2</a>) that for any nonzero scalar <span class="process-math">\(c\text{,}\)</span> there exists a scalar <span class="process-math">\(1/c\)</span> such that <span class="process-math">\(c\cdot 1/c=1\text{.}\)</span></p></div></div>
+</div></article></section></div></main>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script>
+</body>
+</html>

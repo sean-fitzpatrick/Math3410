@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*       on 2022-07-06T10:47:38-06:00       *-->
+<!--*   A recent stable commit (2020-08-09):   *-->
+<!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<html lang="en-US">
+<head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Worksheet: Singular Value Decomposition</title>
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="book">
+<meta property="book:title" content="Linear Algebra">
+<meta property="book:author" content="Sean Fitzpatrick">
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>window.MathJax = {
+  tex: {
+    inlineMath: [['\\(','\\)']],
+    tags: "none",
+    tagSide: "right",
+    tagIndent: ".8em",
+    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'newcommand', 'knowl']}
+  },
+  options: {
+    ignoreHtmlClass: "tex2jax_ignore|ignore-math",
+    processHtmlClass: "process-math",
+    renderActions: {
+        findScript: [10, function (doc) {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
+                var display = !!node.type.match(/; *mode=display/);
+                var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                var text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = {node: text, delim: '', n: 0};
+                math.end = {node: text, delim: '', n: 0};
+                doc.math.push(math);
+            });
+        }, '']
+    },
+  },
+  chtml: {
+    scale: 0.88,
+    mtextInheritFont: true
+  },
+  loader: {
+    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
+    paths: {pretext: "https://pretextbook.org/js/lib"},
+  },
+};
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><script>// Make *any* pre with class 'sagecell-sage' an executable Sage cell
+// Their results will be linked, only within language type
+sagecell.makeSagecell({inputLocation: 'pre.sagecell-sage',
+                       linked: true,
+                       languages: ['sage'],
+                       evalButtonText: 'Evaluate (Sage)'});
+</script><script>// Make *any* pre with class 'sagecell-html' an executable Sage cell
+// Their results will be linked, only within language type
+sagecell.makeSagecell({inputLocation: 'pre.sagecell-html',
+                       linked: true,
+                       languages: ['html'],
+                       evalButtonText: 'Evaluate (HTML)'});
+</script><link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/themes/prism.css" rel="stylesheet">
+<script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.13/pretext.js"></script><script>miniversion=0.674</script><script src="https://pretextbook.org/js/0.13/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+</script><link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+<script src="https://cdn.geogebra.org/apps/deployggb.js"></script><link href="https://pretextbook.org/css/0.4/pretext.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/banner_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/toc_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/knowls_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/style_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/colors_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/setcolors.css" rel="stylesheet" type="text/css">
+<!--** eBookCongig is necessary to configure interactive       **-->
+<!--** Runestone components to run locally in reader's browser **-->
+<!--** No external communication:                              **-->
+<!--**     log level is 0, Runestone Services are disabled     **-->
+<script type="text/javascript">
+eBookConfig = {};
+eBookConfig.useRunestoneServices = false;
+eBookConfig.host = 'http://127.0.0.1:8000';
+eBookConfig.course = 'PTX Course: Title Here';
+eBookConfig.basecourse = 'PTX Base Course';
+eBookConfig.isLoggedIn = false;
+eBookConfig.email = '';
+eBookConfig.isInstructor = false;
+eBookConfig.logLevel = 0;
+eBookConfig.username = '';
+eBookConfig.readings = null;
+eBookConfig.activities = null;
+eBookConfig.downloadsEnabled = false;
+eBookConfig.allow_pairs = false;
+eBookConfig.enableScratchAC = false;
+eBookConfig.build_info = "";
+eBookConfig.python3 = null;
+eBookConfig.acDefaultLanguage = 'python';
+eBookConfig.runestone_version = '5.0.1';
+eBookConfig.jobehost = '';
+eBookConfig.proxyuri_runs = '';
+eBookConfig.proxyuri_files = '';
+eBookConfig.enable_chatcodes =  false;
+</script>
+<!--*** Runestone Services ***-->
+<script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.2.1/runtime.b0f8547c48f16a9f.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.2.1/637.d54be67956c5c660.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.2.1/runestone.0e9550fe42760516.bundle.js"></script><link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/6.2.1/637.fafafbd97df8a0d1.css">
+<link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/6.2.1/runestone.e4d5592da655219f.css">
+</head>
+<body id="linalg" class="pretext-book ignore-math has-toc has-sidebar-left">
+<a class="assistive" href="#content">Skip to main content</a><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\spn}{\operatorname{span}}
+\newcommand{\bbm}{\begin{bmatrix}}
+\newcommand{\ebm}{\end{bmatrix}}
+\newcommand{\R}{\mathbb{R}}
+\ifdefined\C
+\renewcommand\C{\mathbb{C}}
+\else
+\newcommand\C{\mathbb{C}}
+\fi
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\nll}{\operatorname{null}}
+\newcommand{\csp}{\operatorname{col}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\dotp}{\!\boldsymbol{\cdot}\!}
+\newcommand{\len}[1]{\lVert #1\rVert}
+\newcommand{\abs}[1]{\lvert #1\rvert}
+\newcommand{\proj}[2]{\operatorname{proj}_{#1}{#2}}
+\newcommand{\bz}{\overline{z}}
+\newcommand{\zz}{\mathbf{z}}
+\newcommand{\uu}{\mathbf{u}}
+\newcommand{\vv}{\mathbf{v}}
+\newcommand{\ww}{\mathbf{w}}
+\newcommand{\xx}{\mathbf{x}}
+\newcommand{\yy}{\mathbf{y}}
+\newcommand{\zer}{\mathbf{0}}
+\newcommand{\vecq}{\mathbf{q}}
+\newcommand{\vecp}{\mathbf{p}}
+\newcommand{\vece}{\mathbf{e}}
+\newcommand{\basis}[2]{\{\mathbf{#1}_1,\mathbf{#1}_2,\ldots,\mathbf{#1}_{#2}\}}
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\definecolor{fillinmathshade}{gray}{0.9}
+\newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
+\)</span></div>
+<header id="masthead" class="smallbuttons"><div class="banner"><div class="container">
+<a id="logo-link" href=""></a><div class="title-container">
+<h1 class="heading"><a href="linear-algebra.html"><span class="title">Linear Algebra:</span> <span class="subtitle">A second course, featuring proofs and Python</span></a></h1>
+<p class="byline">Sean Fitzpatrick</p>
+</div>
+</div></div>
+<nav id="primary-navbar" class="navbar"><div class="container">
+<div class="navbar-top-buttons">
+<button class="sidebar-left-toggle-button button active" aria-label="Show or hide table of contents sidebar">Contents</button><div class="tree-nav toolbar toolbar-divisor-3">
+<button id="calculator-toggle" class="toolbar-item button toggle" title="Show calculator" aria-expanded="false" aria-controls="calculator-container">Calc</button><div id="calculator-container" class="calculator-container" style="display: none; z-index:100;"><div id="geogebra-calculator"></div></div>
+<script>
+var ggbApp = new GGBApplet({"appName": "graphing",
+    "width": 330,
+    "height": 600,
+    "showToolBar": true,
+    "showAlgebraInput": true,
+    "perspective": "G/A",
+    "algebraInputPosition": "bottom",
+    "scaleContainerClass": "calculator-container",
+    "allowUpscale": true,
+    "autoHeight": true,
+    "disableAutoScale": false},
+true);
+</script><span class="threebuttons"><a id="previousbutton" class="previous-button toolbar-item button" href="section-matrix-factor.html" title="Previous">Prev</a><a id="upbutton" class="up-button button toolbar-item" href="ch-diagonalization.html" title="Up">Up</a><a id="nextbutton" class="next-button button toolbar-item" href="ch-change-basis.html" title="Next">Next</a></span>
+</div>
+</div>
+<div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="section-matrix-factor.html" title="Previous">Prev</a><a class="up-button button toolbar-item" href="ch-diagonalization.html" title="Up">Up</a><a class="next-button button toolbar-item" href="ch-change-basis.html" title="Next">Next</a>
+</div>
+</div></nav></header><div class="page">
+<div id="sidebar-left" class="sidebar" role="navigation"><div class="sidebar-content">
+<nav id="toc"><ul>
+<li class="link frontmatter">
+<a href="frontmatter-1.html" data-scroll="frontmatter-1" class="internal"><span class="title">Front Matter</span></a><ul>
+<li><a href="colophon-1.html" data-scroll="colophon-1" class="internal">Colophon</a></li>
+<li><a href="preface-1.html" data-scroll="preface-1" class="internal">Preface</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="ch-vector-space.html" data-scroll="ch-vector-space" class="internal"><span class="codenumber">1</span> <span class="title">Vector spaces</span></a><ul>
+<li><a href="sec-vec-sp.html" data-scroll="sec-vec-sp" class="internal">Definition and examples</a></li>
+<li><a href="sec-vsp-properties.html" data-scroll="sec-vsp-properties" class="internal">Properties</a></li>
+<li><a href="sec-subspace.html" data-scroll="sec-subspace" class="internal">Subspaces</a></li>
+<li><a href="sec-span.html" data-scroll="sec-span" class="internal">Span</a></li>
+<li><a href="worksheet-span.html" data-scroll="worksheet-span" class="internal">Worksheet: understanding span</a></li>
+<li><a href="sec-independence.html" data-scroll="sec-independence" class="internal">Linear Independence</a></li>
+<li><a href="sec-dimension.html" data-scroll="sec-dimension" class="internal">Basis and dimension</a></li>
+<li><a href="sec-subspace-combine.html" data-scroll="sec-subspace-combine" class="internal">New subspaces from old</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="ch-linear-trans.html" data-scroll="ch-linear-trans" class="internal"><span class="codenumber">2</span> <span class="title">Linear Transformations</span></a><ul>
+<li><a href="sec-lin-tran-intro.html" data-scroll="sec-lin-tran-intro" class="internal">Definition and examples</a></li>
+<li><a href="sec-kernel-image.html" data-scroll="sec-kernel-image" class="internal">Kernel and Image</a></li>
+<li><a href="sec-isomorphism.html" data-scroll="sec-isomorphism" class="internal">Isomorphisms, composition, and inverses</a></li>
+<li><a href="worksheet-transformations.html" data-scroll="worksheet-transformations" class="internal">Worksheet: matrix transformations</a></li>
+<li><a href="worksheet-recurrence.html" data-scroll="worksheet-recurrence" class="internal">Worksheet: linear recurrences</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="ch-orthogonality.html" data-scroll="ch-orthogonality" class="internal"><span class="codenumber">3</span> <span class="title">Orthogonality and Applications</span></a><ul>
+<li><a href="sec-orthogonal-sets.html" data-scroll="sec-orthogonal-sets" class="internal">Orthogonal sets of vectors</a></li>
+<li><a href="sec-ortho-projection.html" data-scroll="sec-ortho-projection" class="internal">Orthogonal Projection</a></li>
+<li><a href="worksheet-dual-basis.html" data-scroll="worksheet-dual-basis" class="internal">Worksheet: dual basis.</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="ch-diagonalization.html" data-scroll="ch-diagonalization" class="internal"><span class="codenumber">4</span> <span class="title">Diagonalization</span></a><ul>
+<li><a href="subsec-eigen-basics.html" data-scroll="subsec-eigen-basics" class="internal">Eigenvalues and Eigenvectors</a></li>
+<li><a href="subsec-ortho-diag.html" data-scroll="subsec-ortho-diag" class="internal">Diagonalization of symmetric matrices</a></li>
+<li><a href="sec-quadratic.html" data-scroll="sec-quadratic" class="internal">Quadratic forms</a></li>
+<li><a href="sec-complex.html" data-scroll="sec-complex" class="internal">Diagonalization of complex matrices</a></li>
+<li><a href="section-matrix-factor.html" data-scroll="section-matrix-factor" class="internal">Matrix Factorizations and Eigenvalues</a></li>
+<li><a href="worksheet-svd.html" data-scroll="worksheet-svd" class="active">Worksheet: Singular Value Decomposition</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="ch-change-basis.html" data-scroll="ch-change-basis" class="internal"><span class="codenumber">5</span> <span class="title">Change of Basis</span></a><ul>
+<li><a href="sec-matrix-of-transformation.html" data-scroll="sec-matrix-of-transformation" class="internal">The matrix of a linear transformation</a></li>
+<li><a href="sec-matrix-operator.html" data-scroll="sec-matrix-operator" class="internal">The matrix of a linear operator</a></li>
+<li><a href="sec-direct-sum.html" data-scroll="sec-direct-sum" class="internal">Direct Sums and Invariant Subspaces</a></li>
+<li><a href="worksheet-gen-eigen.html" data-scroll="worksheet-gen-eigen" class="internal">Worksheet: generalized eigenvectors</a></li>
+<li><a href="sec-gen-eigen.html" data-scroll="sec-gen-eigen" class="internal">Generalized eigenspaces</a></li>
+<li><a href="sec-jordan-form.html" data-scroll="sec-jordan-form" class="internal">Jordan Canonical Form</a></li>
+</ul>
+</li>
+<li class="link backmatter"><a href="backmatter-1.html" data-scroll="backmatter-1" class="internal"><span class="title">Back Matter</span></a></li>
+<li class="link">
+<a href="ch-computation.html" data-scroll="ch-computation" class="internal"><span class="codenumber">A</span> <span class="title">Computational Tools</span></a><ul>
+<li><a href="section-jupyter.html" data-scroll="section-jupyter" class="internal">Jupyter</a></li>
+<li><a href="sec-python-basics.html" data-scroll="sec-python-basics" class="internal">Python basics</a></li>
+<li><a href="sec-sympy.html" data-scroll="sec-sympy" class="internal">SymPy for linear algebra</a></li>
+</ul>
+</li>
+<li class="link"><a href="solutions-1.html" data-scroll="solutions-1" class="internal"><span class="codenumber">B</span> <span class="title">Solutions to Selected Exercises</span></a></li>
+</ul></nav><div class="extras"><nav><a class="pretext-link" href="https://pretextbook.org">Authored in PreTeXt</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a></nav></div>
+</div></div>
+<main class="main"><div id="content" class="pretext-content">
+<section class="worksheet" id="worksheet-svd"><h2 class="heading hide-type">
+<span class="type">Worksheet</span> <span class="codenumber">4.6</span> <span class="title">Worksheet: Singular Value Decomposition</span><div class="print-links">
+<a href="worksheet-svd-a4.html" class="a4">A4</a><a href="worksheet-svd-letter.html" class="us">US</a>
+</div>
+</h2>
+<section class="onepage" id="page-15"><div class="introduction" id="introduction-25">
+<p id="p-1189">For this worksheet, the reader is directed to Section 8.6 of <em class="emphasis">Linear Algebra with Applications</em>, by Keith Nicholson, and, of course, to <a href="section-matrix-factor.html" class="internal" title="Section 4.5: Matrix Factorizations and Eigenvalues">Section 4.5</a>. (See also <a class="external" href="https://www.juanklopper.com/wp-content/uploads/2015/03/III_05_Singular_value_decomposition.html" target="_blank">notebook by Dr. Juan H Klopper</a><a href="" data-knowl="" class="id-ref fn-knowl original" data-refid="hk-fn-9" id="fn-9"><sup> 1 </sup></a>.)</p>
+<p id="p-1190">In <a href="section-matrix-factor.html" class="internal" title="Section 4.5: Matrix Factorizations and Eigenvalues">Section 4.5</a> we saw that the <code class="code-inline tex2jax_ignore">svd</code> algorithm in the mpmath library does things a little bit differently than Nicholson. If we start with a square matrix <span class="process-math">\(A\text{,}\)</span> the results are the same, but if <span class="process-math">\(A\)</span> is not square, the decomposition <span class="process-math">\(A = P\Sigma_A Q^T\)</span> looks a little different. In particular, if <span class="process-math">\(A\)</span> is <span class="process-math">\(m\times n\text{,}\)</span> the matrix <span class="process-math">\(\Sigma_A\)</span> defined in Nicholson will also be <span class="process-math">\(m\times n\text{,}\)</span> but it will contain some rows or columns of zeros that are added to get the desired size. The matrix <span class="process-math">\(Q\)</span> is an orthogonal <span class="process-math">\(n\times n\)</span> matrix whose columns are an orthonormal basis of eigenvectors for <span class="process-math">\(A^TA\text{.}\)</span> The matrix <span class="process-math">\(P\)</span> is an orthogonal <span class="process-math">\(m\times m\)</span> matrix whose columns are an orthonormal basis of <span class="process-math">\(\R^m\text{.}\)</span> (The first <span class="process-math">\(r\)</span> columns of <span class="process-math">\(P\)</span> are given by <span class="process-math">\(A\vecq_i\text{,}\)</span> where <span class="process-math">\(\vecq_i\)</span> is the eigenvector of <span class="process-math">\(A^TA\)</span> corresponding to the positive singular value <span class="process-math">\(\sigma_i\text{.}\)</span>)</p>
+<p id="p-1191">The <code class="code-inline tex2jax_ignore">svd</code> algorithm provided by mpmath replaces <span class="process-math">\(\Sigma_A\)</span> by the <span class="process-math">\(m\times m\)</span> diagonal matrix of singular values. The matrix <span class="process-math">\(Q\)</span> is replaced by the <span class="process-math">\(m\times n\)</span> matrix whose columns are the first <span class="process-math">\(m\)</span> eigenvectors of <span class="process-math">\(A^TA\text{.}\)</span> (Note that the rank of <span class="process-math">\(A^TA\)</span> is equal to the rank of <span class="process-math">\(A\text{,}\)</span> which is equal to the number of nonzero eigenvectors of <span class="process-math">\(A^TA\)</span> (counted with multiplicity).) So we will have <span class="process-math">\(m\geq r\text{,}\)</span> where <span class="process-math">\(r\)</span> is the number of nonzero singular values.</p>
+<p id="p-1192">The product <span class="process-math">\(\Sigma_A Q^T\)</span> will be the same in both cases, and the matrix <span class="process-math">\(P\)</span> is the same as well.</p>
+</div>
+<p id="p-1193">This time, rather than using the mpmath algorithm, we will work through the process as outlined in Nicholson step-by-step. First, we will work through (again) Example 8.6.1 in Nicholson. Let <span class="process-math">\(A = \bbm 1\amp 0\amp 1\\-1\amp 1\amp 0\ebm\text{.}\)</span> First, we get the singular values:</p>
+<pre class="ptx-sagecell sagecell-sage" id="sage-99"><script type="text/x-sage">from sympy import Matrix,init_printing
+init_printing()
+A = Matrix([[1,0,1],[-1,1,0]])
+L0=A.singular_values()
+L0
+</script></pre>
+<p id="p-1194">Next, we get the eigenvalues and eigenvectors of <span class="process-math">\(A^TA\text{:}\)</span></p>
+<pre class="ptx-sagecell sagecell-sage" id="sage-100"><script type="text/x-sage">B = (A.T)*A
+L1=B.eigenvects()
+L1
+</script></pre>
+<p id="p-1195">Now we need to normalize the eigenvectors, in the correct order. Note that the eigenvectors were listed in <em class="emphasis">increasing</em> order of eigenvalue, so we need to reverse the order. Note that <code class="code-inline tex2jax_ignore">L1</code> is a list of lists. The eigenvector is the third entry (index 2) in the list (eigenvalue, multiplicity, eigenvector). We also need to turn list elements into matrices. So, for example the second eigenvector is <code class="code-inline tex2jax_ignore">Matrix(L1[1][2])</code>.</p>
+<pre class="ptx-sagecell sagecell-sage" id="sage-101"><script type="text/x-sage">R1=Matrix(L1[2][2])
+R2=Matrix(L1[1][2])
+R3=Matrix(L1[0][2])
+Q1 = (1/R1.norm())*R1
+Q2 = (1/R2.norm())*R2
+Q3 = (1/R3.norm())*R3
+Q1,Q2,Q3
+</script></pre></section><section class="onepage" id="page-16"><p id="p-1196">Next, we can assemble these vectors into a matrix, and confirm that it's orthogonal.</p>
+<pre class="ptx-sagecell sagecell-sage" id="sage-102"><script type="text/x-sage">from sympy import BlockMatrix
+Q = Matrix(BlockMatrix([Q1,Q2,Q3]))
+Q,Q*Q.T
+</script></pre>
+<p id="p-1197">We've made the matrix <span class="process-math">\(Q\text{!}\)</span> Next, we construct <span class="process-math">\(\Sigma_A\text{.}\)</span> This we will do by hand.</p>
+<pre class="ptx-sagecell sagecell-sage" id="sage-103"><script type="text/x-sage">SigA = Matrix([[L0[0],0,0],[0,L0[1],0]])
+SigA
+</script></pre>
+<p id="p-1198">Alternatively, you could do <code class="code-inline tex2jax_ignore">SigA = diag(L0[0],L0[1]).row_join(Matrix([0,0]))</code>. Finally, we need to make the matrix <span class="process-math">\(P\text{.}\)</span> First, we find the vectors <span class="process-math">\(A\vecq_1, A\vecq_2\)</span> and normalize. (Note that <span class="process-math">\(A\vecq_3=\zer\text{,}\)</span> so this vector is unneeded, as expected.)</p>
+<pre class="ptx-sagecell sagecell-sage" id="sage-104"><script type="text/x-sage">S1 = A*Q1
+S2 = A*Q2
+P1 = (1/S1.norm())*S1
+P2 = (1/S2.norm())*S2
+P = Matrix(BlockMatrix([P1,P2]))
+P
+</script></pre>
+<p id="p-1199">Note that the matrix <span class="process-math">\(P\)</span> is already the correct size, because <span class="process-math">\(\rank(A)=2\dim(\R^2)\text{.}\)</span> In general, for an <span class="process-math">\(m\times n\)</span> matrix <span class="process-math">\(A\text{,}\)</span> if <span class="process-math">\(\rank(A)=r\lt m\text{,}\)</span> we would have to extend the set <span class="process-math">\(\{\vecp_1,\ldots, \vecp_r\}\)</span> to a basis for <span class="process-math">\(\R^m\text{.}\)</span> Finally, we check that our matrices work as advertised.</p>
+<pre class="ptx-sagecell sagecell-sage" id="sage-105"><script type="text/x-sage">P*SigA*(Q.T)
+</script></pre>
+<p id="p-1200">For convenience, here is all of the above code, with all print commands (except the last one) removed. This can be run as a single code cell.</p>
+<figure class="listing figure-like" id="listing-svd"><div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><pre class="program"><code class="language-none">from sympy import Matrix,BlockMatrix,init_printing
+init_printing()
+A = Matrix([[1,0,1],[-1,1,0]])
+B=(A.T)*A
+L0=A.singular_values()
+L1=B.eigenvects()
+R1=Matrix(L1[2][2])
+R2=Matrix(L1[1][2])
+R3=Matrix(L1[0][2])
+Q1 = (1/R1.norm())*R1
+Q2 = (1/R2.norm())*R2
+Q3 = (1/R3.norm())*R3
+Q = Matrix(BlockMatrix([Q1,Q2,Q3]))
+SigA = diag(L0[0],L0[1]).row_join(Matrix([0,0]))
+S1 = A*Q1
+S2 = A*Q2
+P1 = (1/S1.norm())*S1
+P2 = (1/S2.norm())*S2
+P = Matrix(BlockMatrix([P1,P2]))
+P,SigA,Q,P*SigA*Q.T
+</code></pre></div>
+<figcaption><span class="type">Listing</span><span class="space"> </span><span class="codenumber">4.6.1<span class="period">.</span></span><span class="space"> </span>SymPy code for a singular value decomposition example</figcaption></figure></section><section class="onepage" id="page-17"><article class="exercise exercise-like" id="exercise-87"><h3 class="heading"><span class="codenumber">1<span class="period">.</span></span></h3>
+<p id="p-1201">Do Exercise 8.6.9 in Nicholson: compute the SVD for the matrices</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\bbm 1\amp -1\\1\amp 0\\0\amp 1\ebm \quad \quad \bbm 1\amp 1\amp 1\\-1\amp 0\amp -2 \\1\amp 2\amp 0\ebm\text{.}
+\end{equation*}
+</div>
+<p class="continuation">Note that for these matrices, you will need to do some additional work to extend the <span class="process-math">\(\vecp_i\)</span> vectors to an orthonormal basis. You can adapt the code above, but you will have to think about how to implement additional code to construct any extra vectors you need.</p>
+<div class="workspace" data-space="7in"></div></article><pre class="ptx-sagecell sagecell-sage" id="sage-106"><script type="text/x-sage"></script></pre></section><section class="onepage" id="page-18"><article class="exercise exercise-like" id="exercise-88"><h3 class="heading"><span class="codenumber">2<span class="period">.</span></span></h3>
+<p id="p-1202">Either by reading Nicholson or by searching online (or both), come up with a couple of answers to the question: “Why are people interested in the singular value decomposition?”</p>
+<div class="workspace" data-space="3.5in"></div></article><pre class="ptx-sagecell sagecell-html" id="sage-107"><script type="text/x-sage"></script></pre>
+<article class="exercise exercise-like" id="exercise-89"><h3 class="heading"><span class="codenumber">3<span class="period">.</span></span></h3>
+<p id="p-1203">(Optional) If you are interested, learn how to compute the <abbr class="initialism">SVD</abbr> using tools from the NumPy and SciPy libraries instead.</p>
+<div class="workspace" data-space="3.5in"></div></article><pre class="ptx-sagecell sagecell-html" id="sage-108"><script type="text/x-sage"></script></pre></section></section><div class="hidden-content tex2jax_ignore" id="hk-fn-9"><div class="fn"><code class="code-inline tex2jax_ignore">www.juanklopper.com/wp-content/uploads/2015/03/III_05_Singular_value_decomposition.html</code></div></div>
+</div></main>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script>
+</body>
+</html>
