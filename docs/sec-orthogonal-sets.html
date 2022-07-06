@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-06-30T09:10:29-06:00       *-->
+<!--*       on 2022-07-06T10:40:35-06:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -554,7 +554,7 @@ c_1\len{\vv_1}^2+0+\cdots + 0\amp = 0 \text{.}
 </div></article><p id="p-863">The Fourier expansion is especially simple if our basis vectors have norm one, since the denominators in each coefficient disappear. Recall that a <dfn class="terminology">unit vector</dfn> in <span class="process-math">\(\R^n\)</span> is any vector <span class="process-math">\(\xx\)</span> with <span class="process-math">\(\len{\xx}=1\text{.}\)</span> For any nonzero vector <span class="process-math">\(\vv\text{,}\)</span> a <em class="emphasis">unit vector</em> (that is, a vector of norm one) in the direction of <span class="process-math">\(\vv\)</span> is given by</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
-\hat{u} = \frac{1}{\len{\vv}}\vv\text{.}
+\hat{\uu} = \frac{1}{\len{\vv}}\vv\text{.}
 \end{equation*}
 </div>
 <p class="continuation">We often say that the vector <span class="process-math">\(\uu\)</span> is <em class="emphasis">normalized</em>. (The convention of using a “hat” for unit vectors is common but not universal.)</p>
@@ -562,7 +562,7 @@ c_1\len{\vv_1}^2+0+\cdots + 0\amp = 0 \text{.}
 <span class="type">Exercise</span><span class="space"> </span><span class="codenumber">3.1.19</span><span class="period">.</span>
 </h4>
 <div class="ptx-runestone-container"><div class="runestone"><ul data-component="dragndrop" data-question_label="" style="visibility: hidden;" id="">
-<span data-subcomponent="question"><p id="p-864">Match each vector on the left with a parallel unit vector on the right.</p></span><li data-subcomponent="draggable" id="_drag1"><span class="process-math">\(\langle 2, -1, 2\rangle\)</span></li>
+<span data-subcomponent="question"><p id="p-864">Match each vector on the left with a parallel unit vector on the right.</p></span><span data-subcomponent="feedback"><p id="p-865">Remember that a parallel vector is a scalar multiple of the one you started with.</p></span><li data-subcomponent="draggable" id="_drag1"><span class="process-math">\(\langle 2, -1, 2\rangle\)</span></li>
 <li data-subcomponent="dropzone" for="_drag1"><span class="process-math">\(\left\langle \frac23, -\frac13, \frac23\right\rangle\)</span></li>
 <li data-subcomponent="draggable" id="_drag2"><span class="process-math">\(\langle 3,0,-4\rangle\)</span></li>
 <li data-subcomponent="dropzone" for="_drag2"><span class="process-math">\(\left\langle \frac35, 0,-\frac45\right\rangle\)</span></li>
@@ -573,10 +573,10 @@ c_1\len{\vv_1}^2+0+\cdots + 0\amp = 0 \text{.}
 </ul></div></div></article><article class="definition definition-like" id="def-onb"><h4 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">3.1.20</span><span class="period">.</span>
 </h4>
-<p id="p-865">A basis <span class="process-math">\(B\)</span> of <span class="process-math">\(\R^n\)</span> is called an <dfn class="terminology">orthonormal basis</dfn> if <span class="process-math">\(B\)</span> is orthogonal, and all the vectors in <span class="process-math">\(B\)</span> are unit vectors.</p></article><article class="example example-like" id="example-11"><h4 class="heading">
+<p id="p-866">A basis <span class="process-math">\(B\)</span> of <span class="process-math">\(\R^n\)</span> is called an <dfn class="terminology">orthonormal basis</dfn> if <span class="process-math">\(B\)</span> is orthogonal, and all the vectors in <span class="process-math">\(B\)</span> are unit vectors.</p></article><article class="example example-like" id="example-11"><h4 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">3.1.21</span><span class="period">.</span>
 </h4>
-<p id="p-866">In <a href="" class="xref" data-knowl="./knowl/ex-orthogonal-set.html" title="Exercise 3.1.13">Exercise 3.1.13</a> we saw that the set</p>
+<p id="p-867">In <a href="" class="xref" data-knowl="./knowl/ex-orthogonal-set.html" title="Exercise 3.1.13">Exercise 3.1.13</a> we saw that the set</p>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/ex-orthogonal-set.html">
 \begin{equation*}
 \{(1,0,1,0), (-1,0,1,1), (1,1,-1,2),(1,-6,-1,2)\}
@@ -585,25 +585,25 @@ c_1\len{\vv_1}^2+0+\cdots + 0\amp = 0 \text{.}
 <p class="continuation">is orthogonal. Since it's orthogonal, it must be independent, and since it's a set of four independent vectors in <span class="process-math">\(\R^4\text{,}\)</span> it must be a basis. To get an orthonormal basis, we normalize each vector:</p>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/ex-orthogonal-set.html" id="md-49">
 \begin{align*}
-\hat{u}_1 \amp = \frac{1}{\sqrt{1^2+0^2+1^2+0^2}}(1,0,1,0) = \frac{1}{\sqrt{2}}(1,0,1,0)\\
-\hat{u}_2 \amp = \frac{1}{\sqrt{(-1)^2+0^2+1^2+1^2}}(-1,0,1,1,) = \frac{1}{\sqrt{3}}(-1,0,1,1)\\
-\hat{u}_3 \amp = \frac{1}{\sqrt{1^2+1^2+(-1)^2+2^2}}(1,1,-1,2) = \frac{1}{\sqrt{7}}(1,1,-1,2)\\
-\hat{u}_4 \amp = \frac{1}{\sqrt{1^2+(-6)^2+(-1)^2+2^2}}(1,-6,-1,2) = \frac{1}{\sqrt{42}}(1,-6,-1,2)\text{.}
+\hat{\uu}_1 \amp = \frac{1}{\sqrt{1^2+0^2+1^2+0^2}}(1,0,1,0) = \frac{1}{\sqrt{2}}(1,0,1,0)\\
+\hat{\uu}_2 \amp = \frac{1}{\sqrt{(-1)^2+0^2+1^2+1^2}}(-1,0,1,1,) = \frac{1}{\sqrt{3}}(-1,0,1,1)\\
+\hat{\uu}_3 \amp = \frac{1}{\sqrt{1^2+1^2+(-1)^2+2^2}}(1,1,-1,2) = \frac{1}{\sqrt{7}}(1,1,-1,2)\\
+\hat{\uu}_4 \amp = \frac{1}{\sqrt{1^2+(-6)^2+(-1)^2+2^2}}(1,-6,-1,2) = \frac{1}{\sqrt{42}}(1,-6,-1,2)\text{.}
 \end{align*}
 </div>
-<p class="continuation">The set <span class="process-math">\(\{\hat{u}_1,\hat{u}_2,\hat{u}_3,\hat{u}_4\}\)</span> is then an orthonormal basis of <span class="process-math">\(\R^4\text{.}\)</span></p></article><p id="p-867">The process of creating unit vectors does typically introduce square root coefficients in our vectors. This can seem undesirable, but there remains value in having an orthonormal basis. For example, suppose we wanted to write the vector <span class="process-math">\(\vv=(3,5,-1,2)\)</span> in terms of our basis. We can quickly compute</p>
+<p class="continuation">The set <span class="process-math">\(\{\hat{\uu}_1,\hat{\uu}_2,\hat{\uu}_3,\hat{\uu}_4\}\)</span> is then an orthonormal basis of <span class="process-math">\(\R^4\text{.}\)</span></p></article><p id="p-868">The process of creating unit vectors does typically introduce square root coefficients in our vectors. This can seem undesirable, but there remains value in having an orthonormal basis. For example, suppose we wanted to write the vector <span class="process-math">\(\vv=(3,5,-1,2)\)</span> in terms of our basis. We can quickly compute</p>
 <div class="displaymath process-math" data-contains-math-knowls="" id="md-50">
 \begin{align*}
-\vv\dotp\hat{u}_1 \amp = \frac{3}{\sqrt{2}}-\frac{1}{\sqrt{2}}=\sqrt{2}\\
-\vv\dotp\hat{u}_2 \amp = -\frac{3}{\sqrt{3}}-\frac{1}{\sqrt{3}}+\frac{2}{\sqrt{3}}=-\frac{2}{\sqrt{3}}\\
-\vv\dotp\hat{u}_3 \amp = \frac{3}{\sqrt{7}}+\frac{5}{\sqrt{7}}+\frac{1}{\sqrt{7}}+\frac{4}{\sqrt{7}} = \frac{11}{\sqrt{7}}\\
-\vv\dotp\hat{u}_4 \amp = \frac{3}{\sqrt{42}}-\frac{30}{\sqrt{42}}+\frac{1}{\sqrt{42}}+\frac{4}{\sqrt{42}} = -\frac{22}{\sqrt{42}}\text{,}
+\vv\dotp\hat{\uu}_1 \amp = \frac{3}{\sqrt{2}}-\frac{1}{\sqrt{2}}=\sqrt{2}\\
+\vv\dotp\hat{\uu}_2 \amp = -\frac{3}{\sqrt{3}}-\frac{1}{\sqrt{3}}+\frac{2}{\sqrt{3}}=-\frac{2}{\sqrt{3}}\\
+\vv\dotp\hat{\uu}_3 \amp = \frac{3}{\sqrt{7}}+\frac{5}{\sqrt{7}}+\frac{1}{\sqrt{7}}+\frac{4}{\sqrt{7}} = \frac{11}{\sqrt{7}}\\
+\vv\dotp\hat{\uu}_4 \amp = \frac{3}{\sqrt{42}}-\frac{30}{\sqrt{42}}+\frac{1}{\sqrt{42}}+\frac{4}{\sqrt{42}} = -\frac{22}{\sqrt{42}}\text{,}
 \end{align*}
 </div>
 <p class="continuation">and so</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
-\vv = \sqrt{2}\hat{u}_1-\frac{2}{\sqrt{3}}\hat{u}_2+\frac{11}{\sqrt{7}}\hat{u}_3-\frac{22}{\sqrt{42}}\hat{u}_4\text{.}
+\vv = \sqrt{2}\hat{\uu}_1-\frac{2}{\sqrt{3}}\hat{\uu}_2+\frac{11}{\sqrt{7}}\hat{\uu}_3-\frac{22}{\sqrt{42}}\hat{\uu}_4\text{.}
 \end{equation*}
 </div>
 <p class="continuation">There's still work to be done, but it is comparatively simpler than solving the corresponding system of equations.</p></section></section></div></main>

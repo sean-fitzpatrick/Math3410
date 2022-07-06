@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-06-30T09:10:36-06:00       *-->
+<!--*       on 2022-07-06T10:40:41-06:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -14,8 +14,23 @@
 <meta name="robots" content="noindex, nofollow">
 </head>
 <body class="ignore-math">
-<h3 class="heading"><span class="type">Paragraph</span></h3>
-<p>In <a href="" class="xref" data-knowl="./knowl/ex-test-span.html" title="Exercise 3.1.18">Exercise 3.1.18</a>, we saw that <a href="" class="xref" data-knowl="./knowl/thm-fourier-expansion.html" title="Theorem 3.1.17: Fourier expansion theorem">Fourier expansion theorem</a> gives us an efficient way of testing whether or not a given vector belongs to the span of an orthogonal set. When the answer is “no”, the quantity we compute while testing turns out to be very useful: it gives the <em class="emphasis">orthogonal projection</em> of that vector onto the span of our orthogonal set. This turns out to be exactly the ingredient needed to solve certain minimum distance problems.</p>
-<span class="incontext"><a href="sec-ortho-projection.html#p-868" class="internal">in-context</a></span>
+<h4 class="heading"><span class="type">Paragraph</span></h4>
+<p>The process of creating unit vectors does typically introduce square root coefficients in our vectors. This can seem undesirable, but there remains value in having an orthonormal basis. For example, suppose we wanted to write the vector <span class="process-math">\(\vv=(3,5,-1,2)\)</span> in terms of our basis. We can quickly compute</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{align*}
+\vv\dotp\hat{\uu}_1 \amp = \frac{3}{\sqrt{2}}-\frac{1}{\sqrt{2}}=\sqrt{2}\\
+\vv\dotp\hat{\uu}_2 \amp = -\frac{3}{\sqrt{3}}-\frac{1}{\sqrt{3}}+\frac{2}{\sqrt{3}}=-\frac{2}{\sqrt{3}}\\
+\vv\dotp\hat{\uu}_3 \amp = \frac{3}{\sqrt{7}}+\frac{5}{\sqrt{7}}+\frac{1}{\sqrt{7}}+\frac{4}{\sqrt{7}} = \frac{11}{\sqrt{7}}\\
+\vv\dotp\hat{\uu}_4 \amp = \frac{3}{\sqrt{42}}-\frac{30}{\sqrt{42}}+\frac{1}{\sqrt{42}}+\frac{4}{\sqrt{42}} = -\frac{22}{\sqrt{42}}\text{,}
+\end{align*}
+</div>
+<p class="continuation">and so</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\vv = \sqrt{2}\hat{\uu}_1-\frac{2}{\sqrt{3}}\hat{\uu}_2+\frac{11}{\sqrt{7}}\hat{\uu}_3-\frac{22}{\sqrt{42}}\hat{\uu}_4\text{.}
+\end{equation*}
+</div>
+<p class="continuation">There's still work to be done, but it is comparatively simpler than solving the corresponding system of equations.</p>
+<span class="incontext"><a href="sec-orthogonal-sets.html#p-868" class="internal">in-context</a></span>
 </body>
 </html>
