@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-07-06T10:59:04-06:00       *-->
+<!--*       on 2022-07-06T11:27:30-06:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -480,10 +480,10 @@ T\Bigl(\frac12 B\Bigr) = \frac12 T(B) = \frac12(B-B^T) = \frac12(B-(-B))= B\text
 \end{equation*}
 </div>
 <p class="continuation">so <span class="process-math">\(\vv_1-\vv_2\in \ker T\text{.}\)</span> Therefore, we must have <span class="process-math">\(\vv_1-\vv_2=\zer\text{,}\)</span> so <span class="process-math">\(\vv_1=\vv_2\text{,}\)</span> and it follows that <span class="process-math">\(T\)</span> is injective.</p></article></div>
-<article class="exercise exercise-like" id="ex-injective-independent"><h3 class="heading">
+<article class="exercise exercise-like" id="ex-parsons-kernel"><h3 class="heading">
 <span class="type">Exercise</span><span class="space"> </span><span class="codenumber">2.2.12</span><span class="period">.</span>
 </h3>
-<div class="ptx-runestone-container"><div class="runestone" style="max-width: none;"><div data-component="parsons" class="parsons" id="ex-injective-independent">
+<div class="ptx-runestone-container"><div class="runestone" style="max-width: none;"><div data-component="parsons" class="parsons" id="ex-parsons-kernel">
 <div class="parsons_question parsons-text">
 <p id="p-641">Rearrange the blocks below to produce a valid proof of the following statement:</p>
 <p id="p-642">If <span class="process-math">\(T:V\to W\)</span> is injective and <span class="process-math">\(\{\vv_1,\vv_2,\ldots, \vv_n\}\)</span> is linearly independent in <span class="process-math">\(V\text{,}\)</span> then <span class="process-math">\(\{T(\vv_1),T(\vv_2),\ldots, T(\vv_n)\}\)</span> is linearly independent in <span class="process-math">\(W\text{.}\)</span></p>
@@ -510,10 +510,10 @@ T\Bigl(\frac12 B\Bigr) = \frac12 T(B) = \frac12(B-B^T) = \frac12(B-(-B))= B\text
 </div></div></div>
 <div class="solutions">
 <a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-22" id="hint-22"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-22"><div class="hint solution-like"><p id="p-651">Remember that your goal is to show that <span class="process-math">\(\{T(\vv_1),\ldots, T(\vv_n)\}\)</span> is linearly independent, so after you assume your hypotheses, you should begin by setting a linear combination of these vectors equal to zero.</p></div></div>
-</div></article><article class="exercise exercise-like" id="ex-surjective-span"><h3 class="heading">
+</div></article><article class="exercise exercise-like" id="ex-parsons-image"><h3 class="heading">
 <span class="type">Exercise</span><span class="space"> </span><span class="codenumber">2.2.13</span><span class="period">.</span>
 </h3>
-<div class="ptx-runestone-container"><div class="runestone" style="max-width: none;"><div data-component="parsons" class="parsons" id="ex-surjective-span">
+<div class="ptx-runestone-container"><div class="runestone" style="max-width: none;"><div data-component="parsons" class="parsons" id="ex-parsons-image">
 <div class="parsons_question parsons-text">
 <p id="p-652">Rearrange the blocks below to produce a valid proof of the following statement:</p>
 <p id="p-653">If <span class="process-math">\(T:V\to W\)</span> is surjective and <span class="process-math">\(V=\spn\{\vv_1,\ldots, \vv_n\}\text{,}\)</span> then <span class="process-math">\(W = \spn\{T(\vv_1),\ldots, T(\vv_n)\}\text{.}\)</span></p>
@@ -553,7 +553,7 @@ T\Bigl(\frac12 B\Bigr) = \frac12 T(B) = \frac12(B-B^T) = \frac12(B-(-B))= B\text
 \dim V = \dim \ker T + \dim \im T\text{.}
 \end{equation*}
 </div></article><article class="hiddenproof" id="proof-37"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-37"><h3 class="heading"><span class="type">Proof<span class="period">.</span></span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-37"><article class="hiddenproof"><p id="p-666">The trick with this proof is that we aren't assuming <span class="process-math">\(V\)</span> is finite-dimensional, so we can't start with a basis of <span class="process-math">\(V\text{.}\)</span> But we do know that <span class="process-math">\(\im T\)</span> is finite-dimensional, so we start with a basis <span class="process-math">\(\{\ww_1,\ldots, \ww_m\}\)</span> of <span class="process-math">\(\im T\text{.}\)</span> Of course, every vector in <span class="process-math">\(\im T\)</span> is the image of some vector in <span class="process-math">\(V\text{,}\)</span> so we can write <span class="process-math">\(\ww_i =T(\vv_i)\text{,}\)</span> where <span class="process-math">\(\vv_i\in V\text{,}\)</span> for <span class="process-math">\(i=1,2,\ldots, m\text{.}\)</span></p>
-<p id="p-667">Since <span class="process-math">\(\{T(\vv_1),\ldots, T(\vv_m)\}\)</span> is a basis, it is linearly independent. The results of <a href="" class="xref" data-knowl="./knowl/ex_lintrans-indep.html" title="Exercise 2.1.13">Exercise 2.1.13</a> tell us that the set <span class="process-math">\(\{\vv_1,\ldots, \vv_m\}\)</span> must therefore be independent.</p>
+<p id="p-667">Since <span class="process-math">\(\{T(\vv_1),\ldots, T(\vv_m)\}\)</span> is a basis, it is linearly independent. The results of <a href="" class="xref" data-knowl="./knowl/ex-parsons-lintrans.html" title="Exercise 2.1.13">Exercise 2.1.13</a> tell us that the set <span class="process-math">\(\{\vv_1,\ldots, \vv_m\}\)</span> must therefore be independent.</p>
 <p id="p-668">We now introduce a basis <span class="process-math">\(\{\uu_1,\ldots, \uu_n\}\)</span> of <span class="process-math">\(\ker T\text{,}\)</span> which we also know to be finite-dimensional. If we can show that the set <span class="process-math">\(\{\uu_1,\ldots, \uu_n,\vv_1,\ldots, \vv_m\}\)</span> is a basis for <span class="process-math">\(V\text{,}\)</span> we'd be done, since the number of vectors in this basis is <span class="process-math">\(\dim\ker T + \dim \im T\text{.}\)</span> We must therefore show that this set is independent, and that it spans <span class="process-math">\(V\text{.}\)</span></p>
 <p id="p-669">To see that it's independent, suppose that</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
@@ -607,21 +607,21 @@ T(\xx-c_1\vv_1-\cdots -c_m\vv_m) = \zer\text{,}
 \end{equation*}
 </div>
 <p class="continuation">We will see that this result is frequently useful for providing simple arguments that establish otherwise difficult results. A basic situation where the theorem is useful is as follows: we are given <span class="process-math">\(T:V\to W\text{,}\)</span> where the dimensions of <span class="process-math">\(V\)</span> and <span class="process-math">\(W\)</span> are known. Since <span class="process-math">\(\im T\)</span> is a subspace of <span class="process-math">\(W\text{,}\)</span> we know from <a href="" class="xref" data-knowl="./knowl/thm-subspace-dim.html" title="Theorem 1.7.18">Theorem 1.7.18</a> that <span class="process-math">\(T\)</span> is onto if and only if <span class="process-math">\(\dim \im T = \dim W\text{.}\)</span> In many cases it is easier to compute <span class="process-math">\(\ker T\)</span> than it is <span class="process-math">\(\im T\text{,}\)</span> and the Dimension Theorem lets us determine <span class="process-math">\(\dim\im T\)</span> if we know <span class="process-math">\(\dim V\)</span> and <span class="process-math">\(\dim \ker T\text{.}\)</span></p>
-<article class="exercise exercise-like" id="exercise-44"><h3 class="heading">
+<article class="exercise exercise-like" id="ex-mc-kernel"><h3 class="heading">
 <span class="type">Exercise</span><span class="space"> </span><span class="codenumber">2.2.16</span><span class="period">.</span>
 </h3>
-<div class="ptx-runestone-container"><div class="runestone"><ul data-component="multiplechoice" id="" data-multipleanswers="true" data-random="">
+<div class="ptx-runestone-container"><div class="runestone"><ul data-component="multiplechoice" id="ex-mc-kernel" data-multipleanswers="true" data-random="">
 <p id="p-673">Select all statements below that are <em class="emphasis">true</em>:</p>
-<li data-component="answer" id="_opt_a"><p id="p-674">If <span class="process-math">\(\vv\in \ker T\text{,}\)</span> then <span class="process-math">\(\vv=\zer\text{.}\)</span></p></li>
-<li data-component="feedback" id="_opt_a"><p id="p-675">Remember that <span class="process-math">\(\vv\in \ker T\)</span> implies <span class="process-math">\(T(\vv)=\zer\text{;}\)</span> this does not necessarily mean <span class="process-math">\(\vv=\zer\text{.}\)</span></p></li>
-<li data-component="answer" id="_opt_b"><p id="p-676">If <span class="process-math">\(T:\R^4\to\R^6\)</span> is injective, then it is surjective.</p></li>
-<li data-component="feedback" id="_opt_b"><p id="p-677">By the dimension theorem, the dimension of <span class="process-math">\(\im T\)</span> cannot be greater than 4, so <span class="process-math">\(T\)</span> can never be surjective.</p></li>
-<li data-component="answer" id="_opt_c" data-correct=""><p id="p-678">If <span class="process-math">\(T:\R^4\to P_3(\R)\)</span> is injective, then it is surjective.</p></li>
-<li data-component="feedback" id="_opt_c"><p id="p-679">Correct! If <span class="process-math">\(T\)</span> is injective, then <span class="process-math">\(\dim\ker T=0\text{,}\)</span> so by the dimension theorem, <span class="process-math">\(\dim \im T=\dim \R^4=4\text{.}\)</span> Since <span class="process-math">\(\dim P_3(\R)=4\)</span> as well, <span class="process-math">\(\im T=P_3(\R)\text{.}\)</span></p></li>
-<li data-component="answer" id="_opt_d"><p id="p-680">It is possible to have an injective linear transformation <span class="process-math">\(T:\R^4\to\R^3\text{.}\)</span></p></li>
-<li data-component="feedback" id="_opt_d"><p id="p-681">The maximum dimension of <span class="process-math">\(\im T\)</span> is 3, so the minimum dimension of <span class="process-math">\(\ker T\)</span> is 1.</p></li>
-<li data-component="answer" id="_opt_e" data-correct=""><p id="p-682">If <span class="process-math">\(T:V\to W\)</span> is surjective, then <span class="process-math">\(\dim V\geq \dim W\text{.}\)</span></p></li>
-<li data-component="feedback" id="_opt_e"><p id="p-683">Correct! If <span class="process-math">\(T\)</span> is surjective, then <span class="process-math">\(\im T=W\text{,}\)</span> so <span class="process-math">\(\dim V = \dim \ker T +\dim \im T = \dim \ker T+\dim W\geq \dim W\text{.}\)</span></p></li>
+<li data-component="answer" id="ex-mc-kernel_opt_a"><p id="p-674">If <span class="process-math">\(\vv\in \ker T\text{,}\)</span> then <span class="process-math">\(\vv=\zer\text{.}\)</span></p></li>
+<li data-component="feedback" id="ex-mc-kernel_opt_a"><p id="p-675">Remember that <span class="process-math">\(\vv\in \ker T\)</span> implies <span class="process-math">\(T(\vv)=\zer\text{;}\)</span> this does not necessarily mean <span class="process-math">\(\vv=\zer\text{.}\)</span></p></li>
+<li data-component="answer" id="ex-mc-kernel_opt_b"><p id="p-676">If <span class="process-math">\(T:\R^4\to\R^6\)</span> is injective, then it is surjective.</p></li>
+<li data-component="feedback" id="ex-mc-kernel_opt_b"><p id="p-677">By the dimension theorem, the dimension of <span class="process-math">\(\im T\)</span> cannot be greater than 4, so <span class="process-math">\(T\)</span> can never be surjective.</p></li>
+<li data-component="answer" id="ex-mc-kernel_opt_c" data-correct=""><p id="p-678">If <span class="process-math">\(T:\R^4\to P_3(\R)\)</span> is injective, then it is surjective.</p></li>
+<li data-component="feedback" id="ex-mc-kernel_opt_c"><p id="p-679">Correct! If <span class="process-math">\(T\)</span> is injective, then <span class="process-math">\(\dim\ker T=0\text{,}\)</span> so by the dimension theorem, <span class="process-math">\(\dim \im T=\dim \R^4=4\text{.}\)</span> Since <span class="process-math">\(\dim P_3(\R)=4\)</span> as well, <span class="process-math">\(\im T=P_3(\R)\text{.}\)</span></p></li>
+<li data-component="answer" id="ex-mc-kernel_opt_d"><p id="p-680">It is possible to have an injective linear transformation <span class="process-math">\(T:\R^4\to\R^3\text{.}\)</span></p></li>
+<li data-component="feedback" id="ex-mc-kernel_opt_d"><p id="p-681">The maximum dimension of <span class="process-math">\(\im T\)</span> is 3, so the minimum dimension of <span class="process-math">\(\ker T\)</span> is 1.</p></li>
+<li data-component="answer" id="ex-mc-kernel_opt_e" data-correct=""><p id="p-682">If <span class="process-math">\(T:V\to W\)</span> is surjective, then <span class="process-math">\(\dim V\geq \dim W\text{.}\)</span></p></li>
+<li data-component="feedback" id="ex-mc-kernel_opt_e"><p id="p-683">Correct! If <span class="process-math">\(T\)</span> is surjective, then <span class="process-math">\(\im T=W\text{,}\)</span> so <span class="process-math">\(\dim V = \dim \ker T +\dim \im T = \dim \ker T+\dim W\geq \dim W\text{.}\)</span></p></li>
 </ul></div></div></article><p id="p-684">A useful consequence of this result is that if we know <span class="process-math">\(V\)</span> is finite-dimensional, we can order any basis such that the first vectors in the list are a basis of <span class="process-math">\(\ker T\text{,}\)</span> and the images of the remaining vectors produce a basis of <span class="process-math">\(\im T\text{.}\)</span></p>
 <p id="p-685">Another consequence of the dimension theorem is that we must have</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
