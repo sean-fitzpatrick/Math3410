@@ -1,0 +1,421 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<section xml:id="sec-gram-schmidt">
+
+  <title>The Gram-Schmidt Procedure</title>
+  <p>
+    Given an nonzero vector <m>\uu</m> and a vector <m>\vv</m>,
+    the <em>projection</em> of <m>\vv</m> onto <m>\uu</m> is given by
+    <men xml:id="eqn-proj-single">
+      \proj{\uu}{\vv} = \left(\frac{\vv\dotp\uu}{\len{\uu}^2}\right)\uu
+    </men>.
+    Note that this looks just like one of the terms in <xref ref="thm-fourier-expansion" text="title"/>.
+  </p>
+
+  <p>
+    The motivation for the projection is as follows:
+    Given the vectors <m>\vv</m> and <m>\uu</m>,
+    we want to find vectors <m>\ww</m> and <m>\zz</m> with the following properties:
+    <ol>
+      <li>
+        <p>
+          The vector <m>\ww</m> is parallel to the vector <m>\uu</m>.
+        </p>
+      </li>
+      <li>
+        <p>
+          The vectors <m>\ww</m> and <m>\zz</m> add to <m>\vv</m>.
+        </p>
+      </li>
+      <li>
+        <p>
+          The vectors <m>\ww</m> and <m>\zz</m> are otrhogonal.
+        </p>
+      </li>
+    </ol>
+  </p>
+
+  <figure xml:id="fig-ortho-proj">
+    <image xml:id="img-prtho-proj">
+      <description>
+        A diagram illustrating the concept of the orthogonal projection.
+        The diagram shows two given vectors u and v, along with vectors w and z.
+        The vectors w is parallel to u, while the vector z is orthogonal to u,
+        and the two vectors sum to the vector v.
+      </description>
+      <latex-image>
+          \begin{tikzpicture}[&gt;=stealth]
+            \draw [thick,-&gt;] (2,1) -- (4,2) node [right] { $\vec v$};
+            \draw [thick,-&gt;] (0,0) -- (1,3) node [above ] { $\vec u$};
+            \draw [thick,-&gt;,gray] (0,0) -- (2,1) node [below,black] { $\vec w$};
+            \draw [&lt;-,thick] (1,3) -- (2,1) node [right,pos=.5] { $\vec z$};
+            \draw (1.82111, 0.910557) -- ({1.73167, 1.08944})--(1.91056, 1.17889);
+            \draw (.4,.2) arc (26.5:71.6:.45);
+            \draw [rotate=49] (.6,0) node { $\theta$};
+          \end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>
+    Motivation for the construction comes from Physics,
+    where one needs to be able to decompose a force vector into parts that are parallel
+    and orthogonal to a given direction.
+  </p>
+
+  <p>
+    To derive the formula, we note that the vector <m>\ww</m> must be a scalar multiple of <m>\uu</m>,
+    since it is parallel to <m>\uu</m>, so <m>\ww = c\uu</m> for some scalar <m>c</m>.
+    Next, since <m>\ww</m>, <m>\zz</m>, and <m>\vv</m> form a right triangle,
+    <fn>
+      Assuming that the angle <m>\theta</m> is acute. If it is obtuse,
+      the scalar <m>c</m> is negative, but so is the dot product, so the signs work out.
+    </fn>
+    we know that <m>\len{\ww}=c\len{uu}=\len{\vv}\cos((\theta)</m>.
+    But <m>\cos(\theta)=\frac{\vv\dotp\uu}{\len{\vv}\len{\uu}}</m>.
+    Plugging this in, and solving for <m>c</m>,
+    we get the formula in <xref ref="eqn-proj-single"/>.
+  </p>
+
+  <exercise>
+    <statement>
+      <p>
+        On the left, pairs of vectors <m>\uu,\vv</m> are given,
+        and on the right, pairs of vectors <m>\ww,\zz</m>.
+        Match each pair on the left with the pair on the right such that
+        <m>\ww=\proj_{\uu}\vv</m>, and <m>\zz=\vv-\ww</m>.
+      </p>
+    </statement>
+    <feedback>
+      <p>
+        You can solve this problem without actually computing any projections.
+        Think about the relationships between the different vectors.
+      </p>
+    </feedback>
+    <matches randomize="yes">
+      <match order="3">
+        <premise><m>\uu = \langle 4,0,2\rangle, \vv=\langle 3,2,-1\rangle</m></premise>
+        <response><m>\ww = \langle 2,0,1\rangle, \zz= \langle 1,2,-2\rangle</m></response>
+      </match>
+      <match order="1">
+        <premise><m>\uu = \langle 2,4,-2\rangle, \vv = \langle 2,1,1\rangle</m></premise>
+        <response><m>\ww = \langle 1/2, 1, -1/2\rangle, \zz=\langle 3/2,0,3/2\rangle</m></response>
+      </match>
+      <match order="2">
+        <premise><m>\uu=\langle -1,2,1\rangle, \vv = \langle 5,-4,-5\rangle</m></premise>
+        <response><m>\ww = \langle 3,-6,-3\rangle,\zz=\langle 2,2,-2\rangle </m></response>
+      </match>
+    </matches>
+  </exercise>
+
+  <p>
+    An important part of the projection construction is that the vector
+    <m>\zz=\vv-\proj{\uu}{\vv}</m> is orthogonal to <m>\uu</m>.
+    Our next result is a generalization of this observation.
+  </p>
+
+  <theorem xml:id="thm-orthogonal-lemma">
+    <title>Orthogonal Lemma</title>
+    <statement>
+      <p>
+        Let <m>\{\vv_1,\vv_2,\ldots, \vv_m\}</m> be an orthogonal set of vectors in <m>\R^n</m>,
+        and let <m>\xx</m> be any vector in <m>\R^n</m>. Define the vector <m>\vv_{m+1}</m> by
+        <me>
+          \vv_{m+1} = \xx-\left(\frac{\xx\dotp\vv_1}{\len{\vv_1}^2}\vv_1+\cdots + \frac{\xx\dotp\vv_m}{\len{\vv_m}^2}\vv_m\right)
+        </me>.
+        Then:
+        <ol>
+          <li>
+            <p>
+              <m>\vv_{m+1}\dotp \vv_i = 0</m> for each <m>i=1,\ldots, m</m>.
+            </p>
+          </li>
+          <li>
+            <p>
+              If <m>\xx\notin\spn\{\vv_1,\ldots, \vv_m\}</m>,
+              then <m>\vv_{m+1}\neq \zer</m>,
+              and therefore, <m>\{\vv_1,\ldots, \vv_m,\vv_{m+1}\}</m> is an orthogonal set.
+            </p>
+          </li>
+        </ol>
+      </p>
+    </statement>
+    <proof>
+      <title>Strategy</title>
+      <p>
+        For the first part, try calculating the dot product, using the definition of <m>\vv_{m+1}</m>.
+        Don't forget that <m>\vv_i\dotp\vv_j=0</m> if <m>i\neq j</m>,
+        since you are assuming you have an orthogonal set of vectors.
+      </p>
+
+      <p>
+        For the second part, what does the Fourier Expansion Theorem say?
+      </p>
+    </proof>
+
+    <proof>
+      <p>
+        <ol>
+          <li>
+            <p>
+              For any <m>i=1,\ldots m</m>, we have
+              <me>
+                \vv_{m+1}\dotp\vv_i = \xx\dotp\vv_i - \frac{\xx\dotp\vv_i}{\len{\vv_i}^2}(\vv_i\dotp\vv_i)=0
+              </me>,
+              since <m>\vv_i\dotp\vv_j = 0</m> for <m>i\neq j</m>.
+            </p>
+          </li>
+
+          <li>
+            <p>
+              It follows from the <xref ref="thm-fourier-expansion" text="title"/> that <m>\vv_{m+1}=\zer</m>
+              if and only if <m>\xx\in\spn\{\vv_1,\ldots, \vv_m\}</m>,
+              and the fact that <m>\{\vv_1,\ldots, \vv_m,\vv_{m+1}\}</m>
+              is an orthogonal set then follows from the first part.
+            </p>
+          </li>
+        </ol>
+      </p>
+    </proof>
+  </theorem>
+
+  <p>
+    It follows from the <xref ref="thm-orthogonal-lemma" text="title"/> that for any subspace <m>U\subseteq \R^n</m>,
+    any set of orthogonal vectors in <m>U</m> can be extended to an orthogonal basis of <m>U</m>.
+    Since any set containing a single nonzero vector is orthogonal,
+    it follows that every subspace has an orthogonal basis.
+    (If <m>U=\{\zer\}</m>, we consider the empty basis to be orthogonal.)
+  </p>
+
+  <p>
+    The procedure for creating an orthogonal basis is clear.
+    Start with a single nonzero vector <m>\xx_1\in U</m>, which we'll also call <m>\vv_1</m>.
+    If <m>U\neq \spn\{\vv_1\}</m>, choose a vector <m>\xx_2\in U</m> with <m>\xx_2\notin\spn\{\vv_1\}</m>.
+    The <xref ref="thm-orthogonal-lemma" text="title"/> then provides us with a vector
+    <me>
+      \vv_2 = \xx_2-\frac{\xx_2\dotp\vv_1}{\len{\vv_1}^2}\vv_1
+    </me>
+    such that <m>\{\vv_1,\vv_2\}</m> is orthogonal.
+    If <m>U=\spn\{\vv_1,\vv_2\}</m>, we're done.
+    Otherwise, we repeat the process, choosing <m>\xx_3\notin\spn\{\vv_1,\vv_2\}</m>,
+    and then using the <xref ref="thm-orthogonal-lemma" text="title"/> to obtain <m>\vv_3</m>,
+    and so on, until an orthogonal basis is obtained.
+  </p>
+
+  <p>
+    With one minor modification, the above procedure provides us with a major result.
+    Suppose <m>U</m> is a subspace of <m>\R^n</m>, and start with <em>any</em> basis <m>\{\xx_1,\ldots, \xx_m\}</m> of <m>U</m>.
+    By choosing our <m>\xx_i</m> in the procedure above to be these basis vectors, we obtain the
+    <em>Gram-Schmidt algorithm</em> for constructing an orthogonal basis.
+  </p>
+
+  <theorem xml:id="thm-gram-schmidt">
+    <title>Gram-Schmidt Orthonormalization Algorithm</title>
+    <statement>
+      <p>
+        Let <m>U</m> be a subspace of <m>\R^n</m>, and let <m>\{\xx_1,\ldots, \xx_m\}</m> be a basis of <m>U</m>.
+        Define vectors <m>\vv_1,\ldots, \vv_m</m> in <m>U</m> as follows:
+        <md>
+          <mrow>\vv_1 \amp = \xx_1 </mrow>
+          <mrow>\vv_2 \amp = \xx_2 - \frac{\xx_2\dotp\vv_1}{\len{\vv_1}^2}\vv_1</mrow>
+          <mrow>\vv_3 \amp = \xx_3 - \frac{\xx_3\dotp\vv_1}{\len{\vv_1}^2}\vv_1-\frac{\xx_3\dotp\vv_2}{\len{\vv_2}^2}\vv_2</mrow>
+          <mrow>\vdots \amp </mrow>
+          <mrow>\vv_m \amp = \xx_m - \frac{\xx_m\dotp\vv_1}{\len{\vv_1}^2}\vv_1-\cdots - \frac{\xx_m\dotp\vv_{m-1}}{\len{\vv_{m-1}}^2}\vv_{m-1}</mrow>
+        </md>.
+        Then <m>\{\vv_1,\ldots, \vv_m\}</m> is an orthogonal basis for <m>U</m>.
+        Moreover, for each <m>k=1,2,\ldots, m</m>, we have
+        <me>
+          \spn\{\vv_1,\ldots, \vv_k\} = \spn\{\xx_1,\ldots, \xx_k\}
+        </me>.
+      </p>
+    </statement>
+  </theorem>
+
+  <p>
+    Of course, once we've used Gram-Schmidt to find an orthogonal basis,
+    we can normalize each vector to get an orthonormal basis.
+    The Gram-Schmidt algorithm is ideal when we know how to find <em>a</em> basis for a subspace,
+    but we need to know an orthogonal basis.
+    For example, suppose we want an orthonormal basis for the nullspace of the matrix
+    <me>
+      A = \bbm 2 \amp -1 \amp 3 \amp 0 \amp 5\\0 \amp 2 \amp -3  \amp 1 \amp 4\\ -4 \amp 2 \amp -6 \amp 0 \amp -10\\ 2 \amp 1 \amp 0 \amp 1 \amp 9\ebm
+    </me>.
+    First, we find <em>any</em> basis for the nullspace.
+  </p>
+
+  <sage>
+    <input>
+      from sympy import Matrix, init_printing
+      init_printing()
+      A = Matrix([[2,-1,3,0,5],
+                  [0,2,-3,1,4],
+                  [-4,2,-6,0,-10],
+                  [2,1,0,1,9]])
+      A.nullspace()
+    </input>
+    <output>
+      \[\left[\bbm -\frac34\\ \frac32\\1\\0\\0\ebm, \bbm -\frac14\\ -\frac12\\0\\1\\0\ebm, \bbm -\frac72\\-2\\0\\0\\1\ebm\right]\]
+    </output>
+  </sage>
+
+  <p>
+    Let's make that basis look a little nicer by using some scalar multiplication to clear fractions.
+    <me>
+      B=\left\{\xx_1=\bbm 3\\-6\\-4\\0\\0\ebm, \xx_2=\bbm 1\\2\\0\\-4\\0\ebm, \xx_3=\bbm 7\\4\\0\\0\\-2\ebm\right\}
+    </me>
+    This is definitely not an orthogonal basis. So we take <m>\vv_1=\xx_1</m>, and
+    <md>
+      <mrow>\vv_2 \amp = \xx_2-\left(\frac{\xx_2\dotp\vv_1}{\len{\vv_1}^2}\right)\vv_1</mrow>
+      <mrow> \amp = \bbm 1\\2\\0\\-4\\0\ebm -\frac{-9}{61}\bbm 3\\-6\\-4\\-0\\0\ebm </mrow>
+    </md>,
+    which equals something we probably don't want to try to simplify. Finally, we find
+    <me>
+      \vv_3 = \xx_3-\left(\frac{\xx_3\dotp \vv_1}{\len{\vv_1}^2}\right)\vv_1-\left(\frac{\xx_3\dotp\vv_2}{\len{\vv_2}^2}\right)\vv_2
+    </me>.
+    And now we probably get about five minutes into the fractions and say something that shouldn't appear in print.
+    This sounds like a job for the computer.
+  </p>
+
+  <sage>
+    <input>
+      from sympy import GramSchmidt
+      B = A.nullspace()
+      GramSchmidt(B)
+    </input>
+    <output>
+      \[\left[\bbm -\frac34\\ \frac32\\1\\0\\0\ebm, \bbm -\frac{22}{61}\\-\frac{17}{61}\\ \frac{9}{61}\\1\\0\ebm, \bbm -\frac{76}{25}\\-\frac{36}{25}\\-\frac{3}{25}\\-\frac{37}{25}\\1\ebm\right]\]
+    </output>
+  </sage>
+
+  <p>
+    What if we want our vectors normalized?
+    Turns out the <c>GramSchmidt</c> function has an optional argument of true or false.
+    The default is false, which is to not normalize. Setting it to true gives an orthonormal basis:
+  </p>
+
+  <sage>
+    <input>
+      GramSchmidt(B,true)
+    </input>
+    <output>
+      \[\left[\bbm -\frac{3\sqrt{61}}{61}\\ \frac{6\sqrt{61}}{61}\\ \frac{4\sqrt{61}}{61}\\0\\0\ebm,
+      \bbm -\frac{22\sqrt{183}}{915}\\-\frac{17\sqrt{183}}{915}\\ \frac{3\sqrt{183}}{305}\\ \frac{\sqrt{183}}{15}\\0\ebm,
+      \bbm -\frac{76\sqrt{3}}{165}\\-\frac{12\sqrt{3}}{55}\\-\frac{\sqrt{3}}{55}\\-\frac{37\sqrt{3}}{165}\\ \frac{5\sqrt{3}}{33}\ebm\right]\]
+    </output>
+  </sage>
+
+  <p>
+    OK, so that's nice, and fairly intimidating looking.
+    Did it work? We can specify the vectors in our list by giving their positions, which are 0, 1, and 2, respectively.
+  </p>
+
+  <sage>
+    <input>
+      L=GramSchmidt(B)
+      L[0],L[1],L[2]
+    </input>
+    <output>
+      \[\left(\bbm -\frac34\\ \frac32\\1\\0\\0\ebm, \bbm -\frac{22}{61}\\-\frac{17}{61}\\ \frac{9}{61}\\1\\0\ebm, \bbm -\frac{76}{25}\\-\frac{36}{25}\\-\frac{3}{25}\\-\frac{37}{25}\\1\ebm\right)\]
+    </output>
+  </sage>
+
+  <p>
+    Let's compute dot products:
+  </p>
+
+  <sage>
+    <input>
+      L[0].dot(L[1]),L[1].dot(L[2]),L[0].dot(L[2])
+    </input>
+    <output>
+      \[(0,0,0)\]
+    </output>
+  </sage>
+
+  <p>
+    Let's also confirm that these are indeed in the nullspace.
+  </p>
+
+  <sage>
+    <input>
+      A*L[0],A*L[1],A*L[2]
+    </input>
+    <output>
+      \[\left(\bbm 0\\0\\0\\0\ebm, \bbm 0\\0\\0\\0\ebm, \bbm 0\\0\\0\\0\ebm\right)\]
+    </output>
+  </sage>
+
+  <p>
+    Boom. Let's try another example. This time we'll keep the vectors a little smaller in case you want to try it by hand.
+  </p>
+
+  <exercise>
+    <statement>
+      <p>
+        Confirm that the set <m>B=\{(1,-2,1), (3,0,-2), (-1,1,2)\}</m> is a basis for <m>\R^3</m>,
+        and use the <xref ref="thm-gram-schmidt" text="title"/> to find an orthonormal basis.
+      </p>
+    </statement>
+    <solution>
+      <p>
+        First, note that we can actually jump right into the Gram-Schmidt procedure.
+        If the set <m>B</m> is not a basis, then it won't be independent,
+        and when we attempt to construct the third vector in our orthonormal basis,
+        its projection on the the subspace spanned by the first two will be the same as the original vector,
+        and we'll get zero when we subtract the two.
+      </p>
+
+      <p>
+        We let <m>\xx_1=(1,-2,1), \xx_2=(3,0,-2), \xx_3=(-1,1,2)</m>,
+        and set <m>\vv_1=\xx_1</m>. Then we have
+        <md>
+          <mrow>\vv_2 \amp = \xx_2-\left(\frac{\xx_2\dotp \vv_1}{\len{\vv_1}^2}\right)\vv_1 </mrow>
+          <mrow> \amp = (3,0,-2)-\frac{1}{6}(1,-2,1)</mrow>
+          <mrow> \amp = \frac16(17,2,-3) </mrow>
+        </md>.
+      </p>
+
+      <aside>
+        <p>
+          You'll notice that we're using <m>6\vv_2</m> rather than <m>\vv_2</m>
+          in the calculation of <m>\vv_3</m>.
+          This lets us avoid fractions (momentarily), and doesn't affect the answer,
+          since for any nonzero scalar <m>c</m>,
+          <md>
+            <mrow>\left(\frac{c\vv\dotp \xx}{\len{c\vv}^2}\right)\amp(c\vv)</mrow>
+            <mrow>\amp= \left(\frac{c(\vv\dotp\xx)}{c^2\len{\vv}^2}\right)(c\vv)</mrow>
+            <mrow>\amp=\left(\frac{\vv\dotp\xx}{\len{\vv^2}}\right)\vv</mrow>
+          </md>.
+        </p>
+      </aside>
+
+      <p>
+        Next, we compute <m>\vv_3</m>.
+        <md>
+          <mrow>\vv_3 \amp = \xx_3-\left(\frac{\xx_3\dotp \vv_1}{\len{\vv_1}^2}\right)\vv_1 - \left(\frac{\xx_3\dotp \vv_2}{\len{\vv_2}^2}\right)\vv_2</mrow>
+          <mrow> \amp = (-1,1,2)-\frac{-1}{6}(1,-2,1)-\cdot \frac{-21}{303}(17,2,-3)</mrow>
+          <mrow> \amp = (-1,1,2)+\frac16(1,-2,1)+\frac{7}{101}(17,2,-3)</mrow>
+          <mrow> \amp = \frac{1}{606}\bigl((-606,606,1212)+(101,-202,101)+(782,84,-126)\bigr)</mrow>
+          <mrow> \amp = \frac{1}{606}(277,488,1187)</mrow>
+        </md>.
+      </p>
+
+      <p>
+        We got it done! But doing this sort of thing by hand makes it possible that we made a calculation error somewhere.
+        To check our work, we can turn to the computer.
+      </p>
+
+      <sage>
+        <input>
+          from sympy import Matrix, init_printing, GramSchmidt
+          init_printing()
+          L=(Matrix([1,-2,1]),Matrix([3,0,-2]),Matrix([-1,1,2]))
+          GramSchmidt(L)
+        </input>
+        <output>
+          \[\left[\bbm 1\\-2\\1\ebm, \bbm \frac{17}{6}\\ \frac13\\ -\frac{13}{6}\ebm, \bbm \frac{52}{77}\\ \frac{65}{77}\\ \frac{78}{77}\ebm\right]\]
+        </output>
+      </sage>
+    </solution>
+  </exercise>
+</section>
