@@ -1,597 +1,368 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<section xml:id="sec-ortho-projection">
+<section xml:id="section-projection">
   <title>Orthogonal Projection</title>
-  <introduction>
-    <p>
-      In <xref ref="ex-test-span">Exercise</xref>, we saw that <xref ref="thm-fourier-expansion" text="title"/>
-      gives us an efficient way of testing whether or not a given vector belongs to the span of an orthogonal set.
-      When the answer is <q>no</q>, the quantity we compute while testing turns out to be very useful:
-      it gives the <em>orthogonal projection</em> of that vector onto the span of our orthogonal set.
-      This turns out to be exactly the ingredient needed to solve certain minimum distance problems.
-    </p>
-  </introduction>
+  <p>
+    In <xref ref="ex-test-span">Exercise</xref>, we saw that the <xref ref="thm-fourier-expansion" text="title"/>
+    gives us an efficient way of testing whether or not a vector belongs to the span of an orthogonal set.
+    When the answer is <q>no</q>, the quantity we compute while testing turns out to be very useful:
+    it gives the <em>orthogonal projection</em> of that vector onto the span of our orthogonal set.
+    This turns out to be exactly the ingredient needed to solve certain minimum distance problems.
+  </p>
 
-  <subsection>
-    <title>The Gram-Schmidt Procedure</title>
-    <p>
-      You may recall the following from elementary linear algebra, or vector calculus.
-      Given an nonzero vector <m>\uu</m> and a vector <m>\vv</m>,
-      the <em>projection</em> of <m>\vv</m> onto <m>\uu</m> is given by
-      <me>
-        \proj{\uu}{\vv} = \left(\frac{\vv\dotp\uu}{\len{\uu}^2}\right)\uu
-      </me>.
-      Note that this looks just like one of the terms in <xref ref="thm-fourier-expansion" text="title"/>.
-      Recall also that the vector <m>\vv-\proj{\uu}{\vv}</m> is orthogonal to <m>\uu</m>.
-      Our next result is a generalization of this observation.
-    </p>
+  <p>
+    We hinted above that the calculations we've been doing have a lot to do with projection.
+    Since any single nonzero vector forms an orthogonal basis for its span,
+    the projection
+    <me>
+      \proj{\uu}{\vv}=\left(\frac{\uu\dotp\vv}{\len{\uu}^2}\right)\uu
+    </me>
+    can be viewed as the orthogonal projection of the vector <m>\vv</m>,
+    not onto the vector <m>\uu</m>, but onto the subspace <m>\spn\{\uu\}</m>.
+    This is, after all, how we viewed projections in elementary linear algebra:
+    we drop the perpendicular from the tip of <m>\vv</m> onto the <em>line</em> in the direction of <m>\uu</m>.
+  </p>
 
-    <theorem xml:id="thm-orthogonal-lemma">
-      <title>Orthogonal Lemma</title>
-      <statement>
-        <p>
-          Let <m>\{\vv_1,\vv_2,\ldots, \vv_m\}</m> be an orthogonal set of vectors in <m>\R^n</m>,
-          and let <m>\xx</m> be any vector in <m>\R^n</m>. Define the vector <m>\vv_{m+1}</m> by
-          <me>
-            \vv_{m+1} = \xx-\left(\frac{\xx\dotp\vv_1}{\len{\vv_1}^2}\vv_1+\cdots + \frac{\xx\dotp\vv_m}{\len{\vv_m}^2}\vv_m\right)
-          </me>.
-          Then:
-          <ol>
-            <li>
-              <p>
-                <m>\vv_{m+1}\dotp \vv_i = 0</m> for each <m>i=1,\ldots, m</m>.
-              </p>
-            </li>
-            <li>
-              <p>
-                If <m>\xx\notin\spn\{\vv_1,\ldots, \vv_m\}</m>,
-                then <m>\vv_{m+1}\neq \zer</m>,
-                and therefore, <m>\{\vv_1,\ldots, \vv_m,\vv_{m+1}\}</m> is an orthogonal set.
-              </p>
-            </li>
-          </ol>
-        </p>
-      </statement>
-      <proof>
-        <p>
-          <ol>
-            <li>
-              <p>
-                For any <m>i=1,\ldots m</m>, we have
-                <me>
-                  \vv_{m+1}\dotp\vv_i = \xx\dotp\vv_i - \frac{\xx\dotp\vv_i}{\len{\vv_i}^2}(\vv_i\dotp\vv_i)=0
-                </me>,
-                since <m>\vv_i\dotp\vv_j = 0</m> for <m>i\neq j</m>.
-              </p>
-            </li>
+  <p>
+    Now that we know how to define an orthogonal basis for a subspace,
+    we can define orthogonal projection onto subspaces of dimension greater than one.
+  </p>
 
-            <li>
-              <p>
-                It follows from the <xref ref="thm-fourier-expansion" text="title"/> that <m>\vv_{m+1}=\zer</m>
-                if and only if <m>\xx\in\spn\{\vv_1,\ldots, \vv_m\}</m>,
-                and the fact that <m>\{\vv_1,\ldots, \vv_m,\vv_{m+1}\}</m>
-                is an orthogonal set then follows from the first part.
-              </p>
-            </li>
-          </ol>
-        </p>
-      </proof>
-    </theorem>
-
-    <p>
-      It follows from the <xref ref="thm-orthogonal-lemma" text="title"/> that for any subspace <m>U\subseteq \R^n</m>,
-      any set of orthogonal vectors in <m>U</m> can be extended to an orthogonal basis of <m>U</m>.
-      Since any set containing a single nonzero vector is orthogonal,
-      it follows that every subspace has an orthogonal basis.
-      (If <m>U=\{\zer\}</m>, we consider the empty basis to be orthogonal.)
-    </p>
-
-    <p>
-      The procedure for creating an orthogonal basis is clear.
-      Start with a single nonzero vector <m>\vv_1\in U</m>.
-      If <m>U\neq \spn\{\vv_1\}</m>, choose a vector <m>\xx_1\in U</m> with <m>\xx_1\notin\spn\{\vv_1\}</m>.
-      The <xref ref="thm-orthogonal-lemma" text="title"/> then provides us with a vector
-      <me>
-        \vv_2 = \xx_1-\frac{\xx_1\dotp\vv_1}{\len{\vv_1}^2}\vv_1
-      </me>
-      such that <m>\{\vv_1,\vv_2\}</m> is orthogonal.
-      If <m>U=\spn\{\vv_1,\vv_2\}</m>, we're done.
-      Otherwise, we repeat the process, choosing <m>\xx_2\notin\spn\{\vv_1,\vv_2\}</m>,
-      and then using the <xref ref="thm-orthogonal-lemma" text="title"/> to obtain <m>\vv_3</m>,
-      and so on, until an orthogonal basis is obtained.
-    </p>
-
-    <p>
-      With one minor modification, the above procedure provides us with a major result.
-      Suppose <m>U</m> is a subspace of <m>\R^n</m>, and start with <em>any</em> basis <m>\{\xx_1,\ldots, \xx_m\}</m> of <m>U</m>.
-      By choosing our <m>\xx_i</m> in the procedure above to be these basis vectors, we obtain the
-      <em>Gram-Schmidt algorithm</em> for constructing an orthogonal basis.
-    </p>
-
-    <theorem xml:id="thm-gram-schmidt">
-      <title>Gram-Schmidt Orthonormalization Algorithm</title>
-      <statement>
-        <p>
-          Let <m>U</m> be a subspace of <m>\R^n</m>, and let <m>\{\xx_1,\ldots, \xx_m\}</m> be a basis of <m>U</m>.
-          Define vectors <m>\vv_1,\ldots, \vv_m</m> in <m>U</m> as follows:
-          <md>
-            <mrow>\vv_1 \amp = \xx_1 </mrow>
-            <mrow>\vv_2 \amp = \xx_2 - \frac{\xx_2\dotp\vv_1}{\len{\vv_1}^2}\vv_1</mrow>
-            <mrow>\vv_3 \amp = \xx_3 - \frac{\xx_3\dotp\vv_1}{\len{\vv_1}^2}\vv_1-\frac{\xx_3\dotp\vv_2}{\len{\vv_2}^2}\vv_2</mrow>
-            <mrow>\vdots \amp </mrow>
-            <mrow>\vv_m \amp = \xx_m - \frac{\xx_m\dotp\vv_1}{\len{\vv_1}^2}\vv_1-\cdots - \frac{\xx_m\dotp\vv_{m-1}}{\len{\vv_{m-1}}^2}\vv_{m-1}</mrow>
-          </md>.
-          Then <m>\{\vv_1,\ldots, \vv_m\}</m> is an orthogonal basis for <m>U</m>.
-          Moreover, for each <m>k=1,2,\ldots, m</m>, we have
-          <me>
-            \spn\{\vv_1,\ldots, \vv_k\} = \spn\{\xx_1,\ldots, \xx_k\}
-          </me>.
-        </p>
-      </statement>
-    </theorem>
-
-    <p>
-      Of course, once we've used Gram-Schmidt to find an orthogonal basis,
-      we can normalize each vector to get an orthonormal basis.
-      The Gram-Schmidt algorithm is ideal when we know how to find <em>a</em> basis for a subspace,
-      but we need to know an orthogonal basis.
-      For example, suppose we want an orthonormal basis for the nullspace of the matrix
-      <me>
-        A = \bbm 2 \amp -1 \amp 3 \amp 0 \amp 5\\0 \amp 2 \amp -3  \amp 1 \amp 4\\ -4 \amp 2 \amp -6 \amp 0 \amp -10\\ 2 \amp 1 \amp 0 \amp 1 \amp 9\ebm
-      </me>.
-      First, we find <em>any</em> basis for the nullspace.
-    </p>
-
-    <sage>
-      <input>
-        from sympy import Matrix, init_printing
-        init_printing()
-        A = Matrix([[2,-1,3,0,5],
-                    [0,2,-3,1,4],
-                    [-4,2,-6,0,-10],
-                    [2,1,0,1,9]])
-        A.nullspace()
-      </input>
-      <output>
-        \[\left[\bbm -\frac34\\ \frac32\\1\\0\\0\ebm, \bbm -\frac14\\ -\frac12\\0\\1\\0\ebm, \bbm -\frac72\\-2\\0\\0\\1\ebm\right]\]
-      </output>
-    </sage>
-
-    <p>
-      Let's make that basis look a little nicer by using some scalar multiplication to clear fractions.
-      <me>
-        B=\left\{\xx_1=\bbm 3\\-6\\-4\\0\\0\ebm, \xx_2=\bbm 1\\2\\0\\-4\\0\ebm, \xx_3=\bbm 7\\4\\0\\0\\-2\ebm\right\}
-      </me>
-      Definitely not an orthogonal basis. So we take <m>\vv_1=\xx_1</m>, and
-      <md>
-        <mrow>\vv_2 \amp = \xx_2-\left(\frac{\xx_2\dotp\vv_1}{\len{\vv_1}^2}\right)\vv_1</mrow>
-        <mrow> \amp = \bbm 1\\2\\0\\-4\\0\ebm -\frac{-9}{61}\bbm 3\\-6\\-4\\-0\\0\ebm </mrow>
-      </md>,
-      which equals something I'm not sure I want to try to simplify. Finally, we find
-      <me>
-        \vv_3 = \xx_3-\left(\frac{\xx_3\dotp \vv_1}{\len{\vv_1}^2}\right)\vv_1-\left(\frac{\xx_3\dotp\vv_2}{\len{\vv_2}^2}\right)\vv_2
-      </me>.
-      And now you probably get about five minutes into the fractions and say something that shouldn't appear in print.
-      This sounds like a job for the computer.
-    </p>
-
-    <sage>
-      <input>
-        from sympy import GramSchmidt
-        B = A.nullspace()
-        GramSchmidt(B)
-      </input>
-      <output>
-        \[\left[\bbm -\frac34\\ \frac32\\1\\0\\0\ebm, \bbm -\frac{22}{61}\\-\frac{17}{61}\\ \frac{9}{61}\\1\\0\ebm, \bbm -\frac{76}{25}\\-\frac{36}{25}\\-\frac{3}{25}\\-\frac{37}{25}\\1\ebm\right]\]
-      </output>
-    </sage>
-
-    <p>
-      Oh wait, you wanted that normalized?
-      Turns out the <c>GramSchmidt</c> function has an optional argument of true or false.
-      The default is false, which is to not normalize. Setting it to true gives an orthonormal basis:
-    </p>
-
-    <sage>
-      <input>
-        GramSchmidt(B,true)
-      </input>
-      <output>
-        \[\left[\bbm -\frac{3\sqrt{61}}{61}\\ \frac{6\sqrt{61}}{61}\\ \frac{4\sqrt{61}}{61}\\0\\0\ebm,
-        \bbm -\frac{22\sqrt{183}}{915}\\-\frac{17\sqrt{183}}{915}\\ \frac{3\sqrt{183}}{305}\\ \frac{\sqrt{183}}{15}\\0\ebm,
-        \bbm -\frac{76\sqrt{3}}{165}\\-\frac{12\sqrt{3}}{55}\\-\frac{\sqrt{3}}{55}\\-\frac{37\sqrt{3}}{165}\\ \frac{5\sqrt{3}}{33}\ebm\right]\]
-      </output>
-    </sage>
-
-    <p>
-      OK, so that's nice, and fairly intimidating looking.
-      Did it work? We can specify the vectors in our list by giving their positions, which are 0, 1, and 2, respectively.
-    </p>
-
-    <sage>
-      <input>
-        L=GramSchmidt(B)
-        L[0],L[1],L[2]
-      </input>
-      <output>
-        \[\left(\bbm -\frac34\\ \frac32\\1\\0\\0\ebm, \bbm -\frac{22}{61}\\-\frac{17}{61}\\ \frac{9}{61}\\1\\0\ebm, \bbm -\frac{76}{25}\\-\frac{36}{25}\\-\frac{3}{25}\\-\frac{37}{25}\\1\ebm\right)\]
-      </output>
-    </sage>
-
-    <p>
-      Let's compute dot products:
-    </p>
-
-    <sage>
-      <input>
-        L[0].dot(L[1]),L[1].dot(L[2]),L[0].dot(L[2])
-      </input>
-      <output>
-        \[(0,0,0)\]
-      </output>
-    </sage>
-
-    <p>
-      Let's also confirm that these are indeed in the nullspace.
-    </p>
-
-    <sage>
-      <input>
-        A*L[0],A*L[1],A*L[2]
-      </input>
-      <output>
-        \[\left(\bbm 0\\0\\0\\0\ebm, \bbm 0\\0\\0\\0\ebm, \bbm 0\\0\\0\\0\ebm\right)\]
-      </output>
-    </sage>
-
-    <p>
-      Boom. Let's try another example. This time we'll keep the vectors a little smaller in case you want to try it by hand.
-    </p>
-
-    <exercise>
-      <statement>
-        <p>
-          Confirm that the set <m>B=\{(1,-2,1), (3,0,-2), (-1,1,2)\}</m> is a basis for <m>\R^3</m>,
-          and use the <xref ref="thm-gram-schmidt" text="title"/> to find an orthonormal basis.
-        </p>
-      </statement>
-      <solution>
-        <p>
-          First, note that we can actually jump right into the Gram-Schmidt procedure.
-          If the set <m>B</m> is not a basis, then it won't be independent,
-          and when we attempt to construct the third vector in our orthonormal basis,
-          its projection on the the subspace spanned by the first two will be the same as the original vector,
-          and we'll get zero when we subtract the two.
-        </p>
-
-        <p>
-          We let <m>\xx_1=(1,-2,1), \xx_2=(3,0,-2), \xx_3=(-1,1,2)</m>,
-          and set <m>\vv_1=\xx_1</m>. Then we have
-          <md>
-            <mrow>\vv_2 \amp = \xx_2-\left(\frac{\xx_2\dotp \vv_1}{\len{\vv_1}^2}\right)\vv_1 </mrow>
-            <mrow> \amp = (3,0,-2)-\frac{1}{6}(1,-2,1)</mrow>
-            <mrow> \amp = \frac16(17,2,-3) </mrow>
-          </md>.
-        </p>
-        <p>
-          Next, we compute <m>\vv_3</m>.
-          <md>
-            <mrow>\vv_3 \amp = \xx_3-\left(\frac{\xx_3\dotp \vv_1}{\len{\vv_1}^2}\right)\vv_1 - \left(\frac{\xx_3\dotp \vv_2}{\len{\vv_2}^2}\right)\vv_2</mrow>
-            <mrow> \amp = (-1,1,2)-\frac{-1}{6}(1,-2,1)-\cdot \frac{-21}{303}(17,2,-3)</mrow>
-            <mrow> \amp = (-1,1,2)+\frac16(1,-2,1)+\frac{7}{101}(17,2,-3)</mrow>
-            <mrow> \amp = \frac{1}{606}\bigl((-606,606,1212)+(101,-202,101)+(782,84,-126)\bigr)</mrow>
-            <mrow> \amp = \frac{1}{606}(277,488,1187)</mrow>
-          </md>.
-        </p>
-
-        <p>
-          OK. Now, given the frequency with which typos occur in this text,
-          and the fact that I tried to do the above problem in my head while typing
-          (with an occasional calculator check),
-          there's a good chance there's a mistake somewhere. Let's check our work.
-        </p>
-
-        <sage>
-          <input>
-            from sympy import Matrix, init_printing, GramSchmidt
-            init_printing()
-            L=(Matrix([1,-2,1]),Matrix([3,0,-2]),Matrix([-1,1,2]))
-            GramSchmidt(L)
-          </input>
-          <output>
-            \[\left[\bbm 1\\-2\\1\ebm, \bbm \frac{17}{6}\\ \frac13\\ -\frac{13}{6}\ebm, \bbm \frac{52}{77}\\ \frac{65}{77}\\ \frac{78}{77}\ebm\right]\]
-          </output>
-        </sage>
-      </solution>
-    </exercise>
-
-    <aside>
+  <definition xml:id="def-ortho-projection">
+    <statement>
       <p>
-        You'll notice that I used <m>6\vv_2</m> rather than <m>\vv_2</m>
-        in the calculation of <m>\vv_3</m>.
-        This lets me avoid fractions (momentarily), and doesn't affect the answer,
-        since for any nonzero scalar <m>c</m>,
+        Let <m>U</m> be a subspace of <m>\R^n</m> with orthogonal basis
+        <m>\{\uu_1,\ldots, \uu_k\}</m>.
+        For any vector <m>\vv\in \R^n</m>, we define the <term>orthogonal projection</term>
+        of <m>\vv</m> onto <m>U</m> by
+        <me>
+          \proj{U}{\vv} = \sum_{i=1}^k\left(\frac{\uu_i\dotp\vv}{\len{\uu_i}^2}\right)\uu_i
+        </me>.
+      </p>
+    </statement>
+  </definition>
+
+  <p>
+    Note that <m>\proj{U}{\vv}</m> is indeed an element of <m>U</m>, since it's a linear combination of its basis vectors.
+    In the case of the trivial subspace <m>U=\{\zer\}</m>, we define orthogonal projection of any vector to be <m>\zer</m>,
+    since really, what other choice do we have? (This case isn't really of any interest, we just like being thorough.)
+  </p>
+
+  <p>
+    Let's see how this might be put to use in a classic problem: finding the distance from a point to a plane.
+  </p>
+
+  <aside>
+    <p>
+      One limitation of this approach to projection is that we must project onto a <em>subspace</em>.
+      Given a plane like <m>x-2y+4z=4</m>, we would need to modify our approach.
+      One way to do it would be to find a point on the plane,
+      and then try to translate everything to the origin.
+      It's interesting to think about how this might be accomplished
+      (in particular, in what direction would the translation have to be performed?)
+      but someone external to the questions we're interested in here.
+    </p>
+  </aside>
+
+  <example>
+    <statement>
+      <p>
+        Find the distance from the point <m>(3,1,-2)</m> to the plane <m>P</m>
+        defined by <m>x-2y+4z=0</m>.
+      </p>
+    </statement>
+    <solution>
+      <title>Using projection onto a normal vector</title>
+
+      <p>
+        In an elementary linear algebra (or calculus) course, we would solve this problem as follows.
+        First, we would need two vectors parallel to the plane.
+        If <m>\bbm x\\y\\z\ebm</m> lies in the plane, then <m>x-2y+4z=0</m>, so <m>x=2y-4z</m>, and
+        <me>
+          \bbm x\\y\\z\ebm = \bbm 2y-4z\\y\\z\ebm = y\bbm 2\\1\\0\ebm + z\bbm -4\\0\\1\ebm
+        </me>,
+        so <m>\uu=\bbm 2\\1\\0\ebm</m> and <m>\vv\bbm -4\\0\\1\ebm</m> are parallel to the plane.
+        We then compute the normal vector
+        <me>
+          \mathbf{n}=\uu\times\vv=\bbm 1\\-2\\4\ebm
+        </me>,
+        and compute the projection of the position vector <m>\mathbf{p}=\bbm 3,1,-2\ebm</m> for the point <m>P=(3,1,-2)</m> onto <m>\mathbf{n}</m>.
+        This gives the vector
+        <me>
+          \xx = \left(\frac{\mathbf{p}\dotp\mathbf{n}}{\len{\mathbf{n}}^2}\right)\mathbf{n} = \frac{-7}{21}\bbm 1\\-2\\4\ebm =\bbm-1/3\\2/3\\-4/3\ebm
+        </me>.
+      </p>
+
+      <p>
+        Now, this vector is <em>parallel</em> to <m>\mathbf{n}</m>, so it's perpendicular to the plane.
+        Subtracting it from <m>\mathbf{p}</m> gives a vector parallel to the plane, and this is the position vector for the point we seek.
+        <me>
+          \mathbf{q}=\mathbf{p}-\xx=\bbm 3\\1\\-2\ebm-\bbm -1/3\\-2/3\\-4/3\ebm = \bbm 10/3\\1/3\\-2/3\ebm
+        </me>
+        so the closest point is <m>Q=\bigl(\frac{10}{3},\frac13,-\frac{2}{3}\bigr)</m>.
+        We weren't asked for it, but note that if we wanted the distance from the point <m>P</m> to the plane,
+        this is given by <m>\len{\xx}=\frac13\sqrt{21}</m>.
+      </p>
+    </solution>
+    <solution>
+      <title>Using orthogonal projection</title>
+
+      <p>
+        Let's solve the same problem using orthogonal projection.
+        First, we have to deal with the fact that the vectors <m>\uu</m> and <m>\vv</m> are probably not orthogonal.
+        To get around this, we replace <m>\vv</m> with
+        <me>
+          \ww = \vv-\left(\frac{\vv\dotp\uu}{\len{\uu}^2}\right)\uu = \bbm -4\\0\\1\ebm+\frac 85\bbm 2\\1\\0\ebm = \bbm -4/5\\8/5\\1\ebm
+        </me>.
+        We now set
         <md>
-          <mrow>\left(\frac{c\vv\dotp \xx}{\len{c\vv}^2}\right)\amp(c\vv)</mrow>
-          <mrow>\amp= \left(\frac{c(\vv\dotp\xx)}{c^2\len{\vv}^2}\right)(c\vv)</mrow>
-          <mrow>\amp=\left(\frac{\vv\dotp\xx}{\len{\vv^2}}\right)\vv</mrow>
+          <mrow>\mathbf{q} \amp =\left(\frac{\mathbf{p}\dotp\uu}{\len{\uu}^2}\right)\uu-\left(\frac{\mathbf{p}\dotp\ww}{\len{\ww}^2}\right)\ww</mrow>
+          <mrow> \amp = \frac{7}{5}\bbm 2\\1\\0\ebm +\frac{-14}{105}\bbm -4\\8\\5\ebm </mrow>
+          <mrow> \amp = \bbm 10/3\\1/3\\-2/3\ebm</mrow>
         </md>.
+        Lo and behold, we get the same answer as before.
       </p>
-    </aside>
-  </subsection>
+    </solution>
+  </example>
 
-  <subsection xml:id="pars-projections">
-    <title>Projections</title>
-    <p>
-      We hinted above that the calculations we've been doing have a lot to do with projection.
-      Since any single nonzero vector forms an orthogonal basis for its span,
-      the projection
-      <me>
-        \proj{\uu}{\vv}=\left(\frac{\uu\dotp\vv}{\len{\uu}^2}\right)\uu
-      </me>
-      can be viewed as the orthogonal projection of the vector <m>\vv</m>,
-      not onto the vector <m>\uu</m>, but onto the subspace <m>\spn\{\uu\}</m>.
-      This is, after all, how we viewed projections in elementary linear algebra:
-      we drop the perpendicular from the tip of <m>\vv</m> onto the <em>line</em> in the direction of <m>\uu</m>.
-    </p>
+  <p>
+    The only problem with <xref ref="def-ortho-projection"/> is that it appears to depend on the choice of orthogonal basis.
+    To see that it doesn't, we need one more definition.
+  </p>
 
-    <p>
-      Now that we know how to define an orthogonal basis for a subspace,
-      we can define orthogonal projection onto subspaces of dimension greater than one.
-    </p>
-
-    <definition xml:id="def-ortho-projection">
-      <statement>
-        <p>
-          Let <m>U</m> be a subspace of <m>\R^n</m> with orthogonal basis
-          <m>\{\uu_1,\ldots, \uu_k\}</m>.
-          For any vector <m>\vv\in \R^n</m>, we define the <term>orthogonal projection</term>
-          of <m>\vv</m> onto <m>U</m> by
-          <me>
-            \proj{U}{\vv} = \sum_{i=1}^k\left(\frac{\uu_i\dotp\vv}{\len{\uu_i}^2}\right)\uu_i
-          </me>.
-        </p>
-      </statement>
-    </definition>
-
-    <p>
-      Note that <m>\proj{U}{\vv}</m> is indeed an element of <m>U</m>, since it's a linear combination of its basis vectors.
-      In the case of the trivial subspace <m>U=\{\zer\}</m>, we define orthogonal projection of any vector to be <m>\zer</m>,
-      since really, what other choice do we have? (This case isn't really of any interest, we just like being thorough.)
-    </p>
-
-    <p>
-      Let's see how this might be put to use in a classic problem: finding the distance from a point to a plane.
-    </p>
-
-    <aside>
+  <definition xml:id="def-ortho-comp">
+    <statement>
       <p>
-        One limitation of this approach to projection is that we must project onto a <em>subspace</em>.
-        Given a plane like <m>x-2y+4z=4</m>, we would need to modify our approach.
-        One way to do it would be to find a point on the plane,
-        and then try to translate everything to the origin.
-        It's interesting to think about how this might be accomplished
-        (in particular, in what direction would the translation have to be performed?)
-        but someone external to the questions we're interested in here.
+        For any subspace <m>U</m> of <m>\R^n</m>,
+        we define the <term>orthogonal complement</term> of <m>U</m>, denoted <m>U^\bot</m>,
+        by
+        <me>
+          U^\bot = \{\xx\in\R^n \,|\, \xx\dotp\yy = 0 \text{ for all } \yy\in U\}
+        </me>.
       </p>
-    </aside>
+    </statement>
+  </definition>
 
-    <example>
-      <statement>
-        <p>
-          Find the distance from the point <m>(3,1,-2)</m> to the plane <m>P</m>
-          defined by <m>x-2y+4z=0</m>.
-        </p>
-      </statement>
-      <solution>
-        <title>Using projection onto a normal vector</title>
+  <p>
+    The term <q>complement</q> comes from terminology we mentioned early on,
+    but didn't spend much time on. <xref ref="thm-construct-complement">Theorem</xref>
+    told us that for any subspace <m>U</m> of a vector space <m>V</m>,
+    it is possible to construct another subspace <m>W</m> of <m>V</m>
+    such that <m>V = U\oplus W</m>.
+    The subspace <m>W</m> is known as a complement of <m>U</m>.
+    A complement is not unique, but the orthogonal complement is.
+    As you might guess from the name, <m>U^\bot</m> is also a subspace of <m>\R^n</m>.
+  </p>
 
-        <p>
-          In an elementary linear algebra (or calculus) course, we would solve this problem as follows.
-          First, we would need two vectors parallel to the plane.
-          If <m>\bbm x\\y\\z\ebm</m> lies in the plane, then <m>x-2y+4z=0</m>, so <m>x=2y-4z</m>, and
-          <me>
-            \bbm x\\y\\z\ebm = \bbm 2y-4z\\y\\z\ebm = y\bbm 2\\1\\0\ebm + z\bbm -4\\0\\1\ebm
-          </me>,
-          so <m>\uu=\bbm 2\\1\\0\ebm</m> and <m>\vv\bbm -4\\0\\1\ebm</m> are parallel to the plane.
-          We then compute the normal vector
-          <me>
-            \mathbf{n}=\uu\times\vv=\bbm 1\\-2\\4\ebm
-          </me>,
-          and compute the projection of the position vector <m>\mathbf{p}=\bbm 3,1,-2\ebm</m> for the point <m>P=(3,1,-2)</m> onto <m>\mathbf{n}</m>.
-          This gives the vector
-          <me>
-            \xx = \left(\frac{\mathbf{p}\dotp\mathbf{n}}{\len{\mathbf{n}}^2}\right)\mathbf{n} = \frac{-7}{21}\bbm 1\\-2\\4\ebm =\bbm-1/3\\2/3\\-4/3\ebm
-          </me>.
-        </p>
+  <exercise>
+    <statement>
+      <p>
+        Show that <m>U^\bot</m> is a subspace of <m>\R^n</m>.
+      </p>
+    </statement>
+    <hint>
+      <p>
+        The trusty <xref ref="thm-subspace-test" text="title"/> is your friend here.
+        Just be careful to work correctly with the definition of <m>U^\bot</m>.
+      </p>
+    </hint>
+  </exercise>
 
-        <p>
-          Now, this vector is <em>parallel</em> to <m>\mathbf{n}</m>, so it's perpendicular to the plane.
-          Subtracting it from <m>\mathbf{p}</m> gives a vector parallel to the plane, and this is the position vector for the point we seek.
-          <me>
-            \mathbf{q}=\mathbf{p}-\xx=\bbm 3\\1\\-2\ebm-\bbm -1/3\\-2/3\\-4/3\ebm = \bbm 10/3\\1/3\\-2/3\ebm
-          </me>
-          so the closest point is <m>Q=\bigl(\frac{10}{3},\frac13,-\frac{2}{3}\bigr)</m>.
-          We weren't asked for it, but note that if we wanted the distance from the point <m>P</m> to the plane,
-          this is given by <m>\len{\xx}=\frac13\sqrt{21}</m>.
-        </p>
-      </solution>
-      <solution>
-        <title>Using orthogonal projection</title>
+  <theorem xml:id="thm-projection">
+    <title>Projection Theorem</title>
+    <statement>
+      <p>
+        Let <m>U</m> be a subspace of <m>\R^n</m>, let <m>\xx</m> be any vector in <m>\R^n</m>,
+        and let <m>\mathbf{p}=\proj{U}{\xx}</m>. Then:
+        <ol>
+          <li>
+            <p>
+              <m>\mathbf{p}\in U</m>, and <m>\xx-\mathbf{p}\in U^\bot</m>.
+            </p>
+          </li>
+          <li>
+            <p>
+              <m>\mathbf{p}</m> is the <em>closest</em> vector in <m>U</m> to the vector <m>\xx</m>,
+              in the sense that the distance <m>d(\mathbf{p},\xx)</m> is minimal among all vectors in <m>U</m>.
+              That is, for all <m>\uu\neq \mathbf{p}\in U</m>, we have
+              <me>
+                \len{\xx-\mathbf{p}}\lt\len{\xx-\uu}
+              </me>.
+            </p>
+          </li>
+        </ol>
+      </p>
+    </statement>
+    <proof>
+      <title>Strategy</title>
+      <p>
+        For the first part, review the <xref ref="thm-orthogonal-lemma" text="title"/>,
+        and convince yourself that this says the same thing.
+        The second part is the hard part, and it requires a trick:
+        we can write <m>\xx-\uu</m> as <m>(\xx-\mathbf{p})+(\mathbf{p}-\uu)</m>,
+        and then notice that <m>\mathbf{p}-\uu\in U</m>.
+        What can we say using the first part, and the Pythagorean theorem?
+      </p>
+    </proof>
+    <proof>
+      <p>
+        By <xref ref="def-ortho-projection"/>, <m>\mathbf{p}</m> is a linear combination
+        of elements in <m>U</m>, so <m>\mathbf{p}\in U</m>.
+        The fact that <m>\xx-\mathbf{p}\in U^\bot</m> follows directly from the <xref ref="thm-orthogonal-lemma" text="title"/>.
+      </p>
 
-        <p>
-          Let's solve the same problem using orthogonal projection.
-          First, we have to deal with the fact that the vectors <m>\uu</m> and <m>\vv</m> are probably not orthogonal.
-          To get around this, we replace <m>\vv</m> with
-          <me>
-            \ww = \vv-\left(\frac{\vv\dotp\uu}{\len{\uu}^2}\right)\uu = \bbm -4\\0\\1\ebm+\frac 85\bbm 2\\1\\0\ebm = \bbm -4/5\\8/5\\1\ebm
-          </me>.
-          We now set
-          <md>
-            <mrow>\mathbf{q} \amp =\left(\frac{\mathbf{p}\dotp\uu}{\len{\uu}^2}\right)\uu-\left(\frac{\mathbf{p}\dotp\ww}{\len{\ww}^2}\right)\ww</mrow>
-            <mrow> \amp = \frac{7}{5}\bbm 2\\1\\0\ebm +\frac{-14}{105}\bbm -4\\8\\5\ebm </mrow>
-            <mrow> \amp = \bbm 10/3\\1/3\\-2/3\ebm</mrow>
-          </md>.
-          Lo and behold, we get the same answer as before.
-        </p>
-      </solution>
-    </example>
+      <p>
+        Choose any <m>\uu\in U</m> with <m>\uu \neq \mathbf{p}</m>, and write
+        <me>
+          \xx-\uu = (\xx-\mathbf{p})+(\mathbf{p}-\uu)
+        </me>.
+        Since <m>\mathbf{p}-\uu\in U</m> and <m>\xx-\mathbf{p}\in U^\bot</m>,
+        we know that these two vectors are orthogonal, and therefore,
+        <me>
+          \len{\xx-\uu}^2=\len{\xx-\mathbf{p}}^2+\len{\mathbf{p}-\uu}^2\gt \len{\xx-\mathbf{p}}^2
+        </me>,
+        by the <xref ref="thm-pythagoras" text="title"/>.
+      </p>
+    </proof>
+  </theorem>
 
-    <p>
-      The only problem with <xref ref="def-ortho-projection"/> is that it appears to depend on the choice of orthogonal basis.
-      To see that it doesn't, we need one more definition.
-    </p>
-
-    <definition xml:id="def-ortho-comp">
-      <statement>
-        <p>
-          For any subspace <m>U</m> of <m>\R^n</m>,
-          we define the <term>orthogonal complement</term> of <m>U</m>, denoted <m>U^\bot</m>,
-          by
-          <me>
-            U^\bot = \{\xx\in\R^n \,|\, \xx\dotp\yy = 0 \text{ for all } \yy\in U\}
-          </me>.
-        </p>
-      </statement>
-    </definition>
-
-    <p>
-      The term <q>complement</q> comes from terminology we mentioned early on,
-      but didn't spend much time on. <xref ref="thm-construct-complement">Theorem</xref>
-      told us that for any subspace <m>U</m> of a vector space <m>V</m>,
-      it is possible to construct another subspace <m>W</m> of <m>V</m>
-      such that <m>V = U\oplus W</m>.
-      The subspace <m>W</m> is known as a complement of <m>U</m>.
-      A complement is not unique, but the orthogonal complement is.
-      As you might guess from the name, <m>U^\bot</m> is also a subspace of <m>\R^n</m>.
-    </p>
-
-    <exercise>
-      <statement>
-        <p>
-          Show that <m>U^\bot</m> is a subspace of <m>\R^n</m>.
-        </p>
-      </statement>
-    </exercise>
-
-
-    <theorem xml:id="thm-projection">
-      <title>Projection Theorem</title>
-      <statement>
-        <p>
-          Let <m>U</m> be a subspace of <m>\R^n</m>, let <m>\xx</m> be any vector in <m>\R^n</m>,
-          and let <m>\mathbf{p}=\proj{U}{\xx}</m>. Then:
-          <ol>
-            <li>
-              <p>
-                <m>\mathbf{p}\in U</m>, and <m>\xx-\mathbf{p}\in U^\bot</m>.
-              </p>
-            </li>
-            <li>
-              <p>
-                <m>\mathbf{p}</m> is the <em>closest</em> vector in <m>U</m> to the vector <m>\xx</m>,
-                in the sense that the distance <m>d(\mathbf{p},\xx)</m> is minimal among all vectors in <m>U</m>.
-                That is, for all <m>\uu\neq \mathbf{p}\in U</m>, we have
-                <me>
-                  \len{\xx-\mathbf{p}}\lt\len{\xx-\uu}
-                </me>.
-              </p>
-            </li>
-          </ol>
-        </p>
-      </statement>
-    </theorem>
-
-    <exercise>
-      <statement>
-        <p>
-          Show that <m>U\cap U^\bot = \{\zer\}</m>.
-          Use this fact to show that <xref ref="def-ortho-projection"/> does not depend on the choice orthogonal basis.
-        </p>
-      </statement>
-      <hint>
-        <p>
-          Suppose we find vectors <m>\mathbf{p}</m> and <m>\mathbf{p}'</m> using basis <m>B</m> and <m>B'</m>.
-          Note that <m>\mathbf{p}-\mathbf{p}'\in U</m>, but also that
-          <me>
-            \mathbf{p}-\mathbf{p}' = (\mathbf{p}-\xx)-(\mathbf{p}'-\xx)
-          </me>
-          Now use <xref ref="thm-projection"/>
-        </p>
-      </hint>
-    </exercise>
+  <exercise>
+    <statement>
+      <p>
+        Show that <m>U\cap U^\bot = \{\zer\}</m>.
+        Use this fact to show that <xref ref="def-ortho-projection"/> does not depend on the choice orthogonal basis.
+      </p>
+    </statement>
+    <hint>
+      <p>
+        Suppose we find vectors <m>\mathbf{p}</m> and <m>\mathbf{p}'</m> using basis <m>B</m> and <m>B'</m>.
+        Note that <m>\mathbf{p}-\mathbf{p}'\in U</m>, but also that
+        <me>
+          \mathbf{p}-\mathbf{p}' = (\mathbf{p}-\xx)-(\mathbf{p}'-\xx)
+        </me>
+        Now use <xref ref="thm-projection"/>.
+      </p>
+    </hint>
+  </exercise>
 
 
-    <p>
-      Finally, we note one more useful fact. The process of sending a vector to its orthogonal projection defines an operator on <m>\R^n</m>,
-      and yes, it's linear.
-    </p>
+  <p>
+    Finally, we note one more useful fact. The process of sending a vector to its orthogonal projection defines an operator on <m>\R^n</m>,
+    and yes, it's linear.
+  </p>
 
-    <theorem xml:id="thm-proj-operator">
-      <statement>
-        <p>
-          Let <m>U</m> be a subspace of <m>\R^n</m>, and define a function <m>P_U:\R^n\to \R^n</m> by
-          <me>
-            P_U(\xx) = \proj{U}{\xx} \text{ for any } \xx\in\R^n
-          </me>.
-          Then <m>T</m> is a linear operator such that <m>U=\im P_U</m> and <m>U^\bot = \ker P_U</m>.
-        </p>
-      </statement>
-    </theorem>
+  <theorem xml:id="thm-proj-operator">
+    <statement>
+      <p>
+        Let <m>U</m> be a subspace of <m>\R^n</m>, and define a function <m>P_U:\R^n\to \R^n</m> by
+        <me>
+          P_U(\xx) = \proj{U}{\xx} \text{ for any } \xx\in\R^n
+        </me>.
+        Then <m>T</m> is a linear operator such that <m>U=\im P_U</m> and <m>U^\bot = \ker P_U</m>.
+      </p>
+    </statement>
+  </theorem>
 
-    <p>
-      Note: it follows from this result and the <xref ref="thm-dimension-lintrans" text="title"/> that
-      <me>
-        \dim U + \dim U^\bot = n
-      </me>,
-      and since <m>U\cap U^\bot = \{\zer\}</m>, <m>U^\bot</m> is indeed a complement of <m>U</m>
-      in the sense introduced in <xref ref="thm-construct-complement">Theorem</xref>.
-      It's also fairly easy to see that <m>\dim U + \dim U^\bot = n</m> directly.
-      If <m>\ww\in U^\bot</m>, and <m>\{\uu_1,\ldots, \uu_k\}</m>
-      is a basis for <m>U</m>, then we have
-      <me>
-        \ww\dotp \uu_1= 0, \ldots, \ww\dotp \uu_k=0
-      </me>,
-      and for an unknown <m>\ww</m>, this is simply a homogeneous system of <m>k</m> equations with <m>n</m> variables.
-      Moreover, they are <em>independent</em> equations, since the <m>\uu_i</m> form a basis.
-      We thus expect <m>n-k</m> free parameters in the general solution.
-    </p>
+  <remark xml:id="rem-orth-comp-dim">
+    <statement>
+      <p>
+        It follows from this result and the <xref ref="thm-dimension-lintrans" text="title"/> that
+        <me>
+          \dim U + \dim U^\bot = n
+        </me>,
+        and since <m>U\cap U^\bot = \{\zer\}</m>, <m>U^\bot</m> is indeed a complement of <m>U</m>
+        in the sense introduced in <xref ref="thm-construct-complement">Theorem</xref>.
+        It's also fairly easy to see that <m>\dim U + \dim U^\bot = n</m> directly.
+        If <m>\ww\in U^\bot</m>, and <m>\{\uu_1,\ldots, \uu_k\}</m>
+        is a basis for <m>U</m>, then we have
+        <me>
+          \ww\dotp \uu_1= 0, \ldots, \ww\dotp \uu_k=0
+        </me>,
+        and for an unknown <m>\ww</m>, this is simply a homogeneous system of <m>k</m> equations with <m>n</m> variables.
+        Moreover, they are <em>independent</em> equations, since the <m>\uu_i</m> form a basis.
+        We thus expect <m>n-k</m> free parameters in the general solution.
+      </p>
+    </statement>
+  </remark>
 
-    <exercise>
-      <statement>
-        <p>
-          Let <m>U = \{(a-b+3c, 2a+b, 3c, 4a-b+3c,a-4c)\,|\, a,b,c\in\R\}\subseteq \R^5</m>.
-          Determine a basis for <m>U^\bot</m>.
-        </p>
-      </statement>
-      <solution>
-        <p>
-          First, we note that for a general element of <m>U</m>, we have
-          <me>
-            (a-b+3c, 2a+b, 3c, 4a-b+3c,a-4c) = a(1,2,0,4,1)+b(-1,1,0,-1,0)+c(3,0,3,3,-4)
-          </me>.
-          If <m>\ww = (x_1,x_2,x_3,x_4,x_5)\in U^\bot</m>, then we must have
-          <md>
-            <mrow>\ww\dotp (1,2,0,4,1) \amp = x_1+2x_2+4x_4+x_5=0 </mrow>
-            <mrow>\ww\dotp (-1,1,0,-1,0) \amp =-x_1+x_2-x_4=0</mrow>
-            <mrow>\ww\dotp (3,0,3,3,-4) \amp =3x_1+3x_3+3x_4-4x_5 = 0</mrow>
-          </md>.
-          To find a basis for <m>U^\bot</m>, we simply need to find the nullspace of the coefficient matrix for this system,
-          which we do below.
-        </p>
+  <exercise>
+    <statement>
+      <p>
+        Let <m>U = \{(a-b+3c, 2a+b, 3c, 4a-b+3c,a-4c)\,|\, a,b,c\in\R\}\subseteq \R^5</m>.
+        Determine a basis for <m>U^\bot</m>.
+      </p>
+    </statement>
+    <solution>
+      <p>
+        First, we note that for a general element of <m>U</m>, we have
+        <me>
+          (a-b+3c, 2a+b, 3c, 4a-b+3c,a-4c) = a(1,2,0,4,1)+b(-1,1,0,-1,0)+c(3,0,3,3,-4)
+        </me>.
+        If <m>\ww = (x_1,x_2,x_3,x_4,x_5)\in U^\bot</m>, then we must have
+        <md>
+          <mrow>\ww\dotp (1,2,0,4,1) \amp = x_1+2x_2+4x_4+x_5=0 </mrow>
+          <mrow>\ww\dotp (-1,1,0,-1,0) \amp =-x_1+x_2-x_4=0</mrow>
+          <mrow>\ww\dotp (3,0,3,3,-4) \amp =3x_1+3x_3+3x_4-4x_5 = 0</mrow>
+        </md>.
+        To find a basis for <m>U^\bot</m>, we simply need to find the nullspace of the coefficient matrix for this system,
+        which we do below.
+      </p>
 
-        <sage>
-          <input>
-            from sympy import Matrix, init_printing
-            init_printing()
-            A = Matrix(3,5,[1,2,0,4,1,-1,1,0,-1,0,3,0,3,3,-4])
-            A.nullspace()
-          </input>
-          <output>
-            \[\left[\bbm -2\\-1\\1\\1\\0\ebm, \bbm -\frac13\\ -\frac13\\ \frac53\\0\\1\ebm\right]\]
-          </output>
-        </sage>
-      </solution>
-    </exercise>
-  </subsection>
+      <sage>
+        <input>
+          from sympy import Matrix, init_printing
+          init_printing()
+          A = Matrix(3,5,[1,2,0,4,1,-1,1,0,-1,0,3,0,3,3,-4])
+          A.nullspace()
+        </input>
+        <output>
+          \[\left[\bbm -2\\-1\\1\\1\\0\ebm, \bbm -\frac13\\ -\frac13\\ \frac53\\0\\1\ebm\right]\]
+        </output>
+      </sage>
+    </solution>
+  </exercise>
+
+  <exercise>
+    <statement>
+      <p>
+        Prove that for any subspace <m>U\subseteq \R^n</m>,
+        <m>\proj_U+\proj_{U^\bot}</m> is the identity operator on <m>\R^n</m>.
+      </p>
+    </statement>
+    <hint>
+      <p>
+        Given <m>\xx\in\R^n</m>, can you write it as a sum of an element of <m>U</m>
+        and an element of <m>U^\bot</m>?
+      </p>
+    </hint>
+  </exercise>
+
+  <exercise>
+    <statement>
+      <p>
+        Prove that for any subspace <m>U\subseteq \R^n</m>, <m>(U^\bot)^\bot = U</m>.
+      </p>
+    </statement>
+    <hint>
+      <p>
+        Show that <m>U\subseteq (U^\bot)^\bot</m>, and then use <xref ref="rem-orth-comp-dim"/>
+        to show that the two spaces must have the same dimension.
+      </p>
+    </hint>
+  </exercise>
+
+  <exercise>
+    <statement>
+      <p>
+        Let <m>U</m> and <m>W</m> be subspaces of <m>\R^n</m>.
+        Prove that <m>(U+W)^\bot = U^\bot\cap W^\bot</m>.
+      </p>
+    </statement>
+    <hint>
+      <p>
+        One inclusion is easier than the other.
+        Use <xref ref="thm-sum-dimension"/> and <xref ref="rem-orth-comp-dim"/>
+        to show that the dimensions must be equal.
+      </p>
+    </hint>
 </section>
