@@ -258,9 +258,24 @@
         <me>
           P_U(\xx) = \proj{U}{\xx} \text{ for any } \xx\in\R^n
         </me>.
-        Then <m>T</m> is a linear operator such that <m>U=\im P_U</m> and <m>U^\bot = \ker P_U</m>.
+        Then <m>P_U</m> is a linear operator such that <m>U=\im P_U</m> and <m>U^\bot = \ker P_U</m>.
       </p>
     </statement>
+    <proof>
+      <title>Strategy</title>
+      <p>
+        The fact that <m>P_U</m> is linear follows from properties of the dot product, and some careful checking.
+        We know that <m>\im P_U\subseteq U</m> by definition of the projection,
+        and you can show that <m>P_U</m> acts as the identity on <m>U</m> using the <xref ref="thm-fourier-expansion" text="title"/>.
+      </p>
+
+      <p>
+        If <m>\xx\in U^\bot</m>, then <m>P_U(\xx)=\zer</m> by definition of <m>P_U</m>.
+        (Recall that it is defined using dot products with vectors in <m>U</m>.)
+        If <m>\xx\in \ker P_U</m>, use the <xref ref="thm-projection" text="title"/>,
+        to show that <m>\xx U^\bot</m>.
+      </p>
+    </proof>    
   </theorem>
 
   <remark xml:id="rem-orth-comp-dim">
