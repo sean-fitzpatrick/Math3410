@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-07-06T11:50:30-06:00       *-->
+<!--*       on 2022-07-11T12:39:01-06:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -14,15 +14,23 @@
 <meta name="robots" content="noindex, nofollow">
 </head>
 <body class="ignore-math">
-<h5 class="heading"><span class="type">Paragraph</span></h5>
-<p>We let <span class="process-math">\(\xx_1=(1,-2,1), \xx_2=(3,0,-2), \xx_3=(-1,1,2)\text{,}\)</span> and set <span class="process-math">\(\vv_1=\xx_1\text{.}\)</span> Then we have</p>
+<h4 class="heading"><span class="type">Paragraph</span></h4>
+<p>Let <span class="process-math">\(U\)</span> be a subspace of <span class="process-math">\(\R^n\text{,}\)</span> and let <span class="process-math">\(\{\xx_1,\ldots, \xx_m\}\)</span> be a basis of <span class="process-math">\(U\text{.}\)</span> Define vectors <span class="process-math">\(\vv_1,\ldots, \vv_m\)</span> in <span class="process-math">\(U\)</span> as follows:</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{align*}
-\vv_2 \amp = \xx_2-\left(\frac{\xx_2\dotp \vv_1}{\len{\vv_1}^2}\right)\vv_1 \\
-\amp = (3,0,-2)-\frac{1}{6}(1,-2,1)\\
-\amp = \frac16(17,2,-3) \text{.}
+\vv_1 \amp = \xx_1 \\
+\vv_2 \amp = \xx_2 - \frac{\xx_2\dotp\vv_1}{\len{\vv_1}^2}\vv_1\\
+\vv_3 \amp = \xx_3 - \frac{\xx_3\dotp\vv_1}{\len{\vv_1}^2}\vv_1-\frac{\xx_3\dotp\vv_2}{\len{\vv_2}^2}\vv_2\\
+\vdots \amp \\
+\vv_m \amp = \xx_m - \frac{\xx_m\dotp\vv_1}{\len{\vv_1}^2}\vv_1-\cdots - \frac{\xx_m\dotp\vv_{m-1}}{\len{\vv_{m-1}}^2}\vv_{m-1}\text{.}
 \end{align*}
 </div>
-<span class="incontext"><a href="sec-ortho-projection.html#p-890" class="internal">in-context</a></span>
+<p class="continuation">Then <span class="process-math">\(\{\vv_1,\ldots, \vv_m\}\)</span> is an orthogonal basis for <span class="process-math">\(U\text{.}\)</span> Moreover, for each <span class="process-math">\(k=1,2,\ldots, m\text{,}\)</span> we have</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\spn\{\vv_1,\ldots, \vv_k\} = \spn\{\xx_1,\ldots, \xx_k\}\text{.}
+\end{equation*}
+</div>
+<span class="incontext"><a href="sec-gram-schmidt.html#p-890" class="internal">in-context</a></span>
 </body>
 </html>

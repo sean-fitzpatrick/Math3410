@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-07-06T11:50:23-06:00       *-->
+<!--*       on 2022-07-11T12:38:55-06:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -163,11 +163,11 @@ var ggbApp = new GGBApplet({"appName": "graphing",
     "autoHeight": true,
     "disableAutoScale": false},
 true);
-</script><span class="threebuttons"><a id="previousbutton" class="previous-button toolbar-item button" href="ch-orthogonality.html" title="Previous">Prev</a><a id="upbutton" class="up-button button toolbar-item" href="ch-orthogonality.html" title="Up">Up</a><a id="nextbutton" class="next-button button toolbar-item" href="sec-ortho-projection.html" title="Next">Next</a></span>
+</script><span class="threebuttons"><a id="previousbutton" class="previous-button toolbar-item button" href="ch-orthogonality.html" title="Previous">Prev</a><a id="upbutton" class="up-button button toolbar-item" href="ch-orthogonality.html" title="Up">Up</a><a id="nextbutton" class="next-button button toolbar-item" href="sec-gram-schmidt.html" title="Next">Next</a></span>
 </div>
 </div>
 <div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
-<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="ch-orthogonality.html" title="Previous">Prev</a><a class="up-button button toolbar-item" href="ch-orthogonality.html" title="Up">Up</a><a class="next-button button toolbar-item" href="sec-ortho-projection.html" title="Next">Next</a>
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="ch-orthogonality.html" title="Previous">Prev</a><a class="up-button button toolbar-item" href="ch-orthogonality.html" title="Up">Up</a><a class="next-button button toolbar-item" href="sec-gram-schmidt.html" title="Next">Next</a>
 </div>
 </div></nav></header><div class="page">
 <div id="sidebar-left" class="sidebar" role="navigation"><div class="sidebar-content">
@@ -202,7 +202,8 @@ true);
 <li class="link">
 <a href="ch-orthogonality.html" data-scroll="ch-orthogonality" class="internal"><span class="codenumber">3</span> <span class="title">Orthogonality and Applications</span></a><ul>
 <li><a href="sec-orthogonal-sets.html" data-scroll="sec-orthogonal-sets" class="active">Orthogonal sets of vectors</a></li>
-<li><a href="sec-ortho-projection.html" data-scroll="sec-ortho-projection" class="internal">Orthogonal Projection</a></li>
+<li><a href="sec-gram-schmidt.html" data-scroll="sec-gram-schmidt" class="internal">The Gram-Schmidt Procedure</a></li>
+<li><a href="section-projection.html" data-scroll="section-projection" class="internal">Orthogonal Projection</a></li>
 <li><a href="worksheet-dual-basis.html" data-scroll="worksheet-dual-basis" class="internal">Worksheet: dual basis.</a></li>
 </ul>
 </li>
@@ -281,15 +282,17 @@ true);
 <li id="li-112"><p id="p-derived-li-112"><span class="process-math">\(\displaystyle \xx\dotp(\yy+\zz)=\xx\dotp\yy+\xx\dotp\zz\)</span></p></li>
 <li id="li-113"><p id="p-798">For any scalar <span class="process-math">\(c\text{,}\)</span> <span class="process-math">\(\xx\dotp(c\yy) = (c\xx)\dotp\yy=c(\xx\dotp\yy)\)</span></p></li>
 <li id="li-114"><p id="p-799"><span class="process-math">\(\xx\dotp\xx\geq 0\text{,}\)</span> and <span class="process-math">\(\xx\dotp\xx=0\)</span> if and only if <span class="process-math">\(\xx=\zer\)</span></p></li>
-</ol></article><p id="p-800">The above properties, when properly abstracted, become the defining properties of a (real) inner product. (A complex inner product also involves complex conjugates.) For a general inner product, the requirement <span class="process-math">\(\xx\dotp\xx\geq 0\)</span> is referred to as being <em class="emphasis">positive-definite</em>, and the property that only the zero vector produces zero when dotted with itself is called <em class="emphasis">nondegenerate</em>. Note that we have the following connection between norm and dot product:</p>
+</ol></article><article class="remark remark-like" id="remark-11"><h4 class="heading">
+<span class="type">Remark</span><span class="space"> </span><span class="codenumber">3.1.4</span><span class="period">.</span>
+</h4>
+<p id="p-800">The above properties, when properly abstracted, become the defining properties of a (real) inner product. (A complex inner product also involves complex conjugates.) For a general inner product, the requirement <span class="process-math">\(\xx\dotp\xx\geq 0\)</span> is referred to as being <em class="emphasis">positive-definite</em>, and the property that only the zero vector produces zero when dotted with itself is called <em class="emphasis">nondegenerate</em>. Note that we have the following connection between norm and dot product:</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 \len{\xx}^2 = \xx\dotp \xx\text{.}
 \end{equation*}
 </div>
-<p class="continuation">For a general inner product, this can be used as a <em class="emphasis">definition</em> of the norm associated to an inner product.</p>
-<article class="exercise exercise-like" id="exercise-63"><h4 class="heading">
-<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">3.1.4</span><span class="period">.</span>
+<p class="continuation">For a general inner product, this can be used as a <em class="emphasis">definition</em> of the norm associated to an inner product.</p></article><article class="exercise exercise-like" id="exercise-63"><h4 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">3.1.5</span><span class="period">.</span>
 </h4>
 <p id="p-801">Given that <span class="process-math">\(\len{\xx}=3, \len{\yy}=1\text{,}\)</span> and <span class="process-math">\(\xx\dotp\yy=-2\text{,}\)</span> compute <span class="process-math">\((4\xx-3\yy)\dotp (\xx+5\yy)\text{.}\)</span></p>
 <div class="solutions">
@@ -306,7 +309,7 @@ true);
 </div>
 </div></div>
 </div></article><article class="exercise exercise-like" id="ex-norm-sum-square"><h4 class="heading">
-<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">3.1.5</span><span class="period">.</span>
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">3.1.6</span><span class="period">.</span>
 </h4>
 <p id="p-804">Show that for any vectors <span class="process-math">\(\xx,\yy\in\R^n\text{,}\)</span> we have</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
@@ -327,7 +330,7 @@ true);
 </div>
 </div></div>
 </div></article><article class="exercise exercise-like" id="exercise-65"><h4 class="heading">
-<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">3.1.6</span><span class="period">.</span>
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">3.1.7</span><span class="period">.</span>
 </h4>
 <p id="p-807">Suppose <span class="process-math">\(\mathbb{R}^n=\spn\{\vv_1,\vv_2,\ldots, \vv_k\}\text{.}\)</span> Prove that <span class="process-math">\(\xx=\zer\)</span> if and only if <span class="process-math">\(\xx\dotp \vv_i=0\)</span> for each <span class="process-math">\(i=1,2,\ldots, k\text{.}\)</span></p>
 <div class="solutions">
@@ -344,7 +347,7 @@ true);
 </div></div>
 </div></article><p id="p-810">There are two important inequalities associated to the dot product and norm. We state them both in the following theorem, without proof.</p>
 <article class="theorem theorem-like" id="thm-cauchy-triangle"><h4 class="heading">
-<span class="type">Theorem</span><span class="space"> </span><span class="codenumber">3.1.7</span><span class="period">.</span>
+<span class="type">Theorem</span><span class="space"> </span><span class="codenumber">3.1.8</span><span class="period">.</span>
 </h4>
 <p id="p-811">Let <span class="process-math">\(\xx,\yy\)</span> be any vectors in <span class="process-math">\(\R^n\text{.}\)</span> Then</p>
 <ol class="decimal">
@@ -358,7 +361,7 @@ true);
 </div>
 <p class="continuation">since after all, <span class="process-math">\(\lvert \cos\theta\rvert\leq 1\)</span> for any angle <span class="process-math">\(\theta\text{.}\)</span></p>
 <p id="p-813">The usual proof involves some algebraic trickery; the interested reader is invited to search online for the Cauchy-Schwarz inequality, where they will find no shortage of websites offering proofs.</p>
-<p id="p-814">The second result, called the  <em class="emphasis">triangle inequality</em>, follows immediately from the Cauchy-Scwarz inequality and <a href="" class="xref" data-knowl="./knowl/ex-norm-sum-square.html" title="Exercise 3.1.5">Exercise 3.1.5</a>:</p>
+<p id="p-814">The second result, called the  <em class="emphasis">triangle inequality</em>, follows immediately from the Cauchy-Scwarz inequality and <a href="" class="xref" data-knowl="./knowl/ex-norm-sum-square.html" title="Exercise 3.1.6">Exercise 3.1.6</a>:</p>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/ex-norm-sum-square.html">
 \begin{equation*}
 \len{\xx+\yy}^2 = \len{\xx}^2+2\xx\dotp\yy+\len{\yy^2}\leq \len{\xx}^2+2\len{\xx}\len{\yy}+\len{\yy}^2=(\len{\xx}+\len{\yy})^2\text{.}
@@ -366,15 +369,15 @@ true);
 </div>
 <p id="p-815">The triangle inequality gets its name from the “tip-to-tail” picture for vector addition. Essentially, it tells us that the length of any side of a triangle must be less than the sum of the lengths of the other two sides. The importance of the triangle inequality is that it tells us that the norm can be used to define distance.</p>
 <article class="definition definition-like" id="def-vector-distance"><h4 class="heading">
-<span class="type">Definition</span><span class="space"> </span><span class="codenumber">3.1.8</span><span class="period">.</span>
+<span class="type">Definition</span><span class="space"> </span><span class="codenumber">3.1.9</span><span class="period">.</span>
 </h4>
 <p id="p-816">For any vectors <span class="process-math">\(\xx,\yy\in \R^n\text{,}\)</span> the <dfn class="terminology">distance</dfn> from <span class="process-math">\(\xx\)</span> to <span class="process-math">\(\yy\)</span> is denoted <span class="process-math">\(d(\xx,\yy)\text{,}\)</span> and defined as</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 d(\xx,\yy) = \len{\xx-\yy}\text{.}
 \end{equation*}
-</div></article><article class="remark remark-like" id="remark-11"><h4 class="heading">
-<span class="type">Remark</span><span class="space"> </span><span class="codenumber">3.1.9</span><span class="period">.</span>
+</div></article><article class="remark remark-like" id="remark-12"><h4 class="heading">
+<span class="type">Remark</span><span class="space"> </span><span class="codenumber">3.1.10</span><span class="period">.</span>
 </h4>
 <p id="p-817">Using properties of the norm, we can show that this distance function meets the criteria of what's called a <em class="emphasis">metric</em>. A metric is any function that takes a pair of vectors (or points) as input, and returns a number as output, with the following properties:</p>
 <ol class="decimal">
@@ -384,7 +387,7 @@ d(\xx,\yy) = \len{\xx-\yy}\text{.}
 </ol>
 <p class="continuation">We leave it as an exercise to confirm that the distance function defined above is a metric.</p>
 <p id="p-821">In more advanced courses (e.g. topology or analysis) you might go into detailed study of these structures. There are three interrelated structures: inner products, norms, and metrics. You might consider questions like: does every norm come from an inner product? Does every metric come from a norm? (No.) Things get even more interesting for infinite-dimensional spaces. Of special interest are spaces such as <em class="emphasis">Hilbert spaces</em> (a special type of infinite-dimensional inner product space) and <em class="emphasis">Banach spaces</em> (a special type of infinite-dimensional normed space).</p></article><article class="exercise exercise-like" id="ex-mc-ortho-vect"><h4 class="heading">
-<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">3.1.10</span><span class="period">.</span>
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">3.1.11</span><span class="period">.</span>
 </h4>
 <div class="ptx-runestone-container"><div class="runestone"><ul data-component="multiplechoice" id="ex-mc-ortho-vect" data-multipleanswers="true" data-random="">
 <p id="p-822">Select all vectors that are orthogonal to the vector <span class="process-math">\((2,1,-3)\)</span></p>
@@ -393,14 +396,14 @@ d(\xx,\yy) = \len{\xx-\yy}\text{.}
 <li data-component="answer" id="ex-mc-ortho-vect_opt_b"><p id="p-825"><span class="process-math">\((3,1,2)\)</span></p></li>
 <li data-component="feedback" id="ex-mc-ortho-vect_opt_b"><p id="p-826">You should find that the dot product is <span class="process-math">\(1\text{,}\)</span> not <span class="process-math">\(0\text{,}\)</span> so these vectors are not orthogonal.</p></li>
 <li data-component="answer" id="ex-mc-ortho-vect_opt_c"><p id="p-827"><span class="process-math">\((0,0)\)</span></p></li>
-<li data-component="feedback" id="ex-mc-ortho-vect_opt_c"><p id="p-828">You might be tempted to say that the zero vector is orthoginal to everything, but we can't compare vectors from different vector spaces!</p></li>
+<li data-component="feedback" id="ex-mc-ortho-vect_opt_c"><p id="p-828">You might be tempted to say that the zero vector is orthogonal to everything, but we can't compare vectors from different vector spaces!</p></li>
 <li data-component="answer" id="ex-mc-ortho-vect_opt_d" data-correct=""><p id="p-829"><span class="process-math">\((0,-3,-1)\)</span></p></li>
 <li data-component="feedback" id="ex-mc-ortho-vect_opt_d"><p id="p-830">Yes! We have to be careful of signs here: <span class="process-math">\(2(0)+1(-3)+(-3)(-1)=0-3+3=0\text{.}\)</span></p></li>
 </ul></div></div></article><article class="exercise exercise-like" id="ex-tf-ortho-vect"><h4 class="heading">
-<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">3.1.11</span><span class="period">.</span>
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">3.1.12</span><span class="period">.</span>
 </h4>
 <div class="ptx-runestone-container"><div class="runestone"><ul data-component="multiplechoice" data-multipleanswers="false" id="ex-tf-ortho-vect">
-<p id="p-831">If <span class="process-math">\(\uu\)</span> is orthogonal to <span class="process-math">\(\vv\)</span> and <span class="process-math">\(\vv\)</span> is orthogonal to <span class="process-math">\(\ww\text{,}\)</span> then <span class="process-math">\(\uu\)</span> is orthoginal to <span class="process-math">\(\ww\text{.}\)</span></p>
+<p id="p-831">If <span class="process-math">\(\uu\)</span> is orthogonal to <span class="process-math">\(\vv\)</span> and <span class="process-math">\(\vv\)</span> is orthogonal to <span class="process-math">\(\ww\text{,}\)</span> then <span class="process-math">\(\uu\)</span> is orthogonal to <span class="process-math">\(\ww\text{.}\)</span></p>
 <li data-component="answer" id="ex-tf-ortho-vect_opt_t"><p>True.</p></li>
 <li data-component="feedback" id="ex-tf-ortho-vect_opt_t"><p id="p-832">Consider <span class="process-math">\(\uu=(1,0,0)\text{,}\)</span> <span class="process-math">\(\vv=(0,1,0)\text{,}\)</span> and <span class="process-math">\(\ww=(1,0,1)\text{.}\)</span></p></li>
 <li data-component="answer" id="ex-tf-ortho-vect_opt_f" data-correct=""><p>False.</p></li>
@@ -410,14 +413,14 @@ d(\xx,\yy) = \len{\xx-\yy}\text{.}
 </h3>
 <p id="p-833">In <a href="ch-vector-space.html" class="internal" title="Chapter 1: Vector spaces">Chapter 1</a>, we learn that linear independence and span are important concepts associated to a set of vectors. In this chapter, we learn what it means for a set of vectors to be <em class="emphasis">orthogonal</em>, and try to understand why this concept is just as important as independence and span.</p>
 <article class="definition definition-like" id="def-ortho-set"><h4 class="heading">
-<span class="type">Definition</span><span class="space"> </span><span class="codenumber">3.1.12</span><span class="period">.</span>
+<span class="type">Definition</span><span class="space"> </span><span class="codenumber">3.1.13</span><span class="period">.</span>
 </h4>
 <p id="p-834">A set of vectors <span class="process-math">\(\{\vv_1,\vv_2,\ldots, \vv_k\}\)</span> in <span class="process-math">\(\R^n\)</span> is called <dfn class="terminology">orthogonal</dfn> if:</p>
 <ul class="disc">
 <li id="li-120"><p id="p-835"><span class="process-math">\(\vv_i\neq \zer\)</span> for each <span class="process-math">\(i=1,2\ldots, k\)</span></p></li>
 <li id="li-121"><p id="p-836"><span class="process-math">\(\vv_i\dotp\vv_j = 0\)</span> for all <span class="process-math">\(i\neq j\)</span></p></li>
 </ul></article><article class="exercise exercise-like" id="ex-orthogonal-set"><h4 class="heading">
-<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">3.1.13</span><span class="period">.</span>
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">3.1.14</span><span class="period">.</span>
 </h4>
 <p id="p-837">Show that the following is an orthogonal subset of <span class="process-math">\(\R^4\text{.}\)</span></p>
 <div class="displaymath process-math" data-contains-math-knowls="">
@@ -454,7 +457,7 @@ A.rref()
 <p id="p-841">One possible nonzero solution is to take <span class="process-math">\(d=2\text{,}\)</span> giving <span class="process-math">\(\xx=(1,-6,-1,2)\text{.}\)</span> We'll leave the verification that this vector works as an exercise.</p>
 </div></div>
 </div></article><article class="exercise exercise-like" id="ex-tf-ortho-vect2"><h4 class="heading">
-<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">3.1.14</span><span class="period">.</span>
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">3.1.15</span><span class="period">.</span>
 </h4>
 <div class="ptx-runestone-container"><div class="runestone"><ul data-component="multiplechoice" data-multipleanswers="false" id="ex-tf-ortho-vect2">
 <p id="p-842">If <span class="process-math">\(\{\vv,\ww\}\)</span> and <span class="process-math">\(\{\xx,\yy\}\)</span> are orthogonal sets of vectors in <span class="process-math">\(\R^n\text{,}\)</span> then <span class="process-math">\(\{\vv,\ww,\xx,\yy\}\)</span> is an orthogonal set of vectors.</p>
@@ -464,7 +467,7 @@ A.rref()
 <li data-component="feedback" id="ex-tf-ortho-vect2_opt_f"><p id="p-843">Try to construct an example. The vector <span class="process-math">\(\xx\)</span> has to be orthogonal to <span class="process-math">\(\yy\text{,}\)</span> but is there any reason it has to be orthogonal to <span class="process-math">\(\vv\)</span> or <span class="process-math">\(\ww\text{?}\)</span></p></li>
 </ul></div></div></article><p id="p-844">The requirement that the vectors in an orthogonal set be nonzero is partly because the alternative would be boring, and partly because it lets us state the following theorem.</p>
 <article class="theorem theorem-like" id="thm-ortho-independent"><h4 class="heading">
-<span class="type">Theorem</span><span class="space"> </span><span class="codenumber">3.1.15</span><span class="period">.</span>
+<span class="type">Theorem</span><span class="space"> </span><span class="codenumber">3.1.16</span><span class="period">.</span>
 </h4>
 <p id="p-845">Any orthogonal set of vectors is linearly independent.</p></article><article class="hiddenproof" id="proof-40"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-40"><h4 class="heading"><span class="title">Strategy.</span></h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-40"><article class="hiddenproof"><p id="p-846">Any proof of linear independence should start by defining our set of vectors, and assuming that a linear combination of these vectors is equal to the zero vector, with the goal of showing that the scalars have to be zero.</p>
 <p id="p-847">Set up the equation (say, <span class="process-math">\(c_1\vv_1+\cdots c_n\vv_n=\zer\)</span>), with the assumption that your set of vectors is orthogonal. What happens if you take the dot product of both sides with one of these vectors?</p></article></div>
@@ -485,7 +488,7 @@ c_1\len{\vv_1}^2+0+\cdots + 0\amp = 0 \text{.}
 <p id="p-849">Another useful consequence of orthogonality: in two dimensions, we have the Pythagorean Theorem for right-angled triangles. If the “legs” of the triangle are identified with vectors <span class="process-math">\(\xx\)</span> and <span class="process-math">\(\yy\text{,}\)</span> and the hypotenuse with <span class="process-math">\(\zz\text{,}\)</span> then <span class="process-math">\(\len{\xx}^2+\len{\yy}^2=\len{\zz}^2\text{,}\)</span> since <span class="process-math">\(\xx\dotp \yy=0\text{.}\)</span></p>
 <p id="p-850">In <span class="process-math">\(n\)</span> dimensions, we have the following, which follows from the fact that all “cross terms” (dot products of different vectors) will vanish.</p>
 <article class="theorem theorem-like" id="thm-pythagoras"><h4 class="heading">
-<span class="type">Theorem</span><span class="space"> </span><span class="codenumber">3.1.16</span><span class="period">.</span>
+<span class="type">Theorem</span><span class="space"> </span><span class="codenumber">3.1.17</span><span class="period">.</span><span class="space"> </span><span class="title">Pythagorean Theorem.</span>
 </h4>
 <p id="p-851">For any orthogonal set of vectors <span class="process-math">\(\{\xx_1,\ldots, \xx_k\}\)</span> we have</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
@@ -501,7 +504,7 @@ c_1\len{\vv_1}^2+0+\cdots + 0\amp = 0 \text{.}
 <p class="continuation">and use the distributive property of the dot product, along with the fact that each pair of different vectors is orthogonal.</p></article></div>
 <p id="p-853">Our final initial result about orthogonal sets of vectors relates to span. In general, we know that if <span class="process-math">\(\yy\in\spn\{\xx_1,\ldots, \xx_k\}\text{,}\)</span> then it is possible to solve for scalars <span class="process-math">\(c_1,\ldots, c_k\)</span> such that <span class="process-math">\(\yy=c_1\xx_1+\cdots+ c_k\xx_k\text{.}\)</span> The trouble is that finding these scalars generally involves setting up, and then solving, a system of linear equations. The great thing about orthogonal sets of vectors is that we can provide explicit formulas for the scalars.</p>
 <article class="theorem theorem-like" id="thm-fourier-expansion"><h4 class="heading">
-<span class="type">Theorem</span><span class="space"> </span><span class="codenumber">3.1.17</span><span class="period">.</span><span class="space"> </span><span class="title">Fourier expansion theorem.</span>
+<span class="type">Theorem</span><span class="space"> </span><span class="codenumber">3.1.18</span><span class="period">.</span><span class="space"> </span><span class="title">Fourier expansion theorem.</span>
 </h4>
 <p id="p-854">Let <span class="process-math">\(S=\{\vv_1,\vv_2,\ldots, \vv_k\}\)</span> be an orthogonal set of vectors. For any <span class="process-math">\(\yy\in \spn S\text{,}\)</span> we have</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
@@ -510,7 +513,7 @@ c_1\len{\vv_1}^2+0+\cdots + 0\amp = 0 \text{.}
 \left(\frac{\yy\dotp\mathbf{v}_2}{\vv_2\dotp\vv_2}\right)\vv_2+\cdots +
 \left(\frac{\yy\dotp\mathbf{v}_k}{\vv_k\dotp\vv_k}\right)\vv_k\text{.}
 \end{equation*}
-</div></article><article class="hiddenproof" id="proof-43"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-43"><h4 class="heading"><span class="title">Strategy.</span></h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-43"><article class="hiddenproof"><p id="p-855">Take the same approach you used in the proof of <a href="" class="xref" data-knowl="./knowl/thm-ortho-independent.html" title="Theorem 3.1.15">Theorem 3.1.15</a>, but this time, with a nonzero vector on the right-hand side.</p></article></div>
+</div></article><article class="hiddenproof" id="proof-43"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-43"><h4 class="heading"><span class="title">Strategy.</span></h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-43"><article class="hiddenproof"><p id="p-855">Take the same approach you used in the proof of <a href="" class="xref" data-knowl="./knowl/thm-ortho-independent.html" title="Theorem 3.1.16">Theorem 3.1.16</a>, but this time, with a nonzero vector on the right-hand side.</p></article></div>
 <article class="hiddenproof" id="proof-44"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-44"><h4 class="heading"><span class="type">Proof<span class="period">.</span></span></h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-44"><article class="hiddenproof"><p id="p-856">Let <span class="process-math">\(\yy=c_1\vv_1+\cdots + c_k\vv_k\text{.}\)</span> Taking the dot product of both sides of this equation with <span class="process-math">\(\vv_i\)</span> gives</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
@@ -518,12 +521,12 @@ c_1\len{\vv_1}^2+0+\cdots + 0\amp = 0 \text{.}
 \end{equation*}
 </div>
 <p class="continuation">since the dot product of <span class="process-math">\(\vv_i\)</span> with <span class="process-math">\(\vv_j\)</span> for <span class="process-math">\(i\neq j\)</span> is zero.</p></article></div>
-<p id="p-857">One use of <a href="" class="xref" data-knowl="./knowl/thm-fourier-expansion.html" title="Theorem 3.1.17: Fourier expansion theorem">Theorem 3.1.17</a> is determining whether or not a given vector is in the span of an orthogonal set. If it is in the span, then its coefficients must satisfy the Fourier expansion formula. Therefore, if we compute the right hand side of the above formula and do not get our original vector, then that vector must not be in the span.</p>
+<p id="p-857">One use of <a href="" class="xref" data-knowl="./knowl/thm-fourier-expansion.html" title="Theorem 3.1.18: Fourier expansion theorem">Theorem 3.1.18</a> is determining whether or not a given vector is in the span of an orthogonal set. If it is in the span, then its coefficients must satisfy the Fourier expansion formula. Therefore, if we compute the right hand side of the above formula and do not get our original vector, then that vector must not be in the span.</p>
 <article class="exercise exercise-like" id="ex-test-span"><h4 class="heading">
-<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">3.1.18</span><span class="period">.</span>
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">3.1.19</span><span class="period">.</span>
 </h4>
 <p id="p-858">Determine whether or not the vectors <span class="process-math">\(\vv=(1,-4,3,-11), \ww=(3,1,-4,2)\)</span> belong to the span of the vectors <span class="process-math">\(\xx_1=(1,0,1,0), \xx_2=(-1,0,1,1), \xx_3=(1,1,-1,2)\text{.}\)</span></p>
-<p id="p-859">(We confirmed that these vectors form an orthogonal set in <a href="" class="xref" data-knowl="./knowl/ex-orthogonal-set.html" title="Exercise 3.1.13">Exercise 3.1.13</a>.)</p>
+<p id="p-859">(We confirmed that these vectors form an orthogonal set in <a href="" class="xref" data-knowl="./knowl/ex-orthogonal-set.html" title="Exercise 3.1.14">Exercise 3.1.14</a>.)</p>
 <div class="solutions">
 <a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-48" id="solution-48"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-48"><div class="solution solution-like">
 <p id="p-860">We compute</p>
@@ -559,7 +562,7 @@ c_1\len{\vv_1}^2+0+\cdots + 0\amp = 0 \text{.}
 </div>
 <p class="continuation">We often say that the vector <span class="process-math">\(\uu\)</span> is <em class="emphasis">normalized</em>. (The convention of using a “hat” for unit vectors is common but not universal.)</p>
 <article class="exercise exercise-like" id="ex-unitvec-matching"><h4 class="heading">
-<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">3.1.19</span><span class="period">.</span>
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">3.1.20</span><span class="period">.</span>
 </h4>
 <div class="ptx-runestone-container"><div class="runestone"><ul data-component="dragndrop" data-question_label="" style="visibility: hidden;" id="ex-unitvec-matching">
 <span data-subcomponent="question"><p id="p-864">Match each vector on the left with a parallel unit vector on the right.</p></span><span data-subcomponent="feedback"><p id="p-865">Remember that a parallel vector is a scalar multiple of the one you started with.</p></span><li data-subcomponent="draggable" id="ex-unitvec-matching_drag1"><span class="process-math">\(\langle 2, -1, 2\rangle\)</span></li>
@@ -571,12 +574,12 @@ c_1\len{\vv_1}^2+0+\cdots + 0\amp = 0 \text{.}
 <li data-subcomponent="draggable" id="ex-unitvec-matching_drag4"><span class="process-math">\(\langle 2,0,1\rangle\)</span></li>
 <li data-subcomponent="dropzone" for="ex-unitvec-matching_drag4"><span class="process-math">\(\left\langle \frac{2}{\sqrt{5}},0,\frac{1}{\sqrt{5}}\right\rangle\)</span></li>
 </ul></div></div></article><article class="definition definition-like" id="def-onb"><h4 class="heading">
-<span class="type">Definition</span><span class="space"> </span><span class="codenumber">3.1.20</span><span class="period">.</span>
+<span class="type">Definition</span><span class="space"> </span><span class="codenumber">3.1.21</span><span class="period">.</span>
 </h4>
 <p id="p-866">A basis <span class="process-math">\(B\)</span> of <span class="process-math">\(\R^n\)</span> is called an <dfn class="terminology">orthonormal basis</dfn> if <span class="process-math">\(B\)</span> is orthogonal, and all the vectors in <span class="process-math">\(B\)</span> are unit vectors.</p></article><article class="example example-like" id="example-11"><h4 class="heading">
-<span class="type">Example</span><span class="space"> </span><span class="codenumber">3.1.21</span><span class="period">.</span>
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">3.1.22</span><span class="period">.</span>
 </h4>
-<p id="p-867">In <a href="" class="xref" data-knowl="./knowl/ex-orthogonal-set.html" title="Exercise 3.1.13">Exercise 3.1.13</a> we saw that the set</p>
+<p id="p-867">In <a href="" class="xref" data-knowl="./knowl/ex-orthogonal-set.html" title="Exercise 3.1.14">Exercise 3.1.14</a> we saw that the set</p>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/ex-orthogonal-set.html">
 \begin{equation*}
 \{(1,0,1,0), (-1,0,1,1), (1,1,-1,2),(1,-6,-1,2)\}

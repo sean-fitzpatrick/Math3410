@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-07-06T11:50:30-06:00       *-->
+<!--*       on 2022-07-11T12:39:01-06:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -14,14 +14,26 @@
 <meta name="robots" content="noindex, nofollow">
 </head>
 <body class="ignore-math">
-<h3 class="heading"><span class="type">Paragraph</span></h3>
-<p>The polynomial <span class="process-math">\(p_A(x)=\det(xI_n -A)\)</span> is called the <dfn class="terminology">characteristic polynomial</dfn> of <span class="process-math">\(A\text{.}\)</span> (Note that <span class="process-math">\(\det(x I_n-A) = (-1)^n\det(A-x I_n)\text{.}\)</span> We choose this order so that the coefficient of <span class="process-math">\(x^n\)</span> is always 1.) The equation</p>
+<h4 class="heading"><span class="type">Paragraph</span></h4>
+<p>Let <span class="process-math">\(\phi\in W^*\text{.}\)</span> We have</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation}
-\det(xI_n - A) = 0\tag{4.1.2}
-\end{equation}
+\begin{equation*}
+(S+T)^*(\phi) = \phi\circ(S+T) = \phi\circ S+\phi\circ T = S^*\phi+T^*\phi\text{,}
+\end{equation*}
 </div>
-<p class="continuation">is called the <dfn class="terminology">characteristic equation</dfn> of <span class="process-math">\(A\text{.}\)</span> The solutions to this equation are precisely the eigenvalues of <span class="process-math">\(A\text{.}\)</span></p>
-<span class="incontext"><a href="subsec-eigen-basics.html#p-971" class="internal">in-context</a></span>
+<p class="continuation">since <span class="process-math">\(\phi\)</span> is linear. Similarly,</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+(kS)^*(\phi) = \phi\circ (kS) = k(\phi\circ S) = k(S^*\phi)\text{.}
+\end{equation*}
+</div>
+<p class="continuation">Finally, we have</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+(ST)^*\phi = \phi\circ(ST) = \phi\circ(S\circ T) = (\phi\circ S)\circ T = T^*(\phi\circ S) = T^*(S^*\phi) = (T^*S^*)(\phi),\text{.}
+\end{equation*}
+</div>
+<p class="continuation">since composition is associative.</p>
+<span class="incontext"><a href="worksheet-dual-basis.html#p-971" class="internal">in-context</a></span>
 </body>
 </html>

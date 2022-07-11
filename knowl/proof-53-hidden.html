@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-07-06T11:50:31-06:00       *-->
+<!--*       on 2022-07-11T12:39:02-06:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -13,10 +13,41 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="robots" content="noindex, nofollow">
 </head>
-<body class="ignore-math"><article class="hiddenproof"><p>For any <span class="process-math">\(\xx\neq \zer\)</span> in <span class="process-math">\(\R^n\text{,}\)</span></p>
+<body class="ignore-math"><article class="hiddenproof"><ol class="decimal">
+<li>
+<p>Using the distributive properties of matrix multiplication and the transpose,</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{align*}
+\langle \zz_1+\zz_2,\zz_3\rangle \amp= (\zz_1+\zz_2)^T\bar{\zz_3}\\
+\amp =(\zz_1^T+\zz_2^T)\bar{\zz_3}\\
+\amp =\zz_1^T\bar{\zz_3}+\zz_2^T\bar{\zz_3}\\
+\amp =\langle \zz_1,\zz_3\rangle + \langle \zz_2,\zz_3\rangle\text{.}
+\end{align*}
+</div>
+<p class="continuation">The proof is similar when addition is in the second component. (But not identical -- you'll need the fact that the complex conjugate is distributive, rather than the transpose.)</p>
+</li>
+<li>
+<p>These again follow from writing the inner product as a matrix product.</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
-\xx^T A\xx = \xx^TU^T U\xx = (U\xx)^T(U\xx) = \len{U\xx}^2\geq 0\text{.}
+\langle \alpha\zz_1,\zz_2\rangle = (\alpha \zz_1)^T\bar{\zz_2} = \alpha(\zz_1^T\bar{\zz_2}) = \alpha\langle\zz_1,\zz_2\rangle\text{,}
 \end{equation*}
-</div></article></body>
+</div>
+<p class="continuation">and</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\langle \zz_1,\alpha\zz_2\rangle = \zz_1^T\overline{\alpha \zz_2} = \zz_1^T(\bar{\alpha}\bar{\zz_2}) = \bar{\alpha}(\zz_1^T\zz_2)=\alpha\langle \zz_1,\zz_2\rangle\text{.}
+\end{equation*}
+</div>
+</li>
+<li>
+<p>Note that for any vectors <span class="process-math">\(\zz,\ww\text{,}\)</span> <span class="process-math">\(\zz^T\ww\)</span> is a number, and therefore equal to its own transpose. Thus, we have <span class="process-math">\(\zz^T\ww = (\zz^T\ww)^T=\ww^T\zz\text{,}\)</span> and</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\overline{\langle \zz_1,\zz_2\rangle} = \overline{\zz_1^T\bar{\zz_2}} = \overline{\bar{\zz_2}^T\zz_1} = \zz_2^T\overline{\zz_1}=\langle \zz_2,\zz_1\rangle\text{.}
+\end{equation*}
+</div>
+</li>
+<li><p>This was already demonstrated above.</p></li>
+</ol></article></body>
 </html>

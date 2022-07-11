@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*       on 2022-07-11T12:38:55-06:00       *-->
+<!--*   A recent stable commit (2020-08-09):   *-->
+<!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<html lang="en-US">
+<head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Orthogonal Projection</title>
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="book">
+<meta property="book:title" content="Linear Algebra">
+<meta property="book:author" content="Sean Fitzpatrick">
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>window.MathJax = {
+  tex: {
+    inlineMath: [['\\(','\\)']],
+    tags: "none",
+    tagSide: "right",
+    tagIndent: ".8em",
+    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'newcommand', 'knowl']}
+  },
+  options: {
+    ignoreHtmlClass: "tex2jax_ignore|ignore-math",
+    processHtmlClass: "process-math",
+    renderActions: {
+        findScript: [10, function (doc) {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
+                var display = !!node.type.match(/; *mode=display/);
+                var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                var text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = {node: text, delim: '', n: 0};
+                math.end = {node: text, delim: '', n: 0};
+                doc.math.push(math);
+            });
+        }, '']
+    },
+  },
+  chtml: {
+    scale: 0.88,
+    mtextInheritFont: true
+  },
+  loader: {
+    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
+    paths: {pretext: "https://pretextbook.org/js/lib"},
+  },
+};
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><script>// Make *any* pre with class 'sagecell-sage' an executable Sage cell
+// Their results will be linked, only within language type
+sagecell.makeSagecell({inputLocation: 'pre.sagecell-sage',
+                       linked: true,
+                       languages: ['sage'],
+                       evalButtonText: 'Evaluate (Sage)'});
+</script><link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/themes/prism.css" rel="stylesheet">
+<script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.13/pretext.js"></script><script>miniversion=0.674</script><script src="https://pretextbook.org/js/0.13/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+</script><link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+<script src="https://cdn.geogebra.org/apps/deployggb.js"></script><link href="https://pretextbook.org/css/0.4/pretext.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/banner_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/toc_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/knowls_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/style_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/colors_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/setcolors.css" rel="stylesheet" type="text/css">
+<!--** eBookCongig is necessary to configure interactive       **-->
+<!--** Runestone components to run locally in reader's browser **-->
+<!--** No external communication:                              **-->
+<!--**     log level is 0, Runestone Services are disabled     **-->
+<script type="text/javascript">
+eBookConfig = {};
+eBookConfig.useRunestoneServices = false;
+eBookConfig.host = 'http://127.0.0.1:8000';
+eBookConfig.course = 'PTX Course: Title Here';
+eBookConfig.basecourse = 'PTX Base Course';
+eBookConfig.isLoggedIn = false;
+eBookConfig.email = '';
+eBookConfig.isInstructor = false;
+eBookConfig.logLevel = 0;
+eBookConfig.username = '';
+eBookConfig.readings = null;
+eBookConfig.activities = null;
+eBookConfig.downloadsEnabled = false;
+eBookConfig.allow_pairs = false;
+eBookConfig.enableScratchAC = false;
+eBookConfig.build_info = "";
+eBookConfig.python3 = null;
+eBookConfig.acDefaultLanguage = 'python';
+eBookConfig.runestone_version = '5.0.1';
+eBookConfig.jobehost = '';
+eBookConfig.proxyuri_runs = '';
+eBookConfig.proxyuri_files = '';
+eBookConfig.enable_chatcodes =  false;
+</script>
+<!--*** Runestone Services ***-->
+<script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.2.1/runtime.b0f8547c48f16a9f.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.2.1/637.d54be67956c5c660.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.2.1/runestone.0e9550fe42760516.bundle.js"></script><link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/6.2.1/637.fafafbd97df8a0d1.css">
+<link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/6.2.1/runestone.e4d5592da655219f.css">
+</head>
+<body id="linalg" class="pretext-book ignore-math has-toc has-sidebar-left">
+<a class="assistive" href="#content">Skip to main content</a><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\spn}{\operatorname{span}}
+\newcommand{\bbm}{\begin{bmatrix}}
+\newcommand{\ebm}{\end{bmatrix}}
+\newcommand{\R}{\mathbb{R}}
+\ifdefined\C
+\renewcommand\C{\mathbb{C}}
+\else
+\newcommand\C{\mathbb{C}}
+\fi
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\nll}{\operatorname{null}}
+\newcommand{\csp}{\operatorname{col}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\dotp}{\!\boldsymbol{\cdot}\!}
+\newcommand{\len}[1]{\lVert #1\rVert}
+\newcommand{\abs}[1]{\lvert #1\rvert}
+\newcommand{\proj}[2]{\operatorname{proj}_{#1}{#2}}
+\newcommand{\bz}{\overline{z}}
+\newcommand{\zz}{\mathbf{z}}
+\newcommand{\uu}{\mathbf{u}}
+\newcommand{\vv}{\mathbf{v}}
+\newcommand{\ww}{\mathbf{w}}
+\newcommand{\xx}{\mathbf{x}}
+\newcommand{\yy}{\mathbf{y}}
+\newcommand{\zer}{\mathbf{0}}
+\newcommand{\vecq}{\mathbf{q}}
+\newcommand{\vecp}{\mathbf{p}}
+\newcommand{\vece}{\mathbf{e}}
+\newcommand{\basis}[2]{\{\mathbf{#1}_1,\mathbf{#1}_2,\ldots,\mathbf{#1}_{#2}\}}
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\definecolor{fillinmathshade}{gray}{0.9}
+\newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
+\)</span></div>
+<header id="masthead" class="smallbuttons"><div class="banner"><div class="container">
+<a id="logo-link" href=""></a><div class="title-container">
+<h1 class="heading"><a href="linear-algebra.html"><span class="title">Linear Algebra:</span> <span class="subtitle">A second course, featuring proofs and Python</span></a></h1>
+<p class="byline">Sean Fitzpatrick</p>
+</div>
+</div></div>
+<nav id="primary-navbar" class="navbar"><div class="container">
+<div class="navbar-top-buttons">
+<button class="sidebar-left-toggle-button button active" aria-label="Show or hide table of contents sidebar">Contents</button><div class="tree-nav toolbar toolbar-divisor-3">
+<button id="calculator-toggle" class="toolbar-item button toggle" title="Show calculator" aria-expanded="false" aria-controls="calculator-container">Calc</button><div id="calculator-container" class="calculator-container" style="display: none; z-index:100;"><div id="geogebra-calculator"></div></div>
+<script>
+var ggbApp = new GGBApplet({"appName": "graphing",
+    "width": 330,
+    "height": 600,
+    "showToolBar": true,
+    "showAlgebraInput": true,
+    "perspective": "G/A",
+    "algebraInputPosition": "bottom",
+    "scaleContainerClass": "calculator-container",
+    "allowUpscale": true,
+    "autoHeight": true,
+    "disableAutoScale": false},
+true);
+</script><span class="threebuttons"><a id="previousbutton" class="previous-button toolbar-item button" href="sec-gram-schmidt.html" title="Previous">Prev</a><a id="upbutton" class="up-button button toolbar-item" href="ch-orthogonality.html" title="Up">Up</a><a id="nextbutton" class="next-button button toolbar-item" href="worksheet-dual-basis.html" title="Next">Next</a></span>
+</div>
+</div>
+<div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="sec-gram-schmidt.html" title="Previous">Prev</a><a class="up-button button toolbar-item" href="ch-orthogonality.html" title="Up">Up</a><a class="next-button button toolbar-item" href="worksheet-dual-basis.html" title="Next">Next</a>
+</div>
+</div></nav></header><div class="page">
+<div id="sidebar-left" class="sidebar" role="navigation"><div class="sidebar-content">
+<nav id="toc"><ul>
+<li class="link frontmatter">
+<a href="frontmatter-1.html" data-scroll="frontmatter-1" class="internal"><span class="title">Front Matter</span></a><ul>
+<li><a href="colophon-1.html" data-scroll="colophon-1" class="internal">Colophon</a></li>
+<li><a href="preface-1.html" data-scroll="preface-1" class="internal">Preface</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="ch-vector-space.html" data-scroll="ch-vector-space" class="internal"><span class="codenumber">1</span> <span class="title">Vector spaces</span></a><ul>
+<li><a href="sec-vec-sp.html" data-scroll="sec-vec-sp" class="internal">Definition and examples</a></li>
+<li><a href="sec-vsp-properties.html" data-scroll="sec-vsp-properties" class="internal">Properties</a></li>
+<li><a href="sec-subspace.html" data-scroll="sec-subspace" class="internal">Subspaces</a></li>
+<li><a href="sec-span.html" data-scroll="sec-span" class="internal">Span</a></li>
+<li><a href="worksheet-span.html" data-scroll="worksheet-span" class="internal">Worksheet: understanding span</a></li>
+<li><a href="sec-independence.html" data-scroll="sec-independence" class="internal">Linear Independence</a></li>
+<li><a href="sec-dimension.html" data-scroll="sec-dimension" class="internal">Basis and dimension</a></li>
+<li><a href="sec-subspace-combine.html" data-scroll="sec-subspace-combine" class="internal">New subspaces from old</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="ch-linear-trans.html" data-scroll="ch-linear-trans" class="internal"><span class="codenumber">2</span> <span class="title">Linear Transformations</span></a><ul>
+<li><a href="sec-lin-tran-intro.html" data-scroll="sec-lin-tran-intro" class="internal">Definition and examples</a></li>
+<li><a href="sec-kernel-image.html" data-scroll="sec-kernel-image" class="internal">Kernel and Image</a></li>
+<li><a href="sec-isomorphism.html" data-scroll="sec-isomorphism" class="internal">Isomorphisms, composition, and inverses</a></li>
+<li><a href="worksheet-transformations.html" data-scroll="worksheet-transformations" class="internal">Worksheet: matrix transformations</a></li>
+<li><a href="worksheet-recurrence.html" data-scroll="worksheet-recurrence" class="internal">Worksheet: linear recurrences</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="ch-orthogonality.html" data-scroll="ch-orthogonality" class="internal"><span class="codenumber">3</span> <span class="title">Orthogonality and Applications</span></a><ul>
+<li><a href="sec-orthogonal-sets.html" data-scroll="sec-orthogonal-sets" class="internal">Orthogonal sets of vectors</a></li>
+<li><a href="sec-gram-schmidt.html" data-scroll="sec-gram-schmidt" class="internal">The Gram-Schmidt Procedure</a></li>
+<li><a href="section-projection.html" data-scroll="section-projection" class="active">Orthogonal Projection</a></li>
+<li><a href="worksheet-dual-basis.html" data-scroll="worksheet-dual-basis" class="internal">Worksheet: dual basis.</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="ch-diagonalization.html" data-scroll="ch-diagonalization" class="internal"><span class="codenumber">4</span> <span class="title">Diagonalization</span></a><ul>
+<li><a href="subsec-eigen-basics.html" data-scroll="subsec-eigen-basics" class="internal">Eigenvalues and Eigenvectors</a></li>
+<li><a href="subsec-ortho-diag.html" data-scroll="subsec-ortho-diag" class="internal">Diagonalization of symmetric matrices</a></li>
+<li><a href="sec-quadratic.html" data-scroll="sec-quadratic" class="internal">Quadratic forms</a></li>
+<li><a href="sec-complex.html" data-scroll="sec-complex" class="internal">Diagonalization of complex matrices</a></li>
+<li><a href="section-matrix-factor.html" data-scroll="section-matrix-factor" class="internal">Matrix Factorizations and Eigenvalues</a></li>
+<li><a href="worksheet-svd.html" data-scroll="worksheet-svd" class="internal">Worksheet: Singular Value Decomposition</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="ch-change-basis.html" data-scroll="ch-change-basis" class="internal"><span class="codenumber">5</span> <span class="title">Change of Basis</span></a><ul>
+<li><a href="sec-matrix-of-transformation.html" data-scroll="sec-matrix-of-transformation" class="internal">The matrix of a linear transformation</a></li>
+<li><a href="sec-matrix-operator.html" data-scroll="sec-matrix-operator" class="internal">The matrix of a linear operator</a></li>
+<li><a href="sec-direct-sum.html" data-scroll="sec-direct-sum" class="internal">Direct Sums and Invariant Subspaces</a></li>
+<li><a href="worksheet-gen-eigen.html" data-scroll="worksheet-gen-eigen" class="internal">Worksheet: generalized eigenvectors</a></li>
+<li><a href="sec-gen-eigen.html" data-scroll="sec-gen-eigen" class="internal">Generalized eigenspaces</a></li>
+<li><a href="sec-jordan-form.html" data-scroll="sec-jordan-form" class="internal">Jordan Canonical Form</a></li>
+</ul>
+</li>
+<li class="link backmatter"><a href="backmatter-1.html" data-scroll="backmatter-1" class="internal"><span class="title">Back Matter</span></a></li>
+<li class="link">
+<a href="ch-computation.html" data-scroll="ch-computation" class="internal"><span class="codenumber">A</span> <span class="title">Computational Tools</span></a><ul>
+<li><a href="section-jupyter.html" data-scroll="section-jupyter" class="internal">Jupyter</a></li>
+<li><a href="sec-python-basics.html" data-scroll="sec-python-basics" class="internal">Python basics</a></li>
+<li><a href="sec-sympy.html" data-scroll="sec-sympy" class="internal">SymPy for linear algebra</a></li>
+</ul>
+</li>
+<li class="link"><a href="solutions-1.html" data-scroll="solutions-1" class="internal"><span class="codenumber">B</span> <span class="title">Solutions to Selected Exercises</span></a></li>
+</ul></nav><div class="extras"><nav><a class="pretext-link" href="https://pretextbook.org">Authored in PreTeXt</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a></nav></div>
+</div></div>
+<main class="main"><div id="content" class="pretext-content"><section class="section" id="section-projection"><h2 class="heading hide-type">
+<span class="type">Section</span> <span class="codenumber">3.3</span> <span class="title">Orthogonal Projection</span>
+</h2>
+<p id="p-904">In <a href="" class="xref" data-knowl="./knowl/ex-test-span.html" title="Exercise 3.1.19">Exercise 3.1.19</a>, we saw that the <a href="" class="xref" data-knowl="./knowl/thm-fourier-expansion.html" title="Theorem 3.1.18: Fourier expansion theorem">Fourier expansion theorem</a> gives us an efficient way of testing whether or not a vector belongs to the span of an orthogonal set. When the answer is “no”, the quantity we compute while testing turns out to be very useful: it gives the <em class="emphasis">orthogonal projection</em> of that vector onto the span of our orthogonal set. This turns out to be exactly the ingredient needed to solve certain minimum distance problems.</p>
+<p id="p-905">We hinted above that the calculations we've been doing have a lot to do with projection. Since any single nonzero vector forms an orthogonal basis for its span, the projection</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\proj{\uu}{\vv}=\left(\frac{\uu\dotp\vv}{\len{\uu}^2}\right)\uu
+\end{equation*}
+</div>
+<p class="continuation">can be viewed as the orthogonal projection of the vector <span class="process-math">\(\vv\text{,}\)</span> not onto the vector <span class="process-math">\(\uu\text{,}\)</span> but onto the subspace <span class="process-math">\(\spn\{\uu\}\text{.}\)</span> This is, after all, how we viewed projections in elementary linear algebra: we drop the perpendicular from the tip of <span class="process-math">\(\vv\)</span> onto the <em class="emphasis">line</em> in the direction of <span class="process-math">\(\uu\text{.}\)</span></p>
+<p id="p-906">Now that we know how to define an orthogonal basis for a subspace, we can define orthogonal projection onto subspaces of dimension greater than one.</p>
+<article class="definition definition-like" id="def-ortho-projection"><h3 class="heading">
+<span class="type">Definition</span><span class="space"> </span><span class="codenumber">3.3.1</span><span class="period">.</span>
+</h3>
+<p id="p-907">Let <span class="process-math">\(U\)</span> be a subspace of <span class="process-math">\(\R^n\)</span> with orthogonal basis <span class="process-math">\(\{\uu_1,\ldots, \uu_k\}\text{.}\)</span> For any vector <span class="process-math">\(\vv\in \R^n\text{,}\)</span> we define the <dfn class="terminology">orthogonal projection</dfn> of <span class="process-math">\(\vv\)</span> onto <span class="process-math">\(U\)</span> by</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\proj{U}{\vv} = \sum_{i=1}^k\left(\frac{\uu_i\dotp\vv}{\len{\uu_i}^2}\right)\uu_i\text{.}
+\end{equation*}
+</div></article><p id="p-908">Note that <span class="process-math">\(\proj{U}{\vv}\)</span> is indeed an element of <span class="process-math">\(U\text{,}\)</span> since it's a linear combination of its basis vectors. In the case of the trivial subspace <span class="process-math">\(U=\{\zer\}\text{,}\)</span> we define orthogonal projection of any vector to be <span class="process-math">\(\zer\text{,}\)</span> since really, what other choice do we have? (This case isn't really of any interest, we just like being thorough.)</p>
+<p id="p-909">Let's see how this might be put to use in a classic problem: finding the distance from a point to a plane.</p>
+<aside class="aside aside-like" id="aside-6"><p id="p-910">One limitation of this approach to projection is that we must project onto a <em class="emphasis">subspace</em>. Given a plane like <span class="process-math">\(x-2y+4z=4\text{,}\)</span> we would need to modify our approach. One way to do it would be to find a point on the plane, and then try to translate everything to the origin. It's interesting to think about how this might be accomplished (in particular, in what direction would the translation have to be performed?) but someone external to the questions we're interested in here.</p></aside><article class="example example-like" id="example-12"><h3 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">3.3.2</span><span class="period">.</span>
+</h3>
+<p id="p-911">Find the distance from the point <span class="process-math">\((3,1,-2)\)</span> to the plane <span class="process-math">\(P\)</span> defined by <span class="process-math">\(x-2y+4z=0\text{.}\)</span></p>
+<div class="solutions">
+<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-50" id="solution-50"><span class="type">Solution</span><span class="space"> </span><span class="codenumber">1</span><span class="period">.</span><span class="space"> </span><span class="title">Using projection onto a normal vector</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-50"><div class="solution solution-like">
+<p id="p-912">In an elementary linear algebra (or calculus) course, we would solve this problem as follows. First, we would need two vectors parallel to the plane. If <span class="process-math">\(\bbm x\\y\\z\ebm\)</span> lies in the plane, then <span class="process-math">\(x-2y+4z=0\text{,}\)</span> so <span class="process-math">\(x=2y-4z\text{,}\)</span> and</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\bbm x\\y\\z\ebm = \bbm 2y-4z\\y\\z\ebm = y\bbm 2\\1\\0\ebm + z\bbm -4\\0\\1\ebm\text{,}
+\end{equation*}
+</div>
+<p class="continuation">so <span class="process-math">\(\uu=\bbm 2\\1\\0\ebm\)</span> and <span class="process-math">\(\vv\bbm -4\\0\\1\ebm\)</span> are parallel to the plane. We then compute the normal vector</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\mathbf{n}=\uu\times\vv=\bbm 1\\-2\\4\ebm\text{,}
+\end{equation*}
+</div>
+<p class="continuation">and compute the projection of the position vector <span class="process-math">\(\mathbf{p}=\bbm 3,1,-2\ebm\)</span> for the point <span class="process-math">\(P=(3,1,-2)\)</span> onto <span class="process-math">\(\mathbf{n}\text{.}\)</span> This gives the vector</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\xx = \left(\frac{\mathbf{p}\dotp\mathbf{n}}{\len{\mathbf{n}}^2}\right)\mathbf{n} = \frac{-7}{21}\bbm 1\\-2\\4\ebm =\bbm-1/3\\2/3\\-4/3\ebm\text{.}
+\end{equation*}
+</div>
+<p id="p-913">Now, this vector is <em class="emphasis">parallel</em> to <span class="process-math">\(\mathbf{n}\text{,}\)</span> so it's perpendicular to the plane. Subtracting it from <span class="process-math">\(\mathbf{p}\)</span> gives a vector parallel to the plane, and this is the position vector for the point we seek.</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\mathbf{q}=\mathbf{p}-\xx=\bbm 3\\1\\-2\ebm-\bbm -1/3\\-2/3\\-4/3\ebm = \bbm 10/3\\1/3\\-2/3\ebm
+\end{equation*}
+</div>
+<p class="continuation">so the closest point is <span class="process-math">\(Q=\bigl(\frac{10}{3},\frac13,-\frac{2}{3}\bigr)\text{.}\)</span> We weren't asked for it, but note that if we wanted the distance from the point <span class="process-math">\(P\)</span> to the plane, this is given by <span class="process-math">\(\len{\xx}=\frac13\sqrt{21}\text{.}\)</span></p>
+</div></div>
+<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-51" id="solution-51"><span class="type">Solution</span><span class="space"> </span><span class="codenumber">2</span><span class="period">.</span><span class="space"> </span><span class="title">Using orthogonal projection</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-51"><div class="solution solution-like">
+<p id="p-914">Let's solve the same problem using orthogonal projection. First, we have to deal with the fact that the vectors <span class="process-math">\(\uu\)</span> and <span class="process-math">\(\vv\)</span> are probably not orthogonal. To get around this, we replace <span class="process-math">\(\vv\)</span> with</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\ww = \vv-\left(\frac{\vv\dotp\uu}{\len{\uu}^2}\right)\uu = \bbm -4\\0\\1\ebm+\frac 85\bbm 2\\1\\0\ebm = \bbm -4/5\\8/5\\1\ebm\text{.}
+\end{equation*}
+</div>
+<p class="continuation">We now set</p>
+<div class="displaymath process-math" data-contains-math-knowls="" id="md-56">
+\begin{align*}
+\mathbf{q} \amp =\left(\frac{\mathbf{p}\dotp\uu}{\len{\uu}^2}\right)\uu-\left(\frac{\mathbf{p}\dotp\ww}{\len{\ww}^2}\right)\ww\\
+\amp = \frac{7}{5}\bbm 2\\1\\0\ebm +\frac{-14}{105}\bbm -4\\8\\5\ebm \\
+\amp = \bbm 10/3\\1/3\\-2/3\ebm\text{.}
+\end{align*}
+</div>
+<p class="continuation">Lo and behold, we get the same answer as before.</p>
+</div></div>
+</div></article><p id="p-915">The only problem with <a href="" class="xref" data-knowl="./knowl/def-ortho-projection.html" title="Definition 3.3.1">Definition 3.3.1</a> is that it appears to depend on the choice of orthogonal basis. To see that it doesn't, we need one more definition.</p>
+<article class="definition definition-like" id="def-ortho-comp"><h3 class="heading">
+<span class="type">Definition</span><span class="space"> </span><span class="codenumber">3.3.3</span><span class="period">.</span>
+</h3>
+<p id="p-916">For any subspace <span class="process-math">\(U\)</span> of <span class="process-math">\(\R^n\text{,}\)</span> we define the <dfn class="terminology">orthogonal complement</dfn> of <span class="process-math">\(U\text{,}\)</span> denoted <span class="process-math">\(U^\bot\text{,}\)</span> by</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+U^\bot = \{\xx\in\R^n \,|\, \xx\dotp\yy = 0 \text{ for all } \yy\in U\}\text{.}
+\end{equation*}
+</div></article><p id="p-917">The term “complement” comes from terminology we mentioned early on, but didn't spend much time on. <a href="" class="xref" data-knowl="./knowl/thm-construct-complement.html" title="Theorem 1.8.10">Theorem 1.8.10</a> told us that for any subspace <span class="process-math">\(U\)</span> of a vector space <span class="process-math">\(V\text{,}\)</span> it is possible to construct another subspace <span class="process-math">\(W\)</span> of <span class="process-math">\(V\)</span> such that <span class="process-math">\(V = U\oplus W\text{.}\)</span> The subspace <span class="process-math">\(W\)</span> is known as a complement of <span class="process-math">\(U\text{.}\)</span> A complement is not unique, but the orthogonal complement is. As you might guess from the name, <span class="process-math">\(U^\bot\)</span> is also a subspace of <span class="process-math">\(\R^n\text{.}\)</span></p>
+<article class="exercise exercise-like" id="exercise-74"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">3.3.4</span><span class="period">.</span>
+</h3>
+<p id="p-918">Show that <span class="process-math">\(U^\bot\)</span> is a subspace of <span class="process-math">\(\R^n\text{.}\)</span></p>
+<div class="solutions">
+<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-32" id="hint-32"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-32"><div class="hint solution-like"><p id="p-919">The trusty <a href="" class="xref" data-knowl="./knowl/thm-subspace-test.html" title="Theorem 1.3.2: Subspace Test">Subspace Test</a> is your friend here. Just be careful to work correctly with the definition of <span class="process-math">\(U^\bot\text{.}\)</span></p></div></div>
+</div></article><article class="theorem theorem-like" id="thm-projection"><h3 class="heading">
+<span class="type">Theorem</span><span class="space"> </span><span class="codenumber">3.3.5</span><span class="period">.</span><span class="space"> </span><span class="title">Projection Theorem.</span>
+</h3>
+<p id="p-920">Let <span class="process-math">\(U\)</span> be a subspace of <span class="process-math">\(\R^n\text{,}\)</span> let <span class="process-math">\(\xx\)</span> be any vector in <span class="process-math">\(\R^n\text{,}\)</span> and let <span class="process-math">\(\mathbf{p}=\proj{U}{\xx}\text{.}\)</span> Then:</p>
+<ol class="decimal">
+<li id="li-129"><p id="p-921"><span class="process-math">\(\mathbf{p}\in U\text{,}\)</span> and <span class="process-math">\(\xx-\mathbf{p}\in U^\bot\text{.}\)</span></p></li>
+<li id="li-130">
+<p id="p-922"><span class="process-math">\(\mathbf{p}\)</span> is the <em class="emphasis">closest</em> vector in <span class="process-math">\(U\)</span> to the vector <span class="process-math">\(\xx\text{,}\)</span> in the sense that the distance <span class="process-math">\(d(\mathbf{p},\xx)\)</span> is minimal among all vectors in <span class="process-math">\(U\text{.}\)</span> That is, for all <span class="process-math">\(\uu\neq \mathbf{p}\in U\text{,}\)</span> we have</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\len{\xx-\mathbf{p}}\lt\len{\xx-\uu}\text{.}
+\end{equation*}
+</div>
+</li>
+</ol></article><article class="hiddenproof" id="proof-47"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-47"><h3 class="heading"><span class="title">Strategy.</span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-47"><article class="hiddenproof"><p id="p-923">For the first part, review the <a href="" class="xref" data-knowl="./knowl/thm-orthogonal-lemma.html" title="Theorem 3.2.3: Orthogonal Lemma">Orthogonal Lemma</a>, and convince yourself that this says the same thing. The second part is the hard part, and it requires a trick: we can write <span class="process-math">\(\xx-\uu\)</span> as <span class="process-math">\((\xx-\mathbf{p})+(\mathbf{p}-\uu)\text{,}\)</span> and then notice that <span class="process-math">\(\mathbf{p}-\uu\in U\text{.}\)</span> What can we say using the first part, and the Pythagorean theorem?</p></article></div>
+<article class="hiddenproof" id="proof-48"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-48"><h3 class="heading"><span class="type">Proof<span class="period">.</span></span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-48"><article class="hiddenproof"><p id="p-924">By <a href="" class="xref" data-knowl="./knowl/def-ortho-projection.html" title="Definition 3.3.1">Definition 3.3.1</a>, <span class="process-math">\(\mathbf{p}\)</span> is a linear combination of elements in <span class="process-math">\(U\text{,}\)</span> so <span class="process-math">\(\mathbf{p}\in U\text{.}\)</span> The fact that <span class="process-math">\(\xx-\mathbf{p}\in U^\bot\)</span> follows directly from the <a href="" class="xref" data-knowl="./knowl/thm-orthogonal-lemma.html" title="Theorem 3.2.3: Orthogonal Lemma">Orthogonal Lemma</a>.</p>
+<p id="p-925">Choose any <span class="process-math">\(\uu\in U\)</span> with <span class="process-math">\(\uu \neq \mathbf{p}\text{,}\)</span> and write</p>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/thm-pythagoras.html">
+\begin{equation*}
+\xx-\uu = (\xx-\mathbf{p})+(\mathbf{p}-\uu)\text{.}
+\end{equation*}
+</div>
+<p class="continuation">Since <span class="process-math">\(\mathbf{p}-\uu\in U\)</span> and <span class="process-math">\(\xx-\mathbf{p}\in U^\bot\text{,}\)</span> we know that these two vectors are orthogonal, and therefore,</p>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/thm-pythagoras.html">
+\begin{equation*}
+\len{\xx-\uu}^2=\len{\xx-\mathbf{p}}^2+\len{\mathbf{p}-\uu}^2\gt \len{\xx-\mathbf{p}}^2\text{,}
+\end{equation*}
+</div>
+<p class="continuation">by the <a href="" class="xref" data-knowl="./knowl/thm-pythagoras.html" title="Theorem 3.1.17: Pythagorean Theorem">Pythagorean Theorem</a>.</p></article></div>
+<article class="exercise exercise-like" id="exercise-75"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">3.3.6</span><span class="period">.</span>
+</h3>
+<p id="p-926">Show that <span class="process-math">\(U\cap U^\bot = \{\zer\}\text{.}\)</span> Use this fact to show that <a href="" class="xref" data-knowl="./knowl/def-ortho-projection.html" title="Definition 3.3.1">Definition 3.3.1</a> does not depend on the choice orthogonal basis.</p>
+<div class="solutions">
+<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-33" id="hint-33"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-33"><div class="hint solution-like">
+<p id="p-927">Suppose we find vectors <span class="process-math">\(\mathbf{p}\)</span> and <span class="process-math">\(\mathbf{p}'\)</span> using basis <span class="process-math">\(B\)</span> and <span class="process-math">\(B'\text{.}\)</span> Note that <span class="process-math">\(\mathbf{p}-\mathbf{p}'\in U\text{,}\)</span> but also that</p>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/thm-projection.html">
+\begin{equation*}
+\mathbf{p}-\mathbf{p}' = (\mathbf{p}-\xx)-(\mathbf{p}'-\xx)
+\end{equation*}
+</div>
+<p class="continuation">Now use <a href="" class="xref" data-knowl="./knowl/thm-projection.html" title="Theorem 3.3.5: Projection Theorem">Theorem 3.3.5</a>.</p>
+</div></div>
+</div></article><p id="p-928">Finally, we note one more useful fact. The process of sending a vector to its orthogonal projection defines an operator on <span class="process-math">\(\R^n\text{,}\)</span> and yes, it's linear.</p>
+<article class="theorem theorem-like" id="thm-proj-operator"><h3 class="heading">
+<span class="type">Theorem</span><span class="space"> </span><span class="codenumber">3.3.7</span><span class="period">.</span>
+</h3>
+<p id="p-929">Let <span class="process-math">\(U\)</span> be a subspace of <span class="process-math">\(\R^n\text{,}\)</span> and define a function <span class="process-math">\(P_U:\R^n\to \R^n\)</span> by</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+P_U(\xx) = \proj{U}{\xx} \text{ for any } \xx\in\R^n\text{.}
+\end{equation*}
+</div>
+<p class="continuation">Then <span class="process-math">\(P_U\)</span> is a linear operator such that <span class="process-math">\(U=\im P_U\)</span> and <span class="process-math">\(U^\bot = \ker P_U\text{.}\)</span></p></article><article class="hiddenproof" id="proof-49"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-49"><h3 class="heading"><span class="title">Strategy.</span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-49"><article class="hiddenproof"><p id="p-930">The fact that <span class="process-math">\(P_U\)</span> is linear follows from properties of the dot product, and some careful checking. We know that <span class="process-math">\(\im P_U\subseteq U\)</span> by definition of the projection, and you can show that <span class="process-math">\(P_U\)</span> acts as the identity on <span class="process-math">\(U\)</span> using the <a href="" class="xref" data-knowl="./knowl/thm-fourier-expansion.html" title="Theorem 3.1.18: Fourier expansion theorem">Fourier expansion theorem</a>.</p>
+<p id="p-931">If <span class="process-math">\(\xx\in U^\bot\text{,}\)</span> then <span class="process-math">\(P_U(\xx)=\zer\)</span> by definition of <span class="process-math">\(P_U\text{.}\)</span> (Recall that it is defined using dot products with vectors in <span class="process-math">\(U\text{.}\)</span>) If <span class="process-math">\(\xx\in \ker P_U\text{,}\)</span> use the <a href="" class="xref" data-knowl="./knowl/thm-projection.html" title="Theorem 3.3.5: Projection Theorem">Projection Theorem</a>, to show that <span class="process-math">\(\xx U^\bot\text{.}\)</span></p></article></div>
+<article class="remark remark-like" id="rem-orth-comp-dim"><h3 class="heading">
+<span class="type">Remark</span><span class="space"> </span><span class="codenumber">3.3.8</span><span class="period">.</span>
+</h3>
+<p id="p-932">It follows from this result and the <a href="" class="xref" data-knowl="./knowl/thm-dimension-lintrans.html" title="Theorem 2.2.15: Dimension Theorem">Dimension Theorem</a> that</p>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/thm-dimension-lintrans.html ./knowl/thm-construct-complement.html">
+\begin{equation*}
+\dim U + \dim U^\bot = n\text{,}
+\end{equation*}
+</div>
+<p class="continuation">and since <span class="process-math">\(U\cap U^\bot = \{\zer\}\text{,}\)</span> <span class="process-math">\(U^\bot\)</span> is indeed a complement of <span class="process-math">\(U\)</span> in the sense introduced in <a href="" class="xref" data-knowl="./knowl/thm-construct-complement.html" title="Theorem 1.8.10">Theorem 1.8.10</a>. It's also fairly easy to see that <span class="process-math">\(\dim U + \dim U^\bot = n\)</span> directly. If <span class="process-math">\(\ww\in U^\bot\text{,}\)</span> and <span class="process-math">\(\{\uu_1,\ldots, \uu_k\}\)</span> is a basis for <span class="process-math">\(U\text{,}\)</span> then we have</p>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/thm-dimension-lintrans.html ./knowl/thm-construct-complement.html">
+\begin{equation*}
+\ww\dotp \uu_1= 0, \ldots, \ww\dotp \uu_k=0\text{,}
+\end{equation*}
+</div>
+<p class="continuation">and for an unknown <span class="process-math">\(\ww\text{,}\)</span> this is simply a homogeneous system of <span class="process-math">\(k\)</span> equations with <span class="process-math">\(n\)</span> variables. Moreover, they are <em class="emphasis">independent</em> equations, since the <span class="process-math">\(\uu_i\)</span> form a basis. We thus expect <span class="process-math">\(n-k\)</span> free parameters in the general solution.</p></article><article class="exercise exercise-like" id="exercise-76"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">3.3.9</span><span class="period">.</span>
+</h3>
+<p id="p-933">Let <span class="process-math">\(U = \{(a-b+3c, 2a+b, 3c, 4a-b+3c,a-4c)\,|\, a,b,c\in\R\}\subseteq \R^5\text{.}\)</span> Determine a basis for <span class="process-math">\(U^\bot\text{.}\)</span></p>
+<div class="solutions">
+<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-52" id="solution-52"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-52"><div class="solution solution-like">
+<p id="p-934">First, we note that for a general element of <span class="process-math">\(U\text{,}\)</span> we have</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+(a-b+3c, 2a+b, 3c, 4a-b+3c,a-4c) = a(1,2,0,4,1)+b(-1,1,0,-1,0)+c(3,0,3,3,-4)\text{.}
+\end{equation*}
+</div>
+<p class="continuation">If <span class="process-math">\(\ww = (x_1,x_2,x_3,x_4,x_5)\in U^\bot\text{,}\)</span> then we must have</p>
+<div class="displaymath process-math" data-contains-math-knowls="" id="md-57">
+\begin{align*}
+\ww\dotp (1,2,0,4,1) \amp = x_1+2x_2+4x_4+x_5=0 \\
+\ww\dotp (-1,1,0,-1,0) \amp =-x_1+x_2-x_4=0\\
+\ww\dotp (3,0,3,3,-4) \amp =3x_1+3x_3+3x_4-4x_5 = 0\text{.}
+\end{align*}
+</div>
+<p class="continuation">To find a basis for <span class="process-math">\(U^\bot\text{,}\)</span> we simply need to find the nullspace of the coefficient matrix for this system, which we do below.</p>
+<pre class="ptx-sagecell hidden-sagecell-sage" id="sage-53"><script type="text/x-sage">from sympy import Matrix, init_printing
+init_printing()
+A = Matrix(3,5,[1,2,0,4,1,-1,1,0,-1,0,3,0,3,3,-4])
+A.nullspace()
+</script></pre>
+</div></div>
+</div></article><article class="exercise exercise-like" id="exercise-77"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">3.3.10</span><span class="period">.</span>
+</h3>
+<p id="p-935">Prove that for any subspace <span class="process-math">\(U\subseteq \R^n\text{,}\)</span> <span class="process-math">\(\proj_U+\proj_{U^\bot}\)</span> is the identity operator on <span class="process-math">\(\R^n\text{.}\)</span></p>
+<div class="solutions">
+<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-34" id="hint-34"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-34"><div class="hint solution-like"><p id="p-936">Given <span class="process-math">\(\xx\in\R^n\text{,}\)</span> can you write it as a sum of an element of <span class="process-math">\(U\)</span> and an element of <span class="process-math">\(U^\bot\text{?}\)</span></p></div></div>
+</div></article><article class="exercise exercise-like" id="exercise-78"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">3.3.11</span><span class="period">.</span>
+</h3>
+<p id="p-937">Prove that for any subspace <span class="process-math">\(U\subseteq \R^n\text{,}\)</span> <span class="process-math">\((U^\bot)^\bot = U\text{.}\)</span></p>
+<div class="solutions">
+<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-35" id="hint-35"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-35"><div class="hint solution-like"><p id="p-938">Show that <span class="process-math">\(U\subseteq (U^\bot)^\bot\text{,}\)</span> and then use <a href="" class="xref" data-knowl="./knowl/rem-orth-comp-dim.html" title="Remark 3.3.8">Remark 3.3.8</a> to show that the two spaces must have the same dimension.</p></div></div>
+</div></article><article class="exercise exercise-like" id="exercise-79"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">3.3.12</span><span class="period">.</span>
+</h3>
+<p id="p-939">Let <span class="process-math">\(U\)</span> and <span class="process-math">\(W\)</span> be subspaces of <span class="process-math">\(\R^n\text{.}\)</span> Prove that <span class="process-math">\((U+W)^\bot = U^\bot\cap W^\bot\text{.}\)</span></p>
+<div class="solutions">
+<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-36" id="hint-36"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-36"><div class="hint solution-like"><p id="p-940">One inclusion is easier than the other. Use <a href="" class="xref" data-knowl="./knowl/thm-sum-dimension.html" title="Theorem 1.8.6">Theorem 1.8.6</a> and <a href="" class="xref" data-knowl="./knowl/rem-orth-comp-dim.html" title="Remark 3.3.8">Remark 3.3.8</a> to show that the dimensions must be equal.</p></div></div>
+</div></article></section></div></main>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script>
+</body>
+</html>

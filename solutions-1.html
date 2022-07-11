@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-07-06T11:50:26-06:00       *-->
+<!--*       on 2022-07-11T12:38:58-06:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -196,7 +196,8 @@ true);
 <li class="link">
 <a href="ch-orthogonality.html" data-scroll="ch-orthogonality" class="internal"><span class="codenumber">3</span> <span class="title">Orthogonality and Applications</span></a><ul>
 <li><a href="sec-orthogonal-sets.html" data-scroll="sec-orthogonal-sets" class="internal">Orthogonal sets of vectors</a></li>
-<li><a href="sec-ortho-projection.html" data-scroll="sec-ortho-projection" class="internal">Orthogonal Projection</a></li>
+<li><a href="sec-gram-schmidt.html" data-scroll="sec-gram-schmidt" class="internal">The Gram-Schmidt Procedure</a></li>
+<li><a href="section-projection.html" data-scroll="section-projection" class="internal">Orthogonal Projection</a></li>
 <li><a href="worksheet-dual-basis.html" data-scroll="worksheet-dual-basis" class="internal">Worksheet: dual basis.</a></li>
 </ul>
 </li>
@@ -425,47 +426,59 @@ true);
 <span class="codenumber">3</span><span class="space"> </span><span class="title">Orthogonality and Applications</span><br><span class="codenumber">3.1</span><span class="space"> </span><span class="title">Orthogonal sets of vectors</span><br><span class="codenumber">3.1.1</span><span class="space"> </span><span class="title">Basic definitions and properties</span>
 </h3>
 <article class="exercise-like"><h4 class="heading">
-<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">3.1.4</span><span class="period">.</span>
-</h4>
-<div class="solutions">
-<a href="" class="hint-knowl original" data-knowl="./knowl/hint-28-hidden.html" title="Hint 3.1.4.1"><span class="type">Hint</span><span class="period">.</span></a><a href="" class="solution-knowl original" data-knowl="./knowl/solution-44-hidden.html" title="Solution 3.1.4.1"><span class="type">Solution</span><span class="period">.</span></a>
-</div></article><article class="exercise-like"><h4 class="heading">
 <span class="type">Exercise</span><span class="space"> </span><span class="codenumber">3.1.5</span><span class="period">.</span>
 </h4>
 <div class="solutions">
-<a href="" class="hint-knowl original" data-knowl="./knowl/hint-29-hidden.html" title="Hint 3.1.5.1"><span class="type">Hint</span><span class="period">.</span></a><a href="" class="solution-knowl original" data-knowl="./knowl/solution-45-hidden.html" title="Solution 3.1.5.1"><span class="type">Solution</span><span class="period">.</span></a>
+<a href="" class="hint-knowl original" data-knowl="./knowl/hint-28-hidden.html" title="Hint 3.1.5.1"><span class="type">Hint</span><span class="period">.</span></a><a href="" class="solution-knowl original" data-knowl="./knowl/solution-44-hidden.html" title="Solution 3.1.5.1"><span class="type">Solution</span><span class="period">.</span></a>
 </div></article><article class="exercise-like"><h4 class="heading">
 <span class="type">Exercise</span><span class="space"> </span><span class="codenumber">3.1.6</span><span class="period">.</span>
 </h4>
 <div class="solutions">
-<a href="" class="hint-knowl original" data-knowl="./knowl/hint-30-hidden.html" title="Hint 3.1.6.1"><span class="type">Hint</span><span class="period">.</span></a><a href="" class="solution-knowl original" data-knowl="./knowl/solution-46-hidden.html" title="Solution 3.1.6.1"><span class="type">Solution</span><span class="period">.</span></a>
+<a href="" class="hint-knowl original" data-knowl="./knowl/hint-29-hidden.html" title="Hint 3.1.6.1"><span class="type">Hint</span><span class="period">.</span></a><a href="" class="solution-knowl original" data-knowl="./knowl/solution-45-hidden.html" title="Solution 3.1.6.1"><span class="type">Solution</span><span class="period">.</span></a>
+</div></article><article class="exercise-like"><h4 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">3.1.7</span><span class="period">.</span>
+</h4>
+<div class="solutions">
+<a href="" class="hint-knowl original" data-knowl="./knowl/hint-30-hidden.html" title="Hint 3.1.7.1"><span class="type">Hint</span><span class="period">.</span></a><a href="" class="solution-knowl original" data-knowl="./knowl/solution-46-hidden.html" title="Solution 3.1.7.1"><span class="type">Solution</span><span class="period">.</span></a>
 </div></article><h3 class="heading hide-type" title="Subsection 3.1.2: Orthogonal sets of vectors">
 <span class="codenumber">3.1.2</span><span class="space"> </span><span class="title">Orthogonal sets of vectors</span>
 </h3>
 <article class="exercise-like"><h4 class="heading">
-<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">3.1.13</span><span class="period">.</span>
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">3.1.14</span><span class="period">.</span>
 </h4>
 <div class="solutions">
-<a href="" class="hint-knowl original" data-knowl="./knowl/hint-31-hidden.html" title="Hint 3.1.13.1"><span class="type">Hint</span><span class="period">.</span></a><a href="" class="solution-knowl original" data-knowl="./knowl/solution-47-hidden.html" title="Solution 3.1.13.1"><span class="type">Solution</span><span class="period">.</span></a>
+<a href="" class="hint-knowl original" data-knowl="./knowl/hint-31-hidden.html" title="Hint 3.1.14.1"><span class="type">Hint</span><span class="period">.</span></a><a href="" class="solution-knowl original" data-knowl="./knowl/solution-47-hidden.html" title="Solution 3.1.14.1"><span class="type">Solution</span><span class="period">.</span></a>
 </div></article><article class="exercise-like"><h4 class="heading">
-<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">3.1.18</span><span class="period">.</span>
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">3.1.19</span><span class="period">.</span>
 </h4>
-<div class="solutions"><a href="" class="solution-knowl original" data-knowl="./knowl/solution-48-hidden.html" title="Solution 3.1.18.1"><span class="type">Solution</span><span class="period">.</span></a></div></article><h3 class="heading hide-type" title="Subsection 3.2.1: The Gram-Schmidt Procedure">
-<span class="codenumber">3.2</span><span class="space"> </span><span class="title">Orthogonal Projection</span><br><span class="codenumber">3.2.1</span><span class="space"> </span><span class="title">The Gram-Schmidt Procedure</span>
+<div class="solutions"><a href="" class="solution-knowl original" data-knowl="./knowl/solution-48-hidden.html" title="Solution 3.1.19.1"><span class="type">Solution</span><span class="period">.</span></a></div></article><h3 class="heading hide-type" title="Section 3.2: The Gram-Schmidt Procedure">
+<span class="codenumber">3.2</span><span class="space"> </span><span class="title">The Gram-Schmidt Procedure</span>
 </h3>
 <article class="exercise-like"><h4 class="heading">
-<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">3.2.3</span><span class="period">.</span>
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">3.2.5</span><span class="period">.</span>
 </h4>
-<div class="solutions"><a href="" class="solution-knowl original" data-knowl="./knowl/solution-49-hidden.html" title="Solution 3.2.3.1"><span class="type">Solution</span><span class="period">.</span></a></div></article><h3 class="heading hide-type" title="Subsection 3.2.2: Projections">
-<span class="codenumber">3.2.2</span><span class="space"> </span><span class="title">Projections</span>
+<div class="solutions"><a href="" class="solution-knowl original" data-knowl="./knowl/solution-49-hidden.html" title="Solution 3.2.5.1"><span class="type">Solution</span><span class="period">.</span></a></div></article><h3 class="heading hide-type" title="Section 3.3: Orthogonal Projection">
+<span class="codenumber">3.3</span><span class="space"> </span><span class="title">Orthogonal Projection</span>
 </h3>
 <article class="exercise-like"><h4 class="heading">
-<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">3.2.9</span><span class="period">.</span>
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">3.3.4</span><span class="period">.</span>
 </h4>
-<div class="solutions"><a href="" class="hint-knowl original" data-knowl="./knowl/hint-32-hidden.html" title="Hint 3.2.9.1"><span class="type">Hint</span><span class="period">.</span></a></div></article><article class="exercise-like"><h4 class="heading">
-<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">3.2.11</span><span class="period">.</span>
+<div class="solutions"><a href="" class="hint-knowl original" data-knowl="./knowl/hint-32-hidden.html" title="Hint 3.3.4.1"><span class="type">Hint</span><span class="period">.</span></a></div></article><article class="exercise-like"><h4 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">3.3.6</span><span class="period">.</span>
 </h4>
-<div class="solutions"><a href="" class="solution-knowl original" data-knowl="./knowl/solution-52-hidden.html" title="Solution 3.2.11.1"><span class="type">Solution</span><span class="period">.</span></a></div></article><h3 class="heading hide-type" title="Section 4.2: Diagonalization of symmetric matrices">
+<div class="solutions"><a href="" class="hint-knowl original" data-knowl="./knowl/hint-33-hidden.html" title="Hint 3.3.6.1"><span class="type">Hint</span><span class="period">.</span></a></div></article><article class="exercise-like"><h4 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">3.3.9</span><span class="period">.</span>
+</h4>
+<div class="solutions"><a href="" class="solution-knowl original" data-knowl="./knowl/solution-52-hidden.html" title="Solution 3.3.9.1"><span class="type">Solution</span><span class="period">.</span></a></div></article><article class="exercise-like"><h4 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">3.3.10</span><span class="period">.</span>
+</h4>
+<div class="solutions"><a href="" class="hint-knowl original" data-knowl="./knowl/hint-34-hidden.html" title="Hint 3.3.10.1"><span class="type">Hint</span><span class="period">.</span></a></div></article><article class="exercise-like"><h4 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">3.3.11</span><span class="period">.</span>
+</h4>
+<div class="solutions"><a href="" class="hint-knowl original" data-knowl="./knowl/hint-35-hidden.html" title="Hint 3.3.11.1"><span class="type">Hint</span><span class="period">.</span></a></div></article><article class="exercise-like"><h4 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">3.3.12</span><span class="period">.</span>
+</h4>
+<div class="solutions"><a href="" class="hint-knowl original" data-knowl="./knowl/hint-36-hidden.html" title="Hint 3.3.12.1"><span class="type">Hint</span><span class="period">.</span></a></div></article><h3 class="heading hide-type" title="Section 4.2: Diagonalization of symmetric matrices">
 <span class="codenumber">4</span><span class="space"> </span><span class="title">Diagonalization</span><br><span class="codenumber">4.2</span><span class="space"> </span><span class="title">Diagonalization of symmetric matrices</span>
 </h3>
 <article class="exercise-like"><h4 class="heading">
