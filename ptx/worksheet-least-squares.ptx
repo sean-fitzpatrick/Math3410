@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<worksheet xml:id="worksheet-svd">
+  <title>Worksheet: Least squares approximation</title>
+  <page>
+    <introduction>
+      <p>
+        In many applied scenarios, it is not practical (or even, perhaps, possible)
+        to find an exact solution to a problem.
+        Sometimes we may be working with imperfect data.
+        Other times, we may be dealing with a problem that is <term>overdetermined</term>,
+        <fn>The term <q>overdetermined</q> is common in statistics. In other areas, such as physics, the term <q>over-constrained</q> is used instead.</fn>
+        such as a system of linear equations with more equations than variables.
+        (Quite often, both of these issues may be present.)
+      </p>
+
+      <p>
+        An overdetermined system is quite likely to be inconsistent.
+        That is, our problem requires finding a solution to a system <m>A\xx=\mathbf{b}</m>,
+        where no such solution exists!
+        When no solution is possible, we can ask whether it is instead possible to find a <em>best approximation</em>.
+      </p>
+
+      <p>
+        What would a best approximation look like in this case?
+        Let <m>U=\csp(A)</m> denote the column space of <m>A</m>,
+        which we know is a subspace of <m>\R^n</m> (assuming <m>A</m> is an <m>m\times n</m> matrix).
+        The subspace <m>U</m> is precisely the set of all vectors <m>\yy</m> such that <m>A\xx=\yy</m> has a solution.
+        Among these vectors, we would like to find the one that is <em>closest</em> to <m>\mathbf{b}</m>,
+        in the sense that <m>\len{\yy-\mathbf{b}}</m> is as small as possible.
+      </p>
+
+      <p>
+        But we know exactly what this vector <m>\yy</m> should be:
+        the orthogonal projection of <m>\mathbf{b}</m> onto <m>U</m>.
+      </p>
+    </introduction>
+
+    <p>
+      The presentation in this worksheet is based on the one given in the text by Nicholson (see Section 5.6).
+      Further details may be found there, or, for the more statistically inclined,
+      on <url href="https://en.wikipedia.org/wiki/Least_squares" visual="en.wikipedia.org/wiki/Least_squares">Wikipedia</url>.
+    </p>
+
+    <p>
+      Given an inconsistent system <m>A\xx = \mathbf{b}</m>,
+      we have two problems to solve:
+      <ol>
+        <li>
+          <p>
+            Find the vector <m>\yy = \proj_U(\mathbf{b})</m>, where <m>U=\csp(A)</m>
+          </p>
+        </li>
+        <li>
+          <p>
+            Find a vector <m>\zz</m> such that <m>A\zz=\yy</m>
+          </p>
+        </li>
+      </ol>
+      The vector <m>\zz</m> is then our approximate solution.
+    </p>
+
+    <p>
+      This can be done directly, of course:
+      <ol>
+        <li>
+          <p>
+            Find a basis for <m>U</m>
+          </p>
+        </li>
+        <li>
+          <p>
+            Use the <xref ref="thm-gram-schmidt" text="title"/> to construct an orthogonal basis for <m>U</m>
+          </p>
+        </li>
+        <li>
+          <p>
+            Use this orthogonal basis to compute <m>\yy=\proj_U(\mathbf{b})</m>
+          </p>
+        </li>
+        <li>
+          <p>
+            Solve the system <m>A\zz=\yy</m>.
+          </p>
+        </li>
+      </ol>
+    </p>
+
+    <p>
+      But there is another way to proceed: we know that <m>\mathbf{b}-\yy=\mathbf{b}-A\zz\in U^\bot</m>,
+      so for any vector <m>A\xx\in U</m>, <m>(A\xx)\dotp (\mathbf{b}-A\zz)=0</m>. Therefore,
+      <md>
+        <mrow>(A\xx)\dotp (\mathbf{b}-A\zz) \amp =0</mrow>
+        <mrow>(A\xx)^T(\mathbf{b}-A\zz) \amp =0</mrow>
+        <mrow> \xx^TA^T(\mathbf{b}-A\zz) \amp =0</mrow>
+        <mrow> \xx^T(A^T\mathbf{b}-A^TA\zz) \amp =0</mrow>
+      </md>,
+      for any vector <m>\xx\in\R^n</m>.
+    </p>
+
+    <p>
+      Therefore, <m>A^T\mathbf{b}-A^TA\zz=0</m>, or
+      <me>
+        A^TA\zz = A^T\mathbf{b}
+      </me>.
+      Solving this system, called the <term>normal equations</term> for <m>\zz</m>,
+      will yield our approximate solution.
+    </p>
+  </page>
+  <page>
+    <p>
+      To Do.
+    </p>
+  </page>
+</worksheet>
