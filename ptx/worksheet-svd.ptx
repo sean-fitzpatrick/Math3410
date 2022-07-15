@@ -146,36 +146,32 @@
 
     <p>
       For convenience, here is all of the above code, with all print commands (except the last one) removed.
-      This can be run as a single code cell.
     </p>
 
-    <listing xml:id="listing-svd">
-      <caption>SymPy code for a singular value decomposition example</caption>
-      <program>
-        <input>
-          from sympy import Matrix,BlockMatrix,init_printing
-          init_printing()
-          A = Matrix([[1,0,1],[-1,1,0]])
-          B=(A.T)*A
-          L0=A.singular_values()
-          L1=B.eigenvects()
-          R1=Matrix(L1[2][2])
-          R2=Matrix(L1[1][2])
-          R3=Matrix(L1[0][2])
-          Q1 = (1/R1.norm())*R1
-          Q2 = (1/R2.norm())*R2
-          Q3 = (1/R3.norm())*R3
-          Q = Matrix(BlockMatrix([Q1,Q2,Q3]))
-          SigA = diag(L0[0],L0[1]).row_join(Matrix([0,0]))
-          S1 = A*Q1
-          S2 = A*Q2
-          P1 = (1/S1.norm())*S1
-          P2 = (1/S2.norm())*S2
-          P = Matrix(BlockMatrix([P1,P2]))
-          P,SigA,Q,P*SigA*Q.T
-        </input>
-      </program>
-    </listing>
+    <program>
+      <input>
+        from sympy import Matrix,BlockMatrix,init_printing
+        init_printing()
+        A = Matrix([[1,0,1],[-1,1,0]])
+        B=(A.T)*A
+        L0=A.singular_values()
+        L1=B.eigenvects()
+        R1=Matrix(L1[2][2])
+        R2=Matrix(L1[1][2])
+        R3=Matrix(L1[0][2])
+        Q1 = (1/R1.norm())*R1
+        Q2 = (1/R2.norm())*R2
+        Q3 = (1/R3.norm())*R3
+        Q = Matrix(BlockMatrix([Q1,Q2,Q3]))
+        SigA = diag(L0[0],L0[1]).row_join(Matrix([0,0]))
+        S1 = A*Q1
+        S2 = A*Q2
+        P1 = (1/S1.norm())*S1
+        P2 = (1/S2.norm())*S2
+        P = Matrix(BlockMatrix([P1,P2]))
+        P,SigA,Q,P*SigA*Q.T
+      </input>
+    </program>
   </page>
 
   <page>
