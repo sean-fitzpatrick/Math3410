@@ -112,6 +112,104 @@
     </me>.
   </p>
 
+  <remark>
+    <title>Proofs involving linear independence</title>
+    <statement>
+      <p>
+        Note that the definition of linear independence is a conditional statement:
+        <em>if</em> <m>c_1\vv_1+\cdots +c_k\vv_k=\zer</m> for some <m>c_1,\ldots, c_k</m>,
+        <em>then</em> <m>c__1=0,\ldots, c_k=0</m>.
+      </p>
+
+      <p>
+        When we want to conclude that a set of vectors is linearly independent,
+        we should assume that <m>c_1\vv_1+\cdots +c_k\vv_k=\zer</m> for some <m>c_1,\ldots, c_k</m>,
+        and then try to show that the scalars must be zero.
+        It's important that we do not assume anything about the scalars to begin with.
+      </p>
+
+      <p>
+        If the hypothesis of a statement includes the assumption that a set of vectors is independent,
+        we know that if we can get a linear combination of those vectors equal to the zero vector,
+        then the scalars in that linear combination are automatically zero.
+      </p>
+    </statement>
+  </remark>
+
+  <exercise label="ex-rs-mc-indep">
+    <statement>
+      <p>
+        Which of the following are equivalent to the statement,
+        <q>The set of vectors <m>\{\vv_1,\ldots, \vv_k\}</m> is linearly independent.</q>?
+      </p>
+    </statement>
+    <choices randomize="yes">
+      <choice correct="yes">
+        <statement>
+          <p>
+            If <m>c_1\vv_1+\cdots +c_k\vv_k=\zer</m>, then <m>c_1=0,\ldots, c_k=0</m>.
+          </p>
+        </statement>
+        <feedback>
+          <p>
+            Yes! This is essentially the definition.
+          </p>
+        </feedback>
+      </choice>
+      <choice correct="no">
+        <statement>
+          <p>
+            If <m>c_1=0,\ldots, c_k=0</m>, then <m>c_1\vv_1+\cdots + c_k\vv=\zer</m>.
+          </p>
+        </statement>
+        <feedback>
+          <p>
+            Remember that a conditional statement is not equivalent to its converse.
+            This statement is true for any set of vectors.
+          </p>
+        </feedback>
+      </choice>
+      <choice correct="yes">
+        <statement>
+          <p>
+            The only scalars <m>c_1,\ldots, c_k</m> for which <m>c_1\vv_1+\cdots + c_k\vv=\zer</m>
+            are <m>c_1=0,\ldots, c_k=0</m>.
+          </p>
+        </statement>
+        <feedback>
+          <p>
+            Correct!
+          </p>
+        </feedback>
+      </choice>
+      <choice correct="no">
+        <statement>
+          <p>
+            For all scalars <m>c_1,\ldots, c_k</m>, <m>c_1\vv_1+\cdots + c_k\vv=\zer</m>.
+          </p>
+        </statement>
+        <feedback>
+          <p>
+            The only way this can be true is if all the vectors in the set are the zero vector!
+          </p>
+        </feedback>
+      </choice>
+      <choice correct="no">
+        <statement>
+          <p>
+            For some scalars <m>c_1,\ldots, c_k</m>, <m>c_1\vv_1+\cdots + c_k\vv=\zer</m>.
+          </p>
+        </statement>
+        <feedback>
+          <p>
+            Such scalars always exist, because we can choose them to be zero.
+            Independence means that this is the only possible choice.
+          </p>
+        </feedback>
+      </choice>
+    </choices>
+  </exercise>
+
   <p>
     When looking for vectors that span a subspace,
     it is useful to find a spanning set that is also linearly independent.

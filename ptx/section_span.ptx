@@ -71,6 +71,84 @@
     is really asking is, <q>Can <m>\ww</m> be written as a linear combination of <m>\vv_1,\ldots, \vv_k</m>?</q>
   </p>
 
+  <exercise label="ex-rs-mc-span">
+    <statement>
+      <p>
+        Let <m>S = \{\vv_1,\ldots, \vv_k\}</m> be a set of vectors.
+        Which of the following statements are equivalent to the statement,
+        <q>The vector <m>\ww</m> belongs to the span of <m>S</m>.</q>?
+      </p>
+    </statement>
+    <choices randomize="yes">
+      <choice correct="no">
+        <statement>
+          <p>
+            <m>\ww=\vv_1+\cdots +\vv_k</m>.
+          </p>
+        </statement>
+        <feedback>
+          <p>
+            This is a tricky one: the statement implies that <m>\ww\in\spn(S)</m>,
+            but it is not equivalent, since the converse is not necessarily true.
+          </p>
+        </feedback>
+      </choice>
+      <choice correct="yes">
+        <statement>
+          <p>
+            For some scalars <m>c_1,\ldots, c_k</m>,
+            <m>c_1\vv_1+\cdots + c_k\vv=\ww</m>.
+          </p>
+        </statement>
+        <feedback>
+          <p>
+            Yes! This is the definition of span.
+          </p>
+        </feedback>
+      </choice>
+      <choice correct="yes">
+        <statement>
+          <p>
+            The vector <m>\ww</m> is a linear combination of the vectors in <m>S</m>.
+          </p>
+        </statement>
+        <feedback>
+          <p>
+            Correct.
+          </p>
+        </feedback>
+      </choice>
+      <choice correct="no">
+        <statement>
+          <p>
+            For any scalars <m>c_1,\ldots, c_k</m>,
+            <m>c_1\vv_1+\cdots + c_k\vv=\ww</m>.
+          </p>
+        </statement>
+        <feedback>
+          <p>
+            The only way this statement could be true for all possible scalars
+            is if all the vectors involved are zero.
+            Otherwise, changing a scalar is going to change the resulting linear combination.
+          </p>
+        </feedback>
+      </choice>
+      <choice correct="no">
+        <statement>
+          <p>
+            <m>\ww = \vv_i</m> for some <m>i=1,\ldots, k</m>.
+          </p>
+        </statement>
+        <feedback>
+          <p>
+            Although each vector in <m>S</m> belongs to the span of <m>S</m>,
+            the span of <m>S</m> contains much more than just the vectors in <m>S</m>!
+          </p>
+        </feedback>
+      </choice>
+    </choices>
+  </exercise>
+
   <p>
     With the appropriate setup, all such questions become questions about solving systems of equations.
     Here, we will look at a few such examples.
