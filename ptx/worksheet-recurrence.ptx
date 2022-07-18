@@ -5,13 +5,13 @@
   <page>
     <introduction>
       <p>
-        For this worksheet, the reader is directed to Section 7.5 of
+        In this worksheet, we will sketch some of the basic ideas related to linear recurrence.
+        For further reading, and more information, the reader is directed to Section 7.5 of
         <em>Linear Algebra with Applications</em>, by Keith Nicholson.
-        You will probably want to read this section before proceeding.
       </p>
 
       <p>
-        A <em>linear recurrence</em> of length <m>k</m> is a sequence <m>[x_n)</m> that is recursively defined,
+        A <em>linear recurrence</em> of length <m>k</m> is a sequence <m>(x_n)</m> that is recursively defined,
         with successive terms in the sequence defined in terms of the previous <m>k</m> terms,
         via a linear recursion formula of the form
         <me>
@@ -23,12 +23,16 @@
       </p>
 
       <p>
-        As demonstrated in the Nicholson's book,
-        the set of all sequences satisfying a linear recursion of length <m>k</m>
+        Recall from <xref ref="ex-vector-spaces"/> that the set of all sequences of real numbers
+        <m>(x_n)=(x_0,x_1,x_2,\ldots)</m> is a vector space, denoted by <m>\R^\infty</m>.
+      </p>
+
+      <p>
+        The set of all sequences satisfying a linear recursion of length <m>k</m>
         form a subspace <m>V</m> of the vector space <m>\mathbb{R}^\infty</m>
-        of all real-valued sequences.
+        of all real-valued sequences. (Can you prove this?)
         Since each sequence is determined by the <m>k</m> initial conditions <m>x_0, x_1, \ldots, x_{k-1}</m>,
-        we see that <m>V</m> is isomorphic to <m>\mathbb{R}^k</m>.
+        each such subspace <m>V</m> is isomorphic to <m>\mathbb{R}^k</m>.
       </p>
 
       <p>
@@ -55,28 +59,42 @@
       </p>
 
       <p>
-        The key observation is that for each recursion relation, there is an associated polynomial.
-        For the recursion
+        Consider a geometric sequence, of the form <m>x_n=c\lambda^n</m>.
+        If this sequence satisfies the recursion
         <me>
           x_{n+k} = a_0x_n + a_1x_{n+1}+\cdots + a_{k-1}x_{n+k-1}
         </me>,
-        the associated polynomial is
+        then (with <m>n=0</m>)
+        <me>
+          c\lambda^k=a_0c+a_1c\lambda+\cdots+a_{k-1}\lambda^{k-1}
+        </me>,
+        or <m>c(\lambda^k-a_{k-1}\lambda^{k-1}-\cdots - a_1\lambda-a_0)=0</m>.
+        That is, <m>\lambda</m> is a root of the associated polynomial
         <me>
           p(x) = x^k - a_{k-1}x^{k-1}-\cdots -a_1x-a_0
         </me>.
       </p>
 
       <p>
-        The main result is Theorem 7.5.4 in Nicholson. If we can factor <m>p(x)</m> completely over the reals as
+        Thus, if the associated polynomial <m>p(x)</m> has roots <m>\lambda_1,\ldots, \lambda_m</m>,
+        we know that the sequences <m>(\lambda_1^n),\ldots, (\lambda_m^n)</m> satisfy our recursion.
+        The remaining difficulty is what to do when <m>p(x)</m> has repeated roots.
+        We will not prove it here, but if <m>(x-\lambda)^r</m> is a factor of <m>p(x)</m>,
+        then the sequences <m>(\lambda^n),(n\lambda^n),\ldots, (n^{r-1}\lambda^n)</m>
+        all satisfy the recursion.
+      </p>
+
+      <p>
+        If we can factor <m>p(x)</m> completely over the reals as
         <me>
           p(x) = (x-\lambda_1)^{m_1}(x-\lambda_2)^{m_2}\cdots (x-\lambda_p)^{m_p}
         </me>,
         then a basis for the space of solutions is given by
         <md>
-          <mrow>\left[\lambda_1^n\right), \amp \left[n\lambda_1^n\right),\ldots, \left[n^{m_1-1}\lambda_1^n\right)</mrow>
-          <mrow>\left[\lambda_2^n\right), \amp \left[n\lambda_2^n\right),\ldots, \left[n^{m_2-1}\lambda_2^n\right)</mrow>
+          <mrow>\left(\lambda_1^n\right), \amp \left(n\lambda_1^n\right),\ldots, \left(n^{m_1-1}\lambda_1^n\right)</mrow>
+          <mrow>\left(\lambda_2^n\right), \amp \left(n\lambda_2^n\right),\ldots, \left(n^{m_2-1}\lambda_2^n\right)</mrow>
           <mrow>\amp \vdots </mrow>
-          <mrow>\left[\lambda_p^n\right), \amp \left[n\lambda_p^n\right),\ldots, \left[n^{m_p-1}\lambda_p^n\right)</mrow>
+          <mrow>\left(\lambda_p^n\right), \amp \left(n\lambda_p^n\right),\ldots, \left(n^{m_p-1}\lambda_p^n\right)</mrow>
         </md>.
       </p>
 
@@ -90,13 +108,13 @@
     <exercise workspace="3.75in">
       <statement>
         <p>
-          Find a basis for the space <m>V</m> of sequences <m>[x_n)</m> satisfying the recurrence
+          Find a basis for the space <m>V</m> of sequences <m>(x_n)</m> satisfying the recurrence
           <me>
             x_{n+3}=-2x_n+x_{n+1}+2x_{n+2}
           </me>.
         </p>
         <p>
-          Then find a formula for the sequence satisfying the initial conditions <m>x_0=1, x_1=2, x_2=1</m>.
+          Then find a formula for the sequence satisfying the initial conditions <m>x_0=3, x_1=-2, x_2=4</m>.
         </p>
       </statement>
     </exercise>
@@ -142,17 +160,17 @@
       In the cell below, list the roots of the polynomial,
       and the resulting basis <m>B</m> for the space <m>V</m> of solutions.
       Recall that if <m>\lambda</m> is a root of the polynomial,
-      then <m>[\lambda^n)</m> will be a basis vector for the vector space <m>V</m> of solutions.
+      then <m>(\lambda^n)</m> will be a basis vector for the vector space <m>V</m> of solutions.
       You may wish to confirm that each of your basis sequences indeed satisfies our recursion.
     </p>
 
     <sage language="html"></sage>
 
     <p>
-      Next, let <m>s=[x_n)</m> be the recursion that satisfies the given initial conditions.
-      We want to write <m>[x_n)</m> in terms of the basis we just found.
-      Recall, from Nicholson, that since our basis has three elements, there is an isomorphism
-      <m>T:\R^3\to V</m>, where <m>T(a,b,c)</m> is equal to the sequence <m>[x_n)</m> in <m>V</m>
+      Next, let <m>s=(x_n)</m> be the recursion that satisfies the given initial conditions.
+      We want to write <m>(x_n)</m> in terms of the basis we just found.
+      Since our basis has three elements, there is an isomorphism
+      <m>T:\R^3\to V</m>, where <m>T(a,b,c)</m> is equal to the sequence <m>(x_n)</m> in <m>V</m>
       that satisfies the initial conditions <m>x_0=a, x_1=b, x_2=c</m>.
       Thus, our desired sequence is given by <m>s=T(1,2,1)</m>.
     </p>
@@ -183,7 +201,7 @@
       <input>
         from sympy import Matrix
         A = Matrix()
-        B = Matrix([1,2,1])
+        B = Matrix((1,2,1])
         X = A**(-1)*B
         X
       </input>
@@ -200,7 +218,7 @@
     <p>
       Now, we leave you with a few more exercises.
       Recall that if the associated polynomial for your recursion has a repeated root <m>(x-\lambda)^k</m>,
-      then your basis will include the sequences <m>[\lambda^n), [n\lambda^n), \ldots, [n^{k-1}\lambda^n)</m>.
+      then your basis will include the sequences <m>(\lambda^n), (n\lambda^n), \ldots, (n^{k-1}\lambda^n)</m>.
     </p>
   </page>
 
@@ -208,11 +226,11 @@
     <exercise workspace="3in">
       <statement>
         <p>
-          Find a basis for the space <m>V</m> of sequences <m>[x_n)</m> satisfying the recurrence
+          Find a basis for the space <m>V</m> of sequences <m>(x_n)</m> satisfying the recurrence
           <me>
-            x_{n+3} = -4x_n+3x_{n+2}
+            x_{n+3} = 8x_n-12x_{n+1}+6x_{n+2}
           </me>.
-          Then find a formula for the sequence satisfying the initial conditions <m>x_0=1, x_1=-1, x_2=1</m>.
+          Then find a formula for the sequence satisfying the initial conditions <m>x_0=2, x_1=-5, x_2=3</m>.
         </p>
       </statement>
     </exercise>
@@ -224,11 +242,11 @@
     <exercise workspace="3in">
       <statement>
         <p>
-          Find a basis for the space <m>V</m> of sequences <m>[x_n)</m> satisfying the recurrence
+          Find a basis for the space <m>V</m> of sequences <m>(x_n)</m> satisfying the recurrence
           <me>
-            x_{n+3} = 8x_n-12x_{n+1}+6x_{n+2}
+            x_{n+6} = 72x_n+12x_{n+1}-70x_{n+2}+5x_{n+3}+15x_{n+4}-x_{n+5}
           </me>.
-          Then find a formula for the sequence satisfying the initial conditions <m>x_0=1, x_1=-1, x_2=1</m>.
+          Then find a formula for the sequence satisfying the initial conditions <m>x_0=1, x_1=-2, x_2=1,x_3=2,x_4=-3,x_5=4,x_6=0</m>.
         </p>
       </statement>
     </exercise>
