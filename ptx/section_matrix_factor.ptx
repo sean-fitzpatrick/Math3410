@@ -5,7 +5,8 @@
   <introduction>
     <p>
       This section is a rather rapid tour of some cool ideas that get a lot of use in applied linear algebra.
-      We are rather light on details here. The interested reader can consult sections 8.3<ndash/>8.6 in Nicholson.
+      We are rather light on details here. The interested reader can consult sections 8.3<ndash/>8.6 in
+      the Nicholson textbook.
     </p>
   </introduction>
 
@@ -255,9 +256,38 @@
       <p>
         All of this is a lot of work to do by hand, but it turns out that it can be done numerically,
         and more importantly, <em>efficiently</em>, by a computer.
-        The SymPy library does not have an <init>SVD</init> algorithm,
-        but the <c>mpmath</c> library does, and it works well with SymPy.
+        The SymPy library has an <init>SVD</init> algorithm,
+        but it will not be efficient for larger matrices.
+        The <c>mpmath</c> library also has an algorithm, and it works well with SymPy.
       </p>
+
+      <remark>
+        <statement>
+          <p>
+            The version of the <init>SVD</init> given here is not used in computations,
+            since it tends to be more resource intensive.
+            In particular, it requires us to store more information than necessary:
+            the last <m>n-r</m> rows of <m>Q</m>, and the last <m>m-r</m> columns of <m>P</m>,
+            get multiplied by columns/rows of zeros in <m>\Sigma_A</m>,
+            so we don't really need to keep track of these columns.
+          </p>
+
+          <p>
+            Instead, most algorithms that you find will give the <m>r\times r</m> diagonal matrix <m>D_A</m>,
+            consisting of the nonzero singular values,
+            and <m>P</m> will be replaced by the <m>m\times r</m> matrix consisting of its first <m>r</m> columns,
+            while <m>Q</m> gets replaced by the <m>r\times n</m> matrix consisting of its first <m>r</m> rows.
+            The resulting product is still equal to the original matrix.
+          </p>
+
+          <p>
+            In some cases, even the matrix <m>D_A</m> is too large,
+            and a decision is made to truncate to some smaller subset of singular values.
+            In this case, the resulting product is no longer equal to the original matrix,
+            but it does provide an approximation. A discussion can be found
+            <url href="https://en.wikipedia.org/wiki/Singular_value_decomposition#Reduced_SVDs" visual="en.wikipedia.org/wiki/Singular_value_decomposition">on Wikipedia</url>.
+          </p>
+        </statement>
 
       <p>
         Example 8.6.1 in Nicolson shows that for the matrix <m>A = \begin{bmatrix}1\amp 0\amp 1\\-1\amp 1\amp 0\end{bmatrix}</m>
