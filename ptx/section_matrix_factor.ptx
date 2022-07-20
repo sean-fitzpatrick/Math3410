@@ -95,19 +95,19 @@
         The SymPy library contains the <c>cholesky()</c> algorithm.
         Note however that it produces a lower triangular matrix, rather than upper triangular.
         (That is, the output gives <m>L=U^T</m> rather than <m>U</m>, so you will have <m>A=LL^T</m>.)
-        Let's give it a try. First, enter a positive-definite matrix.
-        (We'll try the one from Example 8.3.3 in Nicholson.)
+        Let's give it a try. First, let's create a positive-definite matrix.
       </p>
 
       <sage>
         <input>
           from sympy import Matrix,init_printing
           init_printing()
-          A = Matrix([[10,5,2],[5,3,2],[2,2,3]])
+          B = Matrix([[3,7,-4],[5,-9,2],[-3,0,6]])
+          A = B*B.T
           A
         </input>
         <output>
-          \[\bbm 10\amp 5\amp 2\\5\amp 3\amp 2\\2\amp 2\amp 3\ebm\]
+          \[\bbm 74\amp -56\amp -33\\-56\amp 110\amp -3\\-33\amp -3\amp 45\ebm\]
         </output>
       </sage>
 
@@ -133,6 +133,10 @@
           True
         </output>
       </sage>
+
+      <p>
+        Note that <m>L</m> is <em>not</em> the same as the matrix <m>B</m>!
+      </p>
     </subsubsection>
 
     <subsubsection xml:id="pars-singular-values">
@@ -258,13 +262,14 @@
         and more importantly, <em>efficiently</em>, by a computer.
         The SymPy library has an <init>SVD</init> algorithm,
         but it will not be efficient for larger matrices.
-        The <c>mpmath</c> library also has an algorithm, and it works well with SymPy.
+        In practice, most Python users will use the <init>SVD</init> algorithm provided by NumPy;
+        we will stick with SymPy for simplicity and consistency.
       </p>
 
       <remark>
         <statement>
           <p>
-            The version of the <init>SVD</init> given here is not used in computations,
+            The version of the <init>SVD</init> given above is not used in computations,
             since it tends to be more resource intensive.
             In particular, it requires us to store more information than necessary:
             the last <m>n-r</m> rows of <m>Q</m>, and the last <m>m-r</m> columns of <m>P</m>,
@@ -288,206 +293,112 @@
             <url href="https://en.wikipedia.org/wiki/Singular_value_decomposition#Reduced_SVDs" visual="en.wikipedia.org/wiki/Singular_value_decomposition">on Wikipedia</url>.
           </p>
         </statement>
+      </remark>
 
-      <p>
-        Example 8.6.1 in Nicolson shows that for the matrix <m>A = \begin{bmatrix}1\amp 0\amp 1\\-1\amp 1\amp 0\end{bmatrix}</m>
-        we should have
-        <me>
-          P = \frac{1}{\sqrt{2}}\bbm 1\amp 1\\-1\amp 1\ebm, \Sigma_A = \bbm \sqrt{3}\amp 0\amp 0\\0\amp 1\amp 0\ebm, Q = \frac{1}{\sqrt{6}}\bbm2\amp -1\amp 1\\0\amp \sqrt{3}\amp \sqrt{3}\\-\sqrt{2}\amp -\sqrt{2}\amp \sqrt{2}\ebm
-        </me>.
-        Let us test this on the computer. First, we import the <c>mpmath</c> library, and define <m>A</m>.
-        (Importantly, the <c>svd</c> routine from <c>mpmath</c> will accept a SymPy matrix as input.
-        We do not, for example, have to first convert it to a NumPy array.)
-        Since both SymPy and mpmath have similar functions,
-        we <c>import as</c>  for both libraries, so we can distinguish between them as needed.
-      </p>
+      <example xml:id="example-svd">
+        <statement>
+          <p>
+            Find the singular value decomposition of the matrix <m>A = \begin{bmatrix}1\amp 1\amp 1\\1\amp 0\amp -1\end{bmatrix}</m>.
+          </p>
+        </statement>
+        <solution>
+          <p>
+            Using SymPy, we get the <url href="https://docs.sympy.org/latest/modules/matrices/matrices.html#sympy.matrices.matrices.MatrixBase.singular_value_decomposition">condensed SVD</url>.
+            First, let's check the singular values.
+          </p>
 
-      <sage>
-        <input>
-          import sympy as sy
-          import mpmath as mp
-          sy.init_printing()
-          mp.pretty = True
-          A = mp.matrix([[1,0,1],[-1,1,0]])
-          A
-        </input>
-        <output>
-          matrix(
-          [['1.0', '0.0', '1.0'],
-           ['-1.0', '1.0', '0.0']])
-         </output>
-      </sage>
+          <sage>
+            <input>
+              from sympy import Matrix, init_printing
+              init_printing()
+              A = Matrix([[1,1,1],[1,0,-1]])
+              A.singular_values()
+            </input>
+            <output>
+              \[\left[\sqrt{2},\sqrt{3},0\right]\]
+            </output>
+          </sage>
 
-      <p>
-        Note that we defined <c>A</c> as a mpmath <c>matrix</c>.
-        The <c>svd</c> command from the mpmath library will also work on a SymPy <c>Matrix</c>,
-        but certain mpmath commands, like the <c>chop</c> command used to round decimals, will not.
-        Next, we apply the <c>svd</c> algorithm.
-      </p>
+          <p>
+             Note that the values are not listed in decreasing order.
+             Now, let's ask for the singular value decomposition.
+             The output consists of three matrices;
+             the first line below assigns those matrices to the names <c>P,S,Q</c>.
+          </p>
 
-      <sage>
-        <input>
-          P,S,QT = mp.svd(A)
-          P,S,QT
-        </input>
-        <output>
-          (matrix(
-           [['-0.707106781186547', '0.707106781186547'],
-            ['0.707106781186547', '0.707106781186547']]),
-           matrix(
-           [['1.73205080756888'],
-            ['1.0']]),
-           matrix(
-           [['-0.816496580927726', '0.408248290463863', '-0.408248290463863'],
-            ['3.14018491736755e-16', '0.707106781186547', '0.707106781186548']]))
-        </output>
-      </sage>
+          <sage>
+            <input>
+              P,S,Q=A.singular_value_decomposition()
+              P,S,Q
+            </input>
+            <output>
+              \[\left(\bbm 0\amp 1\\1\amp 0\ebm, \bbm \sqrt{2}amp 0\\0\sqrt{3}\ebm, \bbm \frac{\sqrt{2}}{2}\amp \frac{\sqrt{3}}{3}\\0\amp \frac{\sqrt{3}}{3}\\ -\frac{\sqrt{2}}{2}\amp \frac{\sqrt{3}}{3}\ebm\right)
+            </output>
+          </sage>
 
-      <p>
-        Note that the input isn't quite so nice this time: the algorithm is numerical.
-        For some reason, if you define <c>A</c> as a SymPy matrix,
-        then <c>P</c> will be a SymPy matrix, but <c>S</c> and <c>Q</c> will not.
-        (I have no idea why.)
-        Also, the matrix <c>S</c> is a column matrix, containing the positive singular values of <m>A</m>.
-        We can turn it into a diagonal matrix as follows, using the <c>diag</c> command from mpmath:
-      </p>
+          <p>
+            Note that the output is the <q>condensed</q> version, which doesn't match the exposition above.
+            It also doesn't follow the same ordering convention: we'll need to swap columns in each of the matrices.
+            But it does give us a decomposition of the matrix <m>A</m>:
+          </p>
 
-      <sage>
-        <input>
-          S1 = mp.diag(S)
-          S1
-        </input>
-        <output>
-          matrix(
-          [['1.73205080756888', '0.0'],
-           ['0.0', '1.0']])
-         </output>
-      </sage>
+          <sage>
+            <input>
+              P*S*Q.T
+            </input>
+            <output>
+              \[\bbm 1\amp 1\amp 1\\1\amp 0\amp -1\ebm\]
+            </output>
+          </sage>
+          <p>
+            To match our earlier presentation, we first set <m>\Sigma_A = \bbm \sqrt{3}\amp 0\amp 0\\0 \amp \sqrt{2}\amp 0\ebm</m>.
+            Next, we need to extend the <m>3\times 2</m> matrix in the output above to a <m>3\times 3</m> matrix.
+            We can do this by choosing any vector orthogonal to the two existing columns, and normalizing.
+            Let's use entries <m>1/\sqrt{6},-2/\sqrt{6},1/\sqrt{6}</m>.
+            Noting that we also need to swap the first two columns (to match the fact that we swapped columns in <m>\Sigma_A</m>),
+            we get the matrix
+            <me>
+              Q = \bbm \frac{\sqrt{3}}{3}\amp \frac{\sqrt{2}}{2}\amp \frac{\sqrt{6}}{6}\\
+                       \frac{\sqrt{3}}{3}\amp 0\amp -\frac{\sqrt{6}}{3}\\
+                       \frac{\sqrt{3}}{3}\amp -\frac{\sqrt{2}}{2} \amp \frac{\sqrt{6}}{6}\ebm
+            </me>.
+            Let's check that it is indeed orthogonal.
+          </p>
 
-      <p>
-        In case you don't recognize the square root of 3 by its decimal approximation, we can check:
-      </p>
+          <sage>
+            <input>
+              Q = Matrix([[sqrt(3)/3,sqrt(2)/2,sqrt(6)/6],[sqrt(3)/3,0,-sqrt(6)/3],[sqrt(3)/3,-sqrt(2)/2,sqrt(6)/6]])
+              Q*Q.T
+            </input>
+            <output>
+              \[\bbm 1\amp 0\amp 0\\0amp 1\amp 0\\ 0\amp 0\amp 1\ebm\]
+            </output>
+          </sage>
 
-      <sage>
-        <input>
-          S1*S1
-        </input>
-        <output>
-          matrix(
-          [['1.73205080756888', '0.0'],
-           ['0.0', '1.0']])
-        </output>
-      </sage>
+          <p>
+            Finally, we take <m>P=\bbm 1\amp 0\\0\amp 1\ebm</m> (again swapping columns),
+            which is just the identity matrix. We therefore should expect that
+            <me>
+              P\Sigma_A Q^T = \Sigma_A Q^T = A
+            </me>.
+            Let's check.
+          </p>
 
-      <p>
-        The matrix <m>\Sigma_A</m> is supposed to be <m>2\times 3</m>, with an additional column of zeros.
-        If we want to define this as a SymPy matrix, we can.
-        Note that we are using the <c>diag</c> command from SymPy this time, rather than mpmath.
-      </p>
+          <sage>
+            <input>
+              S = Matrix([[sqrt(3),0,0],[0,sqrt(2),0]])
+              S*Q.T
+            </input>
+            <output>
+              \[\bbm 1\amp 1\amp 1\\1\amp 0\amp -1\ebm\]
+            </output>
+          </sage>
 
-      <sage>
-        <input>
-          S2 = sy.Matrix(S1)
-          SigA = S2.row_join(sy.Matrix([0,0]))
-          SigA
-        </input>
-        <output>
-          \[\bbm 1.73205080756888 \amp 0.0 \amp 0\\ 0.0 \amp 1.0 \amp 0\ebm\]
-        </output>
-      </sage>
-
-      <p>
-        We will see in a minute that this matrix is not really necessary,
-        because the <c>svd</c> algorithm in mpmath is a bit different from the one in Nicholson.
-      </p>
-
-      <p>
-        The matrix <m>P</m> is already a SymPy matrix, as it turns out, but <m>Q</m> is not.
-      </p>
-
-      <sage>
-        <input>
-          QT
-        </input>
-        <output>
-          matrix(
-          [['-0.816496580927726', '0.408248290463863', '-0.408248290463863'],
-           ['3.14018491736755e-16', '0.707106781186547', '0.707106781186548']])
-        </output>
-      </sage>
-
-      <p>
-        Notice that this matrix is not square! The output from the algorithm also has the transpose already applied.
-      </p>
-
-      <sage>
-        <input>
-          Q1 = QT.T
-          Q1
-        </input>
-        <output>
-          matrix(
-          [['-0.816496580927726', '3.14018491736755e-16'],
-           ['0.408248290463863', '0.707106781186547'],
-           ['-0.408248290463863', '0.707106781186548']])
-        </output>
-      </sage>
-
-      <p>
-        The matrix <c>Q1</c> we get here is (up to a difference in sign)
-        the first two columns of the matrix <m>Q</m> found in Nicholson.
-        This makes sense: the matrix <m>S</m> that we get from the algorithm is <m>D_A</m>,
-        not <m>\Sigma_A</m>. The third column of <m>\Sigma_A</m> is zero.
-        So when we multiply by <m>Q^T</m>, the third row of <m>Q^T</m> (that is, the third column of <m>Q</m>)
-        is lost. That is, <m>S(QT)=\Sigma_AQ^T</m>.
-      </p>
-
-      <p>
-        To confirm that everything worked, we can multiply:
-      </p>
-
-      <sage>
-        <input>
-          P*S1*QT
-        </input>
-        <output>
-          matrix(
-          [['0.999999999999999', '-3.32977184235283e-17', '0.999999999999999'],
-           ['-1.0', '1.0', '1.37483317152544e-16']])
-        </output>
-      </sage>
-
-      <p>
-        Maybe that's not so enlightening, given all the decimal places.
-        Let's check the difference with the matrix <m>A</m>:
-      </p>
-
-      <sage>
-        <input>
-          A-P*S1*QT
-        </input>
-        <output>
-          matrix(
-          [['5.55111512312578e-16', '3.32977184235283e-17', '8.88178419700125e-16'],
-           ['-3.33066907387547e-16', '1.11022302462516e-16', '-1.37483317152544e-16']])
-        </output>
-      </sage>
-
-      <p>
-        Looks like some pretty small numbers there.
-        The mpmath library includes the <c>chop</c> command for truncating decimals.
-      </p>
-
-      <sage>
-        <input>
-          mp.chop(A-P*S1*QT)
-        </input>
-        <output>
-          matrix(
-          [['0.0', '0.0', '0.0'],
-           ['0.0', '0.0', '0.0']])
-        </output>
-      </sage>
+          <p>
+            It worked!
+          </p>
+        </solution>
+      </example>
 
       <p>
         The Singular Value Decomposition has a lot of useful appplications,
@@ -530,27 +441,48 @@
 
       <p>
         There are some interesting relationships among these spaces,
-        which are left as an exercise. (Solutions are in Nicholson if you get stumped.)
+        which are left as an exercise.
       </p>
 
       <exercise>
-        <statement>
+        <introduction>
           <p>
-            Let <m>A</m> be an <m>m\times n</m> matrix. Prove the following:
-            <ol>
-              <li>
-                <p>
-                  <m>(\operatorname{row}(A))^\bot = \nll(A)</m>
-                </p>
-              </li>
-              <li>
-                <p>
-                  <m>(\csp(A))^\bot = \nll(A^T)</m>
-                </p>
-              </li>
-            </ol>
+            Let <m>A</m> be an <m>m\times n</m> matrix. Prove the following statements.
           </p>
-        </statement>
+        </introduction>
+        <task>
+          <statement>
+            <p>
+              <m>(\operatorname{row}(A))^\bot = \nll(A)</m>
+            </p>
+          </statement>
+          <hint>
+            <p>
+              Note that <m>\vv\in \nll(A)</m> if and only if <m>A\vv=\zer</m>,
+              and <m>\vv\in(\operatorname{row}(A))^\bot</m> if and only if <m>\vv\cdot \mathbf{r}_i=\zer</m>
+              for each row <m>\mathbf{r}_i</m> of <m>A</m>.
+            </p>
+
+            <p>
+              Note also that <m>(A\vv)^T=\vv^T A^T</m> is the (dot) product of <m>\vv^T</m>
+              with each column of <m>A^T</m>, and each column of <m>A^T</m> is a row of <m>A</m>.
+            </p>
+          </hint>
+        </task>
+        <task>
+          <statement>
+            <p>
+              <m>(\csp(A))^\bot = \nll(A^T)</m>
+            </p>
+          </statement>
+          <hint>
+            <p>
+              Notice that <m>\vv\in \nll(A^T)</m> if and only if <m>A^T\vv=\zer</m>,
+              and that <m>(A^T\vv)^T=\vv^T A</m>.
+              Your reasoning should be similar to that of the previous part.
+            </p>
+          </hint>
+        </task>
       </exercise>
 
       <p>
@@ -598,27 +530,7 @@
         <url href="https://www.juanklopper.com/wp-content/uploads/2015/03/III_05_Singular_value_decomposition.html" visual="www.juanklopper.com/wp-content/uploads/2015/03/III_05_Singular_value_decomposition.html">notebook by Dr. Juan H Klopper</url>.
         The <c>ipynb</c> file can be found <url href="https://github.com/juanklopper/MIT_OCW_Linear_Algebra_18_06" visual="github.com/juanklopper/MIT_OCW_Linear_Algebra_18_06">on his GitHub page</url>.
         In it, he takes you through various approaches to finding the singular value decomposition,
-        using the method above, as well as using NumPy and SciPy (which, for industrial applications, are superior to SymPy and mpmath).
-      </p>
-    </subsubsection>
-
-    <subsubsection xml:id="pars-polar-decomp">
-      <title>Polar Decomposition</title>
-      <p>
-        For any <m>n\times n</m> matrix <m>A</m>, there exists an orthogonal (or unitary) matrix <m>P</m> such that
-        <me>
-          A = P\sqrt{A^TA}
-        </me>.
-        This is meant to remind you of the polar decomposition
-        <me>
-          z = e^{i\theta}\sqrt{\bar{z}z}
-        </me>
-        for a complex number.
-      </p>
-
-      <p>
-        One way to compute the polar decomposition is using the Singular Value Decomposition (see Nicholson's text).
-        Note that both <m>P</m> and <m>\sqrt{A^TA}</m> can be diagonalized, but usually not with the same orthonormal basis.
+        using the method above, as well as using NumPy and SciPy (which, for industrial applications, are superior to SymPy).
       </p>
     </subsubsection>
 
