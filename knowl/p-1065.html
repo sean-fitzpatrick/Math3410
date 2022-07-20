@@ -2,9 +2,6 @@
 <html lang="en-US">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-07-11T12:39:02-06:00       *-->
-<!--*   A recent stable commit (2020-08-09):   *-->
-<!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
 <!--*         https://pretextbook.org          *-->
 <!--*                                          *-->
@@ -15,12 +12,18 @@
 </head>
 <body class="ignore-math">
 <h4 class="heading"><span class="type">Paragraph</span></h4>
-<p>We'll write elements of <span class="process-math">\(\C^n\)</span> as <span class="process-math">\(\zz = (z_1,z_2,\ldots, z_n)\text{.}\)</span> Notice that we've dropped the arrow notation for vectors in favour of a bold font. The reason is that we'll want to consider complex conjugates, and things get cluttered if we try to fit an arrow and a bar over our vector. The complex conjugate of <span class="process-math">\(\zz\)</span> is given by</p>
+<p>We find that <span class="process-math">\(A-(-1)I_n = \bbm 1\amp 1\amp 1\\1\amp 1\amp 1\\1\amp 1\amp 1\ebm\text{,}\)</span> which has reduced row-echelon form <span class="process-math">\(\bbm 1\amp 1\amp 1\\0\amp 0\amp 0\\0\amp 0\amp 0\ebm\text{.}\)</span> Solving for the nullspace, we find that there are two independent eigenvectors:</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
-\bar{\zz} = (\bz_1,\bz_2,\ldots, \bz_n)\text{.}
+\xx_{1,1}=\bbm 1\\-1\\0\ebm, \quad \text{ and } \quad \xx_{1,2}=\bbm 1\\0\\-1\ebm\text{,}
 \end{equation*}
 </div>
-<span class="incontext"><a href="sec-complex.html#p-1065" class="internal">in-context</a></span>
+<p class="continuation">so</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+E_{-1}(A) = \spn\left\{\bbm 1\\-1\\0\ebm, \bbm 1\\0\\-1\ebm\right\}\text{.}
+\end{equation*}
+</div>
+<span class="incontext"><a href="subsec-eigen-basics.html#p-1065" class="internal">in-context</a></span>
 </body>
 </html>

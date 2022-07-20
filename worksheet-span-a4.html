@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-07-11T12:38:53-06:00       *-->
-<!--*   A recent stable commit (2020-08-09):   *-->
-<!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
 <!--*         https://pretextbook.org          *-->
 <!--*                                          *-->
@@ -50,6 +47,14 @@
     load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
     paths: {pretext: "https://pretextbook.org/js/lib"},
   },
+startup: {
+    pageReady() {
+      return MathJax.startup.defaultPageReady().then(function () {
+      console.log("in ready function");
+      $(document).trigger("runestone:mathjax-ready");
+      }
+    )}
+},
 };
 </script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><script>// Make *any* pre with class 'sagecell-sage' an executable Sage cell
 // Their results will be linked, only within language type
@@ -105,8 +110,8 @@ eBookConfig.proxyuri_files = '';
 eBookConfig.enable_chatcodes =  false;
 </script>
 <!--*** Runestone Services ***-->
-<script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.2.1/runtime.b0f8547c48f16a9f.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.2.1/637.d54be67956c5c660.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.2.1/runestone.0e9550fe42760516.bundle.js"></script><link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/6.2.1/637.fafafbd97df8a0d1.css">
-<link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/6.2.1/runestone.e4d5592da655219f.css">
+<script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.3.0/runtime.d24a93181f625912.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.3.0/637.d54be67956c5c660.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.3.0/runestone.aeb994b86db36b29.bundle.js"></script><link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/6.3.0/637.fafafbd97df8a0d1.css">
+<link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/6.3.0/runestone.e4d5592da655219f.css">
 </head>
 <body id="linalg" class="pretext-book ignore-math has-toc has-sidebar-left standalone worksheet a4">
 <a class="assistive" href="#content">Skip to main content</a><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\spn}{\operatorname{span}}
@@ -211,6 +216,7 @@ true);
 <li><a href="sec-gram-schmidt.html" data-scroll="sec-gram-schmidt" class="internal">The Gram-Schmidt Procedure</a></li>
 <li><a href="section-projection.html" data-scroll="section-projection" class="internal">Orthogonal Projection</a></li>
 <li><a href="worksheet-dual-basis.html" data-scroll="worksheet-dual-basis" class="internal">Worksheet: dual basis.</a></li>
+<li><a href="worksheet-least-squares.html" data-scroll="worksheet-least-squares" class="internal">Worksheet: Least squares approximation</a></li>
 </ul>
 </li>
 <li class="link">
@@ -249,39 +255,39 @@ true);
 <a href="worksheet-span-a4.html" class="a4">A4</a><a href="worksheet-span-letter.html" class="us">US</a>
 </div>
 </h2>
-<section class="introduction" id="introduction-6"><p id="p-258">In this worksheet, we will attempt to understand the concept of span. Recall from <a href="sec-span.html" class="internal" title="Section 1.4: Span">Section 1.4</a> that the span of a set of vectors <span class="process-math">\(\vv_1, \vv_2,\ldots, \vv_k\)</span> in a vector space <span class="process-math">\(V\)</span> is the set of all linear combinations that can be generated from those vectors.</p>
-<p id="p-259">Therefore, the question “Does the vector <span class="process-math">\(\ww\)</span> belong to the span of <span class="process-math">\(\vv_1, \vv_2,\ldots, \vv_k\text{?}\)</span>” is equivalent to asking, “Can I write <span class="process-math">\(\ww\)</span> as a linear combination of the <span class="process-math">\(\vv_i\text{?}\)</span>”, which, in turn, is equivalent to asking:</p>
-<p id="p-260">Do there exist scalars <span class="process-math">\(c_1,c_2,\ldots, c_k\)</span> such that</p>
+<section class="introduction" id="introduction-6"><p id="p-271">In this worksheet, we will attempt to understand the concept of span. Recall from <a href="sec-span.html" class="internal" title="Section 1.4: Span">Section 1.4</a> that the span of a set of vectors <span class="process-math">\(\vv_1, \vv_2,\ldots, \vv_k\)</span> in a vector space <span class="process-math">\(V\)</span> is the set of all linear combinations that can be generated from those vectors.</p>
+<p id="p-272">Therefore, the question “Does the vector <span class="process-math">\(\ww\)</span> belong to the span of <span class="process-math">\(\vv_1, \vv_2,\ldots, \vv_k\text{?}\)</span>” is equivalent to asking, “Can I write <span class="process-math">\(\ww\)</span> as a linear combination of the <span class="process-math">\(\vv_i\text{?}\)</span>”, which, in turn, is equivalent to asking:</p>
+<p id="p-273">Do there exist scalars <span class="process-math">\(c_1,c_2,\ldots, c_k\)</span> such that</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 \ww=c_1\vv_1+c_2\vv_2+\cdots +c_k\vv_k\text{?}
 \end{equation*}
 </div>
-<p id="p-261">In any finite-dimensional vector space, this last question can be turned into a system of equations. If that system has a solution, then yes — your vector is in the span. If the system is inconsistent, then the answer is no.</p></section><section class="onepage" id="page-1"><article class="exercise exercise-like" id="exercise-12"><h3 class="heading"><span class="codenumber">1<span class="period">.</span></span></h3>
-<p id="p-262">Determine whether or not the vector <span class="process-math">\(\ww=\langle 3,-1, 4, 2\rangle\)</span> in <span class="process-math">\(\R^4\)</span> belongs to the span of the vectors</p>
+<p id="p-274">In any finite-dimensional vector space, this last question can be turned into a system of equations. If that system has a solution, then yes — your vector is in the span. If the system is inconsistent, then the answer is no.</p></section><section class="onepage" id="page-1"><article class="exercise exercise-like" id="exercise-13"><h3 class="heading"><span class="codenumber">1<span class="period">.</span></span></h3>
+<p id="p-275">Determine whether or not the vector <span class="process-math">\(\ww=\langle 3,-1, 4, 2\rangle\)</span> in <span class="process-math">\(\R^4\)</span> belongs to the span of the vectors</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 \langle 2, 1, 4, -3\rangle, \langle 0, 2, 1, 4\rangle, \langle -1, 1, 0, 2\rangle\text{.}
 \end{equation*}
 </div>
-<div class="workspace" data-space="1.5in"></div></article><p id="p-263">To assist with solving this problem, a code cell is provided below. Once you have determined the augmented matrix of your system of equations, see <a href="sec-sympy.html" class="internal" title="Section A.3: SymPy for linear algebra">Section A.3</a> for details on how to enter your matrix, and then compute its reduced row-echelon form.</p>
+<div class="workspace" data-space="1.6in"></div></article><p id="p-276">To assist with solving this problem, a code cell is provided below. Once you have determined the augmented matrix of your system of equations, see <a href="sec-sympy.html" class="internal" title="Section A.3: SymPy for linear algebra">Section A.3</a> for details on how to enter your matrix, and then compute its reduced row-echelon form.</p>
 <pre class="ptx-sagecell sagecell-sage" id="sage-9"><script type="text/x-sage">from sympy import Matrix, init_printing
 init_printing()
 </script></pre>
-<article class="exercise exercise-like" id="exercise-13"><h3 class="heading"><span class="codenumber">2<span class="period">.</span></span></h3>
-<p id="p-264">Determine whether or not the polynomial <span class="process-math">\(q(x) = 4-6x-11x^2\)</span> belongs to the span of the polynomials</p>
+<article class="exercise exercise-like" id="exercise-14"><h3 class="heading"><span class="codenumber">2<span class="period">.</span></span></h3>
+<p id="p-277">Determine whether or not the polynomial <span class="process-math">\(q(x) = 4-6x-11x^2\)</span> belongs to the span of the polynomials</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 p_1(x) = x-3x^2, p_2(x)=2-x, p_3(x) = -1+4x+x^2\text{.}
 \end{equation*}
 </div>
-<div class="workspace" data-space="1.5in"></div></article><pre class="ptx-sagecell sagecell-sage" id="sage-10"><script type="text/x-sage"></script></pre>
-<p id="p-265"></p></section><section class="onepage" id="page-2"><p id="p-266">For our next activity, we are going to look at <abbr class="initialism">RGB</abbr> colours. Here, <abbr class="initialism">RGB</abbr> stands for Red, Green, Blue. All colours displayed by your computer monitor can be expressed in terms of these colours.</p>
-<p id="p-267">First, we load some Python libraries we'll need. These are intended for use in a Jupyter notebook and won't run properly if you are using Sagecell in the <abbr class="initialism">HTML</abbr> textbook.</p>
+<div class="workspace" data-space="1.6in"></div></article><pre class="ptx-sagecell sagecell-sage" id="sage-10"><script type="text/x-sage"></script></pre>
+<p id="p-278"></p></section><section class="onepage" id="page-2"><p id="p-279">For our next activity, we are going to look at <abbr class="initialism">RGB</abbr> colours. Here, <abbr class="initialism">RGB</abbr> stands for Red, Green, Blue. All colours displayed by your computer monitor can be expressed in terms of these colours.</p>
+<p id="p-280">First, we load some Python libraries we'll need. These are intended for use in a Jupyter notebook and won't run properly if you are using Sagecell in the <abbr class="initialism">HTML</abbr> textbook.</p>
 <pre class="ptx-sagecell sagecell-sage" id="sage-11"><script type="text/x-sage">import ipywidgets as wid
 import matplotlib.pyplot as plt
 </script></pre>
-<p id="p-268">Next, we will create a widget that lets us select values for red, green, and blue. The <abbr class="initialism">RGB</abbr> colour system assigns 8-bit values to each colour. Possible values for each range from 0 to 255; this indicates how much of each colour will be blended to create the colour you want. Extensive information on the <abbr class="initialism">RGB</abbr> colour system can be found <a class="external" href="https://en.wikipedia.org/wiki/RGB_color_model" target="_blank">on wikipedia</a><a href="" data-knowl="" class="id-ref fn-knowl original" data-refid="hk-fn-4" id="fn-4"><sup> 1 </sup></a>, and there are a number of good online resources about the use of <abbr class="initialism">RGB</abbr> in web design, <a class="external" href="https://www.w3schools.com/colors/colors_rgb.asp" target="_blank">such as this one from w3schools</a><a href="" data-knowl="" class="id-ref fn-knowl original" data-refid="hk-fn-5" id="fn-5"><sup> 2 </sup></a>.</p>
+<p id="p-281">Next, we will create a widget that lets us select values for red, green, and blue. The <abbr class="initialism">RGB</abbr> colour system assigns 8-bit values to each colour. Possible values for each range from 0 to 255; this indicates how much of each colour will be blended to create the colour you want. Extensive information on the <abbr class="initialism">RGB</abbr> colour system can be found <a class="external" href="https://en.wikipedia.org/wiki/RGB_color_model" target="_blank">on wikipedia</a><a href="" data-knowl="" class="id-ref fn-knowl original" data-refid="hk-fn-4" id="fn-4"><sup> 1 </sup></a>, and there are a number of good online resources about the use of <abbr class="initialism">RGB</abbr> in web design, <a class="external" href="https://www.w3schools.com/colors/colors_rgb.asp" target="_blank">such as this one from w3schools</a><a href="" data-knowl="" class="id-ref fn-knowl original" data-refid="hk-fn-5" id="fn-5"><sup> 2 </sup></a>.</p>
 <pre class="ptx-sagecell sagecell-sage" id="sage-12"><script type="text/x-sage">r=wid.IntSlider(
     value=155,
     min=0,
@@ -305,15 +311,14 @@ b=wid.IntSlider(
 )
 display(r,g,b)
 </script></pre>
-<p id="p-269">By moving the sliders generated above, you can create different colours. To see what colour you've created by moving the sliders, run the code below.</p>
+<p id="p-282">By moving the sliders generated above, you can create different colours. To see what colour you've created by moving the sliders, run the code below.</p>
 <pre class="ptx-sagecell sagecell-sage" id="sage-13"><script type="text/x-sage">plt.imshow([[(r.value/255, g.value/255, b.value/255)]])
-</script></pre>
-<article class="exercise exercise-like" id="exercise-14"><h3 class="heading"><span class="codenumber">3<span class="period">.</span></span></h3>
-<p id="p-270">In what ways can you explain the <abbr class="initialism">RGB</abbr> colour system in terms of span?</p>
-<div class="workspace" data-space="0.65in"></div></article><pre class="ptx-sagecell sagecell-html" id="sage-14"><script type="text/x-sage"></script></pre>
-<article class="exercise exercise-like" id="exercise-15"><h3 class="heading"><span class="codenumber">4<span class="period">.</span></span></h3>
-<p id="p-271">Why would it nonetheless be inappropriate to describe the set of all <abbr class="initialism">RGB</abbr> colours as a vector space?</p>
-<div class="workspace" data-space="0.65in"></div></article><pre class="ptx-sagecell sagecell-html" id="sage-15"><script type="text/x-sage"></script></pre></section></section></div></main>
+</script></pre></section><section class="onepage" id="page-3"><article class="exercise exercise-like" id="exercise-15"><h3 class="heading"><span class="codenumber">3<span class="period">.</span></span></h3>
+<p id="p-283">In what ways can you explain the <abbr class="initialism">RGB</abbr> colour system in terms of span?</p>
+<div class="workspace" data-space="3in"></div></article><pre class="ptx-sagecell sagecell-html" id="sage-14"><script type="text/x-sage"></script></pre>
+<article class="exercise exercise-like" id="exercise-16"><h3 class="heading"><span class="codenumber">4<span class="period">.</span></span></h3>
+<p id="p-284">Why would it nonetheless be inappropriate to describe the set of all <abbr class="initialism">RGB</abbr> colours as a vector space?</p>
+<div class="workspace" data-space="4in"></div></article><pre class="ptx-sagecell sagecell-html" id="sage-15"><script type="text/x-sage"></script></pre></section></section></div></main>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script>
 </body>

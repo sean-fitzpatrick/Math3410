@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-07-11T12:38:56-06:00       *-->
-<!--*   A recent stable commit (2020-08-09):   *-->
-<!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
 <!--*         https://pretextbook.org          *-->
 <!--*                                          *-->
@@ -50,6 +47,14 @@
     load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
     paths: {pretext: "https://pretextbook.org/js/lib"},
   },
+startup: {
+    pageReady() {
+      return MathJax.startup.defaultPageReady().then(function () {
+      console.log("in ready function");
+      $(document).trigger("runestone:mathjax-ready");
+      }
+    )}
+},
 };
 </script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><script>// Make *any* pre with class 'sagecell-sage' an executable Sage cell
 // Their results will be linked, only within language type
@@ -99,8 +104,8 @@ eBookConfig.proxyuri_files = '';
 eBookConfig.enable_chatcodes =  false;
 </script>
 <!--*** Runestone Services ***-->
-<script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.2.1/runtime.b0f8547c48f16a9f.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.2.1/637.d54be67956c5c660.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.2.1/runestone.0e9550fe42760516.bundle.js"></script><link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/6.2.1/637.fafafbd97df8a0d1.css">
-<link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/6.2.1/runestone.e4d5592da655219f.css">
+<script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.3.0/runtime.d24a93181f625912.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.3.0/637.d54be67956c5c660.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.3.0/runestone.aeb994b86db36b29.bundle.js"></script><link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/6.3.0/637.fafafbd97df8a0d1.css">
+<link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/6.3.0/runestone.e4d5592da655219f.css">
 </head>
 <body id="linalg" class="pretext-book ignore-math has-toc has-sidebar-left">
 <a class="assistive" href="#content">Skip to main content</a><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\spn}{\operatorname{span}}
@@ -205,6 +210,7 @@ true);
 <li><a href="sec-gram-schmidt.html" data-scroll="sec-gram-schmidt" class="internal">The Gram-Schmidt Procedure</a></li>
 <li><a href="section-projection.html" data-scroll="section-projection" class="internal">Orthogonal Projection</a></li>
 <li><a href="worksheet-dual-basis.html" data-scroll="worksheet-dual-basis" class="internal">Worksheet: dual basis.</a></li>
+<li><a href="worksheet-least-squares.html" data-scroll="worksheet-least-squares" class="internal">Worksheet: Least squares approximation</a></li>
 </ul>
 </li>
 <li class="link">
@@ -242,17 +248,17 @@ true);
 <section class="section" id="section-matrix-factor"><h2 class="heading hide-type">
 <span class="type">Section</span> <span class="codenumber">4.5</span> <span class="title">Matrix Factorizations and Eigenvalues</span>
 </h2>
-<section class="introduction" id="introduction-21"><p id="p-1131">This section is a rather rapid tour of some cool ideas that get a lot of use in applied linear algebra. We are rather light on details here. The interested reader can consult sections 8.3–8.6 in Nicholson.</p></section><section class="subsection" id="subsec-matrix-factorization"><h3 class="heading hide-type">
+<section class="introduction" id="introduction-22"><p id="p-1193">This section is a rather rapid tour of some cool ideas that get a lot of use in applied linear algebra. We are rather light on details here. The interested reader can consult sections 8.3–8.6 in the Nicholson textbook.</p></section><section class="subsection" id="subsec-matrix-factorization"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">4.5.1</span> <span class="title">Matrix Factorizations</span>
 </h3>
-<section class="introduction" id="introduction-22"><p id="p-1132">Recall that an <span class="process-math">\(n\times n\)</span> matrix <span class="process-math">\(A\)</span> is symmetric if <span class="process-math">\(A^T=A\)</span> and hermitian if <span class="process-math">\(A^H=A\text{,}\)</span> where <span class="process-math">\(A^H\)</span> is the conjugate transpose of a complex matrix. In either case, the corresponding matrix transformation <span class="process-math">\(T_A\)</span> is said to be <dfn class="terminology">self-adjoint</dfn>, which means that it satisfies the condition</p>
+<section class="introduction" id="introduction-23"><p id="p-1194">Recall that an <span class="process-math">\(n\times n\)</span> matrix <span class="process-math">\(A\)</span> is symmetric if <span class="process-math">\(A^T=A\)</span> and hermitian if <span class="process-math">\(A^H=A\text{,}\)</span> where <span class="process-math">\(A^H\)</span> is the conjugate transpose of a complex matrix. In either case, the corresponding matrix transformation <span class="process-math">\(T_A\)</span> is said to be <dfn class="terminology">self-adjoint</dfn>, which means that it satisfies the condition</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 \langle u,T_Av\rangle = \langle T_Au,v\rangle
 \end{equation*}
 </div>
 <p class="continuation">for all <span class="process-math">\(u,v\in \mathbb{R}^n\)</span> (or <span class="process-math">\(\mathbb{C}^n\)</span>).</p>
-<p id="p-1133">All such matrices (or operators) can be diagonalized, in the sense that there is an orthonormal basis of eigenvectors for that matrix. These eigenvectors can be arranged to form an orthogonal matrix <span class="process-math">\(P\)</span> (or unitary matrix <span class="process-math">\(U\)</span>) such that</p>
+<p id="p-1195">All such matrices (or operators) can be diagonalized, in the sense that there is an orthonormal basis of eigenvectors for that matrix. These eigenvectors can be arranged to form an orthogonal matrix <span class="process-math">\(P\)</span> (or unitary matrix <span class="process-math">\(U\)</span>) such that</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 P^TAP = D \quad \text{ (or } U^HAU=D)\text{,}
@@ -264,59 +270,61 @@ P^TAP = D \quad \text{ (or } U^HAU=D)\text{,}
 <article class="definition definition-like" id="def-positive-op"><h5 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">4.5.1</span><span class="period">.</span>
 </h5>
-<p id="p-1134">A symmetric/hermitian matrix <span class="process-math">\(A\)</span> (or operator <span class="process-math">\(T\)</span>) is <dfn class="terminology">positive</dfn> if <span class="process-math">\(\xx^TA\xx\geq 0\)</span> (<span class="process-math">\(\langle \xx,T\xx\rangle\geq 0\)</span>) for all vectors <span class="process-math">\(\xx\neq \zer\text{.}\)</span> It is <dfn class="terminology">positive-definite</dfn> if <span class="process-math">\(\xx^TA\xx\gt 0\)</span> for all nonzero <span class="process-math">\(\xx\text{.}\)</span></p></article><aside class="aside aside-like" id="aside-7"><p id="p-1135">Some books will define positive-definite operators by the condition <span class="process-math">\(\xx^TA\xx\)</span> without the requirement that <span class="process-math">\(A\)</span> must be symmetric/hermitian. However, we will stick to the simpler definition.</p></aside><p id="p-1136">This is equivalent to requiring that all the eigenvalues of <span class="process-math">\(A\)</span> are non-negative. Every positive matrix <span class="process-math">\(A\)</span> has a unique positive square root: a matrix <span class="process-math">\(R\)</span> such that <span class="process-math">\(R^2=A\text{.}\)</span></p>
+<p id="p-1196">A symmetric/hermitian matrix <span class="process-math">\(A\)</span> (or operator <span class="process-math">\(T\)</span>) is <dfn class="terminology">positive</dfn> if <span class="process-math">\(\xx^TA\xx\geq 0\)</span> (<span class="process-math">\(\langle \xx,T\xx\rangle\geq 0\)</span>) for all vectors <span class="process-math">\(\xx\neq \zer\text{.}\)</span> It is <dfn class="terminology">positive-definite</dfn> if <span class="process-math">\(\xx^TA\xx\gt 0\)</span> for all nonzero <span class="process-math">\(\xx\text{.}\)</span></p></article><aside class="aside aside-like" id="aside-8"><p id="p-1197">Some books will define positive-definite operators by the condition <span class="process-math">\(\xx^TA\xx\)</span> without the requirement that <span class="process-math">\(A\)</span> must be symmetric/hermitian. However, we will stick to the simpler definition.</p></aside><p id="p-1198">This is equivalent to requiring that all the eigenvalues of <span class="process-math">\(A\)</span> are non-negative. Every positive matrix <span class="process-math">\(A\)</span> has a unique positive square root: a matrix <span class="process-math">\(R\)</span> such that <span class="process-math">\(R^2=A\text{.}\)</span></p>
 <article class="theorem theorem-like" id="thm-positive-prod"><h5 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">4.5.2</span><span class="period">.</span>
 </h5>
-<p id="p-1137">For any <span class="process-math">\(n\times n\)</span> matrix <span class="process-math">\(U\text{,}\)</span> the matrix <span class="process-math">\(A=U^TU\)</span> is positive. Moreover, if <span class="process-math">\(U\)</span> is invertible, then <span class="process-math">\(A\)</span> is positive-definite.</p></article><article class="hiddenproof" id="proof-57"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-57"><h5 class="heading"><span class="type">Proof<span class="period">.</span></span></h5></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-57"><article class="hiddenproof"><p id="p-1138">For any <span class="process-math">\(\xx\neq \zer\)</span> in <span class="process-math">\(\R^n\text{,}\)</span></p>
+<p id="p-1199">For any <span class="process-math">\(n\times n\)</span> matrix <span class="process-math">\(U\text{,}\)</span> the matrix <span class="process-math">\(A=U^TU\)</span> is positive. Moreover, if <span class="process-math">\(U\)</span> is invertible, then <span class="process-math">\(A\)</span> is positive-definite.</p></article><article class="hiddenproof" id="proof-57"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-57"><h5 class="heading"><span class="type">Proof<span class="period">.</span></span></h5></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-57"><article class="hiddenproof"><p id="p-1200">For any <span class="process-math">\(\xx\neq \zer\)</span> in <span class="process-math">\(\R^n\text{,}\)</span></p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 \xx^T A\xx = \xx^TU^T U\xx = (U\xx)^T(U\xx) = \len{U\xx}^2\geq 0\text{.}
 \end{equation*}
 </div></article></div>
-<p id="p-1139">What is interesting is that the converse to the above statement is also true. The <dfn class="terminology">Cholesky factorization</dfn> of a positive-definite matrix <span class="process-math">\(A\)</span> is given by <span class="process-math">\(A=U^TU\text{,}\)</span> where <span class="process-math">\(U\)</span> is upper-triangular, with positive diagonal entries. (See Nicholson for details.)</p>
-<p id="p-1140">Even better is that there is a very simple algorithm for obtaining the factorization: Carry the matrix <span class="process-math">\(A\)</span> to triangular form, using only row operations of the type <span class="process-math">\(R_i+kR_j\to R_i\text{.}\)</span> Then divide each row by the square root of the diagonal entry.</p>
-<p id="p-1141">The SymPy library contains the <code class="code-inline tex2jax_ignore">cholesky()</code> algorithm. Note however that it produces a lower triangular matrix, rather than upper triangular. (That is, the output gives <span class="process-math">\(L=U^T\)</span> rather than <span class="process-math">\(U\text{,}\)</span> so you will have <span class="process-math">\(A=LL^T\text{.}\)</span>) Let's give it a try. First, enter a positive-definite matrix. (We'll try the one from Example 8.3.3 in Nicholson.)</p>
-<pre class="ptx-sagecell sagecell-sage" id="sage-72"><script type="text/x-sage">from sympy import Matrix,init_printing
+<p id="p-1201">What is interesting is that the converse to the above statement is also true. The <dfn class="terminology">Cholesky factorization</dfn> of a positive-definite matrix <span class="process-math">\(A\)</span> is given by <span class="process-math">\(A=U^TU\text{,}\)</span> where <span class="process-math">\(U\)</span> is upper-triangular, with positive diagonal entries. (See Nicholson for details.)</p>
+<p id="p-1202">Even better is that there is a very simple algorithm for obtaining the factorization: Carry the matrix <span class="process-math">\(A\)</span> to triangular form, using only row operations of the type <span class="process-math">\(R_i+kR_j\to R_i\text{.}\)</span> Then divide each row by the square root of the diagonal entry.</p>
+<p id="p-1203">The SymPy library contains the <code class="code-inline tex2jax_ignore">cholesky()</code> algorithm. Note however that it produces a lower triangular matrix, rather than upper triangular. (That is, the output gives <span class="process-math">\(L=U^T\)</span> rather than <span class="process-math">\(U\text{,}\)</span> so you will have <span class="process-math">\(A=LL^T\text{.}\)</span>) Let's give it a try. First, let's create a positive-definite matrix.</p>
+<pre class="ptx-sagecell sagecell-sage" id="sage-78"><script type="text/x-sage">from sympy import Matrix,init_printing
 init_printing()
-A = Matrix([[10,5,2],[5,3,2],[2,2,3]])
+B = Matrix([[3,7,-4],[5,-9,2],[-3,0,6]])
+A = B*B.T
 A
 </script></pre>
-<p id="p-1142">Next, find the Cholesky factorization:</p>
-<pre class="ptx-sagecell sagecell-sage" id="sage-73"><script type="text/x-sage">L = A.cholesky()
+<p id="p-1204">Next, find the Cholesky factorization:</p>
+<pre class="ptx-sagecell sagecell-sage" id="sage-79"><script type="text/x-sage">L = A.cholesky()
 L, L*L.T
 </script></pre>
-<pre class="ptx-sagecell sagecell-sage" id="sage-74"><script type="text/x-sage">L*L.T == A
-</script></pre></section><section class="subsubsection" id="pars-singular-values"><h4 class="heading hide-type">
+<pre class="ptx-sagecell sagecell-sage" id="sage-80"><script type="text/x-sage">L*L.T == A
+</script></pre>
+<p id="p-1205">Note that <span class="process-math">\(L\)</span> is <em class="emphasis">not</em> the same as the matrix <span class="process-math">\(B\text{!}\)</span></p></section><section class="subsubsection" id="pars-singular-values"><h4 class="heading hide-type">
 <span class="type">Subsubsection</span> <span class="codenumber">4.5.1.2</span> <span class="title">Singular Value Decomposition</span>
 </h4>
-<p id="p-1143">For any <span class="process-math">\(n\times n\)</span> matrix <span class="process-math">\(A\text{,}\)</span> the matrices <span class="process-math">\(A^TA\)</span> and <span class="process-math">\(AA^T\)</span> are both positive. (Exercise!) This means that we can define <span class="process-math">\(\sqrt{A^TA}\text{,}\)</span> even if <span class="process-math">\(A\)</span> itself is not symmetric or positive.</p>
-<ul id="p-1144" class="disc">
-<li id="li-161"><p id="p-1145">Since <span class="process-math">\(A^TA\)</span> is symmetric, we know that it can be diagonalized.</p></li>
-<li id="li-162"><p id="p-1146">Since <span class="process-math">\(A^TA\)</span> is positive, we know its eigenvalues are non-negative.</p></li>
-<li id="li-163"><p id="p-1147">This means we can define the <dfn class="terminology">singular values</dfn> <span class="process-math">\(\sigma_i = \sqrt{\lambda_i}\)</span> for each <span class="process-math">\(i=1,\ldots, n\text{.}\)</span></p></li>
-<li id="li-164"><p id="p-1148"><em class="alert">Note:</em> it's possible to do this even if <span class="process-math">\(A\)</span> is not a square matrix!</p></li>
+<p id="p-1206">For any <span class="process-math">\(n\times n\)</span> matrix <span class="process-math">\(A\text{,}\)</span> the matrices <span class="process-math">\(A^TA\)</span> and <span class="process-math">\(AA^T\)</span> are both positive. (Exercise!) This means that we can define <span class="process-math">\(\sqrt{A^TA}\text{,}\)</span> even if <span class="process-math">\(A\)</span> itself is not symmetric or positive.</p>
+<ul id="p-1207" class="disc">
+<li id="li-168"><p id="p-1208">Since <span class="process-math">\(A^TA\)</span> is symmetric, we know that it can be diagonalized.</p></li>
+<li id="li-169"><p id="p-1209">Since <span class="process-math">\(A^TA\)</span> is positive, we know its eigenvalues are non-negative.</p></li>
+<li id="li-170"><p id="p-1210">This means we can define the <dfn class="terminology">singular values</dfn> <span class="process-math">\(\sigma_i = \sqrt{\lambda_i}\)</span> for each <span class="process-math">\(i=1,\ldots, n\text{.}\)</span></p></li>
+<li id="li-171"><p id="p-1211"><em class="alert">Note:</em> it's possible to do this even if <span class="process-math">\(A\)</span> is not a square matrix!</p></li>
 </ul>
-<p id="p-1149">The SymPy library has a function for computing the singular values of a matrix. Given a matrix <code class="code-inline tex2jax_ignore">A</code>, the command <code class="code-inline tex2jax_ignore">A.singular_values()</code> will return its singular values. Try this for a few different matrices below:</p>
-<pre class="ptx-sagecell sagecell-sage" id="sage-75"><script type="text/x-sage">A = Matrix([[1,2,3],[4,5,6]])
+<p id="p-1212">The SymPy library has a function for computing the singular values of a matrix. Given a matrix <code class="code-inline tex2jax_ignore">A</code>, the command <code class="code-inline tex2jax_ignore">A.singular_values()</code> will return its singular values. Try this for a few different matrices below:</p>
+<pre class="ptx-sagecell sagecell-sage" id="sage-81"><script type="text/x-sage">A = Matrix([[1,2,3],[4,5,6]])
 A.singular_values()
 </script></pre>
-<p id="p-1150">In fact, SymPy can even return singular values for a matrix with variable entries! Try the following example from the <a class="external" href="https://docs.sympy.org/latest/modules/matrices/matrices.html#sympy.matrices.matrices.MatrixEigen.singular_values" target="_blank">SymPy documentation</a><a href="" data-knowl="" class="id-ref fn-knowl original" data-refid="hk-fn-7" id="fn-7"><sup> 1 </sup></a>.</p>
-<pre class="ptx-sagecell sagecell-sage" id="sage-76"><script type="text/x-sage">from sympy import Symbol
+<p id="p-1213">In fact, SymPy can even return singular values for a matrix with variable entries! Try the following example from the <a class="external" href="https://docs.sympy.org/latest/modules/matrices/matrices.html#sympy.matrices.matrices.MatrixEigen.singular_values" target="_blank">SymPy documentation</a><a href="" data-knowl="" class="id-ref fn-knowl original" data-refid="hk-fn-9" id="fn-9"><sup> 1 </sup></a>.</p>
+<pre class="ptx-sagecell sagecell-sage" id="sage-82"><script type="text/x-sage">from sympy import Symbol
 x = Symbol('x', real=True)
 M = Matrix([[0,1,0],[0,x,0],[-1,0,0]])
 M,M.singular_values()
 </script></pre>
-<p id="p-1151">For an <span class="process-math">\(n\times n\)</span> matrix <span class="process-math">\(A\text{,}\)</span> we might not be able to diagonalize <span class="process-math">\(A\)</span> (with a single orthonormal basis). However, it turns out that it's <em class="emphasis">always</em> possible to find a pair of orthonormal bases <span class="process-math">\(\{e_1,\ldots, e_n\}, \{f_1,\ldots, f_n\}\)</span> such that</p>
+<p id="p-1214">For an <span class="process-math">\(n\times n\)</span> matrix <span class="process-math">\(A\text{,}\)</span> we might not be able to diagonalize <span class="process-math">\(A\)</span> (with a single orthonormal basis). However, it turns out that it's <em class="emphasis">always</em> possible to find a pair of orthonormal bases <span class="process-math">\(\{e_1,\ldots, e_n\}, \{f_1,\ldots, f_n\}\)</span> such that</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 Ax = \sigma_1(x\cdot e_1)f_1+\cdots + \sigma_n(x\cdot e_n)f_n\text{.}
 \end{equation*}
 </div>
 <p class="continuation">In matrix form, <span class="process-math">\(A = P\Sigma_A Q^T\)</span> for orthogonal matrices <span class="process-math">\(P,Q\text{.}\)</span></p>
-<p id="p-1152">In fact, this can be done even if <span class="process-math">\(A\)</span> is not square, which is arguably the more interesting case! Let <span class="process-math">\(A\)</span> be an <span class="process-math">\(m\times n\)</span> matrix. We will find an <span class="process-math">\(m\times m\)</span> orthogonal matrix <span class="process-math">\(P\)</span> and <span class="process-math">\(n\times n\)</span> orthogonal matrix <span class="process-math">\(Q\text{,}\)</span> such that <span class="process-math">\(A=P\Sigma_A Q^T\text{,}\)</span> where <span class="process-math">\(\Sigma_A\)</span> is also <span class="process-math">\(m\times n\text{.}\)</span></p>
-<aside class="aside aside-like" id="aside-8"><p id="p-1153">If <span class="process-math">\(A\)</span> is symmetric and positive-definite, the singular values of <span class="process-math">\(A\)</span> are just the eigenvalues of <span class="process-math">\(A\text{,}\)</span> and the singular value decomposition is the same as diagonalization.</p></aside><p id="p-1154">The basis <span class="process-math">\(\{f_1,\ldots, f_n\}\)</span> is an orthonormal basis for <span class="process-math">\(A^TA\text{,}\)</span> and the matrix <span class="process-math">\(Q\)</span> is the matrix whose columns are the vectors <span class="process-math">\(f_i\text{.}\)</span> As a result, <span class="process-math">\(Q\)</span> is orthogonal.</p>
-<p id="p-1155">The matrix <span class="process-math">\(\Sigma_A\)</span> is the same size as <span class="process-math">\(A\text{.}\)</span> First, we list the positive singular values of <span class="process-math">\(A\)</span> in decreasing order:</p>
+<p id="p-1215">In fact, this can be done even if <span class="process-math">\(A\)</span> is not square, which is arguably the more interesting case! Let <span class="process-math">\(A\)</span> be an <span class="process-math">\(m\times n\)</span> matrix. We will find an <span class="process-math">\(m\times m\)</span> orthogonal matrix <span class="process-math">\(P\)</span> and <span class="process-math">\(n\times n\)</span> orthogonal matrix <span class="process-math">\(Q\text{,}\)</span> such that <span class="process-math">\(A=P\Sigma_A Q^T\text{,}\)</span> where <span class="process-math">\(\Sigma_A\)</span> is also <span class="process-math">\(m\times n\text{.}\)</span></p>
+<aside class="aside aside-like" id="aside-9"><p id="p-1216">If <span class="process-math">\(A\)</span> is symmetric and positive-definite, the singular values of <span class="process-math">\(A\)</span> are just the eigenvalues of <span class="process-math">\(A\text{,}\)</span> and the singular value decomposition is the same as diagonalization.</p></aside><p id="p-1217">The basis <span class="process-math">\(\{f_1,\ldots, f_n\}\)</span> is an orthonormal basis for <span class="process-math">\(A^TA\text{,}\)</span> and the matrix <span class="process-math">\(Q\)</span> is the matrix whose columns are the vectors <span class="process-math">\(f_i\text{.}\)</span> As a result, <span class="process-math">\(Q\)</span> is orthogonal.</p>
+<p id="p-1218">The matrix <span class="process-math">\(\Sigma_A\)</span> is the same size as <span class="process-math">\(A\text{.}\)</span> First, we list the positive singular values of <span class="process-math">\(A\)</span> in decreasing order:</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 \sigma_1\geq \sigma_2\geq \cdots \geq \sigma_k\gt 0\text{.}
@@ -329,146 +337,138 @@ Ax = \sigma_1(x\cdot e_1)f_1+\cdots + \sigma_n(x\cdot e_n)f_n\text{.}
 \end{equation*}
 </div>
 <p class="continuation">That is, we put <span class="process-math">\(D_A\)</span> in the upper-left, and then fill in zeros as needed, until <span class="process-math">\(\Sigma_A\)</span> is the same size as <span class="process-math">\(A\text{.}\)</span></p>
-<p id="p-1156">Next, we compute the vectors <span class="process-math">\(e_i = \frac{1}{\len{Af_i}}Af_i\text{,}\)</span> for <span class="process-math">\(i=1,\ldots, k\text{.}\)</span> As shown in Nicolson, <span class="process-math">\(\{e_1,\ldots, e_r\}\)</span> will be an orthonormal basis for the column space of <span class="process-math">\(A\text{.}\)</span> The matrix <span class="process-math">\(P\)</span> is constructed by extending this to an orthonormal basis of <span class="process-math">\(\R^m\text{.}\)</span></p>
-<p id="p-1157">All of this is a lot of work to do by hand, but it turns out that it can be done numerically, and more importantly, <em class="emphasis">efficiently</em>, by a computer. The SymPy library does not have an <abbr class="initialism">SVD</abbr> algorithm, but the <code class="code-inline tex2jax_ignore">mpmath</code> library does, and it works well with SymPy.</p>
-<p id="p-1158">Example 8.6.1 in Nicolson shows that for the matrix <span class="process-math">\(A = \begin{bmatrix}1\amp 0\amp 1\\-1\amp 1\amp 0\end{bmatrix}\)</span> we should have</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-P = \frac{1}{\sqrt{2}}\bbm 1\amp 1\\-1\amp 1\ebm, \Sigma_A = \bbm \sqrt{3}\amp 0\amp 0\\0\amp 1\amp 0\ebm, Q = \frac{1}{\sqrt{6}}\bbm2\amp -1\amp 1\\0\amp \sqrt{3}\amp \sqrt{3}\\-\sqrt{2}\amp -\sqrt{2}\amp \sqrt{2}\ebm\text{.}
-\end{equation*}
-</div>
-<p class="continuation">Let us test this on the computer. First, we import the <code class="code-inline tex2jax_ignore">mpmath</code> library, and define <span class="process-math">\(A\text{.}\)</span> (Importantly, the <code class="code-inline tex2jax_ignore">svd</code> routine from <code class="code-inline tex2jax_ignore">mpmath</code> will accept a SymPy matrix as input. We do not, for example, have to first convert it to a NumPy array.) Since both SymPy and mpmath have similar functions, we <code class="code-inline tex2jax_ignore">import as</code>  for both libraries, so we can distinguish between them as needed.</p>
-<pre class="ptx-sagecell sagecell-sage" id="sage-77"><script type="text/x-sage">import sympy as sy
-import mpmath as mp
-sy.init_printing()
-mp.pretty = True
-A = mp.matrix([[1,0,1],[-1,1,0]])
-A
-</script></pre>
-<p id="p-1159">Note that we defined <code class="code-inline tex2jax_ignore">A</code> as a mpmath <code class="code-inline tex2jax_ignore">matrix</code>. The <code class="code-inline tex2jax_ignore">svd</code> command from the mpmath library will also work on a SymPy <code class="code-inline tex2jax_ignore">Matrix</code>, but certain mpmath commands, like the <code class="code-inline tex2jax_ignore">chop</code> command used to round decimals, will not. Next, we apply the <code class="code-inline tex2jax_ignore">svd</code> algorithm.</p>
-<pre class="ptx-sagecell sagecell-sage" id="sage-78"><script type="text/x-sage">P,S,QT = mp.svd(A)
-P,S,QT
-</script></pre>
-<p id="p-1160">Note that the input isn't quite so nice this time: the algorithm is numerical. For some reason, if you define <code class="code-inline tex2jax_ignore">A</code> as a SymPy matrix, then <code class="code-inline tex2jax_ignore">P</code> will be a SymPy matrix, but <code class="code-inline tex2jax_ignore">S</code> and <code class="code-inline tex2jax_ignore">Q</code> will not. (I have no idea why.) Also, the matrix <code class="code-inline tex2jax_ignore">S</code> is a column matrix, containing the positive singular values of <span class="process-math">\(A\text{.}\)</span> We can turn it into a diagonal matrix as follows, using the <code class="code-inline tex2jax_ignore">diag</code> command from mpmath:</p>
-<pre class="ptx-sagecell sagecell-sage" id="sage-79"><script type="text/x-sage">S1 = mp.diag(S)
-S1
-</script></pre>
-<p id="p-1161">In case you don't recognize the square root of 3 by its decimal approximation, we can check:</p>
-<pre class="ptx-sagecell sagecell-sage" id="sage-80"><script type="text/x-sage">S1*S1
-</script></pre>
-<p id="p-1162">The matrix <span class="process-math">\(\Sigma_A\)</span> is supposed to be <span class="process-math">\(2\times 3\text{,}\)</span> with an additional column of zeros. If we want to define this as a SymPy matrix, we can. Note that we are using the <code class="code-inline tex2jax_ignore">diag</code> command from SymPy this time, rather than mpmath.</p>
-<pre class="ptx-sagecell sagecell-sage" id="sage-81"><script type="text/x-sage">S2 = sy.Matrix(S1)
-SigA = S2.row_join(sy.Matrix([0,0]))
-SigA
-</script></pre>
-<p id="p-1163">We will see in a minute that this matrix is not really necessary, because the <code class="code-inline tex2jax_ignore">svd</code> algorithm in mpmath is a bit different from the one in Nicholson.</p>
-<p id="p-1164">The matrix <span class="process-math">\(P\)</span> is already a SymPy matrix, as it turns out, but <span class="process-math">\(Q\)</span> is not.</p>
-<pre class="ptx-sagecell sagecell-sage" id="sage-82"><script type="text/x-sage">QT
-</script></pre>
-<p id="p-1165">Notice that this matrix is not square! The output from the algorithm also has the transpose already applied.</p>
-<pre class="ptx-sagecell sagecell-sage" id="sage-83"><script type="text/x-sage">Q1 = QT.T
-Q1
-</script></pre>
-<p id="p-1166">The matrix <code class="code-inline tex2jax_ignore">Q1</code> we get here is (up to a difference in sign) the first two columns of the matrix <span class="process-math">\(Q\)</span> found in Nicholson. This makes sense: the matrix <span class="process-math">\(S\)</span> that we get from the algorithm is <span class="process-math">\(D_A\text{,}\)</span> not <span class="process-math">\(\Sigma_A\text{.}\)</span> The third column of <span class="process-math">\(\Sigma_A\)</span> is zero. So when we multiply by <span class="process-math">\(Q^T\text{,}\)</span> the third row of <span class="process-math">\(Q^T\)</span> (that is, the third column of <span class="process-math">\(Q\)</span>) is lost. That is, <span class="process-math">\(S(QT)=\Sigma_AQ^T\text{.}\)</span></p>
-<p id="p-1167">To confirm that everything worked, we can multiply:</p>
-<pre class="ptx-sagecell sagecell-sage" id="sage-84"><script type="text/x-sage">P*S1*QT
-</script></pre>
-<p id="p-1168">Maybe that's not so enlightening, given all the decimal places. Let's check the difference with the matrix <span class="process-math">\(A\text{:}\)</span></p>
-<pre class="ptx-sagecell sagecell-sage" id="sage-85"><script type="text/x-sage">A-P*S1*QT
-</script></pre>
-<p id="p-1169">Looks like some pretty small numbers there. The mpmath library includes the <code class="code-inline tex2jax_ignore">chop</code> command for truncating decimals.</p>
-<pre class="ptx-sagecell sagecell-sage" id="sage-86"><script type="text/x-sage">mp.chop(A-P*S1*QT)
-</script></pre>
-<p id="p-1170">The Singular Value Decomposition has a lot of useful appplications, some of which are described in Nicholson's book. On a very fundamental level the <abbr class="initialism">SVD</abbr> provides us with information on some of the most essential properties of the matrix <span class="process-math">\(A\text{,}\)</span> and any system of equations with <span class="process-math">\(A\)</span> as its coefficient matrix.</p>
-<p id="p-1171">Recall the following definitions for an <span class="process-math">\(m\times n\)</span> matrix <span class="process-math">\(A\text{:}\)</span></p>
-<ol class="decimal">
-<li id="li-165"><p id="p-1172">The <dfn class="terminology">rank</dfn> of <span class="process-math">\(A\)</span> is the number of leadning ones in the <abbr class="initialism">RREF</abbr> of <span class="process-math">\(A\text{,}\)</span> which is also equal to the dimension of the column space of <span class="process-math">\(A\)</span> (or if you prefer, the dimension of <span class="process-math">\(\im (T_A)\)</span>).</p></li>
-<li id="li-166"><p id="p-1173">The <dfn class="terminology">column space</dfn> of <span class="process-math">\(A\text{,}\)</span> denoted <span class="process-math">\(\csp(A)\text{,}\)</span> is the subspace of <span class="process-math">\(\R^m\)</span> spanned by the columns of <span class="process-math">\(A\text{.}\)</span> (This is the image of the matrix transformation <span class="process-math">\(T_A\text{;}\)</span> it is also the space of all vectors <span class="process-math">\(\mathbf{b}\)</span> for which the system <span class="process-math">\(A\xx=\mathbf{b}\)</span> is consistent.)</p></li>
-<li id="li-167"><p id="p-1174">The <dfn class="terminology">row space</dfn> of <span class="process-math">\(A\text{,}\)</span> denoted <span class="process-math">\(\operatorname{row}(A)\text{,}\)</span> is the span of the rows of <span class="process-math">\(A\text{,}\)</span> viewed as column vectors in <span class="process-math">\(\R^n\text{.}\)</span></p></li>
-<li id="li-168"><p id="p-1175">The <dfn class="terminology">null space</dfn> of <span class="process-math">\(A\)</span> is the space of solutions to the homogeneous system <span class="process-math">\(A\xx=\zer\text{.}\)</span> This is, of course, equal the kernel of the associated transformation <span class="process-math">\(T_A\text{.}\)</span></p></li>
-</ol>
-<p id="p-1176">There are some interesting relationships among these spaces, which are left as an exercise. (Solutions are in Nicholson if you get stumped.)</p>
-<article class="exercise exercise-like" id="exercise-90"><h5 class="heading">
-<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">4.5.3</span><span class="period">.</span>
+<p id="p-1219">Next, we compute the vectors <span class="process-math">\(e_i = \frac{1}{\len{Af_i}}Af_i\text{,}\)</span> for <span class="process-math">\(i=1,\ldots, k\text{.}\)</span> As shown in Nicolson, <span class="process-math">\(\{e_1,\ldots, e_r\}\)</span> will be an orthonormal basis for the column space of <span class="process-math">\(A\text{.}\)</span> The matrix <span class="process-math">\(P\)</span> is constructed by extending this to an orthonormal basis of <span class="process-math">\(\R^m\text{.}\)</span></p>
+<p id="p-1220">All of this is a lot of work to do by hand, but it turns out that it can be done numerically, and more importantly, <em class="emphasis">efficiently</em>, by a computer. The SymPy library has an <abbr class="initialism">SVD</abbr> algorithm, but it will not be efficient for larger matrices. In practice, most Python users will use the <abbr class="initialism">SVD</abbr> algorithm provided by NumPy; we will stick with SymPy for simplicity and consistency.</p>
+<article class="remark remark-like" id="remark-15"><h5 class="heading">
+<span class="type">Remark</span><span class="space"> </span><span class="codenumber">4.5.3</span><span class="period">.</span>
 </h5>
-<p id="p-1177">Let <span class="process-math">\(A\)</span> be an <span class="process-math">\(m\times n\)</span> matrix. Prove the following:</p>
+<p id="p-1221">The version of the <abbr class="initialism">SVD</abbr> given above is not used in computations, since it tends to be more resource intensive. In particular, it requires us to store more information than necessary: the last <span class="process-math">\(n-r\)</span> rows of <span class="process-math">\(Q\text{,}\)</span> and the last <span class="process-math">\(m-r\)</span> columns of <span class="process-math">\(P\text{,}\)</span> get multiplied by columns/rows of zeros in <span class="process-math">\(\Sigma_A\text{,}\)</span> so we don't really need to keep track of these columns.</p>
+<p id="p-1222">Instead, most algorithms that you find will give the <span class="process-math">\(r\times r\)</span> diagonal matrix <span class="process-math">\(D_A\text{,}\)</span> consisting of the nonzero singular values, and <span class="process-math">\(P\)</span> will be replaced by the <span class="process-math">\(m\times r\)</span> matrix consisting of its first <span class="process-math">\(r\)</span> columns, while <span class="process-math">\(Q\)</span> gets replaced by the <span class="process-math">\(r\times n\)</span> matrix consisting of its first <span class="process-math">\(r\)</span> rows. The resulting product is still equal to the original matrix.</p>
+<p id="p-1223">In some cases, even the matrix <span class="process-math">\(D_A\)</span> is too large, and a decision is made to truncate to some smaller subset of singular values. In this case, the resulting product is no longer equal to the original matrix, but it does provide an approximation. A discussion can be found <a class="external" href="https://en.wikipedia.org/wiki/Singular_value_decomposition#Reduced_SVDs" target="_blank">on Wikipedia</a><a href="" data-knowl="" class="id-ref fn-knowl original" data-refid="hk-fn-10" id="fn-10"><sup> 2 </sup></a>.</p></article><article class="example example-like" id="example-svd"><h5 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">4.5.4</span><span class="period">.</span>
+</h5>
+<p id="p-1224">Find the singular value decomposition of the matrix <span class="process-math">\(A = \begin{bmatrix}1\amp 1\amp 1\\1\amp 0\amp -1\end{bmatrix}\text{.}\)</span></p>
+<div class="solutions">
+<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-63" id="solution-63"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-63"><div class="solution solution-like">
+<p id="p-1225">Using SymPy, we get the <a class="external" href="https://docs.sympy.org/latest/modules/matrices/matrices.html#sympy.matrices.matrices.MatrixBase.singular_value_decomposition" target="_blank">condensed SVD</a><a href="" data-knowl="" class="id-ref fn-knowl original" data-refid="hk-fn-11" id="fn-11"><sup> 3 </sup></a>. First, let's check the singular values.</p>
+<pre class="ptx-sagecell hidden-sagecell-sage" id="sage-83"><script type="text/x-sage">from sympy import Matrix, init_printing
+init_printing()
+A = Matrix([[1,1,1],[1,0,-1]])
+A.singular_values()
+</script></pre>
+<p id="p-1226">Note that the values are not listed in decreasing order. Now, let's ask for the singular value decomposition. The output consists of three matrices; the first line below assigns those matrices to the names <code class="code-inline tex2jax_ignore">P,S,Q</code>.</p>
+<pre class="ptx-sagecell hidden-sagecell-sage" id="sage-84"><script type="text/x-sage">P,S,Q=A.singular_value_decomposition()
+P,S,Q
+</script></pre>
+<p id="p-1227">Note that the output is the “condensed” version, which doesn't match the exposition above. It also doesn't follow the same ordering convention: we'll need to swap columns in each of the matrices. But it does give us a decomposition of the matrix <span class="process-math">\(A\text{:}\)</span></p>
+<pre class="ptx-sagecell hidden-sagecell-sage" id="sage-85"><script type="text/x-sage">P*S*Q.T
+</script></pre>
+<p id="p-1228">To match our earlier presentation, we first set <span class="process-math">\(\Sigma_A = \bbm \sqrt{3}\amp 0\amp 0\\0 \amp \sqrt{2}\amp 0\ebm\text{.}\)</span> Next, we need to extend the <span class="process-math">\(3\times 2\)</span> matrix in the output above to a <span class="process-math">\(3\times 3\)</span> matrix. We can do this by choosing any vector orthogonal to the two existing columns, and normalizing. Let's use entries <span class="process-math">\(1/\sqrt{6},-2/\sqrt{6},1/\sqrt{6}\text{.}\)</span> Noting that we also need to swap the first two columns (to match the fact that we swapped columns in <span class="process-math">\(\Sigma_A\)</span>), we get the matrix</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+Q = \bbm \frac{\sqrt{3}}{3}\amp \frac{\sqrt{2}}{2}\amp \frac{\sqrt{6}}{6}\\
+\frac{\sqrt{3}}{3}\amp 0\amp -\frac{\sqrt{6}}{3}\\
+\frac{\sqrt{3}}{3}\amp -\frac{\sqrt{2}}{2} \amp \frac{\sqrt{6}}{6}\ebm\text{.}
+\end{equation*}
+</div>
+<p class="continuation">Let's check that it is indeed orthogonal.</p>
+<pre class="ptx-sagecell hidden-sagecell-sage" id="sage-86"><script type="text/x-sage">Q = Matrix([[sqrt(3)/3,sqrt(2)/2,sqrt(6)/6],[sqrt(3)/3,0,-sqrt(6)/3],[sqrt(3)/3,-sqrt(2)/2,sqrt(6)/6]])
+Q*Q.T
+</script></pre>
+<p id="p-1229">Finally, we take <span class="process-math">\(P=\bbm 1\amp 0\\0\amp 1\ebm\)</span> (again swapping columns), which is just the identity matrix. We therefore should expect that</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+P\Sigma_A Q^T = \Sigma_A Q^T = A\text{.}
+\end{equation*}
+</div>
+<p class="continuation">Let's check.</p>
+<pre class="ptx-sagecell hidden-sagecell-sage" id="sage-87"><script type="text/x-sage">S = Matrix([[sqrt(3),0,0],[0,sqrt(2),0]])
+S*Q.T
+</script></pre>
+<p id="p-1230">It worked!</p>
+</div></div>
+</div></article><p id="p-1231">The Singular Value Decomposition has a lot of useful appplications, some of which are described in Nicholson's book. On a very fundamental level the <abbr class="initialism">SVD</abbr> provides us with information on some of the most essential properties of the matrix <span class="process-math">\(A\text{,}\)</span> and any system of equations with <span class="process-math">\(A\)</span> as its coefficient matrix.</p>
+<p id="p-1232">Recall the following definitions for an <span class="process-math">\(m\times n\)</span> matrix <span class="process-math">\(A\text{:}\)</span></p>
 <ol class="decimal">
-<li id="li-169"><p id="p-1178"><span class="process-math">\(\displaystyle (\operatorname{row}(A))^\bot = \nll(A)\)</span></p></li>
-<li id="li-170"><p id="p-1179"><span class="process-math">\(\displaystyle (\csp(A))^\bot = \nll(A^T)\)</span></p></li>
-</ol></article><p id="p-1180">Here's the cool thing about the <abbr class="initialism">SVD</abbr>. Let <span class="process-math">\(\sigma_1\geq \sigma_2\geq \cdots \geq \sigma_r\gt 0\)</span> be the positive singular values of <span class="process-math">\(A\text{.}\)</span> Let <span class="process-math">\(\vecq_1,\ldots, \vecq_r,\ldots, \vecq_n\)</span> be the orthonormal basis of eigenvectors for <span class="process-math">\(A^TA\text{,}\)</span> and let <span class="process-math">\(\vecp_1,\ldots, \vecp_r,\ldots, \vecp_m\)</span> be the orthonormal basis of <span class="process-math">\(\R^m\)</span> constructed in the <abbr class="initialism">SVD</abbr> algorithm. Then:</p>
-<ol id="p-1181" class="decimal">
-<li id="li-171"><p id="p-1182"><span class="process-math">\(\displaystyle \rank(A)=r\)</span></p></li>
-<li id="li-172"><p id="p-1183"><span class="process-math">\(\vecq_1,\ldots, \vecq_r\)</span> form a basis for <span class="process-math">\(\operatorname{row}(A)\text{.}\)</span></p></li>
-<li id="li-173"><p id="p-1184"><span class="process-math">\(\vecp_1,\ldots, \vecp_r\)</span> form a basis for <span class="process-math">\(\csp(A)\)</span> (and thus, the “row rank” and “column rank” of <span class="process-math">\(A\)</span> are the same).</p></li>
-<li id="li-174"><p id="p-1185"><span class="process-math">\(\vecq_{r+1},\ldots, \vecq_n\)</span> form a basis for <span class="process-math">\(\nll(A)\text{.}\)</span> (And these are therefore the basis solutions of <span class="process-math">\(A\xx=\zer\text{!}\)</span>)</p></li>
-<li id="li-175"><p id="p-1186"><span class="process-math">\(\vecp_{r+1},\ldots, \vecp_m\)</span> form a basis for <span class="process-math">\(\nll(A^T)\text{.}\)</span></p></li>
+<li id="li-172"><p id="p-1233">The <dfn class="terminology">rank</dfn> of <span class="process-math">\(A\)</span> is the number of leadning ones in the <abbr class="initialism">RREF</abbr> of <span class="process-math">\(A\text{,}\)</span> which is also equal to the dimension of the column space of <span class="process-math">\(A\)</span> (or if you prefer, the dimension of <span class="process-math">\(\im (T_A)\)</span>).</p></li>
+<li id="li-173"><p id="p-1234">The <dfn class="terminology">column space</dfn> of <span class="process-math">\(A\text{,}\)</span> denoted <span class="process-math">\(\csp(A)\text{,}\)</span> is the subspace of <span class="process-math">\(\R^m\)</span> spanned by the columns of <span class="process-math">\(A\text{.}\)</span> (This is the image of the matrix transformation <span class="process-math">\(T_A\text{;}\)</span> it is also the space of all vectors <span class="process-math">\(\mathbf{b}\)</span> for which the system <span class="process-math">\(A\xx=\mathbf{b}\)</span> is consistent.)</p></li>
+<li id="li-174"><p id="p-1235">The <dfn class="terminology">row space</dfn> of <span class="process-math">\(A\text{,}\)</span> denoted <span class="process-math">\(\operatorname{row}(A)\text{,}\)</span> is the span of the rows of <span class="process-math">\(A\text{,}\)</span> viewed as column vectors in <span class="process-math">\(\R^n\text{.}\)</span></p></li>
+<li id="li-175"><p id="p-1236">The <dfn class="terminology">null space</dfn> of <span class="process-math">\(A\)</span> is the space of solutions to the homogeneous system <span class="process-math">\(A\xx=\zer\text{.}\)</span> This is, of course, equal the kernel of the associated transformation <span class="process-math">\(T_A\text{.}\)</span></p></li>
 </ol>
-<p id="p-1187">If you want to explore this further, have a look at the excellent <a class="external" href="https://www.juanklopper.com/wp-content/uploads/2015/03/III_05_Singular_value_decomposition.html" target="_blank">notebook by Dr. Juan H Klopper</a><a href="" data-knowl="" class="id-ref fn-knowl original" data-refid="hk-fn-8" id="fn-8"><sup> 2 </sup></a>. The <code class="code-inline tex2jax_ignore">ipynb</code> file can be found <a class="external" href="https://github.com/juanklopper/MIT_OCW_Linear_Algebra_18_06" target="_blank">on his GitHub page</a><a href="" data-knowl="" class="id-ref fn-knowl original" data-refid="hk-fn-9" id="fn-9"><sup> 3 </sup></a>. In it, he takes you through various approaches to finding the singular value decomposition, using the method above, as well as using NumPy and SciPy (which, for industrial applications, are superior to SymPy and mpmath).</p></section><section class="subsubsection" id="pars-polar-decomp"><h4 class="heading hide-type">
-<span class="type">Subsubsection</span> <span class="codenumber">4.5.1.3</span> <span class="title">Polar Decomposition</span>
+<p id="p-1237">There are some interesting relationships among these spaces, which are left as an exercise.</p>
+<article class="exercise exercise-like" id="exercise-99"><h5 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">4.5.5</span><span class="period">.</span>
+</h5>
+<div class="introduction" id="introduction-24"><p id="p-1238">Let <span class="process-math">\(A\)</span> be an <span class="process-math">\(m\times n\)</span> matrix. Prove the following statements.</p></div>
+<article class="task exercise-like" id="task-35"><h6 class="heading"><span class="codenumber">(a)</span></h6>
+<p id="p-1239"><span class="process-math">\((\operatorname{row}(A))^\bot = \nll(A)\)</span></p>
+<div class="solutions">
+<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-38" id="hint-38"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-38"><div class="hint solution-like">
+<p id="p-1240">Note that <span class="process-math">\(\vv\in \nll(A)\)</span> if and only if <span class="process-math">\(A\vv=\zer\text{,}\)</span> and <span class="process-math">\(\vv\in(\operatorname{row}(A))^\bot\)</span> if and only if <span class="process-math">\(\vv\cdot \mathbf{r}_i=\zer\)</span> for each row <span class="process-math">\(\mathbf{r}_i\)</span> of <span class="process-math">\(A\text{.}\)</span></p>
+<p id="p-1241">Note also that <span class="process-math">\((A\vv)^T=\vv^T A^T\)</span> is the (dot) product of <span class="process-math">\(\vv^T\)</span> with each column of <span class="process-math">\(A^T\text{,}\)</span> and each column of <span class="process-math">\(A^T\)</span> is a row of <span class="process-math">\(A\text{.}\)</span></p>
+</div></div>
+</div></article><article class="task exercise-like" id="task-36"><h6 class="heading"><span class="codenumber">(b)</span></h6>
+<p id="p-1242"><span class="process-math">\((\csp(A))^\bot = \nll(A^T)\)</span></p>
+<div class="solutions">
+<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-39" id="hint-39"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-39"><div class="hint solution-like"><p id="p-1243">Notice that <span class="process-math">\(\vv\in \nll(A^T)\)</span> if and only if <span class="process-math">\(A^T\vv=\zer\text{,}\)</span> and that <span class="process-math">\((A^T\vv)^T=\vv^T A\text{.}\)</span> Your reasoning should be similar to that of the previous part.</p></div></div>
+</div></article></article><p id="p-1244">Here's the cool thing about the <abbr class="initialism">SVD</abbr>. Let <span class="process-math">\(\sigma_1\geq \sigma_2\geq \cdots \geq \sigma_r\gt 0\)</span> be the positive singular values of <span class="process-math">\(A\text{.}\)</span> Let <span class="process-math">\(\vecq_1,\ldots, \vecq_r,\ldots, \vecq_n\)</span> be the orthonormal basis of eigenvectors for <span class="process-math">\(A^TA\text{,}\)</span> and let <span class="process-math">\(\vecp_1,\ldots, \vecp_r,\ldots, \vecp_m\)</span> be the orthonormal basis of <span class="process-math">\(\R^m\)</span> constructed in the <abbr class="initialism">SVD</abbr> algorithm. Then:</p>
+<ol id="p-1245" class="decimal">
+<li id="li-176"><p id="p-1246"><span class="process-math">\(\displaystyle \rank(A)=r\)</span></p></li>
+<li id="li-177"><p id="p-1247"><span class="process-math">\(\vecq_1,\ldots, \vecq_r\)</span> form a basis for <span class="process-math">\(\operatorname{row}(A)\text{.}\)</span></p></li>
+<li id="li-178"><p id="p-1248"><span class="process-math">\(\vecp_1,\ldots, \vecp_r\)</span> form a basis for <span class="process-math">\(\csp(A)\)</span> (and thus, the “row rank” and “column rank” of <span class="process-math">\(A\)</span> are the same).</p></li>
+<li id="li-179"><p id="p-1249"><span class="process-math">\(\vecq_{r+1},\ldots, \vecq_n\)</span> form a basis for <span class="process-math">\(\nll(A)\text{.}\)</span> (And these are therefore the basis solutions of <span class="process-math">\(A\xx=\zer\text{!}\)</span>)</p></li>
+<li id="li-180"><p id="p-1250"><span class="process-math">\(\vecp_{r+1},\ldots, \vecp_m\)</span> form a basis for <span class="process-math">\(\nll(A^T)\text{.}\)</span></p></li>
+</ol>
+<p id="p-1251">If you want to explore this further, have a look at the excellent <a class="external" href="https://www.juanklopper.com/wp-content/uploads/2015/03/III_05_Singular_value_decomposition.html" target="_blank">notebook by Dr. Juan H Klopper</a><a href="" data-knowl="" class="id-ref fn-knowl original" data-refid="hk-fn-12" id="fn-12"><sup> 4 </sup></a>. The <code class="code-inline tex2jax_ignore">ipynb</code> file can be found <a class="external" href="https://github.com/juanklopper/MIT_OCW_Linear_Algebra_18_06" target="_blank">on his GitHub page</a><a href="" data-knowl="" class="id-ref fn-knowl original" data-refid="hk-fn-13" id="fn-13"><sup> 5 </sup></a>. In it, he takes you through various approaches to finding the singular value decomposition, using the method above, as well as using NumPy and SciPy (which, for industrial applications, are superior to SymPy).</p></section><section class="subsubsection" id="pars-qr-factor"><h4 class="heading hide-type">
+<span class="type">Subsubsection</span> <span class="codenumber">4.5.1.3</span> <span class="title">QR Factorization</span>
 </h4>
-<p id="p-1188">For any <span class="process-math">\(n\times n\)</span> matrix <span class="process-math">\(A\text{,}\)</span> there exists an orthogonal (or unitary) matrix <span class="process-math">\(P\)</span> such that</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-A = P\sqrt{A^TA}\text{.}
-\end{equation*}
-</div>
-<p class="continuation">This is meant to remind you of the polar decomposition</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-z = e^{i\theta}\sqrt{\bar{z}z}
-\end{equation*}
-</div>
-<p class="continuation">for a complex number.</p>
-<p id="p-1189">One way to compute the polar decomposition is using the Singular Value Decomposition (see Nicholson's text). Note that both <span class="process-math">\(P\)</span> and <span class="process-math">\(\sqrt{A^TA}\)</span> can be diagonalized, but usually not with the same orthonormal basis.</p></section><section class="subsubsection" id="pars-qr-factor"><h4 class="heading hide-type">
-<span class="type">Subsubsection</span> <span class="codenumber">4.5.1.4</span> <span class="title">QR Factorization</span>
-</h4>
-<p id="p-1190">Suppose <span class="process-math">\(A\)</span> is an <span class="process-math">\(m\times n\)</span> matrix with independent columns. (Question: for this to happen, which is true — <span class="process-math">\(m\geq n\text{,}\)</span> or <span class="process-math">\(n\geq m\text{?}\)</span>)</p>
-<p id="p-1191">A <span class="process-math">\(QR\)</span>-factorization of <span class="process-math">\(A\)</span> is a factorization of the form <span class="process-math">\(A=QR\text{,}\)</span> where <span class="process-math">\(Q\)</span> is <span class="process-math">\(m\times n\text{,}\)</span> with orthonormal columns, and <span class="process-math">\(R\)</span> is an invertible upper-triangular (<span class="process-math">\(n\times n\)</span>) matrix with positive diagonal entries. If <span class="process-math">\(A\)</span> is a square matrix, <span class="process-math">\(Q\)</span> will be orthogonal.</p>
-<p id="p-1192">A lot of the methods we're looking at here involve more sophisticated numerical techniques than SymPy is designed to handle. If we wanted to spend time on these topics, we'd have to learn a bit about the NumPy package, which has built in tools for finding things like polar decomposition and singular value decomposition. However, SymPy does know how to do <span class="process-math">\(QR\)</span> factorization. After defining a matrix <code class="code-inline tex2jax_ignore">A</code>, we can use the command</p>
+<p id="p-1252">Suppose <span class="process-math">\(A\)</span> is an <span class="process-math">\(m\times n\)</span> matrix with independent columns. (Question: for this to happen, which is true — <span class="process-math">\(m\geq n\text{,}\)</span> or <span class="process-math">\(n\geq m\text{?}\)</span>)</p>
+<p id="p-1253">A <span class="process-math">\(QR\)</span>-factorization of <span class="process-math">\(A\)</span> is a factorization of the form <span class="process-math">\(A=QR\text{,}\)</span> where <span class="process-math">\(Q\)</span> is <span class="process-math">\(m\times n\text{,}\)</span> with orthonormal columns, and <span class="process-math">\(R\)</span> is an invertible upper-triangular (<span class="process-math">\(n\times n\)</span>) matrix with positive diagonal entries. If <span class="process-math">\(A\)</span> is a square matrix, <span class="process-math">\(Q\)</span> will be orthogonal.</p>
+<p id="p-1254">A lot of the methods we're looking at here involve more sophisticated numerical techniques than SymPy is designed to handle. If we wanted to spend time on these topics, we'd have to learn a bit about the NumPy package, which has built in tools for finding things like polar decomposition and singular value decomposition. However, SymPy does know how to do <span class="process-math">\(QR\)</span> factorization. After defining a matrix <code class="code-inline tex2jax_ignore">A</code>, we can use the command</p>
 <pre class="code-display tex2jax_ignore">
           Q, R = A.QRdecomposition()
         </pre>
 <p class="continuation">.</p>
-<pre class="ptx-sagecell sagecell-sage" id="sage-87"><script type="text/x-sage">from sympy import Matrix,init_printing
+<pre class="ptx-sagecell sagecell-sage" id="sage-88"><script type="text/x-sage">from sympy import Matrix,init_printing
 init_printing()
 A = Matrix(3,3,[1,-2,3,3,-1,2,4,2,5])
 Q, R = A.QRdecomposition()
 A, Q, R
 </script></pre>
-<p id="p-1193">Let's check that the matrix <span class="process-math">\(Q\)</span> really is orthogonal:</p>
-<pre class="ptx-sagecell sagecell-sage" id="sage-88"><script type="text/x-sage">Q**(-1) == Q.T
+<p id="p-1255">Let's check that the matrix <span class="process-math">\(Q\)</span> really is orthogonal:</p>
+<pre class="ptx-sagecell sagecell-sage" id="sage-89"><script type="text/x-sage">Q**(-1) == Q.T
 </script></pre>
-<p id="p-1194">Details of how to perform the QR factorization can be found in Nicholson's textbook. It's essentially a consequence of performing the Gram-Schmidt algorithm on the columns of <span class="process-math">\(A\text{,}\)</span> and keeping track of our work.</p>
-<p id="p-1195">The calculation above is a symbolic computation, which is nice for understanding what's going on. The reason why the <span class="process-math">\(QR\)</span> factorization is useful in practice is that there are efficient numerical methods for doing it (with good control over rounding errors). Our next topic looks at a useful application of the <span class="process-math">\(QR\)</span> factorization.</p></section></section><section class="subsection" id="subsec-compute-eigen"><h3 class="heading hide-type">
+<p id="p-1256">Details of how to perform the QR factorization can be found in Nicholson's textbook. It's essentially a consequence of performing the Gram-Schmidt algorithm on the columns of <span class="process-math">\(A\text{,}\)</span> and keeping track of our work.</p>
+<p id="p-1257">The calculation above is a symbolic computation, which is nice for understanding what's going on. The reason why the <span class="process-math">\(QR\)</span> factorization is useful in practice is that there are efficient numerical methods for doing it (with good control over rounding errors). Our next topic looks at a useful application of the <span class="process-math">\(QR\)</span> factorization.</p></section></section><section class="subsection" id="subsec-compute-eigen"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">4.5.2</span> <span class="title">Computing Eigenvalues</span>
 </h3>
-<section class="introduction" id="introduction-23"><p id="p-1196">Our first method focuses on the dominant eigenvalue of a matrix. An eigenvalue is dominant if it is larger in absolute value than all other eigenvalues. For example, if <span class="process-math">\(A\)</span> has eigenvalues <span class="process-math">\(1,3,-2,-5\text{,}\)</span> then <span class="process-math">\(-5\)</span> is the dominant eigenvalue.</p>
-<p id="p-1197">If <span class="process-math">\(A\)</span> has eigenvalues <span class="process-math">\(1,3,0,-4,4\)</span> then there is no dominant eigenvalue. Any eigenvector corresponding to a dominant eigenvalue is called a dominant eigenvector.</p></section><section class="subsubsection" id="pars-power-method"><h4 class="heading hide-type">
+<section class="introduction" id="introduction-25"><p id="p-1258">Our first method focuses on the dominant eigenvalue of a matrix. An eigenvalue is dominant if it is larger in absolute value than all other eigenvalues. For example, if <span class="process-math">\(A\)</span> has eigenvalues <span class="process-math">\(1,3,-2,-5\text{,}\)</span> then <span class="process-math">\(-5\)</span> is the dominant eigenvalue.</p>
+<p id="p-1259">If <span class="process-math">\(A\)</span> has eigenvalues <span class="process-math">\(1,3,0,-4,4\)</span> then there is no dominant eigenvalue. Any eigenvector corresponding to a dominant eigenvalue is called a dominant eigenvector.</p></section><section class="subsubsection" id="pars-power-method"><h4 class="heading hide-type">
 <span class="type">Subsubsection</span> <span class="codenumber">4.5.2.1</span> <span class="title">The Power Method</span>
 </h4>
-<p id="p-1198">If a matrix <span class="process-math">\(A\)</span> has a dominant eigenvalue, there is a method for finding it (approximately) that does not involve finding and factoring the characteristic polynomial of <span class="process-math">\(A\text{.}\)</span></p>
-<p id="p-1199">We start with some initial guess <span class="process-math">\(x_0\)</span> for a dominant eigenvector. We then set <span class="process-math">\(x_{k+1} = Ax_k\)</span> for each <span class="process-math">\(k\geq 0\text{,}\)</span> giving a sequence</p>
+<p id="p-1260">If a matrix <span class="process-math">\(A\)</span> has a dominant eigenvalue, there is a method for finding it (approximately) that does not involve finding and factoring the characteristic polynomial of <span class="process-math">\(A\text{.}\)</span></p>
+<p id="p-1261">We start with some initial guess <span class="process-math">\(x_0\)</span> for a dominant eigenvector. We then set <span class="process-math">\(x_{k+1} = Ax_k\)</span> for each <span class="process-math">\(k\geq 0\text{,}\)</span> giving a sequence</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 x_0, Ax_0, A^2x_0, A^3x_0,\ldots\text{.}
 \end{equation*}
 </div>
 <p class="continuation">We expect (for reasons we'll explain) that <span class="process-math">\(\lVert x_k-x\rVert \to 0\)</span> as <span class="process-math">\(k\to\infty\text{,}\)</span> where <span class="process-math">\(x\)</span> is a dominant eigenvector. Let's try an example.</p>
-<pre class="ptx-sagecell sagecell-sage" id="sage-89"><script type="text/x-sage">A = Matrix(2,2,[1,-4,-3,5])
+<pre class="ptx-sagecell sagecell-sage" id="sage-90"><script type="text/x-sage">A = Matrix(2,2,[1,-4,-3,5])
 A,A.eigenvects()
 </script></pre>
-<p id="p-1200">The dominant eigenvalue is <span class="process-math">\(\lambda = 7\text{.}\)</span> Let's try an initial guess of <span class="process-math">\(x_0=\begin{bmatrix}1\\0\end{bmatrix}\)</span> and see what happens.</p>
-<pre class="ptx-sagecell sagecell-sage" id="sage-90"><script type="text/x-sage">x0 = Matrix(2,1,[1,0])
+<p id="p-1262">The dominant eigenvalue is <span class="process-math">\(\lambda = 7\text{.}\)</span> Let's try an initial guess of <span class="process-math">\(x_0=\begin{bmatrix}1\\0\end{bmatrix}\)</span> and see what happens.</p>
+<pre class="ptx-sagecell sagecell-sage" id="sage-91"><script type="text/x-sage">x0 = Matrix(2,1,[1,0])
 L = list()
 for k in range(10):
     L.append(A**k*x0)
 L
 </script></pre>
-<p id="p-1201">We might want to confirm whether that rather large fraction is close to <span class="process-math">\(\frac23\text{.}\)</span> To do so, we can get the computer to divide the numerator by the denominator.</p>
-<pre class="ptx-sagecell sagecell-sage" id="sage-91"><script type="text/x-sage">L[9][0]/L[9][1]
+<p id="p-1263">We might want to confirm whether that rather large fraction is close to <span class="process-math">\(\frac23\text{.}\)</span> To do so, we can get the computer to divide the numerator by the denominator.</p>
+<pre class="ptx-sagecell sagecell-sage" id="sage-92"><script type="text/x-sage">L[9][0]/L[9][1]
 </script></pre>
-<p id="p-1202">The above might show you the fraction rather than its decimal approximation. (This may depend on whether you're on Sage or Jupyter.) To get the decimal, try wrapping the above in <code class="code-inline tex2jax_ignore">float()</code> (or <code class="code-inline tex2jax_ignore">N</code>, or append with <code class="code-inline tex2jax_ignore">.evalf()</code>).</p>
-<p id="p-1203">For the eigenvalue, we note that if <span class="process-math">\(Ax=\lambda x\text{,}\)</span> then</p>
+<p id="p-1264">The above might show you the fraction rather than its decimal approximation. (This may depend on whether you're on Sage or Jupyter.) To get the decimal, try wrapping the above in <code class="code-inline tex2jax_ignore">float()</code> (or <code class="code-inline tex2jax_ignore">N</code>, or append with <code class="code-inline tex2jax_ignore">.evalf()</code>).</p>
+<p id="p-1265">For the eigenvalue, we note that if <span class="process-math">\(Ax=\lambda x\text{,}\)</span> then</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 \frac{x\cdot Ax}{\lVert x\rVert^2} = \frac{x\cdot (\lambda x)}{\lVert x\rVert^2} = \lambda\text{.}
@@ -480,41 +480,43 @@ L
 r_k = \frac{x_k\cdot x_{k+1}}{\lVert x_k\rVert^2}\text{.}
 \end{equation*}
 </div>
-<pre class="ptx-sagecell sagecell-sage" id="sage-92"><script type="text/x-sage">M = list()
+<pre class="ptx-sagecell sagecell-sage" id="sage-93"><script type="text/x-sage">M = list()
 for k in range(9):
     M.append((L[k].dot(L[k+1]))/(L[k].dot(L[k])))
 M
 </script></pre>
-<p id="p-1204">We can convert a rational number r to a float using either <code class="code-inline tex2jax_ignore">N(r)</code> or <code class="code-inline tex2jax_ignore">r.evalf()</code>. (The latter seems to be the better bet when working with a list.)</p>
-<pre class="ptx-sagecell sagecell-sage" id="sage-93"><script type="text/x-sage">M2 = list()
+<p id="p-1266">We can convert a rational number r to a float using either <code class="code-inline tex2jax_ignore">N(r)</code> or <code class="code-inline tex2jax_ignore">r.evalf()</code>. (The latter seems to be the better bet when working with a list.)</p>
+<pre class="ptx-sagecell sagecell-sage" id="sage-94"><script type="text/x-sage">M2 = list()
 for k in range(9):
     M2.append((M[k]).evalf())
 M2
 </script></pre></section><section class="subsubsection" id="pars-qr-algorithm"><h4 class="heading hide-type">
 <span class="type">Subsubsection</span> <span class="codenumber">4.5.2.2</span> <span class="title">The QR Algorithm</span>
 </h4>
-<p id="p-1205">Given an <span class="process-math">\(n\times n\)</span> matrix <span class="process-math">\(A\text{,}\)</span> we know we can write <span class="process-math">\(A=QR\text{,}\)</span> with <span class="process-math">\(Q\)</span> orthogonal and <span class="process-math">\(R\)</span> upper-triangular. The <span class="process-math">\(QR\)</span>-algorithm exploits this fact. We set <span class="process-math">\(A_1=A\text{,}\)</span> and write <span class="process-math">\(A_1=Q_1R_1\text{.}\)</span></p>
-<p id="p-1206">Then we set <span class="process-math">\(A_2 = R_1Q_1\text{,}\)</span> and factor: <span class="process-math">\(A_2=Q_2R_2\text{.}\)</span> Notice <span class="process-math">\(A_2 = R_1Q_1 = Q_1^TA_1Q_1\text{.}\)</span> Since <span class="process-math">\(A_2\)</span> is similar to <span class="process-math">\(A_1\text{,}\)</span> <span class="process-math">\(A_2\)</span> has the same eigenvalues as <span class="process-math">\(A_1=A\text{.}\)</span></p>
-<p id="p-1207">Next, set <span class="process-math">\(A_3 = R_2Q_2\text{,}\)</span> and factor as <span class="process-math">\(A_3 = Q_3R_3\text{.}\)</span> Since <span class="process-math">\(A_3 = Q_2^TA_2Q_2\text{,}\)</span> <span class="process-math">\(A_3\)</span> has the same eigenvalues as <span class="process-math">\(A_2\text{.}\)</span> In fact, <span class="process-math">\(A_3 = Q_2^T(Q_1^TAQ_1)Q_2 = (Q_1Q_2)^TA(Q_1Q_2)\text{.}\)</span></p>
-<p id="p-1208">After <span class="process-math">\(k\)</span> steps we have <span class="process-math">\(A_{k+1} = (Q_1\cdots Q_k)^TA(Q_1\cdots Q_k)\text{,}\)</span> which still has the same eigenvalues as <span class="process-math">\(A\text{.}\)</span> By some sort of dark magic, this sequence of matrices converges to an upper triangular matrix with eigenvalues on the diagonal!</p>
-<p id="p-1209">Consider the matrix <span class="process-math">\(A = \begin{bmatrix}5&amp;-2&amp;3\\0&amp;4&amp;0\\0&amp;-1&amp;3\end{bmatrix}\)</span></p>
-<pre class="ptx-sagecell sagecell-sage" id="sage-94"><script type="text/x-sage">A = Matrix(3,3,[5,-2,3,0,4,0,0,-1,3])
+<p id="p-1267">Given an <span class="process-math">\(n\times n\)</span> matrix <span class="process-math">\(A\text{,}\)</span> we know we can write <span class="process-math">\(A=QR\text{,}\)</span> with <span class="process-math">\(Q\)</span> orthogonal and <span class="process-math">\(R\)</span> upper-triangular. The <span class="process-math">\(QR\)</span>-algorithm exploits this fact. We set <span class="process-math">\(A_1=A\text{,}\)</span> and write <span class="process-math">\(A_1=Q_1R_1\text{.}\)</span></p>
+<p id="p-1268">Then we set <span class="process-math">\(A_2 = R_1Q_1\text{,}\)</span> and factor: <span class="process-math">\(A_2=Q_2R_2\text{.}\)</span> Notice <span class="process-math">\(A_2 = R_1Q_1 = Q_1^TA_1Q_1\text{.}\)</span> Since <span class="process-math">\(A_2\)</span> is similar to <span class="process-math">\(A_1\text{,}\)</span> <span class="process-math">\(A_2\)</span> has the same eigenvalues as <span class="process-math">\(A_1=A\text{.}\)</span></p>
+<p id="p-1269">Next, set <span class="process-math">\(A_3 = R_2Q_2\text{,}\)</span> and factor as <span class="process-math">\(A_3 = Q_3R_3\text{.}\)</span> Since <span class="process-math">\(A_3 = Q_2^TA_2Q_2\text{,}\)</span> <span class="process-math">\(A_3\)</span> has the same eigenvalues as <span class="process-math">\(A_2\text{.}\)</span> In fact, <span class="process-math">\(A_3 = Q_2^T(Q_1^TAQ_1)Q_2 = (Q_1Q_2)^TA(Q_1Q_2)\text{.}\)</span></p>
+<p id="p-1270">After <span class="process-math">\(k\)</span> steps we have <span class="process-math">\(A_{k+1} = (Q_1\cdots Q_k)^TA(Q_1\cdots Q_k)\text{,}\)</span> which still has the same eigenvalues as <span class="process-math">\(A\text{.}\)</span> By some sort of dark magic, this sequence of matrices converges to an upper triangular matrix with eigenvalues on the diagonal!</p>
+<p id="p-1271">Consider the matrix <span class="process-math">\(A = \begin{bmatrix}5&amp;-2&amp;3\\0&amp;4&amp;0\\0&amp;-1&amp;3\end{bmatrix}\)</span></p>
+<pre class="ptx-sagecell sagecell-sage" id="sage-95"><script type="text/x-sage">A = Matrix(3,3,[5,-2,3,0,4,0,0,-1,3])
 A.eigenvals()
 </script></pre>
-<pre class="ptx-sagecell sagecell-sage" id="sage-95"><script type="text/x-sage">Q1,R1 = A.QRdecomposition()
+<pre class="ptx-sagecell sagecell-sage" id="sage-96"><script type="text/x-sage">Q1,R1 = A.QRdecomposition()
 A2=R1*Q1
 A2,Q1,R1
 </script></pre>
-<p id="p-1210">Now we repeat the process:</p>
-<pre class="ptx-sagecell sagecell-sage" id="sage-96"><script type="text/x-sage">Q2,R2 = A2.QRdecomposition()
+<p id="p-1272">Now we repeat the process:</p>
+<pre class="ptx-sagecell sagecell-sage" id="sage-97"><script type="text/x-sage">Q2,R2 = A2.QRdecomposition()
 A3=R2*Q2
 A3.evalf()
 </script></pre>
-<p id="p-1211">Do this a few more times, and see what results! (If someone can come up with a way to code this as a loop, let me know!) The diagonal entries should get closer to <span class="process-math">\(5,4,3\text{,}\)</span> respectively, and the <span class="process-math">\((3,2)\)</span> entry should get closer to <span class="process-math">\(0\text{.}\)</span></p>
-<pre class="ptx-sagecell sagecell-sage" id="sage-97"><script type="text/x-sage"></script></pre>
-<pre class="ptx-sagecell sagecell-sage" id="sage-98"><script type="text/x-sage"></script></pre></section></section></section><div class="hidden-content tex2jax_ignore" id="hk-fn-7"><div class="fn"><code class="code-inline tex2jax_ignore">docs.sympy.org/latest/modules/matrices/matrices.html#sympy.matrices.matrices.MatrixEigen.singular_values</code></div></div>
-<div class="hidden-content tex2jax_ignore" id="hk-fn-8"><div class="fn"><code class="code-inline tex2jax_ignore">www.juanklopper.com/wp-content/uploads/2015/03/III_05_Singular_value_decomposition.html</code></div></div>
-<div class="hidden-content tex2jax_ignore" id="hk-fn-9"><div class="fn"><code class="code-inline tex2jax_ignore">github.com/juanklopper/MIT_OCW_Linear_Algebra_18_06</code></div></div>
+<p id="p-1273">Do this a few more times, and see what results! (If someone can come up with a way to code this as a loop, let me know!) The diagonal entries should get closer to <span class="process-math">\(5,4,3\text{,}\)</span> respectively, and the <span class="process-math">\((3,2)\)</span> entry should get closer to <span class="process-math">\(0\text{.}\)</span></p>
+<pre class="ptx-sagecell sagecell-sage" id="sage-98"><script type="text/x-sage"></script></pre>
+<pre class="ptx-sagecell sagecell-sage" id="sage-99"><script type="text/x-sage"></script></pre></section></section></section><div class="hidden-content tex2jax_ignore" id="hk-fn-9"><div class="fn"><code class="code-inline tex2jax_ignore">docs.sympy.org/latest/modules/matrices/matrices.html#sympy.matrices.matrices.MatrixEigen.singular_values</code></div></div>
+<div class="hidden-content tex2jax_ignore" id="hk-fn-10"><div class="fn"><code class="code-inline tex2jax_ignore">en.wikipedia.org/wiki/Singular_value_decomposition</code></div></div>
+<div class="hidden-content tex2jax_ignore" id="hk-fn-11"><div class="fn"><code class="code-inline tex2jax_ignore">docs.sympy.org/latest/modules/matrices/matrices.html#sympy.matrices.matrices.MatrixBase.singular_value_decomposition</code></div></div>
+<div class="hidden-content tex2jax_ignore" id="hk-fn-12"><div class="fn"><code class="code-inline tex2jax_ignore">www.juanklopper.com/wp-content/uploads/2015/03/III_05_Singular_value_decomposition.html</code></div></div>
+<div class="hidden-content tex2jax_ignore" id="hk-fn-13"><div class="fn"><code class="code-inline tex2jax_ignore">github.com/juanklopper/MIT_OCW_Linear_Algebra_18_06</code></div></div>
 </div></main>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script>

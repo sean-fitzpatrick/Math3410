@@ -2,9 +2,6 @@
 <html lang="en-US">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-07-11T12:39:02-06:00       *-->
-<!--*   A recent stable commit (2020-08-09):   *-->
-<!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
 <!--*         https://pretextbook.org          *-->
 <!--*                                          *-->
@@ -14,44 +11,14 @@
 <meta name="robots" content="noindex, nofollow">
 </head>
 <body class="ignore-math">
-<h5 class="heading"><span class="type">Paragraph</span></h5>
-<ol class="decimal">
-<li>
-<p>Using the distributive properties of matrix multiplication and the transpose,</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{align*}
-\langle \zz_1+\zz_2,\zz_3\rangle \amp= (\zz_1+\zz_2)^T\bar{\zz_3}\\
-\amp =(\zz_1^T+\zz_2^T)\bar{\zz_3}\\
-\amp =\zz_1^T\bar{\zz_3}+\zz_2^T\bar{\zz_3}\\
-\amp =\langle \zz_1,\zz_3\rangle + \langle \zz_2,\zz_3\rangle\text{.}
-\end{align*}
-</div>
-<p class="continuation">The proof is similar when addition is in the second component. (But not identical -- you'll need the fact that the complex conjugate is distributive, rather than the transpose.)</p>
-</li>
-<li>
-<p>These again follow from writing the inner product as a matrix product.</p>
+<h4 class="heading"><span class="type">Paragraph</span></h4>
+<p>Take <span class="process-math">\(\xx=\mathbf{e}_i\)</span> and <span class="process-math">\(\yy=\mathbf{e}_j\text{,}\)</span> where <span class="process-math">\(\{\mathbf{e}_1,\ldots, \mathbf{e}_n\}\)</span> is the standard basis for <span class="process-math">\(\R^n\text{.}\)</span> Then with <span class="process-math">\(A = [a_{ij}]\)</span> we have</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
-\langle \alpha\zz_1,\zz_2\rangle = (\alpha \zz_1)^T\bar{\zz_2} = \alpha(\zz_1^T\bar{\zz_2}) = \alpha\langle\zz_1,\zz_2\rangle\text{,}
+a_{ij} =\mathbf{e}_i\dotp(A\mathbf{e}_j) = (A\mathbf{e}_i)\dotp \mathbf{e}_j = a_{ji}\text{,}
 \end{equation*}
 </div>
-<p class="continuation">and</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-\langle \zz_1,\alpha\zz_2\rangle = \zz_1^T\overline{\alpha \zz_2} = \zz_1^T(\bar{\alpha}\bar{\zz_2}) = \bar{\alpha}(\zz_1^T\zz_2)=\alpha\langle \zz_1,\zz_2\rangle\text{.}
-\end{equation*}
-</div>
-</li>
-<li>
-<p>Note that for any vectors <span class="process-math">\(\zz,\ww\text{,}\)</span> <span class="process-math">\(\zz^T\ww\)</span> is a number, and therefore equal to its own transpose. Thus, we have <span class="process-math">\(\zz^T\ww = (\zz^T\ww)^T=\ww^T\zz\text{,}\)</span> and</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-\overline{\langle \zz_1,\zz_2\rangle} = \overline{\zz_1^T\bar{\zz_2}} = \overline{\bar{\zz_2}^T\zz_1} = \zz_2^T\overline{\zz_1}=\langle \zz_2,\zz_1\rangle\text{.}
-\end{equation*}
-</div>
-</li>
-<li><p>This was already demonstrated above.</p></li>
-</ol>
-<span class="incontext"><a href="sec-complex.html#p-1077" class="internal">in-context</a></span>
+<p class="continuation">which shows that <span class="process-math">\(A^T=A\text{.}\)</span></p>
+<span class="incontext"><a href="subsec-ortho-diag.html#p-1077" class="internal">in-context</a></span>
 </body>
 </html>

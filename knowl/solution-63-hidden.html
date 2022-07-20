@@ -2,9 +2,6 @@
 <html lang="en-US">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-07-11T12:39:03-06:00       *-->
-<!--*   A recent stable commit (2020-08-09):   *-->
-<!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
 <!--*         https://pretextbook.org          *-->
 <!--*                                          *-->
@@ -12,44 +9,50 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="robots" content="noindex, nofollow">
+<script>// Make *any* pre with class 'sagecell-sage' an executable Sage cell
+// Their results will be linked, only within language type
+sagecell.makeSagecell({inputLocation: 'pre.sagecell-sage',
+                       linked: true,
+                       languages: ['sage'],
+                       evalButtonText: 'Evaluate (Sage)'});
+</script>
 </head>
 <body class="ignore-math"><div class="solution solution-like">
-<p>It's clear that <span class="process-math">\(C_B(\zer)=\zer\text{,}\)</span> since the only way to write the zero vector in <span class="process-math">\(V\)</span> in terms of <span class="process-math">\(B\)</span> (or, indeed, any independent set) is to set all the scalars equal to zero.</p>
-<p>If we have two vectors <span class="process-math">\(\vv,\ww\)</span> given by</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{align*}
-\vv \amp = a_1\mathbf{e}_1+\cdots + a_n\mathbf{e}_n \\
-\ww \amp = b_1\mathbf{e}_1+\cdots + b_n\mathbf{e}_n\text{,}
-\end{align*}
-</div>
-<p class="continuation">then</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-\vv+\ww = (a_1+b_1)\mathbf{e}_1+\cdots + (a_n+b_n)\mathbf{e}_n\text{,}
-\end{equation*}
-</div>
-<p class="continuation">so</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{align*}
-C_B(\vv+\ww) \amp = \bbm a_1+b_1\\\vdots \\ a_n+b_n\ebm \\
-\amp = \bbm a_1\\\vdots\\a_n\ebm +\bbm b_1\\\vdots \\b_n\ebm\\
-\amp = C_B(\vv)+C_B(\ww)\text{.}
-\end{align*}
-</div>
-<p>Finally, for any scalar <span class="process-math">\(c\text{,}\)</span> we have</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{align*}
-C_B(c\vv) \amp = C_B((ca_1)\mathbf{e}_1+\cdots +(ca_n)\mathbf{e}_n)\\
-\amp = \bbm ca_1\\\vdots \\ca_n\ebm\\
-\amp =c\bbm a_1\\\vdots \\a_n\ebm\\
-\amp =cC_B(\vv)\text{.}
-\end{align*}
-</div>
-<p>This shows that <span class="process-math">\(C_B\)</span> is linear. To see that <span class="process-math">\(C_B\)</span> is an isomorphism, we can simply note that <span class="process-math">\(C_B\)</span> takes the basis <span class="process-math">\(B\)</span> to the standard basis of <span class="process-math">\(\R^n\text{.}\)</span> Alternatively, we can give the inverse: <span class="process-math">\(C_B^{-1}:\R^n\to V\)</span> is given by</p>
+<p>Using SymPy, we get the <a class="external" href="https://docs.sympy.org/latest/modules/matrices/matrices.html#sympy.matrices.matrices.MatrixBase.singular_value_decomposition" target="_blank">condensed SVD</a><a href="" class="fn-knowl original" data-knowl="./knowl/fn-11-hidden.html" title="Footnote 4.5.3"><sup> 3 </sup></a>. First, let's check the singular values.</p>
+<pre class="ptx-sagecell sagecell-sage" id="sage-83"><script type="text/x-sage">from sympy import Matrix, init_printing
+init_printing()
+A = Matrix([[1,1,1],[1,0,-1]])
+A.singular_values()
+</script></pre>
+<p>Note that the values are not listed in decreasing order. Now, let's ask for the singular value decomposition. The output consists of three matrices; the first line below assigns those matrices to the names <code class="code-inline tex2jax_ignore">P,S,Q</code>.</p>
+<pre class="ptx-sagecell sagecell-sage" id="sage-84"><script type="text/x-sage">P,S,Q=A.singular_value_decomposition()
+P,S,Q
+</script></pre>
+<p>Note that the output is the “condensed” version, which doesn't match the exposition above. It also doesn't follow the same ordering convention: we'll need to swap columns in each of the matrices. But it does give us a decomposition of the matrix <span class="process-math">\(A\text{:}\)</span></p>
+<pre class="ptx-sagecell sagecell-sage" id="sage-85"><script type="text/x-sage">P*S*Q.T
+</script></pre>
+<p>To match our earlier presentation, we first set <span class="process-math">\(\Sigma_A = \bbm \sqrt{3}\amp 0\amp 0\\0 \amp \sqrt{2}\amp 0\ebm\text{.}\)</span> Next, we need to extend the <span class="process-math">\(3\times 2\)</span> matrix in the output above to a <span class="process-math">\(3\times 3\)</span> matrix. We can do this by choosing any vector orthogonal to the two existing columns, and normalizing. Let's use entries <span class="process-math">\(1/\sqrt{6},-2/\sqrt{6},1/\sqrt{6}\text{.}\)</span> Noting that we also need to swap the first two columns (to match the fact that we swapped columns in <span class="process-math">\(\Sigma_A\)</span>), we get the matrix</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
-C_B^{-1}\bbm c_1\\\vdots \\c_n\ebm = c_1\mathbf{e}_1+\cdots +c_n\mathbf{e}_n\text{.}
+Q = \bbm \frac{\sqrt{3}}{3}\amp \frac{\sqrt{2}}{2}\amp \frac{\sqrt{6}}{6}\\
+\frac{\sqrt{3}}{3}\amp 0\amp -\frac{\sqrt{6}}{3}\\
+\frac{\sqrt{3}}{3}\amp -\frac{\sqrt{2}}{2} \amp \frac{\sqrt{6}}{6}\ebm\text{.}
 \end{equation*}
 </div>
+<p class="continuation">Let's check that it is indeed orthogonal.</p>
+<pre class="ptx-sagecell sagecell-sage" id="sage-86"><script type="text/x-sage">Q = Matrix([[sqrt(3)/3,sqrt(2)/2,sqrt(6)/6],[sqrt(3)/3,0,-sqrt(6)/3],[sqrt(3)/3,-sqrt(2)/2,sqrt(6)/6]])
+Q*Q.T
+</script></pre>
+<p>Finally, we take <span class="process-math">\(P=\bbm 1\amp 0\\0\amp 1\ebm\)</span> (again swapping columns), which is just the identity matrix. We therefore should expect that</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+P\Sigma_A Q^T = \Sigma_A Q^T = A\text{.}
+\end{equation*}
+</div>
+<p class="continuation">Let's check.</p>
+<pre class="ptx-sagecell sagecell-sage" id="sage-87"><script type="text/x-sage">S = Matrix([[sqrt(3),0,0],[0,sqrt(2),0]])
+S*Q.T
+</script></pre>
+<p>It worked!</p>
 </div></body>
 </html>

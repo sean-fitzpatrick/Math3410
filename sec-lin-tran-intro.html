@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-07-11T12:38:54-06:00       *-->
-<!--*   A recent stable commit (2020-08-09):   *-->
-<!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
 <!--*         https://pretextbook.org          *-->
 <!--*                                          *-->
@@ -50,6 +47,14 @@
     load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
     paths: {pretext: "https://pretextbook.org/js/lib"},
   },
+startup: {
+    pageReady() {
+      return MathJax.startup.defaultPageReady().then(function () {
+      console.log("in ready function");
+      $(document).trigger("runestone:mathjax-ready");
+      }
+    )}
+},
 };
 </script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><script>// Make *any* pre with class 'sagecell-sage' an executable Sage cell
 // Their results will be linked, only within language type
@@ -99,8 +104,8 @@ eBookConfig.proxyuri_files = '';
 eBookConfig.enable_chatcodes =  false;
 </script>
 <!--*** Runestone Services ***-->
-<script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.2.1/runtime.b0f8547c48f16a9f.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.2.1/637.d54be67956c5c660.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.2.1/runestone.0e9550fe42760516.bundle.js"></script><link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/6.2.1/637.fafafbd97df8a0d1.css">
-<link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/6.2.1/runestone.e4d5592da655219f.css">
+<script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.3.0/runtime.d24a93181f625912.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.3.0/637.d54be67956c5c660.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.3.0/runestone.aeb994b86db36b29.bundle.js"></script><link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/6.3.0/637.fafafbd97df8a0d1.css">
+<link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/6.3.0/runestone.e4d5592da655219f.css">
 </head>
 <body id="linalg" class="pretext-book ignore-math has-toc has-sidebar-left">
 <a class="assistive" href="#content">Skip to main content</a><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\spn}{\operatorname{span}}
@@ -205,6 +210,7 @@ true);
 <li><a href="sec-gram-schmidt.html" data-scroll="sec-gram-schmidt" class="internal">The Gram-Schmidt Procedure</a></li>
 <li><a href="section-projection.html" data-scroll="section-projection" class="internal">Orthogonal Projection</a></li>
 <li><a href="worksheet-dual-basis.html" data-scroll="worksheet-dual-basis" class="internal">Worksheet: dual basis.</a></li>
+<li><a href="worksheet-least-squares.html" data-scroll="worksheet-least-squares" class="internal">Worksheet: Least squares approximation</a></li>
 </ul>
 </li>
 <li class="link">
@@ -241,35 +247,35 @@ true);
 <main class="main"><div id="content" class="pretext-content"><section class="section" id="sec-lin-tran-intro"><h2 class="heading hide-type">
 <span class="type">Section</span> <span class="codenumber">2.1</span> <span class="title">Definition and examples</span>
 </h2>
-<p id="p-512">Let <span class="process-math">\(V\)</span> and <span class="process-math">\(W\)</span> be vector spaces. At their most basic, all vector spaces are sets. Given any two sets, we can consider functions from one to the other. The functions of interest in linear algebra are those that respect the vector space structure of the sets.</p>
+<p id="p-539">Let <span class="process-math">\(V\)</span> and <span class="process-math">\(W\)</span> be vector spaces. At their most basic, all vector spaces are sets. Given any two sets, we can consider functions from one to the other. The functions of interest in linear algebra are those that respect the vector space structure of the sets.</p>
 <article class="definition definition-like" id="def-lin-trans"><h3 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">2.1.1</span><span class="period">.</span>
 </h3>
-<p id="p-513">Let <span class="process-math">\(V\)</span> and <span class="process-math">\(W\)</span> be vector spaces. A function <span class="process-math">\(T:V\to W\)</span> is called a <dfn class="terminology">linear transformation</dfn> if:</p>
+<p id="p-540">Let <span class="process-math">\(V\)</span> and <span class="process-math">\(W\)</span> be vector spaces. A function <span class="process-math">\(T:V\to W\)</span> is called a <dfn class="terminology">linear transformation</dfn> if:</p>
 <ol class="decimal">
-<li id="li-69"><p id="p-514">For all <span class="process-math">\(\vv_1,\vv_2\in V\text{,}\)</span> <span class="process-math">\(T(\vv_1+\vv_2)=T(\vv_1)+T(\vv_2)\text{.}\)</span></p></li>
-<li id="li-70"><p id="p-515">For all <span class="process-math">\(\vv\in V\)</span> and scalars <span class="process-math">\(c\text{,}\)</span> <span class="process-math">\(T(c\vv)=cT(\vv)\text{.}\)</span></p></li>
+<li id="li-70"><p id="p-541">For all <span class="process-math">\(\vv_1,\vv_2\in V\text{,}\)</span> <span class="process-math">\(T(\vv_1+\vv_2)=T(\vv_1)+T(\vv_2)\text{.}\)</span></p></li>
+<li id="li-71"><p id="p-542">For all <span class="process-math">\(\vv\in V\)</span> and scalars <span class="process-math">\(c\text{,}\)</span> <span class="process-math">\(T(c\vv)=cT(\vv)\text{.}\)</span></p></li>
 </ol>
-<p class="continuation">We often use the term <dfn class="terminology">linear operator</dfn> to refer to a linear transformation <span class="process-math">\(T:V\to V\)</span> from a vector space to itself.</p></article><aside class="aside aside-like" id="aside-3"><p id="p-516">Note on notation: it is common usage to drop the usual parentheses of function notation when working with linear transformations, as long as this does not cause confusion. That is, one might write <span class="process-math">\(T\vv\)</span> instead of <span class="process-math">\(T(\vv)\text{,}\)</span> but one should never write <span class="process-math">\(T\vv+\ww\)</span> in place of <span class="process-math">\(T(\vv+\ww)\text{,}\)</span> for the same reason that one should never write <span class="process-math">\(2x+y\)</span> in place of <span class="process-math">\(2(x+y)\text{.}\)</span> Mathematicians often think of linear transformations in terms of matrix multiplication, which probably explains this notation to some extent.</p></aside><p id="p-517">The properties of a linear transformation tell us that a linear map <span class="process-math">\(T\)</span> <em class="emphasis">preserves</em> the operations of addition and scalar multiplication. (When the domain and codomain are different vector spaces, we might say that <span class="process-math">\(T\)</span> <em class="emphasis">intertwines</em> the operations of the two vector spaces.) In particular, any linear transformation <span class="process-math">\(T\)</span> must preserve the zero vector, and respect linear combinations.</p>
+<p class="continuation">We often use the term <dfn class="terminology">linear operator</dfn> to refer to a linear transformation <span class="process-math">\(T:V\to V\)</span> from a vector space to itself.</p></article><aside class="aside aside-like" id="aside-3"><p id="p-543">Note on notation: it is common usage to drop the usual parentheses of function notation when working with linear transformations, as long as this does not cause confusion. That is, one might write <span class="process-math">\(T\vv\)</span> instead of <span class="process-math">\(T(\vv)\text{,}\)</span> but one should never write <span class="process-math">\(T\vv+\ww\)</span> in place of <span class="process-math">\(T(\vv+\ww)\text{,}\)</span> for the same reason that one should never write <span class="process-math">\(2x+y\)</span> in place of <span class="process-math">\(2(x+y)\text{.}\)</span> Mathematicians often think of linear transformations in terms of matrix multiplication, which probably explains this notation to some extent.</p></aside><p id="p-544">The properties of a linear transformation tell us that a linear map <span class="process-math">\(T\)</span> <em class="emphasis">preserves</em> the operations of addition and scalar multiplication. (When the domain and codomain are different vector spaces, we might say that <span class="process-math">\(T\)</span> <em class="emphasis">intertwines</em> the operations of the two vector spaces.) In particular, any linear transformation <span class="process-math">\(T\)</span> must preserve the zero vector, and respect linear combinations.</p>
 <article class="theorem theorem-like" id="thm-lt-props"><h3 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">2.1.2</span><span class="period">.</span>
 </h3>
-<p id="p-518">Let <span class="process-math">\(T:V\to W\)</span> be a linear transformation. Then</p>
+<p id="p-545">Let <span class="process-math">\(T:V\to W\)</span> be a linear transformation. Then</p>
 <ol class="decimal">
-<li id="li-71"><p id="p-519"><span class="process-math">\(T(\zer_V) = \zer_W\text{,}\)</span> and</p></li>
-<li id="li-72">
-<p id="p-520">For any scalars <span class="process-math">\(c_1,\ldots, c_n\)</span> and vectors <span class="process-math">\(\vv_1,\ldots, \vv_n\in V\text{,}\)</span></p>
+<li id="li-72"><p id="p-546"><span class="process-math">\(T(\zer_V) = \zer_W\text{,}\)</span> and</p></li>
+<li id="li-73">
+<p id="p-547">For any scalars <span class="process-math">\(c_1,\ldots, c_n\)</span> and vectors <span class="process-math">\(\vv_1,\ldots, \vv_n\in V\text{,}\)</span></p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 T(c_1\vv_1+c_2\vv_2+\cdots + c_n\vv_n) = c_1T(\vv_1)+c_2T(\vv_2)+\cdots + c_nT(\vv_n)\text{.}
 \end{equation*}
 </div>
 </li>
-</ol></article><article class="hiddenproof" id="proof-31"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-31"><h3 class="heading"><span class="title">Strategy.</span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-31"><article class="hiddenproof"><p id="p-521">For the first part, remember that old trick we've used a couple of times before: <span class="process-math">\(\zer + \zer = \zer\text{.}\)</span> What happens if you apply <span class="process-math">\(T\)</span> to both sides of this equation?</p>
-<p id="p-522">For the second part, note that the addition property of a linear transformation looks an awful lot like a distributive property, and we can distribute over a sum of three or more vectors using the associative property. You'll want to deal with the addition first, and then the scalar multiplication.</p></article></div>
-<article class="hiddenproof" id="proof-32"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-32"><h3 class="heading"><span class="type">Proof<span class="period">.</span></span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-32"><article class="hiddenproof"><ol id="p-523" class="decimal">
-<li id="li-73">
-<p id="p-524">Since <span class="process-math">\(\zer_V+\zer_V = \zer_V\text{,}\)</span> we have</p>
+</ol></article><article class="hiddenproof" id="proof-31"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-31"><h3 class="heading"><span class="title">Strategy.</span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-31"><article class="hiddenproof"><p id="p-548">For the first part, remember that old trick we've used a couple of times before: <span class="process-math">\(\zer + \zer = \zer\text{.}\)</span> What happens if you apply <span class="process-math">\(T\)</span> to both sides of this equation?</p>
+<p id="p-549">For the second part, note that the addition property of a linear transformation looks an awful lot like a distributive property, and we can distribute over a sum of three or more vectors using the associative property. You'll want to deal with the addition first, and then the scalar multiplication.</p></article></div>
+<article class="hiddenproof" id="proof-32"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-32"><h3 class="heading"><span class="type">Proof<span class="period">.</span></span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-32"><article class="hiddenproof"><ol id="p-550" class="decimal">
+<li id="li-74">
+<p id="p-551">Since <span class="process-math">\(\zer_V+\zer_V = \zer_V\text{,}\)</span> we have</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 T(\zer_V) = T(\zer_V+\zer_V) = T(\zer_V)+T(\zer_V)\text{.}
@@ -277,8 +283,8 @@ T(\zer_V) = T(\zer_V+\zer_V) = T(\zer_V)+T(\zer_V)\text{.}
 </div>
 <p class="continuation">Adding <span class="process-math">\(-T(\zer_V)\)</span> to both sides of the above gives us <span class="process-math">\(\zer_W = T(\zer_V)\text{.}\)</span></p>
 </li>
-<li id="li-74">
-<p id="p-525">The addition property of a linear transformation can be extended to sums of three or more vectors using associativity. Therefore, we have</p>
+<li id="li-75">
+<p id="p-552">The addition property of a linear transformation can be extended to sums of three or more vectors using associativity. Therefore, we have</p>
 <div class="displaymath process-math" data-contains-math-knowls="" id="md-24">
 \begin{align*}
 T(c_1\vv_1+\cdots + c_n\vv_n) \amp = T(c_1\vv_1)+ \cdots + T(c_n\vv_n)\\
@@ -288,11 +294,11 @@ T(c_1\vv_1+\cdots + c_n\vv_n) \amp = T(c_1\vv_1)+ \cdots + T(c_n\vv_n)\\
 <p class="continuation">where the second line follows from the scalar multiplication property.</p>
 </li>
 </ol></article></div>
-<article class="remark remark-like" id="remark-3"><h3 class="heading">
+<article class="remark remark-like" id="remark-4"><h3 class="heading">
 <span class="type">Remark</span><span class="space"> </span><span class="codenumber">2.1.3</span><span class="period">.</span>
 </h3>
-<p id="p-526">Technically, we skipped over some details in the above proof: how exactly, is associativity being applied? It turns out there's actually a proof by induction lurking in the background!</p>
-<p id="p-527">By definition, we know that <span class="process-math">\(T(\vv_1+\vv_2)=T(\vv_1)+T(\vv_2)\text{.}\)</span> For three vectors,</p>
+<p id="p-553">Technically, we skipped over some details in the above proof: how exactly, is associativity being applied? It turns out there's actually a proof by induction lurking in the background!</p>
+<p id="p-554">By definition, we know that <span class="process-math">\(T(\vv_1+\vv_2)=T(\vv_1)+T(\vv_2)\text{.}\)</span> For three vectors,</p>
 <div class="displaymath process-math" data-contains-math-knowls="" id="md-25">
 \begin{align*}
 T(\vv_1+\vv_2+\vv_3) \amp = T(\vv_1+(\vv_2+\vv_3))\\
@@ -301,7 +307,7 @@ T(\vv_1+\vv_2+\vv_3) \amp = T(\vv_1+(\vv_2+\vv_3))\\
 \amp = T(\vv_1)+T(\vv_2)+T(\vv_3)\text{.}
 \end{align*}
 </div>
-<p id="p-528">For an abitrary number of vectors <span class="process-math">\(n\geq 3\text{,}\)</span> we can assume that distribution over addition works for <span class="process-math">\(n-1\)</span> vectors, and then use associativity to write</p>
+<p id="p-555">For an abitrary number of vectors <span class="process-math">\(n\geq 3\text{,}\)</span> we can assume that distribution over addition works for <span class="process-math">\(n-1\)</span> vectors, and then use associativity to write</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 \vv_1+\vv_2+\cdots +\vv_n = \vv_1+(\vv_2+\cdots +\vv_n)\text{.}
@@ -310,14 +316,14 @@ T(\vv_1+\vv_2+\vv_3) \amp = T(\vv_1+(\vv_2+\vv_3))\\
 <p class="continuation">The right-hand side is technically a sum of two vectors, so we can apply the definition of a linear transformation directly, and then apply our induction hypothesis to <span class="process-math">\(T(\vv_2+\cdots + \vv_n)\text{.}\)</span></p></article><article class="example example-like" id="ex-matrix-trans"><h3 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">2.1.4</span><span class="period">.</span>
 </h3>
-<p id="p-529">Let <span class="process-math">\(V=\R^n\)</span> and let <span class="process-math">\(W=\R^m\text{.}\)</span> For any <span class="process-math">\(m\times n\)</span> matrix <span class="process-math">\(A\text{,}\)</span> the map <span class="process-math">\(T_A:\R^n\to \R^m\)</span> defined by</p>
+<p id="p-556">Let <span class="process-math">\(V=\R^n\)</span> and let <span class="process-math">\(W=\R^m\text{.}\)</span> For any <span class="process-math">\(m\times n\)</span> matrix <span class="process-math">\(A\text{,}\)</span> the map <span class="process-math">\(T_A:\R^n\to \R^m\)</span> defined by</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 T_A(\xx) = A\xx
 \end{equation*}
 </div>
 <p class="continuation">is a linear transformation. (This follows immediately from properties of matrix multiplication.)</p>
-<p id="p-530">Let <span class="process-math">\(B = \{\mathbf{e}_1,\ldots, \mathbf{e}_n\}\)</span> denote the standard basis of <span class="process-math">\(\R^n\text{.}\)</span> (See <a href="" class="xref" data-knowl="./knowl/ex-standard-bases.html" title="Example 1.7.6: Standard bases">Example 1.7.6</a>.) Recall (or convince yourself, with a couple of examples) that <span class="process-math">\(A\mathbf{e}_i\)</span> is equal to the <span class="process-math">\(i\)</span>th column of <span class="process-math">\(A\text{.}\)</span> Thus, if we know the value of a linear transformation <span class="process-math">\(T:\R^n\to \R^m\)</span> on each basis vector, we can immediately determine the matrix <span class="process-math">\(A\)</span> such that <span class="process-math">\(T=T_A\text{:}\)</span></p>
+<p id="p-557">Let <span class="process-math">\(B = \{\mathbf{e}_1,\ldots, \mathbf{e}_n\}\)</span> denote the standard basis of <span class="process-math">\(\R^n\text{.}\)</span> (See <a href="" class="xref" data-knowl="./knowl/ex-standard-bases.html" title="Example 1.7.6: Standard bases">Example 1.7.6</a>.) Recall (or convince yourself, with a couple of examples) that <span class="process-math">\(A\mathbf{e}_i\)</span> is equal to the <span class="process-math">\(i\)</span>th column of <span class="process-math">\(A\text{.}\)</span> Thus, if we know the value of a linear transformation <span class="process-math">\(T:\R^n\to \R^m\)</span> on each basis vector, we can immediately determine the matrix <span class="process-math">\(A\)</span> such that <span class="process-math">\(T=T_A\text{:}\)</span></p>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/ex-standard-bases.html ./knowl/thm-lt-props.html">
 \begin{equation*}
 A = \bbm T(\mathbf{e}_1) \amp T(\mathbf{e}_2) \amp \cdots \amp T(\mathbf{e}_n)\ebm\text{.}
@@ -344,13 +350,13 @@ T(\xx) \amp = T(c_1\mathbf{e}_1+c_2\mathbf{e}_2+\cdots + c_n\mathbf{e}_n) \\
 \amp = T_A(c_1\mathbf{e}_1+c_2\mathbf{e}_2+\cdots + c_n\mathbf{e}_n) \\
 \amp = T_A(\xx)\text{.}
 \end{align*}
-</div></article><p id="p-531">Let's look at some other examples of linear transformations.</p>
+</div></article><p id="p-558">Let's look at some other examples of linear transformations.</p>
 <ul class="disc">
-<li id="li-75"><p id="p-532">For any vector spaces <span class="process-math">\(V,W\)</span> we can define the <dfn class="terminology">zero transformation</dfn> <span class="process-math">\(0:V\to W\)</span> by <span class="process-math">\(0(\vv)=\zer\)</span> for all <span class="process-math">\(\vv\in V\text{.}\)</span></p></li>
-<li id="li-76"><p id="p-533">On any vector space <span class="process-math">\(V\)</span> we have the <dfn class="terminology">identity transformation</dfn> <span class="process-math">\(1_V:V\to V\)</span> defined by <span class="process-math">\(1_V(\vv)=\vv\)</span> for all <span class="process-math">\(\vv\in V\text{.}\)</span></p></li>
-<li id="li-77">
-<p id="p-534">Let <span class="process-math">\(V = F[a,b]\)</span> be the space of all functions <span class="process-math">\(f:[a,b]\to \R\text{.}\)</span> For any <span class="process-math">\(c\in [a,b]\)</span> we have the <dfn class="terminology">evaluation map</dfn> <span class="process-math">\(E_a: V\to \R\)</span> defined by <span class="process-math">\(E_a(f) = f(a)\text{.}\)</span></p>
-<p id="p-535">To see that this is linear, note that <span class="process-math">\(E_a(0)=\zer(a)=0\text{,}\)</span> where <span class="process-math">\(\zer\)</span> denotes the zero function; for any <span class="process-math">\(f,g\in V\text{,}\)</span></p>
+<li id="li-76"><p id="p-559">For any vector spaces <span class="process-math">\(V,W\)</span> we can define the <dfn class="terminology">zero transformation</dfn> <span class="process-math">\(0:V\to W\)</span> by <span class="process-math">\(0(\vv)=\zer\)</span> for all <span class="process-math">\(\vv\in V\text{.}\)</span></p></li>
+<li id="li-77"><p id="p-560">On any vector space <span class="process-math">\(V\)</span> we have the <dfn class="terminology">identity transformation</dfn> <span class="process-math">\(1_V:V\to V\)</span> defined by <span class="process-math">\(1_V(\vv)=\vv\)</span> for all <span class="process-math">\(\vv\in V\text{.}\)</span></p></li>
+<li id="li-78">
+<p id="p-561">Let <span class="process-math">\(V = F[a,b]\)</span> be the space of all functions <span class="process-math">\(f:[a,b]\to \R\text{.}\)</span> For any <span class="process-math">\(c\in [a,b]\)</span> we have the <dfn class="terminology">evaluation map</dfn> <span class="process-math">\(E_a: V\to \R\)</span> defined by <span class="process-math">\(E_a(f) = f(a)\text{.}\)</span></p>
+<p id="p-562">To see that this is linear, note that <span class="process-math">\(E_a(0)=\zer(a)=0\text{,}\)</span> where <span class="process-math">\(\zer\)</span> denotes the zero function; for any <span class="process-math">\(f,g\in V\text{,}\)</span></p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 E_a(f+g)=(f+g)(a)=f(a)+g(a)=E_a(f)+E_a(g)\text{,}
@@ -362,12 +368,12 @@ E_a(f+g)=(f+g)(a)=f(a)+g(a)=E_a(f)+E_a(g)\text{,}
 E_a(cf) = (cf)(a) = c(f(a))=cE_a(f)\text{.}
 \end{equation*}
 </div>
-<p id="p-536">Note that the evaluation map can similarly be defined as a linear transformation on any vector space of polynomials.</p>
+<p id="p-563">Note that the evaluation map can similarly be defined as a linear transformation on any vector space of polynomials.</p>
 </li>
-<li id="li-78"><p id="p-537">On the vector space <span class="process-math">\(C[a,b]\)</span> of all <em class="emphasis">continuous</em> functions on <span class="process-math">\([a,b]\text{,}\)</span> we have the integration map <span class="process-math">\(I:C[a,b]\to \R\)</span> defined by <span class="process-math">\(I(f)=\int_a^b f(x)\,dx\text{.}\)</span> The fact that this is a linear map follows from properties of integrals proved in a calculus class.</p></li>
-<li id="li-79"><p id="p-538">On the vector space <span class="process-math">\(C^1(a,b)\)</span> of continuously differentiable functions on <span class="process-math">\((a,b)\text{,}\)</span> we have the differentiation map <span class="process-math">\(D: C^1(a,b)\to C(a,b)\)</span> defined by <span class="process-math">\(D(f) = f'\text{.}\)</span> Again, linearity follows from properties of the derivative.</p></li>
-<li id="li-80">
-<p id="p-539">Let <span class="process-math">\(\R^\infty\)</span> denote the set of sequences <span class="process-math">\((a_1,a_2,a_3,\ldots)\)</span> of real numbers, with term-by-term addition and scalar multiplication. The shift operators</p>
+<li id="li-79"><p id="p-564">On the vector space <span class="process-math">\(C[a,b]\)</span> of all <em class="emphasis">continuous</em> functions on <span class="process-math">\([a,b]\text{,}\)</span> we have the integration map <span class="process-math">\(I:C[a,b]\to \R\)</span> defined by <span class="process-math">\(I(f)=\int_a^b f(x)\,dx\text{.}\)</span> The fact that this is a linear map follows from properties of integrals proved in a calculus class.</p></li>
+<li id="li-80"><p id="p-565">On the vector space <span class="process-math">\(C^1(a,b)\)</span> of continuously differentiable functions on <span class="process-math">\((a,b)\text{,}\)</span> we have the differentiation map <span class="process-math">\(D: C^1(a,b)\to C(a,b)\)</span> defined by <span class="process-math">\(D(f) = f'\text{.}\)</span> Again, linearity follows from properties of the derivative.</p></li>
+<li id="li-81">
+<p id="p-566">Let <span class="process-math">\(\R^\infty\)</span> denote the set of sequences <span class="process-math">\((a_1,a_2,a_3,\ldots)\)</span> of real numbers, with term-by-term addition and scalar multiplication. The shift operators</p>
 <div class="displaymath process-math" data-contains-math-knowls="" id="md-27">
 \begin{align*}
 S_L(a_1,a_2,a_3,\ldots)  \amp = (a_2,a_3,a_4,\ldots) \\
@@ -376,37 +382,37 @@ S_R(a_1,a_2,a_3,\ldots) \amp = (0,a_1,a_2,\ldots)
 </div>
 <p class="continuation">are both linear.</p>
 </li>
-<li id="li-81"><p id="p-540">On the space <span class="process-math">\(M_{mn}(\R)\)</span> of <span class="process-math">\(m\times n\)</span> matrices, the trace defines a linear map <span class="process-math">\(\operatorname{tr}:M_{mn}(\R)\to \R\text{,}\)</span> and the transpose defines a linear map <span class="process-math">\(T:M_{mn}(\R)\to M_{nm}(\R)\text{.}\)</span> The determinant and inverse operations on <span class="process-math">\(M_{nn}\)</span> are <em class="emphasis">not</em> linear.</p></li>
+<li id="li-82"><p id="p-567">On the space <span class="process-math">\(M_{mn}(\R)\)</span> of <span class="process-math">\(m\times n\)</span> matrices, the trace defines a linear map <span class="process-math">\(\operatorname{tr}:M_{mn}(\R)\to \R\text{,}\)</span> and the transpose defines a linear map <span class="process-math">\(T:M_{mn}(\R)\to M_{nm}(\R)\text{.}\)</span> The determinant and inverse operations on <span class="process-math">\(M_{nn}\)</span> are <em class="emphasis">not</em> linear.</p></li>
 </ul>
 <article class="exercise exercise-like" id="ex-mc-linear-transf"><h3 class="heading">
 <span class="type">Exercise</span><span class="space"> </span><span class="codenumber">2.1.5</span><span class="period">.</span>
 </h3>
 <div class="ptx-runestone-container"><div class="runestone"><ul data-component="multiplechoice" id="ex-mc-linear-transf" data-multipleanswers="true" data-random="">
-<p id="p-541">Which of the following are linear transformations?</p>
-<li data-component="answer" id="ex-mc-linear-transf_opt_a"><p id="p-542">The function <span class="process-math">\(T:\R^2\to \R^2\)</span> given by <span class="process-math">\(T(x,y)=(x-y, x+2y+1)\text{.}\)</span></p></li>
-<li data-component="feedback" id="ex-mc-linear-transf_opt_a"><p id="p-543">Since <span class="process-math">\(T(0,0)=(0,1)\neq (0,0)\text{,}\)</span> this can't be a linear transformation.</p></li>
-<li data-component="answer" id="ex-mc-linear-transf_opt_b" data-correct=""><p id="p-544">The function <span class="process-math">\(f:P_2(\R)\to \R^2\)</span> given by <span class="process-math">\(f(p(x))=(p(1),p(2))\text{.}\)</span></p></li>
-<li data-component="feedback" id="ex-mc-linear-transf_opt_b"><p id="p-545">This looks unusual, but it's linear! You can check that <span class="process-math">\(f(p(x)+q(x))=f(p(x))+f(q(x))\text{,}\)</span> and <span class="process-math">\(f(cp(x))=cf(p(x))\text{.}\)</span></p></li>
-<li data-component="answer" id="ex-mc-linear-transf_opt_c"><p id="p-546">The function <span class="process-math">\(g:\R^2\to \R^2\)</span> given by <span class="process-math">\(g(x,y)=(2x-y,2xy)\text{.}\)</span></p></li>
-<li data-component="feedback" id="ex-mc-linear-transf_opt_c"><p id="p-547">Although this function preserves the zero vector, it doesn't preserve addition or scalar multiplication. For example, <span class="process-math">\(g(1,0)+g(0,1)=(2,0)+(-1,0)=(1,0)\text{,}\)</span> but <span class="process-math">\(g((1,0)+(0,1))=g(1,1)=(1,2)\text{.}\)</span></p></li>
-<li data-component="answer" id="ex-mc-linear-transf_opt_d" data-correct=""><p id="p-548">The function <span class="process-math">\(M:P_2(\R)\to P_3(\R)\)</span> given by <span class="process-math">\(M(p(x))=xp(x)\text{.}\)</span></p></li>
-<li data-component="feedback" id="ex-mc-linear-transf_opt_d"><p id="p-549">Multiplication by <span class="process-math">\(x\)</span> might feel non-linear, but remember that <span class="process-math">\(x\)</span> is not a “variable” as far as the transformation is concerned! It's more of a placeholder. Try checking the definition directly.</p></li>
-<li data-component="answer" id="ex-mc-linear-transf_opt_e"><p id="p-550">The function <span class="process-math">\(D:M_{2\times 2}(\R)\to\R\)</span> given by <span class="process-math">\(D(A)=\det(A)\text{.}\)</span></p></li>
-<li data-component="feedback" id="ex-mc-linear-transf_opt_e"><p id="p-551">Remember that <span class="process-math">\(\det(A+B)\neq \det(A)+\det(B)\)</span> in general!</p></li>
-<li data-component="answer" id="ex-mc-linear-transf_opt_f" data-correct=""><p id="p-552">The function <span class="process-math">\(f:\R\to V\)</span> given by <span class="process-math">\(f(x)=e^x\text{,}\)</span> where <span class="process-math">\(V=(0,\infty)\text{,}\)</span> with the vector space structure defined in <a href="" class="xref" data-knowl="./knowl/ex-positive-reals-vecsp.html" title="Exercise 1.1.4">Exercise 1.1.4</a>.</p></li>
-<li data-component="feedback" id="ex-mc-linear-transf_opt_f"><p id="p-553">An exponential function that's linear? Seems impossible, but remember that “addition” <span class="process-math">\(x\oplus y\)</span> in <span class="process-math">\(V\)</span> is really multiplication, so <span class="process-math">\(f(x+y)=e^{x+y}=e^xe^y=f(x)\oplus f(y)\text{,}\)</span> and similarly, <span class="process-math">\(f(cx)=c\odot f(x)\text{.}\)</span></p></li>
+<p id="p-568">Which of the following are linear transformations?</p>
+<li data-component="answer" id="ex-mc-linear-transf_opt_a"><p id="p-569">The function <span class="process-math">\(T:\R^2\to \R^2\)</span> given by <span class="process-math">\(T(x,y)=(x-y, x+2y+1)\text{.}\)</span></p></li>
+<li data-component="feedback" id="ex-mc-linear-transf_opt_a"><p id="p-570">Since <span class="process-math">\(T(0,0)=(0,1)\neq (0,0)\text{,}\)</span> this can't be a linear transformation.</p></li>
+<li data-component="answer" id="ex-mc-linear-transf_opt_b" data-correct=""><p id="p-571">The function <span class="process-math">\(f:P_2(\R)\to \R^2\)</span> given by <span class="process-math">\(f(p(x))=(p(1),p(2))\text{.}\)</span></p></li>
+<li data-component="feedback" id="ex-mc-linear-transf_opt_b"><p id="p-572">This looks unusual, but it's linear! You can check that <span class="process-math">\(f(p(x)+q(x))=f(p(x))+f(q(x))\text{,}\)</span> and <span class="process-math">\(f(cp(x))=cf(p(x))\text{.}\)</span></p></li>
+<li data-component="answer" id="ex-mc-linear-transf_opt_c"><p id="p-573">The function <span class="process-math">\(g:\R^2\to \R^2\)</span> given by <span class="process-math">\(g(x,y)=(2x-y,2xy)\text{.}\)</span></p></li>
+<li data-component="feedback" id="ex-mc-linear-transf_opt_c"><p id="p-574">Although this function preserves the zero vector, it doesn't preserve addition or scalar multiplication. For example, <span class="process-math">\(g(1,0)+g(0,1)=(2,0)+(-1,0)=(1,0)\text{,}\)</span> but <span class="process-math">\(g((1,0)+(0,1))=g(1,1)=(1,2)\text{.}\)</span></p></li>
+<li data-component="answer" id="ex-mc-linear-transf_opt_d" data-correct=""><p id="p-575">The function <span class="process-math">\(M:P_2(\R)\to P_3(\R)\)</span> given by <span class="process-math">\(M(p(x))=xp(x)\text{.}\)</span></p></li>
+<li data-component="feedback" id="ex-mc-linear-transf_opt_d"><p id="p-576">Multiplication by <span class="process-math">\(x\)</span> might feel non-linear, but remember that <span class="process-math">\(x\)</span> is not a “variable” as far as the transformation is concerned! It's more of a placeholder. Try checking the definition directly.</p></li>
+<li data-component="answer" id="ex-mc-linear-transf_opt_e"><p id="p-577">The function <span class="process-math">\(D:M_{2\times 2}(\R)\to\R\)</span> given by <span class="process-math">\(D(A)=\det(A)\text{.}\)</span></p></li>
+<li data-component="feedback" id="ex-mc-linear-transf_opt_e"><p id="p-578">Remember that <span class="process-math">\(\det(A+B)\neq \det(A)+\det(B)\)</span> in general!</p></li>
+<li data-component="answer" id="ex-mc-linear-transf_opt_f" data-correct=""><p id="p-579">The function <span class="process-math">\(f:\R\to V\)</span> given by <span class="process-math">\(f(x)=e^x\text{,}\)</span> where <span class="process-math">\(V=(0,\infty)\text{,}\)</span> with the vector space structure defined in <a href="" class="xref" data-knowl="./knowl/ex-positive-reals-vecsp.html" title="Exercise 1.1.4">Exercise 1.1.4</a>.</p></li>
+<li data-component="feedback" id="ex-mc-linear-transf_opt_f"><p id="p-580">An exponential function that's linear? Seems impossible, but remember that “addition” <span class="process-math">\(x\oplus y\)</span> in <span class="process-math">\(V\)</span> is really multiplication, so <span class="process-math">\(f(x+y)=e^{x+y}=e^xe^y=f(x)\oplus f(y)\text{,}\)</span> and similarly, <span class="process-math">\(f(cx)=c\odot f(x)\text{.}\)</span></p></li>
 </ul></div></div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-19" id="hint-19"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-19"><div class="hint solution-like"><p id="p-554">Usually, you can expect a linear transformation to involve homogeneous linear expressions. Things like products, powers, and added constants are usually clues that something is nonlinear.</p></div></div>
-</div></article><p id="p-555">For finite-dimensional vector spaces, it is often convenient to work in terms of a basis. The properties of a linear transformation tell us that we can completely define any linear transformation by giving its values on a basis. In fact, it's enough to know the value of a transformation on a spanning set. The argument given in <a href="" class="xref" data-knowl="./knowl/ex-matrix-trans.html" title="Example 2.1.4">Example 2.1.4</a> can be applied to any linear transformation, to obtain the following result.</p>
+<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-19" id="hint-19"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-19"><div class="hint solution-like"><p id="p-581">Usually, you can expect a linear transformation to involve homogeneous linear expressions. Things like products, powers, and added constants are usually clues that something is nonlinear.</p></div></div>
+</div></article><p id="p-582">For finite-dimensional vector spaces, it is often convenient to work in terms of a basis. The properties of a linear transformation tell us that we can completely define any linear transformation by giving its values on a basis. In fact, it's enough to know the value of a transformation on a spanning set. The argument given in <a href="" class="xref" data-knowl="./knowl/ex-matrix-trans.html" title="Example 2.1.4">Example 2.1.4</a> can be applied to any linear transformation, to obtain the following result.</p>
 <article class="theorem theorem-like" id="thm-agree-span"><h3 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">2.1.6</span><span class="period">.</span>
 </h3>
-<p id="p-556">Let <span class="process-math">\(T:V\to W\)</span> and <span class="process-math">\(S:V\to W\)</span> be two linear transformations. If <span class="process-math">\(V = \spn\{\vv_1,\ldots, \vv_n\}\)</span> and <span class="process-math">\(T(\vv_i)=S(\vv_i)\)</span> for each <span class="process-math">\(i=1,2,\ldots, n\text{,}\)</span> then <span class="process-math">\(T=S\text{.}\)</span></p></article><p id="p-557"><em class="alert">Caution:</em> If the above spanning set is not also independent, then we can't just define the values <span class="process-math">\(T(\vv_i)\)</span> however we want. For example, suppose we want to define <span class="process-math">\(T:\R^2\to\R^2\text{,}\)</span> and we set <span class="process-math">\(\R^2=\spn\{(1,2),(4,-1),(5,1)\}\text{.}\)</span> If <span class="process-math">\(T(1,2)=(3,4)\)</span> and <span class="process-math">\(T(4,-1)=(-2,2)\text{,}\)</span> then we <em class="emphasis">must</em> have <span class="process-math">\(T(5,1)=(1,6)\text{.}\)</span> Why? Because <span class="process-math">\((5,1)=(1,2)+(4,1)\text{,}\)</span> and if <span class="process-math">\(T\)</span> is to be linear, then we have to have <span class="process-math">\(T((1,2)+(4,-1))=T(1,2)+T(4,-1)\text{.}\)</span></p>
-<article class="remark remark-like" id="remark-4"><h3 class="heading">
+<p id="p-583">Let <span class="process-math">\(T:V\to W\)</span> and <span class="process-math">\(S:V\to W\)</span> be two linear transformations. If <span class="process-math">\(V = \spn\{\vv_1,\ldots, \vv_n\}\)</span> and <span class="process-math">\(T(\vv_i)=S(\vv_i)\)</span> for each <span class="process-math">\(i=1,2,\ldots, n\text{,}\)</span> then <span class="process-math">\(T=S\text{.}\)</span></p></article><p id="p-584"><em class="alert">Caution:</em> If the above spanning set is not also independent, then we can't just define the values <span class="process-math">\(T(\vv_i)\)</span> however we want. For example, suppose we want to define <span class="process-math">\(T:\R^2\to\R^2\text{,}\)</span> and we set <span class="process-math">\(\R^2=\spn\{(1,2),(4,-1),(5,1)\}\text{.}\)</span> If <span class="process-math">\(T(1,2)=(3,4)\)</span> and <span class="process-math">\(T(4,-1)=(-2,2)\text{,}\)</span> then we <em class="emphasis">must</em> have <span class="process-math">\(T(5,1)=(1,6)\text{.}\)</span> Why? Because <span class="process-math">\((5,1)=(1,2)+(4,1)\text{,}\)</span> and if <span class="process-math">\(T\)</span> is to be linear, then we have to have <span class="process-math">\(T((1,2)+(4,-1))=T(1,2)+T(4,-1)\text{.}\)</span></p>
+<article class="remark remark-like" id="remark-5"><h3 class="heading">
 <span class="type">Remark</span><span class="space"> </span><span class="codenumber">2.1.7</span><span class="period">.</span>
 </h3>
-<p id="p-558">If for some reason we already know that our transformation is linear, we might still be concerned about the fact that if a spanning set is not independent, there will be more than one way to express a vector as linear combination of vectors in that set. If we define <span class="process-math">\(T\)</span> by giving its values on a spanning set, will it be well-defined? (That is, could we get two different values for <span class="process-math">\(T(\vv)\)</span> by expressing <span class="process-math">\(\vv\)</span> in terms of the spanning set in two different ways?) Suppose that we have scalars <span class="process-math">\(a_1,\ldots, a_n, b_1,\ldots, b_n\)</span> such that</p>
+<p id="p-585">If for some reason we already know that our transformation is linear, we might still be concerned about the fact that if a spanning set is not independent, there will be more than one way to express a vector as linear combination of vectors in that set. If we define <span class="process-math">\(T\)</span> by giving its values on a spanning set, will it be well-defined? (That is, could we get two different values for <span class="process-math">\(T(\vv)\)</span> by expressing <span class="process-math">\(\vv\)</span> in terms of the spanning set in two different ways?) Suppose that we have scalars <span class="process-math">\(a_1,\ldots, a_n, b_1,\ldots, b_n\)</span> such that</p>
 <div class="displaymath process-math" data-contains-math-knowls="" id="md-28">
 \begin{align*}
 \vv \amp = a_1\vv_1+\cdots + a_n\vv_n \quad \text{ and }\\
@@ -421,29 +427,29 @@ a_1T(\vv_1)+\cdots + a_nT(\vv_n) \amp =T(a_1\vv_1+\cdots + a_n\vv_n) \\
 \amp =b_1T(\vv_1)+\cdots +b_nT(\vv_n)\text{.}
 \end{align*}
 </div>
-<p id="p-559">Of course, we can avoid all of this unpleasantness by using a <em class="emphasis">basis</em> to define a transformation. Given a basis <span class="process-math">\(B = \{\vv_1,\ldots, \vv_n\}\)</span> for a vector space <span class="process-math">\(V\text{,}\)</span> we can define a transformation <span class="process-math">\(T:V\to W\)</span> by setting <span class="process-math">\(T(\vv_i)=\ww_i\)</span> for some choice of vectors <span class="process-math">\(\ww_1,\ldots, \ww_n\)</span> and defining</p>
+<p id="p-586">Of course, we can avoid all of this unpleasantness by using a <em class="emphasis">basis</em> to define a transformation. Given a basis <span class="process-math">\(B = \{\vv_1,\ldots, \vv_n\}\)</span> for a vector space <span class="process-math">\(V\text{,}\)</span> we can define a transformation <span class="process-math">\(T:V\to W\)</span> by setting <span class="process-math">\(T(\vv_i)=\ww_i\)</span> for some choice of vectors <span class="process-math">\(\ww_1,\ldots, \ww_n\)</span> and defining</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 T(c_1\vv_1+\cdots +c_n\vv_n)=c_1T(\vv_1)+\cdots + c_nT(\vv_n)\text{.}
 \end{equation*}
 </div>
-<p class="continuation">Because each vector <span class="process-math">\(\vv\in V\)</span> can be written <em class="emphasis">uniquely</em> in terms of a basis, we know that our transformation is well-defined.</p></article><p id="p-560">The next theorem seems like an obvious consequence of the above, and indeed, one might wonder where the assumption of a basis is needed. The distinction here is that the vectors <span class="process-math">\(\ww_1,\ldots, \ww_n\in W\)</span> are chosen in advance, and then we <em class="emphasis">define</em> <span class="process-math">\(T\)</span> by setting <span class="process-math">\(T(\mathbf{b}_i)=\ww_i\text{,}\)</span> rather than simply defining each <span class="process-math">\(\ww_i\)</span> as <span class="process-math">\(T(\mathbf{b}_i)\text{.}\)</span></p>
+<p class="continuation">Because each vector <span class="process-math">\(\vv\in V\)</span> can be written <em class="emphasis">uniquely</em> in terms of a basis, we know that our transformation is well-defined.</p></article><p id="p-587">The next theorem seems like an obvious consequence of the above, and indeed, one might wonder where the assumption of a basis is needed. The distinction here is that the vectors <span class="process-math">\(\ww_1,\ldots, \ww_n\in W\)</span> are chosen in advance, and then we <em class="emphasis">define</em> <span class="process-math">\(T\)</span> by setting <span class="process-math">\(T(\mathbf{b}_i)=\ww_i\text{,}\)</span> rather than simply defining each <span class="process-math">\(\ww_i\)</span> as <span class="process-math">\(T(\mathbf{b}_i)\text{.}\)</span></p>
 <article class="theorem theorem-like" id="thm-define-using-basis"><h3 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">2.1.8</span><span class="period">.</span>
 </h3>
-<p id="p-561">Let <span class="process-math">\(V,W\)</span> be vector spaces. Let <span class="process-math">\(B=\{\mathbf{b}_1,\ldots, \mathbf{b}_n\}\)</span> be a basis of <span class="process-math">\(V\text{,}\)</span> and let <span class="process-math">\(\ww_1,\ldots, \ww_n\)</span> be any vectors in <span class="process-math">\(W\text{.}\)</span> (These vectors need not be distinct.) Then there exists a unique linear transformation <span class="process-math">\(T:V\to W\)</span> such that <span class="process-math">\(T(\mathbf{b}_i)=\ww_i\)</span> for each <span class="process-math">\(i=1,2,\ldots, n\text{;}\)</span> indeed, we can define <span class="process-math">\(T\)</span> as follows: given <span class="process-math">\(\vv\in V\text{,}\)</span> write <span class="process-math">\(\vv=c_1\vv_1+\cdots +c_n\vv_n\text{.}\)</span> Then</p>
+<p id="p-588">Let <span class="process-math">\(V,W\)</span> be vector spaces. Let <span class="process-math">\(B=\{\mathbf{b}_1,\ldots, \mathbf{b}_n\}\)</span> be a basis of <span class="process-math">\(V\text{,}\)</span> and let <span class="process-math">\(\ww_1,\ldots, \ww_n\)</span> be any vectors in <span class="process-math">\(W\text{.}\)</span> (These vectors need not be distinct.) Then there exists a unique linear transformation <span class="process-math">\(T:V\to W\)</span> such that <span class="process-math">\(T(\mathbf{b}_i)=\ww_i\)</span> for each <span class="process-math">\(i=1,2,\ldots, n\text{;}\)</span> indeed, we can define <span class="process-math">\(T\)</span> as follows: given <span class="process-math">\(\vv\in V\text{,}\)</span> write <span class="process-math">\(\vv=c_1\vv_1+\cdots +c_n\vv_n\text{.}\)</span> Then</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 T(\vv)=T(c_1\vv_1+\cdots + c_n\vv_n) = c_1\ww_1+\cdots +c_n\ww_n\text{.}
 \end{equation*}
-</div></article><p id="p-562">With the basic theory out of the way, let's look at a few basic examples.</p>
-<article class="exercise exercise-like" id="exercise-36"><h3 class="heading">
+</div></article><p id="p-589">With the basic theory out of the way, let's look at a few basic examples.</p>
+<article class="exercise exercise-like" id="exercise-38"><h3 class="heading">
 <span class="type">Exercise</span><span class="space"> </span><span class="codenumber">2.1.9</span><span class="period">.</span>
 </h3>
-<p id="p-563">Suppose <span class="process-math">\(T:\R^2\to \R^2\)</span> is a linear transformation. If <span class="process-math">\(T\bbm 1\\0\ebm = \bbm 3\\-4\ebm\)</span> and <span class="process-math">\(T\bbm 0\\1\ebm =\bbm 5\\2\ebm\text{,}\)</span> find <span class="process-math">\(T\bbm -2\\4\ebm\text{.}\)</span></p>
+<p id="p-590">Suppose <span class="process-math">\(T:\R^2\to \R^2\)</span> is a linear transformation. If <span class="process-math">\(T\bbm 1\\0\ebm = \bbm 3\\-4\ebm\)</span> and <span class="process-math">\(T\bbm 0\\1\ebm =\bbm 5\\2\ebm\text{,}\)</span> find <span class="process-math">\(T\bbm -2\\4\ebm\text{.}\)</span></p>
 <div class="solutions">
 <a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-36" id="solution-36"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-36"><div class="solution solution-like">
-<p id="p-564">Since we know the value of <span class="process-math">\(T\)</span> on the standard basis, we can use properties of linear transformations to immediately obtain the answer:</p>
+<p id="p-591">Since we know the value of <span class="process-math">\(T\)</span> on the standard basis, we can use properties of linear transformations to immediately obtain the answer:</p>
 <div class="displaymath process-math" data-contains-math-knowls="" id="md-30">
 \begin{align*}
 T\bbm -2\\4\ebm \amp= T\left(-2\bbm 1\\0\ebm +4\bbm 0\\1\ebm\right)\\
@@ -453,14 +459,14 @@ T\bbm -2\\4\ebm \amp= T\left(-2\bbm 1\\0\ebm +4\bbm 0\\1\ebm\right)\\
 \end{align*}
 </div>
 </div></div>
-</div></article><article class="exercise exercise-like" id="exercise-37"><h3 class="heading">
+</div></article><article class="exercise exercise-like" id="exercise-39"><h3 class="heading">
 <span class="type">Exercise</span><span class="space"> </span><span class="codenumber">2.1.10</span><span class="period">.</span>
 </h3>
-<p id="p-565">Suppose <span class="process-math">\(T:\R^2\to \R^2\)</span> is a linear transformation. Given that <span class="process-math">\(T\bbm 3\\1\ebm = \bbm 1\\4\ebm\)</span> and <span class="process-math">\(T\bbm 2\\-5\ebm = \bbm 2\\-1\ebm\text{,}\)</span> find <span class="process-math">\(T\bbm 4\\3\ebm\text{.}\)</span></p>
+<p id="p-592">Suppose <span class="process-math">\(T:\R^2\to \R^2\)</span> is a linear transformation. Given that <span class="process-math">\(T\bbm 3\\1\ebm = \bbm 1\\4\ebm\)</span> and <span class="process-math">\(T\bbm 2\\-5\ebm = \bbm 2\\-1\ebm\text{,}\)</span> find <span class="process-math">\(T\bbm 4\\3\ebm\text{.}\)</span></p>
 <div class="solutions">
 <a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-37" id="solution-37"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-37"><div class="solution solution-like">
-<p id="p-566">At first, this example looks the same as the one above, and to some extent, it is. The difference is that this time, we're given the values of <span class="process-math">\(T\)</span> on a basis that is not the standard one. This means we first have to do some work to determine how to write the given vector in terms of the given basis.</p>
-<p id="p-567">Suppose we have <span class="process-math">\(a\bbm 3\\1\ebm+b\bbm 2\\-5\ebm = \bbm 4\\3\ebm\)</span> for scalars <span class="process-math">\(a,b\text{.}\)</span> This is equivalent to the matrix equation</p>
+<p id="p-593">At first, this example looks the same as the one above, and to some extent, it is. The difference is that this time, we're given the values of <span class="process-math">\(T\)</span> on a basis that is not the standard one. This means we first have to do some work to determine how to write the given vector in terms of the given basis.</p>
+<p id="p-594">Suppose we have <span class="process-math">\(a\bbm 3\\1\ebm+b\bbm 2\\-5\ebm = \bbm 4\\3\ebm\)</span> for scalars <span class="process-math">\(a,b\text{.}\)</span> This is equivalent to the matrix equation</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 \bbm 3\amp 2\\1\amp -5\ebm\bbm a\\b\ebm = \bbm 4\\3\ebm.
@@ -473,17 +479,17 @@ A = Matrix(2,2,[3,2,1,-5])
 B = Matrix(2,1,[4,3])
 (A**-1)*B
 </script></pre>
-<p id="p-568">Therefore,</p>
+<p id="p-595">Therefore,</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 T\bbm 4\\3\ebm = \frac{26}{17}\bbm 1\\4\ebm -\frac{5}{17}\bbm 2\\-1\ebm = \bbm 16/17\\109/17\ebm\text{.}
 \end{equation*}
 </div>
 </div></div>
-</div></article><article class="exercise exercise-like" id="exercise-38"><h3 class="heading">
+</div></article><article class="exercise exercise-like" id="exercise-40"><h3 class="heading">
 <span class="type">Exercise</span><span class="space"> </span><span class="codenumber">2.1.11</span><span class="period">.</span>
 </h3>
-<p id="p-569">Suppose <span class="process-math">\(T:P_2(\R)\to \R\)</span> is defined by</p>
+<p id="p-596">Suppose <span class="process-math">\(T:P_2(\R)\to \R\)</span> is defined by</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 T(x+2)=1, T(1)=5, T(x^2+x)=0.
@@ -492,7 +498,7 @@ T(x+2)=1, T(1)=5, T(x^2+x)=0.
 <p class="continuation">Find <span class="process-math">\(T(2-x+3x^2)\text{.}\)</span></p>
 <div class="solutions">
 <a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-38" id="solution-38"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-38"><div class="solution solution-like">
-<p id="p-570">We need to find scalars <span class="process-math">\(a,b,c\)</span> such that</p>
+<p id="p-597">We need to find scalars <span class="process-math">\(a,b,c\)</span> such that</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 2-x+3x^2 = a(x+2)+b(1)+c(x^2+x)\text{.}
@@ -519,10 +525,10 @@ T(2-x+3x^2) \amp = T(-4(x+2)+10(1)+3(x^2+x)) \\
 \end{align*}
 </div>
 </div></div>
-</div></article><article class="exercise exercise-like" id="exercise-39"><h3 class="heading">
+</div></article><article class="exercise exercise-like" id="exercise-41"><h3 class="heading">
 <span class="type">Exercise</span><span class="space"> </span><span class="codenumber">2.1.12</span><span class="period">.</span>
 </h3>
-<p id="p-571">Find a linear transformation <span class="process-math">\(T:\R^2\to \R^3\)</span> such that</p>
+<p id="p-598">Find a linear transformation <span class="process-math">\(T:\R^2\to \R^3\)</span> such that</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 T(1,2)=(1,1,0) \quad \text{ and } \quad T(-1,1) = (0,2,-1)\text{.}
@@ -531,7 +537,7 @@ T(1,2)=(1,1,0) \quad \text{ and } \quad T(-1,1) = (0,2,-1)\text{.}
 <p class="continuation">Then, determine the value of <span class="process-math">\(T(3,2)\text{.}\)</span></p>
 <div class="solutions">
 <a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-39" id="solution-39"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-39"><div class="solution solution-like">
-<p id="p-572">Since <span class="process-math">\(\{(1,2),(-1,1)\}\)</span> forms a basis of <span class="process-math">\(\R^2\)</span> (the vectors are not parallel and there are two of them), it suffices to determine how to write a general vector in terms of this basis. Suppose</p>
+<p id="p-599">Since <span class="process-math">\(\{(1,2),(-1,1)\}\)</span> forms a basis of <span class="process-math">\(\R^2\)</span> (the vectors are not parallel and there are two of them), it suffices to determine how to write a general vector in terms of this basis. Suppose</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 x(1,2)+y(-1,1)=(a,b)
@@ -545,7 +551,7 @@ A = Matrix(2,2,[1,-1,2,1])
 B = Matrix(2,1,[a,b])
 (A**-1)*B
 </script></pre>
-<p id="p-573">This gives us the result</p>
+<p id="p-600">This gives us the result</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 (a,b) = \frac13(a+b)\cdot (1,2)+\frac13(-2a+b)\cdot (-1,1).
@@ -559,7 +565,7 @@ T(a,b) \amp = \frac13(a+b)\cdot T(1,2)+\frac13(-2a+b)\cdot T(-1,1) \\
 \amp = \left(\frac{a+b}{3}, -a+b, \frac{2a-b}{3}\right)\text{.}
 \end{align*}
 </div>
-<p id="p-574">We conclude that</p>
+<p id="p-601">We conclude that</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 T(3,2) = \left(\frac53, -1, \frac43\right)\text{.}
@@ -571,43 +577,43 @@ T(3,2) = \left(\frac53, -1, \frac43\right)\text{.}
 </h3>
 <div class="ptx-runestone-container"><div class="runestone" style="max-width: none;"><div data-component="parsons" class="parsons" id="ex-parsons-lintrans">
 <div class="parsons_question parsons-text">
-<p id="p-575">Let <span class="process-math">\(T:V\to W\)</span> be a linear transformation. Rearrange the blocks below to create a proof of the following statement:</p>
-<p id="p-576">For any vectors <span class="process-math">\(\vv_1,\ldots, \vv_n\in V\text{,}\)</span> if <span class="process-math">\(\{T(\vv_1),\ldots, T(\vv_n)\}\)</span> is linearly independent in <span class="process-math">\(W\text{,}\)</span> then <span class="process-math">\(\{\vv_1,\ldots, \vv_n\}\)</span> is linearly independent in <span class="process-math">\(V\text{.}\)</span></p>
+<p id="p-602">Let <span class="process-math">\(T:V\to W\)</span> be a linear transformation. Rearrange the blocks below to create a proof of the following statement:</p>
+<p id="p-603">For any vectors <span class="process-math">\(\vv_1,\ldots, \vv_n\in V\text{,}\)</span> if <span class="process-math">\(\{T(\vv_1),\ldots, T(\vv_n)\}\)</span> is linearly independent in <span class="process-math">\(W\text{,}\)</span> then <span class="process-math">\(\{\vv_1,\ldots, \vv_n\}\)</span> is linearly independent in <span class="process-math">\(V\text{.}\)</span></p>
 </div>
-<pre class="parsonsblocks" data-question_label="" style="visibility: hidden;" data-language="natural" data-noindent="true"><p id="p-577">Suppose that <span class="process-math">\(\{T(\vv_1),\ldots, T(\vv_n)\}\)</span> is linearly independent.</p>
+<pre class="parsonsblocks" data-question_label="" style="visibility: hidden;" data-language="natural" data-noindent="true"><p id="p-604">Suppose that <span class="process-math">\(\{T(\vv_1),\ldots, T(\vv_n)\}\)</span> is linearly independent.</p>
 ---
-<p id="p-578">We want to show that <span class="process-math">\(\{\vv_1,\ldots, \vv_n\}\)</span> is linearly independent, so suppose that we have</p><div class="displaymath process-math" data-contains-math-knowls="">
+<p id="p-605">We want to show that <span class="process-math">\(\{\vv_1,\ldots, \vv_n\}\)</span> is linearly independent, so suppose that we have</p><div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 c_1\vv_1+\cdots + c_n\vv_n=\zer
 \end{equation*}
 </div><p class="continuation">for some scalars <span class="process-math">\(c_1,\ldots, c_n\text{.}\)</span></p>
 ---
-<p id="p-579">We apply <span class="process-math">\(T\)</span> to both sides of the equation above, giving us:</p><div class="displaymath process-math" data-contains-math-knowls="">
+<p id="p-606">We apply <span class="process-math">\(T\)</span> to both sides of the equation above, giving us:</p><div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 T(c_1\vv_1+\cdots + c_n\vv_n)=T(\zer)\text{.}
 \end{equation*}
 </div>
 ---
-<p id="p-580">Now we make use of both parts of <a href="" class="xref" data-knowl="./knowl/thm-lt-props.html" title="Theorem 2.1.2">Theorem 2.1.2</a> to get</p><div class="displaymath process-math" data-contains-math-knowls="./knowl/thm-lt-props.html">
+<p id="p-607">Now we make use of both parts of <a href="" class="xref" data-knowl="./knowl/thm-lt-props.html" title="Theorem 2.1.2">Theorem 2.1.2</a> to get</p><div class="displaymath process-math" data-contains-math-knowls="./knowl/thm-lt-props.html">
 \begin{equation*}
 c_1T(\vv_1)+\cdots +c_nT(\vv_n) = \zer\text{.}
 \end{equation*}
 </div>
 ---
-<p id="p-581">By hypothesis, the vectors <span class="process-math">\(T(\vv_i)\)</span> are linearly independent, so we must have <span class="process-math">\(c_1=0,c_2=0,\ldots, c_n=0\text{.}\)</span></p>
+<p id="p-608">By hypothesis, the vectors <span class="process-math">\(T(\vv_i)\)</span> are linearly independent, so we must have <span class="process-math">\(c_1=0,c_2=0,\ldots, c_n=0\text{.}\)</span></p>
 ---
-<p id="p-582">Since the only solution to <span class="process-math">\(c_1\vv_1+\cdots + c_n\vv_n=\zer\)</span> is <span class="process-math">\(c_1=0,\ldots, c_n=0\text{,}\)</span> the set <span class="process-math">\(\{\vv_1,\ldots, \vv_n\}\)</span> is linearly independent.</p></pre>
+<p id="p-609">Since the only solution to <span class="process-math">\(c_1\vv_1+\cdots + c_n\vv_n=\zer\)</span> is <span class="process-math">\(c_1=0,\ldots, c_n=0\text{,}\)</span> the set <span class="process-math">\(\{\vv_1,\ldots, \vv_n\}\)</span> is linearly independent.</p></pre>
 </div></div></div>
 <div class="solutions">
 <a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-20" id="hint-20"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-20"><div class="hint solution-like">
-<p id="p-583">This is mostly a matter of using <a href="" class="xref" data-knowl="./knowl/thm-lt-props.html" title="Theorem 2.1.2">Theorem 2.1.2</a>, but it's important to get the logic correct. We have a conditional statement of the form <span class="process-math">\(P\Rightarrow Q\text{,}\)</span> where both <span class="process-math">\(P\)</span> (“the set <span class="process-math">\(\{T(\vv_1),\ldots, T(\vv_n)\}\)</span> is independent”) and <span class="process-math">\(Q\)</span> (“the set <span class="process-math">\(\{\vv_1,\ldots, \vv_n\}\)</span> is independent”) are themselves conditional statements.</p>
-<p id="p-584">The overall structure therefore looks like <span class="process-math">\((A\Rightarrow B)\Rightarrow (C\Rightarrow D)\text{.}\)</span> A direct proof should be structured as follows:</p>
+<p id="p-610">This is mostly a matter of using <a href="" class="xref" data-knowl="./knowl/thm-lt-props.html" title="Theorem 2.1.2">Theorem 2.1.2</a>, but it's important to get the logic correct. We have a conditional statement of the form <span class="process-math">\(P\Rightarrow Q\text{,}\)</span> where both <span class="process-math">\(P\)</span> (“the set <span class="process-math">\(\{T(\vv_1),\ldots, T(\vv_n)\}\)</span> is independent”) and <span class="process-math">\(Q\)</span> (“the set <span class="process-math">\(\{\vv_1,\ldots, \vv_n\}\)</span> is independent”) are themselves conditional statements.</p>
+<p id="p-611">The overall structure therefore looks like <span class="process-math">\((A\Rightarrow B)\Rightarrow (C\Rightarrow D)\text{.}\)</span> A direct proof should be structured as follows:</p>
 <ol class="decimal">
-<li id="li-82"><p id="p-585">Assume the main hypothesis: <span class="process-math">\(A\Rightarrow B\text{.}\)</span></p></li>
-<li id="li-83"><p id="p-586">Assume the “sub”-hypothesis <span class="process-math">\(C\text{.}\)</span></p></li>
-<li id="li-84"><p id="p-587">Figure out how to show that <span class="process-math">\(C\Rightarrow A\text{.}\)</span> (This is the “apply <span class="process-math">\(T\)</span> to both sides” step.)</p></li>
-<li id="li-85"><p id="p-588">If we know <span class="process-math">\(A\text{,}\)</span> and we've assumed <span class="process-math">\(A\Rightarrow B\text{,}\)</span> we know <span class="process-math">\(B\text{.}\)</span></p></li>
-<li id="li-86"><p id="p-589">Realize that <span class="process-math">\(B\Rightarrow D\text{.}\)</span></p></li>
+<li id="li-83"><p id="p-612">Assume the main hypothesis: <span class="process-math">\(A\Rightarrow B\text{.}\)</span></p></li>
+<li id="li-84"><p id="p-613">Assume the “sub”-hypothesis <span class="process-math">\(C\text{.}\)</span></p></li>
+<li id="li-85"><p id="p-614">Figure out how to show that <span class="process-math">\(C\Rightarrow A\text{.}\)</span> (This is the “apply <span class="process-math">\(T\)</span> to both sides” step.)</p></li>
+<li id="li-86"><p id="p-615">If we know <span class="process-math">\(A\text{,}\)</span> and we've assumed <span class="process-math">\(A\Rightarrow B\text{,}\)</span> we know <span class="process-math">\(B\text{.}\)</span></p></li>
+<li id="li-87"><p id="p-616">Realize that <span class="process-math">\(B\Rightarrow D\text{.}\)</span></p></li>
 </ol>
 </div></div>
 </div></article></section></div></main>

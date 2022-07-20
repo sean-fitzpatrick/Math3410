@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-07-11T12:38:53-06:00       *-->
-<!--*   A recent stable commit (2020-08-09):   *-->
-<!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
 <!--*         https://pretextbook.org          *-->
 <!--*                                          *-->
@@ -50,6 +47,14 @@
     load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
     paths: {pretext: "https://pretextbook.org/js/lib"},
   },
+startup: {
+    pageReady() {
+      return MathJax.startup.defaultPageReady().then(function () {
+      console.log("in ready function");
+      $(document).trigger("runestone:mathjax-ready");
+      }
+    )}
+},
 };
 </script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/themes/prism.css" rel="stylesheet">
 <script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.13/pretext.js"></script><script>miniversion=0.674</script><script src="https://pretextbook.org/js/0.13/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
@@ -93,8 +98,8 @@ eBookConfig.proxyuri_files = '';
 eBookConfig.enable_chatcodes =  false;
 </script>
 <!--*** Runestone Services ***-->
-<script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.2.1/runtime.b0f8547c48f16a9f.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.2.1/637.d54be67956c5c660.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.2.1/runestone.0e9550fe42760516.bundle.js"></script><link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/6.2.1/637.fafafbd97df8a0d1.css">
-<link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/6.2.1/runestone.e4d5592da655219f.css">
+<script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.3.0/runtime.d24a93181f625912.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.3.0/637.d54be67956c5c660.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.3.0/runestone.aeb994b86db36b29.bundle.js"></script><link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/6.3.0/637.fafafbd97df8a0d1.css">
+<link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/6.3.0/runestone.e4d5592da655219f.css">
 </head>
 <body id="linalg" class="pretext-book ignore-math has-toc has-sidebar-left">
 <a class="assistive" href="#content">Skip to main content</a><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\spn}{\operatorname{span}}
@@ -199,6 +204,7 @@ true);
 <li><a href="sec-gram-schmidt.html" data-scroll="sec-gram-schmidt" class="internal">The Gram-Schmidt Procedure</a></li>
 <li><a href="section-projection.html" data-scroll="section-projection" class="internal">Orthogonal Projection</a></li>
 <li><a href="worksheet-dual-basis.html" data-scroll="worksheet-dual-basis" class="internal">Worksheet: dual basis.</a></li>
+<li><a href="worksheet-least-squares.html" data-scroll="worksheet-least-squares" class="internal">Worksheet: Least squares approximation</a></li>
 </ul>
 </li>
 <li class="link">
@@ -367,8 +373,8 @@ c(d\vv) = c\langle da, db\rangle =\langle c(da),c(db)\rangle = \langle (cd)a,(cd
 <p id="p-54">A <dfn class="terminology">field</dfn> is a set <span class="process-math">\(\mathbb{F}\text{,}\)</span> equipped with two binary operations <span class="process-math">\(\mathbb{F}\times\mathbb{F} \to \mathbb{F}\text{:}\)</span></p>
 <div class="displaymath process-math" data-contains-math-knowls="" id="md-4">
 \begin{align*}
-(a,b)\amp \mapsto a+b \quad \text{ usually called }\\
-(a,b)\amp \mapsto a\cdot b \text{ usually called }\text{,}
+(a,b)\amp \mapsto a+b \\
+(a,b)\amp \mapsto a\cdot b \text{,}
 \end{align*}
 </div>
 <p class="continuation">such that the following axioms are satisfied:</p>
@@ -401,9 +407,18 @@ c(x_1,x_2,\ldots, x_n)\amp = (cx_1,cx_2,\ldots, cx_n)\text{.}
 </div>
 <p class="continuation">We will also often use <span class="process-math">\(\R^n\)</span> to refer to the vector space of <span class="process-math">\(1\times n\)</span> column matrices <span class="process-math">\(\bbm x_1\\x_2\\\vdots\\x_n\ebm\text{,}\)</span> where addition and scalar multiplication are defined as for matrices (and the same as the above, with the only difference being the way in which we choose to write our vectors). If the distinction between <span class="process-math">\(n\)</span>-tuples and column matrices is ever important, it will be made clear.</p>
 </li>
-<li id="li-33"><p id="p-70">The set <span class="process-math">\(M_{mn}(\R)\)</span> of <span class="process-math">\(m\times n\)</span> matrices, equipped with the usual matrix addition and scalar multiplication.</p></li>
-<li id="li-34">
-<p id="p-71">The set <span class="process-math">\(P_n(\R)\)</span> of all polynomials</p>
+<li id="li-33">
+<p id="p-70">The set <span class="process-math">\(\R^\infty\)</span> of all sequences of real numbers</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+(x_n)=(x_0,x_1,x_2,\ldots)\text{.}
+\end{equation*}
+</div>
+<p class="continuation">Addition and scalar multiplication are defined in the same way as <span class="process-math">\(\R^n\text{;}\)</span> the only difference is that elements of <span class="process-math">\(\R^\infty\)</span> contain infinitely many entries.</p>
+</li>
+<li id="li-34"><p id="p-71">The set <span class="process-math">\(M_{mn}(\R)\)</span> of <span class="process-math">\(m\times n\)</span> matrices, equipped with the usual matrix addition and scalar multiplication.</p></li>
+<li id="li-35">
+<p id="p-72">The set <span class="process-math">\(P_n(\R)\)</span> of all polynomials</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 p(x) = a_0+a_1x+\cdots + a_nx^n
@@ -429,25 +444,25 @@ cp(x) = ca_0+(ca_1)x+\cdots + (ca_n)x^n\text{.}
 \end{equation*}
 </div>
 <p class="continuation">The zero vector is the polynomial <span class="process-math">\(0=0+0x+\cdots + 0x^n\text{.}\)</span></p>
-<p id="p-72">This is the same as the addition and scalar multiplication we get for functions in general, using the “pointwise evaluation” definition: for polynomials <span class="process-math">\(p\)</span> and <span class="process-math">\(q\)</span> and a scalar <span class="process-math">\(c\text{,}\)</span> we have <span class="process-math">\((p+q)(x)=p(x)+q(x)\)</span> and <span class="process-math">\((cp)(x)=c\cdot p(x)\text{.}\)</span></p>
-<p id="p-73">Notice that although this feels like a very different example, the vector space <span class="process-math">\(P_n(\R)\)</span> is in fact very similar to <span class="process-math">\(\R^n\)</span> (or rather, <span class="process-math">\(\R^{n+1}\text{,}\)</span> to be precise). If we associate the polynomial <span class="process-math">\(a_0+a_1x+\cdots + a_nx^n\)</span> with the vector <span class="process-math">\(\langle a_0,a_1,\ldots, a_n\rangle\text{,}\)</span> the addition and scalar multiplication for either space behaves in exactly the same way. We will make this observation precise in <a href="sec-isomorphism.html" class="internal" title="Section 2.3: Isomorphisms, composition, and inverses">Section 2.3</a>.</p>
+<p id="p-73">This is the same as the addition and scalar multiplication we get for functions in general, using the “pointwise evaluation” definition: for polynomials <span class="process-math">\(p\)</span> and <span class="process-math">\(q\)</span> and a scalar <span class="process-math">\(c\text{,}\)</span> we have <span class="process-math">\((p+q)(x)=p(x)+q(x)\)</span> and <span class="process-math">\((cp)(x)=c\cdot p(x)\text{.}\)</span></p>
+<p id="p-74">Notice that although this feels like a very different example, the vector space <span class="process-math">\(P_n(\R)\)</span> is in fact very similar to <span class="process-math">\(\R^n\)</span> (or rather, <span class="process-math">\(\R^{n+1}\text{,}\)</span> to be precise). If we associate the polynomial <span class="process-math">\(a_0+a_1x+\cdots + a_nx^n\)</span> with the vector <span class="process-math">\(\langle a_0,a_1,\ldots, a_n\rangle\text{,}\)</span> the addition and scalar multiplication for either space behaves in exactly the same way. We will make this observation precise in <a href="sec-isomorphism.html" class="internal" title="Section 2.3: Isomorphisms, composition, and inverses">Section 2.3</a>.</p>
 </li>
-<li id="li-35"><p id="p-74">The set <span class="process-math">\(P(\R)\)</span> of all polynomials of <em class="emphasis">any</em> degree. The algebra works the same as it does in <span class="process-math">\(P_n(\R)\text{,}\)</span> but there is an important difference: in both <span class="process-math">\(P_n(\R)\)</span> and <span class="process-math">\(\R^n\text{,}\)</span> every element in the set can be generated by setting values for a finite collection of coefficients. (In <span class="process-math">\(P_n(\R)\text{,}\)</span> every polynomial <span class="process-math">\(a_0+a_1x+\cdots =a_nx^n\)</span> can be obtained by choosing values for the <span class="process-math">\(n+1\)</span> coefficients <span class="process-math">\(a_0,a_1\ldots, a_n\text{.}\)</span>) But if we remove the restriction on the degree of our polynomials, there is then no limit on the number of coefficients we might need. (Even if any <em class="emphasis">individual</em> polynomial has a finite number of coefficients!)</p></li>
-<li id="li-36">
-<p id="p-75">The set <span class="process-math">\(F[a,b]\)</span> of all functions <span class="process-math">\(f:[a,b]\to \R\text{,}\)</span> where we define <span class="process-math">\((f+g)(x)=f(x)+g(x)\)</span> and <span class="process-math">\((cf)(x)=c(f(x))\text{.}\)</span> The zero function is the function satisfying <span class="process-math">\(0(x)=0\)</span> for all <span class="process-math">\(x\in [a,b]\text{,}\)</span> and the negative of a function <span class="process-math">\(f\)</span> is given by <span class="process-math">\((-f)(x)=-f(x)\)</span> for all <span class="process-math">\(x\in [a,b]\text{.}\)</span></p>
-<p id="p-76">Note that while the vector space <span class="process-math">\(P(\R)\)</span> has an infinite nature that <span class="process-math">\(P_n(\R)\)</span> does not, the vector space <span class="process-math">\(F[a,b]\)</span> is somehow <em class="emphasis">more</em> infinite! Using the language of <a href="sec-dimension.html" class="internal" title="Section 1.7: Basis and dimension">Section 1.7</a>, we can say that <span class="process-math">\(P_n(\R)\)</span> is <dfn class="terminology">finite dimensional</dfn>, while <span class="process-math">\(P(\R)\)</span> and <span class="process-math">\(F[a,b]\)</span> are <dfn class="terminology">infinite dimensional</dfn>. In a more advanced course, one might make a further distinction: the dimension of <span class="process-math">\(P(\R)\)</span> is countably infinite, while the dimension of <span class="process-math">\(F[a,b]\)</span> is <dfn class="terminology">uncountable</dfn>.</p>
+<li id="li-36"><p id="p-75">The set <span class="process-math">\(P(\R)\)</span> of all polynomials of <em class="emphasis">any</em> degree. The algebra works the same as it does in <span class="process-math">\(P_n(\R)\text{,}\)</span> but there is an important difference: in both <span class="process-math">\(P_n(\R)\)</span> and <span class="process-math">\(\R^n\text{,}\)</span> every element in the set can be generated by setting values for a finite collection of coefficients. (In <span class="process-math">\(P_n(\R)\text{,}\)</span> every polynomial <span class="process-math">\(a_0+a_1x+\cdots =a_nx^n\)</span> can be obtained by choosing values for the <span class="process-math">\(n+1\)</span> coefficients <span class="process-math">\(a_0,a_1\ldots, a_n\text{.}\)</span>) But if we remove the restriction on the degree of our polynomials, there is then no limit on the number of coefficients we might need. (Even if any <em class="emphasis">individual</em> polynomial has a finite number of coefficients!)</p></li>
+<li id="li-37">
+<p id="p-76">The set <span class="process-math">\(F[a,b]\)</span> of all functions <span class="process-math">\(f:[a,b]\to \R\text{,}\)</span> where we define <span class="process-math">\((f+g)(x)=f(x)+g(x)\)</span> and <span class="process-math">\((cf)(x)=c(f(x))\text{.}\)</span> The zero function is the function satisfying <span class="process-math">\(0(x)=0\)</span> for all <span class="process-math">\(x\in [a,b]\text{,}\)</span> and the negative of a function <span class="process-math">\(f\)</span> is given by <span class="process-math">\((-f)(x)=-f(x)\)</span> for all <span class="process-math">\(x\in [a,b]\text{.}\)</span></p>
+<p id="p-77">Note that while the vector space <span class="process-math">\(P(\R)\)</span> has an infinite nature that <span class="process-math">\(P_n(\R)\)</span> does not, the vector space <span class="process-math">\(F[a,b]\)</span> is somehow <em class="emphasis">more</em> infinite! Using the language of <a href="sec-dimension.html" class="internal" title="Section 1.7: Basis and dimension">Section 1.7</a>, we can say that <span class="process-math">\(P_n(\R)\)</span> is <dfn class="terminology">finite dimensional</dfn>, while <span class="process-math">\(P(\R)\)</span> and <span class="process-math">\(F[a,b]\)</span> are <dfn class="terminology">infinite dimensional</dfn>. In a more advanced course, one might make a further distinction: the dimension of <span class="process-math">\(P(\R)\)</span> is countably infinite, while the dimension of <span class="process-math">\(F[a,b]\)</span> is <dfn class="terminology">uncountable</dfn>.</p>
 </li>
-</ol></article><p id="p-77">Other common examples of vector spaces can be found online; for example, <a class="external" href="https://en.wikipedia.org/wiki/Examples_of_vector_spaces" target="_blank">on Wikipedia</a><a href="" data-knowl="" class="id-ref fn-knowl original" data-refid="hk-fn-3" id="fn-3"><sup> 1 </sup></a>. It is also interesting to try to think of less common examples.</p>
+</ol></article><p id="p-78">Other common examples of vector spaces can be found online; for example, <a class="external" href="https://en.wikipedia.org/wiki/Examples_of_vector_spaces" target="_blank">on Wikipedia</a><a href="" data-knowl="" class="id-ref fn-knowl original" data-refid="hk-fn-3" id="fn-3"><sup> 1 </sup></a>. It is also interesting to try to think of less common examples.</p>
 <article class="exercise exercise-like" id="ex-positive-reals-vecsp"><h3 class="heading">
 <span class="type">Exercise</span><span class="space"> </span><span class="codenumber">1.1.4</span><span class="period">.</span>
 </h3>
-<div class="introduction" id="introduction-2">Can you think of a way to define a vector space structure on the set <span class="process-math">\((0,\infty)\)</span> of all positive real numbers?</div>
+<div class="introduction" id="introduction-2"><p id="p-79">Can you think of a way to define a vector space structure on the set <span class="process-math">\((0,\infty)\)</span> of all positive real numbers?</p></div>
 <article class="task exercise-like" id="task-1"><h4 class="heading"><span class="codenumber">(a)</span></h4>
-<p id="p-78">How should we define addition and scalar multiplication?</p>
+<p id="p-80">How should we define addition and scalar multiplication?</p>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-1" id="hint-1"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-1"><div class="hint solution-like"><p id="p-79">Note that the function <span class="process-math">\(f(x)=e^x\)</span> has domain <span class="process-math">\((-\infty, \infty)\)</span> and range <span class="process-math">\((0,\infty)\text{.}\)</span> What does it do to a sum? To a product?</p></div></div>
+<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-1" id="hint-1"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-1"><div class="hint solution-like"><p id="p-81">Note that the function <span class="process-math">\(f(x)=e^x\)</span> has domain <span class="process-math">\((-\infty, \infty)\)</span> and range <span class="process-math">\((0,\infty)\text{.}\)</span> What does it do to a sum? To a product?</p></div></div>
 <a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-1" id="solution-1"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-1"><div class="solution solution-like">
-<p id="p-80">To get a vector space structure on <span class="process-math">\(V=(0,\infty)\text{,}\)</span> we will define an addition <span class="process-math">\(\oplus\)</span> on <span class="process-math">\(V\)</span> by</p>
+<p id="p-82">To get a vector space structure on <span class="process-math">\(V=(0,\infty)\text{,}\)</span> we will define an addition <span class="process-math">\(\oplus\)</span> on <span class="process-math">\(V\)</span> by</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 x\oplus y = xy\text{,}
@@ -461,11 +476,11 @@ c\odot x = x^c\text{.}
 </div>
 </div></div>
 </div></article><article class="task exercise-like" id="task-2"><h4 class="heading"><span class="codenumber">(b)</span></h4>
-<p id="p-81">Show that the addition you defined satisfies the commutative and associative properties.</p>
+<p id="p-83">Show that the addition you defined satisfies the commutative and associative properties.</p>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-2" id="hint-2"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-2"><div class="hint solution-like"><p id="p-82">You can assume that these properties are true for real number multiplication.</p></div></div>
+<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-2" id="hint-2"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-2"><div class="hint solution-like"><p id="p-84">You can assume that these properties are true for real number multiplication.</p></div></div>
 <a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-2" id="solution-2"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-2"><div class="solution solution-like">
-<p id="p-83">For any <span class="process-math">\(x,y,z\in V\text{,}\)</span> we have:</p>
+<p id="p-85">For any <span class="process-math">\(x,y,z\in V\text{,}\)</span> we have:</p>
 <div class="displaymath process-math" data-contains-math-knowls="" id="md-7">
 \begin{align*}
 x\oplus y \amp = xy = yx = y\oplus x\\
@@ -475,20 +490,20 @@ x\oplus(y\oplus z)\amp = x\oplus yz = x(yz) = (xy)z = xy\oplus z = (x\oplus y)\o
 </div></div>
 </div></article><article class="task exercise-like" id="ex-mc-identity"><h4 class="heading"><span class="codenumber">(c)</span></h4>
 <div class="ptx-runestone-container"><div class="runestone"><ul data-component="multiplechoice" id="ex-mc-identity" data-multipleanswers="false" data-random="">
-<p id="p-84">Which of the following is the identity element in <span class="process-math">\(V\text{?}\)</span></p>
-<li data-component="answer" id="ex-mc-identity_opt_a"><p id="p-85"><span class="process-math">\(0\)</span></p></li>
-<li data-component="feedback" id="ex-mc-identity_opt_a"><p id="p-86">Remember that the identity needs to be an element of the set!</p></li>
-<li data-component="answer" id="ex-mc-identity_opt_b" data-correct=""><p id="p-87"><span class="process-math">\(1\)</span></p></li>
-<li data-component="feedback" id="ex-mc-identity_opt_b"><p id="p-88">Correct! Since nothing happens when we multiply by 1, we get <span class="process-math">\(1\oplus x=x\)</span> for any <span class="process-math">\(x\in V\text{.}\)</span></p></li>
+<p id="p-86">Which of the following is the identity element in <span class="process-math">\(V\text{?}\)</span></p>
+<li data-component="answer" id="ex-mc-identity_opt_a"><p id="p-87"><span class="process-math">\(0\)</span></p></li>
+<li data-component="feedback" id="ex-mc-identity_opt_a"><p id="p-88">Remember that the identity needs to be an element of the set!</p></li>
+<li data-component="answer" id="ex-mc-identity_opt_b" data-correct=""><p id="p-89"><span class="process-math">\(1\)</span></p></li>
+<li data-component="feedback" id="ex-mc-identity_opt_b"><p id="p-90">Correct! Since nothing happens when we multiply by 1, we get <span class="process-math">\(1\oplus x=x\)</span> for any <span class="process-math">\(x\in V\text{.}\)</span></p></li>
 </ul></div></div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-3" id="hint-3"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-3"><div class="hint solution-like"><p id="p-89">Remember that an identity element <span class="process-math">\(e\)</span> must satisfy <span class="process-math">\(e\oplus x\)</span> for any <span class="process-math">\(x\in V\text{.}\)</span></p></div></div>
+<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-3" id="hint-3"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-3"><div class="hint solution-like"><p id="p-91">Remember that an identity element <span class="process-math">\(e\)</span> must satisfy <span class="process-math">\(e\oplus x\)</span> for any <span class="process-math">\(x\in V\text{.}\)</span></p></div></div>
 </div></article><article class="task exercise-like" id="task-4"><h4 class="heading"><span class="codenumber">(d)</span></h4>
-<p id="p-90">What is the inverse of an element <span class="process-math">\(x\in V\text{?}\)</span></p>
+<p id="p-92">What is the inverse of an element <span class="process-math">\(x\in V\text{?}\)</span></p>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-4" id="hint-4"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-4"><div class="hint solution-like"><p id="p-91">Remember that an inverse <span class="process-math">\(-x\)</span> must satisfy <span class="process-math">\(x\oplus (-x)=e\text{,}\)</span> where <span class="process-math">\(e\)</span> is the identity element. What is <span class="process-math">\(e\text{,}\)</span> and how is “addition” defined?</p></div></div>
+<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-4" id="hint-4"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-4"><div class="hint solution-like"><p id="p-93">Remember that an inverse <span class="process-math">\(-x\)</span> must satisfy <span class="process-math">\(x\oplus (-x)=e\text{,}\)</span> where <span class="process-math">\(e\)</span> is the identity element. What is <span class="process-math">\(e\text{,}\)</span> and how is “addition” defined?</p></div></div>
 <a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-3" id="solution-3"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-3"><div class="solution solution-like">
-<p id="p-92">Let <span class="process-math">\(x\)</span> be any element fo <span class="process-math">\(V\text{.}\)</span> Since <span class="process-math">\(x\gt 0\text{,}\)</span> we know in particular that <span class="process-math">\(x\neq 0\text{,}\)</span> so we can define <span class="process-math">\(-x = 1/x\text{,}\)</span> where <span class="process-math">\(1/x\)</span> denotes the usual reciprocal of a real number. We then have</p>
+<p id="p-94">Let <span class="process-math">\(x\)</span> be any element fo <span class="process-math">\(V\text{.}\)</span> Since <span class="process-math">\(x\gt 0\text{,}\)</span> we know in particular that <span class="process-math">\(x\neq 0\text{,}\)</span> so we can define <span class="process-math">\(-x = 1/x\text{,}\)</span> where <span class="process-math">\(1/x\)</span> denotes the usual reciprocal of a real number. We then have</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 x\oplus (-x) = x(1/x) = 1\text{,}
@@ -497,7 +512,7 @@ x\oplus (-x) = x(1/x) = 1\text{,}
 <p class="continuation">and we saw above that <span class="process-math">\(1\)</span> is the identity element of <span class="process-math">\(e\text{.}\)</span></p>
 </div></div>
 </div></article><article class="task exercise-like" id="task-5"><h4 class="heading"><span class="codenumber">(e)</span></h4>
-<p id="p-93">Show that, for any <span class="process-math">\(c\in \R\)</span> and <span class="process-math">\(x,y\in V\text{,}\)</span></p>
+<p id="p-95">Show that, for any <span class="process-math">\(c\in \R\)</span> and <span class="process-math">\(x,y\in V\text{,}\)</span></p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 c\odot(x\oplus y) = c\odot x\oplus c\odot y\text{.}
@@ -505,7 +520,7 @@ c\odot(x\oplus y) = c\odot x\oplus c\odot y\text{.}
 </div>
 <div class="solutions">
 <a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-4" id="solution-4"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-4"><div class="solution solution-like">
-<p id="p-94">We assume some properties of exponents from high school algebra:</p>
+<p id="p-96">We assume some properties of exponents from high school algebra:</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 c\odot(x\oplus y) = (xy)^c = x^c y^c = c\odot x \oplus c\odot y\text{.}
@@ -513,7 +528,7 @@ c\odot(x\oplus y) = (xy)^c = x^c y^c = c\odot x \oplus c\odot y\text{.}
 </div>
 </div></div>
 </div></article><article class="task exercise-like" id="task-6"><h4 class="heading"><span class="codenumber">(f)</span></h4>
-<p id="p-95">Show that for any <span class="process-math">\(c,d\in \R\)</span> and <span class="process-math">\(x\in V\text{,}\)</span></p>
+<p id="p-97">Show that for any <span class="process-math">\(c,d\in \R\)</span> and <span class="process-math">\(x\in V\text{,}\)</span></p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 (c+d)\odot x = c\odot x\oplus d\odot x\text{.}
@@ -521,7 +536,7 @@ c\odot(x\oplus y) = (xy)^c = x^c y^c = c\odot x \oplus c\odot y\text{.}
 </div>
 <div class="solutions">
 <a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-5" id="solution-5"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-5"><div class="solution solution-like">
-<p id="p-96">This again follows from properties of exponents:</p>
+<p id="p-98">This again follows from properties of exponents:</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 (c+d)\odot x = x^{c+d} = x^c x^d = c\odot x\oplus d\odot x\text{.}
@@ -529,10 +544,10 @@ c\odot(x\oplus y) = (xy)^c = x^c y^c = c\odot x \oplus c\odot y\text{.}
 </div>
 </div></div>
 </div></article><article class="task exercise-like" id="task-7"><h4 class="heading"><span class="codenumber">(g)</span></h4>
-<p id="p-97">Show that for any <span class="process-math">\(c,d\in\R\)</span> and <span class="process-math">\(x\in V\text{,}\)</span> <span class="process-math">\(c\odot (d\odot x)=(cd)\odot x\text{.}\)</span></p>
+<p id="p-99">Show that for any <span class="process-math">\(c,d\in\R\)</span> and <span class="process-math">\(x\in V\text{,}\)</span> <span class="process-math">\(c\odot (d\odot x)=(cd)\odot x\text{.}\)</span></p>
 <div class="solutions">
 <a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-6" id="solution-6"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-6"><div class="solution solution-like">
-<p id="p-98">We have</p>
+<p id="p-100">We have</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 c\odot (d\odot x) = c\odot (x^d) = (x^d)^c = x^{dc} = x^{cd} = (cd)\odot x\text{.}
@@ -540,42 +555,42 @@ c\odot (d\odot x) = c\odot (x^d) = (x^d)^c = x^{dc} = x^{cd} = (cd)\odot x\text{
 </div>
 </div></div>
 </div></article><article class="task exercise-like" id="task-8"><h4 class="heading"><span class="codenumber">(h)</span></h4>
-<p id="p-99">Show that <span class="process-math">\(1\odot x=x\)</span> for any <span class="process-math">\(x\in V\text{.}\)</span></p>
+<p id="p-101">Show that <span class="process-math">\(1\odot x=x\)</span> for any <span class="process-math">\(x\in V\text{.}\)</span></p>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-7" id="solution-7"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-7"><div class="solution solution-like"><p id="p-100">The last one is possibly the easiest: <span class="process-math">\(1\odot x = x^1 = x\text{.}\)</span></p></div></div>
+<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-7" id="solution-7"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-7"><div class="solution solution-like"><p id="p-102">The last one is possibly the easiest: <span class="process-math">\(1\odot x = x^1 = x\text{.}\)</span></p></div></div>
 </div></article></article><article class="exercise exercise-like" id="ex-tf-vsp-eg1"><h3 class="heading">
 <span class="type">Exercise</span><span class="space"> </span><span class="codenumber">1.1.5</span><span class="period">.</span>
 </h3>
 <div class="ptx-runestone-container"><div class="runestone"><ul data-component="multiplechoice" data-multipleanswers="false" id="ex-tf-vsp-eg1">
-<p id="p-101">The set of all polynomials with real number coefficients and degree less than or equal to three is a vector space, using the usual polynomial addition and scalar multiplication.</p>
+<p id="p-103">The set of all polynomials with real number coefficients and degree less than or equal to three is a vector space, using the usual polynomial addition and scalar multiplication.</p>
 <li data-component="answer" id="ex-tf-vsp-eg1_opt_t" data-correct=""><p>True.</p></li>
-<li data-component="feedback" id="ex-tf-vsp-eg1_opt_t"><p id="p-102">This is the vector space <span class="process-math">\(P_3(\R)\)</span> from <a href="" class="xref" data-knowl="./knowl/ex-vector-spaces.html" title="Example 1.1.3">Example 1.1.3</a>.</p></li>
+<li data-component="feedback" id="ex-tf-vsp-eg1_opt_t"><p id="p-104">This is the vector space <span class="process-math">\(P_3(\R)\)</span> from <a href="" class="xref" data-knowl="./knowl/ex-vector-spaces.html" title="Example 1.1.3">Example 1.1.3</a>.</p></li>
 <li data-component="answer" id="ex-tf-vsp-eg1_opt_f"><p>False.</p></li>
-<li data-component="feedback" id="ex-tf-vsp-eg1_opt_f"><p id="p-102">This is the vector space <span class="process-math">\(P_3(\R)\)</span> from <a href="" class="xref" data-knowl="./knowl/ex-vector-spaces.html" title="Example 1.1.3">Example 1.1.3</a>.</p></li>
+<li data-component="feedback" id="ex-tf-vsp-eg1_opt_f"><p id="p-104">This is the vector space <span class="process-math">\(P_3(\R)\)</span> from <a href="" class="xref" data-knowl="./knowl/ex-vector-spaces.html" title="Example 1.1.3">Example 1.1.3</a>.</p></li>
 </ul></div></div></article><article class="exercise exercise-like" id="ex-tf-vsp-eg2"><h3 class="heading">
 <span class="type">Exercise</span><span class="space"> </span><span class="codenumber">1.1.6</span><span class="period">.</span>
 </h3>
 <div class="ptx-runestone-container"><div class="runestone"><ul data-component="multiplechoice" data-multipleanswers="false" id="ex-tf-vsp-eg2">
-<p id="p-103">The set of all polynomials with real number coefficients and degree greater than or equal to three, together with the zero polynomial, is a vector space, using the usual polynomial addition and scalar multiplication.</p>
+<p id="p-105">The set of all polynomials with real number coefficients and degree greater than or equal to three, together with the zero polynomial, is a vector space, using the usual polynomial addition and scalar multiplication.</p>
 <li data-component="answer" id="ex-tf-vsp-eg2_opt_t"><p>True.</p></li>
-<li data-component="feedback" id="ex-tf-vsp-eg2_opt_t"><p id="p-104">The set is not closed under addition. What happens if you add the polynomials <span class="process-math">\(x^3+x\)</span> and <span class="process-math">\(-x^3+x\text{?}\)</span></p></li>
+<li data-component="feedback" id="ex-tf-vsp-eg2_opt_t"><p id="p-106">The set is not closed under addition. What happens if you add the polynomials <span class="process-math">\(x^3+x\)</span> and <span class="process-math">\(-x^3+x\text{?}\)</span></p></li>
 <li data-component="answer" id="ex-tf-vsp-eg2_opt_f" data-correct=""><p>False.</p></li>
-<li data-component="feedback" id="ex-tf-vsp-eg2_opt_f"><p id="p-104">The set is not closed under addition. What happens if you add the polynomials <span class="process-math">\(x^3+x\)</span> and <span class="process-math">\(-x^3+x\text{?}\)</span></p></li>
+<li data-component="feedback" id="ex-tf-vsp-eg2_opt_f"><p id="p-106">The set is not closed under addition. What happens if you add the polynomials <span class="process-math">\(x^3+x\)</span> and <span class="process-math">\(-x^3+x\text{?}\)</span></p></li>
 </ul></div></div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-5" id="hint-5"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-5"><div class="hint solution-like"><p id="p-105">Remember that a vector space must be closed under the operations of addition and scalar multiplication.</p></div></div>
+<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-5" id="hint-5"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-5"><div class="hint solution-like"><p id="p-107">Remember that a vector space must be closed under the operations of addition and scalar multiplication.</p></div></div>
 </div></article><article class="exercise exercise-like" id="ex-tf-vsp-eg3"><h3 class="heading">
 <span class="type">Exercise</span><span class="space"> </span><span class="codenumber">1.1.7</span><span class="period">.</span>
 </h3>
 <div class="ptx-runestone-container"><div class="runestone"><ul data-component="multiplechoice" data-multipleanswers="false" id="ex-tf-vsp-eg3">
-<p id="p-106">The set of all vectors <span class="process-math">\(\vv = \langle a, b\rangle\)</span> of unit length (that is, such that <span class="process-math">\(\sqrt{a^2+b^2}=1\)</span>) is a vector space with respect to the usual addition and scalar multiplication in <span class="process-math">\(\R^2\text{.}\)</span></p>
+<p id="p-108">The set of all vectors <span class="process-math">\(\vv = \langle a, b\rangle\)</span> of unit length (that is, such that <span class="process-math">\(\sqrt{a^2+b^2}=1\)</span>) is a vector space with respect to the usual addition and scalar multiplication in <span class="process-math">\(\R^2\text{.}\)</span></p>
 <li data-component="answer" id="ex-tf-vsp-eg3_opt_t"><p>True.</p></li>
-<li data-component="feedback" id="ex-tf-vsp-eg3_opt_t"><p id="p-107">The zero vector does not have unit length. Also, the sum of two unit vectors will usually not be a unit vector.</p></li>
+<li data-component="feedback" id="ex-tf-vsp-eg3_opt_t"><p id="p-109">The zero vector does not have unit length. Also, the sum of two unit vectors will usually not be a unit vector.</p></li>
 <li data-component="answer" id="ex-tf-vsp-eg3_opt_f" data-correct=""><p>False.</p></li>
-<li data-component="feedback" id="ex-tf-vsp-eg3_opt_f"><p id="p-107">The zero vector does not have unit length. Also, the sum of two unit vectors will usually not be a unit vector.</p></li>
+<li data-component="feedback" id="ex-tf-vsp-eg3_opt_f"><p id="p-109">The zero vector does not have unit length. Also, the sum of two unit vectors will usually not be a unit vector.</p></li>
 </ul></div></div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-8" id="solution-8"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-8"><div class="solution solution-like"><p id="p-108"></p></div></div>
+<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-8" id="solution-8"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-8"><div class="solution solution-like"><p id="p-110"></p></div></div>
 </div></article></section><div class="hidden-content tex2jax_ignore" id="hk-fn-3"><div class="fn"><code class="code-inline tex2jax_ignore">en.wikipedia.org/wiki/Examples_of_vector_spaces</code></div></div>
 </div></main>
 </div>

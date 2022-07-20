@@ -2,9 +2,6 @@
 <html lang="en-US">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-07-11T12:39:03-06:00       *-->
-<!--*   A recent stable commit (2020-08-09):   *-->
-<!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
 <!--*         https://pretextbook.org          *-->
 <!--*                                          *-->
@@ -14,8 +11,12 @@
 <meta name="robots" content="noindex, nofollow">
 </head>
 <body class="ignore-math">
-<h4 class="heading"><span class="type">Paragraph</span></h4>
-<p>Note that we can also introduce the matrix <span class="process-math">\(Q = \bbm 0\amp -1\\1\amp 1\ebm\)</span> whose columns are the coefficient vectors of the vectors in the basis <span class="process-math">\(D\)</span> with respect to the standard basis. The effect of multiplying by <span class="process-math">\(Q\)</span> is to convert from coefficients with respect to <span class="process-math">\(D\)</span> into a coefficient vector with respect to the standard basis. We can then write a new matrix <span class="process-math">\(\hat{M}(T) = QM(T)P^{-1}\text{;}\)</span> this new matrix is now the matrix representation of <span class="process-math">\(T\)</span> with respect to the <em class="emphasis">standard</em> bases of <span class="process-math">\(P_2(\R)\)</span> and <span class="process-math">\(\R^2\text{.}\)</span></p>
-<span class="incontext"><a href="sec-matrix-of-transformation.html#p-1254" class="internal">in-context</a></span>
+<h5 class="heading"><span class="type">Paragraph</span></h5>
+<p>A lot of the methods we're looking at here involve more sophisticated numerical techniques than SymPy is designed to handle. If we wanted to spend time on these topics, we'd have to learn a bit about the NumPy package, which has built in tools for finding things like polar decomposition and singular value decomposition. However, SymPy does know how to do <span class="process-math">\(QR\)</span> factorization. After defining a matrix <code class="code-inline tex2jax_ignore">A</code>, we can use the command</p>
+<pre class="code-display tex2jax_ignore">
+          Q, R = A.QRdecomposition()
+        </pre>
+<p class="continuation">.</p>
+<span class="incontext"><a href="section-matrix-factor.html#p-1254" class="internal">in-context</a></span>
 </body>
 </html>

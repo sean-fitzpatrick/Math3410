@@ -2,9 +2,6 @@
 <html lang="en-US">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-07-11T12:39:02-06:00       *-->
-<!--*   A recent stable commit (2020-08-09):   *-->
-<!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
 <!--*         https://pretextbook.org          *-->
 <!--*                                          *-->
@@ -15,7 +12,18 @@
 </head>
 <body class="ignore-math">
 <h5 class="heading"><span class="type">Paragraph</span></h5>
-<p>The SymPy library contains the <code class="code-inline tex2jax_ignore">cholesky()</code> algorithm. Note however that it produces a lower triangular matrix, rather than upper triangular. (That is, the output gives <span class="process-math">\(L=U^T\)</span> rather than <span class="process-math">\(U\text{,}\)</span> so you will have <span class="process-math">\(A=LL^T\text{.}\)</span>) Let's give it a try. First, enter a positive-definite matrix. (We'll try the one from Example 8.3.3 in Nicholson.)</p>
-<span class="incontext"><a href="section-matrix-factor.html#p-1141" class="internal">in-context</a></span>
+<p>These again follow from writing the inner product as a matrix product.</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\langle \alpha\zz_1,\zz_2\rangle = (\alpha \zz_1)^T\bar{\zz_2} = \alpha(\zz_1^T\bar{\zz_2}) = \alpha\langle\zz_1,\zz_2\rangle\text{,}
+\end{equation*}
+</div>
+<p class="continuation">and</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\langle \zz_1,\alpha\zz_2\rangle = \zz_1^T\overline{\alpha \zz_2} = \zz_1^T(\bar{\alpha}\bar{\zz_2}) = \bar{\alpha}(\zz_1^T\zz_2)=\alpha\langle \zz_1,\zz_2\rangle\text{.}
+\end{equation*}
+</div>
+<span class="incontext"><a href="sec-complex.html#p-1141" class="internal">in-context</a></span>
 </body>
 </html>

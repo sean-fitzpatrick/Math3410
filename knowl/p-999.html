@@ -2,9 +2,6 @@
 <html lang="en-US">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-07-11T12:39:01-06:00       *-->
-<!--*   A recent stable commit (2020-08-09):   *-->
-<!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
 <!--*         https://pretextbook.org          *-->
 <!--*                                          *-->
@@ -15,13 +12,24 @@
 </head>
 <body class="ignore-math">
 <h4 class="heading"><span class="type">Paragraph</span></h4>
-<p>The first two follow directly from properties of the determinant and trace. For the last, note that if <span class="process-math">\(B = P^{-1}AP\text{,}\)</span> then</p>
+<p>Next, we need to show that <span class="process-math">\(T^*:W^*\to V^*\)</span> is a linear map. Let <span class="process-math">\(\phi,\psi\in W^*\text{,}\)</span> and let <span class="process-math">\(c\)</span> be a scalar. We have:</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
-P^{-1}(xI_n-A)P = P^{-1}(xI_n)P-P^{-1}AP = xI_n B\text{,}
+T^*(\phi+\psi) = (\phi+\psi)\circ T = \phi\circ T+\psi\circ T = T^*\phi+T^*\psi\text{,}
 \end{equation*}
 </div>
-<p class="continuation">so <span class="process-math">\(xI_n-B\sim xI_n-A\text{,}\)</span> and therefore <span class="process-math">\(\det(xI_n-B)=\det(xI_n-A)\text{.}\)</span></p>
-<span class="incontext"><a href="subsec-eigen-basics.html#p-999" class="internal">in-context</a></span>
+<p class="continuation">and</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+T^*(c\phi) = (c\phi)\circ T = c(\phi\circ T) = cT^*\phi\text{.}
+\end{equation*}
+</div>
+<p class="continuation">This follows from the vector space structure on any space of functions. For a vector <span class="process-math">\(v\in V\text{,}\)</span> we have</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+(T^*(c\phi))(v) = (c\phi(T(v)))=c(\phi(T(v)))=c((T^*\phi)(v))\text{.}
+\end{equation*}
+</div>
+<span class="incontext"><a href="worksheet-dual-basis.html#p-999" class="internal">in-context</a></span>
 </body>
 </html>
