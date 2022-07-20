@@ -17,23 +17,27 @@
     </statement>
   </definition>
 
-  <p>
-    Note that eigenvalues and eigenvectors can just as easily be defined for a general linear operator <m>T:V\to V</m>.
-    In this context, and eigenvector <m>\xx</m> is sometimes referred to as a <em>characteristic vector</em> (or characteristic direction)
-    for <m>T</m>, since the property <m>T(\xx)=\lambda \xx</m>
-    simply states that the transformed vector <m>T(\xx)</m> is parallel to the original vector <m>\xx</m>.
-    Some linear algebra textbooks that focus more on general linear transformations frame this topic in the context of
-    <em>invariant subspaces</em> for a linear operator.
-  </p>
+  <remark>
+    <statement>
+      <p>
+        Eigenvalues and eigenvectors can just as easily be defined for a general linear operator <m>T:V\to V</m>.
+        In this context, and eigenvector <m>\xx</m> is sometimes referred to as a <em>characteristic vector</em> (or characteristic direction)
+        for <m>T</m>, since the property <m>T(\xx)=\lambda \xx</m>
+        simply states that the transformed vector <m>T(\xx)</m> is parallel to the original vector <m>\xx</m>.
+        Some linear algebra textbooks that focus more on general linear transformations frame this topic in the context of
+        <em>invariant subspaces</em> for a linear operator.
+      </p>
 
-  <p>
-    A subspace <m>U\subseteq V</m> is <em>invariant</em> with respect to <m>T</m> if <m>T(\uu)\in U</m> for all <m>\uu\in U</m>.
-    Note that if <m>\xx</m> is an eigenvector of <m>T</m>, then <m>\spn\{\xx\}</m> is an invariant subspace.
-    To see this, note that if <m>T(\xx)=\lambda \xx</m> and <m>\yy=k\xx</m>, then
-    <me>
-      T(\yy)=T(k\xx)=kT(\xx)=k(\lambda \xx)=\lambda(k\xx)=\lambda\yy
-    </me>.
-  </p>
+      <p>
+        A subspace <m>U\subseteq V</m> is <em>invariant</em> with respect to <m>T</m> if <m>T(\uu)\in U</m> for all <m>\uu\in U</m>.
+        Note that if <m>\xx</m> is an eigenvector of <m>T</m>, then <m>\spn\{\xx\}</m> is an invariant subspace.
+        To see this, note that if <m>T(\xx)=\lambda \xx</m> and <m>\yy=k\xx</m>, then
+        <me>
+          T(\yy)=T(k\xx)=kT(\xx)=k(\lambda \xx)=\lambda(k\xx)=\lambda\yy
+        </me>.
+      </p>
+    </statement>
+  </remark>
 
   <p>
     Note that if <m>\xx</m> is an eigenvector of the matrix <m>A</m>, then we have
@@ -48,7 +52,7 @@
   <definition xml:id="def-eigenspace">
     <statement>
       <p>
-        For any real number <m>\lambda</m> and matrix <m>A</m>,
+        For any real number <m>\lambda</m> and <m>n\times n</m> matrix <m>A</m>,
         we define the <term>eigenspace</term> <m>E_\lambda(A)</m> by
         <me>
           E_\lambda(A) = \nll (A-\lambda I_n)
@@ -56,6 +60,11 @@
       </p>
     </statement>
   </definition>
+
+  <p>
+    Since we know that the null space of any matrix is a subspace,
+    it follows that eigenspaces are subspaces of <m>\R^n</m>.
+  </p>
 
   <p>
     Note that <m>E_\lambda(A)</m> can be defined for any real number <m>\lambda</m>,
@@ -87,6 +96,16 @@
         </ol>
       </p>
     </statement>
+    <proof>
+      <title>Strategy</title>
+      <p>
+        To prove a theorem involving a <q>the following are equivalent</q> statement,
+        a good strategy is to show that the first implies the second,
+        the second implies the third, and the third implies the first.
+        The ideas needed for the proof are given in the paragraph preceding the theorem.
+        See if you can turn them into a formal proof.
+      </p>
+    </proof>
   </theorem>
 
   <p>
@@ -99,6 +118,38 @@
     is called the <term>characteristic equation</term> of <m>A</m>.
     The solutions to this equation are precisely the eigenvalues of <m>A</m>.
   </p>
+
+  <exercise label="ex-match-eigen">
+    <statement>
+      <p>
+        In order for certain properties of a matrix <m>A</m> to be satisfied,
+        the eigenvalues of <m>A</m> need to have particular values.
+        Match each property of a matrix <m>A</m> on the left with the corresponding information about the eigenvalues of <m>A</m> on the right.
+        Be sure that you can justify your answers with a suitable proof.
+      </p>
+    </statement>
+    <matches randomize="yes">
+      <match order="4">
+        <premise><m>A</m> is invertible</premise>
+        <response><m>0</m> is not an eigenvalue of <m>A</m></response>
+      </match>
+      <match order="1">
+        <premise><m>A^k=0</m> for some integar <m>k\geq 2</m></premise>
+        <response><m>0</m> is the only eigenvalue of <m>A</m></response>
+      </match>
+      <match order="3">
+        <premise><m>A=A^{-1}</m></premise>
+        <response><m>1</m> and <m>-1</m> are the only eigenvalues of <m>A</m></response>
+      </match>
+      <match order="5">
+        <premise><m>A^2=A</m></premise>
+        <response><m>0</m> and <m>1</m> are the only eigenvalues of <m>A</m></response>
+      </match>
+      <match order="2">
+        <premise><m>A^3=A</m></premise>
+        <response><m>0</m>, <m>1</m>, and <m>-1</m> are the eigenvalues of <m>A</m></response>
+      </match>
+  </exercise>
 
   <p>
     Recall that a matrix <m>B</m> is said to be <term>similar</term> to a matrix <m>A</m>
@@ -151,11 +202,11 @@
         so <m>xI_n-B\sim xI_n-A</m>, and therefore <m>\det(xI_n-B)=\det(xI_n-A)</m>.
       </p>
     </proof>
-
   </theorem>
 
 
-  <example>
+
+  <example xml:id="example-eigenvectors">
     <statement>
       <p>
         Determine the eigenvalues and eigenvectors of <m>A = \bbm 0\amp 1\amp 1\\1\amp 0\amp 1\\1\amp 1\amp 0\ebm</m>.
@@ -218,7 +269,33 @@
       p_A(x)=(x-\lambda)^mq(x)
     </me>,
     where <m>q(x)</m> is not divisible by <m>x-\lambda</m>, then we say that <m>\lambda</m>
-    is an eigenvalue of <term>multiplicity</term> <m>m</m>. A main result is the following.
+    is an eigenvalue of <term>multiplicity</term> <m>m</m>.
+    In the example above, <m>\lambda_1=-1</m> has multiplicty 2,
+    and <m>\lambda_2=2</m> has multiplicty 1.
+  </p>
+
+  <p>
+    The <c>eigenvects</c> command in SymPy takes a square matrix as input,
+    and outputs a list of lists (one list for each eigenvalue).
+    For a given eigenvalue, the corresponding list has the form
+    <c>(eigenvalue, multiplicity, eigenvectors)</c>.
+    Using SymPy to solve <xref ref="example-eigenvector"/> looks as follows:
+  </p>
+
+  <sage>
+    <input>
+      from sympy import Matrix, init_printing
+      init_printing()
+      A = Matrix([[0,1,1],[1,0,1],1,1,0])
+      A.eigenvects()
+    </input>
+    <output>
+      \[\left[\left(-1,2,\left[\bbm -1\\1\\0\ebm,\bbm -1\\0\\1\ebm\right]),\left(2,2,\left[\bbm 1\\1\\1\ebm\right]\right)\right]\]
+    </output>
+  </sage>
+
+  <p>
+    An important result about multiplicity is the following.
   </p>
 
   <theorem xml:id="thm-multiplicity">
@@ -230,15 +307,17 @@
     </statement>
   </theorem>
 
-  <p>
-    Some textbooks refer to the multiplicity <m>m</m> of an eigenvalue as the
-    <em>algebraic multiplicity</em> of <m>\lambda</m>, and the number <m>\dim E_\lambda(A)</m>
-    as the <em>geometric multiplicity</em> of <m>\lambda</m>.
-  </p>
+  <aside>
+    <p>
+      Some textbooks refer to the multiplicity <m>m</m> of an eigenvalue as the
+      <em>algebraic multiplicity</em> of <m>\lambda</m>, and the number <m>\dim E_\lambda(A)</m>
+      as the <em>geometric multiplicity</em> of <m>\lambda</m>.
+    </p>
+  </aside>
 
   <p>
     To prove <xref ref="thm-multiplicity"/> we need the following lemma,
-    from Section 5.5 of Nicholson's textbook.
+    which we've borrowed from Section 5.5 of Nicholson's textbook.
   </p>
 
   <lemma xml:id="lem-block-eigen">
