@@ -12,11 +12,12 @@
       </p>
 
       <p>
-        In <xref ref="section-matrix-factor"/> we saw that the <c>svd</c> algorithm in the mpmath library does things a little bit differently than Nicholson.
+        In <xref ref="section-matrix-factor"/> we saw that the <c>singular_value_decomposition</c>
+        algorithm in SymPy does things a little bit differently than in <xref ref="section-matrix-factor"/>.
         If we start with a square matrix <m>A</m>, the results are the same,
         but if <m>A</m> is not square, the decomposition <m>A = P\Sigma_A Q^T</m> looks a little different.
         In particular, if <m>A</m> is <m>m\times n</m>,
-        the matrix <m>\Sigma_A</m> defined in Nicholson will also be <m>m\times n</m>,
+        the matrix <m>\Sigma_A</m> defined in <xref ref="section-matrix-factor"/> will also be <m>m\times n</m>,
         but it will contain some rows or columns of zeros that are added to get the desired size.
         The matrix <m>Q</m> is an orthogonal <m>n\times n</m> matrix whose columns are an orthonormal basis of eigenvectors for <m>A^TA</m>.
         The matrix <m>P</m> is an orthogonal <m>m\times m</m> matrix whose columns are an orthonormal basis of <m>\R^m</m>.
@@ -24,23 +25,24 @@
       </p>
 
       <p>
-        The <c>svd</c> algorithm provided by mpmath replaces <m>\Sigma_A</m> by the <m>m\times m</m> diagonal matrix of singular values.
-        The matrix <m>Q</m> is replaced by the <m>m\times n</m> matrix whose columns are the first <m>m</m> eigenvectors of <m>A^TA</m>.
+        The algorithm provided by SymPy replaces <m>\Sigma_A</m> by the <m>r\times r</m> diagonal matrix of nonzero singular values.
+        (This is common in most algorithms, since we don't want to bother storing data we don't need.)
+        The matrix <m>Q</m> is replaced by the <m>n\times r</m> matrix whose columns are the first <m>r</m> eigenvectors of <m>A^TA</m>,
+        and the matrix <m>P</m> is replaced by the <m>m\times r</m> matrix whose columns are the orthonormal basis for the column space of <m>A</m>.
         (Note that the rank of <m>A^TA</m> is equal to the rank of <m>A</m>,
-        which is equal to the number of nonzero eigenvectors of <m>A^TA</m> (counted with multiplicity).)
-        So we will have <m>m\geq r</m>, where <m>r</m> is the number of nonzero singular values.
+        which is equal to the number <m>r</m> of nonzero eigenvectors of <m>A^TA</m> (counted with multiplicity).)
       </p>
 
       <p>
-        The product <m>\Sigma_A Q^T</m> will be the same in both cases, and the matrix <m>P</m> is the same as well.
+        The product <m>P\Sigma_A Q^T</m> will be the same in both cases, and the matrix <m>P</m> is the same as well.
       </p>
     </introduction>
 
     <p>
-      This time, rather than using the mpmath algorithm,
-      we will work through the process as outlined in Nicholson step-by-step.
-      First, we will work through (again) Example 8.6.1 in Nicholson.
-      Let <m>A = \bbm 1\amp 0\amp 1\\-1\amp 1\amp 0\ebm</m>.
+      This time, rather than using the SymPy algorithm,
+      we will work through the process outlined in <xref ref="section-matrix-factor"/> step-by-step.
+      First, we will work through (again) <xref ref="example-svd"/>.
+      Let <m>A = \bbm 1\amp 1\amp 1\\1\amp 0\amp -1\ebm</m>.
       First, we get the singular values:
     </p>
 
@@ -48,7 +50,7 @@
       <input>
         from sympy import Matrix,init_printing
         init_printing()
-        A = Matrix([[1,0,1],[-1,1,0]])
+        A = Matrix([[1,1,1],[1,0,-1]])
         L0=A.singular_values()
         L0
       </input>
@@ -152,7 +154,7 @@
       <input>
         from sympy import Matrix,BlockMatrix,init_printing
         init_printing()
-        A = Matrix([[1,0,1],[-1,1,0]])
+        A = Matrix([[1,1,1],[1,0,-1]])
         B=(A.T)*A
         L0=A.singular_values()
         L1=B.eigenvects()
@@ -175,7 +177,7 @@
   </page>
 
   <page>
-    <exercise workspace="7in">
+    <exercise workspace="3.5in">
       <statement>
         <p>
           Do Exercise 8.6.9 in Nicholson: compute the SVD for the matrices
@@ -193,28 +195,12 @@
 
     </sage>
 
-  </page>
-
-  <page>
     <exercise workspace="3.5in">
       <statement>
         <p>
           Either by reading Nicholson or by searching online (or both),
           come up with a couple of answers to the question:
           <q>Why are people interested in the singular value decomposition?</q>
-        </p>
-      </statement>
-    </exercise>
-
-    <sage language="html">
-
-    </sage>
-
-    <exercise workspace="3.5in">
-      <statement>
-        <p>
-          (Optional) If you are interested, learn how to compute the <init>SVD</init>
-          using tools from the NumPy and SciPy libraries instead.
         </p>
       </statement>
     </exercise>
