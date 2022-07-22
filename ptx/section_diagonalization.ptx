@@ -13,8 +13,13 @@
     <me>
       \xx\dotp (A\yy) = \xx^T(A\yy)=(\xx^TA^T)\yy = (A\xx)^T\yy=(A\xx)\dotp\yy
     </me>.
-    For inner product spaces, the above is taken as the <em>definition</em> of what it means for an operator to be symmetric.
   </p>
+
+  <aside>
+    <p>
+      For inner product spaces, the above is taken as the <em>definition</em> of what it means for an operator to be symmetric.
+    </p>
+  </aside>
 
   <exercise>
     <statement>
@@ -23,6 +28,12 @@
         then <m>A</m> is symmetric.
       </p>
     </statement>
+    <hint>
+      <p>
+        If this condition is true for all <m>\xx,\yy\in \R^n</m>,
+        then it is true in particular for the vectors in the standard basis for <m>\R^n</m>.
+      </p>
+    </hint>
     <solution>
       <p>
         Take <m>\xx=\mathbf{e}_i</m> and <m>\yy=\mathbf{e}_j</m>,
@@ -47,6 +58,18 @@
         If <m>A</m> is a symmetric matrix, then eigenvectors corresponding to <em>distinct</em> eigenvalues are orthogonal.
       </p>
     </statement>
+    <proof>
+      <title>Strategy</title>
+      <p>
+        We want to show that if <m>\xx_1,\xx_2</m> are eigenvectors corresponding to distinct eigenvalues <m>\lambda_1,\lambda_2</m>,
+        then <m>\xx_1\dotp \xx_2=0</m>.
+        It was pointed out above that since <m>A</m> is symmetric,
+        we know <m>(A\xx_1)\dotp \xx_2=\xx_1\dotp (A\xx_2)</m>.
+        Can you see how to use this, and the fact that <m>\xx_1,\xx_2</m> are eigenvectors,
+        to prove the result?
+      </p>
+    </proof>
+
     <proof>
       <p>
         To see this, suppose <m>A</m> is symmetric, and that we have
@@ -97,6 +120,14 @@
         A matrix <m>P</m> is orthogonal if and only if the columns of <m>P</m> form an orthonormal basis for <m>\R^n</m>.
       </p>
     </statement>
+    <proof>
+      <title>Strategy</title>
+      <p>
+        This more or less amounts to the fact that <m>P^T=P^{-1}</m> if and only if <m>PP^T=I</m>,
+        and thinking about the matrix product in terms of dot products.
+      </p>
+    </proof>
+
   </theorem>
 
   <p>
@@ -121,7 +152,15 @@
 
   <p>
     The above definition leads to the following result, also known as the Principal Axes Theorem.
+    A careful proof is quite difficult, and omitted from this book.
+    The hard part is showing that any symmetric matrix is orthogonally diagonalizable.
+    There are a few ways to do this, most requiring induction on the size of the matrix.
+    A common approach actually uses multivariable calculus! (Optimization via Lagrange multipliers, to be precise.)
+    If you are reading this along with the book by Nicholson, there is a gap in his proof:
+    in the induction step, he assumes the existence of a real eigenalue of <m>A</m>,
+    but this has to be proved!
   </p>
+
   <theorem xml:id="thm-real-spectral">
     <title>Real Spectral Theorem</title>
 
