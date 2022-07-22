@@ -372,15 +372,76 @@
   </p>
 
   <p>
-    <xref ref="thm-multiplicity"/> provides an initial criterion for diagonalization:
+    Another important result is the following.
+    The proof is a bit tricky: it requires mathematical induction,
+    and a couple of clever observations.
+  </p>
+
+  <theorem xml:id="thm-eigen-independent">
+    <statement>
+      <p>
+        Let <m>\vv_1,\ldots, \vv_k</m> be eigenvectors corresponding to distinct
+        eigenvalues <m>\lambda_1,\ldots, \lambda_k</m> of a matrix <m>A</m>.
+        Then <m>\{\vv_1,\ldots, \vv_k\}</m> is linearly independent.
+      </p>
+    </statement>
+    <proof>
+      <p>
+        The proof is by induction on the number <m>k</m> of distinct eigenvalues.
+        Since eigenvectors are nonzero, any set consisting of a single eigenvector <m>\vv_1</m> is independent.
+        Suppose, then, that a set of eigenvectors corresponding to <m>k-1</m> distinct eigenvalues is independent,
+        and let <m>\vv_1,\ldots, \vv_k</m> be eigenvectors corresponding to distinct eigenvalues <m>\lambda_1,\ldots, \lambda_k</m>.
+      </p>
+
+      <p>
+        Consider the equation
+        <me>
+          c_1\vv_1+c_2\vv_2+\cdots +c_k\vv_k=\zer
+        </me>,
+        for scalars <m>c_1,\ldots, c_k</m>. Multiplying both sides by the matrix <m>A</m>, we have
+        <mdn>
+          <mrow>\zer \amp = A\zer</mrow>
+          <mrow> A(c_1\vv_1+c_2\vv_2+\cdots +c_k\vv_k)</mrow>
+          <mrow> \amp =c_1A\vv_1+c_2A\vv_2+\cdots + c_kA\vv_k</mrow>
+          <mrow xml:id="eqn-eigen-indep1"> \amp =c_1\lambda_1\vv_1+c_2\lambda_2\vv_2+\cdots + c_k\lambda_k\vv_k</mrow>
+        </mdn>.
+      </p>
+
+      <p>
+        On the other hand, we can also multiply both sides by the eigenvalue <m>\lambda_1</m>, giving
+        <men xml:id="eqn-eiegen-indep2">
+          \zer = c_1\lambda_1\vv_1 + c_2\lambda_1\vv_2+\cdots + c_k\lambda_1\vv_k
+        </men>.
+        Subtracting <xref ref="eqn-eigen-indep2"/> from <xref ref="eqn-eigen-indep1"/>,
+        the first temrs cancel, and we get
+        <me>
+          c_2(\lambda_2-\lambda_1)\vv_2+\cdots + c_k(\lambda_k-\lambda_1)\vv_k=\zer
+        </me>.
+      </p>
+
+      <p>
+        By hypothesis, the set <m>\{\vv_2,\ldots, \vv_k\}</m> of <m>k-1</m> eigenvectors is linearly independent.
+        We know that <m>\lambda_j-\lambda_1\neq 0</m> for <m>j=2,\ldots, k</m>,
+        since the eigenvalues are all distinct.
+        Therefore, the only way this linear combination can equal zero is if <m>c_2=0,\ldots, c_k=0</m>.
+        This leaves us with <m>c_1\vv_1=\zer</m>, but <m>\zz_1\neq \zer</m>, so <m>c_1=0</m> as well.
+      </p>
+    </proof>
+
+  </theorem>
+
+
+  <p>
+    <xref ref="thm-eigen-indep"/> tells us that vectors from different eigenspaces are independent.
+    In particular, a union of bases from each eigenspace will be an independent set.
+    Therefore, <xref ref="thm-multiplicity"/> provides an initial criterion for diagonalization:
     if the dimension of each eigenspace <m>E_\lambda(A)</m> is equal to the multiplicity of <m>\lambda</m>,
     then <m>A</m> is diagonalizable.
-    The truth of this statement relies on one additional fact:
-    any set of eigenvectors corresponding to <em>distinct</em> eigenvalues is linearly independent.
-    The proof of this fact is a relatively straightforward proof by induction.
-    It can be found in Section 5.5 of Nicholson for those who are interested.
-    However, our focus for the remainder of the section will be on diagonalization of <em>symmetric</em>
-    matrices, and soon we will see that for such matrices, eigenvectors corresponding to different eigenvalues are,
-    in fact, <em>orthogonal</em>.
+  </p>
+
+  <p>
+    Our focus in the next section will be on diagonalization of <em>symmetric</em>
+    matrices, and soon we will see that for such matrices, eigenvectors corresponding to different eigenvalues are
+    not just independent, but <em>orthogonal</em>.
   </p>
 </section>
