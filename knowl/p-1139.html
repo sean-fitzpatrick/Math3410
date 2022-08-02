@@ -11,44 +11,20 @@
 <meta name="robots" content="noindex, nofollow">
 </head>
 <body class="ignore-math">
-<h5 class="heading"><span class="type">Paragraph</span></h5>
-<ol class="decimal">
-<li>
-<p>Using the distributive properties of matrix multiplication and the transpose,</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{align*}
-\langle \zz_1+\zz_2,\zz_3\rangle \amp= (\zz_1+\zz_2)^T\bar{\zz_3}\\
-\amp =(\zz_1^T+\zz_2^T)\bar{\zz_3}\\
-\amp =\zz_1^T\bar{\zz_3}+\zz_2^T\bar{\zz_3}\\
-\amp =\langle \zz_1,\zz_3\rangle + \langle \zz_2,\zz_3\rangle\text{.}
-\end{align*}
-</div>
-<p class="continuation">The proof is similar when addition is in the second component. (But not identical -- you'll need the fact that the complex conjugate is distributive, rather than the transpose.)</p>
-</li>
-<li>
-<p>These again follow from writing the inner product as a matrix product.</p>
+<h4 class="heading"><span class="type">Paragraph</span></h4>
+<p>This idea of putting a complex number in an exponential function seems odd at first. If you take a course in complex variables, you'll get a better understanding of why this makes sense. But for now, we can take it as a convenient piece of notation. The reason it's convenient is that the rules for complex arithmetic turn out to align quite nicely with properties of the exponential function. For example, de Moivre's Theorem states that</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
-\langle \alpha\zz_1,\zz_2\rangle = (\alpha \zz_1)^T\bar{\zz_2} = \alpha(\zz_1^T\bar{\zz_2}) = \alpha\langle\zz_1,\zz_2\rangle\text{,}
+(\cos(\theta)+i\sin(\theta))^n = \cos(n\theta)+i\sin(n\theta)\text{.}
 \end{equation*}
 </div>
-<p class="continuation">and</p>
+<p class="continuation">This can be proved by induction (and the proof is not even all that bad), but it seems perfectly obvious in exponential notation:</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
-\langle \zz_1,\alpha\zz_2\rangle = \zz_1^T\overline{\alpha \zz_2} = \zz_1^T(\bar{\alpha}\bar{\zz_2}) = \bar{\alpha}(\zz_1^T\zz_2)=\alpha\langle \zz_1,\zz_2\rangle\text{.}
+(e^{i\theta})^n = e^{in\theta}\text{,}
 \end{equation*}
 </div>
-</li>
-<li>
-<p>Note that for any vectors <span class="process-math">\(\zz,\ww\text{,}\)</span> <span class="process-math">\(\zz^T\ww\)</span> is a number, and therefore equal to its own transpose. Thus, we have <span class="process-math">\(\zz^T\ww = (\zz^T\ww)^T=\ww^T\zz\text{,}\)</span> and</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-\overline{\langle \zz_1,\zz_2\rangle} = \overline{\zz_1^T\bar{\zz_2}} = \overline{\bar{\zz_2}^T\zz_1} = \zz_2^T\overline{\zz_1}=\langle \zz_2,\zz_1\rangle\text{.}
-\end{equation*}
-</div>
-</li>
-<li><p>This was already demonstrated above.</p></li>
-</ol>
+<p class="continuation">since you multiply exponents when you raise a power to a power.</p>
 <span class="incontext"><a href="sec-complex.html#p-1139" class="internal">in-context</a></span>
 </body>
 </html>

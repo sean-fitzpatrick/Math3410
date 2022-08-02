@@ -12,18 +12,31 @@
 </head>
 <body class="ignore-math">
 <h5 class="heading"><span class="type">Paragraph</span></h5>
-<p>By <a href="" class="xref" data-knowl="./knowl/thm-schurr.html" title="Theorem 4.4.13">Theorem 4.4.13</a>, there exists a unitary matrix <span class="process-math">\(U\)</span> such that <span class="process-math">\(A = UTU^H\text{,}\)</span> where <span class="process-math">\(T\)</span> is upper triangular, and has the eigenvalues of <span class="process-math">\(A\)</span> as diagonal entries. Since <span class="process-math">\(c_A(A)=c_A(UTU^H)=Uc_A(T)U^H\text{,}\)</span> and <span class="process-math">\(c_A(x)=c_T(x)\)</span> (since <span class="process-math">\(A\)</span> and <span class="process-math">\(T\)</span> are similar) it suffices to show that <span class="process-math">\(c_A(A)=0\)</span> when <span class="process-math">\(A\)</span> is upper-triangular. (If you like, we are showing that <span class="process-math">\(C_T(T)=0\text{,}\)</span> and deducing that <span class="process-math">\(c_A(A)=0\text{.}\)</span>) But if <span class="process-math">\(A\)</span> is upper-triangular, so is <span class="process-math">\(xI_A\text{,}\)</span> and therefore, <span class="process-math">\(\det(xI-A)\)</span> is just the product of the diagonal entries. That is,</p>
-<div class="displaymath process-math" data-contains-math-knowls="./knowl/thm-schurr.html">
+<p>Finally, we note that</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
-c_A(x) = (x-\lambda_1)(x-\lambda_2)\cdots (x-\lambda_n)\text{,}
+\langle \zz, \ww\rangle = (3-i)\overline{(3-i)}+(-5)(2) = (3-i)(3+i)-10 = 0\text{,}
 \end{equation*}
 </div>
-<p class="continuation">so</p>
-<div class="displaymath process-math" data-contains-math-knowls="./knowl/thm-schurr.html">
+<p class="continuation">so the two eigenvectors are orthogonal, as expected. We have</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
-c_A(A) = (A-\lambda_1I)(A-\lambda_2I)\cdots (A-\lambda_nI)\text{.}
+\len{\zz}=\sqrt{10+25}=\sqrt{35} \quad \text{ and } \quad \len{\ww}=\sqrt{10+4}=\sqrt{14}\text{,}
 \end{equation*}
 </div>
+<p class="continuation">so our orthogonal matrix is</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+U = \bbm \frac{3-i}{\sqrt{35}}\amp \frac{3-i}{\sqrt{14}}\\-\frac{5}{\sqrt{35}}\amp \frac{2}{\sqrt{14}}\ebm\text{.}
+\end{equation*}
+</div>
+<p class="continuation">With a bit of effort, we can finally confirm that</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+U^HAU = \bbm -1\amp 0\\0\amp 6\ebm\text{,}
+\end{equation*}
+</div>
+<p class="continuation">as expected.</p>
 <span class="incontext"><a href="sec-complex.html#p-1190" class="internal">in-context</a></span>
 </body>
 </html>

@@ -19,17 +19,17 @@ sagecell.makeSagecell({inputLocation: 'pre.sagecell-sage',
 </head>
 <body class="ignore-math"><div class="solution solution-like">
 <p>Using SymPy, we get the <a class="external" href="https://docs.sympy.org/latest/modules/matrices/matrices.html#sympy.matrices.matrices.MatrixBase.singular_value_decomposition" target="_blank">condensed SVD</a><a href="" class="fn-knowl original" data-knowl="./knowl/fn-11-hidden.html" title="Footnote 4.5.3"><sup> 3 </sup></a>. First, let's check the singular values.</p>
-<pre class="ptx-sagecell sagecell-sage" id="sage-83"><script type="text/x-sage">from sympy import Matrix, init_printing
+<pre class="ptx-sagecell sagecell-sage" id="sage-84"><script type="text/x-sage">from sympy import Matrix, init_printing
 init_printing()
 A = Matrix([[1,1,1],[1,0,-1]])
 A.singular_values()
 </script></pre>
 <p>Note that the values are not listed in decreasing order. Now, let's ask for the singular value decomposition. The output consists of three matrices; the first line below assigns those matrices to the names <code class="code-inline tex2jax_ignore">P,S,Q</code>.</p>
-<pre class="ptx-sagecell sagecell-sage" id="sage-84"><script type="text/x-sage">P,S,Q=A.singular_value_decomposition()
+<pre class="ptx-sagecell sagecell-sage" id="sage-85"><script type="text/x-sage">P,S,Q=A.singular_value_decomposition()
 P,S,Q
 </script></pre>
 <p>Note that the output is the “condensed” version, which doesn't match the exposition above. It also doesn't follow the same ordering convention: we'll need to swap columns in each of the matrices. But it does give us a decomposition of the matrix <span class="process-math">\(A\text{:}\)</span></p>
-<pre class="ptx-sagecell sagecell-sage" id="sage-85"><script type="text/x-sage">P*S*Q.T
+<pre class="ptx-sagecell sagecell-sage" id="sage-86"><script type="text/x-sage">P*S*Q.T
 </script></pre>
 <p>To match our earlier presentation, we first set <span class="process-math">\(\Sigma_A = \bbm \sqrt{3}\amp 0\amp 0\\0 \amp \sqrt{2}\amp 0\ebm\text{.}\)</span> Next, we need to extend the <span class="process-math">\(3\times 2\)</span> matrix in the output above to a <span class="process-math">\(3\times 3\)</span> matrix. We can do this by choosing any vector orthogonal to the two existing columns, and normalizing. Let's use entries <span class="process-math">\(1/\sqrt{6},-2/\sqrt{6},1/\sqrt{6}\text{.}\)</span> Noting that we also need to swap the first two columns (to match the fact that we swapped columns in <span class="process-math">\(\Sigma_A\)</span>), we get the matrix</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
@@ -40,7 +40,7 @@ Q = \bbm \frac{\sqrt{3}}{3}\amp \frac{\sqrt{2}}{2}\amp \frac{\sqrt{6}}{6}\\
 \end{equation*}
 </div>
 <p class="continuation">Let's check that it is indeed orthogonal.</p>
-<pre class="ptx-sagecell sagecell-sage" id="sage-86"><script type="text/x-sage">Q = Matrix([[sqrt(3)/3,sqrt(2)/2,sqrt(6)/6],[sqrt(3)/3,0,-sqrt(6)/3],[sqrt(3)/3,-sqrt(2)/2,sqrt(6)/6]])
+<pre class="ptx-sagecell sagecell-sage" id="sage-87"><script type="text/x-sage">Q = Matrix([[sqrt(3)/3,sqrt(2)/2,sqrt(6)/6],[sqrt(3)/3,0,-sqrt(6)/3],[sqrt(3)/3,-sqrt(2)/2,sqrt(6)/6]])
 Q*Q.T
 </script></pre>
 <p>Finally, we take <span class="process-math">\(P=\bbm 1\amp 0\\0\amp 1\ebm\)</span> (again swapping columns), which is just the identity matrix. We therefore should expect that</p>
@@ -50,7 +50,7 @@ P\Sigma_A Q^T = \Sigma_A Q^T = A\text{.}
 \end{equation*}
 </div>
 <p class="continuation">Let's check.</p>
-<pre class="ptx-sagecell sagecell-sage" id="sage-87"><script type="text/x-sage">S = Matrix([[sqrt(3),0,0],[0,sqrt(2),0]])
+<pre class="ptx-sagecell sagecell-sage" id="sage-88"><script type="text/x-sage">S = Matrix([[sqrt(3),0,0],[0,sqrt(2),0]])
 S*Q.T
 </script></pre>
 <p>It worked!</p>

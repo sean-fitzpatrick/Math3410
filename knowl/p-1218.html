@@ -12,19 +12,7 @@
 </head>
 <body class="ignore-math">
 <h5 class="heading"><span class="type">Paragraph</span></h5>
-<p>The matrix <span class="process-math">\(\Sigma_A\)</span> is the same size as <span class="process-math">\(A\text{.}\)</span> First, we list the positive singular values of <span class="process-math">\(A\)</span> in decreasing order:</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-\sigma_1\geq \sigma_2\geq \cdots \geq \sigma_k\gt 0\text{.}
-\end{equation*}
-</div>
-<p class="continuation">Then, we let <span class="process-math">\(D_A = \operatorname{diag}(\sigma_1,\ldots, \sigma_k)\text{,}\)</span> and set</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-\Sigma_A = \begin{bmatrix}D_A\amp 0\\0\amp 0\end{bmatrix}\text{.}
-\end{equation*}
-</div>
-<p class="continuation">That is, we put <span class="process-math">\(D_A\)</span> in the upper-left, and then fill in zeros as needed, until <span class="process-math">\(\Sigma_A\)</span> is the same size as <span class="process-math">\(A\text{.}\)</span></p>
+<p>Even better is that there is a very simple algorithm for obtaining the factorization: Carry the matrix <span class="process-math">\(A\)</span> to triangular form, using only row operations of the type <span class="process-math">\(R_i+kR_j\to R_i\text{.}\)</span> Then divide each row by the square root of the diagonal entry.</p>
 <span class="incontext"><a href="section-matrix-factor.html#p-1218" class="internal">in-context</a></span>
 </body>
 </html>

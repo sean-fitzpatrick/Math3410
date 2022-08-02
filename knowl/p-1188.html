@@ -11,14 +11,20 @@
 <meta name="robots" content="noindex, nofollow">
 </head>
 <body class="ignore-math">
-<h4 class="heading"><span class="type">Paragraph</span></h4>
-<p>Given a polynomial <span class="process-math">\(p(x) = a_0+a_1x+\cdots + a_nx_n\text{,}\)</span> we define <span class="process-math">\(p(A)\)</span> as</p>
+<h5 class="heading"><span class="type">Paragraph</span></h5>
+<p>Easier is to realize that if we haven't made a mistake calculating our eigenvalues, then the above matrix can't be invertible, so there must be some nonzero vector in the kernel. If <span class="process-math">\((A+I)\bbm a\\b\ebm=\bbm0\\0\ebm\text{,}\)</span> then we must have</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
-p(A) = a_0I+a_1A+\cdots + a_nA^n\text{.}
+5a+(3-i)b=0\text{,}
 \end{equation*}
 </div>
-<p class="continuation">(Note the presence of the identity matrix in the first term, since it does not make sense to add a scalar to a matrix.) Note further that since <span class="process-math">\((P^{-1}AP)^n = P^{-1}A^nP\)</span> for any invertible matrix <span class="process-math">\(P\)</span> and positive integer <span class="process-math">\(n\text{,}\)</span> we have <span class="process-math">\(p(U^HAU)=U^Hp(A)U\)</span> for any polynomial <span class="process-math">\(p\)</span> and unitary matrix <span class="process-math">\(U\text{.}\)</span></p>
+<p class="continuation">when we multiply by the first row of <span class="process-math">\(A\text{.}\)</span> This suggests that we take <span class="process-math">\(a=3-i\)</span> and <span class="process-math">\(b=-5\text{,}\)</span> to get <span class="process-math">\(\zz = \bbm 3-i\\-5\ebm\)</span> as our first eigenvector. To make sure we've done things correctly, we multiply by the second row of <span class="process-math">\(A+I\text{:}\)</span></p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+(3+i)(3-i)+2(-5) = 10-10 = 0\text{.}
+\end{equation*}
+</div>
+<p class="continuation">Success! Now we move onto the second eigenvalue.</p>
 <span class="incontext"><a href="sec-complex.html#p-1188" class="internal">in-context</a></span>
 </body>
 </html>

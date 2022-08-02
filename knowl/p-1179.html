@@ -11,14 +11,27 @@
 <meta name="robots" content="noindex, nofollow">
 </head>
 <body class="ignore-math">
-<h4 class="heading"><span class="type">Paragraph</span></h4>
-<p>Try the above modifications, in sequence. First, replacing the second line by <code class="code-inline tex2jax_ignore">L[0]</code> will give the first list item, which is another list:</p>
+<h5 class="heading"><span class="type">Paragraph</span></h5>
+<ol class="decimal">
+<li>
+<p>Suppose <span class="process-math">\(A\zz = \lambda\zz\)</span> for some <span class="process-math">\(\lambda\in\C\)</span> and <span class="process-math">\(\zz\neq \zer\text{.}\)</span> Then</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
-\left(-1,1,\left[\bbm -\frac35+\frac{i}{5}\ebm\right]\right)\text{.}
+\lambda \langle \zz,\zz\rangle  = \langle \lambda\zz,\zz\rangle = \langle A\zz,\zz \rangle = \langle \zz, A\zz\rangle = \langle \zz,\lambda\zz\rangle = \bar{\lambda}\langle \zz,\zz\rangle\text{.}
 \end{equation*}
 </div>
-<p class="continuation">We want the third item in the list, so try <code class="code-inline tex2jax_ignore">(L[0])[2]</code>. But note the extra set of brackets! There could (in theory) be more than one eigenvector, so this is a list with one item. To finally get the vector out, try <code class="code-inline tex2jax_ignore">((L[0])[2])[0]</code>. (There is probably a better way to do this. Someone who is more fluent in Python is welcome to advise.)</p>
+<p class="continuation">Thus, <span class="process-math">\((\lambda-\bar{\lambda})\len{\zz}^2=0\text{,}\)</span> and since <span class="process-math">\(\len{z}\neq 0\text{,}\)</span> we must have <span class="process-math">\(\bar{\lambda}=\lambda\text{,}\)</span> which means <span class="process-math">\(\lambda\in\R\text{.}\)</span></p>
+</li>
+<li>
+<p>Similarly, suppose <span class="process-math">\(\lambda_1,\lambda_2\)</span> are eigenvalues of <span class="process-math">\(A\text{,}\)</span> with corresponding eigenvectors <span class="process-math">\(\zz,\ww\text{.}\)</span> Then</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\lambda_1\langle \zz,\ww\rangle = \langle \lambda_1\zz,\ww\rangle = \langle A\zz,\ww\rangle =\langle \zz,A\ww\rangle = \langle \zz,\lambda_2\ww\rangle = \bar{\lambda_2}\langle\zz,\ww\rangle\text{.}
+\end{equation*}
+</div>
+<p class="continuation">This gives us <span class="process-math">\((\lambda_1-\bar{\lambda_2})\langle \zz,\ww\rangle=0\text{.}\)</span> And since we already know <span class="process-math">\(\lambda_2\)</span> must be real, and <span class="process-math">\(\lambda_1\neq \lambda_2\text{,}\)</span> we must have <span class="process-math">\(\langle \zz,\ww\rangle = 0\text{.}\)</span></p>
+</li>
+</ol>
 <span class="incontext"><a href="sec-complex.html#p-1179" class="internal">in-context</a></span>
 </body>
 </html>

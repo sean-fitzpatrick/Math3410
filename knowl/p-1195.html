@@ -12,13 +12,13 @@
 </head>
 <body class="ignore-math">
 <h4 class="heading"><span class="type">Paragraph</span></h4>
-<p>All such matrices (or operators) can be diagonalized, in the sense that there is an orthonormal basis of eigenvectors for that matrix. These eigenvectors can be arranged to form an orthogonal matrix <span class="process-math">\(P\)</span> (or unitary matrix <span class="process-math">\(U\)</span>) such that</p>
+<p>Try the above modifications, in sequence. First, replacing the second line by <code class="code-inline tex2jax_ignore">L[0]</code> will give the first list item, which is another list:</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
-P^TAP = D \quad \text{ (or } U^HAU=D)\text{,}
+\left(-1,1,\left[\bbm -\frac35+\frac{i}{5}\ebm\right]\right)\text{.}
 \end{equation*}
 </div>
-<p class="continuation">where <span class="process-math">\(D\)</span> is a diagonal matrix whose entries are the eigenvalues of <span class="process-math">\(A\text{.}\)</span></p>
-<span class="incontext"><a href="section-matrix-factor.html#p-1195" class="internal">in-context</a></span>
+<p class="continuation">We want the third item in the list, so try <code class="code-inline tex2jax_ignore">(L[0])[2]</code>. But note the extra set of brackets! There could (in theory) be more than one eigenvector, so this is a list with one item. To finally get the vector out, try <code class="code-inline tex2jax_ignore">((L[0])[2])[0]</code>. (There is probably a better way to do this. Someone who is more fluent in Python is welcome to advise.)</p>
+<span class="incontext"><a href="sec-complex.html#p-1195" class="internal">in-context</a></span>
 </body>
 </html>

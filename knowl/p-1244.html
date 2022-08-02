@@ -11,8 +11,16 @@
 <meta name="robots" content="noindex, nofollow">
 </head>
 <body class="ignore-math">
-<h5 class="heading"><span class="type">Paragraph</span></h5>
-<p>Here's the cool thing about the <abbr class="initialism">SVD</abbr>. Let <span class="process-math">\(\sigma_1\geq \sigma_2\geq \cdots \geq \sigma_r\gt 0\)</span> be the positive singular values of <span class="process-math">\(A\text{.}\)</span> Let <span class="process-math">\(\vecq_1,\ldots, \vecq_r,\ldots, \vecq_n\)</span> be the orthonormal basis of eigenvectors for <span class="process-math">\(A^TA\text{,}\)</span> and let <span class="process-math">\(\vecp_1,\ldots, \vecp_r,\ldots, \vecp_m\)</span> be the orthonormal basis of <span class="process-math">\(\R^m\)</span> constructed in the <abbr class="initialism">SVD</abbr> algorithm. Then:</p>
+<h6 class="heading"><span class="type">Paragraph</span></h6>
+<p>To match our earlier presentation, we first set <span class="process-math">\(\Sigma_A = \bbm \sqrt{3}\amp 0\amp 0\\0 \amp \sqrt{2}\amp 0\ebm\text{.}\)</span> Next, we need to extend the <span class="process-math">\(3\times 2\)</span> matrix in the output above to a <span class="process-math">\(3\times 3\)</span> matrix. We can do this by choosing any vector orthogonal to the two existing columns, and normalizing. Let's use entries <span class="process-math">\(1/\sqrt{6},-2/\sqrt{6},1/\sqrt{6}\text{.}\)</span> Noting that we also need to swap the first two columns (to match the fact that we swapped columns in <span class="process-math">\(\Sigma_A\)</span>), we get the matrix</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+Q = \bbm \frac{\sqrt{3}}{3}\amp \frac{\sqrt{2}}{2}\amp \frac{\sqrt{6}}{6}\\
+\frac{\sqrt{3}}{3}\amp 0\amp -\frac{\sqrt{6}}{3}\\
+\frac{\sqrt{3}}{3}\amp -\frac{\sqrt{2}}{2} \amp \frac{\sqrt{6}}{6}\ebm\text{.}
+\end{equation*}
+</div>
+<p class="continuation">Let's check that it is indeed orthogonal.</p>
 <span class="incontext"><a href="section-matrix-factor.html#p-1244" class="internal">in-context</a></span>
 </body>
 </html>

@@ -12,19 +12,7 @@
 </head>
 <body class="ignore-math">
 <h3 class="heading"><span class="type">Paragraph</span></h3>
-<p>Given <span class="process-math">\(\xx\in V\text{,}\)</span> write <span class="process-math">\(\xx = c_1\vv_1+\cdots + c_n\vv_n\text{,}\)</span> so that <span class="process-math">\(C_B(\xx) = \bbm c_1\\\vdots \\c_n\ebm\text{.}\)</span> Then</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-T_A(C_B(\xx)) = \bbm a_{11}\amp a_{12} \amp \cdots \amp a_{1n}\\
-a_{21}\amp a_{22} \amp \cdots \amp a_{2n}\\
-\vdots \amp \vdots \amp \ddots \amp \vdots\\
-a_{m1}\amp a_{m2} \amp \cdots \amp a_{mn}\ebm\bbm c_1\\c_2\\ \vdots \\c_n\ebm
-= \bbm a_{11}c_1+a_{12}c_2+\cdots +a_{1n}c_n\\
-a_{21}c_1+a_{22}c_2+\cdots +a_{2n}c_n\\
-\vdots\\
-a_{m1}c_1+a_{m2}c_2+\cdots +a_{mn}c_n\ebm\text{.}
-\end{equation*}
-</div>
-<span class="incontext"><a href="sec-matrix-of-transformation.html#p-1299" class="internal">in-context</a></span>
+<p>Alternatively, you could do <code class="code-inline tex2jax_ignore">SigA = diag(L0[0],L0[1]).row_join(Matrix([0,0]))</code>. Finally, we need to make the matrix <span class="process-math">\(P\text{.}\)</span> First, we find the vectors <span class="process-math">\(A\vecq_1, A\vecq_2\)</span> and normalize. (Note that <span class="process-math">\(A\vecq_3=\zer\text{,}\)</span> so this vector is unneeded, as expected.)</p>
+<span class="incontext"><a href="worksheet-svd.html#p-1299" class="internal">in-context</a></span>
 </body>
 </html>
