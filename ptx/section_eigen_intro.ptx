@@ -149,6 +149,7 @@
         <premise><m>A^3=A</m></premise>
         <response><m>0</m>, <m>1</m>, and <m>-1</m> are the eigenvalues of <m>A</m></response>
       </match>
+    </matches>
   </exercise>
 
   <p>
@@ -279,7 +280,7 @@
     and outputs a list of lists (one list for each eigenvalue).
     For a given eigenvalue, the corresponding list has the form
     <c>(eigenvalue, multiplicity, eigenvectors)</c>.
-    Using SymPy to solve <xref ref="example-eigenvector"/> looks as follows:
+    Using SymPy to solve <xref ref="example-eigenvectors"/> looks as follows:
   </p>
 
   <sage>
@@ -409,7 +410,7 @@
 
       <p>
         On the other hand, we can also multiply both sides by the eigenvalue <m>\lambda_1</m>, giving
-        <men xml:id="eqn-eiegen-indep2">
+        <men xml:id="eqn-eigen-indep2">
           \zer = c_1\lambda_1\vv_1 + c_2\lambda_1\vv_2+\cdots + c_k\lambda_1\vv_k
         </men>.
         Subtracting <xref ref="eqn-eigen-indep2"/> from <xref ref="eqn-eigen-indep1"/>,
@@ -432,7 +433,7 @@
 
 
   <p>
-    <xref ref="thm-eigen-indep"/> tells us that vectors from different eigenspaces are independent.
+    <xref ref="thm-eigen-independent"/> tells us that vectors from different eigenspaces are independent.
     In particular, a union of bases from each eigenspace will be an independent set.
     Therefore, <xref ref="thm-multiplicity"/> provides an initial criterion for diagonalization:
     if the dimension of each eigenspace <m>E_\lambda(A)</m> is equal to the multiplicity of <m>\lambda</m>,
