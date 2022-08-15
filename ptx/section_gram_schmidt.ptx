@@ -72,8 +72,8 @@
       Assuming that the angle <m>\theta</m> is acute. If it is obtuse,
       the scalar <m>c</m> is negative, but so is the dot product, so the signs work out.
     </fn>
-    we know that <m>\len{\ww}=c\len{uu}=\len{\vv}\cos((\theta)</m>.
-    But <m>\cos(\theta)=\frac{\vv\dotp\uu}{\len{\vv}\len{\uu}}</m>.
+    we know that <m>\len{\ww}=c\len{\uu}=\len{\vv}\cos(\theta)</m>.
+    But <m>\cos(\theta)=\frac{\vv\boldsymbol{\cdot}\uu}{\len{\vv}\len{\uu}}</m>.
     Plugging this in, and solving for <m>c</m>,
     we get the formula in <xref ref="eqn-proj-single"/>.
   </p>
@@ -95,16 +95,46 @@
     </feedback>
     <matches randomize="yes">
       <match order="3">
-        <premise><m>\uu = \langle 4,0,2\rangle, \vv=\langle 3,2,-1\rangle</m></premise>
-        <response><m>\ww = \langle 2,0,1\rangle, \zz= \langle 1,2,-2\rangle</m></response>
+        <premise>
+          <md>
+            <mrow>\uu \amp = \langle 4,0,2\rangle</mrow>
+            <mrow>\vv \amp =\langle 3,2,-1\rangle</mrow>
+          </md>
+        </premise>
+        <response>
+          <md>
+            <mrow>\ww \amp = \langle 2,0,1\rangle</mrow>
+            <mrow>\zz \amp = \langle 1,2,-2\rangle</mrow>
+          </md>
+        </response>
       </match>
       <match order="1">
-        <premise><m>\uu = \langle 2,4,-2\rangle, \vv = \langle 2,1,1\rangle</m></premise>
-        <response><m>\ww = \langle 1/2, 1, -1/2\rangle, \zz=\langle 3/2,0,3/2\rangle</m></response>
+        <premise>
+          <md>
+            <mrow>\uu \amp = \langle 2,4,-2\rangle</mrow>
+            <mrow>\vv \amp = \langle 2,1,1\rangle</mrow>
+          </md>
+        </premise>
+        <response>
+          <md>
+            <mrow>\ww \amp = \langle 1/2, 1, -1/2\rangle</mrow>
+            <mrow>\zz \amp = \langle 3/2,0,3/2\rangle</mrow>
+          </md>
+        </response>
       </match>
       <match order="2">
-        <premise><m>\uu=\langle -1,2,1\rangle, \vv = \langle 5,-4,-5\rangle</m></premise>
-        <response><m>\ww = \langle 3,-6,-3\rangle,\zz=\langle 2,2,-2\rangle </m></response>
+        <premise>
+          <md>
+            <mrow>\uu \amp = \langle -1,2,1\rangle</mrow>
+            <mrow>\vv \amp = \langle 5,-4,-5\rangle</mrow>
+          </md>
+        </premise>
+        <response>
+          <md>
+            <mrow>\ww \amp = \langle 3,-6,-3\rangle</mrow>
+            <mrow>\zz \amp = \langle 2,2,-2\rangle</mrow>
+          </md>
+        </response>
       </match>
     </matches>
   </exercise>
