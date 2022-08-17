@@ -12,55 +12,52 @@
 
   <subsection xml:id="subsec-matrix-factorization">
     <title>Matrix Factorizations</title>
-
-    <introduction>
-      <p>
-        Recall that an <m>n\times n</m> matrix <m>A</m> is symmetric if <m>A^T=A</m>
-        and hermitian if <m>A^H=A</m>, where <m>A^H</m> is the conjugate transpose of a complex matrix.
-        In either case, the corresponding matrix transformation <m>T_A</m> is said to be <term>self-adjoint</term>,
-        which means that it satisfies the condition
-        <me>
-          \langle u,T_Av\rangle = \langle T_Au,v\rangle
-        </me>
-        for all <m>u,v\in \mathbb{R}^n</m> (or <m>\mathbb{C}^n</m>).
-      </p>
-
-      <p>
-        All such matrices (or operators) can be diagonalized,
-        in the sense that there is an orthonormal basis of eigenvectors for that matrix.
-        These eigenvectors can be arranged to form an orthogonal matrix <m>P</m> (or unitary matrix <m>U</m>) such that
-        <me>
-          P^TAP = D \quad \text{ (or } U^HAU=D)
-        </me>,
-        where <m>D</m> is a diagonal matrix whose entries are the eigenvalues of <m>A</m>.
-      </p>
-    </introduction>
-
-    <subsubsection xml:id="pars-positive-ops">
+      <subsubsection xml:id="pars-positive-ops">
       <title>Positive Operators</title>
+      <p>
+        Let <m>T</m> be a linear operator defined by a matrix <m>A</m>.
+        If <m>A</m> is symmetric (for the case of <m>\R^n</m>)
+        or hermitian (for the case of <m>\C^n</m>),
+        we say that the operator <m>T</m> is <term>self-adjoint</term>.
+      </p>
       <definition xml:id="def-positive-op">
         <statement>
           <p>
-            A symmetric/hermitian matrix <m>A</m> (or operator <m>T</m>) is <term>positive</term>
-            if <m>\xx^TA\xx\geq 0</m> (<m>\langle \xx,T\xx\rangle\geq 0</m>) for all vectors <m>\xx\neq \zer</m>.
-            It is <term>positive-definite</term> if <m>\xx^TA\xx\gt 0</m> for all nonzero <m>\xx</m>.
+            A self-adjoint operator <m>T</m> is <term>positive</term>
+            if <m>\xx^H T\xx\geq 0</m> for all vectors <m>\xx\neq \zer</m>.
+            It is <term>positive-definite</term> if <m>\xx^H T\xx\gt 0</m> for all nonzero <m>\xx</m>.
+            If <m>T=T_A</m> for some matrix <m>A</m>,
+            we also refer to <m>A</m> as a positive(-definite) matrix.
           </p>
         </statement>
       </definition>
 
       <aside>
         <p>
-          Some books will define positive-definite operators by the condition <m>\xx^TA\xx</m>
-          without the requirement that <m>A</m> must be symmetric/hermitian.
+          Some books will define positive-definite operators by the condition <m>\xx^H T\xx\geq 0</m>
+          without the requirement that <m>T</m> is self-adjoint.
           However, we will stick to the simpler definition.
         </p>
       </aside>
 
       <p>
-        This is equivalent to requiring that all the eigenvalues of <m>A</m> are non-negative.
+        The definition of a positive matrix is equivalent to requiring that all its eigenvalues are non-negative.
         Every positive matrix <m>A</m> has a unique positive square root: a matrix <m>R</m> such that <m>R^2=A</m>.
+        Since <m>A</m> is symmetric/hermitian, it can be diagonalized.
+        Writing <m>A = PDP^{-1}</m> where <m>P</m> is orthogonal/unitary and
+        <me>
+          D = \bbm \lambda_1 \amp 0\amp \cdots \amp 0\\0\amp \lambda_2 \amp \cdots 0\\\vdots \amp \vdots \amp \ddots \amp \vdots 0\amp 0\amp \cdots \lambda_n\ebm
+        </me>,
+        we have <m>R=PEP^{-1}</m>, where
+        <me>
+          D = \bbm \sqrt{\lambda_1} \amp 0\amp \cdots \amp 0\\0\amp \sqrt{\lambda_2} \amp \cdots 0\\\vdots \amp \vdots \amp \ddots \amp \vdots 0\amp 0\amp \cdots \sqrt{\lambda_n}\ebm
+        </me>.
       </p>
 
+      <p>
+        The following theorem gives us a simple way of generating positive matrices.
+      </p>
+      
       <theorem xml:id="thm-positive-prod">
         <statement>
           <p>
