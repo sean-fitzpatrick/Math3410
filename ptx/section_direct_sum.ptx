@@ -4,9 +4,9 @@
   <title>Direct Sums and Invariant Subspaces</title>
   <introduction>
     <p>
-      Much of this section has been mentioned previously in the course (and these notes),
-      but we will follow the organization of Nicholson's textbook,
-      and reprise these concepts in more detail than previously.
+      This section continues the discussion of direct sums (from <xref ref="sec-subspace-combine"/>)
+      and invariant subspaces (from <xref ref="sec-eigen-basics"/>),
+      to better understand the structure of linear operators.
     </p>
   </introduction>
 
@@ -22,12 +22,6 @@
     </definition>
 
     <p>
-      In other words, a subspace <m>U</m> is <m>T</m>-invariant if <m>T</m> does not map any vectors in <m>U</m> outside of <m>U</m>.
-      Notice that if we shrink the domain of <m>T</m> to <m>U</m>, then we get an operator from <m>U</m> to <m>U</m>,
-      since the image <m>T(U)</m> is contained in <m>U</m>.
-    </p>
-
-    <p>
       Given a basis <m>B=\basis{u}{k}</m> of <m>U</m>,
       note that <m>U</m> is <m>T</m>-invariant if and only if <m>T(\uu_i)\in U</m> for each <m>i=1,2,\ldots, k</m>.
     </p>
@@ -39,8 +33,29 @@
       </me>.
       Of course, some of these subspaces might be the same; for example,
       if <m>T</m> is invertible, then <m>\ker T = \{\zer\}</m> and <m>\im T = V</m>.
-      (We will skip the proof that <m>\ker T</m> and <m>\im T</m> are <m>T</m>-invariant,
-      since this has been assigned as homework!)
+    </p>
+
+    <exercise>
+      <statement>
+        <p>
+          Show that for any linear operator <m>T</m>,
+          the subspaces <m>\ker T</m> and <m>\im T</m> are <m>T</m>-invariant.
+        </p>
+      </statement>
+      <hint>
+        <p>
+          In each case, choose an element <m>\vv</m> of the subspace.
+          What does the definition of the space tell you about that element?
+          (For example, if <m>\vv\in\ker T</m>, what is the value of <m>T(\vv)</m>?)
+          Then show that <m>T(\vv)</m> also fits the defintion of that space.
+        </p>
+      </hint>
+    </exercise>
+
+    <p>
+      A subspace <m>U</m> is <m>T</m>-invariant if <m>T</m> does not map any vectors in <m>U</m> outside of <m>U</m>.
+      Notice that if we shrink the domain of <m>T</m> to <m>U</m>, then we get an operator from <m>U</m> to <m>U</m>,
+      since the image <m>T(U)</m> is contained in <m>U</m>.
     </p>
 
     <definition xml:id="def-restriction">
@@ -76,7 +91,7 @@
           <me>
             M_B(T) = \bbm M_{B_U}(T_U) \amp P\\0 \amp Q\ebm
           </me>
-          for some <m>(n-k)\times (n-k)</m> matrix <m>Z</m>.
+          for some <m>(n-k)\times (n-k)</m> matrix <m>Q</m>.
         </p>
       </statement>
     </theorem>
@@ -94,7 +109,7 @@
       </me>,
       where the diagonal blocks are square matrices,
       then <m>\det(A) = \det(A_{11})\det(A_{22})\cdots \det(A_{nn})</m>
-      and <m>c_A(x) = c_{A_{11}}(x)c_{A_{22}}(x)\cdots C_{A_{nn}}(x)</m>.
+      and <m>c_A(x) = c_{A_{11}}(x)c_{A_{22}}(x)\cdots c_{A_{nn}}(x)</m>.
     </p>
   </subsection>
 
@@ -109,7 +124,7 @@
       </me>.
       For most values of <m>\lambda</m>, we'll have <m>E_\lambda(T)=\{\zer\}</m>.
       The values of <m>\lambda</m> for which <m>E_\lambda(T)</m> is non-trivial are precisely the eigenvalues of <m>T</m>.
-      Note that since similar matrices have the same characteristic polynomial any matrix representation <m>M_B(T)</m>
+      Note that since similar matrices have the same characteristic polynomial, any matrix representation <m>M_B(T)</m>
       will have the same eigenvalues. They do <em>not</em> generally have the same eigenspaces,
       but we do have the following.
     </p>
