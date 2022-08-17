@@ -15,7 +15,7 @@
       <p>
         We would like to represent this as a matrix equation,
         and then use eigenvalues to analyze,
-        replacing the recurrence formula with a matrix equation of the form <m>\vec{v}_{k+1}=A\vec{v}_k</m>.
+        replacing the recurrence formula with a matrix equation of the form <m>\vv_{k+1}=A\vv_k</m>.
         A sequence of vectors generated in this way is called a <term>linear dynamical system</term>.
         It is a good model for systems with discrete time evolution (where changes occur in steps, rather than continuously).
       </p>
@@ -23,7 +23,7 @@
       <p>
         To determine the long term evolution of the system, we would like to be able to compute
         <me>
-          \vec{v}_n  = A^n \vec{v}_0
+          \vv_n  = A^n \vv_0
         </me>
         without first finding all the intermediate states,
         so this is a situation where we would like to be able to efficiently compute powers of a matrix.
@@ -56,10 +56,10 @@
       <task>
         <statement>
           <p>
-            Let <m>\vec{v}_k = \begin{bmatrix}x_k\\x_{k+1}\end{bmatrix}</m>, for each <m>k\geq 0</m>,
+            Let <m>\vv_k = \begin{bmatrix}x_k\\x_{k+1}\end{bmatrix}</m>, for each <m>k\geq 0</m>,
             and let <m>A=\begin{bmatrix}0\amp 1\\a \amp b\end{bmatrix}</m>. Show that
             <me>
-              \vec{v}_{k+1}=A\vec{v}_k, \text{ for each } k\geq 0
+              \vv_{k+1}=A\vv_k, \text{ for each } k\geq 0
             </me>.
           </p>
         </statement>
@@ -87,8 +87,8 @@
       <task>
         <statement>
           <p>
-            Determine a matrix <m>A</m> such that <m>\vec{v}_{k+1}=A\vec{v}_k</m>,
-            where <m>\vec{v}_k = \begin{bmatrix}x_k\\x_{k+1}\\x_{k+2}\end{bmatrix}</m>.
+            Determine a matrix <m>A</m> such that <m>\vv_{k+1}=A\vv_k</m>,
+            where <m>\vv_k = \begin{bmatrix}x_k\\x_{k+1}\\x_{k+2}\end{bmatrix}</m>.
           </p>
         </statement>
       </task>
@@ -106,7 +106,7 @@
         <statement>
           <p>
             Show that if <m>\lambda</m> is an eigenvalue of <m>A</m>,
-            then <m>\vec{x} = \begin{bmatrix}1\\ \lambda\\ \lambda^2\end{bmatrix}</m> is an associated eigenvector.
+            then <m>\xx = \begin{bmatrix}1\\ \lambda\\ \lambda^2\end{bmatrix}</m> is an associated eigenvector.
           </p>
         </statement>
       </task>
@@ -126,7 +126,7 @@
         <statement>
           <p>
             State the matrix <m>A</m>, and show that <m>A</m> has eigenvalues <m>\lambda_\pm = \frac{1}{2}(1\pm \sqrt{5})</m>,
-            with associated eigenvectors <m>\vec{x}_\pm = \begin{bmatrix}1\\ \lambda_\pm\end{bmatrix}</m>.
+            with associated eigenvectors <m>\xx_\pm = \begin{bmatrix}1\\ \lambda_\pm\end{bmatrix}</m>.
           </p>
         </statement>
       </task>
@@ -136,15 +136,15 @@
           <p>
             Let <m>P = \begin{bmatrix}1\amp 1\\ \lambda_+ \amp \lambda_-\end{bmatrix}</m>,
             let <m>D = \begin{bmatrix}\lambda_+ \amp 0\\ 0 \amp \lambda_-\end{bmatrix}</m>,
-            and let <m>\vec{a_0}=\begin{bmatrix}a_0\\a_1\end{bmatrix}=P^{-1}\vec{v}_0</m>,
-            where <m>\vec{v}_0=\begin{bmatrix}1\\1\end{bmatrix}</m> gives the initial values of the sequence.
+            and let <m>\mathbf{a_0}=\begin{bmatrix}a_0\\a_1\end{bmatrix}=P^{-1}\vv_0</m>,
+            where <m>\vv_0=\begin{bmatrix}1\\1\end{bmatrix}</m> gives the initial values of the sequence.
           </p>
 
           <p>
             Show that
             <md>
-              <mrow>\vec{v}_n \amp = PD^nP^{-1}\vec{v}_0</mrow>
-              <mrow> \amp = a_0\lambda_+^n\vec{x}_+ + a_1\lambda_-^n\vec{x}_-</mrow>
+              <mrow>\vv_n \amp = PD^nP^{-1}\vv_0</mrow>
+              <mrow> \amp = a_0\lambda_+^n\xx_+ + a_1\lambda_-^n\xx_-</mrow>
             </md>.
           </p>
         </statement>
@@ -324,10 +324,10 @@
 
         <p>
           If a system can be in one of <m>n</m> possible states,
-          we represent the system by an <m>n\times 1</m> vector <m>\vec{v}_t</m>,
+          we represent the system by an <m>n\times 1</m> vector <m>\vv_t</m>,
           whose entries indicate the probability that the system is in a given state at time <m>t</m>.
           If we know that the system starts out in a particular state,
-          then <m>\vec{v}_0</m> will have a <m>1</m> in one of its entries, and <m>0</m> everywhere else.
+          then <m>\vv_0</m> will have a <m>1</m> in one of its entries, and <m>0</m> everywhere else.
         </p>
 
         <p>
@@ -361,7 +361,7 @@
       <task>
         <statement>
           <p>
-            Give a stochastic matrix <m>M</m> and a vector <m>\vec{v}_0</m>
+            Give a stochastic matrix <m>M</m> and a vector <m>\vv_0</m>
             that represent the transition probabilities and initial state given above.
           </p>
         </statement>
@@ -380,13 +380,13 @@
         <statement>
           <p>
             You should have found that one of the eigenvalues of <m>M</m> was <m>\lambda=1</m>.
-            The corresponding eigenvector <m>\vec{v}</m> satisfies <m>M\vec{v}=\vec{v}</m>.
-            This is known as a <term>steady-state vector</term>: if our system begins with state <m>\vec{v}</m>,
+            The corresponding eigenvector <m>\vv</m> satisfies <m>M\vv=\vv</m>.
+            This is known as a <term>steady-state vector</term>: if our system begins with state <m>\vv</m>,
             it will remain there forever.
           </p>
 
           <p>
-            Confirm that if the eigenvector <m>\vec{v}</m> is rescaled so that its entries sum to 1,
+            Confirm that if the eigenvector <m>\vv</m> is rescaled so that its entries sum to 1,
             the resulting values agree with the long-term probabilities found in the previous part.
           </p>
         </statement>
