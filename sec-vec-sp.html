@@ -210,10 +210,11 @@ true);
 </li>
 <li class="link">
 <a href="ch-diagonalization.html" data-scroll="ch-diagonalization" class="internal"><span class="codenumber">4</span> <span class="title">Diagonalization</span></a><ul>
-<li><a href="subsec-eigen-basics.html" data-scroll="subsec-eigen-basics" class="internal">Eigenvalues and Eigenvectors</a></li>
+<li><a href="sec-eigen-basics.html" data-scroll="sec-eigen-basics" class="internal">Eigenvalues and Eigenvectors</a></li>
 <li><a href="subsec-ortho-diag.html" data-scroll="subsec-ortho-diag" class="internal">Diagonalization of symmetric matrices</a></li>
 <li><a href="sec-quadratic.html" data-scroll="sec-quadratic" class="internal">Quadratic forms</a></li>
 <li><a href="sec-complex.html" data-scroll="sec-complex" class="internal">Diagonalization of complex matrices</a></li>
+<li><a href="worksheet-dynamical.html" data-scroll="worksheet-dynamical" class="internal">Worksheet: linear dynamical systems</a></li>
 <li><a href="section-matrix-factor.html" data-scroll="section-matrix-factor" class="internal">Matrix Factorizations and Eigenvalues</a></li>
 <li><a href="worksheet-svd.html" data-scroll="worksheet-svd" class="internal">Worksheet: Singular Value Decomposition</a></li>
 </ul>
@@ -229,14 +230,15 @@ true);
 </ul>
 </li>
 <li class="link backmatter"><a href="backmatter-1.html" data-scroll="backmatter-1" class="internal"><span class="title">Back Matter</span></a></li>
+<li class="link"><a href="appendix-complex-review.html" data-scroll="appendix-complex-review" class="internal"><span class="codenumber">A</span> <span class="title">Review of complex numbers</span></a></li>
 <li class="link">
-<a href="ch-computation.html" data-scroll="ch-computation" class="internal"><span class="codenumber">A</span> <span class="title">Computational Tools</span></a><ul>
+<a href="ch-computation.html" data-scroll="ch-computation" class="internal"><span class="codenumber">B</span> <span class="title">Computational Tools</span></a><ul>
 <li><a href="section-jupyter.html" data-scroll="section-jupyter" class="internal">Jupyter</a></li>
 <li><a href="sec-python-basics.html" data-scroll="sec-python-basics" class="internal">Python basics</a></li>
 <li><a href="sec-sympy.html" data-scroll="sec-sympy" class="internal">SymPy for linear algebra</a></li>
 </ul>
 </li>
-<li class="link"><a href="solutions-1.html" data-scroll="solutions-1" class="internal"><span class="codenumber">B</span> <span class="title">Solutions to Selected Exercises</span></a></li>
+<li class="link"><a href="solutions-1.html" data-scroll="solutions-1" class="internal"><span class="codenumber">C</span> <span class="title">Solutions to Selected Exercises</span></a></li>
 </ul></nav><div class="extras"><nav><a class="pretext-link" href="https://pretextbook.org">Authored in PreTeXt</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a></nav></div>
 </div></div>
 <main class="main"><div id="content" class="pretext-content">
@@ -462,33 +464,10 @@ cp(x) = ca_0+(ca_1)x+\cdots + (ca_n)x^n\text{.}
 <p id="p-80">How should we define addition and scalar multiplication?</p>
 <div class="solutions">
 <a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-1" id="hint-1"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-1"><div class="hint solution-like"><p id="p-81">Note that the function <span class="process-math">\(f(x)=e^x\)</span> has domain <span class="process-math">\((-\infty, \infty)\)</span> and range <span class="process-math">\((0,\infty)\text{.}\)</span> What does it do to a sum? To a product?</p></div></div>
-<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-1" id="solution-1"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-1"><div class="solution solution-like">
-<p id="p-82">To get a vector space structure on <span class="process-math">\(V=(0,\infty)\text{,}\)</span> we will define an addition <span class="process-math">\(\oplus\)</span> on <span class="process-math">\(V\)</span> by</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-x\oplus y = xy\text{,}
-\end{equation*}
-</div>
-<p class="continuation">where the right hand side is the usual product of real numbers, and for <span class="process-math">\(c\in\R\)</span> and <span class="process-math">\(x\in V\text{,}\)</span> we will define a scalar multiplication <span class="process-math">\(\odot\)</span> by</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-c\odot x = x^c\text{.}
-\end{equation*}
-</div>
-</div></div>
 </div></article><article class="task exercise-like" id="task-2"><h4 class="heading"><span class="codenumber">(b)</span></h4>
 <p id="p-83">Show that the addition you defined satisfies the commutative and associative properties.</p>
 <div class="solutions">
 <a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-2" id="hint-2"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-2"><div class="hint solution-like"><p id="p-84">You can assume that these properties are true for real number multiplication.</p></div></div>
-<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-2" id="solution-2"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-2"><div class="solution solution-like">
-<p id="p-85">For any <span class="process-math">\(x,y,z\in V\text{,}\)</span> we have:</p>
-<div class="displaymath process-math" data-contains-math-knowls="" id="md-7">
-\begin{align*}
-x\oplus y \amp = xy = yx = y\oplus x\\
-x\oplus(y\oplus z)\amp = x\oplus yz = x(yz) = (xy)z = xy\oplus z = (x\oplus y)\oplus z\text{.}
-\end{align*}
-</div>
-</div></div>
 </div></article><article class="task exercise-like" id="ex-mc-identity"><h4 class="heading"><span class="codenumber">(c)</span></h4>
 <div class="ptx-runestone-container"><div class="runestone"><ul data-component="multiplechoice" id="ex-mc-identity" data-multipleanswers="false" data-random="">
 <p id="p-86">Which of the following is the identity element in <span class="process-math">\(V\text{?}\)</span></p>
@@ -503,63 +482,21 @@ x\oplus(y\oplus z)\amp = x\oplus yz = x(yz) = (xy)z = xy\oplus z = (x\oplus y)\o
 <p id="p-92">What is the inverse of an element <span class="process-math">\(x\in V\text{?}\)</span></p>
 <div class="solutions">
 <a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-4" id="hint-4"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-4"><div class="hint solution-like"><p id="p-93">Remember that an inverse <span class="process-math">\(-x\)</span> must satisfy <span class="process-math">\(x\oplus (-x)=e\text{,}\)</span> where <span class="process-math">\(e\)</span> is the identity element. What is <span class="process-math">\(e\text{,}\)</span> and how is “addition” defined?</p></div></div>
-<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-3" id="solution-3"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-3"><div class="solution solution-like">
-<p id="p-94">Let <span class="process-math">\(x\)</span> be any element fo <span class="process-math">\(V\text{.}\)</span> Since <span class="process-math">\(x\gt 0\text{,}\)</span> we know in particular that <span class="process-math">\(x\neq 0\text{,}\)</span> so we can define <span class="process-math">\(-x = 1/x\text{,}\)</span> where <span class="process-math">\(1/x\)</span> denotes the usual reciprocal of a real number. We then have</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-x\oplus (-x) = x(1/x) = 1\text{,}
-\end{equation*}
-</div>
-<p class="continuation">and we saw above that <span class="process-math">\(1\)</span> is the identity element of <span class="process-math">\(e\text{.}\)</span></p>
-</div></div>
 </div></article><article class="task exercise-like" id="task-5"><h4 class="heading"><span class="codenumber">(e)</span></h4>
 <p id="p-95">Show that, for any <span class="process-math">\(c\in \R\)</span> and <span class="process-math">\(x,y\in V\text{,}\)</span></p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 c\odot(x\oplus y) = c\odot x\oplus c\odot y\text{.}
 \end{equation*}
-</div>
-<div class="solutions">
-<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-4" id="solution-4"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-4"><div class="solution solution-like">
-<p id="p-96">We assume some properties of exponents from high school algebra:</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-c\odot(x\oplus y) = (xy)^c = x^c y^c = c\odot x \oplus c\odot y\text{.}
-\end{equation*}
-</div>
-</div></div>
 </div></article><article class="task exercise-like" id="task-6"><h4 class="heading"><span class="codenumber">(f)</span></h4>
 <p id="p-97">Show that for any <span class="process-math">\(c,d\in \R\)</span> and <span class="process-math">\(x\in V\text{,}\)</span></p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 (c+d)\odot x = c\odot x\oplus d\odot x\text{.}
 \end{equation*}
-</div>
-<div class="solutions">
-<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-5" id="solution-5"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-5"><div class="solution solution-like">
-<p id="p-98">This again follows from properties of exponents:</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-(c+d)\odot x = x^{c+d} = x^c x^d = c\odot x\oplus d\odot x\text{.}
-\end{equation*}
-</div>
-</div></div>
 </div></article><article class="task exercise-like" id="task-7"><h4 class="heading"><span class="codenumber">(g)</span></h4>
-<p id="p-99">Show that for any <span class="process-math">\(c,d\in\R\)</span> and <span class="process-math">\(x\in V\text{,}\)</span> <span class="process-math">\(c\odot (d\odot x)=(cd)\odot x\text{.}\)</span></p>
-<div class="solutions">
-<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-6" id="solution-6"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-6"><div class="solution solution-like">
-<p id="p-100">We have</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-c\odot (d\odot x) = c\odot (x^d) = (x^d)^c = x^{dc} = x^{cd} = (cd)\odot x\text{.}
-\end{equation*}
-</div>
-</div></div>
-</div></article><article class="task exercise-like" id="task-8"><h4 class="heading"><span class="codenumber">(h)</span></h4>
-<p id="p-101">Show that <span class="process-math">\(1\odot x=x\)</span> for any <span class="process-math">\(x\in V\text{.}\)</span></p>
-<div class="solutions">
-<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-7" id="solution-7"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-7"><div class="solution solution-like"><p id="p-102">The last one is possibly the easiest: <span class="process-math">\(1\odot x = x^1 = x\text{.}\)</span></p></div></div>
-</div></article></article><article class="exercise exercise-like" id="ex-tf-vsp-eg1"><h3 class="heading">
+<p id="p-99">Show that for any <span class="process-math">\(c,d\in\R\)</span> and <span class="process-math">\(x\in V\text{,}\)</span> <span class="process-math">\(c\odot (d\odot x)=(cd)\odot x\text{.}\)</span></p></article><article class="task exercise-like" id="task-8"><h4 class="heading"><span class="codenumber">(h)</span></h4>
+<p id="p-101">Show that <span class="process-math">\(1\odot x=x\)</span> for any <span class="process-math">\(x\in V\text{.}\)</span></p></article></article><article class="exercise exercise-like" id="ex-tf-vsp-eg1"><h3 class="heading">
 <span class="type">Exercise</span><span class="space"> </span><span class="codenumber">1.1.5</span><span class="period">.</span>
 </h3>
 <div class="ptx-runestone-container"><div class="runestone"><ul data-component="multiplechoice" data-multipleanswers="false" id="ex-tf-vsp-eg1">
@@ -589,10 +526,7 @@ c\odot (d\odot x) = c\odot (x^d) = (x^d)^c = x^{dc} = x^{cd} = (cd)\odot x\text{
 <li data-component="feedback" id="ex-tf-vsp-eg3_opt_t"><p id="p-109">The zero vector does not have unit length. Also, the sum of two unit vectors will usually not be a unit vector.</p></li>
 <li data-component="answer" id="ex-tf-vsp-eg3_opt_f" data-correct=""><p>False.</p></li>
 <li data-component="feedback" id="ex-tf-vsp-eg3_opt_f"><p id="p-109">The zero vector does not have unit length. Also, the sum of two unit vectors will usually not be a unit vector.</p></li>
-</ul></div></div>
-<div class="solutions">
-<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-8" id="solution-8"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-8"><div class="solution solution-like"><p id="p-110"></p></div></div>
-</div></article></section><div class="hidden-content tex2jax_ignore" id="hk-fn-3"><div class="fn"><code class="code-inline tex2jax_ignore">en.wikipedia.org/wiki/Examples_of_vector_spaces</code></div></div>
+</ul></div></div></article></section><div class="hidden-content tex2jax_ignore" id="hk-fn-3"><div class="fn"><code class="code-inline tex2jax_ignore">en.wikipedia.org/wiki/Examples_of_vector_spaces</code></div></div>
 </div></main>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script>

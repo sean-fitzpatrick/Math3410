@@ -12,7 +12,19 @@
 </head>
 <body class="ignore-math">
 <h4 class="heading"><span class="type">Paragraph</span></h4>
-<p>This more or less amounts to the fact that <span class="process-math">\(P^T=P^{-1}\)</span> if and only if <span class="process-math">\(PP^T=I\text{,}\)</span> and thinking about the matrix product in terms of dot products.</p>
+<p>To see this, suppose <span class="process-math">\(A\)</span> is symmetric, and that we have</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+A\xx_1=\lambda_1\xx_1\quad \text{ and } A\xx_2=\lambda_2\xx_2\text{,}
+\end{equation*}
+</div>
+<p class="continuation">with <span class="process-math">\(\xx_1\neq\zer,\xx_2\neq \zer\text{,}\)</span> and <span class="process-math">\(\lambda_1\neq \lambda_2\text{.}\)</span> We then have, since <span class="process-math">\(A\)</span> is symmetric, and using the result above,</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\lambda_1(\xx_1\dotp \xx_2) = (\lambda_1\xx_1)\dotp \xx_2 = (A\xx_1)\dotp \xx_2 = \xx_1\dotp(A\xx_2) = \xx_1(\lambda_2\xx_2) = \lambda_2(\xx_1\dotp\xx_2)\text{.}
+\end{equation*}
+</div>
+<p class="continuation">It follows that <span class="process-math">\((\lambda_1-\lambda_2)(\xx_1\dotp \xx_2)=0\text{,}\)</span> and since <span class="process-math">\(\lambda_1\neq \lambda_2\text{,}\)</span> we must have <span class="process-math">\(\xx_1\dotp \xx_2=0\text{.}\)</span></p>
 <span class="incontext"><a href="subsec-ortho-diag.html#p-1100" class="internal">in-context</a></span>
 </body>
 </html>

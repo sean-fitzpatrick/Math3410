@@ -216,10 +216,11 @@ true);
 </li>
 <li class="link">
 <a href="ch-diagonalization.html" data-scroll="ch-diagonalization" class="internal"><span class="codenumber">4</span> <span class="title">Diagonalization</span></a><ul>
-<li><a href="subsec-eigen-basics.html" data-scroll="subsec-eigen-basics" class="internal">Eigenvalues and Eigenvectors</a></li>
+<li><a href="sec-eigen-basics.html" data-scroll="sec-eigen-basics" class="internal">Eigenvalues and Eigenvectors</a></li>
 <li><a href="subsec-ortho-diag.html" data-scroll="subsec-ortho-diag" class="internal">Diagonalization of symmetric matrices</a></li>
 <li><a href="sec-quadratic.html" data-scroll="sec-quadratic" class="internal">Quadratic forms</a></li>
 <li><a href="sec-complex.html" data-scroll="sec-complex" class="internal">Diagonalization of complex matrices</a></li>
+<li><a href="worksheet-dynamical.html" data-scroll="worksheet-dynamical" class="internal">Worksheet: linear dynamical systems</a></li>
 <li><a href="section-matrix-factor.html" data-scroll="section-matrix-factor" class="internal">Matrix Factorizations and Eigenvalues</a></li>
 <li><a href="worksheet-svd.html" data-scroll="worksheet-svd" class="internal">Worksheet: Singular Value Decomposition</a></li>
 </ul>
@@ -235,14 +236,15 @@ true);
 </ul>
 </li>
 <li class="link backmatter"><a href="backmatter-1.html" data-scroll="backmatter-1" class="internal"><span class="title">Back Matter</span></a></li>
+<li class="link"><a href="appendix-complex-review.html" data-scroll="appendix-complex-review" class="internal"><span class="codenumber">A</span> <span class="title">Review of complex numbers</span></a></li>
 <li class="link">
-<a href="ch-computation.html" data-scroll="ch-computation" class="internal"><span class="codenumber">A</span> <span class="title">Computational Tools</span></a><ul>
+<a href="ch-computation.html" data-scroll="ch-computation" class="internal"><span class="codenumber">B</span> <span class="title">Computational Tools</span></a><ul>
 <li><a href="section-jupyter.html" data-scroll="section-jupyter" class="internal">Jupyter</a></li>
 <li><a href="sec-python-basics.html" data-scroll="sec-python-basics" class="internal">Python basics</a></li>
 <li><a href="sec-sympy.html" data-scroll="sec-sympy" class="internal">SymPy for linear algebra</a></li>
 </ul>
 </li>
-<li class="link"><a href="solutions-1.html" data-scroll="solutions-1" class="internal"><span class="codenumber">B</span> <span class="title">Solutions to Selected Exercises</span></a></li>
+<li class="link"><a href="solutions-1.html" data-scroll="solutions-1" class="internal"><span class="codenumber">C</span> <span class="title">Solutions to Selected Exercises</span></a></li>
 </ul></nav><div class="extras"><nav><a class="pretext-link" href="https://pretextbook.org">Authored in PreTeXt</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a></nav></div>
 </div></div>
 <main class="main"><div id="content" class="pretext-content"><section class="section" id="section-projection"><h2 class="heading hide-type">
@@ -272,7 +274,7 @@ true);
 </h3>
 <p id="p-938">Find the distance from the point <span class="process-math">\((3,1,-2)\)</span> to the plane <span class="process-math">\(P\)</span> defined by <span class="process-math">\(x-2y+4z=0\text{.}\)</span></p>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-50" id="solution-50"><span class="type">Solution</span><span class="space"> </span><span class="codenumber">1</span><span class="period">.</span><span class="space"> </span><span class="title">Using projection onto a normal vector</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-50"><div class="solution solution-like">
+<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-53" id="solution-53"><span class="type">Solution</span><span class="space"> </span><span class="codenumber">1</span><span class="period">.</span><span class="space"> </span><span class="title">Using projection onto a normal vector</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-53"><div class="solution solution-like">
 <p id="p-939">In an elementary linear algebra (or calculus) course, we would solve this problem as follows. First, we would need two vectors parallel to the plane. If <span class="process-math">\(\bbm x\\y\\z\ebm\)</span> lies in the plane, then <span class="process-math">\(x-2y+4z=0\text{,}\)</span> so <span class="process-math">\(x=2y-4z\text{,}\)</span> and</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
@@ -299,7 +301,7 @@ true);
 </div>
 <p class="continuation">so the closest point is <span class="process-math">\(Q=\bigl(\frac{10}{3},\frac13,-\frac{2}{3}\bigr)\text{.}\)</span> We weren't asked for it, but note that if we wanted the distance from the point <span class="process-math">\(P\)</span> to the plane, this is given by <span class="process-math">\(\len{\xx}=\frac13\sqrt{21}\text{.}\)</span></p>
 </div></div>
-<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-51" id="solution-51"><span class="type">Solution</span><span class="space"> </span><span class="codenumber">2</span><span class="period">.</span><span class="space"> </span><span class="title">Using orthogonal projection</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-51"><div class="solution solution-like">
+<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-54" id="solution-54"><span class="type">Solution</span><span class="space"> </span><span class="codenumber">2</span><span class="period">.</span><span class="space"> </span><span class="title">Using orthogonal projection</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-54"><div class="solution solution-like">
 <p id="p-941">Let's solve the same problem using orthogonal projection. First, we have to deal with the fact that the vectors <span class="process-math">\(\uu\)</span> and <span class="process-math">\(\vv\)</span> are probably not orthogonal. To get around this, we replace <span class="process-math">\(\vv\)</span> with</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
@@ -331,14 +333,14 @@ U^\bot = \{\xx\in\R^n \,|\, \xx\dotp\yy = 0 \text{ for all } \yy\in U\}\text{.}
 </h3>
 <p id="p-945">Show that <span class="process-math">\(U^\bot\)</span> is a subspace of <span class="process-math">\(\R^n\text{.}\)</span></p>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-32" id="hint-32"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-32"><div class="hint solution-like"><p id="p-946">The trusty <a href="" class="xref" data-knowl="./knowl/thm-subspace-test.html" title="Theorem 1.3.2: Subspace Test">Subspace Test</a> is your friend here. Just be careful to work correctly with the definition of <span class="process-math">\(U^\bot\text{.}\)</span></p></div></div>
+<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-35" id="hint-35"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-35"><div class="hint solution-like"><p id="p-946">The trusty <a href="" class="xref" data-knowl="./knowl/thm-subspace-test.html" title="Theorem 1.3.2: Subspace Test">Subspace Test</a> is your friend here. Just be careful to work correctly with the definition of <span class="process-math">\(U^\bot\text{.}\)</span></p></div></div>
 </div></article><article class="theorem theorem-like" id="thm-projection"><h3 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">3.3.5</span><span class="period">.</span><span class="space"> </span><span class="title">Projection Theorem.</span>
 </h3>
 <p id="p-947">Let <span class="process-math">\(U\)</span> be a subspace of <span class="process-math">\(\R^n\text{,}\)</span> let <span class="process-math">\(\xx\)</span> be any vector in <span class="process-math">\(\R^n\text{,}\)</span> and let <span class="process-math">\(\mathbf{p}=\proj{U}{\xx}\text{.}\)</span> Then:</p>
 <ol class="decimal">
-<li id="li-130"><p id="p-948"><span class="process-math">\(\mathbf{p}\in U\text{,}\)</span> and <span class="process-math">\(\xx-\mathbf{p}\in U^\bot\text{.}\)</span></p></li>
-<li id="li-131">
+<li id="li-120"><p id="p-948"><span class="process-math">\(\mathbf{p}\in U\text{,}\)</span> and <span class="process-math">\(\xx-\mathbf{p}\in U^\bot\text{.}\)</span></p></li>
+<li id="li-121">
 <p id="p-949"><span class="process-math">\(\mathbf{p}\)</span> is the <em class="emphasis">closest</em> vector in <span class="process-math">\(U\)</span> to the vector <span class="process-math">\(\xx\text{,}\)</span> in the sense that the distance <span class="process-math">\(d(\mathbf{p},\xx)\)</span> is minimal among all vectors in <span class="process-math">\(U\text{.}\)</span> That is, for all <span class="process-math">\(\uu\neq \mathbf{p}\in U\text{,}\)</span> we have</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
@@ -366,7 +368,7 @@ U^\bot = \{\xx\in\R^n \,|\, \xx\dotp\yy = 0 \text{ for all } \yy\in U\}\text{.}
 </h3>
 <p id="p-953">Show that <span class="process-math">\(U\cap U^\bot = \{\zer\}\text{.}\)</span> Use this fact to show that <a href="" class="xref" data-knowl="./knowl/def-ortho-projection.html" title="Definition 3.3.1">Definition 3.3.1</a> does not depend on the choice orthogonal basis.</p>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-33" id="hint-33"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-33"><div class="hint solution-like">
+<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-36" id="hint-36"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-36"><div class="hint solution-like">
 <p id="p-954">Suppose we find vectors <span class="process-math">\(\mathbf{p}\)</span> and <span class="process-math">\(\mathbf{p}'\)</span> using basis <span class="process-math">\(B\)</span> and <span class="process-math">\(B'\text{.}\)</span> Note that <span class="process-math">\(\mathbf{p}-\mathbf{p}'\in U\text{,}\)</span> but also that</p>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/thm-projection.html">
 \begin{equation*}
@@ -426,42 +428,24 @@ U\oplus U^\bot = \R^n\text{.}
 <article class="exercise exercise-like" id="exercise-78"><h3 class="heading">
 <span class="type">Exercise</span><span class="space"> </span><span class="codenumber">3.3.12</span><span class="period">.</span>
 </h3>
-<p id="p-966">Let <span class="process-math">\(U = \{(a-b+3c, 2a+b, 3c, 4a-b+3c,a-4c)\,|\, a,b,c\in\R\}\subseteq \R^5\text{.}\)</span> Determine a basis for <span class="process-math">\(U^\bot\text{.}\)</span></p>
-<div class="solutions">
-<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-52" id="solution-52"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-52"><div class="solution solution-like">
-<p id="p-967">First, we note that for a general element of <span class="process-math">\(U\text{,}\)</span> we have</p>
-<div class="displaymath process-math" data-contains-math-knowls="./knowl/thm-complement-matrix.html">
-\begin{equation*}
-(a-b+3c, 2a+b, 3c, 4a-b+3c,a-4c) = a(1,2,0,4,1)+b(-1,1,0,-1,0)+c(3,0,3,3,-4)\text{,}
-\end{equation*}
-</div>
-<p class="continuation">so <span class="process-math">\(\{(1,2,0,4,1),(-1,1,0,-1,0),(3,0,3,3,-4)\}\)</span> is a basis for <span class="process-math">\(U\text{.}\)</span> (We have just shown that this set spans <span class="process-math">\(U\text{;}\)</span> it is independent since the first two vectors are not parallel, and the third vector cannot be in the span of the first two, since its third entry is nonzero.) As in <a href="" class="xref" data-knowl="./knowl/thm-complement-matrix.html" title="Theorem 3.3.11">Theorem 3.3.11</a>, we set <span class="process-math">\(A=\bbm 1\amp -1\amp 3\\2\amp 1\amp 0\\0\amp 0\amp 3\\4\amp -1\amp 3\\1\amp 0\amp -4\ebm\text{.}\)</span></p>
-<p id="p-968">To find a basis for <span class="process-math">\(U^\bot\text{,}\)</span> we simply need to find the nullspace of <span class="process-math">\(A^T\text{,}\)</span> which we do below.</p>
-<pre class="ptx-sagecell hidden-sagecell-sage" id="sage-52"><script type="text/x-sage">from sympy import Matrix, init_printing
-init_printing()
-A = Matrix(5,3,[1,-1,3,2,1,0,0,0,3,4,-1,3,1,0,-4])
-B=A.T
-B.nullspace()
-</script></pre>
-</div></div>
-</div></article><article class="exercise exercise-like" id="exercise-79"><h3 class="heading">
+<p id="p-966">Let <span class="process-math">\(U = \{(a-b+3c, 2a+b, 3c, 4a-b+3c,a-4c)\,|\, a,b,c\in\R\}\subseteq \R^5\text{.}\)</span> Determine a basis for <span class="process-math">\(U^\bot\text{.}\)</span></p></article><article class="exercise exercise-like" id="exercise-79"><h3 class="heading">
 <span class="type">Exercise</span><span class="space"> </span><span class="codenumber">3.3.13</span><span class="period">.</span>
 </h3>
 <p id="p-969">Prove that for any subspace <span class="process-math">\(U\subseteq \R^n\text{,}\)</span> <span class="process-math">\(\proj{U}{} + \proj{U^\bot}{}\)</span> is the identity operator on <span class="process-math">\(\R^n\text{.}\)</span></p>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-34" id="hint-34"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-34"><div class="hint solution-like"><p id="p-970">Given <span class="process-math">\(\xx\in\R^n\text{,}\)</span> can you write it as a sum of an element of <span class="process-math">\(U\)</span> and an element of <span class="process-math">\(U^\bot\text{?}\)</span></p></div></div>
+<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-37" id="hint-37"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-37"><div class="hint solution-like"><p id="p-970">Given <span class="process-math">\(\xx\in\R^n\text{,}\)</span> can you write it as a sum of an element of <span class="process-math">\(U\)</span> and an element of <span class="process-math">\(U^\bot\text{?}\)</span></p></div></div>
 </div></article><article class="exercise exercise-like" id="exercise-80"><h3 class="heading">
 <span class="type">Exercise</span><span class="space"> </span><span class="codenumber">3.3.14</span><span class="period">.</span>
 </h3>
 <p id="p-971">Prove that for any subspace <span class="process-math">\(U\subseteq \R^n\text{,}\)</span> <span class="process-math">\((U^\bot)^\bot = U\text{.}\)</span></p>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-35" id="hint-35"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-35"><div class="hint solution-like"><p id="p-972">Show that <span class="process-math">\(U\subseteq (U^\bot)^\bot\text{,}\)</span> and then use <a href="" class="xref" data-knowl="./knowl/rem-orth-comp-dim.html" title="Remark 3.3.8">Remark 3.3.8</a> to show that the two spaces must have the same dimension.</p></div></div>
+<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-38" id="hint-38"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-38"><div class="hint solution-like"><p id="p-972">Show that <span class="process-math">\(U\subseteq (U^\bot)^\bot\text{,}\)</span> and then use <a href="" class="xref" data-knowl="./knowl/rem-orth-comp-dim.html" title="Remark 3.3.8">Remark 3.3.8</a> to show that the two spaces must have the same dimension.</p></div></div>
 </div></article><article class="exercise exercise-like" id="exercise-81"><h3 class="heading">
 <span class="type">Exercise</span><span class="space"> </span><span class="codenumber">3.3.15</span><span class="period">.</span>
 </h3>
 <p id="p-973">Let <span class="process-math">\(U\)</span> and <span class="process-math">\(W\)</span> be subspaces of <span class="process-math">\(\R^n\text{.}\)</span> Prove that <span class="process-math">\((U+W)^\bot = U^\bot\cap W^\bot\text{.}\)</span></p>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-36" id="hint-36"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-36"><div class="hint solution-like"><p id="p-974">One inclusion is easier than the other. Use <a href="" class="xref" data-knowl="./knowl/thm-sum-dimension.html" title="Theorem 1.8.6">Theorem 1.8.6</a> and <a href="" class="xref" data-knowl="./knowl/rem-orth-comp-dim.html" title="Remark 3.3.8">Remark 3.3.8</a> to show that the dimensions must be equal.</p></div></div>
+<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-39" id="hint-39"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-39"><div class="hint solution-like"><p id="p-974">One inclusion is easier than the other. Use <a href="" class="xref" data-knowl="./knowl/thm-sum-dimension.html" title="Theorem 1.8.6">Theorem 1.8.6</a> and <a href="" class="xref" data-knowl="./knowl/rem-orth-comp-dim.html" title="Remark 3.3.8">Remark 3.3.8</a> to show that the dimensions must be equal.</p></div></div>
 </div></article></section></div></main>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script>

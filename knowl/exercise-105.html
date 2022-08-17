@@ -9,31 +9,27 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="robots" content="noindex, nofollow">
-<script>// Make *any* pre with class 'sagecell-sage' an executable Sage cell
-// Their results will be linked, only within language type
-sagecell.makeSagecell({inputLocation: 'pre.sagecell-sage',
-                       linked: true,
-                       languages: ['sage'],
-                       evalButtonText: 'Evaluate (Sage)'});
-</script>
 </head>
 <body class="ignore-math">
 <article class="exercise exercise-like"><h3 class="heading">
-<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">5.1.7</span><span class="period">.</span>
+<span class="type">Worksheet Exercise</span><span class="space"> </span><span class="codenumber">3<span class="period">.</span></span>
 </h3>
-<p>Suppose <span class="process-math">\(T:M_{22}(\R)\to P_2(\R)\)</span> has the matrix</p>
+<div class="introduction"><p>Consider the Fibonacci sequence, defined by <span class="process-math">\(x_0=1, x_1=1\text{,}\)</span> and <span class="process-math">\(x_{k+2}=x_k+x_{k+1}\text{.}\)</span> Let <span class="process-math">\(A\)</span> be the matrix associated to this sequence.</p></div>
+<article class="task exercise-like"><h4 class="heading"><span class="codenumber">(a)</span></h4>
+<p>State the matrix <span class="process-math">\(A\text{,}\)</span> and show that <span class="process-math">\(A\)</span> has eigenvalues <span class="process-math">\(\lambda_\pm = \frac{1}{2}(1\pm \sqrt{5})\text{,}\)</span> with associated eigenvectors <span class="process-math">\(\xx_\pm = \begin{bmatrix}1\\ \lambda_\pm\end{bmatrix}\text{.}\)</span></p>
+<div class="workspace" data-space="3in"></div></article><article class="task exercise-like"><h4 class="heading"><span class="codenumber">(b)</span></h4>
+<p>Let <span class="process-math">\(P = \begin{bmatrix}1\amp 1\\ \lambda_+ \amp \lambda_-\end{bmatrix}\text{,}\)</span> let <span class="process-math">\(D = \begin{bmatrix}\lambda_+ \amp 0\\ 0 \amp \lambda_-\end{bmatrix}\text{,}\)</span> and let <span class="process-math">\(\mathbf{a_0}=\begin{bmatrix}a_0\\a_1\end{bmatrix}=P^{-1}\vv_0\text{,}\)</span> where <span class="process-math">\(\vv_0=\begin{bmatrix}1\\1\end{bmatrix}\)</span> gives the initial values of the sequence.</p>
+<p>Show that</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-M_{DB}(T) = \bbm 2\amp -1\amp 0\amp 3\\0\amp 4\amp -5\amp 1\\-1\amp 0\amp 3\amp -2\ebm
-\end{equation*}
+\begin{align*}
+\vv_n \amp = PD^nP^{-1}\vv_0\\
+\amp = a_0\lambda_+^n\xx_+ + a_1\lambda_-^n\xx_-\text{.}
+\end{align*}
 </div>
-<p class="continuation">with respect to the bases</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-B = \left\{\bbm 1\amp 0\\0\amp 0\ebm, \bbm 0\amp 1\\0\amp 1\ebm, \bbm 0\amp 1\\1\amp 0\ebm, \bbm 1\amp 0\\0\amp 1\ebm\right\}
-\end{equation*}
-</div>
-<p class="continuation">of <span class="process-math">\(M_{22}(\R)\)</span> and <span class="process-math">\(D=\{1,x,x^2\}\)</span> of <span class="process-math">\(P_2(\R)\text{.}\)</span> Determine a formula for <span class="process-math">\(T\)</span> in terms of a general input <span class="process-math">\(X=\bbm a\amp b\\c\amp d\ebm\text{.}\)</span></p>
-<div class="solutions"><a href="" class="solution-knowl original" data-knowl="./knowl/solution-67-hidden.html" title="Solution 5.1.7.1"><span class="type">Solution</span><span class="period">.</span></a></div></article><span class="incontext"><a href="sec-matrix-of-transformation.html#exercise-105" class="internal">in-context</a></span>
+<div class="workspace" data-space="3in"></div></article><article class="task exercise-like"><h4 class="heading"><span class="codenumber">(c)</span></h4>
+<p>Note that <a href="" class="xref" data-knowl="./knowl/part-dynamical.html" title="Part 4.5.3.b">Part 4.5.3.b</a> tells us that although the Fibonacci sequence is not a geometric sequence, it is the <em class="emphasis">sum</em> of two geometric sequences!</p>
+<p>By considering the numerical values of the eigenvalues <span class="process-math">\(\lambda_+\)</span> and <span class="process-math">\(\lambda_-\text{,}\)</span> explain why we can nonetheless treat the Fibonacci sequence as <em class="emphasis">approximately</em> geometric when <span class="process-math">\(n\)</span> is large.</p>
+<p>(This is true more generally: if a matrix <span class="process-math">\(A\)</span> has one eigenvalue that is larger in absolute value than all the others, this eigenvalue is called the <dfn class="terminology">dominant eigenvalue</dfn>. If <span class="process-math">\(A\)</span> is the matrix of some linear recurrence, and <span class="process-math">\(A\)</span> is diagonalizable, then we can consider the sequence as a sum of geometric sequences that will become approximately geometric in the long run.)</p>
+<div class="workspace" data-space="3in"></div></article></article><span class="incontext"><a href="worksheet-dynamical.html#exercise-105" class="internal">in-context</a></span>
 </body>
 </html>

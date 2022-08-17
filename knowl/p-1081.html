@@ -12,7 +12,13 @@
 </head>
 <body class="ignore-math">
 <h4 class="heading"><span class="type">Paragraph</span></h4>
-<p>The proof is by induction on the number <span class="process-math">\(k\)</span> of distinct eigenvalues. Since eigenvectors are nonzero, any set consisting of a single eigenvector <span class="process-math">\(\vv_1\)</span> is independent. Suppose, then, that a set of eigenvectors corresponding to <span class="process-math">\(k-1\)</span> distinct eigenvalues is independent, and let <span class="process-math">\(\vv_1,\ldots, \vv_k\)</span> be eigenvectors corresponding to distinct eigenvalues <span class="process-math">\(\lambda_1,\ldots, \lambda_k\text{.}\)</span></p>
-<span class="incontext"><a href="subsec-eigen-basics.html#p-1081" class="internal">in-context</a></span>
+<p>Let <span class="process-math">\(\{\xx_1,\ldots, \xx_k\}\)</span> be a set of linearly independent eigenvectors of a matrix <span class="process-math">\(A\text{,}\)</span> with corresponding eigenvalues <span class="process-math">\(\lambda_1,\ldots, \lambda_k\)</span> (not necessarily distinct). Extend this set to a basis <span class="process-math">\(\{\xx_1,\ldots, \xx_k,\xx_{k+1},\ldots, \xx_n\}\text{,}\)</span> and let <span class="process-math">\(P=\bbm \xx_1\amp \cdots \amp \xx_n\ebm\)</span> be the matrix whose columns are the basis vectors. (Note that <span class="process-math">\(P\)</span> is necessarily invertible.) Then</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+P^{-1}AP = \bbm \diag(\lambda_1,\ldots, \lambda_k) \amp B\\0\amp A_1\ebm\text{,}
+\end{equation*}
+</div>
+<p class="continuation">where <span class="process-math">\(B\)</span> has size <span class="process-math">\(k\times (n-k)\text{,}\)</span> and <span class="process-math">\(A_1\)</span> has size <span class="process-math">\((n-k)\times (n-k)\text{.}\)</span></p>
+<span class="incontext"><a href="sec-eigen-basics.html#p-1081" class="internal">in-context</a></span>
 </body>
 </html>

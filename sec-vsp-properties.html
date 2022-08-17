@@ -210,10 +210,11 @@ true);
 </li>
 <li class="link">
 <a href="ch-diagonalization.html" data-scroll="ch-diagonalization" class="internal"><span class="codenumber">4</span> <span class="title">Diagonalization</span></a><ul>
-<li><a href="subsec-eigen-basics.html" data-scroll="subsec-eigen-basics" class="internal">Eigenvalues and Eigenvectors</a></li>
+<li><a href="sec-eigen-basics.html" data-scroll="sec-eigen-basics" class="internal">Eigenvalues and Eigenvectors</a></li>
 <li><a href="subsec-ortho-diag.html" data-scroll="subsec-ortho-diag" class="internal">Diagonalization of symmetric matrices</a></li>
 <li><a href="sec-quadratic.html" data-scroll="sec-quadratic" class="internal">Quadratic forms</a></li>
 <li><a href="sec-complex.html" data-scroll="sec-complex" class="internal">Diagonalization of complex matrices</a></li>
+<li><a href="worksheet-dynamical.html" data-scroll="worksheet-dynamical" class="internal">Worksheet: linear dynamical systems</a></li>
 <li><a href="section-matrix-factor.html" data-scroll="section-matrix-factor" class="internal">Matrix Factorizations and Eigenvalues</a></li>
 <li><a href="worksheet-svd.html" data-scroll="worksheet-svd" class="internal">Worksheet: Singular Value Decomposition</a></li>
 </ul>
@@ -229,14 +230,15 @@ true);
 </ul>
 </li>
 <li class="link backmatter"><a href="backmatter-1.html" data-scroll="backmatter-1" class="internal"><span class="title">Back Matter</span></a></li>
+<li class="link"><a href="appendix-complex-review.html" data-scroll="appendix-complex-review" class="internal"><span class="codenumber">A</span> <span class="title">Review of complex numbers</span></a></li>
 <li class="link">
-<a href="ch-computation.html" data-scroll="ch-computation" class="internal"><span class="codenumber">A</span> <span class="title">Computational Tools</span></a><ul>
+<a href="ch-computation.html" data-scroll="ch-computation" class="internal"><span class="codenumber">B</span> <span class="title">Computational Tools</span></a><ul>
 <li><a href="section-jupyter.html" data-scroll="section-jupyter" class="internal">Jupyter</a></li>
 <li><a href="sec-python-basics.html" data-scroll="sec-python-basics" class="internal">Python basics</a></li>
 <li><a href="sec-sympy.html" data-scroll="sec-sympy" class="internal">SymPy for linear algebra</a></li>
 </ul>
 </li>
-<li class="link"><a href="solutions-1.html" data-scroll="solutions-1" class="internal"><span class="codenumber">B</span> <span class="title">Solutions to Selected Exercises</span></a></li>
+<li class="link"><a href="solutions-1.html" data-scroll="solutions-1" class="internal"><span class="codenumber">C</span> <span class="title">Solutions to Selected Exercises</span></a></li>
 </ul></nav><div class="extras"><nav><a class="pretext-link" href="https://pretextbook.org">Authored in PreTeXt</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a></nav></div>
 </div></div>
 <main class="main"><div id="content" class="pretext-content"><section class="section" id="sec-vsp-properties"><h2 class="heading hide-type">
@@ -284,69 +286,16 @@ true);
 <p id="p-122">If <span class="process-math">\(\uu+\vv=\uu+\ww\text{,}\)</span> then <span class="process-math">\(\vv=\ww\text{.}\)</span></p>
 <div class="solutions">
 <a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-6" id="hint-6"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-6"><div class="hint solution-like"><p id="p-123">Remember that every vector <span class="process-math">\(\uu\)</span> in a vector space has an additive inverse <span class="process-math">\(-\uu\text{.}\)</span></p></div></div>
-<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-9" id="solution-9"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-9"><div class="solution solution-like">
-<p id="p-124">Suppose <span class="process-math">\(\uu+\vv=\uu+\ww\text{.}\)</span> By adding <span class="process-math">\(-\uu\)</span> on the left of each side, we obtain:</p>
-<div class="displaymath process-math" data-contains-math-knowls="" id="md-8">
-\begin{align*}
--\uu+(\uu+\vv) \amp =-\uu+(\uu+\ww)\\
-(-\uu+\uu)+\vv \amp =(-\uu+\uu)+\ww \quad \text{ by A3}\\
-\zer+\vv \amp =\zer+\ww \quad \text{ by A5}\\
-\vv \amp =\ww \quad \text{ by A4}\text{,}
-\end{align*}
-</div>
-<p class="continuation">which is what we needed to show.</p>
-</div></div>
 </div></article><article class="task exercise-like" id="part-mult-zero"><h4 class="heading"><span class="codenumber">(b)</span></h4>
 <p id="p-125">For any scalar <span class="process-math">\(c\text{,}\)</span> <span class="process-math">\(c\zer=\zer\text{.}\)</span></p>
 <div class="solutions">
 <a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-7" id="hint-7"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-7"><div class="hint solution-like"><p id="p-126">Your approach should be quite similar to the one used in <a href="" class="xref" data-knowl="./knowl/thm-zero-mult.html" title="Theorem 1.2.1">Theorem 1.2.1</a>.</p></div></div>
-<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-10" id="solution-10"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-10"><div class="solution solution-like">
-<p id="p-127">We have <span class="process-math">\(c\zer = c(\zer+\zer) = c\zer +c\zer\text{,}\)</span> by A4 and S2, respectively. Adding <span class="process-math">\(-c\zer\)</span> to both sides gives us</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
--c\zer+c\zer = -c\zer+(c\zer+c\zer)\text{.}
-\end{equation*}
-</div>
-<p class="continuation">Using associativity (A3), this becomes</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
--c\zer+c\zer = (-c\zer+c\zer)+c\zer\text{,}
-\end{equation*}
-</div>
-<p class="continuation">and since <span class="process-math">\(-c\zer+c\zer=\zer\)</span> by A5, we get <span class="process-math">\(\zer =\zer+c\zer\text{.}\)</span> Finally, we apply A4 on the right hand side to get <span class="process-math">\(\zer=c\zer\text{,}\)</span> as required.</p>
-</div></div>
 </div></article><article class="task exercise-like" id="task-11"><h4 class="heading"><span class="codenumber">(c)</span></h4>
 <p id="p-128">The zero vector is the unique vector such that <span class="process-math">\(\vv+\zer=\vv\)</span> for all <span class="process-math">\(\vv\in V\text{.}\)</span></p>
 <div class="solutions">
 <a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-8" id="hint-8"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-8"><div class="hint solution-like"><p id="p-129">If you want to prove something is unique, try assuming that you have more than one! If any two different elements with the same property have to be equal, then all such elements must, in fact, be the same element.</p></div></div>
-<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-11" id="solution-11"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-11"><div class="solution solution-like">
-<p id="p-130">Suppose there are two vectors <span class="process-math">\(\zer_1,\zer_2\)</span> that act as additive identities. Then</p>
-<div class="displaymath process-math" data-contains-math-knowls="" id="md-9">
-\begin{align*}
-\zer_1 \amp = \zer_1+\zer_2 \quad \text{ since } \vv+\zer_2=\vv \text{ for any } \vv\\
-\amp =\zer_2+\zer_1 \quad \text{ by axiom A2}\\
-\amp \zer_2 \quad \text{ since } \vv+\zer_1=\vv \text{ for any } \vv
-\end{align*}
-</div>
-<p class="continuation">So any two vectors satisfying the property in A4 must, in fact, be the same.</p>
-</div></div>
 </div></article><article class="task exercise-like" id="task-negative-unique"><h4 class="heading"><span class="codenumber">(d)</span></h4>
-<p id="p-131">The negative <span class="process-math">\(-\vv\)</span> of any vector <span class="process-math">\(\vv\)</span> is unique.</p>
-<div class="solutions">
-<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-12" id="solution-12"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-12"><div class="solution solution-like">
-<p id="p-132">Let <span class="process-math">\(\vv\in V\text{,}\)</span> and suppose there are vectors <span class="process-math">\(\ww_1,\ww_2\in V\)</span> such that <span class="process-math">\(\vv+\ww_1=\zer\)</span> and <span class="process-math">\(\vv+\ww_2=\zer\text{.}\)</span> Then</p>
-<div class="displaymath process-math" data-contains-math-knowls="" id="md-10">
-\begin{align*}
-\ww_1 \amp = \ww_1+\zer \quad  \text{ by A4}\\
-\amp = \ww_1+(\vv+\ww_2) \quad \text{ by assumption}\\
-\amp = (\ww_1+\vv)+\ww_2 \quad \text{ by A3}\\
-\amp = (\vv+\ww_1)+\ww_2 \quad \text{ by A2}\\
-\amp = \zer+\ww_2 \quad \text{ by assumption}\\
-\amp \ww_2 \quad \text{ by A4}\text{.}
-\end{align*}
-</div>
-</div></div>
-</div></article></article><article class="example example-like" id="ex-minus-one-negative"><h3 class="heading">
+<p id="p-131">The negative <span class="process-math">\(-\vv\)</span> of any vector <span class="process-math">\(\vv\)</span> is unique.</p></article></article><article class="example example-like" id="ex-minus-one-negative"><h3 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">1.2.3</span><span class="period">.</span>
 </h3>
 <p id="p-133">Prove the following statement:</p>

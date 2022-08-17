@@ -13,88 +13,21 @@
 <body class="ignore-math">
 <div class="solution solution-like">
 <h3 class="heading">
-<span class="type">Solution</span><span class="space"> </span><span class="codenumber">5.6.7.1</span><span class="period">.</span>
+<span class="type">Solution</span><span class="space"> </span><span class="codenumber">5.2.7.1</span><span class="period">.</span>
 </h3>
-<p>With respect to the standard basis of <span class="process-math">\(\R^4\text{,}\)</span> the matrix of <span class="process-math">\(T\)</span> is</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
+<p>Finding this matrix requires us to first write the vectors in <span class="process-math">\(B\)</span> in terms of the vectors in <span class="process-math">\(D\text{.}\)</span> However, it's much easier to do this the other way around. We easily find</p>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/thm-change-matrix.html">
 \begin{equation*}
-M = \bbm 1\amp 1\amp 0\amp 0\\0\amp 1\amp 0\amp 0\\0\amp -1\amp 2\amp 0\\1\amp -1\amp 1\amp 1\ebm\text{.}
+P_{B\leftarrow D} = \bbm 1\amp 0\amp 2\\1\amp 1\amp -3\\0\amp 1\amp 1\ebm\text{,}
 \end{equation*}
 </div>
-<p class="continuation">We find (perhaps using the Sage cell provided below, and the code from the example above) that</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
+<p class="continuation">and by <a href="" class="xref" data-knowl="./knowl/thm-change-matrix.html" title="Theorem 5.2.6">Theorem 5.2.6</a>, we have</p>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/thm-change-matrix.html">
 \begin{equation*}
-c_T(x)=(x-1)^3(x-2)\text{,}
-\end{equation*}
-</div>
-<p class="continuation">so <span class="process-math">\(T\)</span> has eigenvalues <span class="process-math">\(1\)</span> (of multiplicity <span class="process-math">\(3\)</span>), and <span class="process-math">\(2\)</span> (of multiplicity <span class="process-math">\(1\)</span>).</p>
-<p>We tackle the repeated eigenvalue first. The reduced row-echelon form of <span class="process-math">\(M-I\)</span> is given by</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-R_1 = \bbm 1\amp 0\amp 0\amp 0\\0\amp 1\amp 0\amp 0\\0\amp 0\amp 1\amp 0\\0\amp 0\amp 0\amp 0\ebm\text{,}
-\end{equation*}
-</div>
-<p class="continuation">so</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-E_1(M) = \spn\{\xx_1\}, \text{ where } \xx_1 = \bbm 0\\0\\0\\1\ebm\text{.}
-\end{equation*}
-</div>
-<p class="continuation">We now attempt to solve <span class="process-math">\((M-I)\xx=\xx_1\text{.}\)</span> We find</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-\left(\begin{matrix}0\amp 1\amp 0\amp 0\\0\amp 0\amp 0\amp 0\\0\amp -1\amp 1\amp 0\\1\amp -1\amp 1\amp 0\end{matrix}\right|\left.\begin{matrix}0\\0\\0\\1\end{matrix}\right)
-\xrightarrow{\text{RREF}}
-\left(\begin{matrix} 1\amp 0\amp 0\amp 0\\0\amp 1\amp 0\amp 0\\0\amp 0\amp 1\amp 0\\0\amp 0\amp 0\amp 0\end{matrix}\right|\left.\begin{matrix}1\\0\\0\\0\end{matrix}\right)\text{,}
-\end{equation*}
-</div>
-<p class="continuation">so <span class="process-math">\(\xx = t\xx_1+\xx_2\text{,}\)</span> where <span class="process-math">\(\xx_2 = \bbm 1\\0\\0\\0\ebm\text{.}\)</span> We take <span class="process-math">\(\xx_2\)</span> as our first generalized eigenvector. Note that <span class="process-math">\((M-I)^2\xx_2 = (M-I)\xx_1=\zer\text{,}\)</span> so <span class="process-math">\(\xx_2\in \nll (M-I)^2\text{,}\)</span> as expected.</p>
-<p>Finally, we look for an element of <span class="process-math">\(\nll (M-I)^3\)</span> of the form <span class="process-math">\(\xx_3\text{,}\)</span> where <span class="process-math">\((M-I)\xx_3=\xx_2\text{.}\)</span> We set up and solve the system <span class="process-math">\((M-I)\xx=\xx_2\)</span> as follows:</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-\left(\begin{matrix}0\amp 1\amp 0\amp 0\\0\amp 0\amp 0\amp 0\\0\amp -1\amp 1\amp 0\\1\amp -1\amp 1\amp 0\end{matrix}\right|\left.\begin{matrix}1\\0\\0\\0\end{matrix}\right)
-\xrightarrow{\text{RREF}}
-\left(\begin{matrix} 1\amp 0\amp 0\amp 0\\0\amp 1\amp 0\amp 0\\0\amp 0\amp 1\amp 0\\0\amp 0\amp 0\amp 0\end{matrix}\right|\left.\begin{matrix}0\\1\\1\\0\end{matrix}\right)\text{,}
-\end{equation*}
-</div>
-<p class="continuation">so <span class="process-math">\(\xx = t\xx_1+\xx_3\text{,}\)</span> where <span class="process-math">\(\xx_3 =\bbm 0\\1\\1\\0\ebm\text{.}\)</span></p>
-<p>Finally, we deal with the eigenvalue <span class="process-math">\(2\text{.}\)</span> The reduced row-echelon form of <span class="process-math">\(M-2I\)</span> is</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-R_2 = \bbm 1\amp 0\amp 0\amp 0\\0\amp 1\amp 0\amp 0\\0\amp 0\amp 1\amp -1\\0\amp 0\amp 0\amp 0\ebm\text{,}
-\end{equation*}
-</div>
-<p class="continuation">so</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-E_2(M) = \spn\{\yy\}, \text{ where } \yy = \bbm 0\\0\\1\\1\ebm\text{.}
-\end{equation*}
-</div>
-<p>Our basis of column vectors is therefore <span class="process-math">\(B=\{\xx_1,\xx_2,\xx_3,\yy\}\text{.}\)</span> Note that by design,</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{align*}
-M\xx_1 \amp =\xx_1\\
-M\xx_2 \amp =\xx_1+\xx_2\\
-M\xx_3 \amp= \xx_2+\xx_3\\
-M\yy \amp = 2\yy\text{.}
-\end{align*}
-</div>
-<p class="continuation">The corresponding Jordan basis for <span class="process-math">\(\R^4\)</span> is</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-\{(0,0,0,1),(1,0,0,0),(0,1,1,0),(0,0,1,1)\}\text{,}
-\end{equation*}
-</div>
-<p class="continuation">and with respect to this basis, we have</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-M_B(T) = \bbm 1\amp 1\amp 0\amp 0\\
-0\amp 1\amp 1\amp 0\\
-0\amp 0\amp 1\amp 0\\
-0\amp 0\amp 0\amp 2\ebm\text{.}
+P_{D\leftarrow B} = (P_{B\leftarrow D})^{-1} = \frac16\bbm 4\amp 2\amp -2\\-1\amp 1\amp 5\\1\amp -1\amp 1\ebm\text{.}
 \end{equation*}
 </div>
 </div>
-<span class="incontext"><a href="sec-jordan-form.html#solution-73" class="internal">in-context</a></span>
+<span class="incontext"><a href="sec-matrix-operator.html#solution-73" class="internal">in-context</a></span>
 </body>
 </html>

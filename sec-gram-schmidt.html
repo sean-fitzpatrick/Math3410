@@ -216,10 +216,11 @@ true);
 </li>
 <li class="link">
 <a href="ch-diagonalization.html" data-scroll="ch-diagonalization" class="internal"><span class="codenumber">4</span> <span class="title">Diagonalization</span></a><ul>
-<li><a href="subsec-eigen-basics.html" data-scroll="subsec-eigen-basics" class="internal">Eigenvalues and Eigenvectors</a></li>
+<li><a href="sec-eigen-basics.html" data-scroll="sec-eigen-basics" class="internal">Eigenvalues and Eigenvectors</a></li>
 <li><a href="subsec-ortho-diag.html" data-scroll="subsec-ortho-diag" class="internal">Diagonalization of symmetric matrices</a></li>
 <li><a href="sec-quadratic.html" data-scroll="sec-quadratic" class="internal">Quadratic forms</a></li>
 <li><a href="sec-complex.html" data-scroll="sec-complex" class="internal">Diagonalization of complex matrices</a></li>
+<li><a href="worksheet-dynamical.html" data-scroll="worksheet-dynamical" class="internal">Worksheet: linear dynamical systems</a></li>
 <li><a href="section-matrix-factor.html" data-scroll="section-matrix-factor" class="internal">Matrix Factorizations and Eigenvalues</a></li>
 <li><a href="worksheet-svd.html" data-scroll="worksheet-svd" class="internal">Worksheet: Singular Value Decomposition</a></li>
 </ul>
@@ -235,14 +236,15 @@ true);
 </ul>
 </li>
 <li class="link backmatter"><a href="backmatter-1.html" data-scroll="backmatter-1" class="internal"><span class="title">Back Matter</span></a></li>
+<li class="link"><a href="appendix-complex-review.html" data-scroll="appendix-complex-review" class="internal"><span class="codenumber">A</span> <span class="title">Review of complex numbers</span></a></li>
 <li class="link">
-<a href="ch-computation.html" data-scroll="ch-computation" class="internal"><span class="codenumber">A</span> <span class="title">Computational Tools</span></a><ul>
+<a href="ch-computation.html" data-scroll="ch-computation" class="internal"><span class="codenumber">B</span> <span class="title">Computational Tools</span></a><ul>
 <li><a href="section-jupyter.html" data-scroll="section-jupyter" class="internal">Jupyter</a></li>
 <li><a href="sec-python-basics.html" data-scroll="sec-python-basics" class="internal">Python basics</a></li>
 <li><a href="sec-sympy.html" data-scroll="sec-sympy" class="internal">SymPy for linear algebra</a></li>
 </ul>
 </li>
-<li class="link"><a href="solutions-1.html" data-scroll="solutions-1" class="internal"><span class="codenumber">B</span> <span class="title">Solutions to Selected Exercises</span></a></li>
+<li class="link"><a href="solutions-1.html" data-scroll="solutions-1" class="internal"><span class="codenumber">C</span> <span class="title">Solutions to Selected Exercises</span></a></li>
 </ul></nav><div class="extras"><nav><a class="pretext-link" href="https://pretextbook.org">Authored in PreTeXt</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a></nav></div>
 </div></div>
 <main class="main"><div id="content" class="pretext-content">
@@ -258,9 +260,9 @@ true);
 <p class="continuation">Note that this looks just like one of the terms in <a href="" class="xref" data-knowl="./knowl/thm-fourier-expansion.html" title="Theorem 3.1.18: Fourier expansion theorem">Fourier expansion theorem</a>.</p>
 <p id="p-897">The motivation for the projection is as follows: Given the vectors <span class="process-math">\(\vv\)</span> and <span class="process-math">\(\uu\text{,}\)</span> we want to find vectors <span class="process-math">\(\ww\)</span> and <span class="process-math">\(\zz\)</span> with the following properties:</p>
 <ol class="decimal">
-<li id="li-123"><p id="p-898">The vector <span class="process-math">\(\ww\)</span> is parallel to the vector <span class="process-math">\(\uu\text{.}\)</span></p></li>
-<li id="li-124"><p id="p-899">The vectors <span class="process-math">\(\ww\)</span> and <span class="process-math">\(\zz\)</span> add to <span class="process-math">\(\vv\text{.}\)</span></p></li>
-<li id="li-125"><p id="p-900">The vectors <span class="process-math">\(\ww\)</span> and <span class="process-math">\(\zz\)</span> are orthogonal.</p></li>
+<li id="li-113"><p id="p-898">The vector <span class="process-math">\(\ww\)</span> is parallel to the vector <span class="process-math">\(\uu\text{.}\)</span></p></li>
+<li id="li-114"><p id="p-899">The vectors <span class="process-math">\(\ww\)</span> and <span class="process-math">\(\zz\)</span> add to <span class="process-math">\(\vv\text{.}\)</span></p></li>
+<li id="li-115"><p id="p-900">The vectors <span class="process-math">\(\ww\)</span> and <span class="process-math">\(\zz\)</span> are orthogonal.</p></li>
 </ol>
 <figure class="figure figure-like" id="fig-ortho-proj"><div class="image-box" style="width: 45%; margin-left: 27.5%; margin-right: 27.5%;"><img src="generated/latex-image/img-prtho-proj.svg" role="img" class="contained" alt="The diagram shows two given vectors u and v, along with vectors w and z. The vectors w is parallel to u, while the vector z is orthogonal to u, and the two vectors sum to the vector v. The vector w is the projection of v onto u."></div>
 <figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">3.2.1<span class="period">.</span></span><span class="space"> </span>Illustrating the concept of orthogonal projection.</figcaption></figure><p id="p-901">Motivation for the construction comes from Physics, where one needs to be able to decompose a force vector into parts that are parallel and orthogonal to a given direction.</p>
@@ -317,12 +319,12 @@ true);
 </div>
 <p class="continuation">Then:</p>
 <ol class="decimal">
-<li id="li-126"><p id="p-907"><span class="process-math">\(\vv_{m+1}\dotp \vv_i = 0\)</span> for each <span class="process-math">\(i=1,\ldots, m\text{.}\)</span></p></li>
-<li id="li-127"><p id="p-908">If <span class="process-math">\(\xx\notin\spn\{\vv_1,\ldots, \vv_m\}\text{,}\)</span> then <span class="process-math">\(\vv_{m+1}\neq \zer\text{,}\)</span> and therefore, <span class="process-math">\(\{\vv_1,\ldots, \vv_m,\vv_{m+1}\}\)</span> is an orthogonal set.</p></li>
+<li id="li-116"><p id="p-907"><span class="process-math">\(\vv_{m+1}\dotp \vv_i = 0\)</span> for each <span class="process-math">\(i=1,\ldots, m\text{.}\)</span></p></li>
+<li id="li-117"><p id="p-908">If <span class="process-math">\(\xx\notin\spn\{\vv_1,\ldots, \vv_m\}\text{,}\)</span> then <span class="process-math">\(\vv_{m+1}\neq \zer\text{,}\)</span> and therefore, <span class="process-math">\(\{\vv_1,\ldots, \vv_m,\vv_{m+1}\}\)</span> is an orthogonal set.</p></li>
 </ol></article><article class="hiddenproof" id="proof-45"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-45"><h3 class="heading"><span class="title">Strategy.</span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-45"><article class="hiddenproof"><p id="p-909">For the first part, try calculating the dot product, using the definition of <span class="process-math">\(\vv_{m+1}\text{.}\)</span> Don't forget that <span class="process-math">\(\vv_i\dotp\vv_j=0\)</span> if <span class="process-math">\(i\neq j\text{,}\)</span> since you are assuming you have an orthogonal set of vectors.</p>
 <p id="p-910">For the second part, what does the Fourier Expansion Theorem say?</p></article></div>
 <article class="hiddenproof" id="proof-46"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-46"><h3 class="heading"><span class="type">Proof<span class="period">.</span></span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-46"><article class="hiddenproof"><ol id="p-911" class="decimal">
-<li id="li-128">
+<li id="li-118">
 <p id="p-912">For any <span class="process-math">\(i=1,\ldots m\text{,}\)</span> we have</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
@@ -331,7 +333,7 @@ true);
 </div>
 <p class="continuation">since <span class="process-math">\(\vv_i\dotp\vv_j = 0\)</span> for <span class="process-math">\(i\neq j\text{.}\)</span></p>
 </li>
-<li id="li-129"><p id="p-913">It follows from the <a href="" class="xref" data-knowl="./knowl/thm-fourier-expansion.html" title="Theorem 3.1.18: Fourier expansion theorem">Fourier expansion theorem</a> that <span class="process-math">\(\vv_{m+1}=\zer\)</span> if and only if <span class="process-math">\(\xx\in\spn\{\vv_1,\ldots, \vv_m\}\text{,}\)</span> and the fact that <span class="process-math">\(\{\vv_1,\ldots, \vv_m,\vv_{m+1}\}\)</span> is an orthogonal set then follows from the first part.</p></li>
+<li id="li-119"><p id="p-913">It follows from the <a href="" class="xref" data-knowl="./knowl/thm-fourier-expansion.html" title="Theorem 3.1.18: Fourier expansion theorem">Fourier expansion theorem</a> that <span class="process-math">\(\vv_{m+1}=\zer\)</span> if and only if <span class="process-math">\(\xx\in\spn\{\vv_1,\ldots, \vv_m\}\text{,}\)</span> and the fact that <span class="process-math">\(\{\vv_1,\ldots, \vv_m,\vv_{m+1}\}\)</span> is an orthogonal set then follows from the first part.</p></li>
 </ol></article></div>
 <p id="p-914">It follows from the <a href="" class="xref" data-knowl="./knowl/thm-orthogonal-lemma.html" title="Theorem 3.2.3: Orthogonal Lemma">Orthogonal Lemma</a> that for any subspace <span class="process-math">\(U\subseteq \R^n\text{,}\)</span> any set of orthogonal vectors in <span class="process-math">\(U\)</span> can be extended to an orthogonal basis of <span class="process-math">\(U\text{.}\)</span> Since any set containing a single nonzero vector is orthogonal, it follows that every subspace has an orthogonal basis. (If <span class="process-math">\(U=\{\zer\}\text{,}\)</span> we consider the empty basis to be orthogonal.)</p>
 <p id="p-915">The procedure for creating an orthogonal basis is clear. Start with a single nonzero vector <span class="process-math">\(\xx_1\in U\text{,}\)</span> which we'll also call <span class="process-math">\(\vv_1\text{.}\)</span> If <span class="process-math">\(U\neq \spn\{\vv_1\}\text{,}\)</span> choose a vector <span class="process-math">\(\xx_2\in U\)</span> with <span class="process-math">\(\xx_2\notin\spn\{\vv_1\}\text{.}\)</span> The <a href="" class="xref" data-knowl="./knowl/thm-orthogonal-lemma.html" title="Theorem 3.2.3: Orthogonal Lemma">Orthogonal Lemma</a> then provides us with a vector</p>
@@ -416,43 +418,7 @@ L[0],L[1],L[2]
 <article class="exercise exercise-like" id="exercise-74"><h3 class="heading">
 <span class="type">Exercise</span><span class="space"> </span><span class="codenumber">3.2.5</span><span class="period">.</span>
 </h3>
-<p id="p-925">Confirm that the set <span class="process-math">\(B=\{(1,-2,1), (3,0,-2), (-1,1,2)\}\)</span> is a basis for <span class="process-math">\(\R^3\text{,}\)</span> and use the <a href="" class="xref" data-knowl="./knowl/thm-gram-schmidt.html" title="Theorem 3.2.4: Gram-Schmidt Orthonormalization Algorithm">Gram-Schmidt Orthonormalization Algorithm</a> to find an orthonormal basis.</p>
-<div class="solutions">
-<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-49" id="solution-49"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-49"><div class="solution solution-like">
-<p id="p-926">First, note that we can actually jump right into the Gram-Schmidt procedure. If the set <span class="process-math">\(B\)</span> is not a basis, then it won't be independent, and when we attempt to construct the third vector in our orthonormal basis, its projection on the the subspace spanned by the first two will be the same as the original vector, and we'll get zero when we subtract the two.</p>
-<p id="p-927">We let <span class="process-math">\(\xx_1=(1,-2,1), \xx_2=(3,0,-2), \xx_3=(-1,1,2)\text{,}\)</span> and set <span class="process-math">\(\vv_1=\xx_1\text{.}\)</span> Then we have</p>
-<div class="displaymath process-math" data-contains-math-knowls="" id="md-58">
-\begin{align*}
-\vv_2 \amp = \xx_2-\left(\frac{\xx_2\dotp \vv_1}{\len{\vv_1}^2}\right)\vv_1 \\
-\amp = (3,0,-2)-\frac{1}{6}(1,-2,1)\\
-\amp = \frac16(17,2,-3) \text{.}
-\end{align*}
-</div>
-<aside class="aside aside-like" id="aside-5"><p id="p-928">You'll notice that we're using <span class="process-math">\(6\vv_2\)</span> rather than <span class="process-math">\(\vv_2\)</span> in the calculation of <span class="process-math">\(\vv_3\text{.}\)</span> This lets us avoid fractions (momentarily), and doesn't affect the answer, since for any nonzero scalar <span class="process-math">\(c\text{,}\)</span></p>
-<div class="displaymath process-math" data-contains-math-knowls="" id="md-59">
-\begin{align*}
-\left(\frac{c\vv\dotp \xx}{\len{c\vv}^2}\right)\amp(c\vv)\\
-\amp= \left(\frac{c(\vv\dotp\xx)}{c^2\len{\vv}^2}\right)(c\vv)\\
-\amp=\left(\frac{\vv\dotp\xx}{\len{\vv^2}}\right)\vv\text{.}
-\end{align*}
-</div></aside><p id="p-929">Next, we compute <span class="process-math">\(\vv_3\text{.}\)</span></p>
-<div class="displaymath process-math" data-contains-math-knowls="" id="md-60">
-\begin{align*}
-\vv_3 \amp = \xx_3-\left(\frac{\xx_3\dotp \vv_1}{\len{\vv_1}^2}\right)\vv_1 - \left(\frac{\xx_3\dotp \vv_2}{\len{\vv_2}^2}\right)\vv_2\\
-\amp = (-1,1,2)-\frac{-1}{6}(1,-2,1)-\cdot \frac{-21}{303}(17,2,-3)\\
-\amp = (-1,1,2)+\frac16(1,-2,1)+\frac{7}{101}(17,2,-3)\\
-\amp = \frac{1}{606}\bigl((-606,606,1212)+(101,-202,101)+(782,84,-126)\bigr)\\
-\amp = \frac{1}{606}(277,488,1187)\text{.}
-\end{align*}
-</div>
-<p id="p-930">We got it done! But doing this sort of thing by hand makes it possible that we made a calculation error somewhere. To check our work, we can turn to the computer.</p>
-<pre class="ptx-sagecell hidden-sagecell-sage" id="sage-51"><script type="text/x-sage">from sympy import Matrix, init_printing, GramSchmidt
-init_printing()
-L=(Matrix([1,-2,1]),Matrix([3,0,-2]),Matrix([-1,1,2]))
-GramSchmidt(L)
-</script></pre>
-</div></div>
-</div></article></section><div class="hidden-content tex2jax_ignore" id="hk-fn-6"><div class="fn">Assuming that the angle <span class="process-math">\(\theta\)</span> is acute. If it is obtuse, the scalar <span class="process-math">\(c\)</span> is negative, but so is the dot product, so the signs work out.</div></div>
+<p id="p-925">Confirm that the set <span class="process-math">\(B=\{(1,-2,1), (3,0,-2), (-1,1,2)\}\)</span> is a basis for <span class="process-math">\(\R^3\text{,}\)</span> and use the <a href="" class="xref" data-knowl="./knowl/thm-gram-schmidt.html" title="Theorem 3.2.4: Gram-Schmidt Orthonormalization Algorithm">Gram-Schmidt Orthonormalization Algorithm</a> to find an orthonormal basis.</p></article></section><div class="hidden-content tex2jax_ignore" id="hk-fn-6"><div class="fn">Assuming that the angle <span class="process-math">\(\theta\)</span> is acute. If it is obtuse, the scalar <span class="process-math">\(c\)</span> is negative, but so is the dot product, so the signs work out.</div></div>
 </div></main>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script>

@@ -18,84 +18,41 @@ sagecell.makeSagecell({inputLocation: 'pre.sagecell-sage',
 </script>
 </head>
 <body class="ignore-math"><div class="solution solution-like">
-<p>We need to write the input <span class="process-math">\(2+3x-4x^2\)</span> in terms of the basis <span class="process-math">\(B\text{.}\)</span> This amounts to solving the system of equations given by</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-a(1+x)+b(2-x)+c(2x+x^2)=2+3x-4x^2\text{.}
-\end{equation*}
-</div>
-<p class="continuation">Of course, we can easily set up and solve this system, but let's try to be systematic, and obtain a more useful result for future problems. Since we can easily determine how to write any polynomial in terms of the standard basis <span class="process-math">\(\{1,x,x^2\}\text{,}\)</span> it suffices to know how to write these three polynomials in terms of our basis.</p>
-<p>At first, this seems like more work. After all, we now have three systems to solve:</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{align*}
-a_1(x+1)+b_1(2-x)+c_1(2x+x^2) \amp =1\\
-a_2(x+1)+b_2(2-x)+c_2(2x+x^2) \amp =x\\
-a_3(x+1)+b_3(2-x)+c_3(2x+x^2) \amp =x^2\text{.}
-\end{align*}
-</div>
-<p class="continuation">However, all three systems have the same coefficient matrix, so we can solve them simultaneously, by adding three “constants” columns to our augmented matrix.</p>
-<p>We get the matrix</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-\left[\begin{matrix}1\amp 2\amp 0\\1\amp -1\amp 2\\0\amp 0\amp 1\end{matrix}
-\right\rvert\left.\begin{matrix}1\amp 0\amp 0\\0\amp 1\amp 0\\0\amp 0\amp 1\end{matrix}\right]\text{.}
-\end{equation*}
-</div>
-<p class="continuation">But this is exactly the augmented matrix we'd right down if we were trying to find the inverse of the matrix</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-P=\bbm 1\amp 2\amp 0\\1\amp -1\amp 2\\0\amp 0\amp 1\ebm
-\end{equation*}
-</div>
-<p class="continuation">whose columns are the coefficient representations of our given basis vectors in terms of the standard basis.</p>
-<p>To compute <span class="process-math">\(P^{-1}\text{,}\)</span> we use the computer:</p>
-<pre class="ptx-sagecell sagecell-sage" id="sage-110"><script type="text/x-sage">from sympy import Matrix, init_printing
+<p>Using SymPy, we get the <a class="external" href="https://docs.sympy.org/latest/modules/matrices/matrices.html#sympy.matrices.matrices.MatrixBase.singular_value_decomposition" target="_blank">condensed SVD</a><a href="" class="fn-knowl original" data-knowl="./knowl/fn-15-hidden.html" title="Footnote 4.6.3"><sup> 3 </sup></a>. First, let's check the singular values.</p>
+<pre class="ptx-sagecell sagecell-sage" id="sage-84"><script type="text/x-sage">from sympy import Matrix, init_printing
 init_printing()
-P = Matrix(3,3,[1,2,0,1,-1,2,0,0,1])
-P**-1
+A = Matrix([[1,1,1],[1,0,-1]])
+A.singular_values()
 </script></pre>
-<p>Next, we find <span class="process-math">\(M(T)P^{-1}\text{:}\)</span></p>
-<pre class="ptx-sagecell sagecell-sage" id="sage-111"><script type="text/x-sage">M = Matrix(2,3,[3,0,3,-1,-2,2])
-v = Matrix(3,1,[2,3,-4])
-M*P**-1
+<p>Note that the values are not listed in decreasing order. Now, let's ask for the singular value decomposition. The output consists of three matrices; the first line below assigns those matrices to the names <code class="code-inline tex2jax_ignore">P,S,Q</code>.</p>
+<pre class="ptx-sagecell sagecell-sage" id="sage-85"><script type="text/x-sage">P,S,Q=A.singular_value_decomposition()
+P,S,Q
 </script></pre>
-<p>This matrix first converts the coefficient vector for a polynomial <span class="process-math">\(p(x)\)</span> with respect to the standard basis into the coefficient vector for our given basis <span class="process-math">\(B\text{,}\)</span> and then multiplies by the matrix representing our transformation. The result will be the coefficient vector for <span class="process-math">\(T(p(x))\)</span> with respect to the basis <span class="process-math">\(D\text{.}\)</span></p>
-<p>The polynomial <span class="process-math">\(p(x) = 2+3x-4x^2\)</span> has coefficient vector <span class="process-math">\(\bbm 2\\3\\-4\ebm\)</span> with respect to the standard basis. We find that <span class="process-math">\(M(T)P^{-1}\bbm 2\\3\\-4\ebm = \bbm 12\\-10\ebm\text{:}\)</span></p>
-<pre class="ptx-sagecell sagecell-sage" id="sage-112"><script type="text/x-sage">M = Matrix(2,3,[3,0,3,-1,-2,2])
-v = Matrix(3,1,[2,3,-4])
-(M*P**-1)*v
+<p>Note that the output is the “condensed” version, which doesn't match the exposition above. It also doesn't follow the same ordering convention: we'll need to swap columns in each of the matrices. But it does give us a decomposition of the matrix <span class="process-math">\(A\text{:}\)</span></p>
+<pre class="ptx-sagecell sagecell-sage" id="sage-86"><script type="text/x-sage">P*S*Q.T
 </script></pre>
-<p>The coefficients <span class="process-math">\(12\)</span> and <span class="process-math">\(-10\)</span> are the coefficients of <span class="process-math">\(T(p(x))\)</span> with repsect to the basis <span class="process-math">\(D\text{.}\)</span> Thus,</p>
+<p>To match our earlier presentation, we first set <span class="process-math">\(\Sigma_A = \bbm \sqrt{3}\amp 0\amp 0\\0 \amp \sqrt{2}\amp 0\ebm\text{.}\)</span> Next, we need to extend the <span class="process-math">\(3\times 2\)</span> matrix in the output above to a <span class="process-math">\(3\times 3\)</span> matrix. We can do this by choosing any vector orthogonal to the two existing columns, and normalizing. Let's use entries <span class="process-math">\(1/\sqrt{6},-2/\sqrt{6},1/\sqrt{6}\text{.}\)</span> Noting that we also need to swap the first two columns (to match the fact that we swapped columns in <span class="process-math">\(\Sigma_A\)</span>), we get the matrix</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
-T(2+3x-4x^2) = 12(0,1)-10(-1,1) = (10,2)\text{.}
+Q = \bbm \frac{\sqrt{3}}{3}\amp \frac{\sqrt{2}}{2}\amp \frac{\sqrt{6}}{6}\\
+\frac{\sqrt{3}}{3}\amp 0\amp -\frac{\sqrt{6}}{3}\\
+\frac{\sqrt{3}}{3}\amp -\frac{\sqrt{2}}{2} \amp \frac{\sqrt{6}}{6}\ebm\text{.}
 \end{equation*}
 </div>
-<p class="continuation">Note that in the last step we gave the “simplified” answer <span class="process-math">\((10,2)\text{,}\)</span> which is simplified primarily in that it is expressed with respect to the standard basis.</p>
-<p>Note that we can also introduce the matrix <span class="process-math">\(Q = \bbm 0\amp -1\\1\amp 1\ebm\)</span> whose columns are the coefficient vectors of the vectors in the basis <span class="process-math">\(D\)</span> with respect to the standard basis. The effect of multiplying by <span class="process-math">\(Q\)</span> is to convert from coefficients with respect to <span class="process-math">\(D\)</span> into a coefficient vector with respect to the standard basis. We can then write a new matrix <span class="process-math">\(\hat{M}(T) = QM(T)P^{-1}\text{;}\)</span> this new matrix is now the matrix representation of <span class="process-math">\(T\)</span> with respect to the <em class="emphasis">standard</em> bases of <span class="process-math">\(P_2(\R)\)</span> and <span class="process-math">\(\R^2\text{.}\)</span></p>
-<pre class="ptx-sagecell sagecell-sage" id="sage-113"><script type="text/x-sage">Q = Matrix(2,2,[0,-1,1,1])
-Q*M*P**-1
+<p class="continuation">Let's check that it is indeed orthogonal.</p>
+<pre class="ptx-sagecell sagecell-sage" id="sage-87"><script type="text/x-sage">Q = Matrix([[sqrt(3)/3,sqrt(2)/2,sqrt(6)/6],[sqrt(3)/3,0,-sqrt(6)/3],[sqrt(3)/3,-sqrt(2)/2,sqrt(6)/6]])
+Q*Q.T
 </script></pre>
-<p>We check that</p>
+<p>Finally, we take <span class="process-math">\(P=\bbm 1\amp 0\\0\amp 1\ebm\)</span> (again swapping columns), which is just the identity matrix. We therefore should expect that</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
-\hat{M}(T)\bbm 2\\3\\-4\ebm = \bbm 10\\2\ebm\text{,}
+P\Sigma_A Q^T = \Sigma_A Q^T = A\text{.}
 \end{equation*}
 </div>
-<p class="continuation">as before.</p>
-<pre class="ptx-sagecell sagecell-sage" id="sage-114"><script type="text/x-sage">(Q*M*P**-1)*v
+<p class="continuation">Let's check.</p>
+<pre class="ptx-sagecell sagecell-sage" id="sage-88"><script type="text/x-sage">S = Matrix([[sqrt(3),0,0],[0,sqrt(2),0]])
+S*Q.T
 </script></pre>
-<p>We find that <span class="process-math">\(\tilde{M}(T) = \bbm 1\amp 0\amp -2\\0\amp 2\amp 1\ebm\text{.}\)</span> This lets us determine that for a general polynomial <span class="process-math">\(p(x) = a+bx+cx^2\text{,}\)</span></p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-\hat{M}(T)\bbm a\\b\\c\ebm = \bbm a-2c\\2b+c\ebm\text{,}
-\end{equation*}
-</div>
-<p class="continuation">and therefore, our original transformation must have been</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-T(a+bx+cx^2)=(a-2c,2b+c)\text{.}
-\end{equation*}
-</div>
+<p>It worked!</p>
 </div></body>
 </html>

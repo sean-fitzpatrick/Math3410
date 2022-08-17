@@ -222,10 +222,11 @@ true);
 </li>
 <li class="link">
 <a href="ch-diagonalization.html" data-scroll="ch-diagonalization" class="internal"><span class="codenumber">4</span> <span class="title">Diagonalization</span></a><ul>
-<li><a href="subsec-eigen-basics.html" data-scroll="subsec-eigen-basics" class="internal">Eigenvalues and Eigenvectors</a></li>
+<li><a href="sec-eigen-basics.html" data-scroll="sec-eigen-basics" class="internal">Eigenvalues and Eigenvectors</a></li>
 <li><a href="subsec-ortho-diag.html" data-scroll="subsec-ortho-diag" class="internal">Diagonalization of symmetric matrices</a></li>
 <li><a href="sec-quadratic.html" data-scroll="sec-quadratic" class="internal">Quadratic forms</a></li>
 <li><a href="sec-complex.html" data-scroll="sec-complex" class="internal">Diagonalization of complex matrices</a></li>
+<li><a href="worksheet-dynamical.html" data-scroll="worksheet-dynamical" class="internal">Worksheet: linear dynamical systems</a></li>
 <li><a href="section-matrix-factor.html" data-scroll="section-matrix-factor" class="internal">Matrix Factorizations and Eigenvalues</a></li>
 <li><a href="worksheet-svd.html" data-scroll="worksheet-svd" class="internal">Worksheet: Singular Value Decomposition</a></li>
 </ul>
@@ -241,14 +242,15 @@ true);
 </ul>
 </li>
 <li class="link backmatter"><a href="backmatter-1.html" data-scroll="backmatter-1" class="internal"><span class="title">Back Matter</span></a></li>
+<li class="link"><a href="appendix-complex-review.html" data-scroll="appendix-complex-review" class="internal"><span class="codenumber">A</span> <span class="title">Review of complex numbers</span></a></li>
 <li class="link">
-<a href="ch-computation.html" data-scroll="ch-computation" class="internal"><span class="codenumber">A</span> <span class="title">Computational Tools</span></a><ul>
+<a href="ch-computation.html" data-scroll="ch-computation" class="internal"><span class="codenumber">B</span> <span class="title">Computational Tools</span></a><ul>
 <li><a href="section-jupyter.html" data-scroll="section-jupyter" class="internal">Jupyter</a></li>
 <li><a href="sec-python-basics.html" data-scroll="sec-python-basics" class="internal">Python basics</a></li>
 <li><a href="sec-sympy.html" data-scroll="sec-sympy" class="internal">SymPy for linear algebra</a></li>
 </ul>
 </li>
-<li class="link"><a href="solutions-1.html" data-scroll="solutions-1" class="internal"><span class="codenumber">B</span> <span class="title">Solutions to Selected Exercises</span></a></li>
+<li class="link"><a href="solutions-1.html" data-scroll="solutions-1" class="internal"><span class="codenumber">C</span> <span class="title">Solutions to Selected Exercises</span></a></li>
 </ul></nav><div class="extras"><nav><a class="pretext-link" href="https://pretextbook.org">Authored in PreTeXt</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a></nav></div>
 </div></div>
 <main class="main"><div id="content" class="pretext-content"><section class="worksheet" id="worksheet-recurrence"><h2 class="heading hide-type">
@@ -256,7 +258,7 @@ true);
 <a href="worksheet-recurrence-a4.html" class="a4">A4</a><a href="worksheet-recurrence-letter.html" class="us">US</a>
 </div>
 </h2>
-<section class="onepage" id="page-8"><div class="introduction" id="introduction-16">
+<section class="onepage" id="page-8"><div class="introduction" id="introduction-18">
 <p id="p-789">In this worksheet, we will sketch some of the basic ideas related to linear recurrence. For further reading, and more information, the reader is directed to Section 7.5 of <em class="emphasis">Linear Algebra with Applications</em>, by Keith Nicholson.</p>
 <p id="p-790">A <em class="emphasis">linear recurrence</em> of length <span class="process-math">\(k\)</span> is a sequence <span class="process-math">\((x_n)\)</span> that is recursively defined, with successive terms in the sequence defined in terms of the previous <span class="process-math">\(k\)</span> terms, via a linear recursion formula of the form</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
@@ -270,8 +272,8 @@ x_{n+k} = a_0x_k + a_1x_{k+1}+\cdots + a_{k-1}x_{n+k-1}\text{.}
 <p id="p-793">The goal of this worksheeet is to understand how to obtain <em class="emphasis">closed form</em> expressions for a recursively defined sequence using linear algebra. That is, rather than having to generate terms of the sequence one-by-one using the recursion formula, we want a function of <span class="process-math">\(n\)</span> that will produce each term <span class="process-math">\(x_n\)</span> in the sequence.</p>
 <p id="p-794">Since we know the dimension of the space <span class="process-math">\(V\)</span> of solutions, it suffices to understand two things:</p>
 <ul class="disc">
-<li id="li-110"><p id="p-795">How to produce a basis for <span class="process-math">\(V\text{.}\)</span></p></li>
-<li id="li-111"><p id="p-796">How to write a given solution in terms of that basis.</p></li>
+<li id="li-100"><p id="p-795">How to produce a basis for <span class="process-math">\(V\text{.}\)</span></p></li>
+<li id="li-101"><p id="p-796">How to write a given solution in terms of that basis.</p></li>
 </ul>
 <p id="p-797">Consider a geometric sequence, of the form <span class="process-math">\(x_n=c\lambda^n\text{.}\)</span> If this sequence satisfies the recursion</p>
 <div class="displaymath process-math" data-contains-math-knowls="">

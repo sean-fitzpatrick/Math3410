@@ -12,19 +12,31 @@
 </head>
 <body class="ignore-math">
 <h5 class="heading"><span class="type">Paragraph</span></h5>
-<p>For <span class="process-math">\(\lambda_2=6\text{,}\)</span> we get</p>
+<p>Finally, we note that</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
-A-6I = \bbm -2\amp 3-i\\3+i\amp -5\ebm\text{.}
+\langle \zz, \ww\rangle = (3-i)\overline{(3-i)}+(-5)(2) = (3-i)(3+i)-10 = 0\text{,}
 \end{equation*}
 </div>
-<p class="continuation">If we attempt to read off the answer like last time, the first row of <span class="process-math">\(A-6I\)</span> suggests the vector <span class="process-math">\(\ww = \bbm 3-i\\2\ebm\text{.}\)</span> Checking the second row to confirm, we find:</p>
+<p class="continuation">so the two eigenvectors are orthogonal, as expected. We have</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
-(3+i)(3-i)-5(2) = 10-10=0\text{,}
+\len{\zz}=\sqrt{10+25}=\sqrt{35} \quad \text{ and } \quad \len{\ww}=\sqrt{10+4}=\sqrt{14}\text{,}
 \end{equation*}
 </div>
-<p class="continuation">as before.</p>
+<p class="continuation">so our orthogonal matrix is</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+U = \bbm \frac{3-i}{\sqrt{35}}\amp \frac{3-i}{\sqrt{14}}\\-\frac{5}{\sqrt{35}}\amp \frac{2}{\sqrt{14}}\ebm\text{.}
+\end{equation*}
+</div>
+<p class="continuation">With a bit of effort, we can finally confirm that</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+U^HAU = \bbm -1\amp 0\\0\amp 6\ebm\text{,}
+\end{equation*}
+</div>
+<p class="continuation">as expected.</p>
 <span class="incontext"><a href="sec-complex.html#p-1189" class="internal">in-context</a></span>
 </body>
 </html>

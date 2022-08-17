@@ -11,39 +11,20 @@
 <meta name="robots" content="noindex, nofollow">
 </head>
 <body class="ignore-math"><div class="solution solution-like">
-<p>There are two things to check. First, we show that <span class="process-math">\(T^*(\phi)\in V^*\)</span> for each <span class="process-math">\(\phi\in W*\text{.}\)</span> Since <span class="process-math">\(T:V\to W\)</span> and <span class="process-math">\(\phi:W\to \R\text{,}\)</span> it follows that <span class="process-math">\(T^*\phi = \phi\circ T\)</span> is a map from <span class="process-math">\(V\)</span> to <span class="process-math">\(\R\text{.}\)</span> But we must also show that it's linear.</p>
-<p>Given <span class="process-math">\(v_1, v_2\in V\text{,}\)</span> we have</p>
+<p>Let's solve the same problem using orthogonal projection. First, we have to deal with the fact that the vectors <span class="process-math">\(\uu\)</span> and <span class="process-math">\(\vv\)</span> are probably not orthogonal. To get around this, we replace <span class="process-math">\(\vv\)</span> with</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\ww = \vv-\left(\frac{\vv\dotp\uu}{\len{\uu}^2}\right)\uu = \bbm -4\\0\\1\ebm+\frac 85\bbm 2\\1\\0\ebm = \bbm -4/5\\8/5\\1\ebm\text{.}
+\end{equation*}
+</div>
+<p class="continuation">We now set</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{align*}
-(T^*\phi)(v_1+v_2) \amp = \phi(T(v_1+v_2))=\phi(T(v_1)+T(v_2)) \quad \text{ because } T \text{ is linear}\\
-\amp =\phi(T(v_1))+\phi(T(v_2)) \quad \text{ because } \phi \text{ is linear}\\
-\amp =(T^*\phi)(v_1)+(T^*\phi)(v_2)\text{.}
+\mathbf{q} \amp =\left(\frac{\mathbf{p}\dotp\uu}{\len{\uu}^2}\right)\uu-\left(\frac{\mathbf{p}\dotp\ww}{\len{\ww}^2}\right)\ww\\
+\amp = \frac{7}{5}\bbm 2\\1\\0\ebm +\frac{-14}{105}\bbm -4\\8\\5\ebm \\
+\amp = \bbm 10/3\\1/3\\-2/3\ebm\text{.}
 \end{align*}
 </div>
-<p class="continuation">Similarly, for any scalar <span class="process-math">\(c\text{,}\)</span></p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-(T^*\phi)(cv) = \phi(T(cv))=\phi(cT(v))=c(\phi(T(v)))=c((T^*\phi)(v))\text{.}
-\end{equation*}
-</div>
-<p class="continuation">This shows that <span class="process-math">\(T^*\phi\in V^*\text{.}\)</span></p>
-<p>Next, we need to show that <span class="process-math">\(T^*:W^*\to V^*\)</span> is a linear map. Let <span class="process-math">\(\phi,\psi\in W^*\text{,}\)</span> and let <span class="process-math">\(c\)</span> be a scalar. We have:</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-T^*(\phi+\psi) = (\phi+\psi)\circ T = \phi\circ T+\psi\circ T = T^*\phi+T^*\psi\text{,}
-\end{equation*}
-</div>
-<p class="continuation">and</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-T^*(c\phi) = (c\phi)\circ T = c(\phi\circ T) = cT^*\phi\text{.}
-\end{equation*}
-</div>
-<p class="continuation">This follows from the vector space structure on any space of functions. For a vector <span class="process-math">\(v\in V\text{,}\)</span> we have</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-(T^*(c\phi))(v) = (c\phi(T(v)))=c(\phi(T(v)))=c((T^*\phi)(v))\text{.}
-\end{equation*}
-</div>
+<p class="continuation">Lo and behold, we get the same answer as before.</p>
 </div></body>
 </html>

@@ -13,27 +13,23 @@
 <body class="ignore-math">
 <div class="solution solution-like">
 <h3 class="heading">
-<span class="type">Solution</span><span class="space"> </span><span class="codenumber">3.4.4.1</span><span class="period">.</span>
+<span class="type">Solution</span><span class="space"> </span><span class="codenumber">3.4.1.1</span><span class="period">.</span>
 </h3>
-<p>Let <span class="process-math">\(\phi\in W^*\text{.}\)</span> We have</p>
+<p>We know that <span class="process-math">\(\dim V^* = \dim V=n\text{.}\)</span> Since there are <span class="process-math">\(n\)</span> vectors in the dual basis, it's enough to show that they're linearly independent. Suppose that</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
-(S+T)^*(\phi) = \phi\circ(S+T) = \phi\circ S+\phi\circ T = S^*\phi+T^*\phi\text{,}
+c_1\phi_1+c_2\phi_2+\cdots c_n\phi_n=0
 \end{equation*}
 </div>
-<p class="continuation">since <span class="process-math">\(\phi\)</span> is linear. Similarly,</p>
+<p class="continuation">for some scalars <span class="process-math">\(c_1,c_2,\ldots, c_n\text{.}\)</span></p>
+<p>This means that <span class="process-math">\((c_1\phi_1+c_2\phi_2+\cdots c_n\phi_n)(v)=0\)</span> for all <span class="process-math">\(v\in V\text{;}\)</span> in particular, this must be true for the basis vectors <span class="process-math">\(v_1,\ldots, v_n\text{.}\)</span></p>
+<p>By the definition of the dual basis, for each <span class="process-math">\(i=1,2,\ldots, n\)</span> we have</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
-(kS)^*(\phi) = \phi\circ (kS) = k(\phi\circ S) = k(S^*\phi)\text{.}
+(c_1\phi_1+c_2\phi_2+\cdots c_n\phi_n)(v_i) = 0+\cdots + 0 +c_i(1)+0+\cdots + 0 = c_i = 0\text{.}
 \end{equation*}
 </div>
-<p class="continuation">Finally, we have</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-(ST)^*\phi = \phi\circ(ST) = \phi\circ(S\circ T) = (\phi\circ S)\circ T = T^*(\phi\circ S) = T^*(S^*\phi) = (T^*S^*)(\phi),\text{.}
-\end{equation*}
-</div>
-<p class="continuation">since composition is associative.</p>
+<p class="continuation">Thus, <span class="process-math">\(c_i=0\)</span> for each <span class="process-math">\(i\text{,}\)</span> and therefore, the <span class="process-math">\(\phi_i\)</span> are linearly independent.</p>
 </div>
 <span class="incontext"><a href="worksheet-dual-basis.html#solution-56" class="internal">in-context</a></span>
 </body>

@@ -216,10 +216,11 @@ true);
 </li>
 <li class="link">
 <a href="ch-diagonalization.html" data-scroll="ch-diagonalization" class="internal"><span class="codenumber">4</span> <span class="title">Diagonalization</span></a><ul>
-<li><a href="subsec-eigen-basics.html" data-scroll="subsec-eigen-basics" class="internal">Eigenvalues and Eigenvectors</a></li>
+<li><a href="sec-eigen-basics.html" data-scroll="sec-eigen-basics" class="internal">Eigenvalues and Eigenvectors</a></li>
 <li><a href="subsec-ortho-diag.html" data-scroll="subsec-ortho-diag" class="internal">Diagonalization of symmetric matrices</a></li>
 <li><a href="sec-quadratic.html" data-scroll="sec-quadratic" class="internal">Quadratic forms</a></li>
 <li><a href="sec-complex.html" data-scroll="sec-complex" class="internal">Diagonalization of complex matrices</a></li>
+<li><a href="worksheet-dynamical.html" data-scroll="worksheet-dynamical" class="internal">Worksheet: linear dynamical systems</a></li>
 <li><a href="section-matrix-factor.html" data-scroll="section-matrix-factor" class="internal">Matrix Factorizations and Eigenvalues</a></li>
 <li><a href="worksheet-svd.html" data-scroll="worksheet-svd" class="internal">Worksheet: Singular Value Decomposition</a></li>
 </ul>
@@ -235,55 +236,56 @@ true);
 </ul>
 </li>
 <li class="link backmatter"><a href="backmatter-1.html" data-scroll="backmatter-1" class="internal"><span class="title">Back Matter</span></a></li>
+<li class="link"><a href="appendix-complex-review.html" data-scroll="appendix-complex-review" class="internal"><span class="codenumber">A</span> <span class="title">Review of complex numbers</span></a></li>
 <li class="link">
-<a href="ch-computation.html" data-scroll="ch-computation" class="internal"><span class="codenumber">A</span> <span class="title">Computational Tools</span></a><ul>
+<a href="ch-computation.html" data-scroll="ch-computation" class="internal"><span class="codenumber">B</span> <span class="title">Computational Tools</span></a><ul>
 <li><a href="section-jupyter.html" data-scroll="section-jupyter" class="internal">Jupyter</a></li>
 <li><a href="sec-python-basics.html" data-scroll="sec-python-basics" class="internal">Python basics</a></li>
 <li><a href="sec-sympy.html" data-scroll="sec-sympy" class="active">SymPy for linear algebra</a></li>
 </ul>
 </li>
-<li class="link"><a href="solutions-1.html" data-scroll="solutions-1" class="internal"><span class="codenumber">B</span> <span class="title">Solutions to Selected Exercises</span></a></li>
+<li class="link"><a href="solutions-1.html" data-scroll="solutions-1" class="internal"><span class="codenumber">C</span> <span class="title">Solutions to Selected Exercises</span></a></li>
 </ul></nav><div class="extras"><nav><a class="pretext-link" href="https://pretextbook.org">Authored in PreTeXt</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a></nav></div>
 </div></div>
 <main class="main"><div id="content" class="pretext-content">
 <section class="section" id="sec-sympy"><h2 class="heading hide-type">
-<span class="type">Section</span> <span class="codenumber">A.3</span> <span class="title">SymPy for linear algebra</span>
+<span class="type">Section</span> <span class="codenumber">B.3</span> <span class="title">SymPy for linear algebra</span>
 </h2>
-<section class="introduction" id="introduction-29"><p id="p-1498"><dfn class="terminology">SymPy</dfn> is a Python library for symbolic algebra. On its own, it's not as powerful as programs like Maple, but it handles a lot of basic manipulations in a fairly simple fashion, and when we need more power, it can interface with other Python libraries.</p>
-<p id="p-1499">Another advantage of SymPy is sophisticated “pretty-printing”. In fact, we can enable MathJax within SymPy, so that output is rendered in the same way as when LaTeX is entered in a markdown cell.</p></section><section class="subsection" id="subsec-sympy-basics"><h3 class="heading hide-type">
-<span class="type">Subsection</span> <span class="codenumber">A.3.1</span> <span class="title">SymPy basics</span>
+<section class="introduction" id="introduction-37"><p id="p-1565"><dfn class="terminology">SymPy</dfn> is a Python library for symbolic algebra. On its own, it's not as powerful as programs like Maple, but it handles a lot of basic manipulations in a fairly simple fashion, and when we need more power, it can interface with other Python libraries.</p>
+<p id="p-1566">Another advantage of SymPy is sophisticated “pretty-printing”. In fact, we can enable MathJax within SymPy, so that output is rendered in the same way as when LaTeX is entered in a markdown cell.</p></section><section class="subsection" id="subsec-sympy-basics"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">B.3.1</span> <span class="title">SymPy basics</span>
 </h3>
-<p id="p-1500">Running the following Sage cell will load the SymPy library and turn on MathJax.</p>
+<p id="p-1567">Running the following Sage cell will load the SymPy library and turn on MathJax.</p>
 <pre class="ptx-sagecell sagecell-sage" id="sage-144"><script type="text/x-sage">from sympy import *
 init_printing()
 </script></pre>
-<p id="p-1501"><em class="alert">Note:</em> the command <code class="code-inline tex2jax_ignore">from sympy import *</code> given above is <em class="emphasis">not</em> best practice. It can be convenient when you want to do a quick calculation (for example, on a test), but can have unintended consequences. It is better to only load those parts of a library you are going to use; for example, <code class="code-inline tex2jax_ignore">from sympy import Matrix, init_printing</code>.</p>
-<p id="p-1502">If you are going to be working with multiple libraries, and more than one of them defines a certain command, you can use prefixes to indicate what library you want to use. For example, if you enter <code class="code-inline tex2jax_ignore">import sympy as sy</code>, each SymPy command will need to be appended with <code class="code-inline tex2jax_ignore">sy</code>; for example, you might write <code class="code-inline tex2jax_ignore">sy.Matrix</code> instead of simply <code class="code-inline tex2jax_ignore">Matrix</code>. Let's use SymPy to create a <span class="process-math">\(2\times 3\)</span> matrix.</p>
+<p id="p-1568"><em class="alert">Note:</em> the command <code class="code-inline tex2jax_ignore">from sympy import *</code> given above is <em class="emphasis">not</em> best practice. It can be convenient when you want to do a quick calculation (for example, on a test), but can have unintended consequences. It is better to only load those parts of a library you are going to use; for example, <code class="code-inline tex2jax_ignore">from sympy import Matrix, init_printing</code>.</p>
+<p id="p-1569">If you are going to be working with multiple libraries, and more than one of them defines a certain command, you can use prefixes to indicate what library you want to use. For example, if you enter <code class="code-inline tex2jax_ignore">import sympy as sy</code>, each SymPy command will need to be appended with <code class="code-inline tex2jax_ignore">sy</code>; for example, you might write <code class="code-inline tex2jax_ignore">sy.Matrix</code> instead of simply <code class="code-inline tex2jax_ignore">Matrix</code>. Let's use SymPy to create a <span class="process-math">\(2\times 3\)</span> matrix.</p>
 <pre class="ptx-sagecell sagecell-sage" id="sage-145"><script type="text/x-sage">from sympy import Matrix, init_printing
 init_printing()
 A = Matrix(2,3,[1,2,3,4,5,6])
 A
 </script></pre>
-<p id="p-1503">The <code class="code-inline tex2jax_ignore">A</code> on the second line asks Python to print the matrix using SymPy's printing support. If we use Python's <code class="code-inline tex2jax_ignore">print</code> command, we get something different; note that the next Sage cell remembers the values from the previous one, if you are using the <abbr class="initialism">HTML</abbr> version of the book.</p>
+<p id="p-1570">The <code class="code-inline tex2jax_ignore">A</code> on the second line asks Python to print the matrix using SymPy's printing support. If we use Python's <code class="code-inline tex2jax_ignore">print</code> command, we get something different; note that the next Sage cell remembers the values from the previous one, if you are using the <abbr class="initialism">HTML</abbr> version of the book.</p>
 <pre class="ptx-sagecell sagecell-sage" id="sage-146"><script type="text/x-sage">print(A)
 </script></pre>
-<p id="p-1504">We'll have more on matrices in <a href="sec-sympy.html#subsec-sympy-matrix" class="internal" title="Subsection A.3.2: Matrices in SymPy">Subsection A.3.2</a>. For now, let's look at some more basic constructions. One basic thing to be mindful of is the type of numbers we're working with. For example, if we enter <code class="code-inline tex2jax_ignore">2/7</code> in a code cell, Python will interpret this as a floating point number (essentially, a division).</p>
-<p id="p-1505">(If you are using Sage cells in HTML rather than Jupyter, this will automatically be interpreted as a fraction.)</p>
+<p id="p-1571">We'll have more on matrices in <a href="sec-sympy.html#subsec-sympy-matrix" class="internal" title="Subsection B.3.2: Matrices in SymPy">Subsection B.3.2</a>. For now, let's look at some more basic constructions. One basic thing to be mindful of is the type of numbers we're working with. For example, if we enter <code class="code-inline tex2jax_ignore">2/7</code> in a code cell, Python will interpret this as a floating point number (essentially, a division).</p>
+<p id="p-1572">(If you are using Sage cells in HTML rather than Jupyter, this will automatically be interpreted as a fraction.)</p>
 <pre class="ptx-sagecell sagecell-sage" id="sage-147"><script type="text/x-sage">2/7
 </script></pre>
-<p id="p-1506">But we often do linear algebra over the rational numbers, and so SymPy will let you specify this. First, you'll need to load the <code class="code-inline tex2jax_ignore">Rational</code> function.</p>
+<p id="p-1573">But we often do linear algebra over the rational numbers, and so SymPy will let you specify this. First, you'll need to load the <code class="code-inline tex2jax_ignore">Rational</code> function.</p>
 <pre class="ptx-sagecell sagecell-sage" id="sage-148"><script type="text/x-sage">from sympy import Rational
 Rational(2,7)
 </script></pre>
-<p id="p-1507">You might not think to add the comma above, because you're used to writing fractions like <span class="process-math">\(2/7\text{.}\)</span> Fortunately, the SymPy authors thought of that:</p>
+<p id="p-1574">You might not think to add the comma above, because you're used to writing fractions like <span class="process-math">\(2/7\text{.}\)</span> Fortunately, the SymPy authors thought of that:</p>
 <pre class="ptx-sagecell sagecell-sage" id="sage-149"><script type="text/x-sage">Rational(2/7)
 </script></pre>
-<p id="p-1508">Hmm... You might have got the output you expected in the cell above, but maybe not. If you got a much worse looking fraction, read on.</p>
-<p id="p-1509">Another cool command is the <code class="code-inline tex2jax_ignore">sympify</code> command, which can be called with the shortcut <code class="code-inline tex2jax_ignore">S</code>. The input <code class="code-inline tex2jax_ignore">2</code> is interpreted as an <code class="code-inline tex2jax_ignore">int</code> by Python, but <code class="code-inline tex2jax_ignore">S(2)</code> is a “SymPy <code class="code-inline tex2jax_ignore">Integer</code>”:</p>
+<p id="p-1575">Hmm... You might have got the output you expected in the cell above, but maybe not. If you got a much worse looking fraction, read on.</p>
+<p id="p-1576">Another cool command is the <code class="code-inline tex2jax_ignore">sympify</code> command, which can be called with the shortcut <code class="code-inline tex2jax_ignore">S</code>. The input <code class="code-inline tex2jax_ignore">2</code> is interpreted as an <code class="code-inline tex2jax_ignore">int</code> by Python, but <code class="code-inline tex2jax_ignore">S(2)</code> is a “SymPy <code class="code-inline tex2jax_ignore">Integer</code>”:</p>
 <pre class="ptx-sagecell sagecell-sage" id="sage-150"><script type="text/x-sage">from sympy import S
 S(2)/7
 </script></pre>
-<p id="p-1510">Of course, sometimes you <em class="emphasis">do</em> want to use floating point, and you can specify this, too:</p>
+<p id="p-1577">Of course, sometimes you <em class="emphasis">do</em> want to use floating point, and you can specify this, too:</p>
 <pre class="ptx-sagecell sagecell-sage" id="sage-151"><script type="text/x-sage">2.5
 </script></pre>
 <pre class="ptx-sagecell sagecell-sage" id="sage-152"><script type="text/x-sage">from sympy import Float
@@ -291,23 +293,23 @@ Float(2.5)
 </script></pre>
 <pre class="ptx-sagecell sagecell-sage" id="sage-153"><script type="text/x-sage">Float(2.5e10)
 </script></pre>
-<p id="p-1511">One note of caution: <code class="code-inline tex2jax_ignore">Float</code> is part of SymPy, and not the same as the core Python <code class="code-inline tex2jax_ignore">float</code> command. You can also put decimals into the Rational command and get the corresponding fraction:</p>
+<p id="p-1578">One note of caution: <code class="code-inline tex2jax_ignore">Float</code> is part of SymPy, and not the same as the core Python <code class="code-inline tex2jax_ignore">float</code> command. You can also put decimals into the Rational command and get the corresponding fraction:</p>
 <pre class="ptx-sagecell sagecell-sage" id="sage-154"><script type="text/x-sage">Rational(0.75)
 </script></pre>
-<p id="p-1512">The only thing to beware of is that computers convert from decimal to binary and then back again, and sometimes weird things can happen:</p>
+<p id="p-1579">The only thing to beware of is that computers convert from decimal to binary and then back again, and sometimes weird things can happen:</p>
 <pre class="ptx-sagecell sagecell-sage" id="sage-155"><script type="text/x-sage">Rational(0.2)
 </script></pre>
-<p id="p-1513">Of course, there are workarounds. One way is to enter <span class="process-math">\(0.2\)</span> as a string:</p>
+<p id="p-1580">Of course, there are workarounds. One way is to enter <span class="process-math">\(0.2\)</span> as a string:</p>
 <pre class="ptx-sagecell sagecell-sage" id="sage-156"><script type="text/x-sage">Rational('0.2')
 </script></pre>
-<p id="p-1514">Another is to limit the size of the denominator:</p>
+<p id="p-1581">Another is to limit the size of the denominator:</p>
 <pre class="ptx-sagecell sagecell-sage" id="sage-157"><script type="text/x-sage">Rational(0.2).limit_denominator(10**12)
 </script></pre>
-<p id="p-1515">Try some other examples above. Some inputs to try are <code class="code-inline tex2jax_ignore">1.23</code> and <code class="code-inline tex2jax_ignore">23e-10</code></p>
-<p id="p-1516">We can also deal with repeating decimals. These are entered as strings, with square brackets around the repeating part. Then we can “sympify”:</p>
+<p id="p-1582">Try some other examples above. Some inputs to try are <code class="code-inline tex2jax_ignore">1.23</code> and <code class="code-inline tex2jax_ignore">23e-10</code></p>
+<p id="p-1583">We can also deal with repeating decimals. These are entered as strings, with square brackets around the repeating part. Then we can “sympify”:</p>
 <pre class="ptx-sagecell sagecell-sage" id="sage-158"><script type="text/x-sage">S('0.[1]')
 </script></pre>
-<p id="p-1517">Finally, SymPy knows about mathematical constants like <span class="process-math">\(e, \pi, i\text{,}\)</span> which you'll need from time to time in linear algebra. If you ever need <span class="process-math">\(\infty\text{,}\)</span> this is entered as <code class="code-inline tex2jax_ignore">oo</code>.</p>
+<p id="p-1584">Finally, SymPy knows about mathematical constants like <span class="process-math">\(e, \pi, i\text{,}\)</span> which you'll need from time to time in linear algebra. If you ever need <span class="process-math">\(\infty\text{,}\)</span> this is entered as <code class="code-inline tex2jax_ignore">oo</code>.</p>
 <pre class="ptx-sagecell sagecell-sage" id="sage-159"><script type="text/x-sage">I*I
 </script></pre>
 <pre class="ptx-sagecell sagecell-sage" id="sage-160"><script type="text/x-sage">I-sqrt(-1)
@@ -315,87 +317,87 @@ Float(2.5)
 <pre class="ptx-sagecell sagecell-sage" id="sage-161"><script type="text/x-sage">from sympy import pi
 pi.is_irrational
 </script></pre>
-<p id="p-1518">Finally, from time to time you may need to include parameters (variables) in an expression. Typical code for this is of the form <code class="code-inline tex2jax_ignore">a, b, c = symbols('a b c', real = True, constant = True)</code>. Here, we introduce the symbols <code class="code-inline tex2jax_ignore">a,b,c</code> with the specification that they represent real-valued constants.</p></section><section class="subsection" id="subsec-sympy-matrix"><h3 class="heading hide-type">
-<span class="type">Subsection</span> <span class="codenumber">A.3.2</span> <span class="title">Matrices in SymPy</span>
+<p id="p-1585">Finally, from time to time you may need to include parameters (variables) in an expression. Typical code for this is of the form <code class="code-inline tex2jax_ignore">a, b, c = symbols('a b c', real = True, constant = True)</code>. Here, we introduce the symbols <code class="code-inline tex2jax_ignore">a,b,c</code> with the specification that they represent real-valued constants.</p></section><section class="subsection" id="subsec-sympy-matrix"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">B.3.2</span> <span class="title">Matrices in SymPy</span>
 </h3>
-<p id="p-1519">Here we collect some of the SymPy commands used throughout this text, for ease of reference. For further details, please consult the <a class="external" href="https://docs.sympy.org/latest/modules/matrices/matrices.html" target="_blank">online documentation</a><a href="" data-knowl="" class="id-ref fn-knowl original" data-refid="hk-fn-19" id="fn-19"><sup> 1 </sup></a>.</p>
-<p id="p-1520">To create a <span class="process-math">\(2\times 3\)</span> matrix, we can write either <code class="code-inline tex2jax_ignore">A=Matrix(2,3,[1,2,3,4,5,6])</code> or <code class="code-inline tex2jax_ignore">A=Matrix([[1,2,3],[4,5,6]])</code>, where of course the size and entries can be changed to whatever you want. The former method is a bit faster, but once your matrices get a bit bigger, the latter method is less prone to typos.</p>
+<p id="p-1586">Here we collect some of the SymPy commands used throughout this text, for ease of reference. For further details, please consult the <a class="external" href="https://docs.sympy.org/latest/modules/matrices/matrices.html" target="_blank">online documentation</a><a href="" data-knowl="" class="id-ref fn-knowl original" data-refid="hk-fn-23" id="fn-23"><sup> 1 </sup></a>.</p>
+<p id="p-1587">To create a <span class="process-math">\(2\times 3\)</span> matrix, we can write either <code class="code-inline tex2jax_ignore">A=Matrix(2,3,[1,2,3,4,5,6])</code> or <code class="code-inline tex2jax_ignore">A=Matrix([[1,2,3],[4,5,6]])</code>, where of course the size and entries can be changed to whatever you want. The former method is a bit faster, but once your matrices get a bit bigger, the latter method is less prone to typos.</p>
 <pre class="ptx-sagecell sagecell-sage" id="sage-162"><script type="text/x-sage">A=Matrix(2,3,[1,2,3,4,5,6])
 B=Matrix([[1,2,3],[4,5,6]])
 A,B
 </script></pre>
-<p id="p-1521">Also of note: a column vector <span class="process-math">\(\bbm 1\\2\\3\ebm\)</span> can be entered using <code class="code-inline tex2jax_ignore">Matrix([1,2,3])</code>. There are also certain built in special matrices. To get an <span class="process-math">\(n\times n\)</span> identity matrix, use <code class="code-inline tex2jax_ignore">eye(n)</code>. To get an <span class="process-math">\(m\times n\)</span> zero matrix, use <code class="code-inline tex2jax_ignore">zeros(m,n)</code>, or <code class="code-inline tex2jax_ignore">zeros(n)</code> for a square matrix. There is also syntax for diagonal matrices, such as <code class="code-inline tex2jax_ignore">diag(1,2,3)</code>. What's cool is that you can even use this for block diagonal matrices:</p>
+<p id="p-1588">Also of note: a column vector <span class="process-math">\(\bbm 1\\2\\3\ebm\)</span> can be entered using <code class="code-inline tex2jax_ignore">Matrix([1,2,3])</code>. There are also certain built in special matrices. To get an <span class="process-math">\(n\times n\)</span> identity matrix, use <code class="code-inline tex2jax_ignore">eye(n)</code>. To get an <span class="process-math">\(m\times n\)</span> zero matrix, use <code class="code-inline tex2jax_ignore">zeros(m,n)</code>, or <code class="code-inline tex2jax_ignore">zeros(n)</code> for a square matrix. There is also syntax for diagonal matrices, such as <code class="code-inline tex2jax_ignore">diag(1,2,3)</code>. What's cool is that you can even use this for block diagonal matrices:</p>
 <pre class="ptx-sagecell sagecell-sage" id="sage-163"><script type="text/x-sage">A=Matrix(2,2,[1,2,3,4])
 B=Matrix(2,2,[5,6,7,8])
 D=diag(A,B)
 D
 </script></pre>
-<p id="p-1522">To get the reduced row-echelon form of the matrix <span class="process-math">\(A\text{,}\)</span> simply use <code class="code-inline tex2jax_ignore">A.rref()</code>. Addition, subtraction, and multiplication use the obvious syntax: <code class="code-inline tex2jax_ignore">A+B</code>, <code class="code-inline tex2jax_ignore">A*B</code>, etc.. The determinant of a square matrix is given by <code class="code-inline tex2jax_ignore">A.det()</code>. Inverses can be computed using <code class="code-inline tex2jax_ignore">A.inv()</code> or <code class="code-inline tex2jax_ignore">A**-1</code>. The latter is rather natural, since powers in general are entered as <code class="code-inline tex2jax_ignore">A**n</code> for <span class="process-math">\(A^n\text{.}\)</span></p>
-<p id="p-1523">In most cases where you want to reduce a matrix, you're going to want to simply use the <code class="code-inline tex2jax_ignore">rref</code> function. But there are times where this can be overzealous; for example, if you have a matrix with one or more symbols. One option is to replace <code class="code-inline tex2jax_ignore">A.rref()</code> with <code class="code-inline tex2jax_ignore">A.echelon_form()</code>. The <code class="code-inline tex2jax_ignore">echelon_form</code> function creates zeros in the pivot columns, but does not create leading on ones.</p>
-<p id="p-1524">For example, let's take the matrix <span class="process-math">\(A = \bbm a \amp 2\amp b\\2\amp 1\amp a\\2a\amp b\amp 3\ebm\text{.}\)</span> Note the difference in output between <code class="code-inline tex2jax_ignore">rref</code> and <code class="code-inline tex2jax_ignore">echelon_form</code>.</p>
+<p id="p-1589">To get the reduced row-echelon form of the matrix <span class="process-math">\(A\text{,}\)</span> simply use <code class="code-inline tex2jax_ignore">A.rref()</code>. Addition, subtraction, and multiplication use the obvious syntax: <code class="code-inline tex2jax_ignore">A+B</code>, <code class="code-inline tex2jax_ignore">A*B</code>, etc.. The determinant of a square matrix is given by <code class="code-inline tex2jax_ignore">A.det()</code>. Inverses can be computed using <code class="code-inline tex2jax_ignore">A.inv()</code> or <code class="code-inline tex2jax_ignore">A**-1</code>. The latter is rather natural, since powers in general are entered as <code class="code-inline tex2jax_ignore">A**n</code> for <span class="process-math">\(A^n\text{.}\)</span></p>
+<p id="p-1590">In most cases where you want to reduce a matrix, you're going to want to simply use the <code class="code-inline tex2jax_ignore">rref</code> function. But there are times where this can be overzealous; for example, if you have a matrix with one or more symbols. One option is to replace <code class="code-inline tex2jax_ignore">A.rref()</code> with <code class="code-inline tex2jax_ignore">A.echelon_form()</code>. The <code class="code-inline tex2jax_ignore">echelon_form</code> function creates zeros in the pivot columns, but does not create leading on ones.</p>
+<p id="p-1591">For example, let's take the matrix <span class="process-math">\(A = \bbm a \amp 2\amp b\\2\amp 1\amp a\\2a\amp b\amp 3\ebm\text{.}\)</span> Note the difference in output between <code class="code-inline tex2jax_ignore">rref</code> and <code class="code-inline tex2jax_ignore">echelon_form</code>.</p>
 <pre class="ptx-sagecell sagecell-sage" id="sage-164"><script type="text/x-sage">from sympy import Symbol
 a = Symbol('a')
 b = Symbol('b')
 A = Matrix(3,3,[a,2,b,2,1,a,2*a,b,3])
 A, A.rref(), A.echelon_form()
 </script></pre>
-<p id="p-1525">It is possible to manually perform row operations when you need additional control. This is achieved using the function <code class="code-inline tex2jax_ignore">A.elementary_row_op(&lt;arguments&gt;)</code>, with arguments <code class="code-inline tex2jax_ignore">op,row,k,row1,row2</code>.</p>
-<p id="p-1526">We have the following general syntax:</p>
+<p id="p-1592">It is possible to manually perform row operations when you need additional control. This is achieved using the function <code class="code-inline tex2jax_ignore">A.elementary_row_op(&lt;arguments&gt;)</code>, with arguments <code class="code-inline tex2jax_ignore">op,row,k,row1,row2</code>.</p>
+<p id="p-1593">We have the following general syntax:</p>
 <ul class="disc">
-<li id="li-204">
-<p id="p-1527">To swap two rows:</p>
+<li id="li-198">
+<p id="p-1594">To swap two rows:</p>
 <ul class="circle">
-<li id="li-205"><p id="p-1528"><code class="code-inline tex2jax_ignore">op='n&lt;-&gt;m'</code></p></li>
-<li id="li-206"><p id="p-1529"><code class="code-inline tex2jax_ignore">row1=i</code>, where <code class="code-inline tex2jax_ignore">i</code> is the index of the first row being swapped (remembering that rows are indexed starting with <span class="process-math">\(0\)</span> for the first row).</p></li>
-<li id="li-207"><p id="p-1530"><code class="code-inline tex2jax_ignore">row2=j</code>, where <code class="code-inline tex2jax_ignore">j</code> is the index of the second row being swapped.</p></li>
+<li id="li-199"><p id="p-1595"><code class="code-inline tex2jax_ignore">op='n&lt;-&gt;m'</code></p></li>
+<li id="li-200"><p id="p-1596"><code class="code-inline tex2jax_ignore">row1=i</code>, where <code class="code-inline tex2jax_ignore">i</code> is the index of the first row being swapped (remembering that rows are indexed starting with <span class="process-math">\(0\)</span> for the first row).</p></li>
+<li id="li-201"><p id="p-1597"><code class="code-inline tex2jax_ignore">row2=j</code>, where <code class="code-inline tex2jax_ignore">j</code> is the index of the second row being swapped.</p></li>
 </ul>
 </li>
-<li id="li-208">
-<p id="p-1531">To rescale a row:</p>
+<li id="li-202">
+<p id="p-1598">To rescale a row:</p>
 <ul class="circle">
-<li id="li-209"><p id="p-1532"><code class="code-inline tex2jax_ignore">op='n-&gt;kn'</code></p></li>
-<li id="li-210"><p id="p-1533"><code class="code-inline tex2jax_ignore">row=i</code>, where <code class="code-inline tex2jax_ignore">i</code> is the index of the row being rescaled.</p></li>
-<li id="li-211"><p id="p-1534"><code class="code-inline tex2jax_ignore">k=c</code>, where <code class="code-inline tex2jax_ignore">c</code> is the value of the scalar you want to multiply by.</p></li>
+<li id="li-203"><p id="p-1599"><code class="code-inline tex2jax_ignore">op='n-&gt;kn'</code></p></li>
+<li id="li-204"><p id="p-1600"><code class="code-inline tex2jax_ignore">row=i</code>, where <code class="code-inline tex2jax_ignore">i</code> is the index of the row being rescaled.</p></li>
+<li id="li-205"><p id="p-1601"><code class="code-inline tex2jax_ignore">k=c</code>, where <code class="code-inline tex2jax_ignore">c</code> is the value of the scalar you want to multiply by.</p></li>
 </ul>
 </li>
-<li id="li-212">
-<p id="p-1535">To add a multiple of one row to another:</p>
+<li id="li-206">
+<p id="p-1602">To add a multiple of one row to another:</p>
 <ul class="circle">
-<li id="li-213"><p id="p-1536"><code class="code-inline tex2jax_ignore">op='n-&gt;n+km'</code></p></li>
-<li id="li-214"><p id="p-1537"><code class="code-inline tex2jax_ignore">row=i</code>, where <code class="code-inline tex2jax_ignore">i</code> is the index of the row you want to change.</p></li>
-<li id="li-215"><p id="p-1538"><code class="code-inline tex2jax_ignore">k=c</code>, where <code class="code-inline tex2jax_ignore">c</code> is the multiple of the other row.</p></li>
-<li id="li-216"><p id="p-1539"><code class="code-inline tex2jax_ignore">row2=j</code>, where <code class="code-inline tex2jax_ignore">j</code> is the index of the other row.</p></li>
+<li id="li-207"><p id="p-1603"><code class="code-inline tex2jax_ignore">op='n-&gt;n+km'</code></p></li>
+<li id="li-208"><p id="p-1604"><code class="code-inline tex2jax_ignore">row=i</code>, where <code class="code-inline tex2jax_ignore">i</code> is the index of the row you want to change.</p></li>
+<li id="li-209"><p id="p-1605"><code class="code-inline tex2jax_ignore">k=c</code>, where <code class="code-inline tex2jax_ignore">c</code> is the multiple of the other row.</p></li>
+<li id="li-210"><p id="p-1606"><code class="code-inline tex2jax_ignore">row2=j</code>, where <code class="code-inline tex2jax_ignore">j</code> is the index of the other row.</p></li>
 </ul>
 </li>
 </ul>
-<p id="p-1540">When studying matrix transformations, we are often interested in the <em class="emphasis">null space</em> and <em class="emphasis">column space</em>, since these correspond to the kernel and image of a linear transformation. This is achieved, simply enough, using <code class="code-inline tex2jax_ignore">A.nullspace()</code> and <code class="code-inline tex2jax_ignore">A.colspace()</code>. The output will be a basis of column vectors for these spaces, and these are exactly the ones you'd find doing Gaussian elimination by hand.</p>
-<p id="p-1541">Once you get to orthogonality, you'll want to be able to compute things like dot products, and transpose. These are simple enough. The dot product of vectors <code class="code-inline tex2jax_ignore">X,Y</code> is simply <code class="code-inline tex2jax_ignore">X.dot(Y)</code>. The transpose of a matrix <code class="code-inline tex2jax_ignore">A</code> is <code class="code-inline tex2jax_ignore">A.T</code>. As we should expect, <code class="code-inline tex2jax_ignore">X\dotp Y = X^TY</code>.</p>
+<p id="p-1607">When studying matrix transformations, we are often interested in the <em class="emphasis">null space</em> and <em class="emphasis">column space</em>, since these correspond to the kernel and image of a linear transformation. This is achieved, simply enough, using <code class="code-inline tex2jax_ignore">A.nullspace()</code> and <code class="code-inline tex2jax_ignore">A.colspace()</code>. The output will be a basis of column vectors for these spaces, and these are exactly the ones you'd find doing Gaussian elimination by hand.</p>
+<p id="p-1608">Once you get to orthogonality, you'll want to be able to compute things like dot products, and transpose. These are simple enough. The dot product of vectors <code class="code-inline tex2jax_ignore">X,Y</code> is simply <code class="code-inline tex2jax_ignore">X.dot(Y)</code>. The transpose of a matrix <code class="code-inline tex2jax_ignore">A</code> is <code class="code-inline tex2jax_ignore">A.T</code>. As we should expect, <code class="code-inline tex2jax_ignore">X\dotp Y = X^TY</code>.</p>
 <pre class="ptx-sagecell sagecell-sage" id="sage-165"><script type="text/x-sage">X=Matrix(3,1,[1,2,3])
 Y=Matrix(3,1,[4,5,6])
 X.dot(Y),(X.T)*Y
 </script></pre>
-<p id="p-1542">Of course, nobody wants to do things like the Gram Schmidt algorithm by hand. Fortunately, there's a function for that. If we have vectors <code class="code-inline tex2jax_ignore">X,Y,Z</code>, we can make a list <code class="code-inline tex2jax_ignore">L=[X,Y,Z]</code>, and perform Gram Schmidt with <code class="code-inline tex2jax_ignore">GramSchmidt(L)</code>. If you want your output to be an orthonormal basis (and not merely orthogonal), then you can use <code class="code-inline tex2jax_ignore">GramSchmidt(L,true)</code>.</p>
-<p id="p-1543">It's useful to note that the output from functions like <code class="code-inline tex2jax_ignore">nullspace()</code> are automatically treated as lists. So one can use simple code like the following:</p>
+<p id="p-1609">Of course, nobody wants to do things like the Gram Schmidt algorithm by hand. Fortunately, there's a function for that. If we have vectors <code class="code-inline tex2jax_ignore">X,Y,Z</code>, we can make a list <code class="code-inline tex2jax_ignore">L=[X,Y,Z]</code>, and perform Gram Schmidt with <code class="code-inline tex2jax_ignore">GramSchmidt(L)</code>. If you want your output to be an orthonormal basis (and not merely orthogonal), then you can use <code class="code-inline tex2jax_ignore">GramSchmidt(L,true)</code>.</p>
+<p id="p-1610">It's useful to note that the output from functions like <code class="code-inline tex2jax_ignore">nullspace()</code> are automatically treated as lists. So one can use simple code like the following:</p>
 <pre class="ptx-sagecell sagecell-sage" id="sage-166"><script type="text/x-sage">from sympy import GramSchmidt
 A=Matrix(2,3,[1,0,3,2,-1,4])
 L=A.nullspace()
 GramSchmidt(L)
 </script></pre>
-<p id="p-1544">If for some reason you need to reference particular vectors in a list, this can be done by specifying the index. If <code class="code-inline tex2jax_ignore">L=[X,Y,Z]</code>, then <code class="code-inline tex2jax_ignore">L[0]==X</code>, <code class="code-inline tex2jax_ignore">L[1]==Y</code>, and <code class="code-inline tex2jax_ignore">L[2]==Z</code>.</p>
-<p id="p-1545">Next up is eigenvalues and eigenvectors. Given an <span class="process-math">\(n\times n\)</span> matrix <span class="process-math">\(A\text{,}\)</span> we have the following:</p>
+<p id="p-1611">If for some reason you need to reference particular vectors in a list, this can be done by specifying the index. If <code class="code-inline tex2jax_ignore">L=[X,Y,Z]</code>, then <code class="code-inline tex2jax_ignore">L[0]==X</code>, <code class="code-inline tex2jax_ignore">L[1]==Y</code>, and <code class="code-inline tex2jax_ignore">L[2]==Z</code>.</p>
+<p id="p-1612">Next up is eigenvalues and eigenvectors. Given an <span class="process-math">\(n\times n\)</span> matrix <span class="process-math">\(A\text{,}\)</span> we have the following:</p>
 <ul class="disc">
-<li id="li-217"><p id="p-1546">For the characteristic polynomial, use <code class="code-inline tex2jax_ignore">A.charpoly()</code>. However, the result will give you something SymPy calls a “PurePoly”, and the <code class="code-inline tex2jax_ignore">factor</code> command will have no effect. Instead, use <code class="code-inline tex2jax_ignore">A.charpoly().as_expr()</code>.</p></li>
-<li id="li-218">
-<p id="p-1547">If we know that <span class="process-math">\(3\)</span> is an eigenvalue of a <span class="process-math">\(4\times 4\)</span> matrix <span class="process-math">\(A\text{,}\)</span> one way to get a basis for the eigenspace <span class="process-math">\(E_3(A)\)</span> is to do:</p>
+<li id="li-211"><p id="p-1613">For the characteristic polynomial, use <code class="code-inline tex2jax_ignore">A.charpoly()</code>. However, the result will give you something SymPy calls a “PurePoly”, and the <code class="code-inline tex2jax_ignore">factor</code> command will have no effect. Instead, use <code class="code-inline tex2jax_ignore">A.charpoly().as_expr()</code>.</p></li>
+<li id="li-212">
+<p id="p-1614">If we know that <span class="process-math">\(3\)</span> is an eigenvalue of a <span class="process-math">\(4\times 4\)</span> matrix <span class="process-math">\(A\text{,}\)</span> one way to get a basis for the eigenspace <span class="process-math">\(E_3(A)\)</span> is to do:</p>
 <pre class="code-display tex2jax_ignore">B=A-3*eye(4)
 B.nullspace()
 </pre>
 <p class="continuation">If you just want all the eigenvalues and eigenvectors without going through the steps, then you can simply execute <code class="code-inline tex2jax_ignore">A.eigenvects()</code>. The result is a list of lists — each list in the list is of the form: eigenvalue, multiplicity, basis for the eigenspace.</p>
-<p id="p-1548">For diagonalization, one can do <code class="code-inline tex2jax_ignore">A.diagonalize()</code>. But this will not necessarily produce orthogonal diagonalization for a symmetric matrix.</p>
+<p id="p-1615">For diagonalization, one can do <code class="code-inline tex2jax_ignore">A.diagonalize()</code>. But this will not necessarily produce orthogonal diagonalization for a symmetric matrix.</p>
 </li>
 </ul>
-<p id="p-1549">For complex vectors and matrices, the main additional operation we need is the <dfn class="terminology">hermitian conjugate</dfn>. The hermitian conjugate of a matrix <code class="code-inline tex2jax_ignore">A</code> is called using <code class="code-inline tex2jax_ignore">A.H</code>, which is simple enough. Unfortunately, there is no built-in complex inner product, perhaps because mathematicians and physicists cannot agree on which of the two vectors in the inner product should have the complex conjugate applied to it. Since we define the complex inner product by <span class="process-math">\(\langle \zz,\ww\rangle = \zz\dotp\bar{\ww}\text{,}\)</span> we can execute the inner product in SymPy using <code class="code-inline tex2jax_ignore">Z.dot(W.H)</code>, or <code class="code-inline tex2jax_ignore">(W.H)*Z</code>, although the latter gives the output as a <span class="process-math">\(1\times 1\)</span> matrix rather than a number.</p>
-<p id="p-1550">Don't forget that when entering complex matrices, the complex unit is entered as <code class="code-inline tex2jax_ignore">I</code>. Also, complex expressions are not simplified by default, so you will often need to wrap your output line in <code class="code-inline tex2jax_ignore">simplify()</code>. The Sage Cell below contains complete code for the unitary diagonalization of a <span class="process-math">\(2\times 2\)</span> hermitian matrix with distinct eigenvalues. When doing a problem like this in a Sage cell, it's a good idea to execute each line of code (and display output) before moving on to the next. In this case, printing the output for the list <code class="code-inline tex2jax_ignore">L</code> given by <code class="code-inline tex2jax_ignore">A.eigenvects()</code> helps explain the complicated-looking definitions of the vectors <code class="code-inline tex2jax_ignore">v,w</code>. Of course, if we had a matrix with repeated eigenvalues, we'd need to add steps involving Gram Schmidt.</p>
+<p id="p-1616">For complex vectors and matrices, the main additional operation we need is the <dfn class="terminology">hermitian conjugate</dfn>. The hermitian conjugate of a matrix <code class="code-inline tex2jax_ignore">A</code> is called using <code class="code-inline tex2jax_ignore">A.H</code>, which is simple enough. Unfortunately, there is no built-in complex inner product, perhaps because mathematicians and physicists cannot agree on which of the two vectors in the inner product should have the complex conjugate applied to it. Since we define the complex inner product by <span class="process-math">\(\langle \zz,\ww\rangle = \zz\dotp\bar{\ww}\text{,}\)</span> we can execute the inner product in SymPy using <code class="code-inline tex2jax_ignore">Z.dot(W.H)</code>, or <code class="code-inline tex2jax_ignore">(W.H)*Z</code>, although the latter gives the output as a <span class="process-math">\(1\times 1\)</span> matrix rather than a number.</p>
+<p id="p-1617">Don't forget that when entering complex matrices, the complex unit is entered as <code class="code-inline tex2jax_ignore">I</code>. Also, complex expressions are not simplified by default, so you will often need to wrap your output line in <code class="code-inline tex2jax_ignore">simplify()</code>. The Sage Cell below contains complete code for the unitary diagonalization of a <span class="process-math">\(2\times 2\)</span> hermitian matrix with distinct eigenvalues. When doing a problem like this in a Sage cell, it's a good idea to execute each line of code (and display output) before moving on to the next. In this case, printing the output for the list <code class="code-inline tex2jax_ignore">L</code> given by <code class="code-inline tex2jax_ignore">A.eigenvects()</code> helps explain the complicated-looking definitions of the vectors <code class="code-inline tex2jax_ignore">v,w</code>. Of course, if we had a matrix with repeated eigenvalues, we'd need to add steps involving Gram Schmidt.</p>
 <pre class="ptx-sagecell sagecell-sage" id="sage-167"><script type="text/x-sage">from sympy import Matrix,init_printing,simplify
 init_printing()
 A = Matrix(2,2,[4,3-I,3+I,1])
@@ -407,13 +409,13 @@ u2 = (1/w.norm())*w
 U = u1.row_join(u2)
 u1, u2, U, simplify(U.H*A*U)
 </script></pre>
-<p id="p-1551">There are a few other commands that might come in handy as you work through this material:</p>
+<p id="p-1618">There are a few other commands that might come in handy as you work through this material:</p>
 <ul class="disc">
-<li id="li-219"><p id="p-1552">Two matrices can be glued together. If matrices <code class="code-inline tex2jax_ignore">A,B</code> have the same number of rows, the command <code class="code-inline tex2jax_ignore">A.row_join(B)</code> will glue the matrices together, left-to-right. If they have the same number of columns, <code class="code-inline tex2jax_ignore">A.col_join(B)</code> will glue them together top-to-bottom.</p></li>
-<li id="li-220"><p id="p-1553">To insert a column <code class="code-inline tex2jax_ignore">C</code> into a matrix <code class="code-inline tex2jax_ignore">M</code> (of appropriate size) as the <span class="process-math">\(j\)</span>th column, you can do <code class="code-inline tex2jax_ignore">M.col_insert(j,C)</code>. Just remember that columns are indexed starting at zero, so you might want <code class="code-inline tex2jax_ignore">j-1</code> instead of <code class="code-inline tex2jax_ignore">j</code>. This can be useful for things like solving a system <span class="process-math">\(A\xx=B\text{,}\)</span> where you want to append the column <span class="process-math">\(B\)</span> to the matrix <span class="process-math">\(A\text{.}\)</span></p></li>
-<li id="li-221"><p id="p-1554">A <span class="process-math">\(QR\)</span>-factorization can be performed using <code class="code-inline tex2jax_ignore">Q,R=A.QRdecomposition()</code></p></li>
-<li id="li-222"><p id="p-1555">The Jordan canonical form <span class="process-math">\(M\)</span> of a matrix <span class="process-math">\(A\)</span> can be obtained (along with the matrix <span class="process-math">\(P\)</span> whose columns are a Jordan basis) using <code class="code-inline tex2jax_ignore">P,M=A.jordan_form()</code>.</p></li>
-</ul></section></section><div class="hidden-content tex2jax_ignore" id="hk-fn-19"><div class="fn"><code class="code-inline tex2jax_ignore">docs.sympy.org/latest/modules/matrices/matrices.html</code></div></div>
+<li id="li-213"><p id="p-1619">Two matrices can be glued together. If matrices <code class="code-inline tex2jax_ignore">A,B</code> have the same number of rows, the command <code class="code-inline tex2jax_ignore">A.row_join(B)</code> will glue the matrices together, left-to-right. If they have the same number of columns, <code class="code-inline tex2jax_ignore">A.col_join(B)</code> will glue them together top-to-bottom.</p></li>
+<li id="li-214"><p id="p-1620">To insert a column <code class="code-inline tex2jax_ignore">C</code> into a matrix <code class="code-inline tex2jax_ignore">M</code> (of appropriate size) as the <span class="process-math">\(j\)</span>th column, you can do <code class="code-inline tex2jax_ignore">M.col_insert(j,C)</code>. Just remember that columns are indexed starting at zero, so you might want <code class="code-inline tex2jax_ignore">j-1</code> instead of <code class="code-inline tex2jax_ignore">j</code>. This can be useful for things like solving a system <span class="process-math">\(A\xx=B\text{,}\)</span> where you want to append the column <span class="process-math">\(B\)</span> to the matrix <span class="process-math">\(A\text{.}\)</span></p></li>
+<li id="li-215"><p id="p-1621">A <span class="process-math">\(QR\)</span>-factorization can be performed using <code class="code-inline tex2jax_ignore">Q,R=A.QRdecomposition()</code></p></li>
+<li id="li-216"><p id="p-1622">The Jordan canonical form <span class="process-math">\(M\)</span> of a matrix <span class="process-math">\(A\)</span> can be obtained (along with the matrix <span class="process-math">\(P\)</span> whose columns are a Jordan basis) using <code class="code-inline tex2jax_ignore">P,M=A.jordan_form()</code>.</p></li>
+</ul></section></section><div class="hidden-content tex2jax_ignore" id="hk-fn-23"><div class="fn"><code class="code-inline tex2jax_ignore">docs.sympy.org/latest/modules/matrices/matrices.html</code></div></div>
 </div></main>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script>

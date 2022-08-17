@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="exercise exercise-like"><h3 class="heading">
+<span class="type">Worksheet Exercise</span><span class="space"> </span><span class="codenumber">5<span class="period">.</span></span>
+</h3>
+<div class="introduction">
+<p>A special type of linear dynamical system occurs when the matrix <span class="process-math">\(A\)</span> is <dfn class="terminology">stochastic</dfn>. A stochastic matrix is one where each entry of the matrix is between <span class="process-math">\(0\)</span> and <span class="process-math">\(1\text{,}\)</span> and all of the columns of the matrix sum to <span class="process-math">\(1\text{.}\)</span></p>
+<p>The reason for these conditions is that the entries of a stochastic matrix represent probabilities; in particular, they are <dfn class="terminology">transition probabilities</dfn>. That is, each number represents the probability of one state changing to another.</p>
+<p>If a system can be in one of <span class="process-math">\(n\)</span> possible states, we represent the system by an <span class="process-math">\(n\times 1\)</span> vector <span class="process-math">\(\vv_t\text{,}\)</span> whose entries indicate the probability that the system is in a given state at time <span class="process-math">\(t\text{.}\)</span> If we know that the system starts out in a particular state, then <span class="process-math">\(\vv_0\)</span> will have a <span class="process-math">\(1\)</span> in one of its entries, and <span class="process-math">\(0\)</span> everywhere else.</p>
+<p>A Markov chain is given by such an initial vector, and a stochastic matrix. As an example, we will consider the following scenario, described in the book <em class="emphasis">Shape</em>, by Jordan Ellenberg:</p>
+<aside class="aside aside-like"><p>Another interesting example is a car or bicycle share company. Let's say that there are 100 locations in a city where one can pick up or drop off a car/bicycle, and that a car/bike is borrowed for one hour at a time. If, for each pickup location, we know the probability that the car/bike will be returned at each location, we can represent this data in a stochastic matrix, and use the resulting Markov chain to predict the future distribution of cars/bikes.</p></aside><p>A mosquito is born in a swamp, which we will call Swamp A. There is another nearby swamp, called Swamp B. Observational data suggests that when a mosquito is at Swamp A, there is a 40% chance that it will remain there, and a 60% chance that it will move to Swamp B. When the mosquito is at Swamp B, there is a 70% chance that it will remain, and a 30% chance that it will return to Swamp A.</p>
+</div>
+<article class="task exercise-like"><h4 class="heading"><span class="codenumber">(a)</span></h4>
+<p>Give a stochastic matrix <span class="process-math">\(M\)</span> and a vector <span class="process-math">\(\vv_0\)</span> that represent the transition probabilities and initial state given above.</p></article><article class="task exercise-like"><h4 class="heading"><span class="codenumber">(b)</span></h4>
+<p>By diagonalizing the matrix <span class="process-math">\(M\text{,}\)</span> determine the long-term probability that the mosquito will be found in either swamp.</p></article><article class="task exercise-like"><h4 class="heading"><span class="codenumber">(c)</span></h4>
+<p>You should have found that one of the eigenvalues of <span class="process-math">\(M\)</span> was <span class="process-math">\(\lambda=1\text{.}\)</span> The corresponding eigenvector <span class="process-math">\(\vv\)</span> satisfies <span class="process-math">\(M\vv=\vv\text{.}\)</span> This is known as a <dfn class="terminology">steady-state vector</dfn>: if our system begins with state <span class="process-math">\(\vv\text{,}\)</span> it will remain there forever.</p>
+<p>Confirm that if the eigenvector <span class="process-math">\(\vv\)</span> is rescaled so that its entries sum to 1, the resulting values agree with the long-term probabilities found in the previous part.</p></article></article><span class="incontext"><a href="worksheet-dynamical.html#exercise-107" class="internal">in-context</a></span>
+</body>
+</html>

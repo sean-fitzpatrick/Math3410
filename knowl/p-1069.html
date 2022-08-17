@@ -12,12 +12,13 @@
 </head>
 <body class="ignore-math">
 <h4 class="heading"><span class="type">Paragraph</span></h4>
-<p>For the second eigenvector, we have <span class="process-math">\(A-2I = \bbm -2\amp 1\amp 1\\1\amp -2\amp 1\\1\amp 1\amp -2\ebm\text{,}\)</span> which has reduced row-echelon form <span class="process-math">\(\bbm 1\amp 0\amp -1\\0\amp 1\amp -1\\0\amp 0\amp 0\ebm\text{.}\)</span> An eigenvector in this case is given by</p>
+<p>The first two follow directly from properties of the determinant and trace. For the last, note that if <span class="process-math">\(B = P^{-1}AP\text{,}\)</span> then</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
-\xx_2 = \bbm 1\\1\\1\ebm\text{.}
+P^{-1}(xI_n-A)P = P^{-1}(xI_n)P-P^{-1}AP = xI_n B\text{,}
 \end{equation*}
 </div>
-<span class="incontext"><a href="subsec-eigen-basics.html#p-1069" class="internal">in-context</a></span>
+<p class="continuation">so <span class="process-math">\(xI_n-B\sim xI_n-A\text{,}\)</span> and therefore <span class="process-math">\(\det(xI_n-B)=\det(xI_n-A)\text{.}\)</span></p>
+<span class="incontext"><a href="sec-eigen-basics.html#p-1069" class="internal">in-context</a></span>
 </body>
 </html>

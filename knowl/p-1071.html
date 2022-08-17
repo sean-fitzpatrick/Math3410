@@ -11,8 +11,20 @@
 <meta name="robots" content="noindex, nofollow">
 </head>
 <body class="ignore-math">
-<h3 class="heading"><span class="type">Paragraph</span></h3>
-<p>The <code class="code-inline tex2jax_ignore">eigenvects</code> command in SymPy takes a square matrix as input, and outputs a list of lists (one list for each eigenvalue). For a given eigenvalue, the corresponding list has the form <code class="code-inline tex2jax_ignore">(eigenvalue, multiplicity, eigenvectors)</code>. Using SymPy to solve <a href="" class="xref" data-knowl="./knowl/example-eigenvectors.html" title="Example 4.1.8">Example 4.1.8</a> looks as follows:</p>
-<span class="incontext"><a href="subsec-eigen-basics.html#p-1071" class="internal">in-context</a></span>
+<h4 class="heading"><span class="type">Paragraph</span></h4>
+<p>We begin with the characteristic polynomial. We have</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{align*}
+\det(xI_n - A) \amp =\det\bbm x \amp -1\amp -1\\-1\amp x \amp -1\\-1\amp -1\amp x\ebm\\
+\amp = x \begin{vmatrix}x \amp -1\\-1\amp x\end{vmatrix}
++1\begin{vmatrix}-1\amp -1\\-1\amp x\end{vmatrix}
+-1\begin{vmatrix}-1\amp x\\-1\amp -1\end{vmatrix}\\
+\amp = x(x^2-1)+(-x-1)-(1+x)\\
+\amp x(x-1)(x+1)-2(x+1)\\
+\amp (x+1)[x^2-x-2]\\
+\amp (x+1)^2(x-2)\text{.}
+\end{align*}
+</div>
+<span class="incontext"><a href="sec-eigen-basics.html#p-1071" class="internal">in-context</a></span>
 </body>
 </html>

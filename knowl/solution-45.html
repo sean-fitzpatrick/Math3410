@@ -13,17 +13,24 @@
 <body class="ignore-math">
 <div class="solution solution-like">
 <h4 class="heading">
-<span class="type">Solution</span><span class="space"> </span><span class="codenumber">3.1.6.1</span><span class="period">.</span>
+<span class="type">Solution</span><span class="space"> </span><span class="codenumber">2.3.7.1</span><span class="period">.</span>
 </h4>
-<p>This is simply an exercise in properties of the dot product. We have</p>
+<p>Suppose we have linear maps <span class="process-math">\(U\xrightarrow{T} V\xrightarrow{S} W\text{,}\)</span> and let <span class="process-math">\(\uu_1,\uu_2\in U\text{.}\)</span> Then</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{align*}
-\len{\xx+\yy}^2 \amp = (\xx+\yy)\dotp (\xx+\yy) \\
-\amp = \xx\dotp \xx+\xx\dotp\yy+\yy\dotp\xx+\yy\dotp\yy\\
-\amp =\len{\xx}^2+2\xx\dotp\yy+\len{\yy}^2\text{.}
+ST(\uu_1+\uu_2) \amp = S(T(\uu_1+\uu_2)) \\
+\amp = S(T(\uu_1)+T(\uu_2))\\
+\amp = S(T(\uu_1))+S(T(\uu_2)) \\
+\amp = ST(\uu_1)+ST(\uu_2)\text{,}
 \end{align*}
 </div>
+<p class="continuation">and for any scalar <span class="process-math">\(c\text{,}\)</span></p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+ST(c\uu_1) = S(T(c\uu_1))=S(cT(\uu_1)) = cS(T(\uu_1))=c(ST(\uu_1))\text{.}
+\end{equation*}
 </div>
-<span class="incontext"><a href="sec-orthogonal-sets.html#solution-45" class="internal">in-context</a></span>
+</div>
+<span class="incontext"><a href="sec-isomorphism.html#solution-45" class="internal">in-context</a></span>
 </body>
 </html>

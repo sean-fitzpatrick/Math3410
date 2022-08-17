@@ -9,19 +9,41 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="robots" content="noindex, nofollow">
+<script>// Make *any* pre with class 'sagecell-sage' an executable Sage cell
+// Their results will be linked, only within language type
+sagecell.makeSagecell({inputLocation: 'pre.sagecell-sage',
+                       linked: true,
+                       languages: ['sage'],
+                       evalButtonText: 'Evaluate (Sage)'});
+</script>
 </head>
 <body class="ignore-math"><div class="solution solution-like">
-<p>Finding this matrix requires us to first write the vectors in <span class="process-math">\(B\)</span> in terms of the vectors in <span class="process-math">\(D\text{.}\)</span> However, it's much easier to do this the other way around. We easily find</p>
-<div class="displaymath process-math" data-contains-math-knowls="./knowl/thm-change-matrix.html">
+<p>We must first write our general input in terms of the given basis. With respect to the standard basis</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
-P_{B\leftarrow D} = \bbm 1\amp 0\amp 2\\1\amp 1\amp -3\\0\amp 1\amp 1\ebm\text{,}
+B_0 = \left\{\bbm 1\amp 0\\0\amp 0\ebm, \bbm 0\amp 1\\0\amp 0\ebm, \bbm 0\amp 0\\1\amp 0\ebm, \bbm 0\amp 0\\0\amp 1\ebm\right\}\text{,}
 \end{equation*}
 </div>
-<p class="continuation">and by <a href="" class="xref" data-knowl="./knowl/thm-change-matrix.html" title="Theorem 5.2.6">Theorem 5.2.6</a>, we have</p>
-<div class="displaymath process-math" data-contains-math-knowls="./knowl/thm-change-matrix.html">
+<p class="continuation">we have the matrix <span class="process-math">\(P = \bbm 1\amp 0\amp 0\amp 1\\0\amp 1\amp 1\amp 0\\0\amp 0\amp 1\amp 0\\0\amp 1\amp 0\amp 1\ebm\text{,}\)</span> representing the change from the basis <span class="process-math">\(B\)</span> the basis <span class="process-math">\(B_0\text{.}\)</span> The basis <span class="process-math">\(D\)</span> of <span class="process-math">\(P_2(\R)\)</span> is already the standard basis, so we need the matrix <span class="process-math">\(M_{DB}(T)P^{-1}\text{:}\)</span></p>
+<pre class="ptx-sagecell sagecell-sage" id="sage-115"><script type="text/x-sage">from sympy import Matrix, init_printing
+init_printing()
+M = Matrix(3,4,[2,-1,0,3,0,4,-5,1,-1,0,3,-2])
+P = Matrix(4,4,[1,0,0,1,0,1,1,0,0,0,1,0,0,1,0,1])
+M*P**-1
+</script></pre>
+<p>For a matrix <span class="process-math">\(X = \bbm a\amp b\\c\amp d\ebm\)</span> we find</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
-P_{D\leftarrow B} = (P_{B\leftarrow D})^{-1} = \frac16\bbm 4\amp 2\amp -2\\-1\amp 1\amp 5\\1\amp -1\amp 1\ebm\text{.}
+M_{DB}(T)P^{-1}C_{B_0}(X)=\bbm 2\amp -2\amp 2\amp 1\\0\amp 3\amp -8\amp 1\\-1\amp 1\amp 2\amp -1\ebm\bbm a\\b\\c\\d\ebm =
+\bbm 2a-2b+2c+d\\3b-8c+d\\-a+b+2c-d\ebm\text{.}
 \end{equation*}
+</div>
+<p class="continuation">But this is equal to <span class="process-math">\(C_D(T(X))\text{,}\)</span> so</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{align*}
+T\left(\bbm a\amp b\\c\amp d\ebm\right) \amp = C_D^{-1}\bbm 2a-2b+2c+d\\3b-8c+d\\-a+b+2c-d\ebm\\
+\amp = (2a-2b+2c+d)+(3b-8c+d)x+(-a+b+2c-d)x^2\text{.}
+\end{align*}
 </div>
 </div></body>
 </html>

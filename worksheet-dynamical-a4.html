@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<html lang="en-US">
+<head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Worksheet: linear dynamical systems</title>
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="book">
+<meta property="book:title" content="Linear Algebra">
+<meta property="book:author" content="Sean Fitzpatrick">
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
+window.MathJax = {
+  tex: {
+    inlineMath: [['\\(','\\)']],
+    tags: "none",
+    tagSide: "right",
+    tagIndent: ".8em",
+    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'newcommand', 'knowl']}
+  },
+  options: {
+    ignoreHtmlClass: "tex2jax_ignore|ignore-math",
+    processHtmlClass: "process-math",
+    renderActions: {
+        findScript: [10, function (doc) {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
+                var display = !!node.type.match(/; *mode=display/);
+                var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                var text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = {node: text, delim: '', n: 0};
+                math.end = {node: text, delim: '', n: 0};
+                doc.math.push(math);
+            });
+        }, '']
+    },
+  },
+  chtml: {
+    scale: 0.88,
+    mtextInheritFont: true
+  },
+  loader: {
+    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
+    paths: {pretext: "https://pretextbook.org/js/lib"},
+  },
+  startup: {
+    pageReady() {
+      return MathJax.startup.defaultPageReady().then(function () {
+      console.log("in ready function");
+      rsMathReady();
+      }
+    )}
+},
+};
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/themes/prism.css" rel="stylesheet">
+<script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.13/pretext.js"></script><script>miniversion=0.674</script><script src="https://pretextbook.org/js/0.13/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+</script><link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+<script src="https://cdn.geogebra.org/apps/deployggb.js"></script><link href="https://pretextbook.org/css/0.4/pretext.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/banner_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/toc_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/knowls_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/style_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/colors_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/setcolors.css" rel="stylesheet" type="text/css">
+<!--** eBookCongig is necessary to configure interactive       **-->
+<!--** Runestone components to run locally in reader's browser **-->
+<!--** No external communication:                              **-->
+<!--**     log level is 0, Runestone Services are disabled     **-->
+<script type="text/javascript">
+eBookConfig = {};
+eBookConfig.useRunestoneServices = false;
+eBookConfig.host = 'http://127.0.0.1:8000';
+eBookConfig.course = 'PTX Course: Title Here';
+eBookConfig.basecourse = 'PTX Base Course';
+eBookConfig.isLoggedIn = false;
+eBookConfig.email = '';
+eBookConfig.isInstructor = false;
+eBookConfig.logLevel = 0;
+eBookConfig.username = '';
+eBookConfig.readings = null;
+eBookConfig.activities = null;
+eBookConfig.downloadsEnabled = false;
+eBookConfig.allow_pairs = false;
+eBookConfig.enableScratchAC = false;
+eBookConfig.build_info = "";
+eBookConfig.python3 = null;
+eBookConfig.acDefaultLanguage = 'python';
+eBookConfig.runestone_version = '5.0.1';
+eBookConfig.jobehost = '';
+eBookConfig.proxyuri_runs = '';
+eBookConfig.proxyuri_files = '';
+eBookConfig.enable_chatcodes =  false;
+</script>
+<!--*** Runestone Services ***-->
+<script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.3.0/runtime.d24a93181f625912.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.3.0/637.d54be67956c5c660.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.3.0/runestone.aeb994b86db36b29.bundle.js"></script><link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/6.3.0/637.fafafbd97df8a0d1.css">
+<link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/6.3.0/runestone.e4d5592da655219f.css">
+</head>
+<body id="linalg" class="pretext-book ignore-math has-toc has-sidebar-left standalone worksheet a4">
+<a class="assistive" href="#content">Skip to main content</a><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\spn}{\operatorname{span}}
+\newcommand{\bbm}{\begin{bmatrix}}
+\newcommand{\ebm}{\end{bmatrix}}
+\newcommand{\R}{\mathbb{R}}
+\ifdefined\C
+\renewcommand\C{\mathbb{C}}
+\else
+\newcommand\C{\mathbb{C}}
+\fi
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\nll}{\operatorname{null}}
+\newcommand{\csp}{\operatorname{col}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\dotp}{\!\boldsymbol{\cdot}\!}
+\newcommand{\len}[1]{\lVert #1\rVert}
+\newcommand{\abs}[1]{\lvert #1\rvert}
+\newcommand{\proj}[2]{\operatorname{proj}_{#1}{#2}}
+\newcommand{\bz}{\overline{z}}
+\newcommand{\zz}{\mathbf{z}}
+\newcommand{\uu}{\mathbf{u}}
+\newcommand{\vv}{\mathbf{v}}
+\newcommand{\ww}{\mathbf{w}}
+\newcommand{\xx}{\mathbf{x}}
+\newcommand{\yy}{\mathbf{y}}
+\newcommand{\zer}{\mathbf{0}}
+\newcommand{\vecq}{\mathbf{q}}
+\newcommand{\vecp}{\mathbf{p}}
+\newcommand{\vece}{\mathbf{e}}
+\newcommand{\basis}[2]{\{\mathbf{#1}_1,\mathbf{#1}_2,\ldots,\mathbf{#1}_{#2}\}}
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\definecolor{fillinmathshade}{gray}{0.9}
+\newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
+\)</span></div>
+<header id="masthead" class="smallbuttons"><div class="banner"><div class="container">
+<a id="logo-link" href=""></a><div class="title-container">
+<h1 class="heading"><a href="linear-algebra.html"><span class="title">Linear Algebra:</span> <span class="subtitle">A second course, featuring proofs and Python</span></a></h1>
+<p class="byline">Sean Fitzpatrick</p>
+</div>
+</div></div>
+<nav id="primary-navbar" class="navbar"><div class="container">
+<div class="navbar-top-buttons">
+<button class="sidebar-left-toggle-button button active" aria-label="Show or hide table of contents sidebar">Contents</button><div class="tree-nav toolbar toolbar-divisor-3">
+<button id="calculator-toggle" class="toolbar-item button toggle" title="Show calculator" aria-expanded="false" aria-controls="calculator-container">Calc</button><div id="calculator-container" class="calculator-container" style="display: none; z-index:100;"><div id="geogebra-calculator"></div></div>
+<script>
+var ggbApp = new GGBApplet({"appName": "graphing",
+    "width": 330,
+    "height": 600,
+    "showToolBar": true,
+    "showAlgebraInput": true,
+    "perspective": "G/A",
+    "algebraInputPosition": "bottom",
+    "scaleContainerClass": "calculator-container",
+    "allowUpscale": true,
+    "autoHeight": true,
+    "disableAutoScale": false},
+true);
+</script><span class="threebuttons"><a id="previousbutton" class="previous-button toolbar-item button" href="sec-complex.html" title="Previous">Prev</a><a id="upbutton" class="up-button button toolbar-item" href="ch-diagonalization.html" title="Up">Up</a><a id="nextbutton" class="next-button button toolbar-item" href="section-matrix-factor.html" title="Next">Next</a></span>
+</div>
+</div>
+<div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="sec-complex.html" title="Previous">Prev</a><a class="up-button button toolbar-item" href="ch-diagonalization.html" title="Up">Up</a><a class="next-button button toolbar-item" href="section-matrix-factor.html" title="Next">Next</a>
+</div>
+</div></nav></header><div class="page">
+<div id="sidebar-left" class="sidebar" role="navigation"><div class="sidebar-content">
+<nav id="toc"><ul>
+<li class="link frontmatter">
+<a href="frontmatter-1.html" data-scroll="frontmatter-1" class="internal"><span class="title">Front Matter</span></a><ul>
+<li><a href="colophon-1.html" data-scroll="colophon-1" class="internal">Colophon</a></li>
+<li><a href="preface-1.html" data-scroll="preface-1" class="internal">Preface</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="ch-vector-space.html" data-scroll="ch-vector-space" class="internal"><span class="codenumber">1</span> <span class="title">Vector spaces</span></a><ul>
+<li><a href="sec-vec-sp.html" data-scroll="sec-vec-sp" class="internal">Definition and examples</a></li>
+<li><a href="sec-vsp-properties.html" data-scroll="sec-vsp-properties" class="internal">Properties</a></li>
+<li><a href="sec-subspace.html" data-scroll="sec-subspace" class="internal">Subspaces</a></li>
+<li><a href="sec-span.html" data-scroll="sec-span" class="internal">Span</a></li>
+<li><a href="worksheet-span.html" data-scroll="worksheet-span" class="internal">Worksheet: understanding span</a></li>
+<li><a href="sec-independence.html" data-scroll="sec-independence" class="internal">Linear Independence</a></li>
+<li><a href="sec-dimension.html" data-scroll="sec-dimension" class="internal">Basis and dimension</a></li>
+<li><a href="sec-subspace-combine.html" data-scroll="sec-subspace-combine" class="internal">New subspaces from old</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="ch-linear-trans.html" data-scroll="ch-linear-trans" class="internal"><span class="codenumber">2</span> <span class="title">Linear Transformations</span></a><ul>
+<li><a href="sec-lin-tran-intro.html" data-scroll="sec-lin-tran-intro" class="internal">Definition and examples</a></li>
+<li><a href="sec-kernel-image.html" data-scroll="sec-kernel-image" class="internal">Kernel and Image</a></li>
+<li><a href="sec-isomorphism.html" data-scroll="sec-isomorphism" class="internal">Isomorphisms, composition, and inverses</a></li>
+<li><a href="worksheet-transformations.html" data-scroll="worksheet-transformations" class="internal">Worksheet: matrix transformations</a></li>
+<li><a href="worksheet-recurrence.html" data-scroll="worksheet-recurrence" class="internal">Worksheet: linear recurrences</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="ch-orthogonality.html" data-scroll="ch-orthogonality" class="internal"><span class="codenumber">3</span> <span class="title">Orthogonality and Applications</span></a><ul>
+<li><a href="sec-orthogonal-sets.html" data-scroll="sec-orthogonal-sets" class="internal">Orthogonal sets of vectors</a></li>
+<li><a href="sec-gram-schmidt.html" data-scroll="sec-gram-schmidt" class="internal">The Gram-Schmidt Procedure</a></li>
+<li><a href="section-projection.html" data-scroll="section-projection" class="internal">Orthogonal Projection</a></li>
+<li><a href="worksheet-dual-basis.html" data-scroll="worksheet-dual-basis" class="internal">Worksheet: dual basis.</a></li>
+<li><a href="worksheet-least-squares.html" data-scroll="worksheet-least-squares" class="internal">Worksheet: Least squares approximation</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="ch-diagonalization.html" data-scroll="ch-diagonalization" class="internal"><span class="codenumber">4</span> <span class="title">Diagonalization</span></a><ul>
+<li><a href="sec-eigen-basics.html" data-scroll="sec-eigen-basics" class="internal">Eigenvalues and Eigenvectors</a></li>
+<li><a href="subsec-ortho-diag.html" data-scroll="subsec-ortho-diag" class="internal">Diagonalization of symmetric matrices</a></li>
+<li><a href="sec-quadratic.html" data-scroll="sec-quadratic" class="internal">Quadratic forms</a></li>
+<li><a href="sec-complex.html" data-scroll="sec-complex" class="internal">Diagonalization of complex matrices</a></li>
+<li><a href="worksheet-dynamical.html" data-scroll="worksheet-dynamical" class="active">Worksheet: linear dynamical systems</a></li>
+<li><a href="section-matrix-factor.html" data-scroll="section-matrix-factor" class="internal">Matrix Factorizations and Eigenvalues</a></li>
+<li><a href="worksheet-svd.html" data-scroll="worksheet-svd" class="internal">Worksheet: Singular Value Decomposition</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="ch-change-basis.html" data-scroll="ch-change-basis" class="internal"><span class="codenumber">5</span> <span class="title">Change of Basis</span></a><ul>
+<li><a href="sec-matrix-of-transformation.html" data-scroll="sec-matrix-of-transformation" class="internal">The matrix of a linear transformation</a></li>
+<li><a href="sec-matrix-operator.html" data-scroll="sec-matrix-operator" class="internal">The matrix of a linear operator</a></li>
+<li><a href="sec-direct-sum.html" data-scroll="sec-direct-sum" class="internal">Direct Sums and Invariant Subspaces</a></li>
+<li><a href="worksheet-gen-eigen.html" data-scroll="worksheet-gen-eigen" class="internal">Worksheet: generalized eigenvectors</a></li>
+<li><a href="sec-gen-eigen.html" data-scroll="sec-gen-eigen" class="internal">Generalized eigenspaces</a></li>
+<li><a href="sec-jordan-form.html" data-scroll="sec-jordan-form" class="internal">Jordan Canonical Form</a></li>
+</ul>
+</li>
+<li class="link backmatter"><a href="backmatter-1.html" data-scroll="backmatter-1" class="internal"><span class="title">Back Matter</span></a></li>
+<li class="link"><a href="appendix-complex-review.html" data-scroll="appendix-complex-review" class="internal"><span class="codenumber">A</span> <span class="title">Review of complex numbers</span></a></li>
+<li class="link">
+<a href="ch-computation.html" data-scroll="ch-computation" class="internal"><span class="codenumber">B</span> <span class="title">Computational Tools</span></a><ul>
+<li><a href="section-jupyter.html" data-scroll="section-jupyter" class="internal">Jupyter</a></li>
+<li><a href="sec-python-basics.html" data-scroll="sec-python-basics" class="internal">Python basics</a></li>
+<li><a href="sec-sympy.html" data-scroll="sec-sympy" class="internal">SymPy for linear algebra</a></li>
+</ul>
+</li>
+<li class="link"><a href="solutions-1.html" data-scroll="solutions-1" class="internal"><span class="codenumber">C</span> <span class="title">Solutions to Selected Exercises</span></a></li>
+</ul></nav><div class="extras"><nav><a class="pretext-link" href="https://pretextbook.org">Authored in PreTeXt</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a></nav></div>
+</div></div>
+<main class="main"><div id="content" class="pretext-content"><section class="worksheet" id="worksheet-dynamical"><h2 class="heading hide-type">
+<span class="type">Worksheet</span> <span class="codenumber">4.5</span> <span class="title">Worksheet: linear dynamical systems</span><div class="print-links">
+<a href="worksheet-dynamical-a4.html" class="a4">A4</a><a href="worksheet-dynamical-letter.html" class="us">US</a>
+</div>
+</h2>
+<section class="onepage" id="page-21"><div class="introduction" id="introduction-24">
+<p id="p-1216">Suppose we have a sequence <span class="process-math">\((x_n)\)</span> defined by a linear recurrence of length <span class="process-math">\(k\text{,}\)</span> as in <a href="worksheet-recurrence.html" class="internal" title="Worksheet 2.5: Worksheet: linear recurrences">Worksheet 2.5</a>:</p>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/worksheet-recurrence.html">
+\begin{equation*}
+x_{n+k} = a_0x_k + a_1x_{k+1}+\cdots + a_{k-1}x_{n-k+1}\text{.}
+\end{equation*}
+</div>
+<p id="p-1217">We would like to represent this as a matrix equation, and then use eigenvalues to analyze, replacing the recurrence formula with a matrix equation of the form <span class="process-math">\(\vv_{k+1}=A\vv_k\text{.}\)</span> A sequence of vectors generated in this way is called a <dfn class="terminology">linear dynamical system</dfn>. It is a good model for systems with discrete time evolution (where changes occur in steps, rather than continuously).</p>
+<p id="p-1218">To determine the long term evolution of the system, we would like to be able to compute</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\vv_n  = A^n \vv_0
+\end{equation*}
+</div>
+<p class="continuation">without first finding all the intermediate states, so this is a situation where we would like to be able to efficiently compute powers of a matrix. Fortunately, we know how to do this when <span class="process-math">\(A\)</span> is diagonalizable: <span class="process-math">\(A^n = PD^nP^{-1}\text{,}\)</span> where <span class="process-math">\(D\)</span> is a diagonal matrix whose entries are the eigenvalues of <span class="process-math">\(A\text{,}\)</span> and <span class="process-math">\(P\)</span> is the matrix of corresponding eigenvectors of <span class="process-math">\(A\text{.}\)</span></p>
+</div></section><section class="onepage" id="page-22"><article class="exercise exercise-like" id="exercise-103"><h3 class="heading"><span class="codenumber">1<span class="period">.</span></span></h3>
+<div class="introduction" id="introduction-25">
+<p id="p-1219">Consider a recurrence of length 2, of the form</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+x_{k+2} = ax_k+bx_{k+1}\text{.}
+\end{equation*}
+</div>
+</div>
+<article class="task exercise-like" id="task-40"><h4 class="heading"><span class="codenumber">(a)</span></h4>
+<p id="p-1220">According to <a href="worksheet-recurrence.html" class="internal" title="Worksheet 2.5: Worksheet: linear recurrences">Worksheet 2.5</a>, what is the polynomial associated to this recurrence?</p>
+<div class="workspace" data-space="3.75in"></div></article><article class="task exercise-like" id="task-41"><h4 class="heading"><span class="codenumber">(b)</span></h4>
+<p id="p-1221">Let <span class="process-math">\(\vv_k = \begin{bmatrix}x_k\\x_{k+1}\end{bmatrix}\text{,}\)</span> for each <span class="process-math">\(k\geq 0\text{,}\)</span> and let <span class="process-math">\(A=\begin{bmatrix}0\amp 1\\a \amp b\end{bmatrix}\text{.}\)</span> Show that</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\vv_{k+1}=A\vv_k, \text{ for each } k\geq 0\text{.}
+\end{equation*}
+</div>
+<div class="workspace" data-space="3.75in"></div></article><article class="task exercise-like" id="task-42"><h4 class="heading"><span class="codenumber">(c)</span></h4>
+<p id="p-1222">Compute the characteristic polynomial of <span class="process-math">\(A\text{.}\)</span> What do you observe?</p>
+<div class="workspace" data-space="3.75in"></div></article></article><article class="exercise exercise-like" id="exercise-104"><h3 class="heading"><span class="codenumber">2<span class="period">.</span></span></h3>
+<div class="introduction" id="introduction-26">
+<p id="p-1223">For a recurrence of length 3, given by</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+x_{k+3} = ax_k+bx_{k+1}+cx_{k+2}\text{:}
+\end{equation*}
+</div>
+</div>
+<article class="task exercise-like" id="task-43"><h4 class="heading"><span class="codenumber">(a)</span></h4>
+<p id="p-1224">Determine a matrix <span class="process-math">\(A\)</span> such that <span class="process-math">\(\vv_{k+1}=A\vv_k\text{,}\)</span> where <span class="process-math">\(\vv_k = \begin{bmatrix}x_k\\x_{k+1}\\x_{k+2}\end{bmatrix}\text{.}\)</span></p></article><article class="task exercise-like" id="task-44"><h4 class="heading"><span class="codenumber">(b)</span></h4>
+<p id="p-1225">Compute the characteristic polynomial of <span class="process-math">\(A\text{,}\)</span> and compare it to the associated polynomial of the recurrence.</p></article><article class="task exercise-like" id="task-45"><h4 class="heading"><span class="codenumber">(c)</span></h4>
+<p id="p-1226">Show that if <span class="process-math">\(\lambda\)</span> is an eigenvalue of <span class="process-math">\(A\text{,}\)</span> then <span class="process-math">\(\xx = \begin{bmatrix}1\\ \lambda\\ \lambda^2\end{bmatrix}\)</span> is an associated eigenvector.</p></article></article></section><section class="onepage" id="page-23"><article class="exercise exercise-like" id="exercise-105"><h3 class="heading"><span class="codenumber">3<span class="period">.</span></span></h3>
+<div class="introduction" id="introduction-27"><p id="p-1227">Consider the Fibonacci sequence, defined by <span class="process-math">\(x_0=1, x_1=1\text{,}\)</span> and <span class="process-math">\(x_{k+2}=x_k+x_{k+1}\text{.}\)</span> Let <span class="process-math">\(A\)</span> be the matrix associated to this sequence.</p></div>
+<article class="task exercise-like" id="task-46"><h4 class="heading"><span class="codenumber">(a)</span></h4>
+<p id="p-1228">State the matrix <span class="process-math">\(A\text{,}\)</span> and show that <span class="process-math">\(A\)</span> has eigenvalues <span class="process-math">\(\lambda_\pm = \frac{1}{2}(1\pm \sqrt{5})\text{,}\)</span> with associated eigenvectors <span class="process-math">\(\xx_\pm = \begin{bmatrix}1\\ \lambda_\pm\end{bmatrix}\text{.}\)</span></p>
+<div class="workspace" data-space="3in"></div></article><article class="task exercise-like" id="part-dynamical"><h4 class="heading"><span class="codenumber">(b)</span></h4>
+<p id="p-1229">Let <span class="process-math">\(P = \begin{bmatrix}1\amp 1\\ \lambda_+ \amp \lambda_-\end{bmatrix}\text{,}\)</span> let <span class="process-math">\(D = \begin{bmatrix}\lambda_+ \amp 0\\ 0 \amp \lambda_-\end{bmatrix}\text{,}\)</span> and let <span class="process-math">\(\mathbf{a_0}=\begin{bmatrix}a_0\\a_1\end{bmatrix}=P^{-1}\vv_0\text{,}\)</span> where <span class="process-math">\(\vv_0=\begin{bmatrix}1\\1\end{bmatrix}\)</span> gives the initial values of the sequence.</p>
+<p id="p-1230">Show that</p>
+<div class="displaymath process-math" data-contains-math-knowls="" id="md-73">
+\begin{align*}
+\vv_n \amp = PD^nP^{-1}\vv_0\\
+\amp = a_0\lambda_+^n\xx_+ + a_1\lambda_-^n\xx_-\text{.}
+\end{align*}
+</div>
+<div class="workspace" data-space="3in"></div></article><article class="task exercise-like" id="task-48"><h4 class="heading"><span class="codenumber">(c)</span></h4>
+<p id="p-1231">Note that <a href="" class="xref" data-knowl="./knowl/part-dynamical.html" title="Part 4.5.3.b">Part 4.5.3.b</a> tells us that although the Fibonacci sequence is not a geometric sequence, it is the <em class="emphasis">sum</em> of two geometric sequences!</p>
+<p id="p-1232">By considering the numerical values of the eigenvalues <span class="process-math">\(\lambda_+\)</span> and <span class="process-math">\(\lambda_-\text{,}\)</span> explain why we can nonetheless treat the Fibonacci sequence as <em class="emphasis">approximately</em> geometric when <span class="process-math">\(n\)</span> is large.</p>
+<p id="p-1233">(This is true more generally: if a matrix <span class="process-math">\(A\)</span> has one eigenvalue that is larger in absolute value than all the others, this eigenvalue is called the <dfn class="terminology">dominant eigenvalue</dfn>. If <span class="process-math">\(A\)</span> is the matrix of some linear recurrence, and <span class="process-math">\(A\)</span> is diagonalizable, then we can consider the sequence as a sum of geometric sequences that will become approximately geometric in the long run.)</p>
+<div class="workspace" data-space="3in"></div></article></article></section><section class="onepage" id="page-24"><article class="exercise exercise-like" id="exercise-106"><h3 class="heading"><span class="codenumber">4<span class="period">.</span></span></h3>
+<div class="introduction" id="introduction-28">
+<p id="p-1234">As a more practical example, consider the following (over-simplified) predator-prey system. It is based on an example in <a class="external" href="https://personal.math.ubc.ca/~tbjw/ila/dds.html" target="_blank">Interactive Linear Algebra</a><a href="" data-knowl="" class="id-ref fn-knowl original" data-refid="hk-fn-11" id="fn-11"><sup> 1 </sup></a>, by Margalit, Rabinoff, and Williams, but adapted to the wildlife here in Lethbridge. An ecosystem contains both coyotes and deer. Initially, there is a population of <span class="process-math">\(20\)</span> coyotes, and <span class="process-math">\(500\)</span> deer.</p>
+<p id="p-1235">We assume the following:</p>
+<ul class="disc">
+<li id="li-158"><p id="p-1236">the share of the deer population eaten by a typical coyote in a year is <span class="process-math">\(10\)</span> deer</p></li>
+<li id="li-159"><p id="p-1237">in the absence of the coyotes, the deer population would increase by <span class="process-math">\(50\)</span>% per year</p></li>
+<li id="li-160"><p id="p-1238"><span class="process-math">\(20\)</span>% of the coyote population dies each year of natural causes</p></li>
+<li id="li-161"><p id="p-1239">the growth rate of the coyote population depends on the number of deer: for each 100 deer, <span class="process-math">\(10\)</span> coyote pups will survive to adulthood.</p></li>
+</ul>
+<p id="p-1240">If we let <span class="process-math">\(d_t\)</span> denote the number of deer after <span class="process-math">\(t\)</span> years, and <span class="process-math">\(c_t\)</span> the number of coyotes, then we have</p>
+<div class="displaymath process-math" data-contains-math-knowls="" id="md-74">
+\begin{align*}
+d_{t+1} \amp = 1.5d_t - 10c_t\\
+c_{t+1} \amp = 0.1d_t + 0.8c_t\text{,}
+\end{align*}
+</div>
+<p class="continuation">or, in matrix form,</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\mathbf{p}_{t+1} = A\mathbf{p}_t\text{,}
+\end{equation*}
+</div>
+<p class="continuation">where <span class="process-math">\(\mathbf{p}_t=\bbm d_t\\c_t\ebm\)</span> and <span class="process-math">\(A = \bbm 1.5 \amp -10\\0.1 \amp 0.8\ebm\text{.}\)</span></p>
+<p id="p-1241">After <span class="process-math">\(t\)</span> years, the two populations will be given by <span class="process-math">\(\mathbf{p}_t=A^t\mathbf{p}_0\text{,}\)</span> where <span class="process-math">\(\mathbf{p}_0=\bbm 500\\20\ebm\)</span> gives the initial populations of the two species. If possible, we would like to be able to find a closed-form formula for <span class="process-math">\(\mathbf{p}_t\text{,}\)</span> which would allow us to analyze the long-term predictions of our model.</p>
+</div>
+<article class="task exercise-like" id="task-49"><h4 class="heading"><span class="codenumber">(a)</span></h4>
+<p id="p-1242">Analyze the eigenvalues of this matrix, and diagonalize. The <code class="code-inline tex2jax_ignore">sympy</code> library won't be up to the task. Instead, some combination of <code class="code-inline tex2jax_ignore">numpy</code> and <code class="code-inline tex2jax_ignore">scipy</code>, as described by <a class="external" href="https://patrickwalls.github.io/mathematicalpython/linear-algebra/eigenvalues-eigenvectors/" target="_blank">Patrick Walls on his website</a><a href="" data-knowl="" class="id-ref fn-knowl original" data-refid="hk-fn-12" id="fn-12"><sup> 2 </sup></a>, will be needed.</p></article><article class="task exercise-like" id="part-pred-prey"><h4 class="heading"><span class="codenumber">(b)</span></h4>
+<p id="p-1243">The eigenvalues turn out to be complex! What does that tell you about the nature of the system? What is the long-term behaviour of this system?</p></article><article class="task exercise-like" id="task-51"><h4 class="heading"><span class="codenumber">(c)</span></h4>
+<p id="p-1245">What if you adjust the parameters? Can you come up with a system where both species flourish? Or one where they both disappear? Or one where the populations oscillate regularly?</p></article><article class="task exercise-like" id="task-52"><h4 class="heading"><span class="codenumber">(d)</span></h4>
+<p id="p-1247">You may have read this while wondering, “Does Sean actually know anything about ecology and population dynamics? Did he just make up those numbers?”</p>
+<p id="p-1248">The answers are, respectively, no, and yes. Can you come up with numbers that are based on a realistic example? What does our model predict in that case? Is it accurate?</p></article></article></section><section class="onepage" id="page-25"><article class="exercise exercise-like" id="exercise-107"><h3 class="heading"><span class="codenumber">5<span class="period">.</span></span></h3>
+<div class="introduction" id="introduction-29">
+<p id="p-1249">A special type of linear dynamical system occurs when the matrix <span class="process-math">\(A\)</span> is <dfn class="terminology">stochastic</dfn>. A stochastic matrix is one where each entry of the matrix is between <span class="process-math">\(0\)</span> and <span class="process-math">\(1\text{,}\)</span> and all of the columns of the matrix sum to <span class="process-math">\(1\text{.}\)</span></p>
+<p id="p-1250">The reason for these conditions is that the entries of a stochastic matrix represent probabilities; in particular, they are <dfn class="terminology">transition probabilities</dfn>. That is, each number represents the probability of one state changing to another.</p>
+<p id="p-1251">If a system can be in one of <span class="process-math">\(n\)</span> possible states, we represent the system by an <span class="process-math">\(n\times 1\)</span> vector <span class="process-math">\(\vv_t\text{,}\)</span> whose entries indicate the probability that the system is in a given state at time <span class="process-math">\(t\text{.}\)</span> If we know that the system starts out in a particular state, then <span class="process-math">\(\vv_0\)</span> will have a <span class="process-math">\(1\)</span> in one of its entries, and <span class="process-math">\(0\)</span> everywhere else.</p>
+<p id="p-1252">A Markov chain is given by such an initial vector, and a stochastic matrix. As an example, we will consider the following scenario, described in the book <em class="emphasis">Shape</em>, by Jordan Ellenberg:</p>
+<aside class="aside aside-like" id="aside-10"><p id="p-1253">Another interesting example is a car or bicycle share company. Let's say that there are 100 locations in a city where one can pick up or drop off a car/bicycle, and that a car/bike is borrowed for one hour at a time. If, for each pickup location, we know the probability that the car/bike will be returned at each location, we can represent this data in a stochastic matrix, and use the resulting Markov chain to predict the future distribution of cars/bikes.</p></aside><p id="p-1254">A mosquito is born in a swamp, which we will call Swamp A. There is another nearby swamp, called Swamp B. Observational data suggests that when a mosquito is at Swamp A, there is a 40% chance that it will remain there, and a 60% chance that it will move to Swamp B. When the mosquito is at Swamp B, there is a 70% chance that it will remain, and a 30% chance that it will return to Swamp A.</p>
+</div>
+<article class="task exercise-like" id="task-53"><h4 class="heading"><span class="codenumber">(a)</span></h4>
+<p id="p-1255">Give a stochastic matrix <span class="process-math">\(M\)</span> and a vector <span class="process-math">\(\vv_0\)</span> that represent the transition probabilities and initial state given above.</p></article><article class="task exercise-like" id="task-54"><h4 class="heading"><span class="codenumber">(b)</span></h4>
+<p id="p-1256">By diagonalizing the matrix <span class="process-math">\(M\text{,}\)</span> determine the long-term probability that the mosquito will be found in either swamp.</p></article><article class="task exercise-like" id="task-55"><h4 class="heading"><span class="codenumber">(c)</span></h4>
+<p id="p-1257">You should have found that one of the eigenvalues of <span class="process-math">\(M\)</span> was <span class="process-math">\(\lambda=1\text{.}\)</span> The corresponding eigenvector <span class="process-math">\(\vv\)</span> satisfies <span class="process-math">\(M\vv=\vv\text{.}\)</span> This is known as a <dfn class="terminology">steady-state vector</dfn>: if our system begins with state <span class="process-math">\(\vv\text{,}\)</span> it will remain there forever.</p>
+<p id="p-1258">Confirm that if the eigenvector <span class="process-math">\(\vv\)</span> is rescaled so that its entries sum to 1, the resulting values agree with the long-term probabilities found in the previous part.</p></article></article><article class="exercise exercise-like" id="exercise-108"><h3 class="heading"><span class="codenumber">6<span class="period">.</span></span></h3>
+<div class="introduction" id="introduction-30"><p id="p-1259">A stochastic matrix <span class="process-math">\(M\)</span> is called <dfn class="terminology">regular</dfn> some power <span class="process-math">\(M^k\)</span> has all positive entries. It is a theorem that every regular stochastic matrix has a steady-state vector.</p></div>
+<article class="task exercise-like" id="task-56"><h4 class="heading"><span class="codenumber">(a)</span></h4>
+<p id="p-1260">Prove that if <span class="process-math">\(M\)</span> is a <span class="process-math">\(2\times 2\)</span> stochastic matrix with no entry equal to zero, then <span class="process-math">\(1\)</span> is an eigenvalue of <span class="process-math">\(M\text{.}\)</span></p></article><article class="task exercise-like" id="task-57"><h4 class="heading"><span class="codenumber">(b)</span></h4>
+<p id="p-1261">Prove that the product of two <span class="process-math">\(2\times 2\)</span> stochastic matrices is stochastic. Conclude that if <span class="process-math">\(M\)</span> is stochastic, so is <span class="process-math">\(M^k\)</span> for each <span class="process-math">\(k=1,2,3,\ldots\text{.}\)</span></p></article><article class="task exercise-like" id="task-58"><h4 class="heading"><span class="codenumber">(c)</span></h4>
+<p id="p-1262">Also prove that if <span class="process-math">\(M^k\)</span> has positive entries for some <span class="process-math">\(k\text{,}\)</span> then <span class="process-math">\(1\)</span> is an eigenvalue of <span class="process-math">\(M\text{.}\)</span></p></article></article><article class="exercise exercise-like" id="exercise-109"><h3 class="heading"><span class="codenumber">7<span class="period">.</span></span></h3>
+<p id="p-1264">By searching online or in other textbooks, find and state a more interesting/complicated example of a Markov chain problem, and show how to solve it.</p></article></section></section></div></main>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script>
+</body>
+</html>

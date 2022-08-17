@@ -11,14 +11,19 @@
 <meta name="robots" content="noindex, nofollow">
 </head>
 <body class="ignore-math"><div class="solution solution-like">
-<p>Note that the distributive property, together with symmetry, let us handle this dot product using what is essentially “<abbr class="initialism">FOIL</abbr>”:</p>
+<p>Suppose <span class="process-math">\(T:V\to W\)</span> is surjective. Then <span class="process-math">\(\dim \im T = \dim W\text{,}\)</span> so</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
-\begin{align*}
-(4\xx-3\yy)\dotp (\xx+5\yy)\amp = (4\xx)\dotp \xx+(4\xx)\dotp(5\yy)+(-3\yy)\dotp \xx+(-3\yy)\dotp(5\yy)\\
-\amp = 4(\xx\dotp\xx)+(4\cdot 5)(\xx\dotp \yy)-3(\yy\dotp \xx)+(-3\cdot 5)(\yy\dotp\yy)\\
-\amp = 4\len{\xx}^2+20\xx\dotp\yy-3\xx\dotp\yy-15\len{\yy}^2\\
-\amp = 4(9)+17(-2)-15(1) = -13\text{.}
-\end{align*}
+\begin{equation*}
+\dim V = \dim \ker T + \dim W \geq  \dim W\text{.}
+\end{equation*}
 </div>
+<p class="continuation">Conversely, suppose <span class="process-math">\(\dim V\geq \dim W\text{.}\)</span> Again, choose a basis <span class="process-math">\(\{\vv_1,\ldots, \vv_m\}\)</span> of <span class="process-math">\(V\text{,}\)</span> and a basis <span class="process-math">\(\{\ww_1,\ldots, \ww_n\}\)</span> of <span class="process-math">\(W\text{,}\)</span> where this time, <span class="process-math">\(m\geq n\text{.}\)</span> We can define a linear transformation as follows:</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+T(\vv_1)=\ww_1,\ldots, T(\vv_n)=\ww_n, \text{ and } T(\vv_j) = \zer \text{ for } j&gt;n.
+\end{equation*}
+</div>
+<p class="continuation">It's easy to check that this map is a surjection: given <span class="process-math">\(\ww\in W\text{,}\)</span> we can write it in terms of our basis as <span class="process-math">\(\ww=c_1\ww_1+\cdots + c_n\ww_n\text{.}\)</span> Using these same scalars, we can define <span class="process-math">\(\vv=c_1\vv_1+\cdots + c_n\vv_n\in V\)</span> such that <span class="process-math">\(T(\vv)=\ww\text{.}\)</span></p>
+<p>Note that it's not important how we define <span class="process-math">\(T(\vv_j)\)</span> when <span class="process-math">\(j&gt;n\text{.}\)</span> The point is that this time, we run out of basis vectors for <span class="process-math">\(W\)</span> before we run out of basis vectors for <span class="process-math">\(V\text{.}\)</span> Once each vector in the basis of <span class="process-math">\(W\)</span> is in the image of <span class="process-math">\(T\text{,}\)</span> we're guaranteed that <span class="process-math">\(T\)</span> is surjective, and we can define the value of <span class="process-math">\(T\)</span> on any remaining basis vectors however we want.</p>
 </div></body>
 </html>

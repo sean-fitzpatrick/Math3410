@@ -11,8 +11,19 @@
 <meta name="robots" content="noindex, nofollow">
 </head>
 <body class="ignore-math">
-<h3 class="heading"><span class="type">Paragraph</span></h3>
-<p>First, we note that for any operator <span class="process-math">\(T\text{,}\)</span> the restriction of <span class="process-math">\(T\)</span> to <span class="process-math">\(\ker T\)</span> is the zero operator, since by definition, <span class="process-math">\(T(\vv)=\zer\)</span> for all <span class="process-math">\(\vv\in\ker T\text{.}\)</span> Since we define <span class="process-math">\(E_{\lambda}(T)=\ker (T-\lambda I)\text{,}\)</span> it follows that <span class="process-math">\(T-\lambda I\)</span> restricts to the zero operator on the eigenspace <span class="process-math">\(E_\lambda(T)\text{.}\)</span> The idea is to relax the condition “identically zero” to something that will allow us to potentially enlarge some of our eigenspaces, so that we end up with enough vectors to span <span class="process-math">\(V\text{.}\)</span></p>
-<span class="incontext"><a href="sec-gen-eigen.html#p-1426" class="internal">in-context</a></span>
+<h4 class="heading"><span class="type">Paragraph</span></h4>
+<p>Finding this matrix requires us to first write the vectors in <span class="process-math">\(B\)</span> in terms of the vectors in <span class="process-math">\(D\text{.}\)</span> However, it's much easier to do this the other way around. We easily find</p>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/thm-change-matrix.html">
+\begin{equation*}
+P_{B\leftarrow D} = \bbm 1\amp 0\amp 2\\1\amp 1\amp -3\\0\amp 1\amp 1\ebm\text{,}
+\end{equation*}
+</div>
+<p class="continuation">and by <a href="" class="xref" data-knowl="./knowl/thm-change-matrix.html" title="Theorem 5.2.6">Theorem 5.2.6</a>, we have</p>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/thm-change-matrix.html">
+\begin{equation*}
+P_{D\leftarrow B} = (P_{B\leftarrow D})^{-1} = \frac16\bbm 4\amp 2\amp -2\\-1\amp 1\amp 5\\1\amp -1\amp 1\ebm\text{.}
+\end{equation*}
+</div>
+<span class="incontext"><a href="sec-matrix-operator.html#p-1426" class="internal">in-context</a></span>
 </body>
 </html>

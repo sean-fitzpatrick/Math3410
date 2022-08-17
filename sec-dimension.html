@@ -216,10 +216,11 @@ true);
 </li>
 <li class="link">
 <a href="ch-diagonalization.html" data-scroll="ch-diagonalization" class="internal"><span class="codenumber">4</span> <span class="title">Diagonalization</span></a><ul>
-<li><a href="subsec-eigen-basics.html" data-scroll="subsec-eigen-basics" class="internal">Eigenvalues and Eigenvectors</a></li>
+<li><a href="sec-eigen-basics.html" data-scroll="sec-eigen-basics" class="internal">Eigenvalues and Eigenvectors</a></li>
 <li><a href="subsec-ortho-diag.html" data-scroll="subsec-ortho-diag" class="internal">Diagonalization of symmetric matrices</a></li>
 <li><a href="sec-quadratic.html" data-scroll="sec-quadratic" class="internal">Quadratic forms</a></li>
 <li><a href="sec-complex.html" data-scroll="sec-complex" class="internal">Diagonalization of complex matrices</a></li>
+<li><a href="worksheet-dynamical.html" data-scroll="worksheet-dynamical" class="internal">Worksheet: linear dynamical systems</a></li>
 <li><a href="section-matrix-factor.html" data-scroll="section-matrix-factor" class="internal">Matrix Factorizations and Eigenvalues</a></li>
 <li><a href="worksheet-svd.html" data-scroll="worksheet-svd" class="internal">Worksheet: Singular Value Decomposition</a></li>
 </ul>
@@ -235,14 +236,15 @@ true);
 </ul>
 </li>
 <li class="link backmatter"><a href="backmatter-1.html" data-scroll="backmatter-1" class="internal"><span class="title">Back Matter</span></a></li>
+<li class="link"><a href="appendix-complex-review.html" data-scroll="appendix-complex-review" class="internal"><span class="codenumber">A</span> <span class="title">Review of complex numbers</span></a></li>
 <li class="link">
-<a href="ch-computation.html" data-scroll="ch-computation" class="internal"><span class="codenumber">A</span> <span class="title">Computational Tools</span></a><ul>
+<a href="ch-computation.html" data-scroll="ch-computation" class="internal"><span class="codenumber">B</span> <span class="title">Computational Tools</span></a><ul>
 <li><a href="section-jupyter.html" data-scroll="section-jupyter" class="internal">Jupyter</a></li>
 <li><a href="sec-python-basics.html" data-scroll="sec-python-basics" class="internal">Python basics</a></li>
 <li><a href="sec-sympy.html" data-scroll="sec-sympy" class="internal">SymPy for linear algebra</a></li>
 </ul>
 </li>
-<li class="link"><a href="solutions-1.html" data-scroll="solutions-1" class="internal"><span class="codenumber">B</span> <span class="title">Solutions to Selected Exercises</span></a></li>
+<li class="link"><a href="solutions-1.html" data-scroll="solutions-1" class="internal"><span class="codenumber">C</span> <span class="title">Solutions to Selected Exercises</span></a></li>
 </ul></nav><div class="extras"><nav><a class="pretext-link" href="https://pretextbook.org">Authored in PreTeXt</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a></nav></div>
 </div></div>
 <main class="main"><div id="content" class="pretext-content"><section class="section" id="sec-dimension"><h2 class="heading hide-type">
@@ -292,27 +294,7 @@ true);
 <p class="continuation">If <span class="process-math">\(V\)</span> cannot be spanned by finitely many vectors, we say that <span class="process-math">\(V\)</span> is <dfn class="terminology">infinite-dimensional</dfn>.</p></article><article class="exercise exercise-like" id="exercise-23"><h3 class="heading">
 <span class="type">Exercise</span><span class="space"> </span><span class="codenumber">1.7.5</span><span class="period">.</span>
 </h3>
-<p id="p-353">Find a basis for <span class="process-math">\(U=\{X\in M_{22} \,|\, XA = AX\}\text{,}\)</span> if <span class="process-math">\(A = \bbm 1\amp 1\\0\amp 0\ebm\)</span></p>
-<div class="solutions">
-<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-22" id="solution-22"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-22"><div class="solution solution-like">
-<p id="p-354">Let <span class="process-math">\(X=\bbm a\amp b\\c\amp d\ebm\text{.}\)</span> Then <span class="process-math">\(AX = \bbm a+c\amp b+d\\0\amp 0\ebm\text{,}\)</span> and <span class="process-math">\(XA = \bbm a\amp a\\c\amp c\ebm\text{,}\)</span> so the condition <span class="process-math">\(AX=XA\)</span> requires:</p>
-<div class="displaymath process-math" data-contains-math-knowls="" id="md-20">
-\begin{align*}
-a+c \amp = a\\
-b+d \amp = a\\
-0 \amp = c\\
-0 \amp =c\text{.}
-\end{align*}
-</div>
-<p id="p-355">So <span class="process-math">\(c=0\text{,}\)</span> in which case the first equation <span class="process-math">\(a=a\)</span> is trivial, and we are left with the single equation <span class="process-math">\(a=b+d\text{.}\)</span> Thus, our matrix <span class="process-math">\(X\)</span> must be of the form</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-X = \bbm b+d \amp b\\0\amp d\ebm = b\bbm 1\amp 1\\0\amp 0\ebm + d\bbm 1\amp 0\\0\amp 1\ebm\text{.}
-\end{equation*}
-</div>
-<p class="continuation">Since the matrices <span class="process-math">\(\bbm 1\amp 1\\0\amp 0\ebm\)</span> and <span class="process-math">\(\bbm 1\amp 0\\0\amp 1\ebm\)</span> are not scalar multiples of each other, they must be independent, and therefore, they form a basis for <span class="process-math">\(U\text{.}\)</span> (Why do we know these matrices span <span class="process-math">\(U\text{?}\)</span>)</p>
-</div></div>
-</div></article><article class="example example-like" id="ex-standard-bases"><h3 class="heading">
+<p id="p-353">Find a basis for <span class="process-math">\(U=\{X\in M_{22} \,|\, XA = AX\}\text{,}\)</span> if <span class="process-math">\(A = \bbm 1\amp 1\\0\amp 0\ebm\)</span></p></article><article class="example example-like" id="ex-standard-bases"><h3 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">1.7.6</span><span class="period">.</span><span class="space"> </span><span class="title">Standard bases.</span>
 </h3>
 <p id="p-356">Most of the vector spaces we work with come equipped with a <em class="emphasis">standard basis</em>. The standard basis for a vector space is typically a basis such that the scalars needed to express a vector in terms of that basis are the same scalars used to define the vector in the first place. For example, we write an element of <span class="process-math">\(\R^3\)</span> as <span class="process-math">\((x,y,z)\)</span> (or <span class="process-math">\(\langle x,y,z\rangle\text{,}\)</span> or <span class="process-math">\(\begin{bmatrix}x\amp y\amp z\end{bmatrix}\text{,}\)</span> or <span class="process-math">\(\begin{bmatrix}x\\y\\z\end{bmatrix}\)</span>…). We can also write</p>
@@ -346,57 +328,8 @@ p(x) = a_0+a_1x+a_2x^2+\cdots + a_nx^n\text{,}
 </h3>
 <div class="introduction" id="introduction-7"><p id="p-359">Show that the following sets are bases of <span class="process-math">\(\R^3\text{.}\)</span></p></div>
 <article class="task exercise-like" id="task-20"><h4 class="heading"><span class="codenumber">(a)</span></h4>
-<p id="p-360"><span class="process-math">\(\{(1,1,0),(1,0,1),(0,1,1)\}\)</span></p>
-<div class="solutions">
-<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-23" id="solution-23"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-23"><div class="solution solution-like">
-<p id="p-361">We need to show that the set is independent, and that it spans.</p>
-<p id="p-362">The set is independent if the equation</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-x(1,1,0)+y(1,0,1)+z(0,1,1)=(0,0,0)
-\end{equation*}
-</div>
-<p class="continuation">has <span class="process-math">\(x=y=z=0\)</span> as its only solution. This equation is equivalent to the system</p>
-<div class="displaymath process-math" data-contains-math-knowls="" id="md-21">
-\begin{align*}
-x+y \amp =0\\
-x+z \amp =0\\
-y+z \amp =0\text{.}
-\end{align*}
-</div>
-<p id="p-363">We know that the solution to this system is unique if the coefficient matrix <span class="process-math">\(A = \bbm 1\amp 1\amp 0\\1\amp 0\amp 1\\0\amp 1\amp 1\ebm\)</span> is invertible. Note that the columns of this matrix are vectors in our set.</p>
-<p id="p-364">We can determine invertibility either by showing that the <abbr class="initialism">RREF</abbr> of <span class="process-math">\(A\)</span> is the identity, or by showing that the determinant of <span class="process-math">\(A\)</span> is nonzero. Either way, this is most easily done by the computer:</p>
-<pre class="ptx-sagecell hidden-sagecell-sage" id="sage-19"><script type="text/x-sage">from sympy import Matrix,init_printing
-init_printing()
-A = Matrix([[1,1,0],[1,0,1],[0,1,1]])
-A.rref(), A.det()
-</script></pre>
-<p id="p-365">Our set of vectors is therefore linearly independent. Now, to show that it spans, we need to show that for any vector <span class="process-math">\((a,b,c)\text{,}\)</span> the equation</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-x(1,1,0)+y(1,0,1)+z(0,1,1)=(a,b,c)
-\end{equation*}
-</div>
-<p class="continuation">has a solution. But we know that this system has the same coefficient matrix as the one above, and that existence of a solution again follows from invertibility of <span class="process-math">\(A\text{,}\)</span> which we have already established.</p>
-<p id="p-366">Note that for three vectors in <span class="process-math">\(\R^3\text{,}\)</span> once independence has been confirmed, span is automatic. We will soon see that this is not a coincidence.</p>
-</div></div>
-</div></article><article class="task exercise-like" id="task-21"><h4 class="heading"><span class="codenumber">(b)</span></h4>
-<p id="p-367"><span class="process-math">\(\{(-1,1,1),(1,-1,1),(1,1,-1)\}\)</span></p>
-<div class="solutions">
-<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-24" id="solution-24"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-24"><div class="solution solution-like">
-<p id="p-368">Based on what we learned from the first set, determining whether or not this set is a basis is equivalent to determining whether or not the matrix <span class="process-math">\(A\)</span> whose columns consist of the vectors in the set is invertible. We form the matrix</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-A = \bbm -1\amp 1\amp 1\\1\amp -1\amp 1\\1\amp 1\amp -1\ebm
-\end{equation*}
-</div>
-<p class="continuation">and then check invertibility using the computer.</p>
-<pre class="ptx-sagecell hidden-sagecell-sage" id="sage-20"><script type="text/x-sage">A = Matrix([[-1,1,1],[1,-1,1],[1,1,-1]])
-A.det()
-</script></pre>
-<p id="p-369">Since the determinant is nonzero, our set is a basis.</p>
-</div></div>
-</div></article></article><p id="p-370">The next two exercises are left to the reader to solve. In each case, your goal should be to turn the questions of independence and span into a system of equations, which you can then solve using the computer.</p>
+<p id="p-360"><span class="process-math">\(\{(1,1,0),(1,0,1),(0,1,1)\}\)</span></p></article><article class="task exercise-like" id="task-21"><h4 class="heading"><span class="codenumber">(b)</span></h4>
+<p id="p-367"><span class="process-math">\(\{(-1,1,1),(1,-1,1),(1,1,-1)\}\)</span></p></article></article><p id="p-370">The next two exercises are left to the reader to solve. In each case, your goal should be to turn the questions of independence and span into a system of equations, which you can then solve using the computer.</p>
 <article class="exercise exercise-like" id="exercise-25"><h3 class="heading">
 <span class="type">Exercise</span><span class="space"> </span><span class="codenumber">1.7.8</span><span class="period">.</span>
 </h3>
@@ -443,36 +376,9 @@ a\cdot 1 +(a+b)x+(b+c)x^2+(c+d)x^3=0\text{,}
 </h3>
 <div class="introduction" id="introduction-8"><p id="p-375">Find a basis and dimension for the following subspaces of <span class="process-math">\(P_2\text{:}\)</span></p></div>
 <article class="task exercise-like" id="task-22"><h4 class="heading"><span class="codenumber">(a)</span></h4>
-<p id="p-376"><span class="process-math">\(U_1 = \{a(1+x)+b(x+x^2)\,|\, a,b\in\R\}\)</span></p>
-<div class="solutions">
-<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-25" id="solution-25"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-25"><div class="solution solution-like"><p id="p-377">By definition, <span class="process-math">\(U_1 = \spn \{1+x,x+x^2\}\text{,}\)</span> and these vectors are independent, since neither is a scalar multiple of the other. Since there are two vectors in this basis, <span class="process-math">\(\dim U_1 = 2\text{.}\)</span></p></div></div>
-</div></article><article class="task exercise-like" id="task-23"><h4 class="heading"><span class="codenumber">(b)</span></h4>
-<p id="p-378"><span class="process-math">\(U_2=\{p(x)\in P_2 \,|\, p(1)=0\}\)</span></p>
-<div class="solutions">
-<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-26" id="solution-26"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-26"><div class="solution solution-like">
-<p id="p-379">If <span class="process-math">\(p(1)=0\text{,}\)</span> then <span class="process-math">\(p(x)=(x-1)q(x)\)</span> for some polynomial <span class="process-math">\(q\text{.}\)</span> Since <span class="process-math">\(U_2\)</span> is a subspace of <span class="process-math">\(P_2\text{,}\)</span> the degree of <span class="process-math">\(q\)</span> is at most 2. Therefore, <span class="process-math">\(q(x)=ax+b\)</span> for some <span class="process-math">\(a,b\in\R\text{,}\)</span> and</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-p(x) = (x-1)(ax+b) = a(x^2-x)+b(x-1)\text{.}
-\end{equation*}
-</div>
-<p class="continuation">Since <span class="process-math">\(p\)</span> was arbitrary, this shows that <span class="process-math">\(U_2 = \spn\{x^2-x,x-1\}\text{.}\)</span></p>
-<p id="p-380">The set <span class="process-math">\(\{x^2-x,x-1\}\)</span> is also independent, since neither vector is a scalar multiple of the other. Therefore, this set is a basis, and <span class="process-math">\(\dim U_2=2\text{.}\)</span></p>
-</div></div>
-</div></article><article class="task exercise-like" id="task-24"><h4 class="heading"><span class="codenumber">(c)</span></h4>
-<p id="p-381"><span class="process-math">\(U_3 = \{p(x)\in P_2 \,|\, p(x)=p(-x)\}\)</span></p>
-<div class="solutions">
-<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-27" id="solution-27"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-27"><div class="solution solution-like">
-<p id="p-382">If <span class="process-math">\(p(x)=p(-x)\text{,}\)</span> then <span class="process-math">\(p(x)\)</span> is an even polynomial, and therefore <span class="process-math">\(p(x)=a+bx^2\)</span> for <span class="process-math">\(a,b\in\R\text{.}\)</span> (If you didn't know this it's easily verified: if</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-a+bx+cx^2 = a+b(-x)+c(-x)^2\text{,}
-\end{equation*}
-</div>
-<p class="continuation">we can immediately cancel <span class="process-math">\(a\)</span> from each side, and since <span class="process-math">\((-x)^2=x^2\text{,}\)</span> we can cancel <span class="process-math">\(cx^2\)</span> as well. This leaves <span class="process-math">\(bx=-bx\text{,}\)</span> or <span class="process-math">\(2bx=0\text{,}\)</span> which implies that <span class="process-math">\(b=0\text{.}\)</span>)</p>
-<p id="p-383">It follows that the set <span class="process-math">\(\{1,x^2\}\)</span> spans <span class="process-math">\(U_3\text{,}\)</span> and since this is a subset of the standard basis <span class="process-math">\(\{1,x,x^2\}\)</span> of <span class="process-math">\(P_2\text{,}\)</span> it must be independent, and is therefore a basis of <span class="process-math">\(U_3\text{,}\)</span> letting us conclude that <span class="process-math">\(\dim U_3=2\text{.}\)</span></p>
-</div></div>
-</div></article></article><p id="p-384">We've noted a few times now that if <span class="process-math">\(\ww\in\spn\{\vv_1,\ldots, \vv_n\}\text{,}\)</span> then</p>
+<p id="p-376"><span class="process-math">\(U_1 = \{a(1+x)+b(x+x^2)\,|\, a,b\in\R\}\)</span></p></article><article class="task exercise-like" id="task-23"><h4 class="heading"><span class="codenumber">(b)</span></h4>
+<p id="p-378"><span class="process-math">\(U_2=\{p(x)\in P_2 \,|\, p(1)=0\}\)</span></p></article><article class="task exercise-like" id="task-24"><h4 class="heading"><span class="codenumber">(c)</span></h4>
+<p id="p-381"><span class="process-math">\(U_3 = \{p(x)\in P_2 \,|\, p(x)=p(-x)\}\)</span></p></article></article><p id="p-384">We've noted a few times now that if <span class="process-math">\(\ww\in\spn\{\vv_1,\ldots, \vv_n\}\text{,}\)</span> then</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 \spn\{\ww,\vv_1,\ldots, \vv_n\}=\spn\{\vv_1,\ldots, \vv_n\}
@@ -534,24 +440,10 @@ c_1\vv_1+c_2\vv_2+\cdots +c_n\mathbf{b}_n=\zer\text{,}
 \begin{equation*}
 \vv=\bbm 1\amp 1\\0\amp 0\ebm, \ww=\bbm 0\amp 1\\0\amp 1\ebm\text{.}
 \end{equation*}
-</div>
-<div class="solutions">
-<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-28" id="solution-28"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-28"><div class="solution solution-like">
-<p id="p-407">By the previous theorem, we can form a basis by adding vectors from the standard basis</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-\left\{\bbm 1\amp 0\\0\amp 0\ebm, \bbm 0\amp 1\\0\amp 0\ebm, \bbm 0\amp 0\\1\amp 0\ebm, \bbm 0\amp 0\\0\amp 1\ebm\right\}\text{.}
-\end{equation*}
-</div>
-<p class="continuation">It's easy to check that <span class="process-math">\(\bbm 1\amp 0\\0\amp 0\ebm\)</span> is not in the span of <span class="process-math">\(\{\vv,\ww\}\text{.}\)</span> To get a basis, we need one more vector. Observe that all three of our vectors so far have a zero in the <span class="process-math">\((2,1)\)</span>-entry. Thus, <span class="process-math">\(\bbm 0\amp 0\\1\amp 0\ebm\)</span> cannot be in the span of the first three vectors, and adding it gives us our basis.</p>
-</div></div>
 </div></article><article class="exercise exercise-like" id="exercise-29"><h3 class="heading">
 <span class="type">Exercise</span><span class="space"> </span><span class="codenumber">1.7.15</span><span class="period">.</span>
 </h3>
-<p id="p-408">Extend the set <span class="process-math">\(\{1+x,x+x^2,x-x^3\}\)</span> to a basis of <span class="process-math">\(P_3(\R)\text{.}\)</span></p>
-<div class="solutions">
-<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-29" id="solution-29"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-29"><div class="solution solution-like"><p id="p-409">Again, we only need to add one vector from the standard basis <span class="process-math">\(\{1,x,x^2,x^3\}\text{,}\)</span> and it's not too hard to check that any of them will do.</p></div></div>
-</div></article><article class="exercise exercise-like" id="exercise-30"><h3 class="heading">
+<p id="p-408">Extend the set <span class="process-math">\(\{1+x,x+x^2,x-x^3\}\)</span> to a basis of <span class="process-math">\(P_3(\R)\text{.}\)</span></p></article><article class="exercise exercise-like" id="exercise-30"><h3 class="heading">
 <span class="type">Exercise</span><span class="space"> </span><span class="codenumber">1.7.16</span><span class="period">.</span>
 </h3>
 <p id="p-410">Give two examples of infinite-dimensional vector spaces. Support your answer.</p></article><article class="exercise exercise-like" id="exercise-31"><h3 class="heading">

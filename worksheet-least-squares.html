@@ -222,10 +222,11 @@ true);
 </li>
 <li class="link">
 <a href="ch-diagonalization.html" data-scroll="ch-diagonalization" class="internal"><span class="codenumber">4</span> <span class="title">Diagonalization</span></a><ul>
-<li><a href="subsec-eigen-basics.html" data-scroll="subsec-eigen-basics" class="internal">Eigenvalues and Eigenvectors</a></li>
+<li><a href="sec-eigen-basics.html" data-scroll="sec-eigen-basics" class="internal">Eigenvalues and Eigenvectors</a></li>
 <li><a href="subsec-ortho-diag.html" data-scroll="subsec-ortho-diag" class="internal">Diagonalization of symmetric matrices</a></li>
 <li><a href="sec-quadratic.html" data-scroll="sec-quadratic" class="internal">Quadratic forms</a></li>
 <li><a href="sec-complex.html" data-scroll="sec-complex" class="internal">Diagonalization of complex matrices</a></li>
+<li><a href="worksheet-dynamical.html" data-scroll="worksheet-dynamical" class="internal">Worksheet: linear dynamical systems</a></li>
 <li><a href="section-matrix-factor.html" data-scroll="section-matrix-factor" class="internal">Matrix Factorizations and Eigenvalues</a></li>
 <li><a href="worksheet-svd.html" data-scroll="worksheet-svd" class="internal">Worksheet: Singular Value Decomposition</a></li>
 </ul>
@@ -241,14 +242,15 @@ true);
 </ul>
 </li>
 <li class="link backmatter"><a href="backmatter-1.html" data-scroll="backmatter-1" class="internal"><span class="title">Back Matter</span></a></li>
+<li class="link"><a href="appendix-complex-review.html" data-scroll="appendix-complex-review" class="internal"><span class="codenumber">A</span> <span class="title">Review of complex numbers</span></a></li>
 <li class="link">
-<a href="ch-computation.html" data-scroll="ch-computation" class="internal"><span class="codenumber">A</span> <span class="title">Computational Tools</span></a><ul>
+<a href="ch-computation.html" data-scroll="ch-computation" class="internal"><span class="codenumber">B</span> <span class="title">Computational Tools</span></a><ul>
 <li><a href="section-jupyter.html" data-scroll="section-jupyter" class="internal">Jupyter</a></li>
 <li><a href="sec-python-basics.html" data-scroll="sec-python-basics" class="internal">Python basics</a></li>
 <li><a href="sec-sympy.html" data-scroll="sec-sympy" class="internal">SymPy for linear algebra</a></li>
 </ul>
 </li>
-<li class="link"><a href="solutions-1.html" data-scroll="solutions-1" class="internal"><span class="codenumber">B</span> <span class="title">Solutions to Selected Exercises</span></a></li>
+<li class="link"><a href="solutions-1.html" data-scroll="solutions-1" class="internal"><span class="codenumber">C</span> <span class="title">Solutions to Selected Exercises</span></a></li>
 </ul></nav><div class="extras"><nav><a class="pretext-link" href="https://pretextbook.org">Authored in PreTeXt</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a></nav></div>
 </div></div>
 <main class="main"><div id="content" class="pretext-content">
@@ -257,7 +259,7 @@ true);
 <a href="worksheet-least-squares-a4.html" class="a4">A4</a><a href="worksheet-least-squares-letter.html" class="us">US</a>
 </div>
 </h2>
-<section class="onepage" id="page-16"><div class="introduction" id="introduction-19">
+<section class="onepage" id="page-16"><div class="introduction" id="introduction-21">
 <p id="p-1018">In many applied scenarios, it is not practical (or even, perhaps, possible) to find an exact solution to a problem. Sometimes we may be working with imperfect data. Other times, we may be dealing with a problem that is <dfn class="terminology">overdetermined</dfn>, <a href="" data-knowl="" class="id-ref fn-knowl original" data-refid="hk-fn-7" id="fn-7"><sup> 1 </sup></a> such as a system of linear equations with more equations than variables. (Quite often, both of these issues may be present.)</p>
 <p id="p-1019">An overdetermined system is quite likely to be inconsistent. That is, our problem requires finding a solution to a system <span class="process-math">\(A\xx=\mathbf{b}\text{,}\)</span> where no such solution exists! When no solution is possible, we can ask whether it is instead possible to find a <em class="emphasis">best approximation</em>.</p>
 <p id="p-1020">What would a best approximation look like in this case? Let <span class="process-math">\(U=\csp(A)\)</span> denote the column space of <span class="process-math">\(A\text{,}\)</span> which we know is a subspace of <span class="process-math">\(\R^n\)</span> (assuming <span class="process-math">\(A\)</span> is an <span class="process-math">\(m\times n\)</span> matrix). The subspace <span class="process-math">\(U\)</span> is precisely the set of all vectors <span class="process-math">\(\yy\)</span> such that <span class="process-math">\(A\xx=\yy\)</span> has a solution. Among these vectors, we would like to find the one that is <em class="emphasis">closest</em> to <span class="process-math">\(\mathbf{b}\text{,}\)</span> in the sense that <span class="process-math">\(\len{\yy-\mathbf{b}}\)</span> is as small as possible.</p>
@@ -266,16 +268,16 @@ true);
 <p id="p-1022">The presentation in this worksheet is based on the one given in the text by Nicholson (see Section 5.6). Further details may be found there, or, for the more statistically inclined, on <a class="external" href="https://en.wikipedia.org/wiki/Least_squares" target="_blank">Wikipedia</a><a href="" data-knowl="" class="id-ref fn-knowl original" data-refid="hk-fn-8" id="fn-8"><sup> 2 </sup></a>.</p>
 <p id="p-1023">Given an inconsistent system <span class="process-math">\(A\xx = \mathbf{b}\text{,}\)</span> we have two problems to solve:</p>
 <ol class="lower-alpha">
-<li id="li-141"><p id="p-1024">Find the vector <span class="process-math">\(\yy = \proj{U}{\mathbf{b}}\text{,}\)</span> where <span class="process-math">\(U=\csp(A)\)</span></p></li>
-<li id="li-142"><p id="p-1025">Find a vector <span class="process-math">\(\zz\)</span> such that <span class="process-math">\(A\zz=\yy\)</span></p></li>
+<li id="li-131"><p id="p-1024">Find the vector <span class="process-math">\(\yy = \proj{U}{\mathbf{b}}\text{,}\)</span> where <span class="process-math">\(U=\csp(A)\)</span></p></li>
+<li id="li-132"><p id="p-1025">Find a vector <span class="process-math">\(\zz\)</span> such that <span class="process-math">\(A\zz=\yy\)</span></p></li>
 </ol>
 <p class="continuation">The vector <span class="process-math">\(\zz\)</span> is then our approximate solution.</p>
 <p id="p-1026">This can be done directly, of course:</p>
 <ol class="lower-alpha">
-<li id="li-143"><p id="p-1027">Find a basis for <span class="process-math">\(U\)</span></p></li>
-<li id="li-144"><p id="p-1028">Use the <a href="" class="xref" data-knowl="./knowl/thm-gram-schmidt.html" title="Theorem 3.2.4: Gram-Schmidt Orthonormalization Algorithm">Gram-Schmidt Orthonormalization Algorithm</a> to construct an orthogonal basis for <span class="process-math">\(U\)</span></p></li>
-<li id="li-145"><p id="p-1029">Use this orthogonal basis to compute <span class="process-math">\(\yy=\proj{U}{\mathbf{b}}\)</span></p></li>
-<li id="li-146"><p id="p-1030">Solve the system <span class="process-math">\(A\zz=\yy\text{.}\)</span></p></li>
+<li id="li-133"><p id="p-1027">Find a basis for <span class="process-math">\(U\)</span></p></li>
+<li id="li-134"><p id="p-1028">Use the <a href="" class="xref" data-knowl="./knowl/thm-gram-schmidt.html" title="Theorem 3.2.4: Gram-Schmidt Orthonormalization Algorithm">Gram-Schmidt Orthonormalization Algorithm</a> to construct an orthogonal basis for <span class="process-math">\(U\)</span></p></li>
+<li id="li-135"><p id="p-1029">Use this orthogonal basis to compute <span class="process-math">\(\yy=\proj{U}{\mathbf{b}}\)</span></p></li>
+<li id="li-136"><p id="p-1030">Solve the system <span class="process-math">\(A\zz=\yy\text{.}\)</span></p></li>
 </ol>
 <p id="p-1031">But there is another way to proceed: we know that <span class="process-math">\(\mathbf{b}-\yy=\mathbf{b}-A\zz\in U^\bot\text{,}\)</span> so for any vector <span class="process-math">\(A\xx\in U\text{,}\)</span> <span class="process-math">\((A\xx)\dotp (\mathbf{b}-A\zz)=0\text{.}\)</span> Therefore,</p>
 <div class="displaymath process-math" data-contains-math-knowls="" id="md-66">

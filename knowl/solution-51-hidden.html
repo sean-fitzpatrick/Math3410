@@ -11,20 +11,29 @@
 <meta name="robots" content="noindex, nofollow">
 </head>
 <body class="ignore-math"><div class="solution solution-like">
-<p>Let's solve the same problem using orthogonal projection. First, we have to deal with the fact that the vectors <span class="process-math">\(\uu\)</span> and <span class="process-math">\(\vv\)</span> are probably not orthogonal. To get around this, we replace <span class="process-math">\(\vv\)</span> with</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-\ww = \vv-\left(\frac{\vv\dotp\uu}{\len{\uu}^2}\right)\uu = \bbm -4\\0\\1\ebm+\frac 85\bbm 2\\1\\0\ebm = \bbm -4/5\\8/5\\1\ebm\text{.}
-\end{equation*}
-</div>
-<p class="continuation">We now set</p>
+<p>We compute</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{align*}
-\mathbf{q} \amp =\left(\frac{\mathbf{p}\dotp\uu}{\len{\uu}^2}\right)\uu-\left(\frac{\mathbf{p}\dotp\ww}{\len{\ww}^2}\right)\ww\\
-\amp = \frac{7}{5}\bbm 2\\1\\0\ebm +\frac{-14}{105}\bbm -4\\8\\5\ebm \\
-\amp = \bbm 10/3\\1/3\\-2/3\ebm\text{.}
+\left(\frac{\vv\dotp\xx_1}{\len{\xx_1}^2}\right)\xx_1
+\amp +\left(\frac{\vv\dotp\xx_2}{\len{\xx_2}^2}\right)\xx_2
++\left(\frac{\vv\dotp\xx_3}{\len{\xx_3}^2}\right)\xx_3\\
+\amp = \frac{4}{2}\xx_1+\frac{-9}{3}\xx_2+\frac{-28}{7}\xx_3\\
+\amp = 2(1,0,1,0)-3(-1,0,1,1)-4(1,1,-1,2)\\
+\amp = (1,-4,3,-11) = \vv\text{,}
 \end{align*}
 </div>
-<p class="continuation">Lo and behold, we get the same answer as before.</p>
+<p class="continuation">so <span class="process-math">\(\vv\in\spn\{\xx_1,\xx_2,\xx_3\}\text{.}\)</span></p>
+<p>On the other hand, repeating the same calculation with <span class="process-math">\(\ww\text{,}\)</span> we find</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{align*}
+\left(\frac{\vv\dotp\xx_1}{\len{\xx_1}^2}\right)\xx_1
+\amp +\left(\frac{\vv\dotp\xx_2}{\len{\xx_2}^2}\right)\xx_2
++\left(\frac{\vv\dotp\xx_3}{\len{\xx_3}^2}\right)\xx_3\\
+\amp =\frac12 (1,0,1,0)-\frac53 (-1,0,1,1) +\frac47 (1,1,-1,2)\\
+\amp = \left(\frac{73}{42},\frac47,-\frac{115}{42},-\frac{11}{21}\right)\neq \ww\text{,}
+\end{align*}
+</div>
+<p class="continuation">so <span class="process-math">\(\ww\notin\spn\{\xx_1,\xx_2,\xx_3\}\text{.}\)</span></p>
+<p>Soon, we'll see that the quantity we computed when showing that <span class="process-math">\(\ww\notin\spn\{\xx_1,\xx_2,\xx_3\}\)</span> is, in fact, the <em class="emphasis">orthogonal projection</em> of <span class="process-math">\(\ww\)</span> onto the subspace <span class="process-math">\(\spn\{\xx_1,\xx_2,\xx_3\}\text{.}\)</span></p>
 </div></body>
 </html>

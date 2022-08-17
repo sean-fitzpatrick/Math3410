@@ -216,10 +216,11 @@ true);
 </li>
 <li class="link">
 <a href="ch-diagonalization.html" data-scroll="ch-diagonalization" class="internal"><span class="codenumber">4</span> <span class="title">Diagonalization</span></a><ul>
-<li><a href="subsec-eigen-basics.html" data-scroll="subsec-eigen-basics" class="internal">Eigenvalues and Eigenvectors</a></li>
+<li><a href="sec-eigen-basics.html" data-scroll="sec-eigen-basics" class="internal">Eigenvalues and Eigenvectors</a></li>
 <li><a href="subsec-ortho-diag.html" data-scroll="subsec-ortho-diag" class="internal">Diagonalization of symmetric matrices</a></li>
 <li><a href="sec-quadratic.html" data-scroll="sec-quadratic" class="internal">Quadratic forms</a></li>
 <li><a href="sec-complex.html" data-scroll="sec-complex" class="internal">Diagonalization of complex matrices</a></li>
+<li><a href="worksheet-dynamical.html" data-scroll="worksheet-dynamical" class="internal">Worksheet: linear dynamical systems</a></li>
 <li><a href="section-matrix-factor.html" data-scroll="section-matrix-factor" class="internal">Matrix Factorizations and Eigenvalues</a></li>
 <li><a href="worksheet-svd.html" data-scroll="worksheet-svd" class="internal">Worksheet: Singular Value Decomposition</a></li>
 </ul>
@@ -235,14 +236,15 @@ true);
 </ul>
 </li>
 <li class="link backmatter"><a href="backmatter-1.html" data-scroll="backmatter-1" class="internal"><span class="title">Back Matter</span></a></li>
+<li class="link"><a href="appendix-complex-review.html" data-scroll="appendix-complex-review" class="internal"><span class="codenumber">A</span> <span class="title">Review of complex numbers</span></a></li>
 <li class="link">
-<a href="ch-computation.html" data-scroll="ch-computation" class="internal"><span class="codenumber">A</span> <span class="title">Computational Tools</span></a><ul>
+<a href="ch-computation.html" data-scroll="ch-computation" class="internal"><span class="codenumber">B</span> <span class="title">Computational Tools</span></a><ul>
 <li><a href="section-jupyter.html" data-scroll="section-jupyter" class="internal">Jupyter</a></li>
 <li><a href="sec-python-basics.html" data-scroll="sec-python-basics" class="internal">Python basics</a></li>
 <li><a href="sec-sympy.html" data-scroll="sec-sympy" class="internal">SymPy for linear algebra</a></li>
 </ul>
 </li>
-<li class="link"><a href="solutions-1.html" data-scroll="solutions-1" class="internal"><span class="codenumber">B</span> <span class="title">Solutions to Selected Exercises</span></a></li>
+<li class="link"><a href="solutions-1.html" data-scroll="solutions-1" class="internal"><span class="codenumber">C</span> <span class="title">Solutions to Selected Exercises</span></a></li>
 </ul></nav><div class="extras"><nav><a class="pretext-link" href="https://pretextbook.org">Authored in PreTeXt</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a></nav></div>
 </div></div>
 <main class="main"><div id="content" class="pretext-content"><section class="section" id="sec-lin-tran-intro"><h2 class="heading hide-type">
@@ -447,47 +449,10 @@ T(\vv)=T(c_1\vv_1+\cdots + c_n\vv_n) = c_1\ww_1+\cdots +c_n\ww_n\text{.}
 <article class="exercise exercise-like" id="exercise-38"><h3 class="heading">
 <span class="type">Exercise</span><span class="space"> </span><span class="codenumber">2.1.9</span><span class="period">.</span>
 </h3>
-<p id="p-590">Suppose <span class="process-math">\(T:\R^2\to \R^2\)</span> is a linear transformation. If <span class="process-math">\(T\bbm 1\\0\ebm = \bbm 3\\-4\ebm\)</span> and <span class="process-math">\(T\bbm 0\\1\ebm =\bbm 5\\2\ebm\text{,}\)</span> find <span class="process-math">\(T\bbm -2\\4\ebm\text{.}\)</span></p>
-<div class="solutions">
-<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-36" id="solution-36"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-36"><div class="solution solution-like">
-<p id="p-591">Since we know the value of <span class="process-math">\(T\)</span> on the standard basis, we can use properties of linear transformations to immediately obtain the answer:</p>
-<div class="displaymath process-math" data-contains-math-knowls="" id="md-30">
-\begin{align*}
-T\bbm -2\\4\ebm \amp= T\left(-2\bbm 1\\0\ebm +4\bbm 0\\1\ebm\right)\\
-\amp = -2T\bbm1\\0\ebm+4T\bbm 0\\1\ebm\\
-\amp = -2\bbm 3\\-4\ebm +4\bbm 5\\2\ebm\\
-\amp = \bbm 14\\16\ebm\text{.}
-\end{align*}
-</div>
-</div></div>
-</div></article><article class="exercise exercise-like" id="exercise-39"><h3 class="heading">
+<p id="p-590">Suppose <span class="process-math">\(T:\R^2\to \R^2\)</span> is a linear transformation. If <span class="process-math">\(T\bbm 1\\0\ebm = \bbm 3\\-4\ebm\)</span> and <span class="process-math">\(T\bbm 0\\1\ebm =\bbm 5\\2\ebm\text{,}\)</span> find <span class="process-math">\(T\bbm -2\\4\ebm\text{.}\)</span></p></article><article class="exercise exercise-like" id="exercise-39"><h3 class="heading">
 <span class="type">Exercise</span><span class="space"> </span><span class="codenumber">2.1.10</span><span class="period">.</span>
 </h3>
-<p id="p-592">Suppose <span class="process-math">\(T:\R^2\to \R^2\)</span> is a linear transformation. Given that <span class="process-math">\(T\bbm 3\\1\ebm = \bbm 1\\4\ebm\)</span> and <span class="process-math">\(T\bbm 2\\-5\ebm = \bbm 2\\-1\ebm\text{,}\)</span> find <span class="process-math">\(T\bbm 4\\3\ebm\text{.}\)</span></p>
-<div class="solutions">
-<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-37" id="solution-37"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-37"><div class="solution solution-like">
-<p id="p-593">At first, this example looks the same as the one above, and to some extent, it is. The difference is that this time, we're given the values of <span class="process-math">\(T\)</span> on a basis that is not the standard one. This means we first have to do some work to determine how to write the given vector in terms of the given basis.</p>
-<p id="p-594">Suppose we have <span class="process-math">\(a\bbm 3\\1\ebm+b\bbm 2\\-5\ebm = \bbm 4\\3\ebm\)</span> for scalars <span class="process-math">\(a,b\text{.}\)</span> This is equivalent to the matrix equation</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-\bbm 3\amp 2\\1\amp -5\ebm\bbm a\\b\ebm = \bbm 4\\3\ebm.
-\end{equation*}
-</div>
-<p class="continuation">Solving (perhaps using the code cell below), we get <span class="process-math">\(a=\frac{26}{17}, b = -\frac{5}{17}\text{.}\)</span></p>
-<pre class="ptx-sagecell hidden-sagecell-sage" id="sage-23"><script type="text/x-sage">from sympy import Matrix,init_printing
-init_printing()
-A = Matrix(2,2,[3,2,1,-5])
-B = Matrix(2,1,[4,3])
-(A**-1)*B
-</script></pre>
-<p id="p-595">Therefore,</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-T\bbm 4\\3\ebm = \frac{26}{17}\bbm 1\\4\ebm -\frac{5}{17}\bbm 2\\-1\ebm = \bbm 16/17\\109/17\ebm\text{.}
-\end{equation*}
-</div>
-</div></div>
-</div></article><article class="exercise exercise-like" id="exercise-40"><h3 class="heading">
+<p id="p-592">Suppose <span class="process-math">\(T:\R^2\to \R^2\)</span> is a linear transformation. Given that <span class="process-math">\(T\bbm 3\\1\ebm = \bbm 1\\4\ebm\)</span> and <span class="process-math">\(T\bbm 2\\-5\ebm = \bbm 2\\-1\ebm\text{,}\)</span> find <span class="process-math">\(T\bbm 4\\3\ebm\text{.}\)</span></p></article><article class="exercise exercise-like" id="exercise-40"><h3 class="heading">
 <span class="type">Exercise</span><span class="space"> </span><span class="codenumber">2.1.11</span><span class="period">.</span>
 </h3>
 <p id="p-596">Suppose <span class="process-math">\(T:P_2(\R)\to \R\)</span> is defined by</p>
@@ -496,37 +461,7 @@ T\bbm 4\\3\ebm = \frac{26}{17}\bbm 1\\4\ebm -\frac{5}{17}\bbm 2\\-1\ebm = \bbm 1
 T(x+2)=1, T(1)=5, T(x^2+x)=0.
 \end{equation*}
 </div>
-<p class="continuation">Find <span class="process-math">\(T(2-x+3x^2)\text{.}\)</span></p>
-<div class="solutions">
-<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-38" id="solution-38"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-38"><div class="solution solution-like">
-<p id="p-597">We need to find scalars <span class="process-math">\(a,b,c\)</span> such that</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-2-x+3x^2 = a(x+2)+b(1)+c(x^2+x)\text{.}
-\end{equation*}
-</div>
-<p class="continuation">We could set up a system and solve, but this time it's easy enough to just work our way through. We must have <span class="process-math">\(c=3\text{,}\)</span> to get the correct coefficient for <span class="process-math">\(x^2\text{.}\)</span> This gives</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-2-x+3x^2=a(x+2)+b(1)+3x^2+3x\text{.}
-\end{equation*}
-</div>
-<p class="continuation">Now, we have to have <span class="process-math">\(3x+ax=-x\text{,}\)</span> so <span class="process-math">\(a=-4\text{.}\)</span> Putting this in, we get</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-2-x+3x^2=-4x-8+b+3x^2+3x\text{.}
-\end{equation*}
-</div>
-<p class="continuation">Simiplifying this leaves us with <span class="process-math">\(b=10\text{.}\)</span> Finally, we find:</p>
-<div class="displaymath process-math" data-contains-math-knowls="" id="md-31">
-\begin{align*}
-T(2-x+3x^2) \amp = T(-4(x+2)+10(1)+3(x^2+x)) \\
-\amp = -4T(x+2)+10T(1)+3T(x^2+x)\\
-\amp = -4(1)+10(5)+3(0) = 46\text{.}
-\end{align*}
-</div>
-</div></div>
-</div></article><article class="exercise exercise-like" id="exercise-41"><h3 class="heading">
+<p class="continuation">Find <span class="process-math">\(T(2-x+3x^2)\text{.}\)</span></p></article><article class="exercise exercise-like" id="exercise-41"><h3 class="heading">
 <span class="type">Exercise</span><span class="space"> </span><span class="codenumber">2.1.12</span><span class="period">.</span>
 </h3>
 <p id="p-598">Find a linear transformation <span class="process-math">\(T:\R^2\to \R^3\)</span> such that</p>
@@ -535,45 +470,7 @@ T(2-x+3x^2) \amp = T(-4(x+2)+10(1)+3(x^2+x)) \\
 T(1,2)=(1,1,0) \quad \text{ and } \quad T(-1,1) = (0,2,-1)\text{.}
 \end{equation*}
 </div>
-<p class="continuation">Then, determine the value of <span class="process-math">\(T(3,2)\text{.}\)</span></p>
-<div class="solutions">
-<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-39" id="solution-39"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-39"><div class="solution solution-like">
-<p id="p-599">Since <span class="process-math">\(\{(1,2),(-1,1)\}\)</span> forms a basis of <span class="process-math">\(\R^2\)</span> (the vectors are not parallel and there are two of them), it suffices to determine how to write a general vector in terms of this basis. Suppose</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-x(1,2)+y(-1,1)=(a,b)
-\end{equation*}
-</div>
-<p class="continuation">for a general element <span class="process-math">\((a,b)\in \R^2\text{.}\)</span> This is equivalent to the matrix equation <span class="process-math">\(\bbm 1\amp -1\\2\amp 1\ebm\bbm x\\y\ebm = \bbm a\\b\ebm\text{,}\)</span> which we can solve as <span class="process-math">\(\bbm x\\y\ebm = \bbm 1\amp -1\\2\amp 1\ebm^{-1}\bbm a\\b\ebm\text{:}\)</span></p>
-<pre class="ptx-sagecell hidden-sagecell-sage" id="sage-24"><script type="text/x-sage">from sympy import Matrix, init_printing, symbols
-init_printing()
-a, b = symbols('a b', real = True, constant = True)
-A = Matrix(2,2,[1,-1,2,1])
-B = Matrix(2,1,[a,b])
-(A**-1)*B
-</script></pre>
-<p id="p-600">This gives us the result</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-(a,b) = \frac13(a+b)\cdot (1,2)+\frac13(-2a+b)\cdot (-1,1).
-\end{equation*}
-</div>
-<p class="continuation">Thus,</p>
-<div class="displaymath process-math" data-contains-math-knowls="" id="md-32">
-\begin{align*}
-T(a,b) \amp = \frac13(a+b)\cdot T(1,2)+\frac13(-2a+b)\cdot T(-1,1) \\
-\amp = \frac13(a+b)\cdot (1,1,0)+\frac13(-2a+b)\cdot (0,2,-1)\\
-\amp = \left(\frac{a+b}{3}, -a+b, \frac{2a-b}{3}\right)\text{.}
-\end{align*}
-</div>
-<p id="p-601">We conclude that</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-T(3,2) = \left(\frac53, -1, \frac43\right)\text{.}
-\end{equation*}
-</div>
-</div></div>
-</div></article><article class="exercise exercise-like" id="ex-parsons-lintrans"><h3 class="heading">
+<p class="continuation">Then, determine the value of <span class="process-math">\(T(3,2)\text{.}\)</span></p></article><article class="exercise exercise-like" id="ex-parsons-lintrans"><h3 class="heading">
 <span class="type">Exercise</span><span class="space"> </span><span class="codenumber">2.1.13</span><span class="period">.</span>
 </h3>
 <div class="ptx-runestone-container"><div class="runestone" style="max-width: none;"><div data-component="parsons" class="parsons" id="ex-parsons-lintrans">

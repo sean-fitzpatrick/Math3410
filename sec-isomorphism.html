@@ -210,10 +210,11 @@ true);
 </li>
 <li class="link">
 <a href="ch-diagonalization.html" data-scroll="ch-diagonalization" class="internal"><span class="codenumber">4</span> <span class="title">Diagonalization</span></a><ul>
-<li><a href="subsec-eigen-basics.html" data-scroll="subsec-eigen-basics" class="internal">Eigenvalues and Eigenvectors</a></li>
+<li><a href="sec-eigen-basics.html" data-scroll="sec-eigen-basics" class="internal">Eigenvalues and Eigenvectors</a></li>
 <li><a href="subsec-ortho-diag.html" data-scroll="subsec-ortho-diag" class="internal">Diagonalization of symmetric matrices</a></li>
 <li><a href="sec-quadratic.html" data-scroll="sec-quadratic" class="internal">Quadratic forms</a></li>
 <li><a href="sec-complex.html" data-scroll="sec-complex" class="internal">Diagonalization of complex matrices</a></li>
+<li><a href="worksheet-dynamical.html" data-scroll="worksheet-dynamical" class="internal">Worksheet: linear dynamical systems</a></li>
 <li><a href="section-matrix-factor.html" data-scroll="section-matrix-factor" class="internal">Matrix Factorizations and Eigenvalues</a></li>
 <li><a href="worksheet-svd.html" data-scroll="worksheet-svd" class="internal">Worksheet: Singular Value Decomposition</a></li>
 </ul>
@@ -229,20 +230,21 @@ true);
 </ul>
 </li>
 <li class="link backmatter"><a href="backmatter-1.html" data-scroll="backmatter-1" class="internal"><span class="title">Back Matter</span></a></li>
+<li class="link"><a href="appendix-complex-review.html" data-scroll="appendix-complex-review" class="internal"><span class="codenumber">A</span> <span class="title">Review of complex numbers</span></a></li>
 <li class="link">
-<a href="ch-computation.html" data-scroll="ch-computation" class="internal"><span class="codenumber">A</span> <span class="title">Computational Tools</span></a><ul>
+<a href="ch-computation.html" data-scroll="ch-computation" class="internal"><span class="codenumber">B</span> <span class="title">Computational Tools</span></a><ul>
 <li><a href="section-jupyter.html" data-scroll="section-jupyter" class="internal">Jupyter</a></li>
 <li><a href="sec-python-basics.html" data-scroll="sec-python-basics" class="internal">Python basics</a></li>
 <li><a href="sec-sympy.html" data-scroll="sec-sympy" class="internal">SymPy for linear algebra</a></li>
 </ul>
 </li>
-<li class="link"><a href="solutions-1.html" data-scroll="solutions-1" class="internal"><span class="codenumber">B</span> <span class="title">Solutions to Selected Exercises</span></a></li>
+<li class="link"><a href="solutions-1.html" data-scroll="solutions-1" class="internal"><span class="codenumber">C</span> <span class="title">Solutions to Selected Exercises</span></a></li>
 </ul></nav><div class="extras"><nav><a class="pretext-link" href="https://pretextbook.org">Authored in PreTeXt</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a></nav></div>
 </div></div>
 <main class="main"><div id="content" class="pretext-content"><section class="section" id="sec-isomorphism"><h2 class="heading hide-type">
 <span class="type">Section</span> <span class="codenumber">2.3</span> <span class="title">Isomorphisms, composition, and inverses</span>
 </h2>
-<section class="introduction" id="introduction-14"><p id="p-724">We ended the last section with an important result. <a href="" class="xref" data-knowl="./knowl/ex-dimension-injection-surjection.html" title="Exercise 2.2.17">Exercise 2.2.17</a> showed that existence of an injective linear map <span class="process-math">\(T:V\to W\)</span> is equivalent to <span class="process-math">\(\dim V\leq \dim W\text{,}\)</span> and that existence of a surjective linear map is equivalent to <span class="process-math">\(\dim V\geq \dim W\text{.}\)</span> It's probably not surprising than that existence of a <em class="emphasis">bijective</em> linear map <span class="process-math">\(T:V\to W\)</span> is equivalent to <span class="process-math">\(\dim V = \dim W\text{.}\)</span></p>
+<section class="introduction" id="introduction-16"><p id="p-724">We ended the last section with an important result. <a href="" class="xref" data-knowl="./knowl/ex-dimension-injection-surjection.html" title="Exercise 2.2.17">Exercise 2.2.17</a> showed that existence of an injective linear map <span class="process-math">\(T:V\to W\)</span> is equivalent to <span class="process-math">\(\dim V\leq \dim W\text{,}\)</span> and that existence of a surjective linear map is equivalent to <span class="process-math">\(\dim V\geq \dim W\text{.}\)</span> It's probably not surprising than that existence of a <em class="emphasis">bijective</em> linear map <span class="process-math">\(T:V\to W\)</span> is equivalent to <span class="process-math">\(\dim V = \dim W\text{.}\)</span></p>
 <p id="p-725">In a certain sense that we will now try to make preceise, vectors spaces of the same dimension are equivalent: they may look very different, but in fact, they contain exactly the same information, presented in different ways.</p></section><section class="subsection" id="subsec-isomorphism"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">2.3.1</span> <span class="title">Isomorphisms</span>
 </h3>
@@ -305,58 +307,22 @@ T_A\circ C_B = C_{B'}\circ T\text{.}
 <article class="exercise exercise-like" id="exercise-49"><h4 class="heading">
 <span class="type">Exercise</span><span class="space"> </span><span class="codenumber">2.3.7</span><span class="period">.</span>
 </h4>
-<p id="p-743">Show that the composition of two linear maps is again a linear map.</p>
-<div class="solutions">
-<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-42" id="solution-42"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-42"><div class="solution solution-like">
-<p id="p-744">Suppose we have linear maps <span class="process-math">\(U\xrightarrow{T} V\xrightarrow{S} W\text{,}\)</span> and let <span class="process-math">\(\uu_1,\uu_2\in U\text{.}\)</span> Then</p>
-<div class="displaymath process-math" data-contains-math-knowls="" id="md-35">
-\begin{align*}
-ST(\uu_1+\uu_2) \amp = S(T(\uu_1+\uu_2)) \\
-\amp = S(T(\uu_1)+T(\uu_2))\\
-\amp = S(T(\uu_1))+S(T(\uu_2)) \\
-\amp = ST(\uu_1)+ST(\uu_2)\text{,}
-\end{align*}
-</div>
-<p class="continuation">and for any scalar <span class="process-math">\(c\text{,}\)</span></p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-ST(c\uu_1) = S(T(c\uu_1))=S(cT(\uu_1)) = cS(T(\uu_1))=c(ST(\uu_1))\text{.}
-\end{equation*}
-</div>
-</div></div>
-</div></article><article class="exercise exercise-like" id="exercise-50"><h4 class="heading">
+<p id="p-743">Show that the composition of two linear maps is again a linear map.</p></article><article class="exercise exercise-like" id="exercise-50"><h4 class="heading">
 <span class="type">Exercise</span><span class="space"> </span><span class="codenumber">2.3.8</span><span class="period">.</span>
 </h4>
 <p id="p-745">Given transformations <span class="process-math">\(S:V\to W\)</span> and <span class="process-math">\(T:U\to V\text{,}\)</span> show that:</p>
 <ol class="decimal">
-<li id="li-108"><p id="p-746"><span class="process-math">\(\displaystyle \ker T\subseteq \ker ST\)</span></p></li>
-<li id="li-109"><p id="p-747"><span class="process-math">\(\displaystyle \im ST\subseteq \im S\)</span></p></li>
+<li id="li-98"><p id="p-746"><span class="process-math">\(\displaystyle \ker T\subseteq \ker ST\)</span></p></li>
+<li id="li-99"><p id="p-747"><span class="process-math">\(\displaystyle \im ST\subseteq \im S\)</span></p></li>
 </ol>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-25" id="hint-25"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-25"><div class="hint solution-like"><p id="p-748">This is simpler than it looks! It's mostly a matter of chasing the definitions: see <a href="" class="xref" data-knowl="./knowl/rem-using-ker-im.html" title="Remark 2.2.3: How to use these definitions">Remark 2.2.3</a>.</p></div></div>
+<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-28" id="hint-28"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-28"><div class="hint solution-like"><p id="p-748">This is simpler than it looks! It's mostly a matter of chasing the definitions: see <a href="" class="xref" data-knowl="./knowl/rem-using-ker-im.html" title="Remark 2.2.3: How to use these definitions">Remark 2.2.3</a>.</p></div></div>
 </div></article><article class="exercise exercise-like" id="exercise-51"><h4 class="heading">
 <span class="type">Exercise</span><span class="space"> </span><span class="codenumber">2.3.9</span><span class="period">.</span>
 </h4>
 <p id="p-749">Let <span class="process-math">\(T:V\to W\)</span> be a bijective linear transformation. Show that <span class="process-math">\(T^{-1}:W\to V\)</span> is a linear transformation.</p>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-26" id="hint-26"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-26"><div class="hint solution-like"><p id="p-750">Since <span class="process-math">\(T\)</span> is a bijection, every <span class="process-math">\(\ww\in W\)</span> can be associated with some <span class="process-math">\(\vv\in V\text{.}\)</span></p></div></div>
-<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-43" id="solution-43"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-43"><div class="solution solution-like">
-<p id="p-751">Let <span class="process-math">\(\ww_1,\ww_2\in W\text{.}\)</span> Then there exist <span class="process-math">\(\vv_1,\vv_2\in V\)</span>  with <span class="process-math">\(\ww_1=T(\vv_1), \ww_2=T(\vv_2)\text{.}\)</span> We then have</p>
-<div class="displaymath process-math" data-contains-math-knowls="" id="md-36">
-\begin{align*}
-T^{-1}(\ww_1+\ww_2) \amp = T^{-1}(T(\vv_1)+T(\vv_2)) \\
-\amp = T^{-1}(T(\vv_1+\vv_2))\\
-\amp = \vv_1+\vv_2\\
-\amp = T^{-1}(\ww_1)+T^{-1}(\ww_2)\text{.}
-\end{align*}
-</div>
-<p class="continuation">For any scalar <span class="process-math">\(c\text{,}\)</span> we similarly have</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-T^{-1}(c\ww_1) = T^{-1}(cT(\vv_1))=T^{-1}(T(c\vv_1)) = c\vv_1 = cT^{-1}(\ww_1)\text{.}
-\end{equation*}
-</div>
-</div></div>
+<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-29" id="hint-29"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-29"><div class="hint solution-like"><p id="p-750">Since <span class="process-math">\(T\)</span> is a bijection, every <span class="process-math">\(\ww\in W\)</span> can be associated with some <span class="process-math">\(\vv\in V\text{.}\)</span></p></div></div>
 </div></article><article class="remark remark-like" id="rem-composition-product"><h4 class="heading">
 <span class="type">Remark</span><span class="space"> </span><span class="codenumber">2.3.10</span><span class="period">.</span>
 </h4>
@@ -379,7 +345,7 @@ T_A\circ T_B(\xx) = T_A(T_B(\xx)) = T_A(B\xx)=A(B\xx)=(AB)\xx=T_{AB}(\xx)\text{.
 </h4>
 <p id="p-756">Show that if <span class="process-math">\(ST=1_V\text{,}\)</span> then <span class="process-math">\(S\)</span> is surjective and <span class="process-math">\(T\)</span> is injective. Conclude that if <span class="process-math">\(ST=1_V\)</span> and <span class="process-math">\(TS=1_w\text{,}\)</span> then <span class="process-math">\(S\)</span> and <span class="process-math">\(T\)</span> are both bijections.</p>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-27" id="hint-27"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-27"><div class="hint solution-like"><p id="p-757">This is true even if the functions aren't linear. In fact, you've probably seen the proof in an earlier course!</p></div></div>
+<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-30" id="hint-30"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-30"><div class="hint solution-like"><p id="p-757">This is true even if the functions aren't linear. In fact, you've probably seen the proof in an earlier course!</p></div></div>
 </div></article><p id="p-758"><a href="" class="xref" data-knowl="./knowl/thm-iso-dimension.html" title="Theorem 2.3.2">Theorem 2.3.2</a> also tells us why we can only consider invertibility for square matrices: we know that invertible linear maps are only defined between spaces of equal dimension. In analogy with matrices, some texts will define a linear map <span class="process-math">\(T:V\to W\)</span> to be invertible if there exists a linear map <span class="process-math">\(S:W\to V\)</span> such that</p>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/thm-iso-dimension.html ./knowl/ex-inverse-identity.html">
 \begin{equation*}

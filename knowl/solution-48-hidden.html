@@ -11,29 +11,13 @@
 <meta name="robots" content="noindex, nofollow">
 </head>
 <body class="ignore-math"><div class="solution solution-like">
-<p>We compute</p>
+<p>This is simply an exercise in properties of the dot product. We have</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{align*}
-\left(\frac{\vv\dotp\xx_1}{\len{\xx_1}^2}\right)\xx_1
-\amp +\left(\frac{\vv\dotp\xx_2}{\len{\xx_2}^2}\right)\xx_2
-+\left(\frac{\vv\dotp\xx_3}{\len{\xx_3}^2}\right)\xx_3\\
-\amp = \frac{4}{2}\xx_1+\frac{-9}{3}\xx_2+\frac{-28}{7}\xx_3\\
-\amp = 2(1,0,1,0)-3(-1,0,1,1)-4(1,1,-1,2)\\
-\amp = (1,-4,3,-11) = \vv\text{,}
+\len{\xx+\yy}^2 \amp = (\xx+\yy)\dotp (\xx+\yy) \\
+\amp = \xx\dotp \xx+\xx\dotp\yy+\yy\dotp\xx+\yy\dotp\yy\\
+\amp =\len{\xx}^2+2\xx\dotp\yy+\len{\yy}^2\text{.}
 \end{align*}
 </div>
-<p class="continuation">so <span class="process-math">\(\vv\in\spn\{\xx_1,\xx_2,\xx_3\}\text{.}\)</span></p>
-<p>On the other hand, repeating the same calculation with <span class="process-math">\(\ww\text{,}\)</span> we find</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{align*}
-\left(\frac{\vv\dotp\xx_1}{\len{\xx_1}^2}\right)\xx_1
-\amp +\left(\frac{\vv\dotp\xx_2}{\len{\xx_2}^2}\right)\xx_2
-+\left(\frac{\vv\dotp\xx_3}{\len{\xx_3}^2}\right)\xx_3\\
-\amp =\frac12 (1,0,1,0)-\frac53 (-1,0,1,1) +\frac47 (1,1,-1,2)\\
-\amp = \left(\frac{73}{42},\frac47,-\frac{115}{42},-\frac{11}{21}\right)\neq \ww\text{,}
-\end{align*}
-</div>
-<p class="continuation">so <span class="process-math">\(\ww\notin\spn\{\xx_1,\xx_2,\xx_3\}\text{.}\)</span></p>
-<p>Soon, we'll see that the quantity we computed when showing that <span class="process-math">\(\ww\notin\spn\{\xx_1,\xx_2,\xx_3\}\)</span> is, in fact, the <em class="emphasis">orthogonal projection</em> of <span class="process-math">\(\ww\)</span> onto the subspace <span class="process-math">\(\spn\{\xx_1,\xx_2,\xx_3\}\text{.}\)</span></p>
 </div></body>
 </html>

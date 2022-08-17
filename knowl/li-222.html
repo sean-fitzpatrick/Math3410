@@ -14,6 +14,11 @@
 <article class="li"><h4 class="heading">
 <span class="type">Item</span><span class="period">.</span>
 </h4>
-<p>The Jordan canonical form <span class="process-math">\(M\)</span> of a matrix <span class="process-math">\(A\)</span> can be obtained (along with the matrix <span class="process-math">\(P\)</span> whose columns are a Jordan basis) using <code class="code-inline tex2jax_ignore">P,M=A.jordan_form()</code>.</p></article><span class="incontext"><a href="sec-sympy.html#li-222" class="internal">in-context</a></span>
+<p>If we know that <span class="process-math">\(3\)</span> is an eigenvalue of a <span class="process-math">\(4\times 4\)</span> matrix <span class="process-math">\(A\text{,}\)</span> one way to get a basis for the eigenspace <span class="process-math">\(E_3(A)\)</span> is to do:</p>
+<pre class="code-display tex2jax_ignore">B=A-3*eye(4)
+B.nullspace()
+</pre>
+<p class="continuation">If you just want all the eigenvalues and eigenvectors without going through the steps, then you can simply execute <code class="code-inline tex2jax_ignore">A.eigenvects()</code>. The result is a list of lists — each list in the list is of the form: eigenvalue, multiplicity, basis for the eigenspace.</p>
+<p>For diagonalization, one can do <code class="code-inline tex2jax_ignore">A.diagonalize()</code>. But this will not necessarily produce orthogonal diagonalization for a symmetric matrix.</p></article><span class="incontext"><a href="sec-sympy.html#li-222" class="internal">in-context</a></span>
 </body>
 </html>
