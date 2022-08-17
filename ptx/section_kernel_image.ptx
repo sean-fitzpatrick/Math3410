@@ -372,80 +372,87 @@
   </p>
 
   <exercise>
-    <statement>
+    <introduction>
       <p>
         Let <m>T:M_{nn}\to M_{nn}</m> be defined by <m>T(A)=A-A^T</m>. Show that:
-        <ol>
-          <li>
-            <p>
-              <m>T</m> is a linear map.
-            </p>
-          </li>
-          <li>
-            <p>
-              <m>\ker T</m> is equal to the set of all symmetric matrices.
-            </p>
-          </li>
+      </p>
+    </introduction>
 
-          <li>
-            <p>
-              <m>\im T</m> is equal to the set of all skew-symmetric matrices.
-            </p>
-          </li>
-        </ol>
-      </p>
-    </statement>
-    <hint>
-      <p>
-        You can use the fact that the transpose is linear: <m>(A+B)^T=A^T+B^T</m> and <m>(cA)^T=cA^T</m>.
-      </p>
-      <p>
-        A matrix is symmetric if <m>A^T=A</m>, or in other words, <m>A-A^T=0</m>.
-        A matrix is skew-symmetric if <m>A^T=-A</m>.
-      </p>
-    </hint>
-    <solution>
-      <p>
-        <ol>
-          <li>
-            <p>
-              We have <m>T(0)=0</m> since <m>0^T=0</m>.
-              Using proerties of the transpose and matrix algebra, we have
-              <me>
-                T(A+B) = (A+B)-(A+B)^T = (A-A^T)+(B-B^T) = T(A)+T(B)
-              </me>
-              and
-              <me>
-                T(kA) = (kA) - (kA)^T = kA-kA^T = k(A-A^T) = kT(A)
-              </me>.
-            </p>
-          </li>
+    <task>
+      <statement>
+        <p>
+          <m>T</m> is a linear map.
+        </p>
+      </statement>
+      <response/>
+      <hint>
+        <p>
+          You can use the fact that the transpose is linear: <m>(A+B)^T=A^T+B^T</m> and <m>(cA)^T=cA^T</m>.
+        </p>
+      </hint>
+      <solution>
+        <p>
+          We have <m>T(0)=0</m> since <m>0^T=0</m>.
+          Using proerties of the transpose and matrix algebra, we have
+          <me>
+            T(A+B) = (A+B)-(A+B)^T = (A-A^T)+(B-B^T) = T(A)+T(B)
+          </me>
+          and
+          <me>
+            T(kA) = (kA) - (kA)^T = kA-kA^T = k(A-A^T) = kT(A)
+          </me>.
+        </p>
+      </solution>
+    </task>
 
-          <li>
-            <p>
-              It's clear that if <m>A^T=A</m>, then <m>T(A)=0</m>.
-              On the other hand, if <m>T(A)=0</m>, then <m>A-A^T=0</m>, so <m>A=A^T</m>.
-              Thus, the kernel consists of all symmetric matrices.
-            </p>
-          </li>
+    <task>
+      <statement>
+        <p>
+          <m>\ker T</m> is equal to the set of all symmetric matrices.
+        </p>
+      </statement>
+      <response/>
+      <hint>
+        <p>
+          A matrix is symmetric if <m>A^T=A</m>, or in other words, <m>A-A^T=0</m>.
+        </p>
+      </hint>
+      <solution>
+        <p>
+          It's clear that if <m>A^T=A</m>, then <m>T(A)=0</m>.
+          On the other hand, if <m>T(A)=0</m>, then <m>A-A^T=0</m>, so <m>A=A^T</m>.
+          Thus, the kernel consists of all symmetric matrices.
+        </p>
+      </solution>
+    </task>
 
-          <li>
-            <p>
-              If <m>B=T(A)=A-A^T</m>, then
-              <me>
-                B^T = (A-A^T)^T = A^T-A = -B
-              </me>,
-              so certainly every matrix in <m>\im A</m> is skew-symmetric.
-              On the other hand, if <m>B</m> is skew-symmetric, then <m>B=T(\frac12 B)</m>,
-              since
-              <me>
-                T\Bigl(\frac12 B\Bigr) = \frac12 T(B) = \frac12(B-B^T) = \frac12(B-(-B))= B
-              </me>.
-            </p>
-          </li>
-        </ol>
-      </p>
-    </solution>
+    <task>
+      <statement>
+        <p>
+          <m>\im T</m> is equal to the set of all skew-symmetric matrices.
+        </p>
+      </statement>
+      <response/>
+      <hint>
+        <p>
+          A matrix is skew-symmetric if <m>A^T=-A</m>.
+        </p>
+      </hint>
+      <solution>
+        <p>
+          If <m>B=T(A)=A-A^T</m>, then
+          <me>
+            B^T = (A-A^T)^T = A^T-A = -B
+          </me>,
+          so certainly every matrix in <m>\im A</m> is skew-symmetric.
+          On the other hand, if <m>B</m> is skew-symmetric, then <m>B=T(\frac12 B)</m>,
+          since
+          <me>
+            T\Bigl(\frac12 B\Bigr) = \frac12 T(B) = \frac12(B-B^T) = \frac12(B-(-B))= B
+          </me>.
+        </p>
+      </solution>
+    </task>
   </exercise>
 
   <p>
@@ -876,95 +883,99 @@
   </p>
 
   <exercise xml:id="ex-dimension-injection-surjection">
-    <statement>
+    <introduction>
       <p>
         Let <m>V</m> and <m>W</m> be finite-dimensional vector spaces. Prove the following:
-        <ol>
-          <li>
-            <p>
-              <m>\dim V\leq \dim W</m> if and only if there exists an injection <m>T:V\to W</m>.
-            </p>
-          </li>
-          <li>
-            <p>
-              <m>\dim V\geq \dim W</m> if and only if there exists a surjection <m>T:V\to W</m>.
-            </p>
-          </li>
-        </ol>
       </p>
-    </statement>
-    <hint>
-      <p>
-        You're dealing with <q>if and only if</q> statements, so be sure to prove both directions.
-        In each case, one direction follows immediately from the dimension theorem.
-      </p>
-      <p>
-        What makes the other direction harder is that you need to prove an <em>existence</em> statement.
-        To show that a transformation with the required property exists, you're going to need to <em>construct</em> it!
-        To do so, try defining your transformation in terms of a basis.
-      </p>
-    </hint>
-    <solution>
-      <p>
-        <ol>
-          <li>
-            <p>
-              Suppose <m>T:V\to W</m> is injective. Then <m>\ker T = \{0\}</m>, so
-              <me>
-                \dim V = 0 + \dim \im T \leq \dim W
-              </me>,
-              since <m>\im T</m> is a subspace of <m>W</m>.
-            </p>
+    </introduction>
 
-            <p>
-              Conversely, suppose <m>\dim V\leq \dim W</m>.
-              Choose a basis <m>\{\vv_1,\ldots, \vv_m\}</m> of <m>V</m>,
-              and a basis <m>\{\ww_1,\ldots, \ww_n\}</m> of <m>W</m>, where <m>m\leq n</m>.
-              By <xref ref="thm-define-using-basis">Theorem</xref>, there exists a linear transformation
-              <m>T:V\to W</m> with <m>T(\vv_i)=\ww_i</m> for <m>i=1,\ldots, m</m>.
-              (The main point here is that we run out of basis vectors for <m>V</m> before we run out of basis vectors for <m>W</m>.)
-              This map is injective: if <m>T(\vv)=\zer</m>,
-              write <m>\vv=c_1\vv_1+\cdots + c_m\vv_m</m>.
-              Then
-              <md>
-                <mrow>\zer \amp = T(\vv)</mrow>
-                <mrow> \amp = T(c_1\vv_1+\cdots + c_m\vv_m)</mrow>
-                <mrow>  \amp = c_1T(\vv_1)+\cdots + c_mT(\vv_m)</mrow>
-                <mrow>  \amp = c_1\ww_1+\cdots +c_m\ww_m</mrow>
-              </md>.
-              Since <m>\{\ww_1,\ldots, \ww_m\}</m> is a subset of a basis, it's independent.
-              Therefore, the scalars <m>c_i</m> must all be zero, and therefore <m>\vv=\zer</m>.
-            </p>
-          </li>
+    <task>
+      <statement>
+        <p>
+          <m>\dim V\leq \dim W</m> if and only if there exists an injection <m>T:V\to W</m>.
+        </p>
+      </statement>
+      <response/>
+      <hint>
+        <p>
+          You're dealing with an <q>if and only if</q> statement, so be sure to prove both directions.
+          One direction follows immediately from the dimension theorem.
+        </p>
+        <p>
+          What makes the other direction harder is that you need to prove an <em>existence</em> statement.
+          To show that a transformation with the required property exists, you're going to need to <em>construct</em> it!
+          To do so, try defining your transformation in terms of a basis.
+        </p>
+      </hint>
+      <solution>
+        <p>
+          Suppose <m>T:V\to W</m> is injective. Then <m>\ker T = \{0\}</m>, so
+          <me>
+            \dim V = 0 + \dim \im T \leq \dim W
+          </me>,
+          since <m>\im T</m> is a subspace of <m>W</m>.
+        </p>
 
-          <li>
-            <p>
-              Suppose <m>T:V\to W</m> is surjective. Then <m>\dim \im T = \dim W</m>, so
-              <me>
-                \dim V = \dim \ker T + \dim W \geq  \dim W
-              </me>.
-              Conversely, suppose <m>\dim V\geq \dim W</m>. Again,
-              choose a basis <m>\{\vv_1,\ldots, \vv_m\}</m> of <m>V</m>,
-              and a basis <m>\{\ww_1,\ldots, \ww_n\}</m> of <m>W</m>,
-              where this time, <m>m\geq n</m>.
-              We can define a linear transformation as follows:
-              <me>
-                T(\vv_1)=\ww_1,\ldots, T(\vv_n)=\ww_n, \text{ and } T(\vv_j) = \zer \text{ for } j>n.
-              </me>
-              It's easy to check that this map is a surjection:
-              given <m>\ww\in W</m>, we can write it in terms of our basis as <m>\ww=c_1\ww_1+\cdots + c_n\ww_n</m>.
-              Using these same scalars, we can define <m>\vv=c_1\vv_1+\cdots + c_n\vv_n\in V</m> such that <m>T(\vv)=\ww</m>.
-            </p>
+        <p>
+          Conversely, suppose <m>\dim V\leq \dim W</m>.
+          Choose a basis <m>\{\vv_1,\ldots, \vv_m\}</m> of <m>V</m>,
+          and a basis <m>\{\ww_1,\ldots, \ww_n\}</m> of <m>W</m>, where <m>m\leq n</m>.
+          By <xref ref="thm-define-using-basis">Theorem</xref>, there exists a linear transformation
+          <m>T:V\to W</m> with <m>T(\vv_i)=\ww_i</m> for <m>i=1,\ldots, m</m>.
+          (The main point here is that we run out of basis vectors for <m>V</m> before we run out of basis vectors for <m>W</m>.)
+          This map is injective: if <m>T(\vv)=\zer</m>,
+          write <m>\vv=c_1\vv_1+\cdots + c_m\vv_m</m>.
+          Then
+          <md>
+            <mrow>\zer \amp = T(\vv)</mrow>
+            <mrow> \amp = T(c_1\vv_1+\cdots + c_m\vv_m)</mrow>
+            <mrow>  \amp = c_1T(\vv_1)+\cdots + c_mT(\vv_m)</mrow>
+            <mrow>  \amp = c_1\ww_1+\cdots +c_m\ww_m</mrow>
+          </md>.
+          Since <m>\{\ww_1,\ldots, \ww_m\}</m> is a subset of a basis, it's independent.
+          Therefore, the scalars <m>c_i</m> must all be zero, and therefore <m>\vv=\zer</m>.
+        </p>
+      </solution>
+    </task>
 
-            <p>
-              Note that it's not important how we define <m>T(\vv_j)</m> when <m>j>n</m>.
-              The point is that this time, we run out of basis vectors for <m>W</m> before we run out of basis vectors for <m>V</m>.
-              Once each vector in the basis of <m>W</m> is in the image of <m>T</m>, we're guaranteed that <m>T</m> is surjective,
-              and we can define the value of <m>T</m> on any remaining basis vectors however we want.
-            </p>
-          </li>
-        </ol>
-      </p>
-    </solution>
+    <task>
+      <statement>
+        <p>
+          <m>\dim V\geq \dim W</m> if and only if there exists a surjection <m>T:V\to W</m>.
+        </p>
+      </statement>
+      <response/>
+      <hint>
+        <p>
+          The hint from the previous part also applies here!
+        </p>
+      </hint>
+      <solution>
+        <p>
+          Suppose <m>T:V\to W</m> is surjective. Then <m>\dim \im T = \dim W</m>, so
+          <me>
+            \dim V = \dim \ker T + \dim W \geq  \dim W
+          </me>.
+          Conversely, suppose <m>\dim V\geq \dim W</m>. Again,
+          choose a basis <m>\{\vv_1,\ldots, \vv_m\}</m> of <m>V</m>,
+          and a basis <m>\{\ww_1,\ldots, \ww_n\}</m> of <m>W</m>,
+          where this time, <m>m\geq n</m>.
+          We can define a linear transformation as follows:
+          <me>
+            T(\vv_1)=\ww_1,\ldots, T(\vv_n)=\ww_n, \text{ and } T(\vv_j) = \zer \text{ for } j>n.
+          </me>
+          It's easy to check that this map is a surjection:
+          given <m>\ww\in W</m>, we can write it in terms of our basis as <m>\ww=c_1\ww_1+\cdots + c_n\ww_n</m>.
+          Using these same scalars, we can define <m>\vv=c_1\vv_1+\cdots + c_n\vv_n\in V</m> such that <m>T(\vv)=\ww</m>.
+        </p>
+
+        <p>
+          Note that it's not important how we define <m>T(\vv_j)</m> when <m>j>n</m>.
+          The point is that this time, we run out of basis vectors for <m>W</m> before we run out of basis vectors for <m>V</m>.
+          Once each vector in the basis of <m>W</m> is in the image of <m>T</m>, we're guaranteed that <m>T</m> is surjective,
+          and we can define the value of <m>T</m> on any remaining basis vectors however we want.
+        </p>
+      </solution>
+    </task>
   </exercise>
 </section>
