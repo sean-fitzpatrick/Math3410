@@ -43,9 +43,6 @@
 
     <p>
       We'll write elements of <m>\C^n</m> as <m>\zz = (z_1,z_2,\ldots, z_n)</m>.
-      Notice that we've dropped the arrow notation for vectors in favour of a bold font.
-      The reason is that we'll want to consider complex conjugates,
-      and things get cluttered if we try to fit an arrow and a bar over our vector.
       The complex conjugate of <m>\zz</m> is given by
       <me>
         \bar{\zz} = (\bz_1,\bz_2,\ldots, \bz_n)
@@ -94,6 +91,8 @@
       some mathematicians, and most physicists, put the conjugate on the first vector.
       So they may have decided to remain agnostic about this choice.
       We can manually apply the conjugate, using <c>Z.dot(W.H)</c>.
+      (The <c>.H</c> operation is the <term>Hermitian conjugate</term>;
+      see <xref ref="def-conjugate-transpose"/> below.)
     </p>
 
     <sage>
@@ -122,8 +121,8 @@
           <ol>
             <li>
               <p>
-                <m>\langle \zz_1+\zz_2,\zz_3\rangle = \langle \zz_1,\zz_3\rangle + \langle zz_2,\zz_3\rangle</m> and
-                <m>\langle \zz_1,\zz_2+\zz_3\rangle = \langle \zz_1,\zz_2\rangle + \langle zz_1,\zz_3\rangle</m>.
+                <m>\langle \zz_1+\zz_2,\zz_3\rangle = \langle \zz_1,\zz_3\rangle + \langle \zz_2,\zz_3\rangle</m> and
+                <m>\langle \zz_1,\zz_2+\zz_3\rangle = \langle \zz_1,\zz_2\rangle + \langle \zz_1,\zz_3\rangle</m>.
               </p>
             </li>
 
@@ -213,6 +212,22 @@
       Note that much like the real norm, the complex norm satisfies <m>\len{\alpha\zz}=\abs{\alpha}\len{\zz}</m>
       for any (complex) scalar <m>\alpha</m>.
     </p>
+
+    <exercise>
+      <statement correct="yes">
+        <p>
+          The norm of a complex vector is always a real number.
+        </p>
+      </statement>
+      <feedback>
+        <p>
+          Since the norm is computed using the modulus, which is always real and non-negative,
+          the norm will be a real number as well.
+          If you ever get a complex number for your norm,
+          you've probably forgotten the complex conjugate somewhere.
+        </p>
+      </feedback>
+    </exercise>
   </subsection>
 
   <subsection xml:id="subsec-complex-matrix">
@@ -266,7 +281,7 @@
       <statement>
         <p>
           Show that the matrix <m>A = \bbm 4\amp 1-i\amp -2+3i\\1+i\amp 5 \amp 7i\\-2-3i\amp -7i\amp -4\ebm</m> is hermitian,
-          and that the matrix <m>B = \frac12\bbm 1+i\amp \sqrt{2}\\1-i\amp\sqrt{2}i\ebm</m> is unitary.
+          and that the matrix <m>B = \dfrac12\bbm 1+i\amp \sqrt{2}\\1-i\amp\sqrt{2}i\ebm</m> is unitary.
         </p>
       </statement>
       <solution>
@@ -631,8 +646,8 @@
     <p>
       While <xref ref="thm-complex-spectral"/> guarantees that any hermitian matrix can be <q>unitarily diagonalized</q>,
       there are also non-hermitian matrices for which this can be done as well.
-      A classic example of this is given in Nicholson's book, so we do not repeat the details here:
-      the matrix <m>\bbm 0\amp 1\\-1\amp 0\ebm</m> is a real matrix with complex eigenvalues <m>\pm i</m>,
+      A classic example of this is the rotation matrix <m>\bbm 0\amp 1\\-1\amp 0\ebm</m>.
+      This is a real matrix with complex eigenvalues <m>\pm i</m>,
       and while it is neither symmetric nor hermitian, it can be orthogonally diagonalized.
       This should be contrasted with the real spectral theorem,
       where any matrix that can be orthogonally diagonalized is necessarily symmetric.
@@ -651,8 +666,67 @@
       </statement>
     </definition>
 
+    <exercise>
+      <statement>
+        Select all matrices below that are normal.
+      </statement>
+      <choices randomize="yes">
+        <choice correct="yes">
+          <statement>
+            <p>
+              <m>\bbm 3\amp 1-3i\\1+3i\-4\ebm</m>
+            </p>
+          </statement>
+          <feedback>
+            <p>
+              This matrix is Hermitian, and we know that every Hermitian matrix is normal.
+            </p>
+          </feedback>
+        </choice>
+        <choice correct="no">
+          <statement>
+            <p>
+              <m>\bbm 1\amp 3\\0\amp 2\ebm</m>
+            </p>
+          </statement>
+          <feedback>
+            <p>
+              This matrix is not normal; this can be confirmed by direct computation,
+              or by noting that it cannot be diagonalized.
+            </p>
+          </feedback>
+        </choice>
+        <choice correct="yes">
+          <statement>
+            <p>
+              <m>\frac{1}{\sqrt{2}}\bbm 1\amp 1\\i\amp -i\ebm </m>
+            </p>
+          </statement>
+          <feedback>
+            <p>
+              This matrix is unitary, and every unitary matrix is normal.
+            </p>
+          </feedback>
+        </choice>
+        <choice correct="yes">
+          <statement>
+            <p>
+              <m>\bbm i \amp 2i\\2i\amp 3i</m>
+            </p>
+          </statement>
+          <feedback>
+            <p>
+              This matrix is neither Hermitian nor unitary,
+              but it is normal, which can be verified by direct computation.
+            </p>
+          </feedback>
+        </choice>
+      </choices>
+    </exercise>
+
     <p>
-      It turns out that a matrix <m>A</m> is normal if and only if <m>A=UDU^H</m> for some unitary matrix <m>U</m> and diagonal matrix <m>D</m>.
+      It turns out that a matrix <m>A</m> is normal if and only if <m>A=UDU^H</m>
+      for some unitary matrix <m>U</m> and diagonal matrix <m>D</m>.
       A further generalization is known as <em>Schur's Theorem</em>.
     </p>
 
