@@ -91,7 +91,7 @@
       some mathematicians, and most physicists, put the conjugate on the first vector.
       So they may have decided to remain agnostic about this choice.
       We can manually apply the conjugate, using <c>Z.dot(W.H)</c>.
-      (The <c>.H</c> operation is the <term>Hermitian conjugate</term>;
+      (The <c>.H</c> operation is the <term>hermitian conjugate</term>;
       see <xref ref="def-conjugate-transpose"/> below.)
     </p>
 
@@ -268,7 +268,7 @@
     </definition>
 
     <p>
-      Hermitian and unitary matrices (or more accurately, linear operators) are very important in quantum mechanics.
+      hermitian and unitary matrices (or more accurately, linear operators) are very important in quantum mechanics.
       Indeed, hermitian matrices represent <q>observable</q> quantities,
       in part because their eigenvalues are real, as we'll soon see.
       For us, hermitian and unitary matrices can simply be viewed as the complex counterparts of symmetric and orthogonal matrices,
@@ -356,7 +356,7 @@
     <theorem xml:id="thm-hermitian-symmetry">
       <statement>
         <p>
-          An <m>n\times n</m> complex matrix <m>A</m> is Hermitian if and only if
+          An <m>n\times n</m> complex matrix <m>A</m> is hermitian if and only if
           <me>
             \langle A\zz,\ww\rangle = \langle \zz, A\ww\rangle
           </me>
@@ -383,7 +383,7 @@
     <p>
       Next, we've noted that one advantage of doing linear algebra over <m>\C</m> is that every polynomial can be completely factored,
       including the characteristic polynomial. This means that we can always find eigenvalues for a matrix.
-      When that matrix is Hermitian, we get a surprising result.
+      When that matrix is hermitian, we get a surprising result.
     </p>
 
     <theorem xml:id="thm-hermitian-eigen-real">
@@ -679,7 +679,7 @@
           </statement>
           <feedback>
             <p>
-              This matrix is Hermitian, and we know that every Hermitian matrix is normal.
+              This matrix is hermitian, and we know that every hermitian matrix is normal.
             </p>
           </feedback>
         </choice>
@@ -716,7 +716,7 @@
           </statement>
           <feedback>
             <p>
-              This matrix is neither Hermitian nor unitary,
+              This matrix is neither hermitian nor unitary,
               but it is normal, which can be verified by direct computation.
             </p>
           </feedback>
