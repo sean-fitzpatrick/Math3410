@@ -105,8 +105,8 @@ eBookConfig.proxyuri_files = '';
 eBookConfig.enable_chatcodes =  false;
 </script>
 <!--*** Runestone Services ***-->
-<script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.3.0/runtime.d24a93181f625912.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.3.0/637.d54be67956c5c660.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.3.0/runestone.aeb994b86db36b29.bundle.js"></script><link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/6.3.0/637.fafafbd97df8a0d1.css">
-<link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/6.3.0/runestone.e4d5592da655219f.css">
+<script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.3.6/runtime.2a6a972e6f4ec153.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.3.6/637.d54be67956c5c660.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.3.6/runestone.e00ad9c8384ced97.bundle.js"></script><link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/6.3.6/637.fafafbd97df8a0d1.css">
+<link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/6.3.6/runestone.e4d5592da655219f.css">
 </head>
 <body id="linalg" class="pretext-book ignore-math has-toc has-sidebar-left">
 <a class="assistive" href="#content">Skip to main content</a><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\spn}{\operatorname{span}}
@@ -473,7 +473,12 @@ x_2 \amp =-\frac25 x_3+\frac 45 x_4\text{,}
 ---
 <p id="p-671">Assume that <span class="process-math">\(c_1T(\vv_1)+\cdots + c_nT(\vv_n)=\zer\text{,}\)</span> for some scalars <span class="process-math">\(c_1,c_2,\ldots, c_n\text{.}\)</span></p>
 ---
-<p id="p-672">Since <span class="process-math">\(T\)</span> is linear,  and <span class="process-math">\(c_1T(\vv_1)+\cdots+c_nT(\vv_n)=\zer\text{,}\)</span> <span class="process-math">\(T(c_1\vv_1+ \ldots + c_n\vv_n)=\zer\text{.}\)</span></p>
+<p id="p-672">Since <span class="process-math">\(T\)</span> is linear,</p><div class="displaymath process-math" data-contains-math-knowls="" id="md-34">
+\begin{align*}
+\zer \amp = c_1T(\vv_1)+\cdots + c_nT(\vv_n)\\
+\amp =T(c_1\vv_1+ \ldots + c_n\vv_n)\text{.}
+\end{align*}
+</div>
 ---
 <p id="p-673">Therefore, <span class="process-math">\(c_1\vv_1+\cdots + c_n\vv_n\in \ker T\text{.}\)</span></p>
 ---
@@ -503,7 +508,13 @@ x_2 \amp =-\frac25 x_3+\frac 45 x_4\text{,}
 ---
 <p id="p-684">Since <span class="process-math">\(V=\spn\{\vv_1,\ldots, \vv_n\}\)</span> and <span class="process-math">\(\vv\in V\text{,}\)</span> there are scalars <span class="process-math">\(c_1,\ldots, c_n\)</span> such that <span class="process-math">\(\vv=c_1\vv_1+\cdots +c_n\vv_n\text{.}\)</span></p>
 ---
-<p id="p-685">Since <span class="process-math">\(T\)</span> is linear,  and <span class="process-math">\(\vv=c_1\vv_1+\cdots+c_n\vv_n\)</span> <span class="process-math">\(\ww=c_1T(\vv_1)+\cdots+c_nT(\vv_n)\text{,}\)</span> so <span class="process-math">\(\ww\in \spn\{T(\vv_1),\ldots, T(\vv_n)\}\text{.}\)</span></p>
+<p id="p-685">Since <span class="process-math">\(T\)</span> is linear,</p><div class="displaymath process-math" data-contains-math-knowls="" id="md-35">
+\begin{align*}
+\ww \amp = T(\vv) \\
+\amp = T(c_1\vv_1+\cdots +c_n\vv_n)\\
+\amp = c_1T(\vv_1)+\cdots +c_nT(\vv_n)\text{,}
+\end{align*}
+</div><p class="continuation">so <span class="process-math">\(\ww\in \spn\{T(\vv_1),\ldots, T(\vv_n)\}\text{.}\)</span></p>
 ---
 <p id="p-686">Therefore, <span class="process-math">\(W\subseteq \spn\{T(\vv_1),\ldots, T(\vv_n)\}\text{,}\)</span> and since <span class="process-math">\(\spn\{T(\vv_1),\ldots, T(\vv_n)\}\subseteq W\text{,}\)</span> we have <span class="process-math">\(W=\spn\{T(\vv_1),\ldots, T(\vv_n)\}\text{.}\)</span></p></pre>
 </div></div></div>

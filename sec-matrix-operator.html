@@ -105,8 +105,8 @@ eBookConfig.proxyuri_files = '';
 eBookConfig.enable_chatcodes =  false;
 </script>
 <!--*** Runestone Services ***-->
-<script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.3.0/runtime.d24a93181f625912.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.3.0/637.d54be67956c5c660.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.3.0/runestone.aeb994b86db36b29.bundle.js"></script><link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/6.3.0/637.fafafbd97df8a0d1.css">
-<link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/6.3.0/runestone.e4d5592da655219f.css">
+<script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.3.6/runtime.2a6a972e6f4ec153.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.3.6/637.d54be67956c5c660.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.3.6/runestone.e00ad9c8384ced97.bundle.js"></script><link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/6.3.6/637.fafafbd97df8a0d1.css">
+<link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/6.3.6/runestone.e4d5592da655219f.css">
 </head>
 <body id="linalg" class="pretext-book ignore-math has-toc has-sidebar-left">
 <a class="assistive" href="#content">Skip to main content</a><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\spn}{\operatorname{span}}
@@ -278,7 +278,7 @@ B = \{1-x, x+3x^2, 2-x^2\}\text{.}
 <div class="solutions">
 <a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-71" id="solution-71"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-71"><div class="solution solution-like">
 <p id="p-1412">We compute</p>
-<div class="displaymath process-math" data-contains-math-knowls="" id="md-87">
+<div class="displaymath process-math" data-contains-math-knowls="" id="md-89">
 \begin{align*}
 T(1-x) \amp = 1(1+x^2)+0(x) = 1+x^2\\
 T(x+3x^2) \amp = 0(1+x^2)+4x=4x\\
@@ -293,7 +293,7 @@ a(1-x)+b(x+3x^2)+c(2-x^2)=1+x^2
 \end{equation*}
 </div>
 <p class="continuation">for scalars <span class="process-math">\(a,b,c\text{.}\)</span> But this is equivalent to the system</p>
-<div class="displaymath process-math" data-contains-math-knowls="" id="md-88">
+<div class="displaymath process-math" data-contains-math-knowls="" id="md-90">
 \begin{align*}
 a+2c \amp =1\\
 -a+b \amp =0\\
@@ -320,7 +320,7 @@ M = Matrix(3,3,[1,0,2,0,4,1,1,0,2])
 P**-1, P**-1*M
 </script></pre>
 <p id="p-1414">That is,</p>
-<div class="displaymath process-math" data-contains-math-knowls="" id="md-89">
+<div class="displaymath process-math" data-contains-math-knowls="" id="md-91">
 \begin{align*}
 M_B(T) \amp =\bbm C_B(T(1-x)) \amp C_B(T(x+3x^2)) \amp C_B(T(2-x^2))\ebm\\
 \amp =\bbm P^{-1}C_{B_0}T(1-x) \amp P^{-1} C_{B_0}T(x+3x^2) \amp P^{-1}C_{B_0}(T(2-x^2))\ebm\\
@@ -331,7 +331,7 @@ M_B(T) \amp =\bbm C_B(T(1-x)) \amp C_B(T(x+3x^2)) \amp C_B(T(2-x^2))\ebm\\
 \end{align*}
 </div>
 <p id="p-1415">Let's confirm that this works. Suppose we have</p>
-<div class="displaymath process-math" data-contains-math-knowls="" id="md-90">
+<div class="displaymath process-math" data-contains-math-knowls="" id="md-92">
 \begin{align*}
 p(x) \amp = C_B^{-1}\bbm a\\b\\c\ebm = a(1-x)+b(x+3x^2)+c(2-x^2)\\
 \amp = (a+2c)+(-a+b)x+(3b-c)x^2\text{.}
@@ -358,7 +358,7 @@ P = \bbm C_{B_0}(\mathbf{b}_1) \amp \cdots \amp C_{B_0}(\mathbf{b}_n)\ebm\text{,
 \end{equation*}
 </div>
 <p class="continuation">then</p>
-<div class="displaymath process-math" data-contains-math-knowls="" id="md-91">
+<div class="displaymath process-math" data-contains-math-knowls="" id="md-93">
 \begin{align*}
 M_B(T) \amp = \bbm C_B(T(\mathbf{b}_1)) \amp \cdots \amp C_B(T(\mathbf{b_n})\ebm\\
 \amp = P^{-1}\bbm C_{B_0}(T(\mathbf{b}_1)) \amp \cdots \amp C_{B_0}(T(\mathbf{b_n})\ebm\text{.}
@@ -383,7 +383,7 @@ M_{B}(T)=P^{-1}\bbm C_{B_0}T(1-x)\amp C_{B_0}(T(x+3x^2)\amp C_{B_0}(T(2-x^2))\eb
 \end{equation*}
 </div>
 <p class="continuation">so we get</p>
-<div class="displaymath process-math" data-contains-math-knowls="" id="md-92">
+<div class="displaymath process-math" data-contains-math-knowls="" id="md-94">
 \begin{align*}
 M_B(T) \amp = P^{-1}\bbm C_{B_0}T(1-x)\amp C_{B_0}(T(x+3x^2)\amp C_{B_0}(T(2-x^2))\ebm\\
 \amp = P^{-1}\bbm M_{B_0}C_{B_0}(1-x)\amp M_{B_0}C_{B_0}(x+3x^2)\amp M_{B_0}C_{B_0}(2-x^2)\ebm \\
@@ -414,7 +414,7 @@ B = \{(1,2,0),(0,-1,2),(1,2,1)\}\text{.}
 </div>
 <p class="continuation">(You may want to use the Sage cell below for computational assistance.)</p></article><pre class="ptx-sagecell sagecell-sage" id="sage-118"><script type="text/x-sage"></script></pre>
 <p id="p-1421">The matrix <span class="process-math">\(P\)</span> used in the above examples is known as a <em class="emphasis">change</em> matrix. If the columns of <span class="process-math">\(P\)</span> are the coefficient vectors of <span class="process-math">\(B=\basis{b}{n}\)</span> with respect to another basis <span class="process-math">\(D\text{,}\)</span> then we have</p>
-<div class="displaymath process-math" data-contains-math-knowls="" id="md-93">
+<div class="displaymath process-math" data-contains-math-knowls="" id="md-95">
 \begin{align*}
 P \amp= \bbm C_D(\mathbf{b}_1)\amp\cdots \amp C_D(\mathbf{b}_n)\ebm\\
 \amp = \bbm C_D(1_V(\mathbf{b}_1))\amp \cdots \amp C_D(1_V(\mathbf{b}_n))\ebm\\
