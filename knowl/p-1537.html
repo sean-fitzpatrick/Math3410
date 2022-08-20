@@ -12,16 +12,28 @@
 </head>
 <body class="ignore-math">
 <h4 class="heading"><span class="type">Paragraph</span></h4>
-<p>Finally, we deal with the eigenvalue <span class="process-math">\(2\text{.}\)</span> The reduced row-echelon form of <span class="process-math">\(M-2I\)</span> is</p>
+<p>Our basis of column vectors is therefore <span class="process-math">\(B=\{\xx_1,\xx_2,\xx_3,\yy\}\text{.}\)</span> Note that by design,</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{align*}
+M\xx_1 \amp =\xx_1\\
+M\xx_2 \amp =\xx_1+\xx_2\\
+M\xx_3 \amp= \xx_2+\xx_3\\
+M\yy \amp = 2\yy\text{.}
+\end{align*}
+</div>
+<p class="continuation">The corresponding Jordan basis for <span class="process-math">\(\R^4\)</span> is</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
-R_2 = \bbm 1\amp 0\amp 0\amp 0\\0\amp 1\amp 0\amp 0\\0\amp 0\amp 1\amp -1\\0\amp 0\amp 0\amp 0\ebm\text{,}
+\{(0,0,0,1),(1,0,0,0),(0,1,1,0),(0,0,1,1)\}\text{,}
 \end{equation*}
 </div>
-<p class="continuation">so</p>
+<p class="continuation">and with respect to this basis, we have</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
-E_2(M) = \spn\{\yy\}, \text{ where } \yy = \bbm 0\\0\\1\\1\ebm\text{.}
+M_B(T) = \bbm 1\amp 1\amp 0\amp 0\\
+0\amp 1\amp 1\amp 0\\
+0\amp 0\amp 1\amp 0\\
+0\amp 0\amp 0\amp 2\ebm\text{.}
 \end{equation*}
 </div>
 <span class="incontext"><a href="sec-jordan-form.html#p-1537" class="internal">in-context</a></span>

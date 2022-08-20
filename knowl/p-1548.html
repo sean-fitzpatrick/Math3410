@@ -12,19 +12,21 @@
 </head>
 <body class="ignore-math">
 <h2 class="heading"><span class="type">Paragraph</span></h2>
-<p>This idea of putting a complex number in an exponential function seems odd at first. If you take a course in complex variables, you'll get a better understanding of why this makes sense. But for now, we can take it as a convenient piece of notation. The reason it's convenient is that the rules for complex arithmetic turn out to align quite nicely with properties of the exponential function. For example, de Moivre's Theorem states that</p>
+<p>Similarly, if we want to multiply two unit complex numbers, we have</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{align*}
+(\cos\alpha+i\sin\alpha)(\cos\beta+i\sin\beta) \amp = (\cos\alpha\cos\beta-\sin\alpha\sin\beta)\\
+\amp \quad\quad +i(\sin\alpha\cos\beta+\cos\alpha\sin\beta)\\
+\amp = \cos(\alpha+\beta)+i\sin(\alpha+\beta)\text{.}
+\end{align*}
+</div>
+<p class="continuation">But in exponential notation, this is simply</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
-(\cos(\theta)+i\sin(\theta))^n = \cos(n\theta)+i\sin(n\theta)\text{.}
+e^{i\alpha}e^{i\beta} = e^{i(\alpha+\beta)}\text{,}
 \end{equation*}
 </div>
-<p class="continuation">This can be proved by induction (and the proof is not even all that bad), but it seems perfectly obvious in exponential notation:</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-(e^{i\theta})^n = e^{in\theta}\text{,}
-\end{equation*}
-</div>
-<p class="continuation">since you multiply exponents when you raise a power to a power.</p>
+<p class="continuation">which makes sense, since when you multiply exponentials, you add the exponents.</p>
 <span class="incontext"><a href="appendix-complex-review.html#p-1548" class="internal">in-context</a></span>
 </body>
 </html>

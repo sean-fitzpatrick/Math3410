@@ -44,7 +44,10 @@ Q = \bbm \frac{\sqrt{3}}{3}\amp \frac{\sqrt{2}}{2}\amp \frac{\sqrt{6}}{6}\\
 \end{equation*}
 </div>
 <p class="continuation">Let's check that it is indeed orthogonal.</p>
-<pre class="ptx-sagecell sagecell-sage" id="sage-87"><script type="text/x-sage">Q = Matrix([[sqrt(3)/3,sqrt(2)/2,sqrt(6)/6],[sqrt(3)/3,0,-sqrt(6)/3],[sqrt(3)/3,-sqrt(2)/2,sqrt(6)/6]])
+<pre class="ptx-sagecell sagecell-sage" id="sage-87"><script type="text/x-sage">Q = Matrix([
+    [sqrt(3)/3,sqrt(2)/2,sqrt(6)/6],
+    [sqrt(3)/3,0,-sqrt(6)/3],
+    [sqrt(3)/3,-sqrt(2)/2,sqrt(6)/6]])
 Q*Q.T
 </script></pre>
 <p>Finally, we take <span class="process-math">\(P=\bbm 1\amp 0\\0\amp 1\ebm\)</span> (again swapping columns), which is just the identity matrix. We therefore should expect that</p>

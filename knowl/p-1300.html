@@ -12,15 +12,13 @@
 </head>
 <body class="ignore-math">
 <h6 class="heading"><span class="type">Paragraph</span></h6>
-<p>To match our earlier presentation, we first set <span class="process-math">\(\Sigma_A = \bbm \sqrt{3}\amp 0\amp 0\\0 \amp \sqrt{2}\amp 0\ebm\text{.}\)</span> Next, we need to extend the <span class="process-math">\(3\times 2\)</span> matrix in the output above to a <span class="process-math">\(3\times 3\)</span> matrix. We can do this by choosing any vector orthogonal to the two existing columns, and normalizing. Let's use entries <span class="process-math">\(1/\sqrt{6},-2/\sqrt{6},1/\sqrt{6}\text{.}\)</span> Noting that we also need to swap the first two columns (to match the fact that we swapped columns in <span class="process-math">\(\Sigma_A\)</span>), we get the matrix</p>
+<p>Finally, we take <span class="process-math">\(P=\bbm 1\amp 0\\0\amp 1\ebm\)</span> (again swapping columns), which is just the identity matrix. We therefore should expect that</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
-Q = \bbm \frac{\sqrt{3}}{3}\amp \frac{\sqrt{2}}{2}\amp \frac{\sqrt{6}}{6}\\
-\frac{\sqrt{3}}{3}\amp 0\amp -\frac{\sqrt{6}}{3}\\
-\frac{\sqrt{3}}{3}\amp -\frac{\sqrt{2}}{2} \amp \frac{\sqrt{6}}{6}\ebm\text{.}
+P\Sigma_A Q^T = \Sigma_A Q^T = A\text{.}
 \end{equation*}
 </div>
-<p class="continuation">Let's check that it is indeed orthogonal.</p>
+<p class="continuation">Let's check.</p>
 <span class="incontext"><a href="section-matrix-factor.html#p-1300" class="internal">in-context</a></span>
 </body>
 </html>

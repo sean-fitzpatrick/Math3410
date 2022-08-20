@@ -11,8 +11,8 @@
 <meta name="robots" content="noindex, nofollow">
 </head>
 <body class="ignore-math">
-<h5 class="heading"><span class="type">Paragraph</span></h5>
-<p>All of this is a lot of work to do by hand, but it turns out that it can be done numerically, and more importantly, <em class="emphasis">efficiently</em>, by a computer. The SymPy library has an <abbr class="initialism">SVD</abbr> algorithm, but it will not be efficient for larger matrices. In practice, most Python users will use the <abbr class="initialism">SVD</abbr> algorithm provided by NumPy; we will stick with SymPy for simplicity and consistency.</p>
+<h6 class="heading"><span class="type">Paragraph</span></h6>
+<p>The version of the <abbr class="initialism">SVD</abbr> given above is not used in computations, since it tends to be more resource intensive. In particular, it requires us to store more information than necessary: the last <span class="process-math">\(n-r\)</span> rows of <span class="process-math">\(Q\text{,}\)</span> and the last <span class="process-math">\(m-r\)</span> columns of <span class="process-math">\(P\text{,}\)</span> get multiplied by columns/rows of zeros in <span class="process-math">\(\Sigma_A\text{,}\)</span> so we don't really need to keep track of these columns.</p>
 <span class="incontext"><a href="section-matrix-factor.html#p-1292" class="internal">in-context</a></span>
 </body>
 </html>
