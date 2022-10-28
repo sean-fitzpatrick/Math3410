@@ -2070,9 +2070,9 @@ var ptx_lunr_docs = [
   "body": "\n        Eigenvalues and eigenvectors can just as easily be defined for a general linear operator  .\n        In this context, and eigenvector   is sometimes referred to as a  characteristic vector  (or characteristic direction)\n        for  , since the property  \n        simply states that the transformed vector   is parallel to the original vector  .\n        Some linear algebra textbooks that focus more on general linear transformations frame this topic in the context of\n         invariant subspaces  for a linear operator.\n       \n        A subspace   is  invariant  with respect to   if   for all  .\n        Note that if   is an eigenvector of  , then   is an invariant subspace.\n        To see this, note that if   and  , then\n         .\n       "
 },
 {
-  "id": "exercise-94",
+  "id": "ex-match-eigen1",
   "level": "2",
-  "url": "sec-eigen-basics.html#exercise-94",
+  "url": "sec-eigen-basics.html#ex-match-eigen1",
   "type": "Exercise",
   "number": "4.1.4",
   "title": "",
@@ -2106,9 +2106,9 @@ var ptx_lunr_docs = [
   "body": "characteristic polynomial characteristic equation "
 },
 {
-  "id": "ex-match-eigen",
+  "id": "ex-match-eigen2",
   "level": "2",
-  "url": "sec-eigen-basics.html#ex-match-eigen",
+  "url": "sec-eigen-basics.html#ex-match-eigen2",
   "type": "Exercise",
   "number": "4.1.7",
   "title": "",
