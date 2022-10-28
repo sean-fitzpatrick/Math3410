@@ -9,7 +9,7 @@
 <!--NB: move this file from APEXCalculusPTX/style to mathbook/user !!!  -->
 
 <!DOCTYPE xsl:stylesheet [
-    <!ENTITY % entities SYSTEM "entities.ent">
+    <!ENTITY % entities SYSTEM "./core/entities.ent">
     %entities;
 ]>
 
@@ -17,7 +17,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
 <!-- next line will fail if this file is not in mathbook/user -->
-<xsl:import pretext-href="pretext-latex.xsl" />
+<xsl:import href="./core/pretext-latex.xsl" />
 
 <xsl:output method="text" />
 
@@ -249,13 +249,6 @@
     <xsl:text>}&#xa;</xsl:text>
 </xsl:template> -->
 
-
-<!-- now come all the options -->
-<!-- turn off hints, answers, and solutions for exercises -->
-<!-- <xsl:param name="exercise.divisional.hint" select="'no'"/> -->
-<xsl:param name="exercise.inline.answer" select="'no'"/>
-<xsl:param name="exercise.inline.solution" select="'no'"/>
-<xsl:param name="exercise.worksheet.solution" select="'no'"/>
 <!-- print options -->
 <!-- <xsl:param name="latex.print" select="'no'"/> -->
 <xsl:param name="latex.pageref" select="'no'"/>
