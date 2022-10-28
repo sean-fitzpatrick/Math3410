@@ -64,6 +64,7 @@ sagecell.makeSagecell({inputLocation: 'pre.sagecell-sage',
                        languages: ['sage'],
                        evalButtonText: 'Evaluate (Sage)'});
 </script><link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/themes/prism.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script><script src="https://unpkg.com/lunr/lunr.js"></script><script src="lunr-pretext-search-index.js"></script><script src="https://pretextbook.org/js/0.13/pretext_search.js"></script><link href="https://pretextbook.org/css/0.4/pretext_search.css" rel="stylesheet" type="text/css">
 <script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.13/pretext.js"></script><script>miniversion=0.674</script><script src="https://pretextbook.org/js/0.13/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
 </script><link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic" rel="stylesheet" type="text/css">
 <link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
@@ -83,8 +84,8 @@ sagecell.makeSagecell({inputLocation: 'pre.sagecell-sage',
 eBookConfig = {};
 eBookConfig.useRunestoneServices = false;
 eBookConfig.host = 'http://127.0.0.1:8000';
-eBookConfig.course = 'PTX Course: Title Here';
-eBookConfig.basecourse = 'PTX Base Course';
+eBookConfig.course = 'PTX_Course_Title_Here';
+eBookConfig.basecourse = 'PTX_Base_Course';
 eBookConfig.isLoggedIn = false;
 eBookConfig.email = '';
 eBookConfig.isInstructor = false;
@@ -97,7 +98,6 @@ eBookConfig.allow_pairs = false;
 eBookConfig.enableScratchAC = false;
 eBookConfig.build_info = "";
 eBookConfig.python3 = null;
-eBookConfig.acDefaultLanguage = 'python';
 eBookConfig.runestone_version = '5.0.1';
 eBookConfig.jobehost = '';
 eBookConfig.proxyuri_runs = '';
@@ -105,8 +105,8 @@ eBookConfig.proxyuri_files = '';
 eBookConfig.enable_chatcodes =  false;
 </script>
 <!--*** Runestone Services ***-->
-<script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.3.6/runtime.2a6a972e6f4ec153.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.3.6/637.d54be67956c5c660.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.3.6/runestone.e00ad9c8384ced97.bundle.js"></script><link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/6.3.6/637.fafafbd97df8a0d1.css">
-<link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/6.3.6/runestone.e4d5592da655219f.css">
+<script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.3.19/runtime.e0db479b505f5577.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.3.19/637.d54be67956c5c660.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.3.19/runestone.d2c66bf8c215a984.bundle.js"></script><link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/6.3.19/637.0fa6cababf056764.css">
+<link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/6.3.19/runestone.93e720e6c6581fb5.css">
 </head>
 <body id="linalg" class="pretext-book ignore-math has-toc has-sidebar-left">
 <a class="assistive" href="#content">Skip to main content</a><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\spn}{\operatorname{span}}
@@ -150,6 +150,14 @@ eBookConfig.enable_chatcodes =  false;
 <a id="logo-link" href=""></a><div class="title-container">
 <h1 class="heading"><a href="linear-algebra.html"><span class="title">Linear Algebra:</span> <span class="subtitle">A second course, featuring proofs and Python</span></a></h1>
 <p class="byline">Sean Fitzpatrick</p>
+</div>
+<div class="searchbox"><div class="searchwidget">
+<input id="ptxsearch" type="text" name="terms" placeholder="Search" onchange="doSearch()"><button id="searchbutton" type="button" onclick="doSearch()">🔍</button>
+</div></div>
+<div id="searchresultsplaceholder" style="display: none">
+<button id="closesearchresults" onclick="document.getElementById('searchresultsplaceholder').style.display = 'none'; return false;">x</button><h2>Search Results: <span id="searchterms"></span>
+</h2>
+<ol id="searchresults"></ol>
 </div>
 </div></div>
 <nav id="primary-navbar" class="navbar"><div class="container">
@@ -344,15 +352,15 @@ Z, W, Z.dot(W.H)
 \len{\zz} = \sqrt{\langle \zz,\zz\rangle} = \sqrt{\abs{z_1}^2+\abs{z_2}^2+\cdots +\abs{z_n}^2}\text{.}
 \end{equation*}
 </div></article><p id="p-1158">Note that much like the real norm, the complex norm satisfies <span class="process-math">\(\len{\alpha\zz}=\abs{\alpha}\len{\zz}\)</span> for any (complex) scalar <span class="process-math">\(\alpha\text{.}\)</span></p>
-<article class="exercise exercise-like" id="exercise-99"><h4 class="heading">
+<article class="exercise exercise-like" id="rs-tf-cnorm"><h4 class="heading">
 <span class="type">Exercise</span><span class="space"> </span><span class="codenumber">4.4.5</span><span class="period">.</span>
 </h4>
-<div class="ptx-runestone-container"><div class="runestone"><ul data-component="multiplechoice" data-multipleanswers="false" id="">
+<div class="ptx-runestone-container"><div class="runestone"><ul data-component="multiplechoice" data-multipleanswers="false" id="rs-tf-cnorm">
 <p id="p-1159">The norm of a complex vector is always a real number.</p>
-<li data-component="answer" id="_opt_t" data-correct=""><p>True.</p></li>
-<li data-component="feedback" id="_opt_t"><p id="p-1160">Since the norm is computed using the modulus, which is always real and non-negative, the norm will be a real number as well. If you ever get a complex number for your norm, you've probably forgotten the complex conjugate somewhere.</p></li>
-<li data-component="answer" id="_opt_f"><p>False.</p></li>
-<li data-component="feedback" id="_opt_f"><p id="p-1160">Since the norm is computed using the modulus, which is always real and non-negative, the norm will be a real number as well. If you ever get a complex number for your norm, you've probably forgotten the complex conjugate somewhere.</p></li>
+<li data-component="answer" id="rs-tf-cnorm_opt_t" data-correct=""><p>True.</p></li>
+<li data-component="feedback" id="rs-tf-cnorm_opt_t"><p id="p-1160">Since the norm is computed using the modulus, which is always real and non-negative, the norm will be a real number as well. If you ever get a complex number for your norm, you've probably forgotten the complex conjugate somewhere.</p></li>
+<li data-component="answer" id="rs-tf-cnorm_opt_f"><p>False.</p></li>
+<li data-component="feedback" id="rs-tf-cnorm_opt_f"><p id="p-1160">Since the norm is computed using the modulus, which is always real and non-negative, the norm will be a real number as well. If you ever get a complex number for your norm, you've probably forgotten the complex conjugate somewhere.</p></li>
 </ul></div></div></article></section><section class="subsection" id="subsec-complex-matrix"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">4.4.2</span> <span class="title">Complex matrices</span>
 </h3>
@@ -478,17 +486,17 @@ u1, u2, U, simplify(U.H*A*U)
 <article class="definition definition-like" id="def-normal-matrix"><h4 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">4.4.13</span><span class="period">.</span>
 </h4>
-<p id="p-1199">An <span class="process-math">\(n\times n\)</span> matrix <span class="process-math">\(A\)</span> is <dfn class="terminology">normal</dfn> if <span class="process-math">\(A^HA = AA^H\text{.}\)</span></p></article><article class="exercise exercise-like" id="exercise-102"><h4 class="heading">
+<p id="p-1199">An <span class="process-math">\(n\times n\)</span> matrix <span class="process-math">\(A\)</span> is <dfn class="terminology">normal</dfn> if <span class="process-math">\(A^HA = AA^H\text{.}\)</span></p></article><article class="exercise exercise-like" id="rs-mc-normal"><h4 class="heading">
 <span class="type">Exercise</span><span class="space"> </span><span class="codenumber">4.4.14</span><span class="period">.</span>
 </h4>
-<div class="ptx-runestone-container"><div class="runestone"><ul data-component="multiplechoice" id="" data-multipleanswers="true" data-random="">Select all matrices below that are normal.<li data-component="answer" id="_opt_a" data-correct=""><p id="p-1200"><span class="process-math">\(\bbm 3\amp 1-3i\\1+3i\\amp -4\ebm\)</span></p></li>
-<li data-component="feedback" id="_opt_a"><p id="p-1201">This matrix is hermitian, and we know that every hermitian matrix is normal.</p></li>
-<li data-component="answer" id="_opt_b"><p id="p-1202"><span class="process-math">\(\bbm 1\amp 3\\0\amp 2\ebm\)</span></p></li>
-<li data-component="feedback" id="_opt_b"><p id="p-1203">This matrix is not normal; this can be confirmed by direct computation, or by noting that it cannot be diagonalized.</p></li>
-<li data-component="answer" id="_opt_c" data-correct=""><p id="p-1204"><span class="process-math">\(\frac{1}{\sqrt{2}}\bbm 1\amp 1\\i\amp -i\ebm \)</span></p></li>
-<li data-component="feedback" id="_opt_c"><p id="p-1205">This matrix is unitary, and every unitary matrix is normal.</p></li>
-<li data-component="answer" id="_opt_d" data-correct=""><p id="p-1206"><span class="process-math">\(\bbm i \amp 2i\\2i\amp 3i\ebm\)</span></p></li>
-<li data-component="feedback" id="_opt_d"><p id="p-1207">This matrix is neither hermitian nor unitary, but it is normal, which can be verified by direct computation.</p></li>
+<div class="ptx-runestone-container"><div class="runestone"><ul data-component="multiplechoice" id="rs-mc-normal" data-multipleanswers="true" data-random="">Select all matrices below that are normal.<li data-component="answer" id="rs-mc-normal_opt_a" data-correct=""><p id="p-1200"><span class="process-math">\(\bbm 3\amp 1-3i\\1+3i\amp -4\ebm\)</span></p></li>
+<li data-component="feedback" id="rs-mc-normal_opt_a"><p id="p-1201">This matrix is hermitian, and we know that every hermitian matrix is normal.</p></li>
+<li data-component="answer" id="rs-mc-normal_opt_b"><p id="p-1202"><span class="process-math">\(\bbm 1\amp 3\\0\amp 2\ebm\)</span></p></li>
+<li data-component="feedback" id="rs-mc-normal_opt_b"><p id="p-1203">This matrix is not normal; this can be confirmed by direct computation, or by noting that it cannot be diagonalized.</p></li>
+<li data-component="answer" id="rs-mc-normal_opt_c" data-correct=""><p id="p-1204"><span class="process-math">\(\frac{1}{\sqrt{2}}\bbm 1\amp 1\\i\amp -i\ebm \)</span></p></li>
+<li data-component="feedback" id="rs-mc-normal_opt_c"><p id="p-1205">This matrix is unitary, and every unitary matrix is normal.</p></li>
+<li data-component="answer" id="rs-mc-normal_opt_d" data-correct=""><p id="p-1206"><span class="process-math">\(\bbm i \amp 2i\\2i\amp 3i\ebm\)</span></p></li>
+<li data-component="feedback" id="rs-mc-normal_opt_d"><p id="p-1207">This matrix is neither hermitian nor unitary, but it is normal, which can be verified by direct computation.</p></li>
 </ul></div></div></article><p id="p-1208">It turns out that a matrix <span class="process-math">\(A\)</span> is normal if and only if <span class="process-math">\(A=UDU^H\)</span> for some unitary matrix <span class="process-math">\(U\)</span> and diagonal matrix <span class="process-math">\(D\text{.}\)</span> A further generalization is known as <em class="emphasis">Schur's Theorem</em>.</p>
 <article class="theorem theorem-like" id="thm-schurr"><h4 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">4.4.15</span><span class="period">.</span>
@@ -519,6 +527,5 @@ c_A(A) = (A-\lambda_1I)(A-\lambda_2I)\cdots (A-\lambda_nI)\text{.}
 <p id="p-1214">Since the first column of <span class="process-math">\(A\)</span> is <span class="process-math">\(\bbm \lambda_1\amp 0 \amp \cdots \amp 0\ebm^T\text{,}\)</span> the first column of <span class="process-math">\(A-\lambda_1I\)</span> is identically zero. The second column of <span class="process-math">\(A-\lambda_2I\)</span> similarly has the form <span class="process-math">\(\bbm k\amp 0\amp\cdots\amp 0\ebm\)</span> for some number <span class="process-math">\(k\text{.}\)</span></p>
 <p id="p-1215">It follows that the first two columns of <span class="process-math">\((A-\lambda_1I)(A-\lambda_2I)\)</span> are identically zero. Since only the first two entries in the third column of <span class="process-math">\((A-\lambda_3I)\)</span> can be nonzero, we find that the first three columns of <span class="process-math">\((A-\lambda_1I)(A-\lambda_2I)(A-\lambda_3I)\)</span> are zero, and so on.</p></article></div></section></section></div></main>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script>
 </body>
 </html>
