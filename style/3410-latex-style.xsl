@@ -111,7 +111,8 @@
 </xsl:template>
 
 <!-- use original APEX geometry definitions -->
-<xsl:param name="latex.geometry" select="'inner=1in,textheight=9in,textwidth=340pt,marginparwidth=140pt,marginparsep=20pt,bottom=1in,footskip=29pt'"/>
+<!-- <xsl:param name="latex.geometry" select="'inner=1in,textheight=9in,textwidth=340pt,marginparwidth=140pt,marginparsep=20pt,bottom=1in,footskip=29pt'"/> -->
+<!-- this is now controlled in the publisher file -->
 
 <!-- tabular in sidebyside without scaling -->
 <xsl:template match="tabular[ancestor::sidebyside]">
@@ -251,7 +252,7 @@
 
 <!-- print options -->
 <!-- <xsl:param name="latex.print" select="'no'"/> -->
-<xsl:param name="latex.pageref" select="'no'"/>
+<!-- <xsl:param name="latex.pageref" select="'no'"/> -->
 <!-- <xsl:param name="latex.sides" select="'one'"/> -->
 
 <!-- set toc depth -->
