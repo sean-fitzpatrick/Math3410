@@ -39,6 +39,9 @@
       \newcommand{\vece}{\mathbf{e}}
       \newcommand{\basis}[2]{\{\mathbf{#1}_1,\mathbf{#1}_2,\ldots,\mathbf{#1}_{#2}\}}
     </macros>
+    <latex-preamble>
+      <package>boldsymbol</package>
+    </latex-preamble>
     <latex-image-preamble>
       \usepackage{pgfplots}
       \usetikzlibrary{positioning,matrix,arrows,arrows.meta}
@@ -162,7 +165,7 @@
     <backmatter>
       <xi:include href="./appendix-complex.ptx"/>
       <xi:include href="./appendix_computation.ptx"/>
-      <solutions inline="answer solution">
+      <solutions inline="answer solution" xml:id="solutions-backmatter">
         <title>Solutions to Selected Exercises</title>
       </solutions>
     </backmatter>
