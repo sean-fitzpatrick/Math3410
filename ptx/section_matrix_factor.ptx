@@ -263,33 +263,31 @@
         we will stick with SymPy for simplicity and consistency.
       </p>
 
-      <remark>
-        <statement>
-          <p>
-            The version of the <init>SVD</init> given above is not used in computations,
-            since it tends to be more resource intensive.
-            In particular, it requires us to store more information than necessary:
-            the last <m>n-r</m> rows of <m>Q</m>, and the last <m>m-r</m> columns of <m>P</m>,
-            get multiplied by columns/rows of zeros in <m>\Sigma_A</m>,
-            so we don't really need to keep track of these columns.
-          </p>
+      <remark>        
+        <p>
+          The version of the <init>SVD</init> given above is not used in computations,
+          since it tends to be more resource intensive.
+          In particular, it requires us to store more information than necessary:
+          the last <m>n-r</m> rows of <m>Q</m>, and the last <m>m-r</m> columns of <m>P</m>,
+          get multiplied by columns/rows of zeros in <m>\Sigma_A</m>,
+          so we don't really need to keep track of these columns.
+        </p>
 
-          <p>
-            Instead, most algorithms that you find will give the <m>r\times r</m> diagonal matrix <m>D_A</m>,
-            consisting of the nonzero singular values,
-            and <m>P</m> will be replaced by the <m>m\times r</m> matrix consisting of its first <m>r</m> columns,
-            while <m>Q</m> gets replaced by the <m>r\times n</m> matrix consisting of its first <m>r</m> rows.
-            The resulting product is still equal to the original matrix.
-          </p>
+        <p>
+          Instead, most algorithms that you find will give the <m>r\times r</m> diagonal matrix <m>D_A</m>,
+          consisting of the nonzero singular values,
+          and <m>P</m> will be replaced by the <m>m\times r</m> matrix consisting of its first <m>r</m> columns,
+          while <m>Q</m> gets replaced by the <m>r\times n</m> matrix consisting of its first <m>r</m> rows.
+          The resulting product is still equal to the original matrix.
+        </p>
 
-          <p>
-            In some cases, even the matrix <m>D_A</m> is too large,
-            and a decision is made to truncate to some smaller subset of singular values.
-            In this case, the resulting product is no longer equal to the original matrix,
-            but it does provide an approximation. A discussion can be found
-            <url href="https://en.wikipedia.org/wiki/Singular_value_decomposition#Reduced_SVDs" visual="en.wikipedia.org/wiki/Singular_value_decomposition">on Wikipedia</url>.
-          </p>
-        </statement>
+        <p>
+          In some cases, even the matrix <m>D_A</m> is too large,
+          and a decision is made to truncate to some smaller subset of singular values.
+          In this case, the resulting product is no longer equal to the original matrix,
+          but it does provide an approximation. A discussion can be found
+          <url href="https://en.wikipedia.org/wiki/Singular_value_decomposition#Reduced_SVDs" visual="en.wikipedia.org/wiki/Singular_value_decomposition">on Wikipedia</url>.
+        </p>
       </remark>
 
       <example xml:id="example-svd">
