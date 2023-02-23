@@ -28,13 +28,16 @@
     <common>
       <!-- <tableofcontents level="3"/> -->
       <exercise-inline hint="yes" answer="no" solution="no"/>
-      <exercise-divisional hint="yes" answer="yes" solution="no"/>
+      <exercise-divisional hint="yes" answer="no" solution="no"/>
       <exercise-worksheet hint="no" answer="no" solution="no"/>
     </common>
 
+    <webwork server="https://webwork-dev.uleth.ca"/>
+
     <!-- HTML-Specific Options -->
     <html>
-        <calculator model="geogebra-graphing"/>
+        <webwork divisional="dynamic"/>
+        <!-- <calculator model="geogebra-graphing"/> -->
         <index-page ref="linear-algebra"/>
         <video privacy="yes"/>
         <!-- baseurl should not have a trailing slash -->
