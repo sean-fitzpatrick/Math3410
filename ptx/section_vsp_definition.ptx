@@ -504,248 +504,258 @@
     It is also interesting to try to think of less common examples.
   </p>
 
-  <exercise xml:id="ex-positive-reals-vecsp">
-    <introduction>
-      <p>
-        Can you think of a way to define a vector space structure on the set
-        <m>(0,\infty)</m> of all positive real numbers?
-      </p>
-    </introduction>
-    <task>
-      <statement>
+  <exercises>
+    <exercise xml:id="ex-positive-reals-vecsp" label="ex-positive-reals-vecsp">
+      <introduction>
         <p>
-          How should we define addition and scalar multiplication?
+          Can you think of a way to define a vector space structure on the set
+          <m>(0,\infty)</m> of all positive real numbers?
+        </p>
+      </introduction>
+      <task>
+        <statement>
+          <p>
+            How should we define addition and scalar multiplication?
+          </p>
+        </statement>
+        <response/>
+        <hint>
+          <p>
+            Note that the function <m>f(x)=e^x</m> has domain <m>(-\infty, \infty)</m>
+            and range <m>(0,\infty)</m>. What does it do to a sum? To a product?
+          </p>
+        </hint>
+        <solution>
+          <p>
+            To get a vector space structure on <m>V=(0,\infty)</m>,
+            we will define an addition <m>\oplus</m> on <m>V</m> by
+            <me>
+              x\oplus y = xy
+            </me>,
+            where the right hand side is the usual product of real numbers,
+            and for <m>c\in\R</m> and <m>x\in V</m>, we will define a scalar multiplication <m>\odot</m> by
+            <me>
+              c\odot x = x^c
+            </me>.
+          </p>
+        </solution>
+      </task>
+      <task>
+        <statement>
+          <p>
+            Show that the addition you defined satisfies the commutative and associative properties.
+          </p>
+        </statement>
+        <response/>
+        <hint>
+          <p>
+            You can assume that these properties are true for real number multiplication.
+          </p>
+        </hint>
+        <solution>
+          <p>
+            For any <m>x,y,z\in V</m>, we have:
+            <md>
+              <mrow>x\oplus y \amp = xy = yx = y\oplus x</mrow>
+              <mrow>x\oplus(y\oplus z)\amp = x\oplus yz = x(yz) = (xy)z = xy\oplus z = (x\oplus y)\oplus z</mrow>
+            </md>.
+          </p>
+        </solution>
+      </task>
+      <task label="ex-mc-identity">
+        <statement>
+          <p>
+            Which of the following is the identity element in <m>V</m>?
+          </p>
+        </statement>
+        <choices randomize="yes">
+          <choice correct="no">
+            <statement>
+              <p>
+                <m>0</m>
+              </p>
+            </statement>
+            <feedback>
+              <p>
+                Remember that the identity needs to be an element of the set!
+              </p>
+            </feedback>
+          </choice>
+          <choice correct="yes">
+            <statement>
+              <p>
+                <m>1</m>
+              </p>
+            </statement>
+            <feedback>
+              <p>
+                Correct! Since nothing happens when we multiply by 1, we get <m>1\oplus x=x</m> for any <m>x\in V</m>.
+              </p>
+            </feedback>
+          </choice>
+        </choices>
+        <hint>
+          <p>
+            Remember that an identity element <m>e</m> must satisfy <m>e\oplus x</m> for any <m>x\in V</m>.
+          </p>
+        </hint>
+      </task>
+      <task>
+        <statement>
+          <p>
+            What is the inverse of an element <m>x\in V</m>?
+          </p>
+        </statement>
+        <response/>
+        <hint>
+          <p>
+            Remember that an inverse <m>-x</m> must satisfy <m>x\oplus (-x)=e</m>,
+            where <m>e</m> is the identity element. What is <m>e</m>, and how is <q>addition</q> defined?
+          </p>
+        </hint>
+        <solution>
+          <p>
+            Let <m>x</m> be any element of <m>V</m>. Since <m>x\gt 0</m>,
+            we know in particular that <m>x\neq 0</m>, so we can define <m>-x = 1/x</m>,
+            where <m>1/x</m> denotes the usual reciprocal of a real number.
+            We then have
+            <me>
+              x\oplus (-x) = x(1/x) = 1
+            </me>,
+            and we saw above that <m>1</m> is the identity element of <m>V</m>.
+          </p>
+        </solution>
+      </task>
+      <task>
+        <statement>
+          <p>
+            Show that, for any <m>c\in \R</m> and <m>x,y\in V</m>,
+            <me>
+              c\odot(x\oplus y) = c\odot x\oplus c\odot y
+            </me>.
+          </p>
+        </statement>
+        <response/>
+        <solution>
+          <p>
+            We assume some properties of exponents from high school algebra:
+            <me>
+              c\odot(x\oplus y) = (xy)^c = x^c y^c = c\odot x \oplus c\odot y
+            </me>.
+          </p>
+        </solution>
+      </task>
+      <task>
+        <statement>
+          <p>
+            Show that for any <m>c,d\in \R</m> and <m>x\in V</m>,
+            <me>
+              (c+d)\odot x = c\odot x\oplus d\odot x
+            </me>.
+          </p>
+        </statement>
+        <response/>
+        <solution>
+          <p>
+            This again follows from properties of exponents:
+            <me>
+              (c+d)\odot x = x^{c+d} = x^c x^d = c\odot x\oplus d\odot x
+            </me>.
+          </p>
+        </solution>
+      </task>
+      <task>
+        <statement>
+          <p>
+            Show that for any <m>c,d\in\R</m> and <m>x\in V</m>, <m>c\odot (d\odot x)=(cd)\odot x</m>.
+          </p>
+        </statement>
+        <response/>
+        <solution>
+          <p>
+            We have
+            <me>
+              c\odot (d\odot x) = c\odot (x^d) = (x^d)^c = x^{dc} = x^{cd} = (cd)\odot x
+            </me>.
+          </p>
+        </solution>
+      </task>
+      <task>
+        <statement>
+          <p>
+            Show that <m>1\odot x=x</m> for any <m>x\in V</m>.
+          </p>
+        </statement>
+        <response/>
+        <solution>
+          <p>
+            The last one is possibly the easiest: <m>1\odot x = x^1 = x</m>.
+          </p>
+        </solution>
+      </task>
+    </exercise>
+
+    <exercise label="ex-tf-vsp-eg1" xml:id="ex-tf-vsp-eg1">
+      <statement correct="yes">
+        <p>
+          True or false: the set of all polynomials with real number coefficients and degree less than or equal to three is a vector space,
+          using the usual polynomial addition and scalar multiplication.
         </p>
       </statement>
-      <response/>
+      <feedback>
+        <p>
+          This is the vector space <m>P_3(\R)</m> from <xref ref="ex-vector-spaces"/>.
+        </p>
+      </feedback>
+    </exercise>
+
+    <exercise label="ex-tf-vsp-eg2" xml:id="ex-tf-vsp-eg2">
+      <statement correct="no">
+        <p>
+          True or false: the set of all polynomials with real number coefficients and degree greater than or equal to three,
+          together with the zero polynomial, is a vector space, using the usual polynomial addition and scalar multiplication.
+        </p>
+      </statement>
+      <feedback>
+        <p>
+          The set is not closed under addition. What happens if you add the polynomials
+          <m>x^3+x</m> and <m>-x^3+x</m>?
+        </p>
+      </feedback>
       <hint>
         <p>
-          Note that the function <m>f(x)=e^x</m> has domain <m>(-\infty, \infty)</m>
-          and range <m>(0,\infty)</m>. What does it do to a sum? To a product?
+          Remember that a vector space must be closed under the operations of addition and scalar multiplication.
         </p>
       </hint>
-      <solution>
-        <p>
-          To get a vector space structure on <m>V=(0,\infty)</m>,
-          we will define an addition <m>\oplus</m> on <m>V</m> by
-          <me>
-            x\oplus y = xy
-          </me>,
-          where the right hand side is the usual product of real numbers,
-          and for <m>c\in\R</m> and <m>x\in V</m>, we will define a scalar multiplication <m>\odot</m> by
-          <me>
-            c\odot x = x^c
-          </me>.
-        </p>
-      </solution>
-    </task>
-    <task>
-      <statement>
-        <p>
-          Show that the addition you defined satisfies the commutative and associative properties.
-        </p>
-      </statement>
-      <response/>
-      <hint>
-        <p>
-          You can assume that these properties are true for real number multiplication.
-        </p>
-      </hint>
-      <solution>
-        <p>
-          For any <m>x,y,z\in V</m>, we have:
-          <md>
-            <mrow>x\oplus y \amp = xy = yx = y\oplus x</mrow>
-            <mrow>x\oplus(y\oplus z)\amp = x\oplus yz = x(yz) = (xy)z = xy\oplus z = (x\oplus y)\oplus z</mrow>
-          </md>.
-        </p>
-      </solution>
-    </task>
-    <task label="ex-mc-identity">
-      <statement>
-        <p>
-          Which of the following is the identity element in <m>V</m>?
-        </p>
-      </statement>
-      <choices randomize="yes">
-        <choice correct="no">
-          <statement>
-            <p>
-              <m>0</m>
-            </p>
-          </statement>
-          <feedback>
-            <p>
-              Remember that the identity needs to be an element of the set!
-            </p>
-          </feedback>
-        </choice>
-        <choice correct="yes">
-          <statement>
-            <p>
-              <m>1</m>
-            </p>
-          </statement>
-          <feedback>
-            <p>
-              Correct! Since nothing happens when we multiply by 1, we get <m>1\oplus x=x</m> for any <m>x\in V</m>.
-            </p>
-          </feedback>
-        </choice>
-      </choices>
-      <hint>
-        <p>
-          Remember that an identity element <m>e</m> must satisfy <m>e\oplus x</m> for any <m>x\in V</m>.
-        </p>
-      </hint>
-    </task>
-    <task>
-      <statement>
-        <p>
-          What is the inverse of an element <m>x\in V</m>?
-        </p>
-      </statement>
-      <response/>
-      <hint>
-        <p>
-          Remember that an inverse <m>-x</m> must satisfy <m>x\oplus (-x)=e</m>,
-          where <m>e</m> is the identity element. What is <m>e</m>, and how is <q>addition</q> defined?
-        </p>
-      </hint>
-      <solution>
-        <p>
-          Let <m>x</m> be any element of <m>V</m>. Since <m>x\gt 0</m>,
-          we know in particular that <m>x\neq 0</m>, so we can define <m>-x = 1/x</m>,
-          where <m>1/x</m> denotes the usual reciprocal of a real number.
-          We then have
-          <me>
-            x\oplus (-x) = x(1/x) = 1
-          </me>,
-          and we saw above that <m>1</m> is the identity element of <m>V</m>.
-        </p>
-      </solution>
-    </task>
-    <task>
-      <statement>
-        <p>
-          Show that, for any <m>c\in \R</m> and <m>x,y\in V</m>,
-          <me>
-            c\odot(x\oplus y) = c\odot x\oplus c\odot y
-          </me>.
-        </p>
-      </statement>
-      <response/>
-      <solution>
-        <p>
-          We assume some properties of exponents from high school algebra:
-          <me>
-            c\odot(x\oplus y) = (xy)^c = x^c y^c = c\odot x \oplus c\odot y
-          </me>.
-        </p>
-      </solution>
-    </task>
-    <task>
-      <statement>
-        <p>
-          Show that for any <m>c,d\in \R</m> and <m>x\in V</m>,
-          <me>
-            (c+d)\odot x = c\odot x\oplus d\odot x
-          </me>.
-        </p>
-      </statement>
-      <response/>
-      <solution>
-        <p>
-          This again follows from properties of exponents:
-          <me>
-            (c+d)\odot x = x^{c+d} = x^c x^d = c\odot x\oplus d\odot x
-          </me>.
-        </p>
-      </solution>
-    </task>
-    <task>
-      <statement>
-        <p>
-          Show that for any <m>c,d\in\R</m> and <m>x\in V</m>, <m>c\odot (d\odot x)=(cd)\odot x</m>.
-        </p>
-      </statement>
-      <response/>
-      <solution>
-        <p>
-          We have
-          <me>
-            c\odot (d\odot x) = c\odot (x^d) = (x^d)^c = x^{dc} = x^{cd} = (cd)\odot x
-          </me>.
-        </p>
-      </solution>
-    </task>
-    <task>
-      <statement>
-        <p>
-          Show that <m>1\odot x=x</m> for any <m>x\in V</m>.
-        </p>
-      </statement>
-      <response/>
-      <solution>
-        <p>
-          The last one is possibly the easiest: <m>1\odot x = x^1 = x</m>.
-        </p>
-      </solution>
-    </task>
-  </exercise>
+    </exercise>
 
-  <exercise label="ex-tf-vsp-eg1">
-    <statement correct="yes">
-      <p>
-        The set of all polynomials with real number coefficients and degree less than or equal to three is a vector space,
-        using the usual polynomial addition and scalar multiplication.
-      </p>
-    </statement>
-    <feedback>
-      <p>
-        This is the vector space <m>P_3(\R)</m> from <xref ref="ex-vector-spaces"/>.
-      </p>
-    </feedback>
-  </exercise>
+    <exercise label="ex-tf-vsp-eg3" xml:id="ex-tf-vsp-eg3">
+      <statement correct="no">
+        <p>
+          True or false: the set of all vectors <m>\vv = \langle a, b\rangle</m> of unit length
+          (that is, such that <m>\sqrt{a^2+b^2}=1</m>) is a vector space
+          with respect to the usual addition and scalar multiplication in <m>\R^2</m>.
+        </p>
+      </statement>
+      <feedback>
+        <p>
+          The zero vector does not have unit length.
+          Also, the sum of two unit vectors will usually not be a unit vector.
+        </p>
+      </feedback>
+      <solution>
+        <p>
 
-  <exercise label="ex-tf-vsp-eg2">
-    <statement correct="no">
-      <p>
-        The set of all polynomials with real number coefficients and degree greater than or equal to three,
-        together with the zero polynomial, is a vector space, using the usual polynomial addition and scalar multiplication.
-      </p>
-    </statement>
-    <feedback>
-      <p>
-        The set is not closed under addition. What happens if you add the polynomials
-        <m>x^3+x</m> and <m>-x^3+x</m>?
-      </p>
-    </feedback>
-    <hint>
-      <p>
-        Remember that a vector space must be closed under the operations of addition and scalar multiplication.
-      </p>
-    </hint>
-  </exercise>
+        </p>
+      </solution>
+    </exercise>
 
-  <exercise label="ex-tf-vsp-eg3">
-    <statement correct="no">
-      <p>
-        The set of all vectors <m>\vv = \langle a, b\rangle</m> of unit length
-        (that is, such that <m>\sqrt{a^2+b^2}=1</m>) is a vector space
-        with respect to the usual addition and scalar multiplication in <m>\R^2</m>.
-      </p>
-    </statement>
-    <feedback>
-      <p>
-        The zero vector does not have unit length.
-        Also, the sum of two unit vectors will usually not be a unit vector.
-      </p>
-    </feedback>
-    <solution>
-      <p>
+    <exercise label="ex-ww-vs1" xml:id="ex-ww-vs1">
+      <webwork source="local/Library/NAU/setLinearAlgebra/shiftedSpace.pg" />
+    </exercise>
 
-      </p>
-    </solution>
-  </exercise>
+    <exercise label="ex-ww-vs2" xml:id="ex-ww-vs2">
+      <webwork source="local/Library/NAU/setLinearAlgebra/shiftedSpace3.pg" />
+    </exercise>
+  </exercises>
 </section>

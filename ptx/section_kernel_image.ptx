@@ -26,19 +26,17 @@
   </definition>
 
   <remark>
-    <statement>
-      <p>
-        <alert>Caution:</alert> the kernel is the set of vectors that <m>T</m> <em>sends</em> to zero.
-        Saying that <m>\vv\in \ker T</m> does <em>not</em>
-        mean that <m>\vv=\zer</m>; it means that <m>T(\vv)=\zer</m>.
-        Although it's true that <m>T(\zer)=\zer</m> for any linear transformation,
-        the kernel can contain vectors <em>other</em> than the zero vector.
-      </p>
-      <p>
-        In fact, as we'll see in <xref ref="thm-injective-kernel"/> below,
-        the case where the kernel contains only the zero vector is an important special case.
-      </p>
-    </statement>
+    <p>
+      <alert>Caution:</alert> the kernel is the set of vectors that <m>T</m> <em>sends</em> to zero.
+      Saying that <m>\vv\in \ker T</m> does <em>not</em>
+      mean that <m>\vv=\zer</m>; it means that <m>T(\vv)=\zer</m>.
+      Although it's true that <m>T(\zer)=\zer</m> for any linear transformation,
+      the kernel can contain vectors <em>other</em> than the zero vector.
+    </p>
+    <p>
+      In fact, as we'll see in <xref ref="thm-injective-kernel"/> below,
+      the case where the kernel contains only the zero vector is an important special case.
+    </p>
   </remark>
 
   <remark xml:id="rem-using-ker-im">
@@ -290,37 +288,35 @@
   </example>
 
   <remark>
-    <statement>
-      <p>
-        The SymPy library for Python has built-in functions for computing nullspace and column space.
-        But it's probably worth your while to know how to determine these from the <init>RREF</init> of a matrix,
-        without additional help from the computer.
-        That said, let's see how the computer's output compares to what we found in <xref ref="ex-col-null"/>.
-      </p>
+    <p>
+      The SymPy library for Python has built-in functions for computing nullspace and column space.
+      But it's probably worth your while to know how to determine these from the <init>RREF</init> of a matrix,
+      without additional help from the computer.
+      That said, let's see how the computer's output compares to what we found in <xref ref="ex-col-null"/>.
+    </p>
 
-      <sage>
-        <input>
-          A.nullspace()
-        </input>
-        <output>
-          \[\left[\bbm \frac65\\-\frac25\\1\\0\ebm, \bbm -\frac25\\ \frac45\\0\\1\ebm\right]\]
-        </output>
-      </sage>
+    <sage>
+      <input>
+        A.nullspace()
+      </input>
+      <output>
+        \[\left[\bbm \frac65\\-\frac25\\1\\0\ebm, \bbm -\frac25\\ \frac45\\0\\1\ebm\right]\]
+      </output>
+    </sage>
 
-      <sage>
-        <input>
-          A.columnspace()
-        </input>
-        <output>
-          \[\left[\bbm 1\\-2\\1\ebm, \bbm 3\\-1\\8\ebm\right]\]
-        </output>
-      </sage>
+    <sage>
+      <input>
+        A.columnspace()
+      </input>
+      <output>
+        \[\left[\bbm 1\\-2\\1\ebm, \bbm 3\\-1\\8\ebm\right]\]
+      </output>
+    </sage>
 
-      <p>
-        Note that the output from the computer simply states the basis for each space.
-        Of course, for computational purposes, this is typically good enough.
-      </p>
-    </statement>
+    <p>
+      Note that the output from the computer simply states the basis for each space.
+      Of course, for computational purposes, this is typically good enough.
+    </p>
   </remark>
 
   <p>
@@ -638,43 +634,41 @@
   </exercise>
 
   <remark>
-    <statement>
-      <p>
-        For the case of a matrix transformation <m>T_A:\R^n\to \R^m</m>,
-        notice that <m>\ker T_A</m> is simply the set of all solutions to <m>A\xx=\zer</m>,
-        while <m>\im T_A</m> is the set of all <m>\yy\in\R^m</m> for which <m>A\xx=\yy</m>
-        <em>has</em> a solution.
-      </p>
+    <p>
+      For the case of a matrix transformation <m>T_A:\R^n\to \R^m</m>,
+      notice that <m>\ker T_A</m> is simply the set of all solutions to <m>A\xx=\zer</m>,
+      while <m>\im T_A</m> is the set of all <m>\yy\in\R^m</m> for which <m>A\xx=\yy</m>
+      <em>has</em> a solution.
+    </p>
 
-      <p>
-        Recall from the discussion preceding <xref ref="def-rank-transformation"/>
-        that <m>\rank A = \dim \csp(A) = \dim \im T_A</m>.
-        It follows that <m>T_A</m> is surjective if and only if <m>\rank A = m</m>.
-        On the other hand, <m>T_A</m> is injective if and only if <m>\rank A = n</m>,
-        because we know that the system <m>A\xx=\zer</m> has a unique solution
-        if and only if each column of <m>A</m> contains a leading one.
-      </p>
+    <p>
+      Recall from the discussion preceding <xref ref="def-rank-transformation"/>
+      that <m>\rank A = \dim \csp(A) = \dim \im T_A</m>.
+      It follows that <m>T_A</m> is surjective if and only if <m>\rank A = m</m>.
+      On the other hand, <m>T_A</m> is injective if and only if <m>\rank A = n</m>,
+      because we know that the system <m>A\xx=\zer</m> has a unique solution
+      if and only if each column of <m>A</m> contains a leading one.
+    </p>
 
-      <p>
-        This has some interesting consequences. If <m>m=n</m> (that is, if <m>A</m> is square),
-        then each increase in <m>\dim \nll(A)</m> produces a corresponding decrease in <m>\dim \csp(A)</m>,
-        since both correspond to the <q>loss</q> of a leading one. Moreover, if <m>\rank A = n</m>,
-        then <m>T_A</m> is both injective and surjective.
-        Recall that a function is invertible if and only if it is both injective and surjective.
-        It should come as no surprise that invertibility of <m>T_A</m> (as a function)
-        is equivalent to invertibility of <m>A</m> (as a matrix).
-      </p>
+    <p>
+      This has some interesting consequences. If <m>m=n</m> (that is, if <m>A</m> is square),
+      then each increase in <m>\dim \nll(A)</m> produces a corresponding decrease in <m>\dim \csp(A)</m>,
+      since both correspond to the <q>loss</q> of a leading one. Moreover, if <m>\rank A = n</m>,
+      then <m>T_A</m> is both injective and surjective.
+      Recall that a function is invertible if and only if it is both injective and surjective.
+      It should come as no surprise that invertibility of <m>T_A</m> (as a function)
+      is equivalent to invertibility of <m>A</m> (as a matrix).
+    </p>
 
-      <p>
-        Also, note that if <m>m \lt n</m>, then <m>\rank A\leq m \lt n</m>,
-        so <m>T_A</m> could be surjective, but can't possibly be injective.
-        On the other hand, if <m>m\gt n</m>, then <m>\rank A\leq n \lt m</m>,
-        so <m>T_A</m> could be injective, but can't possibly be surjective.
-        These results generalize to linear transformations between any finite-dimensional vector spaces.
-        The first step towards this is the following theorem,
-        which is sometimes known as the Fundamental Theorem of Linear Transformations.
-      </p>
-    </statement>
+    <p>
+      Also, note that if <m>m \lt n</m>, then <m>\rank A\leq m \lt n</m>,
+      so <m>T_A</m> could be surjective, but can't possibly be injective.
+      On the other hand, if <m>m\gt n</m>, then <m>\rank A\leq n \lt m</m>,
+      so <m>T_A</m> could be injective, but can't possibly be surjective.
+      These results generalize to linear transformations between any finite-dimensional vector spaces.
+      The first step towards this is the following theorem,
+      which is sometimes known as the Fundamental Theorem of Linear Transformations.
+    </p>
   </remark>
 
   <theorem xml:id="thm-dimension-lintrans">
@@ -975,4 +969,131 @@
       </solution>
     </task>
   </exercise>
+  <exercises>
+    <exercise xml:id="ex-ww-ki1" label="ex-ww-ki1">
+      <webwork source="local/Library/Hope/Multi1/04-02-Kernel-image/NS_CS_01.pg" />
+    </exercise>
+
+    <exercise xml:id="ex-ww-ki10" label="ex-ww-ki10">
+      <webwork source="local/Library/Rochester/setLinearAlgebra10Bases/ur_la_10_14.pg" />
+    </exercise>
+
+    <exercise xml:id="ex-ww-ki11" label="ex-ww-ki11">
+      <webwork source="local/Library/Rochester/setLinearAlgebra10Bases/ur_la_10_22.pg" />
+    </exercise>
+    
+    <exercise xml:id="ex-ww-ki4" label="ex-ww-ki4">
+      <webwork source="local/Library/TCNJ/TCNJ_IntroLinearTransformations/problem22.pg" />
+    </exercise>
+
+    <exercise xml:id="ex-ww-ki2" label="ex-ww-ki2">
+      <task>
+        <webwork source="local/Library/Hope/Multi1/04-02-Kernel-image/Ker_im_15.pg" />
+      </task>
+      <task>
+        <statement>
+          <p>
+            The linear transformation <m>f</m> is (select all that apply):
+          </p>
+        </statement>
+        <choices randomize="yes">
+          <choice correct="no">
+            <statement>
+              <p>
+                Bijective (an isomorphism)
+              </p>
+            </statement>
+          </choice>
+          <choice correct="no">
+            <statement>
+              <p>
+                Injective (one-to-one)
+              </p>
+            </statement>
+          </choice>
+          <choice correct="yes">
+            <statement>
+              <p>
+                Surjective (onto)
+              </p>
+            </statement>
+          </choice>
+          <choice correct="no">
+            <statement>
+              <p>
+                None of these
+              </p>
+            </statement>
+          </choice>
+        </choices>
+      </task>
+    </exercise>
+
+    <exercise xml:id="ex-ww-ki3" label="ex-ww-ki3">
+      <task label="ex-ww-ki3a">
+        <webwork source="local/Library/Hope/Multi1/04-02-Kernel-image/Ker_im_16.pg" />
+      </task>
+      <task label="ex-ww-ki3b">
+        <statement>
+          <p>
+            The linear transformation <m>f</m> is (select all that apply):
+          </p>
+        </statement>
+        <choices randomize="yes">
+          <choice correct="no">
+            <statement>
+              <p>
+                Bijective (an isomorphism)
+              </p>
+            </statement>
+          </choice>
+          <choice correct="no">
+            <statement>
+              <p>
+                Injective (one-to-one)
+              </p>
+            </statement>
+          </choice>
+          <choice correct="yes">
+            <statement>
+              <p>
+                Surjective (onto)
+              </p>
+            </statement>
+          </choice>
+          <choice correct="no">
+            <statement>
+              <p>
+                None of these
+              </p>
+            </statement>
+          </choice>
+        </choices>
+      </task>
+    </exercise>
+
+    <exercise xml:id="ex-ww-ki5" label="ex-ww-ki5">
+      <webwork source="local/Library/Hope/Multi1/04-02-Kernel-image/Ker_im_06.pg" />
+    </exercise>
+
+    <exercise xml:id="ex-ww-ki6" label="ex-ww-ki6">
+      <webwork source="local/Library/Hope/Multi1/04-02-Kernel-image/Ker_im_07.pg" />
+    </exercise>
+
+    <exercise xml:id="ex-ww-ki7" label="ex-ww-ki7">
+      <webwork source="local/Library/Hope/Multi1/04-02-Kernel-image/Ker_im_08.pg" />
+    </exercise>
+
+    <exercise xml:id="ex-ww-ki8" label="ex-ww-ki8">
+      <webwork source="local/Library/Rochester/setLinearAlgebra14TransfOfRn/ur_la_14_6.pg" />
+    </exercise>
+
+    <exercise xml:id="ex-ww-ki9" label="ex-ww-ki9">
+      <webwork source="local/Library/Mizzou/Matrix_Theory/HW_4/prob_3.pg" />
+    </exercise>
+
+    <exercise xml:id="ex-ww-ki12" label="ex-ww-ki12">
+      <webwork source="local/Library/Hope/Multi1/04-02-Kernel-image/Ker_im_14.pg" />
+    </exercise>
+  </exercises>
 </section>

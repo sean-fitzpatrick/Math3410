@@ -19,7 +19,7 @@
     and <m>W=\{(0,y)\,|\,y\in\R\}</m> (the <m>y</m> axis). Is their union a subspace?
   </p>
 
-  <exercise label="ex-union-subspace">
+  <exercise label="ex-union-subspace" xml:id="ex-union-subspace">
     <statement correct="no">
       <p>
         The union of the <q><m>x</m> axis</q> and <q><m>y</m> axis</q> in <m>\R^2</m> is a subspace of <m>\R^2</m>.
@@ -357,7 +357,7 @@
     so we can avoid this ambiguity if <m>U</m> and <m>W</m> have no nonzero vectors in common.
   </p>
 
-  <exercise>
+  <exercise xml:id="ex-subspace-intersect" label="ex-subspace-intersect">
     <introduction>
       <p>
         Let <m>V=\R^3</m>, and let <m>U=\{(x,y,0)\,|\,x,y,\in\R\}, W=\{(0,y,z)\,|\,y,z\in\R\}</m>
@@ -540,215 +540,273 @@
     </statement>
   </definition>
 
-  <exercise>
-    <introduction>
-      <p>
-        Let <m>U</m> be the subspace of <m>P_3(\R)</m> consisting of all polynomials <m>p(x)</m> with <m>p(1)=0</m>.
-      </p>
-    </introduction>
-    <task>
-      <statement>
+  <exercises>
+    <exercise xml:id="ex-poly-basis">
+      <introduction>
         <p>
-          Determine a basis for <m>U</m>.
+          Let <m>U</m> be the subspace of <m>P_3(\R)</m> consisting of all polynomials <m>p(x)</m> with <m>p(1)=0</m>.
         </p>
-      </statement>
-      <response/>
-      <hint>
-        <p>
-          Use the factor theorem.
-        </p>
-      </hint>
-      <solution>
-        <p>
-          Since <m>p(1)=0</m>, we know that <m>p(x)=(x-1)q(x)</m>, for some <m>q(x)=ax^2+bx+c</m>.
-          Thus, <m>p(x)=ax^2(x-1)+bx(x-1)+c(x-1)</m>, so a basis is given by
-          <m>\{(x-1),x(x-1),x^2(x-1)\}</m>.
-        </p>
-        <p>
-          (Another option is <m>\{(x-1),(x-1)^2,(x-1)^3\}</m>.)
-        </p>
-      </solution>
-    </task>
-    <task>
-      <statement>
-        <p>
-          Find a complement of <m>U</m>.
-        </p>
-      </statement>
-      <response/>
-      <hint>
-        <p>
-          What is the dimension of <m>U</m>? (So what must be the dimension of its complement?)
-          What condition ensures that a polynomial does not belong to <m>U</m>?
-        </p>
-      </hint>
-      <solution>
-        <p>
-          Since <m>\dim U=3</m> and <m>\dim P_3(\R)=4</m>,
-          we know that any complement of <m>U</m> must be one-dimensional.
-        </p>
-        <p>
-          Therefore, a basis for a complement <m>W</m> of <m>U</m> is given by any polynomial in <m>P_3(\R)</m> that is not in <m>U</m>.
-          In particular, we can choose any polynomial <m>p(x)</m> with <m>p(1)\neq 0</m>; for example, <m>p(x)=x</m>.
-          Therefore, <m>W=\{ax\,|\, a\in\R\}</m> is a complement of <m>U</m>.
-        </p>
-      </solution>
-    </task>
-  </exercise>
+      </introduction>
+      <task label="part-poly-basis">
+        <statement>
+          <p>
+            Determine a basis for <m>U</m>.
+          </p>
+        </statement>
+        <response/>
+        <hint>
+          <p>
+            Use the factor theorem.
+          </p>
+        </hint>
+        <solution>
+          <p>
+            Since <m>p(1)=0</m>, we know that <m>p(x)=(x-1)q(x)</m>, for some <m>q(x)=ax^2+bx+c</m>.
+            Thus, <m>p(x)=ax^2(x-1)+bx(x-1)+c(x-1)</m>, so a basis is given by
+            <m>\{(x-1),x(x-1),x^2(x-1)\}</m>.
+          </p>
+          <p>
+            (Another option is <m>\{(x-1),(x-1)^2,(x-1)^3\}</m>.)
+          </p>
+        </solution>
+      </task>
+      <task label="part-poly-comp">
+        <statement>
+          <p>
+            Find a complement of <m>U</m>.
+          </p>
+        </statement>
+        <response/>
+        <hint>
+          <p>
+            What is the dimension of <m>U</m>? (So what must be the dimension of its complement?)
+            What condition ensures that a polynomial does not belong to <m>U</m>?
+          </p>
+        </hint>
+        <solution>
+          <p>
+            Since <m>\dim U=3</m> and <m>\dim P_3(\R)=4</m>,
+            we know that any complement of <m>U</m> must be one-dimensional.
+          </p>
+          <p>
+            Therefore, a basis for a complement <m>W</m> of <m>U</m> is given by any polynomial in <m>P_3(\R)</m> that is not in <m>U</m>.
+            In particular, we can choose any polynomial <m>p(x)</m> with <m>p(1)\neq 0</m>; for example, <m>p(x)=x</m>.
+            Therefore, <m>W=\{ax\,|\, a\in\R\}</m> is a complement of <m>U</m>.
+          </p>
+        </solution>
+      </task>
+    </exercise>
 
-  <exercise>
-    <introduction>
-      <p>
-        Let <m>U</m> be the subspace of <m>\R^5</m> define by
-        <me>
-          U = \{(x_1,x_2,x_3,x_4,x_5)\,|\, x_1=3x_3, \text{ and } 3x_2-5x_4=x_5\}
-        </me>.
-      </p>
-    </introduction>
-    <task>
-      <statement>
+    <exercise xml:id="ex-subspace-comp">
+      <introduction>
         <p>
-          Determine a basis for <m>U</m>.
+          Let <m>U</m> be the subspace of <m>\R^5</m> define by
+          <me>
+            U = \{(x_1,x_2,x_3,x_4,x_5)\,|\, x_1=3x_3, \text{ and } 3x_2-5x_4=x_5\}
+          </me>.
         </p>
-      </statement>
-      <response/>
-      <hint>
-        <p>
-          Try plugging in the given conditions, and then decomposing the vector into pieces with one variable each.
-        </p>
-      </hint>
-      <solution>
-        <p>
-          If <m>\uu\in U</m>, then
-          <md>
-            <mrow>\uu \amp = (3x_3,x_2,x_3,x_4,3x_2-5x_4)</mrow>
-            <mrow> \amp = (0,x_2,0,0,3x_2)+(3x_3,0,x_3,0,0)+(0,0,0,x_4,-5x_4)</mrow>
-            <mrow> \amp = x_2(0,1,0,0,3)+x_3(3,0,1,0,0)+x_4(0,0,0,1,-5)</mrow>
-          </md>.
-        </p>
-        <p>
-          This shows that <m>U=\spn \{(0,1,0,0,3), (3,0,1,0,0), (0,0,0,1,-5)\}</m>.
-          These vectors are also linearly independent,
-          since each one has its first leading (nonzero) entry in a different position.
-          (Think about what this implies for the <init>RREF</init> of the resulting matrix.)
-        </p>
-      </solution>
-    </task>
-    <task>
-      <statement>
-        <p>
-          Find a complement of <m>U</m>.
-        </p>
-      </statement>
-      <response/>
-      <hint>
-        <p>
-          One way to solve this is to ask yourself,
-          what vectors are <em>not</em> in the span of the basis you found above?
-          You can do this by solving an appropriate system of equations.
-        </p>
-      </hint>
-      <solution>
-        <p>
-          Since <m>\dim U = 3</m>, any complement of <m>U</m> must have dimension 2.
-          We therefore need to find two independent vectors that do not belong to <m>U</m>.
-        </p>
-        <p>
-          Recall that <m>U</m> is defined by two conditions:
-          <m>x_1=3x_3</m> and <m>3x_2-5x_4=x_5</m>.
-          Therefore, a vector is <em>not</em> in <m>U</m> if <m>x_1\neq x_3</m>,
-          <em>or</em> <m>x_5\neq 3x_2-5x_4</m>.
-          This suggests that we define two vectors, each of which violates one of these conditions.
-        </p>
-        <p>
-          For the first, let us take <m>\xx=(1,0,1,0,0)</m>.
-          This is not in <m>U</m> because <m>1\neq 3(1)</m>.
-          For the second, let us take <m>\yy=(0,1,0,1,1)</m>.
-          This is not in <m>U</m> because <m>1\neq 3(1)-5(1)</m>.
-          We know that <m>\{\xx,\yy\}</m> is linearly independent,
-          because each vector has nonzero entries in different positions.
-          Therefore, <m>W=\spn\{\xx,\yy\}</m> is a complement of <m>U</m>,
-          since it is spanned by vectors not in <m>U</m>, and it has the correct dimension.
-        </p>
-      </solution>
-    </task>
-  </exercise>
+      </introduction>
+      <task label="part-subs-basis">
+        <statement>
+          <p>
+            Determine a basis for <m>U</m>.
+          </p>
+        </statement>
+        <response/>
+        <hint>
+          <p>
+            Try plugging in the given conditions, and then decomposing the vector into pieces with one variable each.
+          </p>
+        </hint>
+        <solution>
+          <p>
+            If <m>\uu\in U</m>, then
+            <md>
+              <mrow>\uu \amp = (3x_3,x_2,x_3,x_4,3x_2-5x_4)</mrow>
+              <mrow> \amp = (0,x_2,0,0,3x_2)+(3x_3,0,x_3,0,0)+(0,0,0,x_4,-5x_4)</mrow>
+              <mrow> \amp = x_2(0,1,0,0,3)+x_3(3,0,1,0,0)+x_4(0,0,0,1,-5)</mrow>
+            </md>.
+          </p>
+          <p>
+            This shows that <m>U=\spn \{(0,1,0,0,3), (3,0,1,0,0), (0,0,0,1,-5)\}</m>.
+            These vectors are also linearly independent,
+            since each one has its first leading (nonzero) entry in a different position.
+            (Think about what this implies for the <init>RREF</init> of the resulting matrix.)
+          </p>
+        </solution>
+      </task>
+      <task label="part-subs-comp">
+        <statement>
+          <p>
+            Find a complement of <m>U</m>.
+          </p>
+        </statement>
+        <response/>
+        <hint>
+          <p>
+            One way to solve this is to ask yourself,
+            what vectors are <em>not</em> in the span of the basis you found above?
+            You can do this by solving an appropriate system of equations.
+          </p>
+        </hint>
+        <solution>
+          <p>
+            Since <m>\dim U = 3</m>, any complement of <m>U</m> must have dimension 2.
+            We therefore need to find two independent vectors that do not belong to <m>U</m>.
+          </p>
+          <p>
+            Recall that <m>U</m> is defined by two conditions:
+            <m>x_1=3x_3</m> and <m>3x_2-5x_4=x_5</m>.
+            Therefore, a vector is <em>not</em> in <m>U</m> if <m>x_1\neq x_3</m>,
+            <em>or</em> <m>x_5\neq 3x_2-5x_4</m>.
+            This suggests that we define two vectors, each of which violates one of these conditions.
+          </p>
+          <p>
+            For the first, let us take <m>\xx=(1,0,1,0,0)</m>.
+            This is not in <m>U</m> because <m>1\neq 3(1)</m>.
+            For the second, let us take <m>\yy=(0,1,0,1,1)</m>.
+            This is not in <m>U</m> because <m>1\neq 3(1)-5(1)</m>.
+            We know that <m>\{\xx,\yy\}</m> is linearly independent,
+            because each vector has nonzero entries in different positions.
+            Therefore, <m>W=\spn\{\xx,\yy\}</m> is a complement of <m>U</m>,
+            since it is spanned by vectors not in <m>U</m>, and it has the correct dimension.
+          </p>
+        </solution>
+      </task>
+    </exercise>
 
-  <exercise xml:id="ex-using-sum-dimension" label="ex-sum-dimension">
-    <statement>
-      <p>
-        Suppose <m>U</m> and <m>W</m> are 4-dimensional subspaces of <m>\R^6</m>.
-        What are all possible dimensions of <m>U\cap W</m>?
-      </p>
-    </statement>
-    <choices randomize="yes">
-      <choice correct="no">
+    <exercise xml:id="ex-using-sum-dimension" label="ex-sum-dimension">
+      <statement>
+        <p>
+          Suppose <m>U</m> and <m>W</m> are 4-dimensional subspaces of <m>\R^6</m>.
+          What are all possible dimensions of <m>U\cap W</m>?
+        </p>
+      </statement>
+      <choices randomize="yes">
+        <choice correct="no">
+          <statement>
+            <p>
+              <m>1</m>
+            </p>
+          </statement>
+          <feedback>
+            <p>
+              What would <xref ref="thm-sum-dimension"/> say about <m>\dim U+W</m> in this case?
+              Why is that not possible?
+            </p>
+          </feedback>
+        </choice>
+        <choice correct="yes">
+          <statement>
+            <p>
+              <m>2</m>
+            </p>
+          </statement>
+          <feedback>
+            <p>
+              Good job! If <m>\dim U+W = 6</m> (the largest it possibly can),
+              then <m>\dim U\cap W = \dim U+\dim W-\dim (U+W) = 4+4-6=2</m>.
+            </p>
+          </feedback>
+        </choice>
+        <choice correct="yes">
+          <statement>
+            <p>
+              <m>3</m>
+            </p>
+          </statement>
+          <feedback>
+            <p>
+              Yes! This will be the case if <m>\dim U+W = 5</m>.
+            </p>
+          </feedback>
+        </choice>
+        <choice correct="yes">
+          <statement>
+            <p>
+              <m>4</m>
+            </p>
+          </statement>
+          <feedback>
+            <p>
+              Correct! If <m>U\subseteq W</m>, then <m>U=W=U+W=U\cap W</m>, all with dimension <m>4</m>.
+            </p>
+          </feedback>
+        </choice>
+        <choice correct="no">
+          <statement>
+            <p>
+              <m>5</m>
+            </p>
+          </statement>
+          <feedback>
+            <p>
+              Since <m>U+W</m> contains both <m>U</m> and <m>W</m>, its dimension cannot be less than <m>4</m>.
+            </p>
+          </feedback>
+        </choice>
+      </choices>
+      <hint>
+        <p>
+          Use <xref ref="thm-sum-dimension"/>.
+        </p>
+      </hint>
+    </exercise>
+
+    <exercise xml:id="ex-ww-sum" label="ex-ww-sum">
+      <webwork>
+        <pg-code>
+          $a = random(1,9,1);
+          $b = random(1,9,1);
+          $c = random(1,9,1);
+          $d = random(1,5,1);
+          $e = random(1,5,1);
+          $r = $e*$a+$d*$d;
+          $s = $d*$b;
+          $t = $e*$c;
+          $p1 = Formula("($a)x^2-($c)")->reduce;
+          $p2 = Formula("-($d)x^2+($b)x")->reduce;
+          $p3 = Formula("($e)x^3-($a)x^2")->reduce;
+          $p4 = Formula("($r)x^2-($s)x-($t)")->reduce;
+          $isbasis = PopUp([' ','Yes','No'],'No');
+        </pg-code>
+      
         <statement>
           <p>
-            <m>1</m>
+            Let <m>U=\spn\{<var name="$p1"/>,<var name="$p2"/>\}</m> and <m>W=\spn\{<var name="$p3"/>,<var name="$p4"/>\}</m>
+            be subspaces of the vector space <m>V=P_3(\R)</m>.
+          </p>
+
+          <p>
+            <ol>
+              <li>
+                <p>
+                  Is <m>\{<var name="$p1"/>,<var name="$p2"/>,<var name="$p3"/>,<var name="$p4"/>\}</m> a basis for <m>V</m>?
+                </p>
+                <p>
+                  <var name="$isbasis" form="popup"/>
+                </p>
+              </li>
+              <li>
+                <p>
+                  What is the dimension of <m>U+W</m>?
+                </p>
+                <p>
+                  <var name="'3'" width="5"/>
+                </p>
+              </li>
+              <li>
+                <p>
+                  What is the dimension of <m>U\cap W</m>?
+                </p>
+                <p>
+                  <var name="'1'" width="5"/>
+                </p>
+              </li>
+            </ol>
           </p>
         </statement>
-        <feedback>
-          <p>
-            What would <xref ref="thm-sum-dimension"/> say about <m>\dim U+W</m> in this case?
-            Why is that not possible?
-          </p>
-        </feedback>
-      </choice>
-      <choice correct="yes">
-        <statement>
-          <p>
-            <m>2</m>
-          </p>
-        </statement>
-        <feedback>
-          <p>
-            Good job! If <m>\dim U+W = 6</m> (the largest it possibly can),
-            then <m>\dim U\cap W = \dim U+\dim W-\dim (U+W) = 4+4-6=2</m>.
-          </p>
-        </feedback>
-      </choice>
-      <choice correct="yes">
-        <statement>
-          <p>
-            <m>3</m>
-          </p>
-        </statement>
-        <feedback>
-          <p>
-            Yes! This will be the case if <m>\dim U+W = 5</m>.
-          </p>
-        </feedback>
-      </choice>
-      <choice correct="yes">
-        <statement>
-          <p>
-            <m>4</m>
-          </p>
-        </statement>
-        <feedback>
-          <p>
-            Correct! If <m>U\subseteq W</m>, then <m>U=W=U+W=U\cap W</m>, all with dimension <m>4</m>.
-          </p>
-        </feedback>
-      </choice>
-      <choice correct="no">
-        <statement>
-          <p>
-            <m>5</m>
-          </p>
-        </statement>
-        <feedback>
-          <p>
-            Since <m>U+W</m> contains both <m>U</m> and <m>W</m>, its dimension cannot be less than <m>4</m>.
-          </p>
-        </feedback>
-      </choice>
-    </choices>
-    <hint>
-      <p>
-        Use <xref ref="thm-sum-dimension"/>.
-      </p>
-    </hint>
-  </exercise>
+      </webwork>
+    </exercise>
+  </exercises>
 </section>

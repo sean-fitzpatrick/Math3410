@@ -142,7 +142,7 @@
     </statement>
   </definition>
 
-  <exercise>
+  <exercise xml:id="ex-basis-m22" label="ex-basis-m22">
     <statement>
       <p>
         Find a basis for <m>U=\{X\in M_{22} \,|\, XA = AX\}</m>, if <m>A = \bbm 1\amp 1\\0\amp 0\ebm</m>
@@ -216,7 +216,7 @@
     </statement>
   </example>
 
-  <exercise xml:id="ex-basis-r3">
+  <exercise xml:id="ex-basis-r3" label="ex-basis-r3">
     <introduction>
       <p>
         Show that the following sets are bases of <m>\R^3</m>.
@@ -326,7 +326,7 @@
     which you can then solve using the computer.
   </p>
 
-  <exercise>
+  <exercise xml:id="ex-basis-m22a" label="ex-basis-m22a">
     <statement>
       <p>
         Show that the following is a basis of <m>M_{22}</m>:
@@ -351,7 +351,7 @@
 
   </sage>
 
-  <exercise>
+  <exercise xml:id="ex-basis-p3" label="ex-basis-p3">
     <statement>
       <p>
         Show that <m>\{1+x,x+x^2,x^2+x^3,x^3\}</m> is a basis for <m>P_3</m>.
@@ -377,7 +377,7 @@
 
   </sage>
 
-  <exercise>
+  <exercise xml:id="ex-basis-p2" label="ex-basis-p2">
     <introduction>
       <p>
         Find a basis and dimension for the following subspaces of <m>P_2</m>:
@@ -640,7 +640,7 @@
 
 
 
-  <exercise>
+  <exercise xml:id="ex-basis-extend-m22" label="ex-basis-extend-m22">
     <statement>
       <p>
         Find a basis of <m>M_{22}(\R)</m> that contains the vectors
@@ -665,7 +665,7 @@
     </solution>
   </exercise>
 
-  <exercise>
+  <exercise xml:id="ex-basis-extend-p3" label="ex-basis-extend-p3">
     <statement>
       <p>
         Extend the set <m>\{1+x,x+x^2,x-x^3\}</m> to a basis of <m>P_3(\R)</m>.
@@ -680,7 +680,7 @@
     </solution>
   </exercise>
 
-  <exercise>
+  <exercise xml:id="ex-dim-inf" label="ex-dim-inf">
     <statement>
       <p>
         Give two examples of infinite-dimensional vector spaces.
@@ -690,7 +690,7 @@
     <response/>
   </exercise>
 
-  <exercise>
+  <exercise xml:id="ex-basis-tf">
     <introduction>
       <p>
         Determine whether the following statements are true or false.
@@ -894,4 +894,72 @@
     <em>and</em> for the system we obtain when checking for span.
     In both cases, the condition on <m>A</m> is the same; namely, that it must be invertible.
   </p>
+
+  <exercises>
+    <exercise xml:id="ex-ww-basis1" label="ex-ww-basis1">
+      <webwork source="Library/NAU/setLinearAlgebra/P3subspaceBasis.pg" />
+    </exercise>
+
+    <exercise xml:id="ex-ww-basis2" label="ex-ww-basis2">
+      <webwork source="local/Library/NAU/setLinearAlgebra/basisTrace0b.pg" />
+    </exercise>
+
+    <exercise xml:id="ex-rs-basis3" label="ex-rs-basis3">
+      <statement correct="no">
+        <p>
+          True or false: if a set <m>S</m> of vectors is linearly independent in a vector space <m>V</m>,
+          but <m>S</m> does not span <m>V</m>, then <m>S</m> can be extended to a basis for <m>V</m> by adding vectors.
+        </p>
+      </statement>
+      <feedback>
+        <p>
+          What if <m>V</m> is infinite-dimensional?
+        </p>
+      </feedback>
+    </exercise>
+
+    <exercise xml:id="ex-rs-basis4" label="ex-rs-basis4">
+      <statement correct="no">
+        <p>
+          True or false: if <m>V=\spn\{\vv_1,\vv_2,\vv_3\}</m>, then <m>\dim V=3</m>.
+        </p>
+      </statement>
+      <feedback>
+        <p>
+          What if the set <m>\{\vv_1,\vv_2,\vv_3\}</m> is linearly dependent?
+        </p>
+      </feedback>
+    </exercise>
+
+    <exercise xml:id="ex-rs-basis5" label="ex-rs-basis5">
+      <statement correct="yes">
+        <p>
+          True or false: if <m>U</m> is a subspace of a vector space <m>V</m>,
+          and <m>U=\spn(S)</m> for a finite set of vectors <m>S</m>,
+          then <m>S</m> contains a basis for <m>U</m>.
+        </p>
+      </statement>
+      <feedback>
+        <p>
+          Since <m>S</m> is finite and spans <m>U</m>, 
+          the subspace <m>U</m> is finite-dimensional.
+          If <m>S</m> is linearly dependent, we can remove vectors from <m>S</m>
+          until we obtain a set that spans <m>U</m> and is linearly independent.
+        </p>
+      </feedback>
+    </exercise>
+
+    <exercise xml:id="ex-ww-basis6" label="ex-ww-basis6">
+      <webwork source="Library/WHFreeman/Holt_linear_algebra/Chaps_1-4/4.2.55.pg" />
+    </exercise>
+
+    <exercise xml:id="ex-ww-basis7" label="ex-ww-basis7">
+      <webwork source="local/Library/Hope/Multi1/03-04-Basis-dim/Basis_05.pg" />
+    </exercise>
+
+    <exercise xml:id="ex-ww-basis8" label="ex-ww-basis8">
+      <webwork source="local/Library/Hope/Multi1/03-04-Basis-dim/Basis_06.pg" />
+    </exercise>
+
+  </exercises>
 </section>

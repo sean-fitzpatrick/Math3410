@@ -116,36 +116,34 @@
   </theorem>
 
   <remark>
-    <statement>
-      <p>
-        Technically, we skipped over some details in the above proof:
-        how exactly, is associativity being applied?
-        It turns out there's actually a proof by induction lurking in the background!
-      </p>
+    <p>
+      Technically, we skipped over some details in the above proof:
+      how exactly, is associativity being applied?
+      It turns out there's actually a proof by induction lurking in the background!
+    </p>
 
-      <p>
-        By definition, we know that <m>T(\vv_1+\vv_2)=T(\vv_1)+T(\vv_2)</m>.
-        For three vectors,
-        <md>
-          <mrow>T(\vv_1+\vv_2+\vv_3) \amp = T(\vv_1+(\vv_2+\vv_3))</mrow>
-          <mrow> \amp = T(\vv_1)+T(\vv_2+\vv_3)</mrow>
-          <mrow> \amp = T(\vv_1)+(T(\vv_2)+T(\vv_3))</mrow>
-          <mrow> \amp = T(\vv_1)+T(\vv_2)+T(\vv_3)</mrow>
-        </md>.
-      </p>
+    <p>
+      By definition, we know that <m>T(\vv_1+\vv_2)=T(\vv_1)+T(\vv_2)</m>.
+      For three vectors,
+      <md>
+        <mrow>T(\vv_1+\vv_2+\vv_3) \amp = T(\vv_1+(\vv_2+\vv_3))</mrow>
+        <mrow> \amp = T(\vv_1)+T(\vv_2+\vv_3)</mrow>
+        <mrow> \amp = T(\vv_1)+(T(\vv_2)+T(\vv_3))</mrow>
+        <mrow> \amp = T(\vv_1)+T(\vv_2)+T(\vv_3)</mrow>
+      </md>.
+    </p>
 
-      <p>
-        For an abitrary number of vectors <m>n\geq 3</m>,
-        we can assume that distribution over addition works for <m>n-1</m> vectors,
-        and then use associativity to write
-        <me>
-          \vv_1+\vv_2+\cdots +\vv_n = \vv_1+(\vv_2+\cdots +\vv_n)
-        </me>.
-        The right-hand side is technically a sum of two vectors,
-        so we can apply the definition of a linear transformation directly,
-        and then apply our induction hypothesis to <m>T(\vv_2+\cdots + \vv_n)</m>.
-      </p>
-    </statement>
+    <p>
+      For an abitrary number of vectors <m>n\geq 3</m>,
+      we can assume that distribution over addition works for <m>n-1</m> vectors,
+      and then use associativity to write
+      <me>
+        \vv_1+\vv_2+\cdots +\vv_n = \vv_1+(\vv_2+\cdots +\vv_n)
+      </me>.
+      The right-hand side is technically a sum of two vectors,
+      so we can apply the definition of a linear transformation directly,
+      and then apply our induction hypothesis to <m>T(\vv_2+\cdots + \vv_n)</m>.
+    </p>
   </remark>
 
   <example xml:id="ex-matrix-trans">
@@ -396,39 +394,37 @@
   </p>
 
   <remark>
-    <statement>
-      <p>
-        If for some reason we already know that our transformation is linear,
-        we might still be concerned about the fact that if a spanning set is not independent,
-        there will be more than one way to express a vector as linear combination of vectors in that set.
-        If we define <m>T</m> by giving its values on a spanning set, will it be well-defined?
-        (That is, could we get two different values for <m>T(\vv)</m> by expressing <m>\vv</m> in terms of the spanning set in two different ways?)
-        Suppose that we have scalars <m>a_1,\ldots, a_n, b_1,\ldots, b_n</m> such that
-        <md>
-          <mrow>\vv \amp = a_1\vv_1+\cdots + a_n\vv_n \quad \text{ and }</mrow>
-          <mrow>\vv \amp = b_1\vv_1+\cdots + b_n\vv_n</mrow>
-        </md>
-        We then have
-        <md>
-          <mrow>a_1T(\vv_1)+\cdots + a_nT(\vv_n) \amp =T(a_1\vv_1+\cdots + a_n\vv_n) </mrow>
-          <mrow> \amp =T(b_1\vv_1+\cdots +b_n\vv_n)</mrow>
-          <mrow>  \amp =b_1T(\vv_1)+\cdots +b_nT(\vv_n)</mrow>
-        </md>.
-      </p>
+    <p>
+      If for some reason we already know that our transformation is linear,
+      we might still be concerned about the fact that if a spanning set is not independent,
+      there will be more than one way to express a vector as linear combination of vectors in that set.
+      If we define <m>T</m> by giving its values on a spanning set, will it be well-defined?
+      (That is, could we get two different values for <m>T(\vv)</m> by expressing <m>\vv</m> in terms of the spanning set in two different ways?)
+      Suppose that we have scalars <m>a_1,\ldots, a_n, b_1,\ldots, b_n</m> such that
+      <md>
+        <mrow>\vv \amp = a_1\vv_1+\cdots + a_n\vv_n \quad \text{ and }</mrow>
+        <mrow>\vv \amp = b_1\vv_1+\cdots + b_n\vv_n</mrow>
+      </md>
+      We then have
+      <md>
+        <mrow>a_1T(\vv_1)+\cdots + a_nT(\vv_n) \amp =T(a_1\vv_1+\cdots + a_n\vv_n) </mrow>
+        <mrow> \amp =T(b_1\vv_1+\cdots +b_n\vv_n)</mrow>
+        <mrow>  \amp =b_1T(\vv_1)+\cdots +b_nT(\vv_n)</mrow>
+      </md>.
+    </p>
 
-      <p>
-        Of course, we can avoid all of this unpleasantness by using a <em>basis</em>
-        to define a transformation. Given a basis <m>B = \{\vv_1,\ldots, \vv_n\}</m>
-        for a vector space <m>V</m>, we can define a transformation <m>T:V\to W</m>
-        by setting <m>T(\vv_i)=\ww_i</m> for some choice of vectors <m>\ww_1,\ldots, \ww_n</m>
-        and defining
-        <me>
-          T(c_1\vv_1+\cdots +c_n\vv_n)=c_1T(\vv_1)+\cdots + c_nT(\vv_n)
-        </me>.
-        Because each vector <m>\vv\in V</m> can be written <em>uniquely</em> in terms of a basis,
-        we know that our transformation is well-defined.
-      </p>
-    </statement>
+    <p>
+      Of course, we can avoid all of this unpleasantness by using a <em>basis</em>
+      to define a transformation. Given a basis <m>B = \{\vv_1,\ldots, \vv_n\}</m>
+      for a vector space <m>V</m>, we can define a transformation <m>T:V\to W</m>
+      by setting <m>T(\vv_i)=\ww_i</m> for some choice of vectors <m>\ww_1,\ldots, \ww_n</m>
+      and defining
+      <me>
+        T(c_1\vv_1+\cdots +c_n\vv_n)=c_1T(\vv_1)+\cdots + c_nT(\vv_n)
+      </me>.
+      Because each vector <m>\vv\in V</m> can be written <em>uniquely</em> in terms of a basis,
+      we know that our transformation is well-defined.
+    </p>
   </remark>
 
   <p>
@@ -460,7 +456,7 @@
     With the basic theory out of the way, let's look at a few basic examples.
   </p>
 
-  <exercise>
+  <example>
     <statement>
       <p>
         Suppose <m>T:\R^2\to \R^2</m> is a linear transformation.
@@ -468,7 +464,6 @@
         find <m>T\bbm -2\\4\ebm</m>.
       </p>
     </statement>
-    <response/>
     <solution>
       <p>
         Since we know the value of <m>T</m> on the standard basis,
@@ -481,9 +476,9 @@
         </md>.
       </p>
     </solution>
-  </exercise>
+  </example>
 
-  <exercise>
+  <example>
     <statement>
       <p>
         Suppose <m>T:\R^2\to \R^2</m> is a linear transformation.
@@ -492,7 +487,6 @@
         find <m>T\bbm 4\\3\ebm</m>.
       </p>
     </statement>
-    <response/>
     <solution>
       <p>
         At first, this example looks the same as the one above,
@@ -530,11 +524,11 @@
         </me>.
       </p>
     </solution>
-  </exercise>
+  </example>
 
 
 
-  <exercise>
+  <exercise xml:id="ex-lt-poly" label="ex-lt-poly">
     <statement>
       <p>
         Suppose <m>T:P_2(\R)\to \R</m> is defined by
@@ -571,7 +565,7 @@
     </solution>
   </exercise>
 
-  <exercise>
+  <example>
     <statement>
       <p>
         Find a linear transformation <m>T:\R^2\to \R^3</m> such that
@@ -581,7 +575,6 @@
         Then, determine the value of <m>T(3,2)</m>.
       </p>
     </statement>
-    <response/>
     <solution>
       <p>
         Since <m>\{(1,2),(-1,1)\}</m> forms a basis of <m>\R^2</m>
@@ -631,109 +624,150 @@
         </me>.
       </p>
     </solution>
-  </exercise>
+  </example>
 
 
+  <exercises>
+    <exercise xml:id="ex_lintrans-indep" label="ex-parsons-lintrans">
+      <statement>
+        <p>
+          Let <m>T:V\to W</m> be a linear transformation.
+          Rearrange the blocks below to create a proof of the following statement:
+        </p>
+        <p>
+          For any vectors <m>\vv_1,\ldots, \vv_n\in V</m>,
+          if <m>\{T(\vv_1),\ldots, T(\vv_n)\}</m> is linearly independent in <m>W</m>,
+          then <m>\{\vv_1,\ldots, \vv_n\}</m> is linearly independent in <m>V</m>.
+        </p>
+      </statement>
+      <blocks>
+        <block order="6">
+          <p>
+            Suppose that <m>\{T(\vv_1),\ldots, T(\vv_n)\}</m> is linearly independent.
+          </p>
+        </block>
+        <block order="3">
+          <p>
+            We want to show that <m>\{\vv_1,\ldots, \vv_n\}</m>
+            is linearly independent, so suppose that we have
+            <me>
+              c_1\vv_1+\cdots + c_n\vv_n=\zer
+            </me>
+            for some scalars <m>c_1,\ldots, c_n</m>.
+          </p>
+        </block>
+        <block order="5">
+          <p>
+            We apply <m>T</m> to both sides of the equation above, giving us:
+            <me>
+              T(c_1\vv_1+\cdots + c_n\vv_n)=T(\zer)
+            </me>.
+          </p>
+        </block>
+        <block order="2">
+          <p>
+            Now we make use of both parts of <xref ref="thm-lt-props">Theorem</xref> to get
+            <me>
+              c_1T(\vv_1)+\cdots +c_nT(\vv_n) = \zer
+            </me>.
+          </p>
+        </block>
+        <block order="1">
+          <p>
+            By hypothesis, the vectors <m>T(\vv_i)</m> are linearly independent,
+            so we must have <m>c_1=0,c_2=0,\ldots, c_n=0</m>.
+          </p>
+        </block>
+        <block order="4">
+          <p>
+            Since the only solution to <m>c_1\vv_1+\cdots + c_n\vv_n=\zer</m>
+            is <m>c_1=0,\ldots, c_n=0</m>, the set <m>\{\vv_1,\ldots, \vv_n\}</m>
+            is linearly independent.
+          </p>
+        </block>
+      </blocks>
+      <hint>
+        <p>
+          This is mostly a matter of using <xref ref="thm-lt-props">Theorem</xref>,
+          but it's important to get the logic correct.
+          We have a conditional statement of the form <m>P\Rightarrow Q</m>,
+          where both <m>P</m> (<q>the set <m>\{T(\vv_1),\ldots, T(\vv_n)\}</m> is independent</q>)
+          and <m>Q</m> (<q>the set <m>\{\vv_1,\ldots, \vv_n\}</m> is independent</q>)
+          are themselves conditional statements.
+        </p>
+        <p>
+          The overall structure therefore looks like <m>(A\Rightarrow B)\Rightarrow (C\Rightarrow D)</m>.
+          A direct proof should be structured as follows:
+          <ol>
+            <li>
+              <p>
+                Assume the main hypothesis: <m>A\Rightarrow B</m>.
+              </p>
+            </li>
+            <li>
+              <p>
+                Assume the <q>sub</q>-hypothesis <m>C</m>.
+              </p>
+            </li>
+            <li>
+              <p>
+                Figure out how to show that <m>C\Rightarrow A</m>.
+                (This is the <q>apply <m>T</m> to both sides</q> step.)
+              </p>
+            </li>
+            <li>
+              <p>
+                If we know <m>A</m>, and we've assumed <m>A\Rightarrow B</m>, we know <m>B</m>.
+              </p>
+            </li>
+            <li>
+              <p>
+                Realize that <m>B\Rightarrow D</m>.
+              </p>
+            </li>
+          </ol>
+        </p>
+      </hint>
+    </exercise>
 
-  <exercise xml:id="ex_lintrans-indep" label="ex-parsons-lintrans">
-    <statement>
-      <p>
-        Let <m>T:V\to W</m> be a linear transformation.
-        Rearrange the blocks below to create a proof of the following statement:
-      </p>
-      <p>
-        For any vectors <m>\vv_1,\ldots, \vv_n\in V</m>,
-        if <m>\{T(\vv_1),\ldots, T(\vv_n)\}</m> is linearly independent in <m>W</m>,
-        then <m>\{\vv_1,\ldots, \vv_n\}</m> is linearly independent in <m>V</m>.
-      </p>
-    </statement>
-    <blocks>
-      <block order="6">
-        <p>
-          Suppose that <m>\{T(\vv_1),\ldots, T(\vv_n)\}</m> is linearly independent.
-        </p>
-      </block>
-      <block order="3">
-        <p>
-          We want to show that <m>\{\vv_1,\ldots, \vv_n\}</m>
-          is linearly independent, so suppose that we have
-          <me>
-            c_1\vv_1+\cdots + c_n\vv_n=\zer
-          </me>
-          for some scalars <m>c_1,\ldots, c_n</m>.
-        </p>
-      </block>
-      <block order="5">
-        <p>
-          We apply <m>T</m> to both sides of the equation above, giving us:
-          <me>
-            T(c_1\vv_1+\cdots + c_n\vv_n)=T(\zer)
-          </me>.
-        </p>
-      </block>
-      <block order="2">
-        <p>
-          Now we make use of both parts of <xref ref="thm-lt-props">Theorem</xref> to get
-          <me>
-            c_1T(\vv_1)+\cdots +c_nT(\vv_n) = \zer
-          </me>.
-        </p>
-      </block>
-      <block order="1">
-        <p>
-          By hypothesis, the vectors <m>T(\vv_i)</m> are linearly independent,
-          so we must have <m>c_1=0,c_2=0,\ldots, c_n=0</m>.
-        </p>
-      </block>
-      <block order="4">
-        <p>
-          Since the only solution to <m>c_1\vv_1+\cdots + c_n\vv_n=\zer</m>
-          is <m>c_1=0,\ldots, c_n=0</m>, the set <m>\{\vv_1,\ldots, \vv_n\}</m>
-          is linearly independent.
-        </p>
-      </block>
-    </blocks>
-    <hint>
-      <p>
-        This is mostly a matter of using <xref ref="thm-lt-props">Theorem</xref>,
-        but it's important to get the logic correct.
-        We have a conditional statement of the form <m>P\Rightarrow Q</m>,
-        where both <m>P</m> (<q>the set <m>\{T(\vv_1),\ldots, T(\vv_n)\}</m> is independent</q>)
-        and <m>Q</m> (<q>the set <m>\{\vv_1,\ldots, \vv_n\}</m> is independent</q>)
-        are themselves conditional statements.
-      </p>
-      <p>
-        The overall structure therefore looks like <m>(A\Rightarrow B)\Rightarrow (C\Rightarrow D)</m>.
-        A direct proof should be structured as follows:
-        <ol>
-          <li>
-            <p>
-              Assume the main hypothesis: <m>A\Rightarrow B</m>.
-            </p>
-          </li>
-          <li>
-            <p>
-              Assume the <q>sub</q>-hypothesis <m>C</m>.
-            </p>
-          </li>
-          <li>
-            <p>
-              Figure out how to show that <m>C\Rightarrow A</m>.
-              (This is the <q>apply <m>T</m> to both sides</q> step.)
-            </p>
-          </li>
-          <li>
-            <p>
-              If we know <m>A</m>, and we've assumed <m>A\Rightarrow B</m>, we know <m>B</m>.
-            </p>
-          </li>
-          <li>
-            <p>
-              Realize that <m>B\Rightarrow D</m>.
-            </p>
-          </li>
-        </ol>
-      </p>
-    </hint>
-  </exercise>
+    <exercise xml:id="ex-ww-lt1" label="ex-ww-lt1">
+      <webwork source="local/Library/Hope/Multi1/04-01-Linear-transformations/Lin_trans_20.pg" />
+    </exercise>
+
+    <exercise xml:id="ex-ww-lt2" label="ex-ww-lt2">
+      <webwork source="local/Library/Hope/Multi1/04-01-Linear-transformations/Lin_trans_14.pg" />
+    </exercise>
+
+    <exercise xml:id="ex-ww-lt3" label="ex-ww-lt3">
+      <webwork source="local/Library/Hope/Multi1/04-01-Linear-transformations/Lin_trans_02.pg" />
+    </exercise>
+
+    <exercise xml:id="ex-ww-lt4" label="ex-ww-lt4">
+      <webwork source="local/Library/Hope/Multi1/04-01-Linear-transformations/Lin_trans_21.pg" />
+    </exercise>
+
+    <exercise xml:id="ex-ww-lt5" label="ex-ww-lt5">
+      <webwork source="Library/TCNJ/TCNJ_IntroLinearTransformations/problem17.pg" />
+    </exercise>
+
+    <exercise xml:id="ex-ww-lt6" label="ex-ww-lt6">
+      <webwork source="Library/TCNJ/TCNJ_IntroLinearTransformations/problem18.pg" />
+    </exercise>
+
+    <exercise xml:id="ex-ww-lt7" label="ex-ww-lt7">
+      <webwork source="local/Library/Rochester/setLinearAlgebra14TransfOfRn/ur_la_14_30.pg" />
+    </exercise>
+
+    <exercise xml:id="ex-ww-lt8" label="ex-ww-lt8">
+      <webwork source="local/Library/Rochester/setLinearAlgebra14TransfOfRn/ur_la_14_1.pg" />
+    </exercise>
+
+    <exercise xml:id="ex-ww-lt9" label="ex-ww-lt9">
+      <webwork source="local/Library/Rochester/setLinearAlgebra15TransfOfLinSpaces/ur_la_15_17.pg" />
+    </exercise>
+
+    <exercise xml:id="ex-ww-lt10" label="ex-ww-lt10">
+      <webwork source="local/Library/Rochester/setLinearAlgebra15TransfOfLinSpaces/ur_la_15_3.pg" />
+    </exercise>
+  </exercises>
 </section>

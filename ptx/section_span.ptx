@@ -14,12 +14,12 @@
   <p>
     It's important to make sure you don't get lost in the notation here.
     Be sure that you can keep track of which symbols are vectors, and which are scalars!
-    Note that in a sense, this is the most general sort of expression you can form using the two operations of a vector space,
+    Note that in a sense, this is the most general sort of expression you can form using the two operations of a vector space:
     addition, and scalar multiplication. We multiply some collection of vectors by scalars,
     and then use addition to <q>combine</q> them into a single vector.
   </p>
 
-  <example>
+  <example xml:id="eg-linear-comb">
     <statement>
       <p>
         In <m>\R^3</m>, let <m>\uu = \bbm 1\\0\\3\ebm</m>, <m>\vv = \bbm -1\\2\\1\ebm</m>, and <m>\ww = \bbm 0\\3\\1\ebm</m>.
@@ -71,7 +71,7 @@
     is really asking is, <q>Can <m>\ww</m> be written as a linear combination of <m>\vv_1,\ldots, \vv_k</m>?</q>
   </p>
 
-  <exercise label="ex-rs-mc-span">
+  <exercise label="ex-rs-mc-span" xml:id="ex-rs-mc-span">
     <statement>
       <p>
         Let <m>S = \{\vv_1,\ldots, \vv_k\}</m> be a set of vectors.
@@ -154,13 +154,12 @@
     Here, we will look at a few such examples.
   </p>
 
-  <exercise>
+  <example xml:id="ex-span-check1" label="ex-span-check1">
     <statement>
       <p>
         Determine whether the vector <m>\bbm 2\\3\ebm</m> is in the span of the vectors <m>\bbm 1\\1\ebm,\bbm -1\\2\ebm</m>.
       </p>
     </statement>
-    <response/>
     <solution>
       <p>
         This is really asking: are there scalars <m>s,t</m> such that
@@ -180,12 +179,12 @@
       </p>
 
       <p>
-        To confirm the above example (and see what the solution is), we can use the computer.
+        To confirm your work for the above exercise, we can use the computer.
         This first code cell loads the <c>sympy</c> Python library,
         and then configures the output to look nice.
         For details on the code used below, see <xref ref="ch-computation" text="custom">the Appendix</xref>.
       </p>
-
+    
       <sage>
         <input>
           from sympy import Matrix, init_printing
@@ -197,13 +196,15 @@
           \[\bbm 1\amp 0\amp \frac73\\0\amp 1\amp \frac13\ebm, (0,1)\]
         </output>
       </sage>
-
+    
       <p>
         The above code produces the reduced row-echelon form of the augmented matrix for our system.
-        (The tuple <m>(0,1)</m> lists the pivot columns <mdash/> note that Python indexes the columns starting at <m>0</m> rather than <m>1</m>.)
+        (The tuple <m>(0,1)</m> lists the pivot columns <mdash/> note that Python indexes the columns starting at <m>0</m> rather than <m>1</m>.
+        If you'd rather just get the reduced matrix without this extra information,
+        try adding <c>pivots=False</c> as an optional argument, in the empty parentheses of the <c>rref</c> command.)
         Do you remember how to get the answer from here? Here's another approach.
       </p>
-
+    
       <sage>
         <input>
           B = Matrix(2,2,[1,-1,1,2])
@@ -213,7 +214,7 @@
           \[\bbm 1\amp -1\\1\amp 2\ebm\]
         </output>
       </sage>
-
+    
       <sage>
         <input>
           C = Matrix(2,1,[2,3])
@@ -224,8 +225,13 @@
           \[\bbm \frac 73\\\frac13\ebm\]
         </output>
       </sage>
+    
+      <p>
+        Of course, this second approach only works if we know the matrix <m>B</m> is invertible.
+        With a bit of experience, you'll probably guess that invertibility of this matrix guarantees that any vector can be written as the span of its columns.
+      </p>
     </solution>
-  </exercise>
+  </example>
 
   <p>
     Our next example involves polynomials.
@@ -233,14 +239,13 @@
     but it's essentially the same once we set it up.
   </p>
 
-  <exercise>
+  <example xml:id="ex-span-poly" label="ex-span-poly">
     <statement>
       <p>
         Determine whether <m>p(x)=1+x+4x^2</m> belongs to
         <m>\spn\{1+2x-x^2,3+5x+2x^2\}</m>.
       </p>
     </statement>
-    <response/>
     <solution>
       <p>
         We seek scalars <m>s,t</m> such that
@@ -260,7 +265,21 @@
       </p>
 
       <p>
-        We can solve this computationally using matrices again.
+        Adding the second and third equations gives <m>7t=5</m>, so <m>t=\frac57</m>.
+        The third equation then gives <m>s = t-2=-\frac97</m>.
+        With three equations and two unknowns, there is a risk that our system could be inconsistent.
+        (In fact, this is the point: if the system is consistent, then <m>p(x)</m> is in the span.
+        If the system is inconsistent, <m>p(x)</m> is not in the span.)
+        We still need to check if our values work in the first equation:
+        <me>
+          s+3t = -\frac97+3\left(\frac57\right)=\frac67\neq 1
+        </me>,
+        which shows that our system is inconsistent, and therefore, 
+        <m>p(x)</m> does not belong to the span of the other two polynomials.
+      </p>
+
+      <p>
+        Of course, we can also use matrices (and the computer) to help us solve the problem.
       </p>
       <sage>
         <input>
@@ -274,77 +293,86 @@
         </output>
       </sage>
       <p>
-        So, what's the answer? Is <m>p(x)</m> in the span?
-        Can we determine what polynomials are in the span?
-        Let's consider a general polynomial <m>q(x)=a+bx+cx^2</m>.
-        A bit of thought tells us that the coefficients <m>a,b,c</m>
-        should replace the constants <m>1,1,4</m> above.
-      </p>
-
-      <sage>
-        <input>
-          from sympy import symbols
-          a, b, c = symbols('a b c', real = True, constant = True)
-          N = Matrix(3,3,[1,3,a,2,5,b,-2,2,c])
-          N
-        </input>
-        <output>
-          \[\bbm 1\amp 3\amp a\\2\amp 5\amp b\\-2\amp 2\amp c\ebm\]
-        </output>
-      </sage>
-
-      <p>
-        Asking the computer to reduce this matrix to <init>RREF</init> won't produce the desired result.
-        But we can always specify row operations.
-      </p>
-
-      <sage>
-        <input>
-          N1 = N.elementary_row_op(op='n-&gt;n+km',row=1,k=-2,row2=0)
-          N1
-        </input>
-        <output>
-          \[\bbm 1\amp 3\amp a\\0\amp -1\amp -2a+b\\-2\amp 2\amp c\ebm\]
-        </output>
-      </sage>
-
-      <p>
-        In the <c>elementary_row_op</c> function called above,
-        we are asking the computer to change row <m>1</m> (the second row)
-        by adding <m>-2</m> times row <m>0</m> )the first row).
-        See <xref ref="subsec-sympy-matrix">Section</xref> for complete details on this syntax.
-      </p>
-
-      <p>
-        Now we repeat. Here is another cell to work with:
-      </p>
-
-      <sage>
-
-      </sage>
-
-      <p>
-        Another option is to replace the <c>rref()</c> function with the
-        <c>echelon_form()</c> function, which doesn't simplify quite as far:
-      </p>
-
-      <sage>
-        <input>
-          a, b, c = symbols('a b c', real = True, constant = True)
-          N = Matrix(3,3,[1,3,a,2,5,b,-2,2,c])
-          N.echelon_form()
-        </input>
-        <output>
-          \[\bbm 1\amp 3\amp a\\0\amp -1\amp -2a+b\\0\amp 0\amp 14a-8b-c\ebm\]
-        </output>
-      </sage>
-
-      <p>
-        For a consistent system, we need <m>c=14a-8b</m>.
+        Based on this output, can you tell whether or not <m>p(x)</m> in the span? Why or why not?
       </p>
     </solution>
-  </exercise>
+  </example>
 
+  
+
+  <remark xml:id="remark-poly-span">
+    <p>
+      Can we determine what polynomials <em>are</em> in the span?
+      Let's consider a general polynomial <m>q(x)=a+bx+cx^2</m>.
+      A bit of thought tells us that the coefficients <m>a,b,c</m>
+      should replace the constants <m>1,1,4</m> above.
+    </p>
+
+    <sage>
+      <input>
+        from sympy import symbols
+        a, b, c = symbols('a b c', real = True, constant = True)
+        N = Matrix(3,3,[1,3,a,2,5,b,-2,2,c])
+        N
+      </input>
+      <output>
+        \[\bbm 1\amp 3\amp a\\2\amp 5\amp b\\-2\amp 2\amp c\ebm\]
+      </output>
+    </sage>
+
+    <p>
+      Asking the computer to reduce this matrix to <init>RREF</init> won't produce the desired result.
+      But we can always specify row operations.
+    </p>
+
+    <sage>
+      <input>
+        N1 = N.elementary_row_op(op='n-&gt;n+km',row=1,k=-2,row2=0)
+        N1
+      </input>
+      <output>
+        \[\bbm 1\amp 3\amp a\\0\amp -1\amp -2a+b\\-2\amp 2\amp c\ebm\]
+      </output>
+    </sage>
+
+    <p>
+      In the <c>elementary_row_op</c> function called above,
+      we are asking the computer to change row <m>1</m> (the second row)
+      by adding <m>-2</m> times row <m>0</m> (the first row).
+      See <xref ref="subsec-sympy-matrix">Section</xref> for complete details on this syntax.
+    </p>
+
+    <p>
+      Now we repeat. Here is another cell to work with:
+    </p>
+
+    <sage>
+
+    </sage>
+
+    <p>
+      Another option is to replace the <c>rref()</c> function with the
+      <c>echelon_form()</c> function, which doesn't simplify quite as far:
+    </p>
+
+    <sage>
+      <input>
+        a, b, c = symbols('a b c', real = True, constant = True)
+        N = Matrix(3,3,[1,3,a,2,5,b,-2,2,c])
+        N.echelon_form()
+      </input>
+      <output>
+        \[\bbm 1\amp 3\amp a\\0\amp -1\amp -2a+b\\0\amp 0\amp 14a-8b-c\ebm\]
+      </output>
+    </sage>
+
+    <p>
+      For a consistent system, we need <m>c=14a-8b</m>. Therefore,
+      <me>
+        \spn\{1+2x-x^2,3+5x+2x^2\} = \{a+bx+cx^2 \,|\, c=14a-8b\}
+      </me>.      
+    </p>
+  </remark>
 
   <p>
     One of the reasons we care about linear combinations and span is that it gives us an easy means of generating subspaces,
@@ -425,7 +453,7 @@
 
   </theorem>
 
-  <exercise>
+  <exercise xml:id="ex-span-subsets" label="ex=span-subsets">
     <statement>
       <p>
         Let <m>V</m> be a vector space, and let <m>X,Y\subseteq V</m>.
@@ -442,10 +470,10 @@
     </hint>
   </exercise>
 
-  <exercise label="ex-tf-span">
+  <exercise label="ex-tf-span" xml:id="ex-tf-span">
     <statement correct="no">
       <p>
-        The vectors <m>\{(1,2,0), (1,1,1)\}</m> span <m>\{(a,b,0)\,|\, a,b \in\R\}</m>.
+        True or false: the vectors <m>\{(1,2,0), (1,1,1)\}</m> span <m>\{(a,b,0)\,|\, a,b \in\R\}</m>.
       </p>
     </statement>
     <feedback>
@@ -532,4 +560,30 @@
     Such sets are called <term>linearly independent</term>,
     and they are the subject of <xref ref="sec-independence">Section</xref>.
   </p>
+
+  <exercises>
+    <exercise xml:id="ex-ww-span1" label="ex-ww-span1">
+      <webwork source="local/Library/NAU/setLinearAlgebra/span.pg" />
+    </exercise>
+
+    <exercise xml:id="ex-ww-span2" label="ex-ww-span2">
+      <webwork source="local/Library/NAU/setLinearAlgebra/P3span.pg" />
+    </exercise>
+
+    <exercise xml:id="ex-ww-span3" label="ex-ww-span3">
+      <webwork source="Library/Hope/Multi1/03-03-Linear-combinations/Lin_combi_08.pg" />
+    </exercise>
+
+    <exercise xml:id="ex-ww-span4" label="ex-ww-span4">
+      <webwork source="Library/WHFreeman/Holt_linear_algebra/Chaps_1-4/2.2.63.pg" />
+    </exercise>
+
+    <exercise xml:id="ex-ww-span5" label="ex-ww-span5">
+      <webwork source="Library/WHFreeman/Holt_linear_algebra/Chaps_1-4/2.2.62.pg" />
+    </exercise>
+
+    <exercise xml:id="ex-ww-span6" label="ex-ww-span6">
+      <webwork source="Library/TCNJ/TCNJ_VectorEquations/problem11.pg" />
+    </exercise>
+  </exercises>
 </section>

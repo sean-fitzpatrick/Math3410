@@ -65,10 +65,10 @@
     </statement>
   </definition>
 
-  <exercise label="ex-tf-li">
+  <exercise label="ex-tf-li" xml:id="ex-tf-li">
     <statement correct="no">
       <p>
-        If <m>c_1\vv_1+\cdots +c_k\vv_k=\zer</m>,
+        True or false: if <m>c_1\vv_1+\cdots +c_k\vv_k=\zer</m>,
         where <m>c_1=0,\ldots, c_k=0</m>, then
         <m>\{\vv_1,\ldots, \vv_k\}</m> is linearly independent.
       </p>
@@ -114,29 +114,27 @@
 
   <remark>
     <title>Proofs involving linear independence</title>
-    <statement>
-      <p>
-        Note that the definition of linear independence is a conditional statement:
-        <em>if</em> <m>c_1\vv_1+\cdots +c_k\vv_k=\zer</m> for some <m>c_1,\ldots, c_k</m>,
-        <em>then</em> <m>c_1=0,\ldots, c_k=0</m>.
-      </p>
+    <p>
+      Note that the definition of linear independence is a conditional statement:
+      <em>if</em> <m>c_1\vv_1+\cdots +c_k\vv_k=\zer</m> for some <m>c_1,\ldots, c_k</m>,
+      <em>then</em> <m>c_1=0,\ldots, c_k=0</m>.
+    </p>
 
-      <p>
-        When we want to conclude that a set of vectors is linearly independent,
-        we should assume that <m>c_1\vv_1+\cdots +c_k\vv_k=\zer</m> for some <m>c_1,\ldots, c_k</m>,
-        and then try to show that the scalars must be zero.
-        It's important that we do not assume anything about the scalars to begin with.
-      </p>
+    <p>
+      When we want to conclude that a set of vectors is linearly independent,
+      we should assume that <m>c_1\vv_1+\cdots +c_k\vv_k=\zer</m> for some <m>c_1,\ldots, c_k</m>,
+      and then try to show that the scalars must be zero.
+      It's important that we do not assume anything about the scalars to begin with.
+    </p>
 
-      <p>
-        If the hypothesis of a statement includes the assumption that a set of vectors is independent,
-        we know that if we can get a linear combination of those vectors equal to the zero vector,
-        then the scalars in that linear combination are automatically zero.
-      </p>
-    </statement>
+    <p>
+      If the hypothesis of a statement includes the assumption that a set of vectors is independent,
+      we know that if we can get a linear combination of those vectors equal to the zero vector,
+      then the scalars in that linear combination are automatically zero.
+    </p>
   </remark>
 
-  <exercise label="ex-rs-mc-indep">
+  <exercise label="ex-rs-mc-indep" xml:id="ex-rs-mc-indep">
     <statement>
       <p>
         Which of the following are equivalent to the statement,
@@ -269,32 +267,30 @@
   </p>
 
   <remark xml:id="rem-independent-homogeneous">
-    <statement>
-      <p>
-        Computationally, questions about linear independence are just questions
-        about homogeneous systems of linear equations.
-        For example, suppose we want to know if the vectors
-        <me>
-          \uu=\bbm 1\\-1\\4\ebm, \vv=\bbm 0\\2\\-3\ebm, \ww=\bbm 4\\0\\-3\ebm
-        </me>
-        are linearly independent in <m>\mathbb{R}^3</m>.
-        This question leads to the vector equation
-        <me>
-          x\uu+y\vv+z\ww=\zer
-        </me>,
-        which becomes the matrix equation
-        <me>
-          \bbm 1\amp0\amp4\\-1\amp2\amp0\\4\amp-3\amp-3\ebm\bbm x\\y\\z\ebm = \bbm 0\\0\\0\ebm
-        </me>.
-      </p>
+    <p>
+      Computationally, questions about linear independence are just questions
+      about homogeneous systems of linear equations.
+      For example, suppose we want to know if the vectors
+      <me>
+        \uu=\bbm 1\\-1\\4\ebm, \vv=\bbm 0\\2\\-3\ebm, \ww=\bbm 4\\0\\-3\ebm
+      </me>
+      are linearly independent in <m>\mathbb{R}^3</m>.
+      This question leads to the vector equation
+      <me>
+        x\uu+y\vv+z\ww=\zer
+      </me>,
+      which becomes the matrix equation
+      <me>
+        \bbm 1\amp0\amp4\\-1\amp2\amp0\\4\amp-3\amp-3\ebm\bbm x\\y\\z\ebm = \bbm 0\\0\\0\ebm
+      </me>.
+    </p>
 
-      <p>
-        We now apply some basic theory from linear algebra.
-        A unique (and therefore, trivial) solution to this system is guaranteed if the matrix
-        <m>A = \bbm 1\amp0\amp4\\-1\amp2\amp0\\4\amp-3\amp-3\ebm</m> is invertible,
-        since in that case we have <m>\bbm x\\y\\z\ebm = A^{-1}\zer = \zer</m>.
-      </p>
-    </statement>
+    <p>
+      We now apply some basic theory from linear algebra.
+      A unique (and therefore, trivial) solution to this system is guaranteed if the matrix
+      <m>A = \bbm 1\amp0\amp4\\-1\amp2\amp0\\4\amp-3\amp-3\ebm</m> is invertible,
+      since in that case we have <m>\bbm x\\y\\z\ebm = A^{-1}\zer = \zer</m>.
+    </p>
   </remark>
 
   <p>
@@ -328,9 +324,11 @@
     The largest set of linearly independent vectors possible in <m>\mathbb{R}^3</m> contains three vectors.
     You might have also observed that the smallest number of vectors needed to span <m>\mathbb{R}^3</m> is 3.
     Hmm. Seems like there's something interesting going on here. But first, some more computation.
+    (For the first two exercises, once you've tried it yourself, 
+    you can find a solution using a Sage cell for computation at the <xref ref="solutions-backmatter" text="custom">end of the book</xref>.)
   </p>
 
-  <exercise>
+  <exercise xml:id="ex-li-r3" label="ex-li-r3">
     <statement>
       <p>
         Determine whether the set <m>\left\{\bbm 1\\2\\0\ebm, \bbm -1\\0\\3\ebm,\bbm -1\\4\\9\ebm\right\}</m>
@@ -366,7 +364,7 @@
 
 
 
-  <exercise>
+  <exercise xml:id="ex-li-p2" label="ex-li-p2">
     <statement>
       <p>
         Which of the following subsets of <m>P_2(\mathbb{R})</m> are independent?
@@ -434,7 +432,7 @@
 
 
   <exercise>
-    <statement>
+    <statement xml:id="ex-li-m22" label="ex-li-m22">
       <p>
         Determine whether or not the set
         <me>
@@ -467,7 +465,7 @@
     We end with one last exercise, which provides a result that often comes in handy.
   </p>
 
-  <exercise xml:id="ex-independent-subset">
+  <exercise xml:id="ex-independent-subset" label="ex-li-subset">
     <statement>
       <p>
         Prove that any nonempty subset of a linearly independent set is linearly independent.
@@ -482,4 +480,34 @@
       </p>
     </hint>
   </exercise>
+
+  <exercises>
+    <exercise xml:id="ex-ww-li1" label="ex-ww-li1">
+      <webwork source="Library/WHFreeman/Holt_linear_algebra/Chaps_1-4/2.3.47.pg" />
+    </exercise>
+
+    <exercise xml:id="ex-ww-li2" label="ex-ww-li2">
+      <webwork source="Library/WHFreeman/Holt_linear_algebra/Chaps_1-4/2.3.49.pg" />
+    </exercise>
+
+    <exercise xml:id="ex-ww-li3" label="ex-ww-li3">
+      <webwork source="Library/WHFreeman/Holt_linear_algebra/Chaps_1-4/2.3.52.pg" />
+    </exercise>
+
+    <exercise xml:id="ex-ww-li4" label="ex-ww-li4">
+      <webwork source="Library/Rochester/setLinearAlgebra9Dependence/ur_la_9_2a.pg" />
+    </exercise>
+
+    <exercise xml:id="ex-ww-li5" label="ex-ww-li5">
+      <webwork source="Library/Hope/Multi1/03-03-Independence/Dep_03.pg" />
+    </exercise>
+
+    <exercise xml:id="ex-ww-li6" label="ex-ww-li6">
+      <webwork source="Library/TCNJ/TCNJ_LinearIndependence/problem2.pg" />
+    </exercise>
+
+    <exercise xml:id="ex-ww-li7" label="ex-ww-li7">
+      <webwork source="Library/TCNJ/TCNJ_LinearIndependence/problem6.pg" />
+    </exercise>
+  </exercises>
 </section>

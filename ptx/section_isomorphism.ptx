@@ -300,35 +300,33 @@
     </exercise>
 
     <remark xml:id="rem-composition-product">
-      <statement>
-        <p>
-          With this connection between linear maps (in general) and matrices,
-          it can be worthwhile to pause and consider invertibility in the context of matrices.
-          Recall that an <m>n\times n</m> matrix <m>A</m> is <em>invertible</em> if there exists a matrix <m>A^{-1}</m>
-          such that <m>AA^{-1}=I_n</m> and <m>A^{-1}A=I_n</m>.
-        </p>
+      <p>
+        With this connection between linear maps (in general) and matrices,
+        it can be worthwhile to pause and consider invertibility in the context of matrices.
+        Recall that an <m>n\times n</m> matrix <m>A</m> is <em>invertible</em> if there exists a matrix <m>A^{-1}</m>
+        such that <m>AA^{-1}=I_n</m> and <m>A^{-1}A=I_n</m>.
+      </p>
 
-        <p>
-          The same definition can be made for linear maps.
-          We've defined what it means for a map <m>T:V\to W</m> to be invertible as a <em>function</em>.
-          In particular, we relied on the fact that any bijection has an inverse.
-        </p>
+      <p>
+        The same definition can be made for linear maps.
+        We've defined what it means for a map <m>T:V\to W</m> to be invertible as a <em>function</em>.
+        In particular, we relied on the fact that any bijection has an inverse.
+      </p>
 
-        <p>
-          Let <m>A</m> be an <m>m\times n</m>
-          matrix, and let <m>B</m> be an <m>n\times k</m> matrix. Then we have linear maps
-          <me>
-            \R^k \xrightarrow{T_B} \R^n\xrightarrow{T_A} \R^m
-          </me>,
-          and the composition <m>T_A\circ T_B:\R^k\to \R^m</m> satisfies
-          <me>
-            T_A\circ T_B(\xx) = T_A(T_B(\xx)) = T_A(B\xx)=A(B\xx)=(AB)\xx=T_{AB}(\xx)
-          </me>.
-          Note that the rules given in elementary linear algebra, for the relative sizes of matrices that can be multiplied,
-          are simply a manifestation of the fact that to compose functions,
-          the range of the first must be contained in the domain of the second.
-        </p>
-      </statement>
+      <p>
+        Let <m>A</m> be an <m>m\times n</m>
+        matrix, and let <m>B</m> be an <m>n\times k</m> matrix. Then we have linear maps
+        <me>
+          \R^k \xrightarrow{T_B} \R^n\xrightarrow{T_A} \R^m
+        </me>,
+        and the composition <m>T_A\circ T_B:\R^k\to \R^m</m> satisfies
+        <me>
+          T_A\circ T_B(\xx) = T_A(T_B(\xx)) = T_A(B\xx)=A(B\xx)=(AB)\xx=T_{AB}(\xx)
+        </me>.
+        Note that the rules given in elementary linear algebra, for the relative sizes of matrices that can be multiplied,
+        are simply a manifestation of the fact that to compose functions,
+        the range of the first must be contained in the domain of the second.
+      </p>
     </remark>
 
     <aside>
@@ -414,5 +412,15 @@
         </md>
       </p>
     </remark>
+
+    <exercises>
+      <exercise xml:id="ex-ww-iso1" label="ex-ww-ios1">
+        <webwork source="local/Library/Rochester/setLinearAlgebra15TransfOfLinSpaces/ur_la_15_19.pg" />
+      </exercise>
+
+      <exercise xml:id="ex-ww-iso2" label="ex-ww-iso2">
+        <webwork source="local/Library/TCNJ/TCNJ_InvertibleMatrixCharacterization/problem1.pg" />
+      </exercise>
+    </exercises>
   </subsection>
 </section>
