@@ -105,50 +105,21 @@
     </theorem>
 
     <remark>
-      <statement>
-        <p>
-          The above properties, when properly abstracted, become the defining properties of a (real) inner product.
-          (A complex inner product also involves complex conjugates.)
-          For a general inner product, the requirement <m>\xx\dotp\xx\geq 0</m>
-          is referred to as being <em>positive-definite</em>,
-          and the property that only the zero vector produces zero when dotted with itself is called <em>nondegenerate</em>.
-          Note that we have the following connection between norm and dot product:
-          <me>
-            \len{\xx}^2 = \xx\dotp \xx
-          </me>.
-          For a general inner product, this can be used as a <em>definition</em> of the norm associated to an inner product.
-        </p>
-      </statement>
+      <p>
+        The above properties, when properly abstracted, become the defining properties of a (real) inner product.
+        (A complex inner product also involves complex conjugates.)
+        For a general inner product, the requirement <m>\xx\dotp\xx\geq 0</m>
+        is referred to as being <em>positive-definite</em>,
+        and the property that only the zero vector produces zero when dotted with itself is called <em>nondegenerate</em>.
+        Note that we have the following connection between norm and dot product:
+        <me>
+          \len{\xx}^2 = \xx\dotp \xx
+        </me>.
+        For a general inner product, this can be used as a <em>definition</em> of the norm associated to an inner product.
+      </p>
     </remark>
 
-    <exercise>
-      <statement>
-        <p>
-          Given that <m>\len{\xx}=3, \len{\yy}=1</m>, and <m>\xx\dotp\yy=-2</m>,
-          compute <m>(4\xx-3\yy)\dotp (\xx+5\yy)</m>.
-        </p>
-      </statement>
-      <response/>
-      <hint>
-        <p>
-          Use properties of the dot product to expand and simplify.
-        </p>
-      </hint>
-      <solution>
-        <p>
-          Note that the distributive property, together with symmetry,
-          let us handle this dot product using what is essentially <q><init>FOIL</init></q>:
-          <md>
-            <mrow> (4\xx-3\yy)\dotp (\xx+5\yy)\amp = (4\xx)\dotp \xx+(4\xx)\dotp(5\yy)+(-3\yy)\dotp \xx+(-3\yy)\dotp(5\yy)</mrow>
-            <mrow> \amp = 4(\xx\dotp\xx)+(4\cdot 5)(\xx\dotp \yy)-3(\yy\dotp \xx)+(-3\cdot 5)(\yy\dotp\yy)</mrow>
-            <mrow> \amp = 4\len{\xx}^2+20\xx\dotp\yy-3\xx\dotp\yy-15\len{\yy}^2</mrow>
-            <mrow> \amp = 4(9)+17(-2)-15(1) = -13</mrow>
-          </md>.
-        </p>
-      </solution>
-    </exercise>
-
-    <exercise xml:id="ex-norm-sum-square">
+    <exercise xml:id="ex-norm-sum-square" label="ex-norm-sum-square">
       <statement>
         <p>
           Show that for any vectors <m>\xx,\yy\in\R^n</m>, we have
@@ -175,7 +146,7 @@
       </solution>
     </exercise>
 
-    <exercise>
+    <exercise xml:id="ex-ortho-span1" label="ex-ortho-span1">
       <statement>
         <p>
           Suppose <m>\mathbb{R}^n=\spn\{\vv_1,\vv_2,\ldots, \vv_k\}</m>.
@@ -302,7 +273,7 @@
       </p>
     </remark>
 
-    <exercise label="ex-mc-ortho-vect">
+    <exercise xml:id="ex-mc-ortho-vect" label="ex-mc-ortho-vect">
       <statement>
         <p>
           Select all vectors that are orthogonal to the vector <m>(2,1,-3)</m>
@@ -362,7 +333,7 @@
       </choices>
     </exercise>
 
-    <exercise label="ex-tf-ortho-vect">
+    <exercise xml:id="ex-tf-ortho-vect" label="ex-tf-ortho-vect">
       <statement correct="no">
         <p>
           If <m>\uu</m> is orthogonal to <m>\vv</m> and <m>\vv</m> is orthogonal to <m>\ww</m>,
@@ -406,7 +377,7 @@
       </statement>
     </definition>
 
-    <exercise xml:id="ex-orthogonal-set">
+    <exercise xml:id="ex-orthogonal-set" label="ex-orthogonal-set">
       <statement>
         <p>
           Show that the following is an orthogonal subset of <m>\R^4</m>.
@@ -466,7 +437,7 @@
       </solution>
     </exercise>
 
-    <exercise label="ex-tf-ortho-vect2">
+    <exercise xml:id="ex-tf-ortho-vect2" label="ex-tf-ortho-vect2">
       <statement correct="no">
         <p>
           If <m>\{\vv,\ww\}</m> and <m>\{\xx,\yy\}</m> are orthogonal sets of vectors in <m>\R^n</m>,
@@ -611,7 +582,7 @@
       Therefore, if we compute the right hand side of the above formula and do not get our original vector, then that vector must not be in the span.
     </p>
 
-    <exercise xml:id="ex-test-span">
+    <exercise xml:id="ex-test-span" label="ex-test-span">
       <statement>
         <p>
           Determine whether or not the vectors <m>\vv=(1,-4,3,-11), \ww=(3,1,-4,2)</m>
@@ -669,7 +640,7 @@
       (The convention of using a <q>hat</q> for unit vectors is common but not universal.)
     </p>
 
-    <exercise label="ex-unitvec-matching">
+    <exercise xml:id="ex-unitvec-matching" label="ex-unitvec-matching">
       <statement>
         <p>
           Match each vector on the left with a parallel unit vector on the right.
@@ -709,7 +680,7 @@
       </statement>
     </definition>
 
-    <example>
+    <example xml:id="eg-orthonormal-r4">
       <statement>
         <p>
           In <xref ref="ex-orthogonal-set"/> we saw that the set
@@ -748,4 +719,66 @@
       There's still work to be done, but it is comparatively simpler than solving the corresponding system of equations.
     </p>
   </subsection>
+
+  <exercises>
+    <exercise xml:id="ex-ww-ortho3" label="ex-ww-ortho3">
+      <webwork source="local/Library/Rochester/setLinearAlgebra17DotProductRn/ur_la_17_11.pg" />
+    </exercise>
+
+    <exercise xml:id="ex-ww-ortho4" label="ex-ww-ortho4">
+      <webwork source="local/Library/Rochester/setLinearAlgebra17DotProductRn/ur_la_17_2.pg" />
+    </exercise>
+
+    <exercise xml:id="ex-ww-ortho1" label="ex-ww-ortho1">
+      <webwork>
+        <pg-code>
+          $a = random(2,5,1);
+          $b = random(1,4,1);
+          $c = non_zero_random(-5,5,1);
+          $d = random(3,7,1);
+          $e = random(2,5,1);
+          $f = random(2,6,1);
+          $r = $d*$f;
+          $s = $d*$f-$e;
+          $t = $e*$f;
+          $g = $d*$a*$a-$e*$f*$b*$b+$d*$f*$c-$e*$c;
+        </pg-code>
+        <statement>
+          <p>
+            Given that <m>\len{\xx}=<var name="$a"/>, \len{\yy}=<var name="$b"/></m>, and <m>\xx\dotp\yy=<var name="$c"/></m>,
+            compute <m>(<var name="$d"/>\xx-<var name="$e"/>\yy)\dotp (\xx+<var name="$f"/>\yy)</m>.
+          </p>
+          <p>
+            <var name="$g" width="5"/>
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Use properties of the dot product to expand and simplify.
+          </p>
+        </hint>
+        <solution>
+          <p>
+            Note that the distributive property, together with symmetry,
+            let us handle this dot product using what is essentially <q><init>FOIL</init></q>:
+            <md>
+              <mrow> (<var name="$d"/>\xx-<var name="$e"/>\yy)\dotp (\xx+<var name="$f"/>\yy)\amp = 
+                (<var name="$d"/>\xx)\dotp \xx+(<var name="$d"/>\xx)\dotp(<var name="$f"/>\yy)+(-<var name="$e"/>\yy)\dotp \xx+(-<var name="$e"/>\yy)\dotp(<var name="$f"/>\yy)</mrow>
+              <mrow> \amp = <var name="$d"/>(\xx\dotp\xx)+(<var name="$d"/>\cdot <var name="$f"/>)(\xx\dotp \yy)-<var name="$e"/>(\yy\dotp \xx)+(-<var name="$e"/>\cdot <var name="$f"/>)(\yy\dotp\yy)</mrow>
+              <mrow> \amp = <var name="$d"/>\len{\xx}^2+<var name="$r"/>\xx\dotp\yy-<var name="$e"/>\xx\dotp\yy-<var name="$t"/>\len{\yy}^2</mrow>
+              <mrow> \amp = <var name="$d"/>(<var name="$a"/>)^2+<var name="$s"/>(<var name="$c"/>)-<var name="$t"/>(<var name="$b"/>)^2 = <var name="$g"/></mrow>
+            </md>.
+          </p>
+        </solution>
+      </webwork>
+    </exercise>
+
+    <exercise xml:id="ex-ww-ortho5" label="ex-ww-ortho5">
+      <webwork source="Library/Mizzou/Matrix_Theory/HW_6/prob_1.pg" />
+    </exercise>
+
+    <exercise xml:id="ex-ww-ortho6" label="ex-ww-ortho6">
+      <webwork source="local/Library/Rochester/setLinearAlgebra17DotProductRn/ur_la_17_14.pg" />
+    </exercise>
+  </exercises>
 </section>

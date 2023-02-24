@@ -64,7 +64,7 @@
     </p>
   </aside>
 
-  <example>
+  <example xml:id="eg-proj-distance">
     <statement>
       <p>
         Find the distance from the point <m>(3,1,-2)</m> to the plane <m>P</m>
@@ -154,7 +154,7 @@
     As you might guess from the name, <m>U^\bot</m> is also a subspace of <m>\R^n</m>.
   </p>
 
-  <exercise>
+  <exercise xml:id="ex-comp-subspace" label="ex-comp-subspace">
     <statement>
       <p>
         Show that <m>U^\bot</m> is a subspace of <m>\R^n</m>.
@@ -227,7 +227,7 @@
     </proof>
   </theorem>
 
-  <exercise>
+  <exercise xml:id="ex-ortho-comp" label="ex-ortho-comp">
     <statement>
       <p>
         Show that <m>U\cap U^\bot = \{\zer\}</m>.
@@ -319,7 +319,7 @@
     </p>
   </aside>
 
-  <exercise label="ex-tf-orth-comp">
+  <exercise xml:id="ex-tf-orth-comp" label="ex-tf-orth-comp">
     <statement correct="no">
       <p>
         Given subspaces <m>U,W</m> of <m>\R^n</m> with <m>U\cap W=\{\zer\}</m>,
@@ -352,7 +352,7 @@
   </p>
 
 
-  <exercise>
+  <example xml:id="eg-comp-basis">
     <statement>
       <p>
         Let <m>U = \{(a-b+3c, 2a+b, 3c, 4a-b+3c,a-4c)\,|\, a,b,c\in\R\}\subseteq \R^5</m>.
@@ -392,53 +392,79 @@
         </output>
       </sage>
     </solution>
-  </exercise>
+  </example>
 
-  <exercise>
-    <statement>
-      <p>
-        Prove that for any subspace <m>U\subseteq \R^n</m>,
-        <m>\proj{U}{} + \proj{U^\bot}{}</m> is the identity operator on <m>\R^n</m>.
-      </p>
-    </statement>
-    <response/>
-    <hint>
-      <p>
-        Given <m>\xx\in\R^n</m>, can you write it as a sum of an element of <m>U</m>
-        and an element of <m>U^\bot</m>?
-      </p>
-    </hint>
-  </exercise>
+  <exercises>
+    <exercise xml:id="ex-proj-op-id" label="ex-proj-op-id">
+      <statement>
+        <p>
+          Prove that for any subspace <m>U\subseteq \R^n</m>,
+          <m>\proj{U}{} + \proj{U^\bot}{}</m> is the identity operator on <m>\R^n</m>.
+        </p>
+      </statement>
+      <response/>
+      <hint>
+        <p>
+          Given <m>\xx\in\R^n</m>, can you write it as a sum of an element of <m>U</m>
+          and an element of <m>U^\bot</m>?
+        </p>
+      </hint>
+    </exercise>
 
-  <exercise>
-    <statement>
-      <p>
-        Prove that for any subspace <m>U\subseteq \R^n</m>, <m>(U^\bot)^\bot = U</m>.
-      </p>
-    </statement>
-    <response/>
-    <hint>
-      <p>
-        Show that <m>U\subseteq (U^\bot)^\bot</m>, and then use <xref ref="rem-orth-comp-dim"/>
-        to show that the two spaces must have the same dimension.
-      </p>
-    </hint>
-  </exercise>
+    <exercise xml:id="ex-comp-comp" label="ex-comp-comp">
+      <statement>
+        <p>
+          Prove that for any subspace <m>U\subseteq \R^n</m>, <m>(U^\bot)^\bot = U</m>.
+        </p>
+      </statement>
+      <response/>
+      <hint>
+        <p>
+          Show that <m>U\subseteq (U^\bot)^\bot</m>, and then use <xref ref="rem-orth-comp-dim"/>
+          to show that the two spaces must have the same dimension.
+        </p>
+      </hint>
+    </exercise>
 
-  <exercise>
-    <statement>
-      <p>
-        Let <m>U</m> and <m>W</m> be subspaces of <m>\R^n</m>.
-        Prove that <m>(U+W)^\bot = U^\bot\cap W^\bot</m>.
-      </p>
-    </statement>
-    <response/>
-    <hint>
-      <p>
-        One inclusion is easier than the other.
-        Use <xref ref="thm-sum-dimension"/> and <xref ref="rem-orth-comp-dim"/>
-        to show that the dimensions must be equal.
-      </p>
-    </hint>
-  </exercise>
+    <exercise xml:id="ex-comp-sum" label="ex-comp-sum">
+      <statement>
+        <p>
+          Let <m>U</m> and <m>W</m> be subspaces of <m>\R^n</m>.
+          Prove that <m>(U+W)^\bot = U^\bot\cap W^\bot</m>.
+        </p>
+      </statement>
+      <response/>
+      <hint>
+        <p>
+          One inclusion is easier than the other.
+          Use <xref ref="thm-sum-dimension"/> and <xref ref="rem-orth-comp-dim"/>
+          to show that the dimensions must be equal.
+        </p>
+      </hint>
+    </exercise>
+    
+    <exercise xml:id="ex-ww-proj1" label="ex-ww-proj1">
+      <webwork source="local/Library/TCNJ/TCNJ_OrthogonalSets/problem10.pg" />
+    </exercise>
+    
+    <exercise xml:id="ex-ww-proj2" label="ex-ww-proj2">
+      <webwork source="local/Library/TCNJ/TCNJ_LengthOrthogonality/problem3.pg" />
+    </exercise>
+
+    <exercise xml:id="ex-ww-proj3" label="ex-ww-proj3">
+      <webwork source="local/Library/Rochester/setLinearAlgebra17DotProductRn/ur_la_17_20.pg" />
+    </exercise>
+
+    <exercise xml:id="ex-ww-proj4" label="ex-ww-proj4">
+      <webwork source="local/Library/TCNJ/TCNJ_OrthogonalProjections/problem2.pg" />
+    </exercise>
+
+    <exercise xml:id="ex-ww-proj5" label="ex-ww-proj5">
+      <webwork source="local/Library/TCNJ/TCNJ_OrthogonalProjections/problem1.pg" />
+    </exercise>
+
+    <exercise xml:id="ex-ww-proj6" label="ex-ww-proj6">
+      <webwork source="local/Library/Rochester/setLinearAlgebra17DotProductRn/ur_la_17_15.pg" />
+    </exercise>
+  </exercises>
 </section>
