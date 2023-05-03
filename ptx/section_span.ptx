@@ -310,7 +310,8 @@
 
     <sage>
       <input>
-        from sympy import symbols
+        from sympy import symbols, Matrix, init_printing
+        init_printing()
         a, b, c = symbols('a b c', real = True, constant = True)
         N = Matrix(3,3,[1,3,a,2,5,b,-2,2,c])
         N
