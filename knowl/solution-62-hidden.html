@@ -10,13 +10,22 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="robots" content="noindex, nofollow">
 </head>
-<body class="ignore-math"><div class="solution solution-like">
-<p>Take <span class="process-math">\(\xx=\mathbf{e}_i\)</span> and <span class="process-math">\(\yy=\mathbf{e}_j\text{,}\)</span> where <span class="process-math">\(\{\mathbf{e}_1,\ldots, \mathbf{e}_n\}\)</span> is the standard basis for <span class="process-math">\(\R^n\text{.}\)</span> Then with <span class="process-math">\(A = [a_{ij}]\)</span> we have</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
+<body class="ignore-math"><div class="solution solution-like"> <div class="para logical">
+<div class="para">Let’s solve the same problem using orthogonal projection. First, we have to deal with the fact that the vectors <span class="process-math">\(\uu\)</span> and <span class="process-math">\(\vv\)</span> are probably not orthogonal. To get around this, we replace <span class="process-math">\(\vv\)</span> with</div>
+<div class="displaymath process-math">
 \begin{equation*}
-a_{ij} =\mathbf{e}_i\dotp(A\mathbf{e}_j) = (A\mathbf{e}_i)\dotp \mathbf{e}_j = a_{ji}\text{,}
+\ww = \vv-\left(\frac{\vv\dotp\uu}{\len{\uu}^2}\right)\uu = \bbm -4\\0\\1\ebm+\frac 85\bbm 2\\1\\0\ebm = \bbm -4/5\\8/5\\1\ebm\text{.}
 \end{equation*}
 </div>
-<p class="continuation">which shows that <span class="process-math">\(A^T=A\text{.}\)</span></p>
+<div class="para">We now set</div>
+<div class="displaymath process-math">
+\begin{align*}
+\mathbf{q} \amp =\left(\frac{\mathbf{p}\dotp\uu}{\len{\uu}^2}\right)\uu-\left(\frac{\mathbf{p}\dotp\ww}{\len{\ww}^2}\right)\ww\\
+\amp = \frac{7}{5}\bbm 2\\1\\0\ebm +\frac{-14}{105}\bbm -4\\8\\5\ebm \\
+\amp = \bbm 10/3\\1/3\\-2/3\ebm\text{.}
+\end{align*}
+</div>
+<div class="para">Lo and behold, we get the same answer as before.</div>
+</div>
 </div></body>
 </html>

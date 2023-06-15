@@ -11,8 +11,25 @@
 <meta name="robots" content="noindex, nofollow">
 </head>
 <body class="ignore-math">
-<h4 class="heading"><span class="type">Paragraph</span></h4>
-<p>If you want to cut down on the manual labour involved, we can make use of some of the other tools SymPy provides. In the next cell, we're going to assign the output of <code class="code-inline tex2jax_ignore">A.eigenvects()</code> to a list. The only trouble is that the output of the eigenvector command is a list of lists. Each list item is a list <code class="code-inline tex2jax_ignore">(eigenvalue, multiplicity, [eigenvectors])</code>.</p>
-<span class="incontext"><a href="sec-complex.html#p-1193" class="internal">in-context</a></span>
+<h5 class="heading"><span class="type">Paragraph</span></h5>
+<div class="para logical">
+<div class="para">Suppose we have linear maps <span class="process-math">\(U\xrightarrow{T} V\xrightarrow{S} W\text{,}\)</span> and let <span class="process-math">\(\uu_1,\uu_2\in U\text{.}\)</span> Then</div>
+<div class="displaymath process-math">
+\begin{align*}
+ST(\uu_1+\uu_2) \amp = S(T(\uu_1+\uu_2)) \\
+\amp = S(T(\uu_1)+T(\uu_2))\\
+\amp = S(T(\uu_1))+S(T(\uu_2)) \\
+\amp = ST(\uu_1)+ST(\uu_2)\text{,}
+\end{align*}
+</div>
+<div class="para">and for any scalar <span class="process-math">\(c\text{,}\)</span>
+</div>
+<div class="displaymath process-math">
+\begin{equation*}
+ST(c\uu_1) = S(T(c\uu_1))=S(cT(\uu_1)) = cS(T(\uu_1))=c(ST(\uu_1))\text{.}
+\end{equation*}
+</div>
+</div>
+<span class="incontext"><a href="sec-isomorphism.html#p-1193" class="internal">in-context</a></span>
 </body>
 </html>

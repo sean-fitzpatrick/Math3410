@@ -12,25 +12,29 @@
 </head>
 <body class="ignore-math">
 <div class="solution solution-like">
-<h4 class="heading">
-<span class="type">Solution</span><span class="space"> </span><span class="codenumber">4.4.8.1</span><span class="period">.</span>
-</h4>
-<p>We have <span class="process-math">\(\bar{A}=\bbm 4\amp 1+i\amp -2-3i\\1-i\amp 5 \amp -7i\\-2+3i\amp 7i\amp -4\ebm\text{,}\)</span> so</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
+<h3 class="heading">
+<span class="type">Solution</span><span class="space"> </span><span class="codenumber">3.4.1.1</span><span class="period">.</span>
+</h3>
+<div class="para logical">
+<div class="para">We know that <span class="process-math">\(\dim V^* = \dim V=n\text{.}\)</span> Since there are <span class="process-math">\(n\)</span> vectors in the dual basis, it’s enough to show that they’re linearly independent. Suppose that</div>
+<div class="displaymath process-math">
 \begin{equation*}
-A^H = (\bar{A})^T = \bbm 4\amp 1-i\amp -2+3i\\1+i\amp 5\amp 7i\\-2-3i\amp -7i\amp -4\ebm = A\text{,}
+c_1\phi_1+c_2\phi_2+\cdots c_n\phi_n=0
 \end{equation*}
 </div>
-<p class="continuation">and</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{align*}
-BB^H \amp =\frac14\bbm 1+i\amp \sqrt{2}\\1-i\amp\sqrt{2}i\ebm\bbm 1-i\amp 1+i\\\sqrt{2}\amp-\sqrt{2}i\ebm \\
-\amp =\frac14\bbm (1+i)(1-i)+2\amp (1+i)(1+i)-2i\\(1-i)(1-i)+2i\amp (1-i)(1+i)+2\ebm\\
-\amp =\frac14\bbm 4\amp 0\\0\amp 4\ebm = \bbm 1\amp 0\\0\amp 1\ebm\text{,}
-\end{align*}
+<div class="para">for some scalars <span class="process-math">\(c_1,c_2,\ldots, c_n\text{.}\)</span>
 </div>
-<p class="continuation">so that <span class="process-math">\(B^H = B^{-1}\text{.}\)</span></p>
+</div> <div class="para">This means that <span class="process-math">\((c_1\phi_1+c_2\phi_2+\cdots c_n\phi_n)(v)=0\)</span> for all <span class="process-math">\(v\in V\text{;}\)</span> in particular, this must be true for the basis vectors <span class="process-math">\(v_1,\ldots, v_n\text{.}\)</span>
+</div> <div class="para logical">
+<div class="para">By the definition of the dual basis, for each <span class="process-math">\(i=1,2,\ldots, n\)</span> we have</div>
+<div class="displaymath process-math">
+\begin{equation*}
+(c_1\phi_1+c_2\phi_2+\cdots c_n\phi_n)(v_i) = 0+\cdots + 0 +c_i(1)+0+\cdots + 0 = c_i = 0\text{.}
+\end{equation*}
 </div>
-<span class="incontext"><a href="sec-complex.html#solution-64" class="internal">in-context</a></span>
+<div class="para">Thus, <span class="process-math">\(c_i=0\)</span> for each <span class="process-math">\(i\text{,}\)</span> and therefore, the <span class="process-math">\(\phi_i\)</span> are linearly independent.</div>
+</div>
+</div>
+<span class="incontext"><a href="worksheet-dual-basis.html#solution-64" class="internal">in-context</a></span>
 </body>
 </html>

@@ -9,43 +9,29 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="robots" content="noindex, nofollow">
-<script>// Make *any* pre with class 'sagecell-sage' an executable Sage cell
-// Their results will be linked, only within language type
-sagecell.makeSagecell({inputLocation: 'pre.sagecell-sage',
-                       linked: true,
-                       languages: ['sage'],
-                       evalButtonText: 'Evaluate (Sage)'});
-</script>
 </head>
 <body class="ignore-math">
 <div class="solution solution-like">
 <h4 class="heading">
-<span class="type">Solution</span><span class="space"> </span><span class="codenumber">3.1.14.1</span><span class="period">.</span>
+<span class="type">Solution</span><span class="space"> </span><span class="codenumber">2.2.17.b.1</span><span class="period">.</span>
 </h4>
-<p>Clearly, all three vectors are nonzero. To confirm the set is orthogonal, we simply compute dot products:</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{align*}
-(1,0,1,0)\dotp (-1,0,1,1)\amp =-1+0+1+0=0\\
-(-1,0,1,1)\dotp (1,1,-1,2)\amp =-1+0-1+2=0\\
-(1,0,1,0)\dotp (1,1,-1,2) \amp = 1+0-1+0=0\text{.}
-\end{align*}
+<div class="para logical">
+<div class="para">Suppose <span class="process-math">\(T:V\to W\)</span> is surjective. Then <span class="process-math">\(\dim \im T = \dim W\text{,}\)</span> so</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\dim V = \dim \ker T + \dim W \geq  \dim W\text{.}
+\end{equation*}
 </div>
-<p>To find a fourth vector, we proceed as follows. Let <span class="process-math">\(\xx=(a,b,c,d)\text{.}\)</span> We want <span class="process-math">\(\xx\)</span> to be orthogonal to the three vectors in our set. Computing dot products, we must have:</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{align*}
-(a,b,c,d)\dotp (1,0,1,0) \amp = a+c=0 \\
-(a,b,c,d)\dotp (-1,0,1,1) \amp = -a+c+d=0 \\
-(a,b,c,d)\dotp (1,1,-1,2) \amp = a+b-c+2d=0\text{.}
-\end{align*}
+<div class="para">Conversely, suppose <span class="process-math">\(\dim V\geq \dim W\text{.}\)</span> Again, choose a basis <span class="process-math">\(\{\vv_1,\ldots, \vv_m\}\)</span> of <span class="process-math">\(V\text{,}\)</span> and a basis <span class="process-math">\(\{\ww_1,\ldots, \ww_n\}\)</span> of <span class="process-math">\(W\text{,}\)</span> where this time, <span class="process-math">\(m\geq n\text{.}\)</span> We can define a linear transformation as follows:</div>
+<div class="displaymath process-math">
+\begin{equation*}
+T(\vv_1)=\ww_1,\ldots, T(\vv_n)=\ww_n, \text{ and } T(\vv_j) = \zer \text{ for } j&gt;n.
+\end{equation*}
 </div>
-<p class="continuation">This is simply a homogeneous system of three equations in four variables. Using the Sage cell below, we find that our vector must satisfy <span class="process-math">\(a=\frac12 d, b = -3d, c=-\frac12 d\text{.}\)</span></p>
-<pre class="ptx-sagecell sagecell-sage" id="sage-44"><script type="text/x-sage">from sympy import Matrix, init_printing
-init_printing()
-A=Matrix(3,4,[1,0,1,0,-1,0,1,1,1,1,-1,2])
-A.rref()
-</script></pre>
-<p>One possible nonzero solution is to take <span class="process-math">\(d=2\text{,}\)</span> giving <span class="process-math">\(\xx=(1,-6,-1,2)\text{.}\)</span> We'll leave the verification that this vector works as an exercise.</p>
+<div class="para">It’s easy to check that this map is a surjection: given <span class="process-math">\(\ww\in W\text{,}\)</span> we can write it in terms of our basis as <span class="process-math">\(\ww=c_1\ww_1+\cdots + c_n\ww_n\text{.}\)</span> Using these same scalars, we can define <span class="process-math">\(\vv=c_1\vv_1+\cdots + c_n\vv_n\in V\)</span> such that <span class="process-math">\(T(\vv)=\ww\text{.}\)</span>
 </div>
-<span class="incontext"><a href="sec-orthogonal-sets.html#solution-50" class="internal">in-context</a></span>
+</div> <div class="para">Note that it’s not important how we define <span class="process-math">\(T(\vv_j)\)</span> when <span class="process-math">\(j&gt;n\text{.}\)</span> The point is that this time, we run out of basis vectors for <span class="process-math">\(W\)</span> before we run out of basis vectors for <span class="process-math">\(V\text{.}\)</span> Once each vector in the basis of <span class="process-math">\(W\)</span> is in the image of <span class="process-math">\(T\text{,}\)</span> we’re guaranteed that <span class="process-math">\(T\)</span> is surjective, and we can define the value of <span class="process-math">\(T\)</span> on any remaining basis vectors however we want.</div>
+</div>
+<span class="incontext"><a href="sec-kernel-image.html#solution-50" class="internal">in-context</a></span>
 </body>
 </html>

@@ -12,19 +12,15 @@
 </head>
 <body class="ignore-math">
 <h3 class="heading"><span class="type">Paragraph</span></h3>
-<p>Note that the change matrix notation is useful for linear transformations between different vector spaces as well. Recall <a href="" class="xref" data-knowl="./knowl/thm-change-basis-transformation.html" title="Theorem 5.1.5">Theorem 5.1.5</a>, which gave the result</p>
-<div class="displaymath process-math" data-contains-math-knowls="./knowl/thm-change-basis-transformation.html">
+<div class="para logical">
+<div class="para">Of course, once we’ve used Gram-Schmidt to find an orthogonal basis, we can normalize each vector to get an orthonormal basis. The Gram-Schmidt algorithm is ideal when we know how to find <em class="emphasis">a</em> basis for a subspace, but we need to know an orthogonal basis. For example, suppose we want an orthonormal basis for the nullspace of the matrix</div>
+<div class="displaymath process-math">
 \begin{equation*}
-M_{D_0B_0}(T) = QM_{D_1B_1}P^{-1}\text{,}
+A = \bbm 2 \amp -1 \amp 3 \amp 0 \amp 5\\0 \amp 2 \amp -3  \amp 1 \amp 4\\ -4 \amp 2 \amp -6 \amp 0 \amp -10\\ 2 \amp 1 \amp 0 \amp 1 \amp 9\ebm\text{.}
 \end{equation*}
 </div>
-<p class="continuation">where (using our new notation) <span class="process-math">\(P=P_{B_0\leftarrow B_1}\)</span> and <span class="process-math">\(Q=P_{D_0\leftarrow D_1}\text{.}\)</span> In this notation, we have</p>
-<div class="displaymath process-math" data-contains-math-knowls="./knowl/thm-change-basis-transformation.html">
-\begin{equation*}
-M_{D_0B_0}(T) = P_{D_0\leftarrow D_1}M_{D_1B_1}(T)P_{B_1\leftarrow B_0}\text{,}
-\end{equation*}
+<div class="para">First, we find <em class="emphasis">any</em> basis for the nullspace.</div>
 </div>
-<p class="continuation">which seems more intiutive.</p>
-<span class="incontext"><a href="sec-matrix-operator.html#p-1426" class="internal">in-context</a></span>
+<span class="incontext"><a href="sec-gram-schmidt.html#p-1426" class="internal">in-context</a></span>
 </body>
 </html>

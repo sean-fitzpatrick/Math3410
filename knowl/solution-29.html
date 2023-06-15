@@ -9,13 +9,30 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="robots" content="noindex, nofollow">
+<script>// Make *any* pre with class 'sagecell-sage' an executable Sage cell
+// Their results will be linked, only within language type
+sagecell.makeSagecell({inputLocation: 'pre.sagecell-sage',
+                       linked: true,
+                       languages: ['sage'],
+                       evalButtonText: 'Evaluate (Sage)'});
+</script>
 </head>
 <body class="ignore-math">
 <div class="solution solution-like">
-<h3 class="heading">
-<span class="type">Solution</span><span class="space"> </span><span class="codenumber">1.7.15.1</span><span class="period">.</span>
-</h3>
-<p>Again, we only need to add one vector from the standard basis <span class="process-math">\(\{1,x,x^2,x^3\}\text{,}\)</span> and it's not too hard to check that any of them will do.</p>
+<h4 class="heading">
+<span class="type">Solution</span><span class="space"> </span><span class="codenumber">1.7.7.b.1</span><span class="period">.</span>
+</h4>
+<div class="para logical">
+<div class="para">Based on what we learned from the first set, determining whether or not this set is a basis is equivalent to determining whether or not the matrix <span class="process-math">\(A\)</span> whose columns consist of the vectors in the set is invertible. We form the matrix</div>
+<div class="displaymath process-math">
+\begin{equation*}
+A = \bbm -1\amp 1\amp 1\\1\amp -1\amp 1\\1\amp 1\amp -1\ebm
+\end{equation*}
+</div>
+<div class="para">and then check invertibility using the computer.</div>
+</div> <pre class="ptx-sagecell sagecell-sage" id="sage-20"><script type="text/x-sage">A = Matrix([[-1,1,1],[1,-1,1],[1,1,-1]])
+A.det()
+</script></pre> <div class="para">Since the determinant is nonzero, our set is a basis.</div>
 </div>
 <span class="incontext"><a href="sec-dimension.html#solution-29" class="internal">in-context</a></span>
 </body>

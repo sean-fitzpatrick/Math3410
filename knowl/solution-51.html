@@ -13,33 +13,33 @@
 <body class="ignore-math">
 <div class="solution solution-like">
 <h4 class="heading">
-<span class="type">Solution</span><span class="space"> </span><span class="codenumber">3.1.19.1</span><span class="period">.</span>
+<span class="type">Solution</span><span class="space"> </span><span class="codenumber">2.2.10.1</span><span class="period">.</span>
 </h4>
-<p>We compute</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{align*}
-\left(\frac{\vv\dotp\xx_1}{\len{\xx_1}^2}\right)\xx_1
-\amp +\left(\frac{\vv\dotp\xx_2}{\len{\xx_2}^2}\right)\xx_2
-+\left(\frac{\vv\dotp\xx_3}{\len{\xx_3}^2}\right)\xx_3\\
-\amp = \frac{4}{2}\xx_1+\frac{-9}{3}\xx_2+\frac{-28}{7}\xx_3\\
-\amp = 2(1,0,1,0)-3(-1,0,1,1)-4(1,1,-1,2)\\
-\amp = (1,-4,3,-11) = \vv\text{,}
-\end{align*}
+<div class="para"><em class="alert">Solution:</em></div> <div class="para">(a) Since <span class="process-math">\(e_1\text{,}\)</span> <span class="process-math">\(e_2\text{,}\)</span> <span class="process-math">\(e_3\)</span> spans <span class="process-math">\(\mathbb{R}^3\text{,}\)</span> we get that <span class="process-math">\(L(\mathbb{R}^3)\)</span> is spanned by <span class="process-math">\(L(e_1)\text{,}\)</span> <span class="process-math">\(L(e_2)\text{,}\)</span> <span class="process-math">\(L(e_3)\text{.}\)</span> So</div> <div class="para logical"><div class="displaymath process-math">
+\begin{equation*}
+\begin{aligned}L(\mathbb{R}^3) \amp = \operatorname{span}\left\{ L(e_1),L(e_2),L(e_3)\right\}\\
+\amp = \operatorname{span}\left\{\begin{bmatrix} 22 \\ 0 \\ 66 \end{bmatrix}, 
+\begin{bmatrix} 8 \\ 4 \\ 0 \end{bmatrix}, 
+\begin{bmatrix} -22 \\ 0 \\ -66 \end{bmatrix}\right\}\\
+\amp = \operatorname{span}\left\{\begin{bmatrix} 1 \\ 0 \\ 3 \end{bmatrix}, 
+\begin{bmatrix} 2 \\ 1 \\ 0 \end{bmatrix}, 
+\begin{bmatrix} -1 \\ 0 \\ -3 \end{bmatrix}\right\}\\
+\amp = \operatorname{span}\left\{\begin{bmatrix} 1 \\ 0 \\ 3 \end{bmatrix}, 
+\begin{bmatrix} 2 \\ 1 \\ 0 \end{bmatrix}\right)\end{aligned}
+\end{equation*}
+</div></div> <div class="para">and hence the dimension of the range is 2.</div> <div class="para">(b) The rank-nullity theorem implies that the dimension of the kernel is <span class="process-math">\(3-2 = 1\text{.}\)</span>
+</div> <div class="para logical">
+<div class="para">(c)  Notice that</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\begin{aligned}
+L(S) \amp = \operatorname{span}\left\{L(9 e_1), L(-9 e_2  - 9 e_3)\right\} = \operatorname{span}\left\{L(e_1), L(e_2)+L(e_3)\right)\}\\
+\amp =  \operatorname{span}\left\{\begin{bmatrix} 22 \\ 0 \\ 66 \end{bmatrix}, 
+\begin{bmatrix} -14 \\ 4 \\ -66 \end{bmatrix}\right\}\end{aligned}
+\end{equation*}
 </div>
-<p class="continuation">so <span class="process-math">\(\vv\in\spn\{\xx_1,\xx_2,\xx_3\}\text{.}\)</span></p>
-<p>On the other hand, repeating the same calculation with <span class="process-math">\(\ww\text{,}\)</span> we find</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{align*}
-\left(\frac{\vv\dotp\xx_1}{\len{\xx_1}^2}\right)\xx_1
-\amp +\left(\frac{\vv\dotp\xx_2}{\len{\xx_2}^2}\right)\xx_2
-+\left(\frac{\vv\dotp\xx_3}{\len{\xx_3}^2}\right)\xx_3\\
-\amp =\frac12 (1,0,1,0)-\frac53 (-1,0,1,1) +\frac47 (1,1,-1,2)\\
-\amp = \left(\frac{73}{42},\frac47,-\frac{115}{42},-\frac{11}{21}\right)\neq \ww\text{,}
-\end{align*}
+</div> <div class="para">and it is easy to check that these two vectors are linearly independent. Therefore, the dimension of <span class="process-math">\(L(S)\)</span> is 2.</div>
 </div>
-<p class="continuation">so <span class="process-math">\(\ww\notin\spn\{\xx_1,\xx_2,\xx_3\}\text{.}\)</span></p>
-<p>Soon, we'll see that the quantity we computed when showing that <span class="process-math">\(\ww\notin\spn\{\xx_1,\xx_2,\xx_3\}\)</span> is, in fact, the <em class="emphasis">orthogonal projection</em> of <span class="process-math">\(\ww\)</span> onto the subspace <span class="process-math">\(\spn\{\xx_1,\xx_2,\xx_3\}\text{.}\)</span></p>
-</div>
-<span class="incontext"><a href="sec-orthogonal-sets.html#solution-51" class="internal">in-context</a></span>
+<span class="incontext"><a href="sec-kernel-image.html#solution-51" class="internal">in-context</a></span>
 </body>
 </html>

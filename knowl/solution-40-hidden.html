@@ -11,17 +11,15 @@
 <meta name="robots" content="noindex, nofollow">
 </head>
 <body class="ignore-math"><div class="solution solution-like">
-<p>We have <span class="process-math">\(T(0)=0\)</span> since <span class="process-math">\(0^T=0\text{.}\)</span> Using proerties of the transpose and matrix algebra, we have</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-T(A+B) = (A+B)-(A+B)^T = (A-A^T)+(B-B^T) = T(A)+T(B)
-\end{equation*}
+<div class="para logical">
+<div class="para">If <span class="process-math">\(\uu\in U\text{,}\)</span> then</div>
+<div class="displaymath process-math">
+\begin{align*}
+\uu \amp = (3x_3,x_2,x_3,x_4,3x_2-5x_4)\\
+\amp = (0,x_2,0,0,3x_2)+(3x_3,0,x_3,0,0)+(0,0,0,x_4,-5x_4)\\
+\amp = x_2(0,1,0,0,3)+x_3(3,0,1,0,0)+x_4(0,0,0,1,-5)\text{.}
+\end{align*}
 </div>
-<p class="continuation">and</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-T(kA) = (kA) - (kA)^T = kA-kA^T = k(A-A^T) = kT(A)\text{.}
-\end{equation*}
-</div>
+</div> <div class="para">This shows that <span class="process-math">\(U=\spn \{(0,1,0,0,3), (3,0,1,0,0), (0,0,0,1,-5)\}\text{.}\)</span> These vectors are also linearly independent, since each one has its first leading (nonzero) entry in a different position. (Think about what this implies for the <abbr class="initialism">RREF</abbr> of the resulting matrix.)</div>
 </div></body>
 </html>

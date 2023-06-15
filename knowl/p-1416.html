@@ -11,34 +11,8 @@
 <meta name="robots" content="noindex, nofollow">
 </head>
 <body class="ignore-math">
-<h3 class="heading"><span class="type">Paragraph</span></h3>
-<p>As we saw above, this gives us the result, but doesn't shed much light on the problem, unless we have an easy way to write vectors in terms of the basis <span class="process-math">\(B\text{.}\)</span> Let's revisit the problem. Instead of using the given basis <span class="process-math">\(B\text{,}\)</span> let's use the standard basis <span class="process-math">\(B_0 = \{1,x,x^2\}\text{.}\)</span> We quickly find</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-T(1)=1+x+x^2, T(x) = x, \text{ and } T(x^2)=x\text{,}
-\end{equation*}
-</div>
-<p class="continuation">so with respect to the standard basis, <span class="process-math">\(M_{B_0}(T) = \bbm 1\amp 0\amp 0\\1\amp 1\amp 1\\1\amp 0\amp 0\ebm\text{.}\)</span> Now, recall that</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-M_{B}(T)=P^{-1}\bbm C_{B_0}T(1-x)\amp C_{B_0}(T(x+3x^2)\amp C_{B_0}(T(2-x^2))\ebm
-\end{equation*}
-</div>
-<p class="continuation">and note that for any polynomial <span class="process-math">\(p(x)\text{,}\)</span> <span class="process-math">\(C_{B_0}T(p(x)) = M_{B_0}C_{B_0}(p(x))\text{.}\)</span> But</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-\bbm C_{B_0}(1-x) \amp C_{B_0}(x+3x^2)\amp C_{B_0}(2-x^2)\ebm = P\text{,}
-\end{equation*}
-</div>
-<p class="continuation">so we get</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{align*}
-M_B(T) \amp = P^{-1}\bbm C_{B_0}T(1-x)\amp C_{B_0}(T(x+3x^2)\amp C_{B_0}(T(2-x^2))\ebm\\
-\amp = P^{-1}\bbm M_{B_0}C_{B_0}(1-x)\amp M_{B_0}C_{B_0}(x+3x^2)\amp M_{B_0}C_{B_0}(2-x^2)\ebm \\
-\amp = P^{-1}M_{B_0}\bbm C_{B_0}(1-x) \amp C_{B_0}(x+3x^2)\amp C_{B_0}(2-x^2)\ebm\\
-\amp = P^{-1}M_{B_0}P\text{.}
-\end{align*}
-</div>
-<span class="incontext"><a href="sec-matrix-operator.html#p-1416" class="internal">in-context</a></span>
+<h4 class="heading"><span class="type">Paragraph</span></h4>
+<div class="para">If <span class="process-math">\(\xx\notin\spn\{\vv_1,\ldots, \vv_m\}\text{,}\)</span> then <span class="process-math">\(\vv_{m+1}\neq \zer\text{,}\)</span> and therefore, <span class="process-math">\(\{\vv_1,\ldots, \vv_m,\vv_{m+1}\}\)</span> is an orthogonal set.</div>
+<span class="incontext"><a href="sec-gram-schmidt.html#p-1416" class="internal">in-context</a></span>
 </body>
 </html>

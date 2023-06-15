@@ -21,7 +21,7 @@ window.MathJax = {
     tags: "none",
     tagSide: "right",
     tagIndent: ".8em",
-    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'newcommand', 'knowl']}
+    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'color', 'newcommand', 'knowl']}
   },
   options: {
     ignoreHtmlClass: "tex2jax_ignore|ignore-math",
@@ -41,23 +41,20 @@ window.MathJax = {
     },
   },
   chtml: {
-    scale: 0.88,
+    scale: 0.98,
     mtextInheritFont: true
   },
   loader: {
-    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
+    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/color', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
     paths: {pretext: "https://pretextbook.org/js/lib"},
   },
   startup: {
-    pageReady() {
-      return MathJax.startup.defaultPageReady().then(function () {
-      console.log("in ready function");
-      rsMathReady();
-      }
-    )}
-},
+    /* Mathjax typesetting operation is under the control of React */
+    typeset: false,
+  },
 };
-</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><script>// Make *any* pre with class 'sagecell-sage' an executable Sage cell
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link href="https://webwork-dev.uleth.ca/webwork2_files/js/apps/MathView/mathview.css" rel="stylesheet">
+<script src="https://pretextbook.org/js/0.3/pretext-webwork/2.17/pretext-webwork.js"></script><script src="https://webwork-dev.uleth.ca/webwork2_files/node_modules/iframe-resizer/js/iframeResizer.min.js"></script><script>// Make *any* pre with class 'sagecell-sage' an executable Sage cell
 // Their results will be linked, only within language type
 sagecell.makeSagecell({inputLocation: 'pre.sagecell-sage',
                        linked: true,
@@ -69,20 +66,15 @@ sagecell.makeSagecell({inputLocation: 'pre.sagecell-html',
                        linked: true,
                        languages: ['html'],
                        evalButtonText: 'Evaluate (HTML)'});
-</script><link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/themes/prism.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script><script src="https://unpkg.com/lunr/lunr.js"></script><script src="lunr-pretext-search-index.js"></script><script src="https://pretextbook.org/js/0.13/pretext_search.js"></script><link href="https://pretextbook.org/css/0.4/pretext_search.css" rel="stylesheet" type="text/css">
-<script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.13/pretext.js"></script><script>miniversion=0.674</script><script src="https://pretextbook.org/js/0.13/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
-</script><link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic" rel="stylesheet" type="text/css">
-<link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
-<script src="https://cdn.geogebra.org/apps/deployggb.js"></script><link href="https://pretextbook.org/css/0.4/pretext.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.4/pretext_add_on.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.4/banner_default.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.4/toc_default.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.4/knowls_default.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.4/style_default.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.4/colors_default.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.4/setcolors.css" rel="stylesheet" type="text/css">
-<!--** eBookCongig is necessary to configure interactive       **-->
+</script><script>js_version = 0.3</script><script type="module" defer src="https://siefkenj.github.io/pretext-react/static/js/main.js"></script><link href="https://siefkenj.github.io/pretext-react/static/css/main.css" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&amp;family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&amp;family=Tinos:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.cdnfonts.com/css/dejavu-serif" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz,wdth,wght@8..144,50..150,100..900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wdth,wght@75..100,300..800&amp;display=swap" rel="stylesheet">
+<script type="application/json" class="js-hypothesis-config">{
+    "openSidebar": false,    "showHighlights": true,}</script><script src="https://hypothes.is/embed.js" async=""></script><!--** eBookCongig is necessary to configure interactive       **-->
 <!--** Runestone components to run locally in reader's browser **-->
 <!--** No external communication:                              **-->
 <!--**     log level is 0, Runestone Services are disabled     **-->
@@ -104,18 +96,31 @@ eBookConfig.allow_pairs = false;
 eBookConfig.enableScratchAC = false;
 eBookConfig.build_info = "";
 eBookConfig.python3 = null;
-eBookConfig.runestone_version = '5.0.1';
+eBookConfig.runestone_version = '7.0.0dev3';
 eBookConfig.jobehost = '';
 eBookConfig.proxyuri_runs = '';
 eBookConfig.proxyuri_files = '';
 eBookConfig.enable_chatcodes =  false;
 </script>
 <!--*** Runestone Services ***-->
-<script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.3.19/runtime.e0db479b505f5577.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.3.19/637.d54be67956c5c660.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.3.19/runestone.d2c66bf8c215a984.bundle.js"></script><link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/6.3.19/637.0fa6cababf056764.css">
-<link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/6.3.19/runestone.93e720e6c6581fb5.css">
+<script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.0dev3/prefix-runtime.71ffd81c0faeb38b.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.0dev3/prefix-347.193e36c07abd0197.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.0dev3/prefix-runestone.e543e0dd19670ae2.bundle.js"></script><link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/7.0.0dev3/prefix-347.f9add1ca35d5ad93.css">
+<link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/7.0.0dev3/prefix-runestone.1f1f63d2cda36a4d.css">
 </head>
-<body id="linalg" class="pretext-book ignore-math has-toc has-sidebar-left standalone worksheet a4">
-<a class="assistive" href="#content">Skip to main content</a><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\spn}{\operatorname{span}}
+<body id="Math3410" data-react-in-use="yes" class="pretext book ignore-math standalone worksheet a4">
+<a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead"><div class="ptx-banner">
+<a id="logo-link" class="logo-link" href=""></a><div class="title-container">
+<h1 class="heading"><a href="linear-algebra.html"><span class="title">Linear Algebra:</span> <span class="subtitle">A second course, featuring proofs and Python</span></a></h1>
+<p class="byline">Sean Fitzpatrick</p>
+</div>
+<div id="searchresultsplaceholder" class="searchresultsplaceholder" style="display: none">
+<button id="closesearchresults" class="closesearchresults" onclick="document.getElementById('searchresultsplaceholder').style.display = 'none'; return false;">x</button><h2>Search Results: <span id="searchterms" class="searchterms"></span>
+</h2>
+<div id="searchempty" class="searchempty"><span>No results.</span></div>
+<ol id="searchresults" class="searchresults"></ol>
+</div>
+</div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><span class="treebuttons"><a class="previous-button button" href="sec-span.html" title="Previous"><span class="icon">&lt;</span><span class="name">Prev</span></a><a class="up-button button" href="ch-vector-space.html" title="Up"><span class="icon">^</span><span class="name">Up</span></a><a class="next-button button" href="sec-independence.html" title="Next"><span class="name">Next</span><span class="icon">&gt;</span></a></span><div class="searchbox"><div class="searchwidget">
+<input id="ptxsearch" class="ptxsearch" type="text" name="terms" placeholder="Search" onchange="doSearch()"><button id="searchbutton" class="searchbutton" type="button" onclick="doSearch()">🔍</button>
+</div></div></nav><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\require{boldsymbol}\newcommand{\spn}{\operatorname{span}}
 \newcommand{\bbm}{\begin{bmatrix}}
 \newcommand{\ebm}{\end{bmatrix}}
 \newcommand{\R}{\mathbb{R}}
@@ -152,154 +157,207 @@ eBookConfig.enable_chatcodes =  false;
 \definecolor{fillinmathshade}{gray}{0.9}
 \newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
 \)</span></div>
-<header id="masthead" class="smallbuttons"><div class="banner"><div class="container">
-<a id="logo-link" href=""></a><div class="title-container">
-<h1 class="heading"><a href="linear-algebra.html"><span class="title">Linear Algebra:</span> <span class="subtitle">A second course, featuring proofs and Python</span></a></h1>
-<p class="byline">Sean Fitzpatrick</p>
-</div>
-<div class="searchbox"><div class="searchwidget">
-<input id="ptxsearch" type="text" name="terms" placeholder="Search" onchange="doSearch()"><button id="searchbutton" type="button" onclick="doSearch()">🔍</button>
-</div></div>
-<div id="searchresultsplaceholder" style="display: none">
-<button id="closesearchresults" onclick="document.getElementById('searchresultsplaceholder').style.display = 'none'; return false;">x</button><h2>Search Results: <span id="searchterms"></span>
-</h2>
-<ol id="searchresults"></ol>
-</div>
-</div></div>
-<nav id="primary-navbar" class="navbar"><div class="container">
-<div class="navbar-top-buttons">
-<button class="sidebar-left-toggle-button button active" aria-label="Show or hide table of contents sidebar">Contents</button><div class="tree-nav toolbar toolbar-divisor-3">
-<button id="calculator-toggle" class="toolbar-item button toggle" title="Show calculator" aria-expanded="false" aria-controls="calculator-container">Calc</button><div id="calculator-container" class="calculator-container" style="display: none; z-index:100;"><div id="geogebra-calculator"></div></div>
-<script>
-var ggbApp = new GGBApplet({"appName": "graphing",
-    "width": 330,
-    "height": 600,
-    "showToolBar": true,
-    "showAlgebraInput": true,
-    "perspective": "G/A",
-    "algebraInputPosition": "bottom",
-    "scaleContainerClass": "calculator-container",
-    "allowUpscale": true,
-    "autoHeight": true,
-    "disableAutoScale": false},
-true);
-</script><span class="threebuttons"><a id="previousbutton" class="previous-button toolbar-item button" href="sec-span.html" title="Previous">Prev</a><a id="upbutton" class="up-button button toolbar-item" href="ch-vector-space.html" title="Up">Up</a><a id="nextbutton" class="next-button button toolbar-item" href="sec-independence.html" title="Next">Next</a></span>
-</div>
-</div>
-<div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
-<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="sec-span.html" title="Previous">Prev</a><a class="up-button button toolbar-item" href="ch-vector-space.html" title="Up">Up</a><a class="next-button button toolbar-item" href="sec-independence.html" title="Next">Next</a>
-</div>
-</div></nav></header><div class="page">
-<div id="sidebar-left" class="sidebar" role="navigation"><div class="sidebar-content">
-<nav id="toc"><ul>
-<li class="link frontmatter">
-<a href="frontmatter-1.html" data-scroll="frontmatter-1" class="internal"><span class="title">Front Matter</span></a><ul>
-<li><a href="colophon-1.html" data-scroll="colophon-1" class="internal">Colophon</a></li>
-<li><a href="preface-1.html" data-scroll="preface-1" class="internal">Preface</a></li>
+<div class="ptx-page">
+<div id="ptx-sidebar" class="ptx-sidebar"><nav id="ptx-toc" class="ptx-toc depth2"><ul class="structural">
+<li>
+<div class="toc-item"><a href="frontmatter-1.html" class="internal"><span class="title">Front Matter</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="colophon-1.html" class="internal"><span class="title">Colophon</span></a></div></li>
+<li><div class="toc-item"><a href="preface-1.html" class="internal"><span class="title">Preface</span></a></div></li>
 </ul>
 </li>
-<li class="link">
-<a href="ch-vector-space.html" data-scroll="ch-vector-space" class="internal"><span class="codenumber">1</span> <span class="title">Vector spaces</span></a><ul>
-<li><a href="sec-vec-sp.html" data-scroll="sec-vec-sp" class="internal">Definition and examples</a></li>
-<li><a href="sec-vsp-properties.html" data-scroll="sec-vsp-properties" class="internal">Properties</a></li>
-<li><a href="sec-subspace.html" data-scroll="sec-subspace" class="internal">Subspaces</a></li>
-<li><a href="sec-span.html" data-scroll="sec-span" class="internal">Span</a></li>
-<li><a href="worksheet-span.html" data-scroll="worksheet-span" class="active">Worksheet: understanding span</a></li>
-<li><a href="sec-independence.html" data-scroll="sec-independence" class="internal">Linear Independence</a></li>
-<li><a href="sec-dimension.html" data-scroll="sec-dimension" class="internal">Basis and dimension</a></li>
-<li><a href="sec-subspace-combine.html" data-scroll="sec-subspace-combine" class="internal">New subspaces from old</a></li>
+<li>
+<div class="toc-item"><a href="ch-vector-space.html" class="internal"><span class="codenumber">1</span> <span class="title">Vector spaces</span></a></div>
+<ul class="structural">
+<li>
+<div class="toc-item"><a href="sec-vec-sp.html" class="internal"><span class="codenumber">1.1</span> <span class="title">Definition and examples</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="sec-vec-sp.html#exercises-1" class="internal"><span class="codenumber">1.1</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li><div class="toc-item"><a href="sec-vsp-properties.html" class="internal"><span class="codenumber">1.2</span> <span class="title">Properties</span></a></div></li>
+<li>
+<div class="toc-item"><a href="sec-subspace.html" class="internal"><span class="codenumber">1.3</span> <span class="title">Subspaces</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="sec-subspace.html#exercises-2" class="internal"><span class="codenumber">1.3</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li>
+<div class="toc-item"><a href="sec-span.html" class="internal"><span class="codenumber">1.4</span> <span class="title">Span</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="sec-span.html#exercises-3" class="internal"><span class="codenumber">1.4</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li class="active"><div class="toc-item"><a href="worksheet-span.html" class="internal"><span class="codenumber">1.5</span> <span class="title">Worksheet: understanding span</span></a></div></li>
+<li>
+<div class="toc-item"><a href="sec-independence.html" class="internal"><span class="codenumber">1.6</span> <span class="title">Linear Independence</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="sec-independence.html#exercises-4" class="internal"><span class="codenumber">1.6</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li>
+<div class="toc-item"><a href="sec-dimension.html" class="internal"><span class="codenumber">1.7</span> <span class="title">Basis and dimension</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="sec-dimension.html#exercises-5" class="internal"><span class="codenumber">1.7</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li>
+<div class="toc-item"><a href="sec-subspace-combine.html" class="internal"><span class="codenumber">1.8</span> <span class="title">New subspaces from old</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="sec-subspace-combine.html#exercises-6" class="internal"><span class="codenumber">1.8</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
 </ul>
 </li>
-<li class="link">
-<a href="ch-linear-trans.html" data-scroll="ch-linear-trans" class="internal"><span class="codenumber">2</span> <span class="title">Linear Transformations</span></a><ul>
-<li><a href="sec-lin-tran-intro.html" data-scroll="sec-lin-tran-intro" class="internal">Definition and examples</a></li>
-<li><a href="sec-kernel-image.html" data-scroll="sec-kernel-image" class="internal">Kernel and Image</a></li>
-<li><a href="sec-isomorphism.html" data-scroll="sec-isomorphism" class="internal">Isomorphisms, composition, and inverses</a></li>
-<li><a href="worksheet-transformations.html" data-scroll="worksheet-transformations" class="internal">Worksheet: matrix transformations</a></li>
-<li><a href="worksheet-recurrence.html" data-scroll="worksheet-recurrence" class="internal">Worksheet: linear recurrences</a></li>
+<li>
+<div class="toc-item"><a href="ch-linear-trans.html" class="internal"><span class="codenumber">2</span> <span class="title">Linear Transformations</span></a></div>
+<ul class="structural">
+<li>
+<div class="toc-item"><a href="sec-lin-tran-intro.html" class="internal"><span class="codenumber">2.1</span> <span class="title">Definition and examples</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="sec-lin-tran-intro.html#exercises-7" class="internal"><span class="codenumber">2.1</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li>
+<div class="toc-item"><a href="sec-kernel-image.html" class="internal"><span class="codenumber">2.2</span> <span class="title">Kernel and Image</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="sec-kernel-image.html#exercises-8" class="internal"><span class="codenumber">2.2</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li>
+<div class="toc-item"><a href="sec-isomorphism.html" class="internal"><span class="codenumber">2.3</span> <span class="title">Isomorphisms, composition, and inverses</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="sec-isomorphism.html#subsec-isomorphism" class="internal"><span class="codenumber">2.3.1</span> <span class="title">Isomorphisms</span></a></div></li>
+<li>
+<div class="toc-item"><a href="sec-isomorphism.html#subsec-composition" class="internal"><span class="codenumber">2.3.2</span> <span class="title">Composition and inverses</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="sec-isomorphism.html#exercises-9" class="internal"><span class="codenumber">2.3.2</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
 </ul>
 </li>
-<li class="link">
-<a href="ch-orthogonality.html" data-scroll="ch-orthogonality" class="internal"><span class="codenumber">3</span> <span class="title">Orthogonality and Applications</span></a><ul>
-<li><a href="sec-orthogonal-sets.html" data-scroll="sec-orthogonal-sets" class="internal">Orthogonal sets of vectors</a></li>
-<li><a href="sec-gram-schmidt.html" data-scroll="sec-gram-schmidt" class="internal">The Gram-Schmidt Procedure</a></li>
-<li><a href="section-projection.html" data-scroll="section-projection" class="internal">Orthogonal Projection</a></li>
-<li><a href="worksheet-dual-basis.html" data-scroll="worksheet-dual-basis" class="internal">Worksheet: dual basis.</a></li>
-<li><a href="worksheet-least-squares.html" data-scroll="worksheet-least-squares" class="internal">Worksheet: Least squares approximation</a></li>
+<li><div class="toc-item"><a href="worksheet-transformations.html" class="internal"><span class="codenumber">2.4</span> <span class="title">Worksheet: matrix transformations</span></a></div></li>
+<li><div class="toc-item"><a href="worksheet-recurrence.html" class="internal"><span class="codenumber">2.5</span> <span class="title">Worksheet: linear recurrences</span></a></div></li>
 </ul>
 </li>
-<li class="link">
-<a href="ch-diagonalization.html" data-scroll="ch-diagonalization" class="internal"><span class="codenumber">4</span> <span class="title">Diagonalization</span></a><ul>
-<li><a href="sec-eigen-basics.html" data-scroll="sec-eigen-basics" class="internal">Eigenvalues and Eigenvectors</a></li>
-<li><a href="subsec-ortho-diag.html" data-scroll="subsec-ortho-diag" class="internal">Diagonalization of symmetric matrices</a></li>
-<li><a href="sec-quadratic.html" data-scroll="sec-quadratic" class="internal">Quadratic forms</a></li>
-<li><a href="sec-complex.html" data-scroll="sec-complex" class="internal">Diagonalization of complex matrices</a></li>
-<li><a href="worksheet-dynamical.html" data-scroll="worksheet-dynamical" class="internal">Worksheet: linear dynamical systems</a></li>
-<li><a href="section-matrix-factor.html" data-scroll="section-matrix-factor" class="internal">Matrix Factorizations and Eigenvalues</a></li>
-<li><a href="worksheet-svd.html" data-scroll="worksheet-svd" class="internal">Worksheet: Singular Value Decomposition</a></li>
+<li>
+<div class="toc-item"><a href="ch-orthogonality.html" class="internal"><span class="codenumber">3</span> <span class="title">Orthogonality and Applications</span></a></div>
+<ul class="structural">
+<li>
+<div class="toc-item"><a href="sec-orthogonal-sets.html" class="internal"><span class="codenumber">3.1</span> <span class="title">Orthogonal sets of vectors</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="sec-orthogonal-sets.html#subsec-dot-basics" class="internal"><span class="codenumber">3.1.1</span> <span class="title">Basic definitions and properties</span></a></div></li>
+<li><div class="toc-item"><a href="sec-orthogonal-sets.html#subsec-ortho-sets" class="internal"><span class="codenumber">3.1.2</span> <span class="title">Orthogonal sets of vectors</span></a></div></li>
+<li><div class="toc-item"><a href="sec-orthogonal-sets.html#exercises-10" class="internal"><span class="codenumber">3.1.3</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
-<li class="link">
-<a href="ch-change-basis.html" data-scroll="ch-change-basis" class="internal"><span class="codenumber">5</span> <span class="title">Change of Basis</span></a><ul>
-<li><a href="sec-matrix-of-transformation.html" data-scroll="sec-matrix-of-transformation" class="internal">The matrix of a linear transformation</a></li>
-<li><a href="sec-matrix-operator.html" data-scroll="sec-matrix-operator" class="internal">The matrix of a linear operator</a></li>
-<li><a href="sec-direct-sum.html" data-scroll="sec-direct-sum" class="internal">Direct Sums and Invariant Subspaces</a></li>
-<li><a href="worksheet-gen-eigen.html" data-scroll="worksheet-gen-eigen" class="internal">Worksheet: generalized eigenvectors</a></li>
-<li><a href="sec-gen-eigen.html" data-scroll="sec-gen-eigen" class="internal">Generalized eigenspaces</a></li>
-<li><a href="sec-jordan-form.html" data-scroll="sec-jordan-form" class="internal">Jordan Canonical Form</a></li>
+<li>
+<div class="toc-item"><a href="sec-gram-schmidt.html" class="internal"><span class="codenumber">3.2</span> <span class="title">The Gram-Schmidt Procedure</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="sec-gram-schmidt.html#exercises-11" class="internal"><span class="codenumber">3.2</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li>
+<div class="toc-item"><a href="section-projection.html" class="internal"><span class="codenumber">3.3</span> <span class="title">Orthogonal Projection</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="section-projection.html#exercises-12" class="internal"><span class="codenumber">3.3</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li><div class="toc-item"><a href="worksheet-dual-basis.html" class="internal"><span class="codenumber">3.4</span> <span class="title">Worksheet: dual basis.</span></a></div></li>
+<li><div class="toc-item"><a href="worksheet-least-squares.html" class="internal"><span class="codenumber">3.5</span> <span class="title">Worksheet: Least squares approximation</span></a></div></li>
 </ul>
 </li>
-<li class="link backmatter"><a href="backmatter-1.html" data-scroll="backmatter-1" class="internal"><span class="title">Back Matter</span></a></li>
-<li class="link"><a href="appendix-complex-review.html" data-scroll="appendix-complex-review" class="internal"><span class="codenumber">A</span> <span class="title">Review of complex numbers</span></a></li>
-<li class="link">
-<a href="ch-computation.html" data-scroll="ch-computation" class="internal"><span class="codenumber">B</span> <span class="title">Computational Tools</span></a><ul>
-<li><a href="section-jupyter.html" data-scroll="section-jupyter" class="internal">Jupyter</a></li>
-<li><a href="sec-python-basics.html" data-scroll="sec-python-basics" class="internal">Python basics</a></li>
-<li><a href="sec-sympy.html" data-scroll="sec-sympy" class="internal">SymPy for linear algebra</a></li>
+<li>
+<div class="toc-item"><a href="ch-diagonalization.html" class="internal"><span class="codenumber">4</span> <span class="title">Diagonalization</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="sec-eigen-basics.html" class="internal"><span class="codenumber">4.1</span> <span class="title">Eigenvalues and Eigenvectors</span></a></div></li>
+<li><div class="toc-item"><a href="subsec-ortho-diag.html" class="internal"><span class="codenumber">4.2</span> <span class="title">Diagonalization of symmetric matrices</span></a></div></li>
+<li><div class="toc-item"><a href="sec-quadratic.html" class="internal"><span class="codenumber">4.3</span> <span class="title">Quadratic forms</span></a></div></li>
+<li>
+<div class="toc-item"><a href="sec-complex.html" class="internal"><span class="codenumber">4.4</span> <span class="title">Diagonalization of complex matrices</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="sec-complex.html#subsec-complex-vector" class="internal"><span class="codenumber">4.4.1</span> <span class="title">Complex vectors</span></a></div></li>
+<li><div class="toc-item"><a href="sec-complex.html#subsec-complex-matrix" class="internal"><span class="codenumber">4.4.2</span> <span class="title">Complex matrices</span></a></div></li>
 </ul>
 </li>
-<li class="link"><a href="solutions-1.html" data-scroll="solutions-1" class="internal"><span class="codenumber">C</span> <span class="title">Solutions to Selected Exercises</span></a></li>
-</ul></nav><div class="extras"><nav><a class="pretext-link" href="https://pretextbook.org">Authored in PreTeXt</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a></nav></div>
-</div></div>
-<main class="main"><div id="content" class="pretext-content"><section class="worksheet" id="worksheet-span"><h2 class="heading hide-type">
+<li><div class="toc-item"><a href="worksheet-dynamical.html" class="internal"><span class="codenumber">4.5</span> <span class="title">Worksheet: linear dynamical systems</span></a></div></li>
+<li>
+<div class="toc-item"><a href="section-matrix-factor.html" class="internal"><span class="codenumber">4.6</span> <span class="title">Matrix Factorizations and Eigenvalues</span></a></div>
+<ul class="structural">
+<li>
+<div class="toc-item"><a href="section-matrix-factor.html#subsec-matrix-factorization" class="internal"><span class="codenumber">4.6.1</span> <span class="title">Matrix Factorizations</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="section-matrix-factor.html#pars-positive-ops" class="internal"><span class="codenumber">4.6.1.1</span> <span class="title">Positive Operators</span></a></div></li>
+<li><div class="toc-item"><a href="section-matrix-factor.html#pars-singular-values" class="internal"><span class="codenumber">4.6.1.2</span> <span class="title">Singular Value Decomposition</span></a></div></li>
+<li><div class="toc-item"><a href="section-matrix-factor.html#pars-qr-factor" class="internal"><span class="codenumber">4.6.1.3</span> <span class="title">QR Factorization</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="section-matrix-factor.html#subsec-compute-eigen" class="internal"><span class="codenumber">4.6.2</span> <span class="title">Computing Eigenvalues</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="section-matrix-factor.html#pars-power-method" class="internal"><span class="codenumber">4.6.2.1</span> <span class="title">The Power Method</span></a></div></li>
+<li><div class="toc-item"><a href="section-matrix-factor.html#pars-qr-algorithm" class="internal"><span class="codenumber">4.6.2.2</span> <span class="title">The QR Algorithm</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><div class="toc-item"><a href="worksheet-svd.html" class="internal"><span class="codenumber">4.7</span> <span class="title">Worksheet: Singular Value Decomposition</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="ch-change-basis.html" class="internal"><span class="codenumber">5</span> <span class="title">Change of Basis</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="sec-matrix-of-transformation.html" class="internal"><span class="codenumber">5.1</span> <span class="title">The matrix of a linear transformation</span></a></div></li>
+<li><div class="toc-item"><a href="sec-matrix-operator.html" class="internal"><span class="codenumber">5.2</span> <span class="title">The matrix of a linear operator</span></a></div></li>
+<li>
+<div class="toc-item"><a href="sec-direct-sum.html" class="internal"><span class="codenumber">5.3</span> <span class="title">Direct Sums and Invariant Subspaces</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="sec-direct-sum.html#subsec-invariant" class="internal"><span class="codenumber">5.3.1</span> <span class="title">Invariant subspaces</span></a></div></li>
+<li><div class="toc-item"><a href="sec-direct-sum.html#subsec-eigenspace" class="internal"><span class="codenumber">5.3.2</span> <span class="title">Eigenspaces</span></a></div></li>
+<li><div class="toc-item"><a href="sec-direct-sum.html#subsec-direct-sum" class="internal"><span class="codenumber">5.3.3</span> <span class="title">Direct Sums</span></a></div></li>
+</ul>
+</li>
+<li><div class="toc-item"><a href="worksheet-gen-eigen.html" class="internal"><span class="codenumber">5.4</span> <span class="title">Worksheet: generalized eigenvectors</span></a></div></li>
+<li><div class="toc-item"><a href="sec-gen-eigen.html" class="internal"><span class="codenumber">5.5</span> <span class="title">Generalized eigenspaces</span></a></div></li>
+<li><div class="toc-item"><a href="sec-jordan-form.html" class="internal"><span class="codenumber">5.6</span> <span class="title">Jordan Canonical Form</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="backmatter-1.html" class="internal"><span class="title">Back Matter</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="appendix-complex-review.html" class="internal"><span class="codenumber">A</span> <span class="title">Review of complex numbers</span></a></div></li>
+<li>
+<div class="toc-item"><a href="ch-computation.html" class="internal"><span class="codenumber">B</span> <span class="title">Computational Tools</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="section-jupyter.html" class="internal"><span class="codenumber">B.1</span> <span class="title">Jupyter</span></a></div></li>
+<li><div class="toc-item"><a href="sec-python-basics.html" class="internal"><span class="codenumber">B.2</span> <span class="title">Python basics</span></a></div></li>
+<li>
+<div class="toc-item"><a href="sec-sympy.html" class="internal"><span class="codenumber">B.3</span> <span class="title">SymPy for linear algebra</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="sec-sympy.html#subsec-sympy-basics" class="internal"><span class="codenumber">B.3.1</span> <span class="title">SymPy basics</span></a></div></li>
+<li><div class="toc-item"><a href="sec-sympy.html#subsec-sympy-matrix" class="internal"><span class="codenumber">B.3.2</span> <span class="title">Matrices in SymPy</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><div class="toc-item"><a href="solutions-backmatter.html" class="internal"><span class="codenumber">C</span> <span class="title">Solutions to Selected Exercises</span></a></div></li>
+</ul>
+</li>
+</ul></nav></div>
+<main class="ptx-main"><div id="ptx-content" class="ptx-content">
+<button class="print-button" title="Print" onClick="window.print()"><span class="name">Print</span></button><section class="worksheet" id="worksheet-span"><h2 class="heading hide-type">
 <span class="type">Worksheet</span> <span class="codenumber">1.5</span> <span class="title">Worksheet: understanding span</span><div class="print-links">
 <a href="worksheet-span-a4.html" class="a4">A4</a><a href="worksheet-span-letter.html" class="us">US</a>
 </div>
 </h2>
-<section class="introduction" id="introduction-6"><p id="p-271">In this worksheet, we will attempt to understand the concept of span. Recall from <a href="sec-span.html" class="internal" title="Section 1.4: Span">Section 1.4</a> that the span of a set of vectors <span class="process-math">\(\vv_1, \vv_2,\ldots, \vv_k\)</span> in a vector space <span class="process-math">\(V\)</span> is the set of all linear combinations that can be generated from those vectors.</p>
-<p id="p-272">Therefore, the question “Does the vector <span class="process-math">\(\ww\)</span> belong to the span of <span class="process-math">\(\vv_1, \vv_2,\ldots, \vv_k\text{?}\)</span>” is equivalent to asking, “Can I write <span class="process-math">\(\ww\)</span> as a linear combination of the <span class="process-math">\(\vv_i\text{?}\)</span>”, which, in turn, is equivalent to asking:</p>
-<p id="p-273">Do there exist scalars <span class="process-math">\(c_1,c_2,\ldots, c_k\)</span> such that</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
+<section class="introduction" id="introduction-6"><div class="para" id="p-405">In this worksheet, we will attempt to understand the concept of span. Recall from <a href="sec-span.html" class="internal" title="Section 1.4: Span">Section 1.4</a> that the span of a set of vectors <span class="process-math">\(\vv_1, \vv_2,\ldots, \vv_k\)</span> in a vector space <span class="process-math">\(V\)</span> is the set of all linear combinations that can be generated from those vectors.</div> <div class="para" id="p-406">Therefore, the question “Does the vector <span class="process-math">\(\ww\)</span> belong to the span of <span class="process-math">\(\vv_1, \vv_2,\ldots, \vv_k\text{?}\)</span>” is equivalent to asking, “Can I write <span class="process-math">\(\ww\)</span> as a linear combination of the <span class="process-math">\(\vv_i\text{?}\)</span>”, which, in turn, is equivalent to asking:</div> <div class="para logical" id="p-407">
+<div class="para">Do there exist scalars <span class="process-math">\(c_1,c_2,\ldots, c_k\)</span> such that</div>
+<div class="displaymath process-math">
 \begin{equation*}
 \ww=c_1\vv_1+c_2\vv_2+\cdots +c_k\vv_k\text{?}
 \end{equation*}
 </div>
-<p id="p-274">In any finite-dimensional vector space, this last question can be turned into a system of equations. If that system has a solution, then yes — your vector is in the span. If the system is inconsistent, then the answer is no.</p></section><section class="onepage" id="page-1"><article class="exercise exercise-like" id="exercise-13"><h3 class="heading"><span class="codenumber">1<span class="period">.</span></span></h3>
-<p id="p-275">Determine whether or not the vector <span class="process-math">\(\ww=\langle 3,-1, 4, 2\rangle\)</span> in <span class="process-math">\(\R^4\)</span> belongs to the span of the vectors</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
+</div> <div class="para" id="p-408">In any finite-dimensional vector space, this last question can be turned into a system of equations. If that system has a solution, then yes — your vector is in the span. If the system is inconsistent, then the answer is no.</div></section><section class="onepage" id="page-1"><article class="exercise exercise-like" id="exercise-23"><h3 class="heading"><span class="codenumber">1<span class="period">.</span></span></h3>
+<div class="para logical" id="p-409">
+<div class="para">Determine whether or not the vector <span class="process-math">\(\ww=\langle 3,-1, 4, 2\rangle\)</span> in <span class="process-math">\(\R^4\)</span> belongs to the span of the vectors</div>
+<div class="displaymath process-math">
 \begin{equation*}
 \langle 2, 1, 4, -3\rangle, \langle 0, 2, 1, 4\rangle, \langle -1, 1, 0, 2\rangle\text{.}
 \end{equation*}
 </div>
-<div class="workspace" data-space="1.6in"></div></article><p id="p-276">To assist with solving this problem, a code cell is provided below. Once you have determined the augmented matrix of your system of equations, see <a href="sec-sympy.html" class="internal" title="Section B.3: SymPy for linear algebra">Section B.3</a> for details on how to enter your matrix, and then compute its reduced row-echelon form.</p>
-<pre class="ptx-sagecell sagecell-sage" id="sage-9"><script type="text/x-sage">from sympy import Matrix, init_printing
+</div>
+<div class="workspace" data-space="1.6in"></div></article> <div class="para" id="p-410">To assist with solving this problem, a code cell is provided below. Once you have determined the augmented matrix of your system of equations, see <a href="sec-sympy.html" class="internal" title="Section B.3: SymPy for linear algebra">Section B.3</a> for details on how to enter your matrix, and then compute its reduced row-echelon form.</div> <pre class="ptx-sagecell sagecell-sage" id="sage-9"><script type="text/x-sage">from sympy import Matrix, init_printing
 init_printing()
-</script></pre>
-<article class="exercise exercise-like" id="exercise-14"><h3 class="heading"><span class="codenumber">2<span class="period">.</span></span></h3>
-<p id="p-277">Determine whether or not the polynomial <span class="process-math">\(q(x) = 4-6x-11x^2\)</span> belongs to the span of the polynomials</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
+</script></pre> <article class="exercise exercise-like" id="exercise-24"><h3 class="heading"><span class="codenumber">2<span class="period">.</span></span></h3>
+<div class="para logical" id="p-411">
+<div class="para">Determine whether or not the polynomial <span class="process-math">\(q(x) = 4-6x-11x^2\)</span> belongs to the span of the polynomials</div>
+<div class="displaymath process-math">
 \begin{equation*}
 p_1(x) = x-3x^2, p_2(x)=2-x, p_3(x) = -1+4x+x^2\text{.}
 \end{equation*}
 </div>
-<div class="workspace" data-space="1.6in"></div></article><pre class="ptx-sagecell sagecell-sage" id="sage-10"><script type="text/x-sage"></script></pre>
-<p id="p-278"></p></section><section class="onepage" id="page-2"><p id="p-279">For our next activity, we are going to look at <abbr class="initialism">RGB</abbr> colours. Here, <abbr class="initialism">RGB</abbr> stands for Red, Green, Blue. All colours displayed by your computer monitor can be expressed in terms of these colours.</p>
-<p id="p-280">First, we load some Python libraries we'll need. These are intended for use in a Jupyter notebook and won't run properly if you are using Sagecell in the <abbr class="initialism">HTML</abbr> textbook.</p>
-<pre class="ptx-sagecell sagecell-sage" id="sage-11"><script type="text/x-sage">import ipywidgets as wid
+</div>
+<div class="workspace" data-space="1.6in"></div></article> <pre class="ptx-sagecell sagecell-sage" id="sage-10"><script type="text/x-sage"></script></pre> <div class="para" id="p-412"></div></section><section class="onepage" id="page-2"><div class="para" id="p-413">For our next activity, we are going to look at <abbr class="initialism">RGB</abbr> colours. Here, <abbr class="initialism">RGB</abbr> stands for Red, Green, Blue. All colours displayed by your computer monitor can be expressed in terms of these colours.</div> <div class="para" id="p-414">First, we load some Python libraries we’ll need. These are intended for use in a Jupyter notebook and won’t run properly if you are using Sagecell in the <abbr class="initialism">HTML</abbr> textbook.</div> <pre class="ptx-sagecell sagecell-sage" id="sage-11"><script type="text/x-sage">import ipywidgets as wid
 import matplotlib.pyplot as plt
-</script></pre>
-<p id="p-281">Next, we will create a widget that lets us select values for red, green, and blue. The <abbr class="initialism">RGB</abbr> colour system assigns 8-bit values to each colour. Possible values for each range from 0 to 255; this indicates how much of each colour will be blended to create the colour you want. Extensive information on the <abbr class="initialism">RGB</abbr> colour system can be found <a class="external" href="https://en.wikipedia.org/wiki/RGB_color_model" target="_blank">on wikipedia</a><a href="" data-knowl="" class="id-ref fn-knowl original" data-refid="hk-fn-4" id="fn-4"><sup> 1 </sup></a>, and there are a number of good online resources about the use of <abbr class="initialism">RGB</abbr> in web design, <a class="external" href="https://www.w3schools.com/colors/colors_rgb.asp" target="_blank">such as this one from w3schools</a><a href="" data-knowl="" class="id-ref fn-knowl original" data-refid="hk-fn-5" id="fn-5"><sup> 2 </sup></a>.</p>
-<pre class="ptx-sagecell sagecell-sage" id="sage-12"><script type="text/x-sage">r=wid.IntSlider(
+</script></pre> <div class="para" id="p-415">Next, we will create a widget that lets us select values for red, green, and blue. The <abbr class="initialism">RGB</abbr> colour system assigns 8-bit values to each colour. Possible values for each range from 0 to 255; this indicates how much of each colour will be blended to create the colour you want. Extensive information on the <abbr class="initialism">RGB</abbr> colour system can be found <a class="external" href="https://en.wikipedia.org/wiki/RGB_color_model" target="_blank">on wikipedia</a><a href="" data-knowl="" class="id-ref fn-knowl original" data-refid="hk-fn-4" id="fn-4"><sup> 1 </sup></a>, and there are a number of good online resources about the use of <abbr class="initialism">RGB</abbr> in web design, <a class="external" href="https://www.w3schools.com/colors/colors_rgb.asp" target="_blank">such as this one from w3schools</a><a href="" data-knowl="" class="id-ref fn-knowl original" data-refid="hk-fn-5" id="fn-5"><sup> 2 </sup></a>.</div> <pre class="ptx-sagecell sagecell-sage" id="sage-12"><script type="text/x-sage">r=wid.IntSlider(
     value=155,
     min=0,
     max=255,
@@ -321,15 +379,19 @@ b=wid.IntSlider(
     description='Blue:'
 )
 display(r,g,b)
-</script></pre>
-<p id="p-282">By moving the sliders generated above, you can create different colours. To see what colour you've created by moving the sliders, run the code below.</p>
-<pre class="ptx-sagecell sagecell-sage" id="sage-13"><script type="text/x-sage">plt.imshow([[(r.value/255, g.value/255, b.value/255)]])
-</script></pre></section><section class="onepage" id="page-3"><article class="exercise exercise-like" id="exercise-15"><h3 class="heading"><span class="codenumber">3<span class="period">.</span></span></h3>
-<p id="p-283">In what ways can you explain the <abbr class="initialism">RGB</abbr> colour system in terms of span?</p>
-<div class="workspace" data-space="3in"></div></article><pre class="ptx-sagecell sagecell-html" id="sage-14"><script type="text/x-sage"></script></pre>
-<article class="exercise exercise-like" id="exercise-16"><h3 class="heading"><span class="codenumber">4<span class="period">.</span></span></h3>
-<p id="p-284">Why would it nonetheless be inappropriate to describe the set of all <abbr class="initialism">RGB</abbr> colours as a vector space?</p>
-<div class="workspace" data-space="4in"></div></article><pre class="ptx-sagecell sagecell-html" id="sage-15"><script type="text/x-sage"></script></pre></section></section></div></main>
+</script></pre> <div class="para" id="p-416">By moving the sliders generated above, you can create different colours. To see what colour you’ve created by moving the sliders, run the code below.</div> <pre class="ptx-sagecell sagecell-sage" id="sage-13"><script type="text/x-sage">plt.imshow([[(r.value/255, g.value/255, b.value/255)]])
+</script></pre></section><section class="onepage" id="page-3"><article class="exercise exercise-like" id="exercise-25"><h3 class="heading"><span class="codenumber">3<span class="period">.</span></span></h3>
+<div class="para" id="p-417">In what ways can you explain the <abbr class="initialism">RGB</abbr> colour system in terms of span?</div>
+<div class="workspace" data-space="3in"></div></article> <pre class="ptx-sagecell sagecell-html" id="sage-14"><script type="text/x-sage"></script></pre> <article class="exercise exercise-like" id="exercise-26"><h3 class="heading"><span class="codenumber">4<span class="period">.</span></span></h3>
+<div class="para" id="p-418">Why would it nonetheless be inappropriate to describe the set of all <abbr class="initialism">RGB</abbr> colours as a vector space?</div>
+<div class="workspace" data-space="4in"></div></article> <pre class="ptx-sagecell sagecell-html" id="sage-15"><script type="text/x-sage"></script></pre></section></section>
+</div>
+<div class="ptx-content-footer">
+<a class="previous-button button" href="sec-span.html" title="Previous"><span class="icon">&lt;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon">^</span><span class="name">Top</span></a><a class="next-button button" href="sec-independence.html" title="Next"><span class="name">Next</span><span class="icon">&gt;</span></a>
+</div></main>
+</div>
+<div id="ptx-page-footer" class="ptx-page-footer">
+<a class="pretext-link" href="https://pretextbook.org" title="PreTeXt"><div class="logo"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="338 3000 8772 6866"><g style="stroke-width:.025in; stroke:black; fill:none"><polyline points="472,3590 472,9732 " style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round; "></polyline><path style="stroke:#000000;stroke-width:126;stroke-linecap:butt;" d="M 4724,9448 A 4660 4660  0  0  1  8598  9259"></path><path style="stroke:#000000;stroke-width:174;stroke-linecap:butt;" d="M 4488,9685 A 4228 4228  0  0  0   472  9732"></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:butt;" d="M 4724,3590 A 4241 4241  0  0  1  8598  3496"></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:round;" d="M 850,3496  A 4241 4241  0  0  1  4724  3590"></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:round;" d="M 850,9259  A 4507 4507  0  0  1  4724  9448"></path><polyline points="5385,4299 4062,8125" style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8598,3496 8598,9259" style="stroke:#000000;stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="850,3496 850,9259" style="stroke:#000000;stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="4960,9685 4488,9685" style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="3070,4582 1889,6141 3070,7700" style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="6418,4582 7600,6141 6418,7700" style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8976,3590 8976,9732" style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><path style="stroke:#000000;stroke-width:174;stroke-linecap:butt;" d="M 4960,9685 A 4228 4228  0  0  1  8976  9732"></path></g></svg></div></a><a class="runestone-link" href="https://runestone.academy" title="Runestone Academy"><img class="logo" src="https://runestone.academy/runestone/static/images/RAIcon_cropped.png"></a><a class="mathjax-link" href="https://www.mathjax.org" title="MathJax"><img class="logo" src="https://www.mathjax.org/badge/badge-square-2.png"></a>
 </div>
 </body>
 </html>

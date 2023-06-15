@@ -11,8 +11,28 @@
 <meta name="robots" content="noindex, nofollow">
 </head>
 <body class="ignore-math">
-<h3 class="heading"><span class="type">Paragraph</span></h3>
-<p>Note that we have only two parameters available to tune: <span class="process-math">\(a\)</span> and <span class="process-math">\(b\text{.}\)</span> We assume that some reasoning or experimental evidence has led us to conclude that a linear fit is reasonable. The challenge here is to make precise what we mean by “as close as possible”. We have <span class="process-math">\(n\)</span> differences (sometimes called <dfn class="terminology">residuals</dfn>) <span class="process-math">\(r_i=y_i-f(x_i)\)</span> that we want to make small, by adjusting <span class="process-math">\(a\)</span> and <span class="process-math">\(b\text{.}\)</span> But making one of the <span class="process-math">\(r_i\)</span> smaller might make another one larger!</p>
-<span class="incontext"><a href="worksheet-least-squares.html#p-1040" class="internal">in-context</a></span>
+<h4 class="heading"><span class="type">Paragraph</span></h4>
+<div class="para logical">
+<div class="para">To see that it’s independent, suppose that</div>
+<div class="displaymath process-math">
+\begin{equation*}
+a_1\uu_1+\cdots + a_n\uu_n+b_1\vv_1+\cdots +b_m\vv_m=\zer\text{.}
+\end{equation*}
+</div>
+<div class="para">Applying <span class="process-math">\(T\)</span> to this equation, and noting that <span class="process-math">\(T(\uu_i)=\zer\)</span> for each <span class="process-math">\(i\text{,}\)</span> by definition of the <span class="process-math">\(\uu_i\text{,}\)</span> we get</div>
+<div class="displaymath process-math">
+\begin{equation*}
+b_1T(\vv_1)+\cdots +b_mT(\vv_m)=\zer\text{.}
+\end{equation*}
+</div>
+<div class="para">We assumed that the vectors <span class="process-math">\(T(\vv_i)\)</span> were independent, so all the <span class="process-math">\(b_i\)</span> must be zero. But then we get</div>
+<div class="displaymath process-math">
+\begin{equation*}
+a_1\uu_1+\cdots +a_n\uu_n=\zer\text{,}
+\end{equation*}
+</div>
+<div class="para">and since the <span class="process-math">\(\uu_i\)</span> are independent, all the <span class="process-math">\(a_i\)</span> must be zero.</div>
+</div>
+<span class="incontext"><a href="sec-kernel-image.html#p-1040" class="internal">in-context</a></span>
 </body>
 </html>

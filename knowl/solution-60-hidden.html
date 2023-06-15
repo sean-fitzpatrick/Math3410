@@ -9,36 +9,50 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="robots" content="noindex, nofollow">
+<script>// Make *any* pre with class 'sagecell-sage' an executable Sage cell
+// Their results will be linked, only within language type
+sagecell.makeSagecell({inputLocation: 'pre.sagecell-sage',
+                       linked: true,
+                       languages: ['sage'],
+                       evalButtonText: 'Evaluate (Sage)'});
+</script>
 </head>
 <body class="ignore-math"><div class="solution solution-like">
-<p>As per the hint, suppose <span class="process-math">\(\phi = c_1\phi_1+c_2\phi_2+c_3\phi_3+c_4\phi_4\text{,}\)</span> and that <span class="process-math">\(\phi\in U^0\text{.}\)</span> Then</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
+<div class="para">First, note that we can actually jump right into the Gram-Schmidt procedure. If the set <span class="process-math">\(B\)</span> is not a basis, then it won’t be independent, and when we attempt to construct the third vector in our orthonormal basis, its projection on the the subspace spanned by the first two will be the same as the original vector, and we’ll get zero when we subtract the two.</div> <div class="para logical">
+<div class="para">We let <span class="process-math">\(\xx_1=(1,-2,1), \xx_2=(3,0,-2), \xx_3=(-1,1,2)\text{,}\)</span> and set <span class="process-math">\(\vv_1=\xx_1\text{.}\)</span> Then we have</div>
+<div class="displaymath process-math">
 \begin{align*}
-\phi(2a+b,3b,a,a-2b) \amp  = c_1\phi_1(2a+b,3b,a,a-2b)+c_2\phi_2(2a+b,3b,a,a-2b)\\
-\amp \quad + c_3\phi_3(2a+b,3b,a,a-2b)+c_4\phi_4(2a+b,3b,a,a-2b)\\
-\amp  = c_1(2a+b)+c_2(3b)+c_3(a)+c_4(a-2b)\\
-\amp  = a(2c_1+c_3+c_4)+b(c_1+3c_2-2c_4)\text{.}
+\vv_2 \amp = \xx_2-\left(\frac{\xx_2\dotp \vv_1}{\len{\vv_1}^2}\right)\vv_1 \\
+\amp = (3,0,-2)-\frac{1}{6}(1,-2,1)\\
+\amp = \frac16(17,2,-3) \text{.}
 \end{align*}
 </div>
-<p>We wish for this to be zero for all possible values of <span class="process-math">\(a\)</span> and <span class="process-math">\(b\text{.}\)</span> Therefore, we must have</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
+</div> <aside class="aside aside-like"><div class="para logical">
+<div class="para">You’ll notice that we’re using <span class="process-math">\(6\vv_2\)</span> rather than <span class="process-math">\(\vv_2\)</span> in the calculation of <span class="process-math">\(\vv_3\text{.}\)</span> This lets us avoid fractions (momentarily), and doesn’t affect the answer, since for any nonzero scalar <span class="process-math">\(c\text{,}\)</span>
+</div>
+<div class="displaymath process-math">
 \begin{align*}
-2c_1+c_3+c_4\amp =0\\
-c_1+3c_2-2c_4\amp =0\text{.}
+\left(\frac{c\vv\dotp \xx}{\len{c\vv}^2}\right)\amp(c\vv)\\
+\amp= \left(\frac{c(\vv\dotp\xx)}{c^2\len{\vv}^2}\right)(c\vv)\\
+\amp=\left(\frac{\vv\dotp\xx}{\len{\vv^2}}\right)\vv\text{.}
 \end{align*}
 </div>
-<p class="continuation">Solving gives us <span class="process-math">\(c_1=-\frac12 c_3-\frac12 c_4\)</span> and <span class="process-math">\(c_2=\frac16 c_3+\frac56 c_4\text{,}\)</span> so</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
+</div></aside> <div class="para logical">
+<div class="para">Next, we compute <span class="process-math">\(\vv_3\text{.}\)</span>
+</div>
+<div class="displaymath process-math">
 \begin{align*}
-\phi \amp = \left(-\frac12 c_3-\frac12 c_4\right)\phi_1 +\left(\frac16 c_3+\frac56 c_4\right)\phi_2 + c_3\phi_3 + c_4\phi_4\\
-\amp  = c_3\left(-\frac12 \phi_1 + \frac16 \phi_2+\phi_3\right)+c_4\left(-\frac12\phi_1+\frac56 \phi_2 + \phi_4\right)\text{.}
+\vv_3 \amp = \xx_3-\left(\frac{\xx_3\dotp \vv_1}{\len{\vv_1}^2}\right)\vv_1 - \left(\frac{\xx_3\dotp \vv_2}{\len{\vv_2}^2}\right)\vv_2\\
+\amp = (-1,1,2)-\frac{-1}{6}(1,-2,1)-\cdot \frac{-21}{303}(17,2,-3)\\
+\amp = (-1,1,2)+\frac16(1,-2,1)+\frac{7}{101}(17,2,-3)\\
+\amp = \frac{1}{606}\bigl((-606,606,1212)+(101,-202,101)+(782,84,-126)\bigr)\\
+\amp = \frac{1}{606}(277,488,1187)\text{.}
 \end{align*}
 </div>
-<p class="continuation">This gives us the following basis for <span class="process-math">\(U^0\text{:}\)</span></p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-\left\{\phi_3-\frac12 \phi_1+\frac16 \phi_2, \phi_4-\frac12\phi_1+\frac56\phi_3\right\}\text{.}
-\end{equation*}
-</div>
+</div> <div class="para">We got it done! But doing this sort of thing by hand makes it possible that we made a calculation error somewhere. To check our work, we can turn to the computer.</div> <pre class="ptx-sagecell sagecell-sage" id="sage-51"><script type="text/x-sage">from sympy import Matrix, init_printing, GramSchmidt
+init_printing()
+L=(Matrix([1,-2,1]),Matrix([3,0,-2]),Matrix([-1,1,2]))
+GramSchmidt(L)
+</script></pre>
 </div></body>
 </html>

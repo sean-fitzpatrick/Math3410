@@ -13,41 +13,42 @@
 <body class="ignore-math">
 <div class="solution solution-like">
 <h3 class="heading">
-<span class="type">Solution</span><span class="space"> </span><span class="codenumber">5.1.3.1</span><span class="period">.</span>
+<span class="type">Solution</span><span class="space"> </span><span class="codenumber">3.4.5.1</span><span class="period">.</span>
 </h3>
-<p>We have</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
+<div class="para logical">
+<div class="para">As per the hint, suppose <span class="process-math">\(\phi = c_1\phi_1+c_2\phi_2+c_3\phi_3+c_4\phi_4\text{,}\)</span> and that <span class="process-math">\(\phi\in U^0\text{.}\)</span> Then</div>
+<div class="displaymath process-math">
 \begin{align*}
-T(1) \amp = (1,0) = 1(1,0)+0(1,-1) \\
-T(1-x) \amp= (1,-2) = -1(1,0)+2(1,-1) \\
-T((1-x)^2) = T(1-2+x^2) \amp = (2, -4) = -2(1,0)+4(1,-1)\text{.}
+\phi(2a+b,3b,a,a-2b) \amp  = c_1\phi_1(2a+b,3b,a,a-2b)+c_2\phi_2(2a+b,3b,a,a-2b)\\
+\amp \quad + c_3\phi_3(2a+b,3b,a,a-2b)+c_4\phi_4(2a+b,3b,a,a-2b)\\
+\amp  = c_1(2a+b)+c_2(3b)+c_3(a)+c_4(a-2b)\\
+\amp  = a(2c_1+c_3+c_4)+b(c_1+3c_2-2c_4)\text{.}
 \end{align*}
 </div>
-<p class="continuation">Thus,</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
+</div> <div class="para logical">
+<div class="para">We wish for this to be zero for all possible values of <span class="process-math">\(a\)</span> and <span class="process-math">\(b\text{.}\)</span> Therefore, we must have</div>
+<div class="displaymath process-math">
 \begin{align*}
-M_{DB}(T) \amp = \bbm C_D(T(1))\amp C_D(T(1-x)) \amp C_D(T((1-x)^2))\ebm\\
-\amp = \bbm 1\amp -1\amp -2\\0\amp 2\amp 4\ebm\text{.}
+2c_1+c_3+c_4\amp =0\\
+c_1+3c_2-2c_4\amp =0\text{.}
 \end{align*}
 </div>
-<p class="continuation">To confirm, note that</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
+<div class="para">Solving gives us <span class="process-math">\(c_1=-\frac12 c_3-\frac12 c_4\)</span> and <span class="process-math">\(c_2=\frac16 c_3+\frac56 c_4\text{,}\)</span> so</div>
+<div class="displaymath process-math">
 \begin{align*}
-M_{DB}(T)C_B\amp (a+bx+cx^2)\\
-\amp = M_{DB}(T)C_B((a+b+c)-(b+2c)(1-x)+c(1-x)^2)\\
-\amp = \bbm 1\amp -1\amp -2\\0\amp 2\amp 4\ebm\bbm a+b+c\\ -b-2c\\c\ebm\\
-\amp \bbm (a+b+c)+(b+2c)-2c\\0-2(b+2c)+4c\ebm = \bbm a+2b+c\\-2b\ebm\text{,}
+\phi \amp = \left(-\frac12 c_3-\frac12 c_4\right)\phi_1 +\left(\frac16 c_3+\frac56 c_4\right)\phi_2 + c_3\phi_3 + c_4\phi_4\\
+\amp  = c_3\left(-\frac12 \phi_1 + \frac16 \phi_2+\phi_3\right)+c_4\left(-\frac12\phi_1+\frac56 \phi_2 + \phi_4\right)\text{.}
 \end{align*}
 </div>
-<p class="continuation">while on the other hand,</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{align*}
-C_D(T(a+bx+cx^2)) \amp= C_D(a+c,2b)\\
-\amp = C_D((a+2b+c)(1,0)-2b(1,-1))\\
-\amp = \bbm a+2b+c\\-2b\ebm\text{.}
-\end{align*}
+<div class="para">This gives us the following basis for <span class="process-math">\(U^0\text{:}\)</span>
+</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\left\{\phi_3-\frac12 \phi_1+\frac16 \phi_2, \phi_4-\frac12\phi_1+\frac56\phi_3\right\}\text{.}
+\end{equation*}
 </div>
 </div>
-<span class="incontext"><a href="sec-matrix-of-transformation.html#solution-68" class="internal">in-context</a></span>
+</div>
+<span class="incontext"><a href="worksheet-dual-basis.html#solution-68" class="internal">in-context</a></span>
 </body>
 </html>

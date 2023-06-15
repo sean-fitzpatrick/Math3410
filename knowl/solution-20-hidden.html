@@ -9,43 +9,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="robots" content="noindex, nofollow">
-<script>// Make *any* pre with class 'sagecell-sage' an executable Sage cell
-// Their results will be linked, only within language type
-sagecell.makeSagecell({inputLocation: 'pre.sagecell-sage',
-                       linked: true,
-                       languages: ['sage'],
-                       evalButtonText: 'Evaluate (Sage)'});
-</script>
 </head>
 <body class="ignore-math"><div class="solution solution-like">
-<p>In each case, we set up the defining equation for independence, collect terms, and then analyze the resulting system of equations. (If you work with polynomials often enough, you can probably jump straight to the matrix. For now, let's work out the details.)</p>
-<p>Suppose</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-r(x^2+1)+s(x+1)+tx = 0\text{.}
-\end{equation*}
-</div>
-<p class="continuation">Then <span class="process-math">\(rx^2+(s+t)x+(r+s)=0=0x^2+0x+0\text{,}\)</span> so</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{align*}
-r \amp =0\\
-s+t \amp =0\\
-r+s\amp =0\text{.}
-\end{align*}
-</div>
-<p>And in this case, we don't even need to ask the computer. The first equation gives <span class="process-math">\(r=0\)</span> right away, and putting that into the third equation gives <span class="process-math">\(s=0\text{,}\)</span> and the second equation then gives <span class="process-math">\(t=0\text{.}\)</span></p>
-<p>Since <span class="process-math">\(r=s=t=0\)</span> is the only solution, the set is independent.</p>
-<p>Repeating for <span class="process-math">\(S_2\)</span> leads to the equation</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-(r+2s+t)x^2+(-r+s+5t)x+(3r+5s+t)1=0.
-\end{equation*}
-</div>
-<p class="continuation">This gives us:</p>
-<pre class="ptx-sagecell sagecell-sage" id="sage-18"><script type="text/x-sage">from sympy import Matrix,init_printing
-init_printing()
-A = Matrix(3,3,[1,2,1,-1,1,5,3,5,1])
-A.rref()
-</script></pre>
+<span class="process-math">\(\left\lbrace\mathbf{u}_1,\mathbf{u}_2,\mathbf{u}_3\right\rbrace=\)</span> span<span class="process-math">\(\left\lbrace\mathbf{u}_1,\mathbf{u}_2,\mathbf{u}_3,\mathbf{u}_4\right\rbrace\text{.}\)</span>
 </div></body>
 </html>

@@ -11,13 +11,21 @@
 <meta name="robots" content="noindex, nofollow">
 </head>
 <body class="ignore-math">
-<h4 class="heading"><span class="type">Paragraph</span></h4>
-<p>Let <span class="process-math">\(V\)</span> and <span class="process-math">\(W\)</span> be finite-dimensional vector spaces, and let <span class="process-math">\(T:V\to W\)</span> be a linear map. Let <span class="process-math">\(B=\basis{v}{n}\)</span> and <span class="process-math">\(D=\basis{w}{m}\)</span> be ordered bases for <span class="process-math">\(V\)</span> and <span class="process-math">\(W\text{,}\)</span> respectively. Then the <dfn class="terminology">matrix</dfn> <span class="process-math">\(M_{DB}(T)\)</span> of <span class="process-math">\(T\)</span> with respect to the bases <span class="process-math">\(B\)</span> and <span class="process-math">\(D\)</span> is defined by</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-M_{DB}(T) = \bbm C_D(T(\vv_1)) \amp C_D(T(\vv_2)) \amp \cdots \amp C_D(T(\vv_n))\ebm\text{.}
-\end{equation*}
+<h5 class="heading"><span class="type">Paragraph</span></h5>
+<div class="para logical">
+<div class="para">On the other hand, repeating the same calculation with <span class="process-math">\(\ww\text{,}\)</span> we find</div>
+<div class="displaymath process-math">
+\begin{align*}
+\left(\frac{\vv\dotp\xx_1}{\len{\xx_1}^2}\right)\xx_1
+\amp +\left(\frac{\vv\dotp\xx_2}{\len{\xx_2}^2}\right)\xx_2
++\left(\frac{\vv\dotp\xx_3}{\len{\xx_3}^2}\right)\xx_3\\
+\amp =\frac12 (1,0,1,0)-\frac53 (-1,0,1,1) +\frac47 (1,1,-1,2)\\
+\amp = \left(\frac{73}{42},\frac47,-\frac{115}{42},-\frac{11}{21}\right)\neq \ww\text{,}
+\end{align*}
 </div>
-<span class="incontext"><a href="sec-matrix-of-transformation.html#p-1372" class="internal">in-context</a></span>
+<div class="para">so <span class="process-math">\(\ww\notin\spn\{\xx_1,\xx_2,\xx_3\}\text{.}\)</span>
+</div>
+</div>
+<span class="incontext"><a href="sec-orthogonal-sets.html#p-1372" class="internal">in-context</a></span>
 </body>
 </html>

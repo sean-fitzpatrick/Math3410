@@ -9,52 +9,31 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="robots" content="noindex, nofollow">
-<script>// Make *any* pre with class 'sagecell-sage' an executable Sage cell
-// Their results will be linked, only within language type
-sagecell.makeSagecell({inputLocation: 'pre.sagecell-sage',
-                       linked: true,
-                       languages: ['sage'],
-                       evalButtonText: 'Evaluate (Sage)'});
-</script>
 </head>
 <body class="ignore-math">
 <div class="solution solution-like">
-<h3 class="heading">
-<span class="type">Solution</span><span class="space"> </span><span class="codenumber">3.2.5.1</span><span class="period">.</span>
-</h3>
-<p>First, note that we can actually jump right into the Gram-Schmidt procedure. If the set <span class="process-math">\(B\)</span> is not a basis, then it won't be independent, and when we attempt to construct the third vector in our orthonormal basis, its projection on the the subspace spanned by the first two will be the same as the original vector, and we'll get zero when we subtract the two.</p>
-<p>We let <span class="process-math">\(\xx_1=(1,-2,1), \xx_2=(3,0,-2), \xx_3=(-1,1,2)\text{,}\)</span> and set <span class="process-math">\(\vv_1=\xx_1\text{.}\)</span> Then we have</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
+<h4 class="heading">
+<span class="type">Solution</span><span class="space"> </span><span class="codenumber">2.3.7.1</span><span class="period">.</span>
+</h4>
+<div class="para logical">
+<div class="para">Suppose we have linear maps <span class="process-math">\(U\xrightarrow{T} V\xrightarrow{S} W\text{,}\)</span> and let <span class="process-math">\(\uu_1,\uu_2\in U\text{.}\)</span> Then</div>
+<div class="displaymath process-math">
 \begin{align*}
-\vv_2 \amp = \xx_2-\left(\frac{\xx_2\dotp \vv_1}{\len{\vv_1}^2}\right)\vv_1 \\
-\amp = (3,0,-2)-\frac{1}{6}(1,-2,1)\\
-\amp = \frac16(17,2,-3) \text{.}
+ST(\uu_1+\uu_2) \amp = S(T(\uu_1+\uu_2)) \\
+\amp = S(T(\uu_1)+T(\uu_2))\\
+\amp = S(T(\uu_1))+S(T(\uu_2)) \\
+\amp = ST(\uu_1)+ST(\uu_2)\text{,}
 \end{align*}
 </div>
-<aside class="aside aside-like"><p>You'll notice that we're using <span class="process-math">\(6\vv_2\)</span> rather than <span class="process-math">\(\vv_2\)</span> in the calculation of <span class="process-math">\(\vv_3\text{.}\)</span> This lets us avoid fractions (momentarily), and doesn't affect the answer, since for any nonzero scalar <span class="process-math">\(c\text{,}\)</span></p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{align*}
-\left(\frac{c\vv\dotp \xx}{\len{c\vv}^2}\right)\amp(c\vv)\\
-\amp= \left(\frac{c(\vv\dotp\xx)}{c^2\len{\vv}^2}\right)(c\vv)\\
-\amp=\left(\frac{\vv\dotp\xx}{\len{\vv^2}}\right)\vv\text{.}
-\end{align*}
-</div></aside><p>Next, we compute <span class="process-math">\(\vv_3\text{.}\)</span></p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{align*}
-\vv_3 \amp = \xx_3-\left(\frac{\xx_3\dotp \vv_1}{\len{\vv_1}^2}\right)\vv_1 - \left(\frac{\xx_3\dotp \vv_2}{\len{\vv_2}^2}\right)\vv_2\\
-\amp = (-1,1,2)-\frac{-1}{6}(1,-2,1)-\cdot \frac{-21}{303}(17,2,-3)\\
-\amp = (-1,1,2)+\frac16(1,-2,1)+\frac{7}{101}(17,2,-3)\\
-\amp = \frac{1}{606}\bigl((-606,606,1212)+(101,-202,101)+(782,84,-126)\bigr)\\
-\amp = \frac{1}{606}(277,488,1187)\text{.}
-\end{align*}
+<div class="para">and for any scalar <span class="process-math">\(c\text{,}\)</span>
 </div>
-<p>We got it done! But doing this sort of thing by hand makes it possible that we made a calculation error somewhere. To check our work, we can turn to the computer.</p>
-<pre class="ptx-sagecell sagecell-sage" id="sage-51"><script type="text/x-sage">from sympy import Matrix, init_printing, GramSchmidt
-init_printing()
-L=(Matrix([1,-2,1]),Matrix([3,0,-2]),Matrix([-1,1,2]))
-GramSchmidt(L)
-</script></pre>
+<div class="displaymath process-math">
+\begin{equation*}
+ST(c\uu_1) = S(T(c\uu_1))=S(cT(\uu_1)) = cS(T(\uu_1))=c(ST(\uu_1))\text{.}
+\end{equation*}
 </div>
-<span class="incontext"><a href="sec-gram-schmidt.html#solution-52" class="internal">in-context</a></span>
+</div>
+</div>
+<span class="incontext"><a href="sec-isomorphism.html#solution-52" class="internal">in-context</a></span>
 </body>
 </html>

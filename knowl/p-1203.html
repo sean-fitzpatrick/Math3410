@@ -12,7 +12,21 @@
 </head>
 <body class="ignore-math">
 <h5 class="heading"><span class="type">Paragraph</span></h5>
-<p>This matrix is not normal; this can be confirmed by direct computation, or by noting that it cannot be diagonalized.</p>
-<span class="incontext"><a href="sec-complex.html#p-1203" class="internal">in-context</a></span>
+<div class="para logical">
+<div class="para">Let <span class="process-math">\(A\)</span> be an <span class="process-math">\(m\times n\)</span> matrix, and let <span class="process-math">\(B\)</span> be an <span class="process-math">\(n\times k\)</span> matrix. Then we have linear maps</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\R^k \xrightarrow{T_B} \R^n\xrightarrow{T_A} \R^m\text{,}
+\end{equation*}
+</div>
+<div class="para">and the composition <span class="process-math">\(T_A\circ T_B:\R^k\to \R^m\)</span> satisfies</div>
+<div class="displaymath process-math">
+\begin{equation*}
+T_A\circ T_B(\xx) = T_A(T_B(\xx)) = T_A(B\xx)=A(B\xx)=(AB)\xx=T_{AB}(\xx)\text{.}
+\end{equation*}
+</div>
+<div class="para">Note that the rules given in elementary linear algebra, for the relative sizes of matrices that can be multiplied, are simply a manifestation of the fact that to compose functions, the range of the first must be contained in the domain of the second.</div>
+</div>
+<span class="incontext"><a href="sec-isomorphism.html#p-1203" class="internal">in-context</a></span>
 </body>
 </html>

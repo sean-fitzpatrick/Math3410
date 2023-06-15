@@ -21,7 +21,7 @@ window.MathJax = {
     tags: "none",
     tagSide: "right",
     tagIndent: ".8em",
-    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'newcommand', 'knowl']}
+    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'color', 'newcommand', 'knowl']}
   },
   options: {
     ignoreHtmlClass: "tex2jax_ignore|ignore-math",
@@ -41,23 +41,20 @@ window.MathJax = {
     },
   },
   chtml: {
-    scale: 0.88,
+    scale: 0.98,
     mtextInheritFont: true
   },
   loader: {
-    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
+    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/color', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
     paths: {pretext: "https://pretextbook.org/js/lib"},
   },
   startup: {
-    pageReady() {
-      return MathJax.startup.defaultPageReady().then(function () {
-      console.log("in ready function");
-      rsMathReady();
-      }
-    )}
-},
+    /* Mathjax typesetting operation is under the control of React */
+    typeset: false,
+  },
 };
-</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><script>// Make *any* pre with class 'sagecell-sage' an executable Sage cell
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link href="https://webwork-dev.uleth.ca/webwork2_files/js/apps/MathView/mathview.css" rel="stylesheet">
+<script src="https://pretextbook.org/js/0.3/pretext-webwork/2.17/pretext-webwork.js"></script><script src="https://webwork-dev.uleth.ca/webwork2_files/node_modules/iframe-resizer/js/iframeResizer.min.js"></script><script>// Make *any* pre with class 'sagecell-sage' an executable Sage cell
 // Their results will be linked, only within language type
 sagecell.makeSagecell({inputLocation: 'pre.sagecell-sage',
                        linked: true,
@@ -69,20 +66,15 @@ sagecell.makeSagecell({inputLocation: 'pre.sagecell-html',
                        linked: true,
                        languages: ['html'],
                        evalButtonText: 'Evaluate (HTML)'});
-</script><link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/themes/prism.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script><script src="https://unpkg.com/lunr/lunr.js"></script><script src="lunr-pretext-search-index.js"></script><script src="https://pretextbook.org/js/0.13/pretext_search.js"></script><link href="https://pretextbook.org/css/0.4/pretext_search.css" rel="stylesheet" type="text/css">
-<script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.13/pretext.js"></script><script>miniversion=0.674</script><script src="https://pretextbook.org/js/0.13/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
-</script><link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic" rel="stylesheet" type="text/css">
-<link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
-<script src="https://cdn.geogebra.org/apps/deployggb.js"></script><link href="https://pretextbook.org/css/0.4/pretext.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.4/pretext_add_on.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.4/banner_default.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.4/toc_default.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.4/knowls_default.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.4/style_default.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.4/colors_default.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.4/setcolors.css" rel="stylesheet" type="text/css">
-<!--** eBookCongig is necessary to configure interactive       **-->
+</script><script>js_version = 0.3</script><script type="module" defer src="https://siefkenj.github.io/pretext-react/static/js/main.js"></script><link href="https://siefkenj.github.io/pretext-react/static/css/main.css" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&amp;family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&amp;family=Tinos:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.cdnfonts.com/css/dejavu-serif" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz,wdth,wght@8..144,50..150,100..900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wdth,wght@75..100,300..800&amp;display=swap" rel="stylesheet">
+<script type="application/json" class="js-hypothesis-config">{
+    "openSidebar": false,    "showHighlights": true,}</script><script src="https://hypothes.is/embed.js" async=""></script><!--** eBookCongig is necessary to configure interactive       **-->
 <!--** Runestone components to run locally in reader's browser **-->
 <!--** No external communication:                              **-->
 <!--**     log level is 0, Runestone Services are disabled     **-->
@@ -104,18 +96,31 @@ eBookConfig.allow_pairs = false;
 eBookConfig.enableScratchAC = false;
 eBookConfig.build_info = "";
 eBookConfig.python3 = null;
-eBookConfig.runestone_version = '5.0.1';
+eBookConfig.runestone_version = '7.0.0dev3';
 eBookConfig.jobehost = '';
 eBookConfig.proxyuri_runs = '';
 eBookConfig.proxyuri_files = '';
 eBookConfig.enable_chatcodes =  false;
 </script>
 <!--*** Runestone Services ***-->
-<script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.3.19/runtime.e0db479b505f5577.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.3.19/637.d54be67956c5c660.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.3.19/runestone.d2c66bf8c215a984.bundle.js"></script><link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/6.3.19/637.0fa6cababf056764.css">
-<link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/6.3.19/runestone.93e720e6c6581fb5.css">
+<script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.0dev3/prefix-runtime.71ffd81c0faeb38b.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.0dev3/prefix-347.193e36c07abd0197.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.0dev3/prefix-runestone.e543e0dd19670ae2.bundle.js"></script><link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/7.0.0dev3/prefix-347.f9add1ca35d5ad93.css">
+<link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/7.0.0dev3/prefix-runestone.1f1f63d2cda36a4d.css">
 </head>
-<body id="linalg" class="pretext-book ignore-math has-toc has-sidebar-left standalone worksheet a4">
-<a class="assistive" href="#content">Skip to main content</a><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\spn}{\operatorname{span}}
+<body id="Math3410" data-react-in-use="yes" class="pretext book ignore-math standalone worksheet a4">
+<a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead"><div class="ptx-banner">
+<a id="logo-link" class="logo-link" href=""></a><div class="title-container">
+<h1 class="heading"><a href="linear-algebra.html"><span class="title">Linear Algebra:</span> <span class="subtitle">A second course, featuring proofs and Python</span></a></h1>
+<p class="byline">Sean Fitzpatrick</p>
+</div>
+<div id="searchresultsplaceholder" class="searchresultsplaceholder" style="display: none">
+<button id="closesearchresults" class="closesearchresults" onclick="document.getElementById('searchresultsplaceholder').style.display = 'none'; return false;">x</button><h2>Search Results: <span id="searchterms" class="searchterms"></span>
+</h2>
+<div id="searchempty" class="searchempty"><span>No results.</span></div>
+<ol id="searchresults" class="searchresults"></ol>
+</div>
+</div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><span class="treebuttons"><a class="previous-button button" href="worksheet-transformations.html" title="Previous"><span class="icon">&lt;</span><span class="name">Prev</span></a><a class="up-button button" href="ch-linear-trans.html" title="Up"><span class="icon">^</span><span class="name">Up</span></a><a class="next-button button" href="ch-orthogonality.html" title="Next"><span class="name">Next</span><span class="icon">&gt;</span></a></span><div class="searchbox"><div class="searchwidget">
+<input id="ptxsearch" class="ptxsearch" type="text" name="terms" placeholder="Search" onchange="doSearch()"><button id="searchbutton" class="searchbutton" type="button" onclick="doSearch()">🔍</button>
+</div></div></nav><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\require{boldsymbol}\newcommand{\spn}{\operatorname{span}}
 \newcommand{\bbm}{\begin{bmatrix}}
 \newcommand{\ebm}{\end{bmatrix}}
 \newcommand{\R}{\mathbb{R}}
@@ -152,164 +157,224 @@ eBookConfig.enable_chatcodes =  false;
 \definecolor{fillinmathshade}{gray}{0.9}
 \newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
 \)</span></div>
-<header id="masthead" class="smallbuttons"><div class="banner"><div class="container">
-<a id="logo-link" href=""></a><div class="title-container">
-<h1 class="heading"><a href="linear-algebra.html"><span class="title">Linear Algebra:</span> <span class="subtitle">A second course, featuring proofs and Python</span></a></h1>
-<p class="byline">Sean Fitzpatrick</p>
-</div>
-<div class="searchbox"><div class="searchwidget">
-<input id="ptxsearch" type="text" name="terms" placeholder="Search" onchange="doSearch()"><button id="searchbutton" type="button" onclick="doSearch()">🔍</button>
-</div></div>
-<div id="searchresultsplaceholder" style="display: none">
-<button id="closesearchresults" onclick="document.getElementById('searchresultsplaceholder').style.display = 'none'; return false;">x</button><h2>Search Results: <span id="searchterms"></span>
-</h2>
-<ol id="searchresults"></ol>
-</div>
-</div></div>
-<nav id="primary-navbar" class="navbar"><div class="container">
-<div class="navbar-top-buttons">
-<button class="sidebar-left-toggle-button button active" aria-label="Show or hide table of contents sidebar">Contents</button><div class="tree-nav toolbar toolbar-divisor-3">
-<button id="calculator-toggle" class="toolbar-item button toggle" title="Show calculator" aria-expanded="false" aria-controls="calculator-container">Calc</button><div id="calculator-container" class="calculator-container" style="display: none; z-index:100;"><div id="geogebra-calculator"></div></div>
-<script>
-var ggbApp = new GGBApplet({"appName": "graphing",
-    "width": 330,
-    "height": 600,
-    "showToolBar": true,
-    "showAlgebraInput": true,
-    "perspective": "G/A",
-    "algebraInputPosition": "bottom",
-    "scaleContainerClass": "calculator-container",
-    "allowUpscale": true,
-    "autoHeight": true,
-    "disableAutoScale": false},
-true);
-</script><span class="threebuttons"><a id="previousbutton" class="previous-button toolbar-item button" href="worksheet-transformations.html" title="Previous">Prev</a><a id="upbutton" class="up-button button toolbar-item" href="ch-linear-trans.html" title="Up">Up</a><a id="nextbutton" class="next-button button toolbar-item" href="ch-orthogonality.html" title="Next">Next</a></span>
-</div>
-</div>
-<div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
-<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="worksheet-transformations.html" title="Previous">Prev</a><a class="up-button button toolbar-item" href="ch-linear-trans.html" title="Up">Up</a><a class="next-button button toolbar-item" href="ch-orthogonality.html" title="Next">Next</a>
-</div>
-</div></nav></header><div class="page">
-<div id="sidebar-left" class="sidebar" role="navigation"><div class="sidebar-content">
-<nav id="toc"><ul>
-<li class="link frontmatter">
-<a href="frontmatter-1.html" data-scroll="frontmatter-1" class="internal"><span class="title">Front Matter</span></a><ul>
-<li><a href="colophon-1.html" data-scroll="colophon-1" class="internal">Colophon</a></li>
-<li><a href="preface-1.html" data-scroll="preface-1" class="internal">Preface</a></li>
+<div class="ptx-page">
+<div id="ptx-sidebar" class="ptx-sidebar"><nav id="ptx-toc" class="ptx-toc depth2"><ul class="structural">
+<li>
+<div class="toc-item"><a href="frontmatter-1.html" class="internal"><span class="title">Front Matter</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="colophon-1.html" class="internal"><span class="title">Colophon</span></a></div></li>
+<li><div class="toc-item"><a href="preface-1.html" class="internal"><span class="title">Preface</span></a></div></li>
 </ul>
 </li>
-<li class="link">
-<a href="ch-vector-space.html" data-scroll="ch-vector-space" class="internal"><span class="codenumber">1</span> <span class="title">Vector spaces</span></a><ul>
-<li><a href="sec-vec-sp.html" data-scroll="sec-vec-sp" class="internal">Definition and examples</a></li>
-<li><a href="sec-vsp-properties.html" data-scroll="sec-vsp-properties" class="internal">Properties</a></li>
-<li><a href="sec-subspace.html" data-scroll="sec-subspace" class="internal">Subspaces</a></li>
-<li><a href="sec-span.html" data-scroll="sec-span" class="internal">Span</a></li>
-<li><a href="worksheet-span.html" data-scroll="worksheet-span" class="internal">Worksheet: understanding span</a></li>
-<li><a href="sec-independence.html" data-scroll="sec-independence" class="internal">Linear Independence</a></li>
-<li><a href="sec-dimension.html" data-scroll="sec-dimension" class="internal">Basis and dimension</a></li>
-<li><a href="sec-subspace-combine.html" data-scroll="sec-subspace-combine" class="internal">New subspaces from old</a></li>
+<li>
+<div class="toc-item"><a href="ch-vector-space.html" class="internal"><span class="codenumber">1</span> <span class="title">Vector spaces</span></a></div>
+<ul class="structural">
+<li>
+<div class="toc-item"><a href="sec-vec-sp.html" class="internal"><span class="codenumber">1.1</span> <span class="title">Definition and examples</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="sec-vec-sp.html#exercises-1" class="internal"><span class="codenumber">1.1</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li><div class="toc-item"><a href="sec-vsp-properties.html" class="internal"><span class="codenumber">1.2</span> <span class="title">Properties</span></a></div></li>
+<li>
+<div class="toc-item"><a href="sec-subspace.html" class="internal"><span class="codenumber">1.3</span> <span class="title">Subspaces</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="sec-subspace.html#exercises-2" class="internal"><span class="codenumber">1.3</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li>
+<div class="toc-item"><a href="sec-span.html" class="internal"><span class="codenumber">1.4</span> <span class="title">Span</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="sec-span.html#exercises-3" class="internal"><span class="codenumber">1.4</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li><div class="toc-item"><a href="worksheet-span.html" class="internal"><span class="codenumber">1.5</span> <span class="title">Worksheet: understanding span</span></a></div></li>
+<li>
+<div class="toc-item"><a href="sec-independence.html" class="internal"><span class="codenumber">1.6</span> <span class="title">Linear Independence</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="sec-independence.html#exercises-4" class="internal"><span class="codenumber">1.6</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li>
+<div class="toc-item"><a href="sec-dimension.html" class="internal"><span class="codenumber">1.7</span> <span class="title">Basis and dimension</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="sec-dimension.html#exercises-5" class="internal"><span class="codenumber">1.7</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li>
+<div class="toc-item"><a href="sec-subspace-combine.html" class="internal"><span class="codenumber">1.8</span> <span class="title">New subspaces from old</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="sec-subspace-combine.html#exercises-6" class="internal"><span class="codenumber">1.8</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
 </ul>
 </li>
-<li class="link">
-<a href="ch-linear-trans.html" data-scroll="ch-linear-trans" class="internal"><span class="codenumber">2</span> <span class="title">Linear Transformations</span></a><ul>
-<li><a href="sec-lin-tran-intro.html" data-scroll="sec-lin-tran-intro" class="internal">Definition and examples</a></li>
-<li><a href="sec-kernel-image.html" data-scroll="sec-kernel-image" class="internal">Kernel and Image</a></li>
-<li><a href="sec-isomorphism.html" data-scroll="sec-isomorphism" class="internal">Isomorphisms, composition, and inverses</a></li>
-<li><a href="worksheet-transformations.html" data-scroll="worksheet-transformations" class="internal">Worksheet: matrix transformations</a></li>
-<li><a href="worksheet-recurrence.html" data-scroll="worksheet-recurrence" class="active">Worksheet: linear recurrences</a></li>
+<li>
+<div class="toc-item"><a href="ch-linear-trans.html" class="internal"><span class="codenumber">2</span> <span class="title">Linear Transformations</span></a></div>
+<ul class="structural">
+<li>
+<div class="toc-item"><a href="sec-lin-tran-intro.html" class="internal"><span class="codenumber">2.1</span> <span class="title">Definition and examples</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="sec-lin-tran-intro.html#exercises-7" class="internal"><span class="codenumber">2.1</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li>
+<div class="toc-item"><a href="sec-kernel-image.html" class="internal"><span class="codenumber">2.2</span> <span class="title">Kernel and Image</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="sec-kernel-image.html#exercises-8" class="internal"><span class="codenumber">2.2</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li>
+<div class="toc-item"><a href="sec-isomorphism.html" class="internal"><span class="codenumber">2.3</span> <span class="title">Isomorphisms, composition, and inverses</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="sec-isomorphism.html#subsec-isomorphism" class="internal"><span class="codenumber">2.3.1</span> <span class="title">Isomorphisms</span></a></div></li>
+<li>
+<div class="toc-item"><a href="sec-isomorphism.html#subsec-composition" class="internal"><span class="codenumber">2.3.2</span> <span class="title">Composition and inverses</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="sec-isomorphism.html#exercises-9" class="internal"><span class="codenumber">2.3.2</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
 </ul>
 </li>
-<li class="link">
-<a href="ch-orthogonality.html" data-scroll="ch-orthogonality" class="internal"><span class="codenumber">3</span> <span class="title">Orthogonality and Applications</span></a><ul>
-<li><a href="sec-orthogonal-sets.html" data-scroll="sec-orthogonal-sets" class="internal">Orthogonal sets of vectors</a></li>
-<li><a href="sec-gram-schmidt.html" data-scroll="sec-gram-schmidt" class="internal">The Gram-Schmidt Procedure</a></li>
-<li><a href="section-projection.html" data-scroll="section-projection" class="internal">Orthogonal Projection</a></li>
-<li><a href="worksheet-dual-basis.html" data-scroll="worksheet-dual-basis" class="internal">Worksheet: dual basis.</a></li>
-<li><a href="worksheet-least-squares.html" data-scroll="worksheet-least-squares" class="internal">Worksheet: Least squares approximation</a></li>
+<li><div class="toc-item"><a href="worksheet-transformations.html" class="internal"><span class="codenumber">2.4</span> <span class="title">Worksheet: matrix transformations</span></a></div></li>
+<li class="active"><div class="toc-item"><a href="worksheet-recurrence.html" class="internal"><span class="codenumber">2.5</span> <span class="title">Worksheet: linear recurrences</span></a></div></li>
 </ul>
 </li>
-<li class="link">
-<a href="ch-diagonalization.html" data-scroll="ch-diagonalization" class="internal"><span class="codenumber">4</span> <span class="title">Diagonalization</span></a><ul>
-<li><a href="sec-eigen-basics.html" data-scroll="sec-eigen-basics" class="internal">Eigenvalues and Eigenvectors</a></li>
-<li><a href="subsec-ortho-diag.html" data-scroll="subsec-ortho-diag" class="internal">Diagonalization of symmetric matrices</a></li>
-<li><a href="sec-quadratic.html" data-scroll="sec-quadratic" class="internal">Quadratic forms</a></li>
-<li><a href="sec-complex.html" data-scroll="sec-complex" class="internal">Diagonalization of complex matrices</a></li>
-<li><a href="worksheet-dynamical.html" data-scroll="worksheet-dynamical" class="internal">Worksheet: linear dynamical systems</a></li>
-<li><a href="section-matrix-factor.html" data-scroll="section-matrix-factor" class="internal">Matrix Factorizations and Eigenvalues</a></li>
-<li><a href="worksheet-svd.html" data-scroll="worksheet-svd" class="internal">Worksheet: Singular Value Decomposition</a></li>
+<li>
+<div class="toc-item"><a href="ch-orthogonality.html" class="internal"><span class="codenumber">3</span> <span class="title">Orthogonality and Applications</span></a></div>
+<ul class="structural">
+<li>
+<div class="toc-item"><a href="sec-orthogonal-sets.html" class="internal"><span class="codenumber">3.1</span> <span class="title">Orthogonal sets of vectors</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="sec-orthogonal-sets.html#subsec-dot-basics" class="internal"><span class="codenumber">3.1.1</span> <span class="title">Basic definitions and properties</span></a></div></li>
+<li><div class="toc-item"><a href="sec-orthogonal-sets.html#subsec-ortho-sets" class="internal"><span class="codenumber">3.1.2</span> <span class="title">Orthogonal sets of vectors</span></a></div></li>
+<li><div class="toc-item"><a href="sec-orthogonal-sets.html#exercises-10" class="internal"><span class="codenumber">3.1.3</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
-<li class="link">
-<a href="ch-change-basis.html" data-scroll="ch-change-basis" class="internal"><span class="codenumber">5</span> <span class="title">Change of Basis</span></a><ul>
-<li><a href="sec-matrix-of-transformation.html" data-scroll="sec-matrix-of-transformation" class="internal">The matrix of a linear transformation</a></li>
-<li><a href="sec-matrix-operator.html" data-scroll="sec-matrix-operator" class="internal">The matrix of a linear operator</a></li>
-<li><a href="sec-direct-sum.html" data-scroll="sec-direct-sum" class="internal">Direct Sums and Invariant Subspaces</a></li>
-<li><a href="worksheet-gen-eigen.html" data-scroll="worksheet-gen-eigen" class="internal">Worksheet: generalized eigenvectors</a></li>
-<li><a href="sec-gen-eigen.html" data-scroll="sec-gen-eigen" class="internal">Generalized eigenspaces</a></li>
-<li><a href="sec-jordan-form.html" data-scroll="sec-jordan-form" class="internal">Jordan Canonical Form</a></li>
+<li>
+<div class="toc-item"><a href="sec-gram-schmidt.html" class="internal"><span class="codenumber">3.2</span> <span class="title">The Gram-Schmidt Procedure</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="sec-gram-schmidt.html#exercises-11" class="internal"><span class="codenumber">3.2</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li>
+<div class="toc-item"><a href="section-projection.html" class="internal"><span class="codenumber">3.3</span> <span class="title">Orthogonal Projection</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="section-projection.html#exercises-12" class="internal"><span class="codenumber">3.3</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li><div class="toc-item"><a href="worksheet-dual-basis.html" class="internal"><span class="codenumber">3.4</span> <span class="title">Worksheet: dual basis.</span></a></div></li>
+<li><div class="toc-item"><a href="worksheet-least-squares.html" class="internal"><span class="codenumber">3.5</span> <span class="title">Worksheet: Least squares approximation</span></a></div></li>
 </ul>
 </li>
-<li class="link backmatter"><a href="backmatter-1.html" data-scroll="backmatter-1" class="internal"><span class="title">Back Matter</span></a></li>
-<li class="link"><a href="appendix-complex-review.html" data-scroll="appendix-complex-review" class="internal"><span class="codenumber">A</span> <span class="title">Review of complex numbers</span></a></li>
-<li class="link">
-<a href="ch-computation.html" data-scroll="ch-computation" class="internal"><span class="codenumber">B</span> <span class="title">Computational Tools</span></a><ul>
-<li><a href="section-jupyter.html" data-scroll="section-jupyter" class="internal">Jupyter</a></li>
-<li><a href="sec-python-basics.html" data-scroll="sec-python-basics" class="internal">Python basics</a></li>
-<li><a href="sec-sympy.html" data-scroll="sec-sympy" class="internal">SymPy for linear algebra</a></li>
+<li>
+<div class="toc-item"><a href="ch-diagonalization.html" class="internal"><span class="codenumber">4</span> <span class="title">Diagonalization</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="sec-eigen-basics.html" class="internal"><span class="codenumber">4.1</span> <span class="title">Eigenvalues and Eigenvectors</span></a></div></li>
+<li><div class="toc-item"><a href="subsec-ortho-diag.html" class="internal"><span class="codenumber">4.2</span> <span class="title">Diagonalization of symmetric matrices</span></a></div></li>
+<li><div class="toc-item"><a href="sec-quadratic.html" class="internal"><span class="codenumber">4.3</span> <span class="title">Quadratic forms</span></a></div></li>
+<li>
+<div class="toc-item"><a href="sec-complex.html" class="internal"><span class="codenumber">4.4</span> <span class="title">Diagonalization of complex matrices</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="sec-complex.html#subsec-complex-vector" class="internal"><span class="codenumber">4.4.1</span> <span class="title">Complex vectors</span></a></div></li>
+<li><div class="toc-item"><a href="sec-complex.html#subsec-complex-matrix" class="internal"><span class="codenumber">4.4.2</span> <span class="title">Complex matrices</span></a></div></li>
 </ul>
 </li>
-<li class="link"><a href="solutions-1.html" data-scroll="solutions-1" class="internal"><span class="codenumber">C</span> <span class="title">Solutions to Selected Exercises</span></a></li>
-</ul></nav><div class="extras"><nav><a class="pretext-link" href="https://pretextbook.org">Authored in PreTeXt</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a></nav></div>
-</div></div>
-<main class="main"><div id="content" class="pretext-content"><section class="worksheet" id="worksheet-recurrence"><h2 class="heading hide-type">
+<li><div class="toc-item"><a href="worksheet-dynamical.html" class="internal"><span class="codenumber">4.5</span> <span class="title">Worksheet: linear dynamical systems</span></a></div></li>
+<li>
+<div class="toc-item"><a href="section-matrix-factor.html" class="internal"><span class="codenumber">4.6</span> <span class="title">Matrix Factorizations and Eigenvalues</span></a></div>
+<ul class="structural">
+<li>
+<div class="toc-item"><a href="section-matrix-factor.html#subsec-matrix-factorization" class="internal"><span class="codenumber">4.6.1</span> <span class="title">Matrix Factorizations</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="section-matrix-factor.html#pars-positive-ops" class="internal"><span class="codenumber">4.6.1.1</span> <span class="title">Positive Operators</span></a></div></li>
+<li><div class="toc-item"><a href="section-matrix-factor.html#pars-singular-values" class="internal"><span class="codenumber">4.6.1.2</span> <span class="title">Singular Value Decomposition</span></a></div></li>
+<li><div class="toc-item"><a href="section-matrix-factor.html#pars-qr-factor" class="internal"><span class="codenumber">4.6.1.3</span> <span class="title">QR Factorization</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="section-matrix-factor.html#subsec-compute-eigen" class="internal"><span class="codenumber">4.6.2</span> <span class="title">Computing Eigenvalues</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="section-matrix-factor.html#pars-power-method" class="internal"><span class="codenumber">4.6.2.1</span> <span class="title">The Power Method</span></a></div></li>
+<li><div class="toc-item"><a href="section-matrix-factor.html#pars-qr-algorithm" class="internal"><span class="codenumber">4.6.2.2</span> <span class="title">The QR Algorithm</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><div class="toc-item"><a href="worksheet-svd.html" class="internal"><span class="codenumber">4.7</span> <span class="title">Worksheet: Singular Value Decomposition</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="ch-change-basis.html" class="internal"><span class="codenumber">5</span> <span class="title">Change of Basis</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="sec-matrix-of-transformation.html" class="internal"><span class="codenumber">5.1</span> <span class="title">The matrix of a linear transformation</span></a></div></li>
+<li><div class="toc-item"><a href="sec-matrix-operator.html" class="internal"><span class="codenumber">5.2</span> <span class="title">The matrix of a linear operator</span></a></div></li>
+<li>
+<div class="toc-item"><a href="sec-direct-sum.html" class="internal"><span class="codenumber">5.3</span> <span class="title">Direct Sums and Invariant Subspaces</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="sec-direct-sum.html#subsec-invariant" class="internal"><span class="codenumber">5.3.1</span> <span class="title">Invariant subspaces</span></a></div></li>
+<li><div class="toc-item"><a href="sec-direct-sum.html#subsec-eigenspace" class="internal"><span class="codenumber">5.3.2</span> <span class="title">Eigenspaces</span></a></div></li>
+<li><div class="toc-item"><a href="sec-direct-sum.html#subsec-direct-sum" class="internal"><span class="codenumber">5.3.3</span> <span class="title">Direct Sums</span></a></div></li>
+</ul>
+</li>
+<li><div class="toc-item"><a href="worksheet-gen-eigen.html" class="internal"><span class="codenumber">5.4</span> <span class="title">Worksheet: generalized eigenvectors</span></a></div></li>
+<li><div class="toc-item"><a href="sec-gen-eigen.html" class="internal"><span class="codenumber">5.5</span> <span class="title">Generalized eigenspaces</span></a></div></li>
+<li><div class="toc-item"><a href="sec-jordan-form.html" class="internal"><span class="codenumber">5.6</span> <span class="title">Jordan Canonical Form</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="backmatter-1.html" class="internal"><span class="title">Back Matter</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="appendix-complex-review.html" class="internal"><span class="codenumber">A</span> <span class="title">Review of complex numbers</span></a></div></li>
+<li>
+<div class="toc-item"><a href="ch-computation.html" class="internal"><span class="codenumber">B</span> <span class="title">Computational Tools</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="section-jupyter.html" class="internal"><span class="codenumber">B.1</span> <span class="title">Jupyter</span></a></div></li>
+<li><div class="toc-item"><a href="sec-python-basics.html" class="internal"><span class="codenumber">B.2</span> <span class="title">Python basics</span></a></div></li>
+<li>
+<div class="toc-item"><a href="sec-sympy.html" class="internal"><span class="codenumber">B.3</span> <span class="title">SymPy for linear algebra</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="sec-sympy.html#subsec-sympy-basics" class="internal"><span class="codenumber">B.3.1</span> <span class="title">SymPy basics</span></a></div></li>
+<li><div class="toc-item"><a href="sec-sympy.html#subsec-sympy-matrix" class="internal"><span class="codenumber">B.3.2</span> <span class="title">Matrices in SymPy</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><div class="toc-item"><a href="solutions-backmatter.html" class="internal"><span class="codenumber">C</span> <span class="title">Solutions to Selected Exercises</span></a></div></li>
+</ul>
+</li>
+</ul></nav></div>
+<main class="ptx-main"><div id="ptx-content" class="ptx-content">
+<button class="print-button" title="Print" onClick="window.print()"><span class="name">Print</span></button><section class="worksheet" id="worksheet-recurrence"><h2 class="heading hide-type">
 <span class="type">Worksheet</span> <span class="codenumber">2.5</span> <span class="title">Worksheet: linear recurrences</span><div class="print-links">
 <a href="worksheet-recurrence-a4.html" class="a4">A4</a><a href="worksheet-recurrence-letter.html" class="us">US</a>
 </div>
 </h2>
 <section class="onepage" id="page-8"><div class="introduction" id="introduction-18">
-<p id="p-789">In this worksheet, we will sketch some of the basic ideas related to linear recurrence. For further reading, and more information, the reader is directed to Section 7.5 of <em class="emphasis">Linear Algebra with Applications</em>, by Keith Nicholson.</p>
-<p id="p-790">A <em class="emphasis">linear recurrence</em> of length <span class="process-math">\(k\)</span> is a sequence <span class="process-math">\((x_n)\)</span> that is recursively defined, with successive terms in the sequence defined in terms of the previous <span class="process-math">\(k\)</span> terms, via a linear recursion formula of the form</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
+<div class="para" id="p-1276">In this worksheet, we will sketch some of the basic ideas related to linear recurrence. For further reading, and more information, the reader is directed to Section 7.5 of <em class="emphasis">Linear Algebra with Applications</em>, by Keith Nicholson.</div> <div class="para logical" id="p-1277">
+<div class="para">A <em class="emphasis">linear recurrence</em> of length <span class="process-math">\(k\)</span> is a sequence <span class="process-math">\((x_n)\)</span> that is recursively defined, with successive terms in the sequence defined in terms of the previous <span class="process-math">\(k\)</span> terms, via a linear recursion formula of the form</div>
+<div class="displaymath process-math">
 \begin{equation*}
 x_{n+k} = a_0x_k + a_1x_{k+1}+\cdots + a_{k-1}x_{n+k-1}\text{.}
 \end{equation*}
 </div>
-<p class="continuation">(Here we assume <span class="process-math">\(a_0\neq 0\)</span> to have the appropriate length.) The most famous example of a linear recurrence is, of course, the Fibonacci sequence, which is defined by <span class="process-math">\(x_0=1, x_1=1\text{,}\)</span> and <span class="process-math">\(x_{n+2}=x_n+x_{n+1}\)</span> for all <span class="process-math">\(n\geq 0\text{.}\)</span></p>
-<p id="p-791">Recall from <a href="" class="xref" data-knowl="./knowl/ex-vector-spaces.html" title="Example 1.1.3">Example 1.1.3</a> that the set of all sequences of real numbers <span class="process-math">\((x_n)=(x_0,x_1,x_2,\ldots)\)</span> is a vector space, denoted by <span class="process-math">\(\R^\infty\text{.}\)</span></p>
-<p id="p-792">The set of all sequences satisfying a linear recursion of length <span class="process-math">\(k\)</span> form a subspace <span class="process-math">\(V\)</span> of the vector space <span class="process-math">\(\mathbb{R}^\infty\)</span> of all real-valued sequences. (Can you prove this?) Since each sequence is determined by the <span class="process-math">\(k\)</span> initial conditions <span class="process-math">\(x_0, x_1, \ldots, x_{k-1}\text{,}\)</span> each such subspace <span class="process-math">\(V\)</span> is isomorphic to <span class="process-math">\(\mathbb{R}^k\text{.}\)</span></p>
-<p id="p-793">The goal of this worksheeet is to understand how to obtain <em class="emphasis">closed form</em> expressions for a recursively defined sequence using linear algebra. That is, rather than having to generate terms of the sequence one-by-one using the recursion formula, we want a function of <span class="process-math">\(n\)</span> that will produce each term <span class="process-math">\(x_n\)</span> in the sequence.</p>
-<p id="p-794">Since we know the dimension of the space <span class="process-math">\(V\)</span> of solutions, it suffices to understand two things:</p>
+<div class="para">(Here we assume <span class="process-math">\(a_0\neq 0\)</span> to have the appropriate length.) The most famous example of a linear recurrence is, of course, the Fibonacci sequence, which is defined by <span class="process-math">\(x_0=1, x_1=1\text{,}\)</span> and <span class="process-math">\(x_{n+2}=x_n+x_{n+1}\)</span> for all <span class="process-math">\(n\geq 0\text{.}\)</span>
+</div>
+</div> <div class="para" id="p-1278">Recall from <a href="" class="xref" data-knowl="./knowl/ex-vector-spaces.html" title="Example 1.1.3">Example 1.1.3</a> that the set of all sequences of real numbers <span class="process-math">\((x_n)=(x_0,x_1,x_2,\ldots)\)</span> is a vector space, denoted by <span class="process-math">\(\R^\infty\text{.}\)</span>
+</div> <div class="para" id="p-1279">The set of all sequences satisfying a linear recursion of length <span class="process-math">\(k\)</span> form a subspace <span class="process-math">\(V\)</span> of the vector space <span class="process-math">\(\mathbb{R}^\infty\)</span> of all real-valued sequences. (Can you prove this?) Since each sequence is determined by the <span class="process-math">\(k\)</span> initial conditions <span class="process-math">\(x_0, x_1, \ldots, x_{k-1}\text{,}\)</span> each such subspace <span class="process-math">\(V\)</span> is isomorphic to <span class="process-math">\(\mathbb{R}^k\text{.}\)</span>
+</div> <div class="para" id="p-1280">The goal of this worksheeet is to understand how to obtain <em class="emphasis">closed form</em> expressions for a recursively defined sequence using linear algebra. That is, rather than having to generate terms of the sequence one-by-one using the recursion formula, we want a function of <span class="process-math">\(n\)</span> that will produce each term <span class="process-math">\(x_n\)</span> in the sequence.</div> <div class="para logical" id="p-1281">
+<div class="para">Since we know the dimension of the space <span class="process-math">\(V\)</span> of solutions, it suffices to understand two things:</div>
 <ul class="disc">
-<li id="li-100"><p id="p-795">How to produce a basis for <span class="process-math">\(V\text{.}\)</span></p></li>
-<li id="li-101"><p id="p-796">How to write a given solution in terms of that basis.</p></li>
+<li id="li-273"><div class="para" id="p-1282">How to produce a basis for <span class="process-math">\(V\text{.}\)</span>
+</div></li>
+<li id="li-274"><div class="para" id="p-1283">How to write a given solution in terms of that basis.</div></li>
 </ul>
-<p id="p-797">Consider a geometric sequence, of the form <span class="process-math">\(x_n=c\lambda^n\text{.}\)</span> If this sequence satisfies the recursion</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
+</div> <div class="para logical" id="p-1284">
+<div class="para">Consider a geometric sequence, of the form <span class="process-math">\(x_n=c\lambda^n\text{.}\)</span> If this sequence satisfies the recursion</div>
+<div class="displaymath process-math">
 \begin{equation*}
 x_{n+k} = a_0x_n + a_1x_{n+1}+\cdots + a_{k-1}x_{n+k-1}\text{,}
 \end{equation*}
 </div>
-<p class="continuation">then (with <span class="process-math">\(n=0\)</span>)</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
+<div class="para">then (with <span class="process-math">\(n=0\)</span>)</div>
+<div class="displaymath process-math">
 \begin{equation*}
 c\lambda^k=a_0c+a_1c\lambda+\cdots+a_{k-1}\lambda^{k-1}\text{,}
 \end{equation*}
 </div>
-<p class="continuation">or <span class="process-math">\(c(\lambda^k-a_{k-1}\lambda^{k-1}-\cdots - a_1\lambda-a_0)=0\text{.}\)</span> That is, <span class="process-math">\(\lambda\)</span> is a root of the associated polynomial</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
+<div class="para">or <span class="process-math">\(c(\lambda^k-a_{k-1}\lambda^{k-1}-\cdots - a_1\lambda-a_0)=0\text{.}\)</span> That is, <span class="process-math">\(\lambda\)</span> is a root of the associated polynomial</div>
+<div class="displaymath process-math">
 \begin{equation*}
 p(x) = x^k - a_{k-1}x^{k-1}-\cdots -a_1x-a_0\text{.}
 \end{equation*}
 </div>
-<p id="p-798">Thus, if the associated polynomial <span class="process-math">\(p(x)\)</span> has roots <span class="process-math">\(\lambda_1,\ldots, \lambda_m\text{,}\)</span> we know that the sequences <span class="process-math">\((\lambda_1^n),\ldots, (\lambda_m^n)\)</span> satisfy our recursion. The remaining difficulty is what to do when <span class="process-math">\(p(x)\)</span> has repeated roots. We will not prove it here, but if <span class="process-math">\((x-\lambda)^r\)</span> is a factor of <span class="process-math">\(p(x)\text{,}\)</span> then the sequences <span class="process-math">\((\lambda^n),(n\lambda^n),\ldots, (n^{r-1}\lambda^n)\)</span> all satisfy the recursion.</p>
-<p id="p-799">If we can factor <span class="process-math">\(p(x)\)</span> completely over the reals as</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
+</div> <div class="para" id="p-1285">Thus, if the associated polynomial <span class="process-math">\(p(x)\)</span> has roots <span class="process-math">\(\lambda_1,\ldots, \lambda_m\text{,}\)</span> we know that the sequences <span class="process-math">\((\lambda_1^n),\ldots, (\lambda_m^n)\)</span> satisfy our recursion. The remaining difficulty is what to do when <span class="process-math">\(p(x)\)</span> has repeated roots. We will not prove it here, but if <span class="process-math">\((x-\lambda)^r\)</span> is a factor of <span class="process-math">\(p(x)\text{,}\)</span> then the sequences <span class="process-math">\((\lambda^n),(n\lambda^n),\ldots, (n^{r-1}\lambda^n)\)</span> all satisfy the recursion.</div> <div class="para logical" id="p-1286">
+<div class="para">If we can factor <span class="process-math">\(p(x)\)</span> completely over the reals as</div>
+<div class="displaymath process-math">
 \begin{equation*}
 p(x) = (x-\lambda_1)^{m_1}(x-\lambda_2)^{m_2}\cdots (x-\lambda_p)^{m_p}\text{,}
 \end{equation*}
 </div>
-<p class="continuation">then a basis for the space of solutions is given by</p>
-<div class="displaymath process-math" data-contains-math-knowls="" id="md-40">
+<div class="para">then a basis for the space of solutions is given by</div>
+<div class="displaymath process-math" id="md-40">
 \begin{align*}
 \left(\lambda_1^n\right), \amp \left(n\lambda_1^n\right),\ldots, \left(n^{m_1-1}\lambda_1^n\right)\\
 \left(\lambda_2^n\right), \amp \left(n\lambda_2^n\right),\ldots, \left(n^{m_2-1}\lambda_2^n\right)\\
@@ -317,68 +382,73 @@ p(x) = (x-\lambda_1)^{m_1}(x-\lambda_2)^{m_2}\cdots (x-\lambda_p)^{m_p}\text{,}
 \left(\lambda_p^n\right), \amp \left(n\lambda_p^n\right),\ldots, \left(n^{m_p-1}\lambda_p^n\right)\text{.}
 \end{align*}
 </div>
-<p id="p-800">Once we have a basis, we can apply the given coefficients to determine how to write a particular sequence as a linear combination of the basis vectors.</p>
-</div></section><section class="onepage" id="page-9"><article class="exercise exercise-like" id="exercise-61"><h3 class="heading"><span class="codenumber">1<span class="period">.</span></span></h3>
-<p id="p-801">Find a basis for the space <span class="process-math">\(V\)</span> of sequences <span class="process-math">\((x_n)\)</span> satisfying the recurrence</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
+</div> <div class="para" id="p-1287">Once we have a basis, we can apply the given coefficients to determine how to write a particular sequence as a linear combination of the basis vectors.</div>
+</div></section><section class="onepage" id="page-9"><article class="exercise exercise-like" id="exercise-107"><h3 class="heading"><span class="codenumber">1<span class="period">.</span></span></h3>
+<div class="para logical" id="p-1288">
+<div class="para">Find a basis for the space <span class="process-math">\(V\)</span> of sequences <span class="process-math">\((x_n)\)</span> satisfying the recurrence</div>
+<div class="displaymath process-math">
 \begin{equation*}
 x_{n+3}=-2x_n+x_{n+1}+2x_{n+2}\text{.}
 \end{equation*}
 </div>
-<p id="p-802">Then find a formula for the sequence satisfying the initial conditions <span class="process-math">\(x_0=3, x_1=-2, x_2=4\text{.}\)</span></p>
-<div class="workspace" data-space="3.75in"></div></article><p id="p-803">To solve this problem, you may use Python code, as outlined below. To get started, load the functions you'll need from the SymPy library.</p>
-<pre class="ptx-sagecell sagecell-sage" id="sage-36"><script type="text/x-sage">from sympy import symbols,factor,init_printing
+</div> <div class="para" id="p-1289">Then find a formula for the sequence satisfying the initial conditions <span class="process-math">\(x_0=3, x_1=-2, x_2=4\text{.}\)</span>
+</div>
+<div class="workspace" data-space="3.75in"></div></article> <div class="para" id="p-1290">To solve this problem, you may use Python code, as outlined below. To get started, load the functions you’ll need from the SymPy library.</div> <pre class="ptx-sagecell sagecell-sage" id="sage-36"><script type="text/x-sage">from sympy import symbols,factor,init_printing
 x = symbols('x')
 init_printing()
-</script></pre>
-<p id="p-804">First, determine the associated polynomial for the recurrence.</p>
-<p id="p-805">(Input your polynomial in the cell below. To get proper formatting, wrap your math in <code class="code-inline tex2jax_ignore">$</code> delimiters, and can use <code class="code-inline tex2jax_ignore">^</code> to enter exponents.)</p>
-<pre class="ptx-sagecell sagecell-html" id="sage-37"><script type="text/x-sage"></script></pre>
-<p id="p-806">Next, factor the polynomial. You can do this using the <code class="code-inline tex2jax_ignore">factor()</code> command. In Python, you will need to enter <code class="code-inline tex2jax_ignore">**</code> for the exponents.</p>
-<pre class="ptx-sagecell sagecell-sage" id="sage-38"><script type="text/x-sage"></script></pre></section><section class="onepage" id="page-10"><p id="p-807">In the cell below, list the roots of the polynomial, and the resulting basis <span class="process-math">\(B\)</span> for the space <span class="process-math">\(V\)</span> of solutions. Recall that if <span class="process-math">\(\lambda\)</span> is a root of the polynomial, then <span class="process-math">\((\lambda^n)\)</span> will be a basis vector for the vector space <span class="process-math">\(V\)</span> of solutions. You may wish to confirm that each of your basis sequences indeed satisfies our recursion.</p>
-<pre class="ptx-sagecell sagecell-html" id="sage-39"><script type="text/x-sage"></script></pre>
-<p id="p-808">Next, let <span class="process-math">\(s=(x_n)\)</span> be the recursion that satisfies the given initial conditions. We want to write <span class="process-math">\((x_n)\)</span> in terms of the basis we just found. Since our basis has three elements, there is an isomorphism <span class="process-math">\(T:\R^3\to V\text{,}\)</span> where <span class="process-math">\(T(a,b,c)\)</span> is equal to the sequence <span class="process-math">\((x_n)\)</span> in <span class="process-math">\(V\)</span> that satisfies the initial conditions <span class="process-math">\(x_0=a, x_1=b, x_2=c\text{.}\)</span> Thus, our desired sequence is given by <span class="process-math">\(s=T(1,2,1)\text{.}\)</span></p>
-<p id="p-809">Let <span class="process-math">\(\vv_1, \vv_2, \vv_3\in\R^3\)</span> be the vectors such that <span class="process-math">\(B=\{T(\vv_1), T(\vv_2), T(\vv_3)\}\text{.}\)</span> (That is, write out the first three terms in each sequence in your basis to get three vectors.) We then need to find scalars <span class="process-math">\(c_1,c_2,c_3\)</span> such that</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
+</script></pre> <div class="para" id="p-1291">First, determine the associated polynomial for the recurrence.</div> <div class="para" id="p-1292">(Input your polynomial in the cell below. To get proper formatting, wrap your math in <code class="code-inline tex2jax_ignore">$</code> delimiters, and can use <code class="code-inline tex2jax_ignore">^</code> to enter exponents.)</div> <pre class="ptx-sagecell sagecell-html" id="sage-37"><script type="text/x-sage"></script></pre> <div class="para" id="p-1293">Next, factor the polynomial. You can do this using the <code class="code-inline tex2jax_ignore">factor()</code> command. In Python, you will need to enter <code class="code-inline tex2jax_ignore">**</code> for the exponents.</div> <pre class="ptx-sagecell sagecell-sage" id="sage-38"><script type="text/x-sage"></script></pre></section><section class="onepage" id="page-10"><div class="para" id="p-1294">In the cell below, list the roots of the polynomial, and the resulting basis <span class="process-math">\(B\)</span> for the space <span class="process-math">\(V\)</span> of solutions. Recall that if <span class="process-math">\(\lambda\)</span> is a root of the polynomial, then <span class="process-math">\((\lambda^n)\)</span> will be a basis vector for the vector space <span class="process-math">\(V\)</span> of solutions. You may wish to confirm that each of your basis sequences indeed satisfies our recursion.</div> <pre class="ptx-sagecell sagecell-html" id="sage-39"><script type="text/x-sage"></script></pre> <div class="para" id="p-1295">Next, let <span class="process-math">\(s=(x_n)\)</span> be the recursion that satisfies the given initial conditions. We want to write <span class="process-math">\((x_n)\)</span> in terms of the basis we just found. Since our basis has three elements, there is an isomorphism <span class="process-math">\(T:\R^3\to V\text{,}\)</span> where <span class="process-math">\(T(a,b,c)\)</span> is equal to the sequence <span class="process-math">\((x_n)\)</span> in <span class="process-math">\(V\)</span> that satisfies the initial conditions <span class="process-math">\(x_0=a, x_1=b, x_2=c\text{.}\)</span> Thus, our desired sequence is given by <span class="process-math">\(s=T(1,2,1)\text{.}\)</span>
+</div> <div class="para logical" id="p-1296">
+<div class="para">Let <span class="process-math">\(\vv_1, \vv_2, \vv_3\in\R^3\)</span> be the vectors such that <span class="process-math">\(B=\{T(\vv_1), T(\vv_2), T(\vv_3)\}\text{.}\)</span> (That is, write out the first three terms in each sequence in your basis to get three vectors.) We then need to find scalars <span class="process-math">\(c_1,c_2,c_3\)</span> such that</div>
+<div class="displaymath process-math">
 \begin{equation*}
 c_1\vv_1+c_2\vv_2+c_3\vv_3=(1,2,1)\text{.}
 \end{equation*}
 </div>
-<p class="continuation">We will then have</p>
-<div class="displaymath process-math" data-contains-math-knowls="" id="md-41">
+<div class="para">We will then have</div>
+<div class="displaymath process-math" id="md-41">
 \begin{align*}
 s \amp = T(1,2,1)\\
 \amp = c_1T(\vv_1)+c_2T(\vv_2)+c_3T(\vv_3)\text{,}
 \end{align*}
 </div>
-<p class="continuation">and we recall that the sequences <span class="process-math">\(T(\vv_i)\)</span> are the sequences in our basis <span class="process-math">\(B\text{.}\)</span></p>
-<p id="p-810">Set up this system, and then use the computer to solve. Let <code class="code-inline tex2jax_ignore">A</code> be the coefficient matrix for the system, which you will need to input into the cell below, and let <code class="code-inline tex2jax_ignore">B</code> be the column vector containing the initial conditions.</p>
-<pre class="ptx-sagecell sagecell-sage" id="sage-40"><script type="text/x-sage">from sympy import Matrix
+<div class="para">and we recall that the sequences <span class="process-math">\(T(\vv_i)\)</span> are the sequences in our basis <span class="process-math">\(B\text{.}\)</span>
+</div>
+</div> <div class="para" id="p-1297">Set up this system, and then use the computer to solve. Let <code class="code-inline tex2jax_ignore">A</code> be the coefficient matrix for the system, which you will need to input into the cell below, and let <code class="code-inline tex2jax_ignore">B</code> be the column vector containing the initial conditions.</div> <pre class="ptx-sagecell sagecell-sage" id="sage-40"><script type="text/x-sage">from sympy import Matrix
 A = Matrix()
 B = Matrix((1,2,1])
 X = A**(-1)*B
 X
-</script></pre>
-<p id="p-811">Using the solution above, state the answer to this exercise.</p>
-<pre class="ptx-sagecell sagecell-html" id="sage-41"><script type="text/x-sage"></script></pre>
-<p id="p-812">Now, we leave you with a few more exercises. Recall that if the associated polynomial for your recursion has a repeated root <span class="process-math">\((x-\lambda)^k\text{,}\)</span> then your basis will include the sequences <span class="process-math">\((\lambda^n), (n\lambda^n), \ldots, (n^{k-1}\lambda^n)\text{.}\)</span></p></section><section class="onepage" id="page-11"><article class="exercise exercise-like" id="exercise-62"><h3 class="heading"><span class="codenumber">2<span class="period">.</span></span></h3>
-<p id="p-813">Find a basis for the space <span class="process-math">\(V\)</span> of sequences <span class="process-math">\((x_n)\)</span> satisfying the recurrence</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
+</script></pre> <div class="para" id="p-1298">Using the solution above, state the answer to this exercise.</div> <pre class="ptx-sagecell sagecell-html" id="sage-41"><script type="text/x-sage"></script></pre> <div class="para" id="p-1299">Now, we leave you with a few more exercises. Recall that if the associated polynomial for your recursion has a repeated root <span class="process-math">\((x-\lambda)^k\text{,}\)</span> then your basis will include the sequences <span class="process-math">\((\lambda^n), (n\lambda^n), \ldots, (n^{k-1}\lambda^n)\text{.}\)</span>
+</div></section><section class="onepage" id="page-11"><article class="exercise exercise-like" id="exercise-108"><h3 class="heading"><span class="codenumber">2<span class="period">.</span></span></h3>
+<div class="para logical" id="p-1300">
+<div class="para">Find a basis for the space <span class="process-math">\(V\)</span> of sequences <span class="process-math">\((x_n)\)</span> satisfying the recurrence</div>
+<div class="displaymath process-math">
 \begin{equation*}
 x_{n+3} = 8x_n-12x_{n+1}+6x_{n+2}\text{.}
 \end{equation*}
 </div>
-<p class="continuation">Then find a formula for the sequence satisfying the initial conditions <span class="process-math">\(x_0=2, x_1=-5, x_2=3\text{.}\)</span></p>
-<div class="workspace" data-space="3in"></div></article><pre class="ptx-sagecell sagecell-sage" id="sage-42"><script type="text/x-sage"></script></pre>
-<article class="exercise exercise-like" id="exercise-63"><h3 class="heading"><span class="codenumber">3<span class="period">.</span></span></h3>
-<p id="p-814">Find a basis for the space <span class="process-math">\(V\)</span> of sequences <span class="process-math">\((x_n)\)</span> satisfying the recurrence</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
+<div class="para">Then find a formula for the sequence satisfying the initial conditions <span class="process-math">\(x_0=2, x_1=-5, x_2=3\text{.}\)</span>
+</div>
+</div>
+<div class="workspace" data-space="3in"></div></article> <pre class="ptx-sagecell sagecell-sage" id="sage-42"><script type="text/x-sage"></script></pre> <article class="exercise exercise-like" id="exercise-109"><h3 class="heading"><span class="codenumber">3<span class="period">.</span></span></h3>
+<div class="para logical" id="p-1301">
+<div class="para">Find a basis for the space <span class="process-math">\(V\)</span> of sequences <span class="process-math">\((x_n)\)</span> satisfying the recurrence</div>
+<div class="displaymath process-math">
 \begin{equation*}
 x_{n+6} = 72x_n+12x_{n+1}-70x_{n+2}+5x_{n+3}+15x_{n+4}-x_{n+5}\text{.}
 \end{equation*}
 </div>
-<p class="continuation">Then find a formula for the sequence satisfying the initial conditions <span class="process-math">\(x_0=1, x_1=-2, x_2=1,x_3=2,x_4=-3,x_5=4,x_6=0\text{.}\)</span></p>
-<div class="workspace" data-space="3in"></div></article><pre class="ptx-sagecell sagecell-sage" id="sage-43"><script type="text/x-sage"></script></pre></section></section></div></main>
+<div class="para">Then find a formula for the sequence satisfying the initial conditions <span class="process-math">\(x_0=1, x_1=-2, x_2=1,x_3=2,x_4=-3,x_5=4,x_6=0\text{.}\)</span>
+</div>
+</div>
+<div class="workspace" data-space="3in"></div></article> <pre class="ptx-sagecell sagecell-sage" id="sage-43"><script type="text/x-sage"></script></pre></section></section>
+</div>
+<div class="ptx-content-footer">
+<a class="previous-button button" href="worksheet-transformations.html" title="Previous"><span class="icon">&lt;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon">^</span><span class="name">Top</span></a><a class="next-button button" href="ch-orthogonality.html" title="Next"><span class="name">Next</span><span class="icon">&gt;</span></a>
+</div></main>
+</div>
+<div id="ptx-page-footer" class="ptx-page-footer">
+<a class="pretext-link" href="https://pretextbook.org" title="PreTeXt"><div class="logo"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="338 3000 8772 6866"><g style="stroke-width:.025in; stroke:black; fill:none"><polyline points="472,3590 472,9732 " style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round; "></polyline><path style="stroke:#000000;stroke-width:126;stroke-linecap:butt;" d="M 4724,9448 A 4660 4660  0  0  1  8598  9259"></path><path style="stroke:#000000;stroke-width:174;stroke-linecap:butt;" d="M 4488,9685 A 4228 4228  0  0  0   472  9732"></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:butt;" d="M 4724,3590 A 4241 4241  0  0  1  8598  3496"></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:round;" d="M 850,3496  A 4241 4241  0  0  1  4724  3590"></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:round;" d="M 850,9259  A 4507 4507  0  0  1  4724  9448"></path><polyline points="5385,4299 4062,8125" style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8598,3496 8598,9259" style="stroke:#000000;stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="850,3496 850,9259" style="stroke:#000000;stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="4960,9685 4488,9685" style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="3070,4582 1889,6141 3070,7700" style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="6418,4582 7600,6141 6418,7700" style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8976,3590 8976,9732" style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><path style="stroke:#000000;stroke-width:174;stroke-linecap:butt;" d="M 4960,9685 A 4228 4228  0  0  1  8976  9732"></path></g></svg></div></a><a class="runestone-link" href="https://runestone.academy" title="Runestone Academy"><img class="logo" src="https://runestone.academy/runestone/static/images/RAIcon_cropped.png"></a><a class="mathjax-link" href="https://www.mathjax.org" title="MathJax"><img class="logo" src="https://www.mathjax.org/badge/badge-square-2.png"></a>
 </div>
 </body>
 </html>

@@ -11,14 +11,28 @@
 <meta name="robots" content="noindex, nofollow">
 </head>
 <body class="ignore-math">
-<h3 class="heading"><span class="type">Paragraph</span></h3>
-<p>Let <span class="process-math">\(\vv=\bbm a\\b\ebm\text{,}\)</span> and note that <span class="process-math">\(f(x)=a+bx = \bbm 1\amp x\ebm\vv\text{.}\)</span> Set <span class="process-math">\(\yy = \bbm y_1\\y_2\\\vdots\\y_n\ebm\)</span> and <span class="process-math">\(\mathbf{r}=\bbm r_1\\r_2\\\vdots\\r_n\ebm\text{.}\)</span> Then</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
+<h4 class="heading"><span class="type">Paragraph</span></h4>
+<div class="para logical">
+<div class="para">The trick is to realize that the reason we might have <span class="process-math">\(\xx\neq c_1\vv_1+\cdots +c_m\vv_m\)</span> is that we’re off by something in the kernel. Indeed, <a href="" class="xref" data-knowl="./knowl/eqn-almost-span.html" title="Equation 2.2.1">(2.2.1)</a> can be re-written as</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/eqn-almost-span.html">
 \begin{equation*}
-\mathbf{r}=\yy - A\vv\text{,}
+T(\xx-c_1\vv_1-\cdots -c_m\vv_m) = \zer\text{,}
 \end{equation*}
 </div>
-<p class="continuation">where <span class="process-math">\(A = \bbm 1\amp x_1\\1\amp x_2\\\vdots \amp \vdots \\1\amp x_n\ebm\text{.}\)</span> (Note that we are using <span class="process-math">\(\yy\)</span> to denote a different sort of vector than on the previous page.)</p>
-<span class="incontext"><a href="worksheet-least-squares.html#p-1042" class="internal">in-context</a></span>
+<div class="para">so <span class="process-math">\(\xx-c_1\vv_1-\cdots -c_m\vv_m\in\ker T\text{.}\)</span> But we have a basis for <span class="process-math">\(\ker T\text{,}\)</span> so we can write</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/eqn-almost-span.html">
+\begin{equation*}
+\xx-c_1\vv_1-\cdots -c_m\vv_m=t_1\uu_1+\cdots +t_n\uu_n
+\end{equation*}
+</div>
+<div class="para">for some scalars <span class="process-math">\(t_1,\ldots, t_n\text{,}\)</span> and this can be rearanged to give</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/eqn-almost-span.html">
+\begin{equation*}
+\xx=t_1\uu_1+\cdots +t_n\uu_n+c_1\vv_1+\cdots + c_m\vv_m\text{,}
+\end{equation*}
+</div>
+<div class="para">which completes the proof.</div>
+</div>
+<span class="incontext"><a href="sec-kernel-image.html#p-1042" class="internal">in-context</a></span>
 </body>
 </html>

@@ -10,43 +10,25 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="robots" content="noindex, nofollow">
 </head>
-<body class="ignore-math"><div class="solution solution-like">
-<p>It's clear that <span class="process-math">\(C_B(\zer)=\zer\text{,}\)</span> since the only way to write the zero vector in <span class="process-math">\(V\)</span> in terms of <span class="process-math">\(B\)</span> (or, indeed, any independent set) is to set all the scalars equal to zero.</p>
-<p>If we have two vectors <span class="process-math">\(\vv,\ww\)</span> given by</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{align*}
-\vv \amp = a_1\mathbf{e}_1+\cdots + a_n\mathbf{e}_n \\
-\ww \amp = b_1\mathbf{e}_1+\cdots + b_n\mathbf{e}_n\text{,}
-\end{align*}
-</div>
-<p class="continuation">then</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
+<body class="ignore-math"><div class="solution solution-like"><div class="para logical">
+<div class="para">Let <span class="process-math">\(\phi\in W^*\text{.}\)</span> We have</div>
+<div class="displaymath process-math">
 \begin{equation*}
-\vv+\ww = (a_1+b_1)\mathbf{e}_1+\cdots + (a_n+b_n)\mathbf{e}_n\text{,}
+(S+T)^*(\phi) = \phi\circ(S+T) = \phi\circ S+\phi\circ T = S^*\phi+T^*\phi\text{,}
 \end{equation*}
 </div>
-<p class="continuation">so</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{align*}
-C_B(\vv+\ww) \amp = \bbm a_1+b_1\\\vdots \\ a_n+b_n\ebm \\
-\amp = \bbm a_1\\\vdots\\a_n\ebm +\bbm b_1\\\vdots \\b_n\ebm\\
-\amp = C_B(\vv)+C_B(\ww)\text{.}
-\end{align*}
-</div>
-<p>Finally, for any scalar <span class="process-math">\(c\text{,}\)</span> we have</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{align*}
-C_B(c\vv) \amp = C_B((ca_1)\mathbf{e}_1+\cdots +(ca_n)\mathbf{e}_n)\\
-\amp = \bbm ca_1\\\vdots \\ca_n\ebm\\
-\amp =c\bbm a_1\\\vdots \\a_n\ebm\\
-\amp =cC_B(\vv)\text{.}
-\end{align*}
-</div>
-<p>This shows that <span class="process-math">\(C_B\)</span> is linear. To see that <span class="process-math">\(C_B\)</span> is an isomorphism, we can simply note that <span class="process-math">\(C_B\)</span> takes the basis <span class="process-math">\(B\)</span> to the standard basis of <span class="process-math">\(\R^n\text{.}\)</span> Alternatively, we can give the inverse: <span class="process-math">\(C_B^{-1}:\R^n\to V\)</span> is given by</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
+<div class="para">since <span class="process-math">\(\phi\)</span> is linear. Similarly,</div>
+<div class="displaymath process-math">
 \begin{equation*}
-C_B^{-1}\bbm c_1\\\vdots \\c_n\ebm = c_1\mathbf{e}_1+\cdots +c_n\mathbf{e}_n\text{.}
+(kS)^*(\phi) = \phi\circ (kS) = k(\phi\circ S) = k(S^*\phi)\text{.}
 \end{equation*}
 </div>
-</div></body>
+<div class="para">Finally, we have</div>
+<div class="displaymath process-math">
+\begin{equation*}
+(ST)^*\phi = \phi\circ(ST) = \phi\circ(S\circ T) = (\phi\circ S)\circ T = T^*(\phi\circ S) = T^*(S^*\phi) = (T^*S^*)(\phi),\text{.}
+\end{equation*}
+</div>
+<div class="para">since composition is associative.</div>
+</div></div></body>
 </html>

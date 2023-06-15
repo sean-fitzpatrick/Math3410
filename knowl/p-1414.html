@@ -12,26 +12,21 @@
 </head>
 <body class="ignore-math">
 <h4 class="heading"><span class="type">Paragraph</span></h4>
-<p>Let's confirm that this works. Suppose we have</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{align*}
-p(x) \amp = C_B^{-1}\bbm a\\b\\c\ebm = a(1-x)+b(x+3x^2)+c(2-x^2)\\
-\amp = (a+2c)+(-a+b)x+(3b-c)x^2\text{.}
-\end{align*}
-</div>
-<p class="continuation">Then <span class="process-math">\(T(p(x))=(a+2c)(1+x^2)+(4b+c)x\text{,}\)</span> and we find</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
+<div class="para logical">
+<div class="para">Let <span class="process-math">\(\{\vv_1,\vv_2,\ldots, \vv_m\}\)</span> be an orthogonal set of vectors in <span class="process-math">\(\R^n\text{,}\)</span> and let <span class="process-math">\(\xx\)</span> be any vector in <span class="process-math">\(\R^n\text{.}\)</span> Define the vector <span class="process-math">\(\vv_{m+1}\)</span> by</div>
+<div class="displaymath process-math">
 \begin{equation*}
-C_B(T(p(x))) = P^{-1}\bbm a+2c\\4b+c\\a+2c\ebm = \bbm \frac37 a-\frac{24}{7}b\\\frac37 a+\frac47 b+c\\\frac27 a+\frac{12}{7}b+c\ebm\text{.}
+\vv_{m+1} = \xx-\left(\frac{\xx\dotp\vv_1}{\len{\vv_1}^2}\vv_1+\cdots + \frac{\xx\dotp\vv_m}{\len{\vv_m}^2}\vv_m\right)\text{.}
 \end{equation*}
 </div>
-<p class="continuation">On the other hand,</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{equation*}
-M_B(T) = \bbm 3/7\amp -24/7\amp 0\\3/7\amp 4/7\amp 1\\2/7\amp 12/7\amp 1\ebm\bbm a\\b\\c\ebm = \bbm \frac37 a-\frac{24}{7}b\\\frac37 a+\frac47 b+c\\\frac27 a+\frac{12}{7}b+c\ebm\text{.}
-\end{equation*}
+<div class="para">Then:</div>
+<ol class="decimal">
+<li><div class="para">
+<span class="process-math">\(\vv_{m+1}\dotp \vv_i = 0\)</span> for each <span class="process-math">\(i=1,\ldots, m\text{.}\)</span>
+</div></li>
+<li><div class="para">If <span class="process-math">\(\xx\notin\spn\{\vv_1,\ldots, \vv_m\}\text{,}\)</span> then <span class="process-math">\(\vv_{m+1}\neq \zer\text{,}\)</span> and therefore, <span class="process-math">\(\{\vv_1,\ldots, \vv_m,\vv_{m+1}\}\)</span> is an orthogonal set.</div></li>
+</ol>
 </div>
-<p class="continuation">The results agree, but possibly leave us a little confused.</p>
-<span class="incontext"><a href="sec-matrix-operator.html#p-1414" class="internal">in-context</a></span>
+<span class="incontext"><a href="sec-gram-schmidt.html#p-1414" class="internal">in-context</a></span>
 </body>
 </html>

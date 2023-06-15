@@ -11,8 +11,22 @@
 <meta name="robots" content="noindex, nofollow">
 </head>
 <body class="ignore-math">
-<h3 class="heading"><span class="type">Paragraph</span></h3>
-<p>The basic principle for choosing a basis for each generalized eigenspace is as follows. We know that <span class="process-math">\(E_{\lambda}(T)\subseteq G_\lambda(T)\)</span> for each eigenvalue <span class="process-math">\(\lambda\text{.}\)</span> So we start with a basis for <span class="process-math">\(E_\lambda(T)\text{,}\)</span> by finding eigenvectors as usual. If <span class="process-math">\(\ker (T-\lambda I)^2 = \ker (T-\lambda I)\text{,}\)</span> then we're done: <span class="process-math">\(E_\lambda(T)=G_\lambda(T)\text{.}\)</span> Otherwise, we enlarge the basis for <span class="process-math">\(E_\lambda(T)\)</span> to a basis of <span class="process-math">\(\ker T(-\lambda I)^2\text{.}\)</span> If <span class="process-math">\(\ker T(-\lambda I)^3=\ker (T-\lambda I)^2\text{,}\)</span> then we're done, and <span class="process-math">\(G_\lambda(T) = \ker (T-\lambda I)^2\text{.}\)</span> If not, we enlarge our existing basis to a basis of <span class="process-math">\(\ker (T-\lambda I)^3\text{.}\)</span> We continue this process until we reach some power <span class="process-math">\(l\)</span> such that <span class="process-math">\(\ker (T-\lambda I)^l = \ker (T-\lambda I)^{l+1}\text{.}\)</span> (This is guaranteed to happen by <a href="" class="xref" data-knowl="./knowl/thm-nullspace-power.html" title="Theorem 5.5.1">Theorem 5.5.1</a>.) We then conclude that <span class="process-math">\(G_\lambda(T) = \ker (T-\lambda I)^l\text{.}\)</span></p>
-<span class="incontext"><a href="sec-jordan-form.html#p-1508" class="internal">in-context</a></span>
+<h4 class="heading"><span class="type">Paragraph</span></h4>
+<div class="para logical">
+<div class="para">Choose any <span class="process-math">\(\uu\in U\)</span> with <span class="process-math">\(\uu \neq \mathbf{p}\text{,}\)</span> and write</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/thm-pythagoras.html">
+\begin{equation*}
+\xx-\uu = (\xx-\mathbf{p})+(\mathbf{p}-\uu)\text{.}
+\end{equation*}
+</div>
+<div class="para">Since <span class="process-math">\(\mathbf{p}-\uu\in U\)</span> and <span class="process-math">\(\xx-\mathbf{p}\in U^\bot\text{,}\)</span> we know that these two vectors are orthogonal, and therefore,</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/thm-pythagoras.html">
+\begin{equation*}
+\len{\xx-\uu}^2=\len{\xx-\mathbf{p}}^2+\len{\mathbf{p}-\uu}^2\gt \len{\xx-\mathbf{p}}^2\text{,}
+\end{equation*}
+</div>
+<div class="para">by the <a href="" class="xref" data-knowl="./knowl/thm-pythagoras.html" title="Theorem 3.1.16: Pythagorean Theorem">Pythagorean Theorem</a>.</div>
+</div>
+<span class="incontext"><a href="section-projection.html#p-1508" class="internal">in-context</a></span>
 </body>
 </html>

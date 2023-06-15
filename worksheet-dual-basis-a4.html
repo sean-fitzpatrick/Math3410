@@ -21,7 +21,7 @@ window.MathJax = {
     tags: "none",
     tagSide: "right",
     tagIndent: ".8em",
-    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'newcommand', 'knowl']}
+    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'color', 'newcommand', 'knowl']}
   },
   options: {
     ignoreHtmlClass: "tex2jax_ignore|ignore-math",
@@ -41,36 +41,28 @@ window.MathJax = {
     },
   },
   chtml: {
-    scale: 0.88,
+    scale: 0.98,
     mtextInheritFont: true
   },
   loader: {
-    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
+    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/color', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
     paths: {pretext: "https://pretextbook.org/js/lib"},
   },
   startup: {
-    pageReady() {
-      return MathJax.startup.defaultPageReady().then(function () {
-      console.log("in ready function");
-      rsMathReady();
-      }
-    )}
-},
+    /* Mathjax typesetting operation is under the control of React */
+    typeset: false,
+  },
 };
-</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/themes/prism.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script><script src="https://unpkg.com/lunr/lunr.js"></script><script src="lunr-pretext-search-index.js"></script><script src="https://pretextbook.org/js/0.13/pretext_search.js"></script><link href="https://pretextbook.org/css/0.4/pretext_search.css" rel="stylesheet" type="text/css">
-<script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.13/pretext.js"></script><script>miniversion=0.674</script><script src="https://pretextbook.org/js/0.13/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
-</script><link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic" rel="stylesheet" type="text/css">
-<link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
-<script src="https://cdn.geogebra.org/apps/deployggb.js"></script><link href="https://pretextbook.org/css/0.4/pretext.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.4/pretext_add_on.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.4/banner_default.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.4/toc_default.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.4/knowls_default.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.4/style_default.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.4/colors_default.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.4/setcolors.css" rel="stylesheet" type="text/css">
-<!--** eBookCongig is necessary to configure interactive       **-->
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link href="https://webwork-dev.uleth.ca/webwork2_files/js/apps/MathView/mathview.css" rel="stylesheet">
+<script src="https://pretextbook.org/js/0.3/pretext-webwork/2.17/pretext-webwork.js"></script><script src="https://webwork-dev.uleth.ca/webwork2_files/node_modules/iframe-resizer/js/iframeResizer.min.js"></script><script>js_version = 0.3</script><script type="module" defer src="https://siefkenj.github.io/pretext-react/static/js/main.js"></script><link href="https://siefkenj.github.io/pretext-react/static/css/main.css" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&amp;family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&amp;family=Tinos:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.cdnfonts.com/css/dejavu-serif" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz,wdth,wght@8..144,50..150,100..900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wdth,wght@75..100,300..800&amp;display=swap" rel="stylesheet">
+<script type="application/json" class="js-hypothesis-config">{
+    "openSidebar": false,    "showHighlights": true,}</script><script src="https://hypothes.is/embed.js" async=""></script><!--** eBookCongig is necessary to configure interactive       **-->
 <!--** Runestone components to run locally in reader's browser **-->
 <!--** No external communication:                              **-->
 <!--**     log level is 0, Runestone Services are disabled     **-->
@@ -92,18 +84,31 @@ eBookConfig.allow_pairs = false;
 eBookConfig.enableScratchAC = false;
 eBookConfig.build_info = "";
 eBookConfig.python3 = null;
-eBookConfig.runestone_version = '5.0.1';
+eBookConfig.runestone_version = '7.0.0dev3';
 eBookConfig.jobehost = '';
 eBookConfig.proxyuri_runs = '';
 eBookConfig.proxyuri_files = '';
 eBookConfig.enable_chatcodes =  false;
 </script>
 <!--*** Runestone Services ***-->
-<script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.3.19/runtime.e0db479b505f5577.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.3.19/637.d54be67956c5c660.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.3.19/runestone.d2c66bf8c215a984.bundle.js"></script><link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/6.3.19/637.0fa6cababf056764.css">
-<link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/6.3.19/runestone.93e720e6c6581fb5.css">
+<script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.0dev3/prefix-runtime.71ffd81c0faeb38b.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.0dev3/prefix-347.193e36c07abd0197.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.0dev3/prefix-runestone.e543e0dd19670ae2.bundle.js"></script><link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/7.0.0dev3/prefix-347.f9add1ca35d5ad93.css">
+<link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/7.0.0dev3/prefix-runestone.1f1f63d2cda36a4d.css">
 </head>
-<body id="linalg" class="pretext-book ignore-math has-toc has-sidebar-left standalone worksheet a4">
-<a class="assistive" href="#content">Skip to main content</a><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\spn}{\operatorname{span}}
+<body id="Math3410" data-react-in-use="yes" class="pretext book ignore-math standalone worksheet a4">
+<a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead"><div class="ptx-banner">
+<a id="logo-link" class="logo-link" href=""></a><div class="title-container">
+<h1 class="heading"><a href="linear-algebra.html"><span class="title">Linear Algebra:</span> <span class="subtitle">A second course, featuring proofs and Python</span></a></h1>
+<p class="byline">Sean Fitzpatrick</p>
+</div>
+<div id="searchresultsplaceholder" class="searchresultsplaceholder" style="display: none">
+<button id="closesearchresults" class="closesearchresults" onclick="document.getElementById('searchresultsplaceholder').style.display = 'none'; return false;">x</button><h2>Search Results: <span id="searchterms" class="searchterms"></span>
+</h2>
+<div id="searchempty" class="searchempty"><span>No results.</span></div>
+<ol id="searchresults" class="searchresults"></ol>
+</div>
+</div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><span class="treebuttons"><a class="previous-button button" href="section-projection.html" title="Previous"><span class="icon">&lt;</span><span class="name">Prev</span></a><a class="up-button button" href="ch-orthogonality.html" title="Up"><span class="icon">^</span><span class="name">Up</span></a><a class="next-button button" href="worksheet-least-squares.html" title="Next"><span class="name">Next</span><span class="icon">&gt;</span></a></span><div class="searchbox"><div class="searchwidget">
+<input id="ptxsearch" class="ptxsearch" type="text" name="terms" placeholder="Search" onchange="doSearch()"><button id="searchbutton" class="searchbutton" type="button" onclick="doSearch()">🔍</button>
+</div></div></nav><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\require{boldsymbol}\newcommand{\spn}{\operatorname{span}}
 \newcommand{\bbm}{\begin{bmatrix}}
 \newcommand{\ebm}{\end{bmatrix}}
 \newcommand{\R}{\mathbb{R}}
@@ -140,222 +145,308 @@ eBookConfig.enable_chatcodes =  false;
 \definecolor{fillinmathshade}{gray}{0.9}
 \newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
 \)</span></div>
-<header id="masthead" class="smallbuttons"><div class="banner"><div class="container">
-<a id="logo-link" href=""></a><div class="title-container">
-<h1 class="heading"><a href="linear-algebra.html"><span class="title">Linear Algebra:</span> <span class="subtitle">A second course, featuring proofs and Python</span></a></h1>
-<p class="byline">Sean Fitzpatrick</p>
-</div>
-<div class="searchbox"><div class="searchwidget">
-<input id="ptxsearch" type="text" name="terms" placeholder="Search" onchange="doSearch()"><button id="searchbutton" type="button" onclick="doSearch()">🔍</button>
-</div></div>
-<div id="searchresultsplaceholder" style="display: none">
-<button id="closesearchresults" onclick="document.getElementById('searchresultsplaceholder').style.display = 'none'; return false;">x</button><h2>Search Results: <span id="searchterms"></span>
-</h2>
-<ol id="searchresults"></ol>
-</div>
-</div></div>
-<nav id="primary-navbar" class="navbar"><div class="container">
-<div class="navbar-top-buttons">
-<button class="sidebar-left-toggle-button button active" aria-label="Show or hide table of contents sidebar">Contents</button><div class="tree-nav toolbar toolbar-divisor-3">
-<button id="calculator-toggle" class="toolbar-item button toggle" title="Show calculator" aria-expanded="false" aria-controls="calculator-container">Calc</button><div id="calculator-container" class="calculator-container" style="display: none; z-index:100;"><div id="geogebra-calculator"></div></div>
-<script>
-var ggbApp = new GGBApplet({"appName": "graphing",
-    "width": 330,
-    "height": 600,
-    "showToolBar": true,
-    "showAlgebraInput": true,
-    "perspective": "G/A",
-    "algebraInputPosition": "bottom",
-    "scaleContainerClass": "calculator-container",
-    "allowUpscale": true,
-    "autoHeight": true,
-    "disableAutoScale": false},
-true);
-</script><span class="threebuttons"><a id="previousbutton" class="previous-button toolbar-item button" href="section-projection.html" title="Previous">Prev</a><a id="upbutton" class="up-button button toolbar-item" href="ch-orthogonality.html" title="Up">Up</a><a id="nextbutton" class="next-button button toolbar-item" href="worksheet-least-squares.html" title="Next">Next</a></span>
-</div>
-</div>
-<div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
-<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="section-projection.html" title="Previous">Prev</a><a class="up-button button toolbar-item" href="ch-orthogonality.html" title="Up">Up</a><a class="next-button button toolbar-item" href="worksheet-least-squares.html" title="Next">Next</a>
-</div>
-</div></nav></header><div class="page">
-<div id="sidebar-left" class="sidebar" role="navigation"><div class="sidebar-content">
-<nav id="toc"><ul>
-<li class="link frontmatter">
-<a href="frontmatter-1.html" data-scroll="frontmatter-1" class="internal"><span class="title">Front Matter</span></a><ul>
-<li><a href="colophon-1.html" data-scroll="colophon-1" class="internal">Colophon</a></li>
-<li><a href="preface-1.html" data-scroll="preface-1" class="internal">Preface</a></li>
+<div class="ptx-page">
+<div id="ptx-sidebar" class="ptx-sidebar"><nav id="ptx-toc" class="ptx-toc depth2"><ul class="structural">
+<li>
+<div class="toc-item"><a href="frontmatter-1.html" class="internal"><span class="title">Front Matter</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="colophon-1.html" class="internal"><span class="title">Colophon</span></a></div></li>
+<li><div class="toc-item"><a href="preface-1.html" class="internal"><span class="title">Preface</span></a></div></li>
 </ul>
 </li>
-<li class="link">
-<a href="ch-vector-space.html" data-scroll="ch-vector-space" class="internal"><span class="codenumber">1</span> <span class="title">Vector spaces</span></a><ul>
-<li><a href="sec-vec-sp.html" data-scroll="sec-vec-sp" class="internal">Definition and examples</a></li>
-<li><a href="sec-vsp-properties.html" data-scroll="sec-vsp-properties" class="internal">Properties</a></li>
-<li><a href="sec-subspace.html" data-scroll="sec-subspace" class="internal">Subspaces</a></li>
-<li><a href="sec-span.html" data-scroll="sec-span" class="internal">Span</a></li>
-<li><a href="worksheet-span.html" data-scroll="worksheet-span" class="internal">Worksheet: understanding span</a></li>
-<li><a href="sec-independence.html" data-scroll="sec-independence" class="internal">Linear Independence</a></li>
-<li><a href="sec-dimension.html" data-scroll="sec-dimension" class="internal">Basis and dimension</a></li>
-<li><a href="sec-subspace-combine.html" data-scroll="sec-subspace-combine" class="internal">New subspaces from old</a></li>
+<li>
+<div class="toc-item"><a href="ch-vector-space.html" class="internal"><span class="codenumber">1</span> <span class="title">Vector spaces</span></a></div>
+<ul class="structural">
+<li>
+<div class="toc-item"><a href="sec-vec-sp.html" class="internal"><span class="codenumber">1.1</span> <span class="title">Definition and examples</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="sec-vec-sp.html#exercises-1" class="internal"><span class="codenumber">1.1</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li><div class="toc-item"><a href="sec-vsp-properties.html" class="internal"><span class="codenumber">1.2</span> <span class="title">Properties</span></a></div></li>
+<li>
+<div class="toc-item"><a href="sec-subspace.html" class="internal"><span class="codenumber">1.3</span> <span class="title">Subspaces</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="sec-subspace.html#exercises-2" class="internal"><span class="codenumber">1.3</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li>
+<div class="toc-item"><a href="sec-span.html" class="internal"><span class="codenumber">1.4</span> <span class="title">Span</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="sec-span.html#exercises-3" class="internal"><span class="codenumber">1.4</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li><div class="toc-item"><a href="worksheet-span.html" class="internal"><span class="codenumber">1.5</span> <span class="title">Worksheet: understanding span</span></a></div></li>
+<li>
+<div class="toc-item"><a href="sec-independence.html" class="internal"><span class="codenumber">1.6</span> <span class="title">Linear Independence</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="sec-independence.html#exercises-4" class="internal"><span class="codenumber">1.6</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li>
+<div class="toc-item"><a href="sec-dimension.html" class="internal"><span class="codenumber">1.7</span> <span class="title">Basis and dimension</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="sec-dimension.html#exercises-5" class="internal"><span class="codenumber">1.7</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li>
+<div class="toc-item"><a href="sec-subspace-combine.html" class="internal"><span class="codenumber">1.8</span> <span class="title">New subspaces from old</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="sec-subspace-combine.html#exercises-6" class="internal"><span class="codenumber">1.8</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
 </ul>
 </li>
-<li class="link">
-<a href="ch-linear-trans.html" data-scroll="ch-linear-trans" class="internal"><span class="codenumber">2</span> <span class="title">Linear Transformations</span></a><ul>
-<li><a href="sec-lin-tran-intro.html" data-scroll="sec-lin-tran-intro" class="internal">Definition and examples</a></li>
-<li><a href="sec-kernel-image.html" data-scroll="sec-kernel-image" class="internal">Kernel and Image</a></li>
-<li><a href="sec-isomorphism.html" data-scroll="sec-isomorphism" class="internal">Isomorphisms, composition, and inverses</a></li>
-<li><a href="worksheet-transformations.html" data-scroll="worksheet-transformations" class="internal">Worksheet: matrix transformations</a></li>
-<li><a href="worksheet-recurrence.html" data-scroll="worksheet-recurrence" class="internal">Worksheet: linear recurrences</a></li>
+<li>
+<div class="toc-item"><a href="ch-linear-trans.html" class="internal"><span class="codenumber">2</span> <span class="title">Linear Transformations</span></a></div>
+<ul class="structural">
+<li>
+<div class="toc-item"><a href="sec-lin-tran-intro.html" class="internal"><span class="codenumber">2.1</span> <span class="title">Definition and examples</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="sec-lin-tran-intro.html#exercises-7" class="internal"><span class="codenumber">2.1</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li>
+<div class="toc-item"><a href="sec-kernel-image.html" class="internal"><span class="codenumber">2.2</span> <span class="title">Kernel and Image</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="sec-kernel-image.html#exercises-8" class="internal"><span class="codenumber">2.2</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li>
+<div class="toc-item"><a href="sec-isomorphism.html" class="internal"><span class="codenumber">2.3</span> <span class="title">Isomorphisms, composition, and inverses</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="sec-isomorphism.html#subsec-isomorphism" class="internal"><span class="codenumber">2.3.1</span> <span class="title">Isomorphisms</span></a></div></li>
+<li>
+<div class="toc-item"><a href="sec-isomorphism.html#subsec-composition" class="internal"><span class="codenumber">2.3.2</span> <span class="title">Composition and inverses</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="sec-isomorphism.html#exercises-9" class="internal"><span class="codenumber">2.3.2</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
 </ul>
 </li>
-<li class="link">
-<a href="ch-orthogonality.html" data-scroll="ch-orthogonality" class="internal"><span class="codenumber">3</span> <span class="title">Orthogonality and Applications</span></a><ul>
-<li><a href="sec-orthogonal-sets.html" data-scroll="sec-orthogonal-sets" class="internal">Orthogonal sets of vectors</a></li>
-<li><a href="sec-gram-schmidt.html" data-scroll="sec-gram-schmidt" class="internal">The Gram-Schmidt Procedure</a></li>
-<li><a href="section-projection.html" data-scroll="section-projection" class="internal">Orthogonal Projection</a></li>
-<li><a href="worksheet-dual-basis.html" data-scroll="worksheet-dual-basis" class="active">Worksheet: dual basis.</a></li>
-<li><a href="worksheet-least-squares.html" data-scroll="worksheet-least-squares" class="internal">Worksheet: Least squares approximation</a></li>
+<li><div class="toc-item"><a href="worksheet-transformations.html" class="internal"><span class="codenumber">2.4</span> <span class="title">Worksheet: matrix transformations</span></a></div></li>
+<li><div class="toc-item"><a href="worksheet-recurrence.html" class="internal"><span class="codenumber">2.5</span> <span class="title">Worksheet: linear recurrences</span></a></div></li>
 </ul>
 </li>
-<li class="link">
-<a href="ch-diagonalization.html" data-scroll="ch-diagonalization" class="internal"><span class="codenumber">4</span> <span class="title">Diagonalization</span></a><ul>
-<li><a href="sec-eigen-basics.html" data-scroll="sec-eigen-basics" class="internal">Eigenvalues and Eigenvectors</a></li>
-<li><a href="subsec-ortho-diag.html" data-scroll="subsec-ortho-diag" class="internal">Diagonalization of symmetric matrices</a></li>
-<li><a href="sec-quadratic.html" data-scroll="sec-quadratic" class="internal">Quadratic forms</a></li>
-<li><a href="sec-complex.html" data-scroll="sec-complex" class="internal">Diagonalization of complex matrices</a></li>
-<li><a href="worksheet-dynamical.html" data-scroll="worksheet-dynamical" class="internal">Worksheet: linear dynamical systems</a></li>
-<li><a href="section-matrix-factor.html" data-scroll="section-matrix-factor" class="internal">Matrix Factorizations and Eigenvalues</a></li>
-<li><a href="worksheet-svd.html" data-scroll="worksheet-svd" class="internal">Worksheet: Singular Value Decomposition</a></li>
+<li>
+<div class="toc-item"><a href="ch-orthogonality.html" class="internal"><span class="codenumber">3</span> <span class="title">Orthogonality and Applications</span></a></div>
+<ul class="structural">
+<li>
+<div class="toc-item"><a href="sec-orthogonal-sets.html" class="internal"><span class="codenumber">3.1</span> <span class="title">Orthogonal sets of vectors</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="sec-orthogonal-sets.html#subsec-dot-basics" class="internal"><span class="codenumber">3.1.1</span> <span class="title">Basic definitions and properties</span></a></div></li>
+<li><div class="toc-item"><a href="sec-orthogonal-sets.html#subsec-ortho-sets" class="internal"><span class="codenumber">3.1.2</span> <span class="title">Orthogonal sets of vectors</span></a></div></li>
+<li><div class="toc-item"><a href="sec-orthogonal-sets.html#exercises-10" class="internal"><span class="codenumber">3.1.3</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
-<li class="link">
-<a href="ch-change-basis.html" data-scroll="ch-change-basis" class="internal"><span class="codenumber">5</span> <span class="title">Change of Basis</span></a><ul>
-<li><a href="sec-matrix-of-transformation.html" data-scroll="sec-matrix-of-transformation" class="internal">The matrix of a linear transformation</a></li>
-<li><a href="sec-matrix-operator.html" data-scroll="sec-matrix-operator" class="internal">The matrix of a linear operator</a></li>
-<li><a href="sec-direct-sum.html" data-scroll="sec-direct-sum" class="internal">Direct Sums and Invariant Subspaces</a></li>
-<li><a href="worksheet-gen-eigen.html" data-scroll="worksheet-gen-eigen" class="internal">Worksheet: generalized eigenvectors</a></li>
-<li><a href="sec-gen-eigen.html" data-scroll="sec-gen-eigen" class="internal">Generalized eigenspaces</a></li>
-<li><a href="sec-jordan-form.html" data-scroll="sec-jordan-form" class="internal">Jordan Canonical Form</a></li>
+<li>
+<div class="toc-item"><a href="sec-gram-schmidt.html" class="internal"><span class="codenumber">3.2</span> <span class="title">The Gram-Schmidt Procedure</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="sec-gram-schmidt.html#exercises-11" class="internal"><span class="codenumber">3.2</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li>
+<div class="toc-item"><a href="section-projection.html" class="internal"><span class="codenumber">3.3</span> <span class="title">Orthogonal Projection</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="section-projection.html#exercises-12" class="internal"><span class="codenumber">3.3</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li class="active"><div class="toc-item"><a href="worksheet-dual-basis.html" class="internal"><span class="codenumber">3.4</span> <span class="title">Worksheet: dual basis.</span></a></div></li>
+<li><div class="toc-item"><a href="worksheet-least-squares.html" class="internal"><span class="codenumber">3.5</span> <span class="title">Worksheet: Least squares approximation</span></a></div></li>
 </ul>
 </li>
-<li class="link backmatter"><a href="backmatter-1.html" data-scroll="backmatter-1" class="internal"><span class="title">Back Matter</span></a></li>
-<li class="link"><a href="appendix-complex-review.html" data-scroll="appendix-complex-review" class="internal"><span class="codenumber">A</span> <span class="title">Review of complex numbers</span></a></li>
-<li class="link">
-<a href="ch-computation.html" data-scroll="ch-computation" class="internal"><span class="codenumber">B</span> <span class="title">Computational Tools</span></a><ul>
-<li><a href="section-jupyter.html" data-scroll="section-jupyter" class="internal">Jupyter</a></li>
-<li><a href="sec-python-basics.html" data-scroll="sec-python-basics" class="internal">Python basics</a></li>
-<li><a href="sec-sympy.html" data-scroll="sec-sympy" class="internal">SymPy for linear algebra</a></li>
+<li>
+<div class="toc-item"><a href="ch-diagonalization.html" class="internal"><span class="codenumber">4</span> <span class="title">Diagonalization</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="sec-eigen-basics.html" class="internal"><span class="codenumber">4.1</span> <span class="title">Eigenvalues and Eigenvectors</span></a></div></li>
+<li><div class="toc-item"><a href="subsec-ortho-diag.html" class="internal"><span class="codenumber">4.2</span> <span class="title">Diagonalization of symmetric matrices</span></a></div></li>
+<li><div class="toc-item"><a href="sec-quadratic.html" class="internal"><span class="codenumber">4.3</span> <span class="title">Quadratic forms</span></a></div></li>
+<li>
+<div class="toc-item"><a href="sec-complex.html" class="internal"><span class="codenumber">4.4</span> <span class="title">Diagonalization of complex matrices</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="sec-complex.html#subsec-complex-vector" class="internal"><span class="codenumber">4.4.1</span> <span class="title">Complex vectors</span></a></div></li>
+<li><div class="toc-item"><a href="sec-complex.html#subsec-complex-matrix" class="internal"><span class="codenumber">4.4.2</span> <span class="title">Complex matrices</span></a></div></li>
 </ul>
 </li>
-<li class="link"><a href="solutions-1.html" data-scroll="solutions-1" class="internal"><span class="codenumber">C</span> <span class="title">Solutions to Selected Exercises</span></a></li>
-</ul></nav><div class="extras"><nav><a class="pretext-link" href="https://pretextbook.org">Authored in PreTeXt</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a></nav></div>
-</div></div>
-<main class="main"><div id="content" class="pretext-content"><section class="worksheet" id="worksheet-dual-basis"><h2 class="heading hide-type">
+<li><div class="toc-item"><a href="worksheet-dynamical.html" class="internal"><span class="codenumber">4.5</span> <span class="title">Worksheet: linear dynamical systems</span></a></div></li>
+<li>
+<div class="toc-item"><a href="section-matrix-factor.html" class="internal"><span class="codenumber">4.6</span> <span class="title">Matrix Factorizations and Eigenvalues</span></a></div>
+<ul class="structural">
+<li>
+<div class="toc-item"><a href="section-matrix-factor.html#subsec-matrix-factorization" class="internal"><span class="codenumber">4.6.1</span> <span class="title">Matrix Factorizations</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="section-matrix-factor.html#pars-positive-ops" class="internal"><span class="codenumber">4.6.1.1</span> <span class="title">Positive Operators</span></a></div></li>
+<li><div class="toc-item"><a href="section-matrix-factor.html#pars-singular-values" class="internal"><span class="codenumber">4.6.1.2</span> <span class="title">Singular Value Decomposition</span></a></div></li>
+<li><div class="toc-item"><a href="section-matrix-factor.html#pars-qr-factor" class="internal"><span class="codenumber">4.6.1.3</span> <span class="title">QR Factorization</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="section-matrix-factor.html#subsec-compute-eigen" class="internal"><span class="codenumber">4.6.2</span> <span class="title">Computing Eigenvalues</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="section-matrix-factor.html#pars-power-method" class="internal"><span class="codenumber">4.6.2.1</span> <span class="title">The Power Method</span></a></div></li>
+<li><div class="toc-item"><a href="section-matrix-factor.html#pars-qr-algorithm" class="internal"><span class="codenumber">4.6.2.2</span> <span class="title">The QR Algorithm</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><div class="toc-item"><a href="worksheet-svd.html" class="internal"><span class="codenumber">4.7</span> <span class="title">Worksheet: Singular Value Decomposition</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="ch-change-basis.html" class="internal"><span class="codenumber">5</span> <span class="title">Change of Basis</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="sec-matrix-of-transformation.html" class="internal"><span class="codenumber">5.1</span> <span class="title">The matrix of a linear transformation</span></a></div></li>
+<li><div class="toc-item"><a href="sec-matrix-operator.html" class="internal"><span class="codenumber">5.2</span> <span class="title">The matrix of a linear operator</span></a></div></li>
+<li>
+<div class="toc-item"><a href="sec-direct-sum.html" class="internal"><span class="codenumber">5.3</span> <span class="title">Direct Sums and Invariant Subspaces</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="sec-direct-sum.html#subsec-invariant" class="internal"><span class="codenumber">5.3.1</span> <span class="title">Invariant subspaces</span></a></div></li>
+<li><div class="toc-item"><a href="sec-direct-sum.html#subsec-eigenspace" class="internal"><span class="codenumber">5.3.2</span> <span class="title">Eigenspaces</span></a></div></li>
+<li><div class="toc-item"><a href="sec-direct-sum.html#subsec-direct-sum" class="internal"><span class="codenumber">5.3.3</span> <span class="title">Direct Sums</span></a></div></li>
+</ul>
+</li>
+<li><div class="toc-item"><a href="worksheet-gen-eigen.html" class="internal"><span class="codenumber">5.4</span> <span class="title">Worksheet: generalized eigenvectors</span></a></div></li>
+<li><div class="toc-item"><a href="sec-gen-eigen.html" class="internal"><span class="codenumber">5.5</span> <span class="title">Generalized eigenspaces</span></a></div></li>
+<li><div class="toc-item"><a href="sec-jordan-form.html" class="internal"><span class="codenumber">5.6</span> <span class="title">Jordan Canonical Form</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="backmatter-1.html" class="internal"><span class="title">Back Matter</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="appendix-complex-review.html" class="internal"><span class="codenumber">A</span> <span class="title">Review of complex numbers</span></a></div></li>
+<li>
+<div class="toc-item"><a href="ch-computation.html" class="internal"><span class="codenumber">B</span> <span class="title">Computational Tools</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="section-jupyter.html" class="internal"><span class="codenumber">B.1</span> <span class="title">Jupyter</span></a></div></li>
+<li><div class="toc-item"><a href="sec-python-basics.html" class="internal"><span class="codenumber">B.2</span> <span class="title">Python basics</span></a></div></li>
+<li>
+<div class="toc-item"><a href="sec-sympy.html" class="internal"><span class="codenumber">B.3</span> <span class="title">SymPy for linear algebra</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="sec-sympy.html#subsec-sympy-basics" class="internal"><span class="codenumber">B.3.1</span> <span class="title">SymPy basics</span></a></div></li>
+<li><div class="toc-item"><a href="sec-sympy.html#subsec-sympy-matrix" class="internal"><span class="codenumber">B.3.2</span> <span class="title">Matrices in SymPy</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><div class="toc-item"><a href="solutions-backmatter.html" class="internal"><span class="codenumber">C</span> <span class="title">Solutions to Selected Exercises</span></a></div></li>
+</ul>
+</li>
+</ul></nav></div>
+<main class="ptx-main"><div id="ptx-content" class="ptx-content">
+<button class="print-button" title="Print" onClick="window.print()"><span class="name">Print</span></button><section class="worksheet" id="worksheet-dual-basis"><h2 class="heading hide-type">
 <span class="type">Worksheet</span> <span class="codenumber">3.4</span> <span class="title">Worksheet: dual basis.</span><div class="print-links">
 <a href="worksheet-dual-basis-a4.html" class="a4">A4</a><a href="worksheet-dual-basis-letter.html" class="us">US</a>
 </div>
 </h2>
 <section class="onepage" id="page-12"><div class="introduction" id="introduction-20">
-<p id="p-975">Let <span class="process-math">\(V\)</span> be a vector space over <span class="process-math">\(\R\text{.}\)</span> (That is, scalars are real numbers, rather than, say, complex.) A linear transformation <span class="process-math">\(\phi:V\to \R\)</span> is called a <dfn class="terminology">linear functional</dfn>.</p>
-<p id="p-976">Here are some examples of linear functionals:</p>
+<div class="para" id="p-1548">Let <span class="process-math">\(V\)</span> be a vector space over <span class="process-math">\(\R\text{.}\)</span> (That is, scalars are real numbers, rather than, say, complex.) A linear transformation <span class="process-math">\(\phi:V\to \R\)</span> is called a <dfn class="terminology">linear functional</dfn>.</div> <div class="para logical" id="p-1549">
+<div class="para">Here are some examples of linear functionals:</div>
 <ul class="disc">
-<li id="li-122"><p id="p-977">The map <span class="process-math">\(\phi:\R^3\to \R\)</span> given by <span class="process-math">\(\phi(x,y,z) = 3x-2y+5z\text{.}\)</span></p></li>
-<li id="li-123"><p id="p-978">The evaluation map <span class="process-math">\(ev_a:P_n(\R)\to \R\)</span> given by <span class="process-math">\(ev_a(p) = p(a)\text{.}\)</span> (For example, <span class="process-math">\(ev_2(3-4x+5x^2) = 2-4(2)+5(2^2) = 14\text{.}\)</span>)</p></li>
-<li id="li-124"><p id="p-979">The map <span class="process-math">\(\phi:\mathcal{C}[a,b]\to \R\)</span> given by <span class="process-math">\(\phi(f) = \int_a^b f(x)\,dx\text{,}\)</span> where <span class="process-math">\(\mathcal{C}[a,b]\)</span> denotes the space of all continuous functions on <span class="process-math">\([a,b]\text{.}\)</span></p></li>
+<li id="li-295"><div class="para" id="p-1550">The map <span class="process-math">\(\phi:\R^3\to \R\)</span> given by <span class="process-math">\(\phi(x,y,z) = 3x-2y+5z\text{.}\)</span>
+</div></li>
+<li id="li-296"><div class="para" id="p-1551">The evaluation map <span class="process-math">\(ev_a:P_n(\R)\to \R\)</span> given by <span class="process-math">\(ev_a(p) = p(a)\text{.}\)</span> (For example, <span class="process-math">\(ev_2(3-4x+5x^2) = 2-4(2)+5(2^2) = 14\text{.}\)</span>)</div></li>
+<li id="li-297"><div class="para" id="p-1552">The map <span class="process-math">\(\phi:\mathcal{C}[a,b]\to \R\)</span> given by <span class="process-math">\(\phi(f) = \int_a^b f(x)\,dx\text{,}\)</span> where <span class="process-math">\(\mathcal{C}[a,b]\)</span> denotes the space of all continuous functions on <span class="process-math">\([a,b]\text{.}\)</span>
+</div></li>
 </ul>
-<p id="p-980">Note that for any vector spaces <span class="process-math">\(V,W\text{,}\)</span> the set <span class="process-math">\(\mathcal{L}(V,W)\)</span> of linear transformations from <span class="process-math">\(V\)</span> to <span class="process-math">\(W\)</span> is itself a vector space, if we define</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
+</div> <div class="para logical" id="p-1553">
+<div class="para">Note that for any vector spaces <span class="process-math">\(V,W\text{,}\)</span> the set <span class="process-math">\(\mathcal{L}(V,W)\)</span> of linear transformations from <span class="process-math">\(V\)</span> to <span class="process-math">\(W\)</span> is itself a vector space, if we define</div>
+<div class="displaymath process-math">
 \begin{equation*}
 (S+T)(v) = S(v)+T(v),\quad \text{ and } \quad (kT)(v)=k(T(v))\text{.}
 \end{equation*}
 </div>
-<p class="continuation">In particular, given a vector space <span class="process-math">\(V\text{,}\)</span> we denote the set of all linear functionals on <span class="process-math">\(V\)</span> by <span class="process-math">\(V^*=\mathcal{L}(V,\R)\text{,}\)</span> and call this the <em class="emphasis">dual space</em> of <span class="process-math">\(V\text{.}\)</span></p>
-<p id="p-981">We make the following observations:</p>
+<div class="para">In particular, given a vector space <span class="process-math">\(V\text{,}\)</span> we denote the set of all linear functionals on <span class="process-math">\(V\)</span> by <span class="process-math">\(V^*=\mathcal{L}(V,\R)\text{,}\)</span> and call this the <em class="emphasis">dual space</em> of <span class="process-math">\(V\text{.}\)</span>
+</div>
+</div> <div class="para logical" id="p-1554">
+<div class="para">We make the following observations:</div>
 <ul class="disc">
-<li id="li-125"><p id="p-982">If <span class="process-math">\(\dim V=n\)</span> and <span class="process-math">\(\dim W=m\text{,}\)</span> then <span class="process-math">\(\mathcal{L}(V,W)\)</span> is isomorphic to the space <span class="process-math">\(M_{mn}\)</span> of <span class="process-math">\(m\times n\)</span> matrices, so it has dimension <span class="process-math">\(mn\text{.}\)</span></p></li>
-<li id="li-126"><p id="p-983">Since <span class="process-math">\(\dim \R=1\text{,}\)</span> if <span class="process-math">\(V\)</span> is finite-dimensional, then <span class="process-math">\(V^*=\mathcal{L}(V,\R)\)</span> has dimension <span class="process-math">\(1n=n\text{.}\)</span></p></li>
-<li id="li-127"><p id="p-984">Since <span class="process-math">\(\dim V^*=\dim V\text{,}\)</span> <span class="process-math">\(V\)</span> and <span class="process-math">\(V^*\)</span> are isomorphic.</p></li>
+<li id="li-298"><div class="para" id="p-1555">If <span class="process-math">\(\dim V=n\)</span> and <span class="process-math">\(\dim W=m\text{,}\)</span> then <span class="process-math">\(\mathcal{L}(V,W)\)</span> is isomorphic to the space <span class="process-math">\(M_{mn}\)</span> of <span class="process-math">\(m\times n\)</span> matrices, so it has dimension <span class="process-math">\(mn\text{.}\)</span>
+</div></li>
+<li id="li-299"><div class="para" id="p-1556">Since <span class="process-math">\(\dim \R=1\text{,}\)</span> if <span class="process-math">\(V\)</span> is finite-dimensional, then <span class="process-math">\(V^*=\mathcal{L}(V,\R)\)</span> has dimension <span class="process-math">\(1n=n\text{.}\)</span>
+</div></li>
+<li id="li-300"><div class="para" id="p-1557">Since <span class="process-math">\(\dim V^*=\dim V\text{,}\)</span> <span class="process-math">\(V\)</span> and <span class="process-math">\(V^*\)</span> are isomorphic.</div></li>
 </ul>
-<p id="p-985">Here is a basic example that is intended as a guide to your intuition regarding dual spaces. Take <span class="process-math">\(V = \R^3\text{.}\)</span> Given any <span class="process-math">\(v\in V\text{,}\)</span> define a map <span class="process-math">\(\phi_{v}:V\to \R\)</span> by <span class="process-math">\(\phi_{v}(w) = v\dotp w\)</span> (the usual dot product).</p>
-<p id="p-986">One way to think about this: if we write <span class="process-math">\(v\in V\)</span> as a column vector <span class="process-math">\(\bbm v_1\\v_2\\v_3\ebm\text{,}\)</span> then we can identify <span class="process-math">\(\phi_{v}\)</span> with <span class="process-math">\(v^T\text{,}\)</span> where the action is via multiplication:</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
+</div> <div class="para" id="p-1558">Here is a basic example that is intended as a guide to your intuition regarding dual spaces. Take <span class="process-math">\(V = \R^3\text{.}\)</span> Given any <span class="process-math">\(v\in V\text{,}\)</span> define a map <span class="process-math">\(\phi_{v}:V\to \R\)</span> by <span class="process-math">\(\phi_{v}(w) = v\dotp w\)</span> (the usual dot product).</div> <div class="para logical" id="p-1559">
+<div class="para">One way to think about this: if we write <span class="process-math">\(v\in V\)</span> as a column vector <span class="process-math">\(\bbm v_1\\v_2\\v_3\ebm\text{,}\)</span> then we can identify <span class="process-math">\(\phi_{v}\)</span> with <span class="process-math">\(v^T\text{,}\)</span> where the action is via multiplication:</div>
+<div class="displaymath process-math">
 \begin{equation*}
 \phi_{v}(w) = \bbm v_1\amp v_2\amp v_3\ebm\bbm w_1\\w_2\\w_3\ebm = v_1w_1+v_2w_2+v_3w_3\text{.}
 \end{equation*}
 </div>
-<p class="continuation">It turns out that this example can be generalized, but the definition of <span class="process-math">\(\phi_v\)</span> involves the dot product, which is particular to <span class="process-math">\(\R^n\text{.}\)</span></p>
-<p id="p-987">There is a generalization of the dot product, known as an inner product. (See Chapter 10 of Nicholson, for example.) On any inner product space, we can associate each vector <span class="process-math">\(v\in V\)</span> to a linear functional <span class="process-math">\(\phi_v\)</span> using the procedure above.</p>
-<p id="p-988">Another way to work concretely with dual vectors (without the need for inner products) is to define things in terms of a basis.</p>
-<p id="p-989">Given a basis <span class="process-math">\(\{v_1,v_2,\ldots, v_n\}\)</span> of <span class="process-math">\(V\text{,}\)</span> we define the corresponding <dfn class="terminology">dual basis</dfn> <span class="process-math">\(\{\phi_1,\phi_2,\ldots, \phi_n\}\)</span> of <span class="process-math">\(V^*\)</span> by</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
+<div class="para">It turns out that this example can be generalized, but the definition of <span class="process-math">\(\phi_v\)</span> involves the dot product, which is particular to <span class="process-math">\(\R^n\text{.}\)</span>
+</div>
+</div> <div class="para" id="p-1560">There is a generalization of the dot product, known as an inner product. (See Chapter 10 of Nicholson, for example.) On any inner product space, we can associate each vector <span class="process-math">\(v\in V\)</span> to a linear functional <span class="process-math">\(\phi_v\)</span> using the procedure above.</div> <div class="para" id="p-1561">Another way to work concretely with dual vectors (without the need for inner products) is to define things in terms of a basis.</div> <div class="para logical" id="p-1562">
+<div class="para">Given a basis <span class="process-math">\(\{v_1,v_2,\ldots, v_n\}\)</span> of <span class="process-math">\(V\text{,}\)</span> we define the corresponding <dfn class="terminology">dual basis</dfn> <span class="process-math">\(\{\phi_1,\phi_2,\ldots, \phi_n\}\)</span> of <span class="process-math">\(V^*\)</span> by</div>
+<div class="displaymath process-math">
 \begin{equation*}
 \phi_i(v_j) = \begin{cases} 1, \amp \text{ if } i=j\\ 0, \amp \text{ if } i\neq j\end{cases}\text{.}
 \end{equation*}
 </div>
-<p class="continuation">Note that each <span class="process-math">\(\phi_j\)</span> is well-defined, since any linear transformation can be defined by giving its values on a basis.</p>
-<p id="p-990">For the standard basis on <span class="process-math">\(\R^n\text{,}\)</span> note that the corresponding dual basis functionals are given by</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
+<div class="para">Note that each <span class="process-math">\(\phi_j\)</span> is well-defined, since any linear transformation can be defined by giving its values on a basis.</div>
+</div> <div class="para logical" id="p-1563">
+<div class="para">For the standard basis on <span class="process-math">\(\R^n\text{,}\)</span> note that the corresponding dual basis functionals are given by</div>
+<div class="displaymath process-math">
 \begin{equation*}
 \phi_j(x_1,x_2,\ldots, x_n) = x_j\text{.}
 \end{equation*}
 </div>
-<p class="continuation">That is, these are the <em class="emphasis">coordinate functions</em> on <span class="process-math">\(\R^n\text{.}\)</span></p>
-</div></section><section class="onepage" id="page-13"><article class="exercise exercise-like" id="exercise-82"><h3 class="heading"><span class="codenumber">1<span class="period">.</span></span></h3>
-<p id="p-991">Show that the dual basis is indeed a basis for <span class="process-math">\(V^*\text{.}\)</span></p>
-<div class="workspace" data-space="2.5in"></div></article><p id="p-995">Next, let <span class="process-math">\(V\)</span> and <span class="process-math">\(W\)</span> be vector spaces, and let <span class="process-math">\(T:V\to W\)</span> be a linear transformation. For any such <span class="process-math">\(T\text{,}\)</span> we can define the <em class="emphasis">dual map</em> <span class="process-math">\(T^*:W^*\to V^*\)</span> by <span class="process-math">\(T^*(\phi) = \phi\circ T\)</span> for each <span class="process-math">\(\phi\in W^*\text{.}\)</span></p>
-<article class="exercise exercise-like" id="exercise-83"><h3 class="heading"><span class="codenumber">2<span class="period">.</span></span></h3>
-<p id="p-996">Confirm that (a) <span class="process-math">\(T^*(\phi)\)</span> does indeed define an element of <span class="process-math">\(V^*\text{;}\)</span> that is, a linear map from <span class="process-math">\(V\)</span> to <span class="process-math">\(\R\text{,}\)</span> and (b) that <span class="process-math">\(T^*\)</span> is linear.</p>
-<div class="workspace" data-space="2.5in"></div></article><article class="exercise exercise-like" id="exercise-84"><h3 class="heading"><span class="codenumber">3<span class="period">.</span></span></h3>
-<p id="p-1000">Let <span class="process-math">\(V=P(\R)\)</span> be the space of all polynomials, and let <span class="process-math">\(D:V\to V\)</span> be the derivative transformation <span class="process-math">\(D(p(x))=p'(x)\text{.}\)</span> Let <span class="process-math">\(\phi:V\to \R\)</span> be the linear functional defined by <span class="process-math">\(\phi(p(x)) = \int_0^1 p(x)\,dx\text{.}\)</span></p>
-<p id="p-1001">What is the linear functional <span class="process-math">\(D^*(\phi)\text{?}\)</span></p>
-<div class="workspace" data-space="2.5in"></div></article></section><section class="onepage" id="page-14"><article class="exercise exercise-like" id="exercise-85"><h3 class="heading"><span class="codenumber">4<span class="period">.</span></span></h3>
-<p id="p-1003">Show that dual maps satisfy the following properties: for any <span class="process-math">\(S,T\in \mathcal{L}(V,W)\)</span> and <span class="process-math">\(k\in \R\text{,}\)</span></p>
+<div class="para">That is, these are the <em class="emphasis">coordinate functions</em> on <span class="process-math">\(\R^n\text{.}\)</span>
+</div>
+</div>
+</div></section><section class="onepage" id="page-13"><article class="exercise exercise-like" id="exercise-140"><h3 class="heading"><span class="codenumber">1<span class="period">.</span></span></h3>
+<div class="para" id="p-1564">Show that the dual basis is indeed a basis for <span class="process-math">\(V^*\text{.}\)</span>
+</div>
+<div class="workspace" data-space="2.5in"></div></article> <div class="para" id="p-1568">Next, let <span class="process-math">\(V\)</span> and <span class="process-math">\(W\)</span> be vector spaces, and let <span class="process-math">\(T:V\to W\)</span> be a linear transformation. For any such <span class="process-math">\(T\text{,}\)</span> we can define the <em class="emphasis">dual map</em> <span class="process-math">\(T^*:W^*\to V^*\)</span> by <span class="process-math">\(T^*(\phi) = \phi\circ T\)</span> for each <span class="process-math">\(\phi\in W^*\text{.}\)</span>
+</div> <article class="exercise exercise-like" id="exercise-141"><h3 class="heading"><span class="codenumber">2<span class="period">.</span></span></h3>
+<div class="para" id="p-1569">Confirm that (a) <span class="process-math">\(T^*(\phi)\)</span> does indeed define an element of <span class="process-math">\(V^*\text{;}\)</span> that is, a linear map from <span class="process-math">\(V\)</span> to <span class="process-math">\(\R\text{,}\)</span> and (b) that <span class="process-math">\(T^*\)</span> is linear.</div>
+<div class="workspace" data-space="2.5in"></div></article> <article class="exercise exercise-like" id="exercise-142"><h3 class="heading"><span class="codenumber">3<span class="period">.</span></span></h3>
+<div class="para" id="p-1573">Let <span class="process-math">\(V=P(\R)\)</span> be the space of all polynomials, and let <span class="process-math">\(D:V\to V\)</span> be the derivative transformation <span class="process-math">\(D(p(x))=p'(x)\text{.}\)</span> Let <span class="process-math">\(\phi:V\to \R\)</span> be the linear functional defined by <span class="process-math">\(\phi(p(x)) = \int_0^1 p(x)\,dx\text{.}\)</span>
+</div> <div class="para" id="p-1574">What is the linear functional <span class="process-math">\(D^*(\phi)\text{?}\)</span>
+</div>
+<div class="workspace" data-space="2.5in"></div></article></section><section class="onepage" id="page-14"><article class="exercise exercise-like" id="exercise-143"><h3 class="heading"><span class="codenumber">4<span class="period">.</span></span></h3>
+<div class="para logical" id="p-1576">
+<div class="para">Show that dual maps satisfy the following properties: for any <span class="process-math">\(S,T\in \mathcal{L}(V,W)\)</span> and <span class="process-math">\(k\in \R\text{,}\)</span>
+</div>
 <ol class="lower-alpha">
-<li id="li-128"><p id="p-derived-li-128"><span class="process-math">\(\displaystyle (S+T)^* = S^*+T^*\)</span></p></li>
-<li id="li-129"><p id="p-derived-li-129"><span class="process-math">\(\displaystyle (kS)^* = kS^*\)</span></p></li>
-<li id="list-property-last"><p id="p-derived-list-property-last"><span class="process-math">\(\displaystyle (ST)^* = T^*S^*\)</span></p></li>
+<li id="li-301"><div class="para" id="p-derived-li-301"><span class="process-math">\(\displaystyle (S+T)^* = S^*+T^*\)</span></div></li>
+<li id="li-302"><div class="para" id="p-derived-li-302"><span class="process-math">\(\displaystyle (kS)^* = kS^*\)</span></div></li>
+<li id="list-property-last"><div class="para" id="p-derived-list-property-last"><span class="process-math">\(\displaystyle (ST)^* = T^*S^*\)</span></div></li>
 </ol>
-<p id="p-1004">In item <a href="" class="xref" data-knowl="./knowl/list-property-last.html" title="Item 3.4.4.c">Item 3.4.4.c</a>, assume <span class="process-math">\(S\in \mathcal{L}(V,W)\)</span> and <span class="process-math">\(T\in \mathcal{L}(U,V)\text{.}\)</span> (Reminder: the notation <span class="process-math">\(ST\)</span> is sometimes referred to as the “product” of <span class="process-math">\(S\)</span> and <span class="process-math">\(T\text{,}\)</span> in analogy with matrices, but actually represents the composition <span class="process-math">\(S\circ T\text{.}\)</span>)</p>
-<div class="workspace" data-space="3in"></div></article><p id="p-1006">We have one topic remaining in relation to dual spaces: determining the kernel and image of a dual map <span class="process-math">\(T^*\)</span> (in terms of the kernel and image of <span class="process-math">\(T\)</span>). Let <span class="process-math">\(V\)</span> be a vector space, and let <span class="process-math">\(U\)</span> be a subspace of <span class="process-math">\(V\text{.}\)</span> Any such subspace determines an important subspace of <span class="process-math">\(V^*\text{:}\)</span> the <dfn class="terminology">annihilator</dfn> of <span class="process-math">\(U\text{,}\)</span> denoted by <span class="process-math">\(U^0\)</span> and defined by</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
+</div> <div class="para" id="p-1577">In item <a href="" class="xref" data-knowl="./knowl/list-property-last.html" title="Item 3.4.4.c">Item 3.4.4.c</a>, assume <span class="process-math">\(S\in \mathcal{L}(V,W)\)</span> and <span class="process-math">\(T\in \mathcal{L}(U,V)\text{.}\)</span> (Reminder: the notation <span class="process-math">\(ST\)</span> is sometimes referred to as the “product” of <span class="process-math">\(S\)</span> and <span class="process-math">\(T\text{,}\)</span> in analogy with matrices, but actually represents the composition <span class="process-math">\(S\circ T\text{.}\)</span>)</div>
+<div class="workspace" data-space="3in"></div></article> <div class="para logical" id="p-1579">
+<div class="para">We have one topic remaining in relation to dual spaces: determining the kernel and image of a dual map <span class="process-math">\(T^*\)</span> (in terms of the kernel and image of <span class="process-math">\(T\)</span>). Let <span class="process-math">\(V\)</span> be a vector space, and let <span class="process-math">\(U\)</span> be a subspace of <span class="process-math">\(V\text{.}\)</span> Any such subspace determines an important subspace of <span class="process-math">\(V^*\text{:}\)</span> the <dfn class="terminology">annihilator</dfn> of <span class="process-math">\(U\text{,}\)</span> denoted by <span class="process-math">\(U^0\)</span> and defined by</div>
+<div class="displaymath process-math">
 \begin{equation*}
 U^0 = \{\phi\in V^* \,|\, \phi(u)=0 \text{ for all } u\in U\}\text{.}
 \end{equation*}
 </div>
-<article class="exercise exercise-like" id="exercise-86"><h3 class="heading"><span class="codenumber">5<span class="period">.</span></span></h3>
-<p id="p-1007">Determine a basis (in terms of the standard dual basis for <span class="process-math">\((\R^4)^*\)</span>) for the annihilator <span class="process-math">\(U^0\)</span> of the subspace <span class="process-math">\(U\subseteq \R^4\)</span> given by</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
+</div> <article class="exercise exercise-like" id="exercise-144"><h3 class="heading"><span class="codenumber">5<span class="period">.</span></span></h3>
+<div class="para logical" id="p-1580">
+<div class="para">Determine a basis (in terms of the standard dual basis for <span class="process-math">\((\R^4)^*\)</span>) for the annihilator <span class="process-math">\(U^0\)</span> of the subspace <span class="process-math">\(U\subseteq \R^4\)</span> given by</div>
+<div class="displaymath process-math">
 \begin{equation*}
 U = \{(2a+b,3b,a,a-2b)\,|\, a,b\in\R\}\text{.}
 \end{equation*}
 </div>
+</div>
 <div class="workspace" data-space="3in"></div></article></section><section class="onepage" id="page-15"><div class="conclusion" id="conclusion-1">
-<p id="p-1011">Here is a fun theorem about annihilators that I won't ask you to prove.</p>
-<article class="theorem theorem-like" id="thm-anihilator-dimension"><h3 class="heading">
+<div class="para" id="p-1584">Here is a fun theorem about annihilators that I won’t ask you to prove.</div> <article class="theorem theorem-like" id="thm-anihilator-dimension"><h3 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">3.4.1</span><span class="period">.</span>
 </h3>
-<p id="p-1012">Let <span class="process-math">\(V\)</span> be a finite dimensional vector space. For any subspace <span class="process-math">\(U\)</span> of <span class="process-math">\(V\text{,}\)</span></p>
-<div class="displaymath process-math" data-contains-math-knowls="">
+<div class="para logical" id="p-1585">
+<div class="para">Let <span class="process-math">\(V\)</span> be a finite dimensional vector space. For any subspace <span class="process-math">\(U\)</span> of <span class="process-math">\(V\text{,}\)</span>
+</div>
+<div class="displaymath process-math">
 \begin{equation*}
 \dim U + \dim U^0 = \dim V\text{.}
 \end{equation*}
-</div></article><p id="p-1013">Here's an outline of the proof. For any subspace <span class="process-math">\(U\subseteq V\text{,}\)</span> we can define the <em class="emphasis">inclusion</em> map <span class="process-math">\(i:U\to V\text{,}\)</span> given by <span class="process-math">\(i(u)=u\text{.}\)</span> (This is not the identity on <span class="process-math">\(V\)</span> since it's only defined on <span class="process-math">\(U\text{.}\)</span> In particular, it is not onto unless <span class="process-math">\(U=V\text{,}\)</span> although it is clearly one-to-one.)</p>
-<p id="p-1014">Then <span class="process-math">\(i^*\)</span> is a map from <span class="process-math">\(V^*\)</span> to <span class="process-math">\(U^*\text{.}\)</span> Moreover, note that for any <span class="process-math">\(\phi\in V^*\text{,}\)</span> <span class="process-math">\(i^*(\phi)\in U^*\)</span> satisfies, for any <span class="process-math">\(u\in U\text{,}\)</span></p>
-<div class="displaymath process-math" data-contains-math-knowls="">
+</div>
+</div></article> <div class="para" id="p-1586">Here’s an outline of the proof. For any subspace <span class="process-math">\(U\subseteq V\text{,}\)</span> we can define the <em class="emphasis">inclusion</em> map <span class="process-math">\(i:U\to V\text{,}\)</span> given by <span class="process-math">\(i(u)=u\text{.}\)</span> (This is not the identity on <span class="process-math">\(V\)</span> since it’s only defined on <span class="process-math">\(U\text{.}\)</span> In particular, it is not onto unless <span class="process-math">\(U=V\text{,}\)</span> although it is clearly one-to-one.)</div> <div class="para logical" id="p-1587">
+<div class="para">Then <span class="process-math">\(i^*\)</span> is a map from <span class="process-math">\(V^*\)</span> to <span class="process-math">\(U^*\text{.}\)</span> Moreover, note that for any <span class="process-math">\(\phi\in V^*\text{,}\)</span> <span class="process-math">\(i^*(\phi)\in U^*\)</span> satisfies, for any <span class="process-math">\(u\in U\text{,}\)</span>
+</div>
+<div class="displaymath process-math">
 \begin{equation*}
 i^*(\phi)(u) = \phi(i(u))=\phi(u)\text{.}
 \end{equation*}
 </div>
-<p class="continuation">Thus, <span class="process-math">\(\phi\in \ker i^*\)</span> if and only if <span class="process-math">\(i^*(\phi)=0\text{,}\)</span> which is if and only if <span class="process-math">\(\phi(u)=0\)</span> for all <span class="process-math">\(u\in U\text{,}\)</span> which is if and only if <span class="process-math">\(\phi\in U^0\text{.}\)</span> Therefore, <span class="process-math">\(\ker i^* = U^0\text{.}\)</span></p>
-<p id="p-1015">By the dimension theorem, we have:</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
+<div class="para">Thus, <span class="process-math">\(\phi\in \ker i^*\)</span> if and only if <span class="process-math">\(i^*(\phi)=0\text{,}\)</span> which is if and only if <span class="process-math">\(\phi(u)=0\)</span> for all <span class="process-math">\(u\in U\text{,}\)</span> which is if and only if <span class="process-math">\(\phi\in U^0\text{.}\)</span> Therefore, <span class="process-math">\(\ker i^* = U^0\text{.}\)</span>
+</div>
+</div> <div class="para logical" id="p-1588">
+<div class="para">By the dimension theorem, we have:</div>
+<div class="displaymath process-math">
 \begin{equation*}
 \dim V^* = \dim \ker i^* + \dim \operatorname{im} i^*\text{.}
 \end{equation*}
 </div>
-<p class="continuation">With a bit of work, one can show that <span class="process-math">\(\operatorname{im} i^* = U^*\text{,}\)</span> and we get the result from the fact that <span class="process-math">\(\dim V^*=\dim V\)</span> and <span class="process-math">\(\dim U^* = \dim U\text{.}\)</span></p>
-<p id="p-1016">There are a number of interesting results of this flavour. For example, one can show that a map <span class="process-math">\(T\)</span> is injective if and only if <span class="process-math">\(T^*\)</span> is surjective, and vice-versa.</p>
-<p id="p-1017">One final, optional task: return to the example of <span class="process-math">\(\R^n\text{,}\)</span> viewed as column vectors, and consider a matrix transformation <span class="process-math">\(T_A:\R^n\to \R^m\)</span> given by <span class="process-math">\(T_A(\vec{x}) = A\vec{x}\)</span> as usual. Viewing <span class="process-math">\((\R^n)^*\)</span> as row vectors, convince yourself that <span class="process-math">\((T_A)^* = T_{A^T}\text{;}\)</span> that is, that what we've really been talking about all along is just the transpose of a matrix!</p>
-</div></section></section></div></main>
+<div class="para">With a bit of work, one can show that <span class="process-math">\(\operatorname{im} i^* = U^*\text{,}\)</span> and we get the result from the fact that <span class="process-math">\(\dim V^*=\dim V\)</span> and <span class="process-math">\(\dim U^* = \dim U\text{.}\)</span>
+</div>
+</div> <div class="para" id="p-1589">There are a number of interesting results of this flavour. For example, one can show that a map <span class="process-math">\(T\)</span> is injective if and only if <span class="process-math">\(T^*\)</span> is surjective, and vice-versa.</div> <div class="para" id="p-1590">One final, optional task: return to the example of <span class="process-math">\(\R^n\text{,}\)</span> viewed as column vectors, and consider a matrix transformation <span class="process-math">\(T_A:\R^n\to \R^m\)</span> given by <span class="process-math">\(T_A(\vec{x}) = A\vec{x}\)</span> as usual. Viewing <span class="process-math">\((\R^n)^*\)</span> as row vectors, convince yourself that <span class="process-math">\((T_A)^* = T_{A^T}\text{;}\)</span> that is, that what we’ve really been talking about all along is just the transpose of a matrix!</div>
+</div></section></section>
+</div>
+<div class="ptx-content-footer">
+<a class="previous-button button" href="section-projection.html" title="Previous"><span class="icon">&lt;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon">^</span><span class="name">Top</span></a><a class="next-button button" href="worksheet-least-squares.html" title="Next"><span class="name">Next</span><span class="icon">&gt;</span></a>
+</div></main>
+</div>
+<div id="ptx-page-footer" class="ptx-page-footer">
+<a class="pretext-link" href="https://pretextbook.org" title="PreTeXt"><div class="logo"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="338 3000 8772 6866"><g style="stroke-width:.025in; stroke:black; fill:none"><polyline points="472,3590 472,9732 " style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round; "></polyline><path style="stroke:#000000;stroke-width:126;stroke-linecap:butt;" d="M 4724,9448 A 4660 4660  0  0  1  8598  9259"></path><path style="stroke:#000000;stroke-width:174;stroke-linecap:butt;" d="M 4488,9685 A 4228 4228  0  0  0   472  9732"></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:butt;" d="M 4724,3590 A 4241 4241  0  0  1  8598  3496"></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:round;" d="M 850,3496  A 4241 4241  0  0  1  4724  3590"></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:round;" d="M 850,9259  A 4507 4507  0  0  1  4724  9448"></path><polyline points="5385,4299 4062,8125" style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8598,3496 8598,9259" style="stroke:#000000;stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="850,3496 850,9259" style="stroke:#000000;stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="4960,9685 4488,9685" style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="3070,4582 1889,6141 3070,7700" style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="6418,4582 7600,6141 6418,7700" style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8976,3590 8976,9732" style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><path style="stroke:#000000;stroke-width:174;stroke-linecap:butt;" d="M 4960,9685 A 4228 4228  0  0  1  8976  9732"></path></g></svg></div></a><a class="runestone-link" href="https://runestone.academy" title="Runestone Academy"><img class="logo" src="https://runestone.academy/runestone/static/images/RAIcon_cropped.png"></a><a class="mathjax-link" href="https://www.mathjax.org" title="MathJax"><img class="logo" src="https://www.mathjax.org/badge/badge-square-2.png"></a>
 </div>
 </body>
 </html>

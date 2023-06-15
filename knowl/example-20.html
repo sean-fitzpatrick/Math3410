@@ -9,17 +9,28 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="robots" content="noindex, nofollow">
+<script>// Make *any* pre with class 'sagecell-sage' an executable Sage cell
+// Their results will be linked, only within language type
+sagecell.makeSagecell({inputLocation: 'pre.sagecell-sage',
+                       linked: true,
+                       languages: ['sage'],
+                       evalButtonText: 'Evaluate (Sage)'});
+</script>
 </head>
 <body class="ignore-math">
 <article class="example example-like"><h3 class="heading">
-<span class="type">Example</span><span class="space"> </span><span class="codenumber">5.6.4</span><span class="period">.</span>
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">5.1.4</span><span class="period">.</span><span class="space"> </span><span class="title">Working with the matrix of a transformation.</span>
 </h3>
-<p>The following are examples of Jordan blocks:</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
+<div class="para logical">
+<div class="para">Let <span class="process-math">\(T:P_2(\R)\to \R^2\)</span> be a linear transformation whose matrix is given by</div>
+<div class="displaymath process-math">
 \begin{equation*}
-J(2,4)=\bbm 4 \amp 1\\ 0\amp 4\ebm, J(3,\sqrt{2})=\bbm \sqrt{2} \amp 1\amp 0\\0\amp \sqrt{2}\amp 1\\0\amp 0\amp \sqrt{2}\ebm,
-J(4,2i)=\bbm 2i \amp 1\amp 0\amp 0\\0\amp 2i\amp 1\amp 0\\0\amp 0\amp 2i\amp 1\\0\amp 0\amp 0\amp 2i\ebm\text{.}
+M(T) = \bbm 3\amp 0 \amp 3\\-1\amp -2\amp 2\ebm
 \end{equation*}
-</div></article><span class="incontext"><a href="sec-jordan-form.html#example-20" class="internal">in-context</a></span>
+</div>
+<div class="para">with respect to the ordered bases <span class="process-math">\(B = \{1+x, 2-x, 2x+x^2\}\)</span> of  <span class="process-math">\(P_2(\R)\)</span> and <span class="process-math">\(D = \{(0,1),(-1,1)\}\)</span> of <span class="process-math">\(\R^2\text{.}\)</span> Find the value of <span class="process-math">\(T(2+3x-4x^2)\text{.}\)</span>
+</div>
+</div>
+<div class="solutions"><a href="" class="solution-knowl original" data-knowl="./knowl/solution-76-hidden.html" title="Solution 5.1.4.1"><span class="type">Solution</span><span class="period">.</span></a></div></article><span class="incontext"><a href="sec-matrix-of-transformation.html#example-20" class="internal">in-context</a></span>
 </body>
 </html>

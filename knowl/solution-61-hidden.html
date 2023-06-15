@@ -10,38 +10,34 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="robots" content="noindex, nofollow">
 </head>
-<body class="ignore-math"><div class="solution solution-like">
-<p>We begin with the characteristic polynomial. We have</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
-\begin{align*}
-\det(xI_n - A) \amp =\det\bbm x \amp -1\amp -1\\-1\amp x \amp -1\\-1\amp -1\amp x\ebm\\
-\amp = x \begin{vmatrix}x \amp -1\\-1\amp x\end{vmatrix}
-+1\begin{vmatrix}-1\amp -1\\-1\amp x\end{vmatrix}
--1\begin{vmatrix}-1\amp x\\-1\amp -1\end{vmatrix}\\
-\amp = x(x^2-1)+(-x-1)-(1+x)\\
-\amp x(x-1)(x+1)-2(x+1)\\
-\amp (x+1)[x^2-x-2]\\
-\amp (x+1)^2(x-2)\text{.}
-\end{align*}
-</div>
-<p>The roots of the characteristic polynomial are our eigenvalues, so we have <span class="process-math">\(\lambda_1=-1\)</span> and <span class="process-math">\(\lambda_2=2\text{.}\)</span> Note that the first eigenvalue comes from a repeated root. This is typically where things get interesting. If an eigenvalue does not come from a repeated root, then there will only be one (independent) eigenvector that corresponds to it. (That is, <span class="process-math">\(\dim E_\lambda(A)=1\text{.}\)</span>) If an eigenvalue is repeated, it could have more than one eigenvector, but this is not guaranteed.</p>
-<p>We find that <span class="process-math">\(A-(-1)I_n = \bbm 1\amp 1\amp 1\\1\amp 1\amp 1\\1\amp 1\amp 1\ebm\text{,}\)</span> which has reduced row-echelon form <span class="process-math">\(\bbm 1\amp 1\amp 1\\0\amp 0\amp 0\\0\amp 0\amp 0\ebm\text{.}\)</span> Solving for the nullspace, we find that there are two independent eigenvectors:</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
+<body class="ignore-math"><div class="solution solution-like"> <div class="para logical">
+<div class="para">In an elementary linear algebra (or calculus) course, we would solve this problem as follows. First, we would need two vectors parallel to the plane. If <span class="process-math">\(\bbm x\\y\\z\ebm\)</span> lies in the plane, then <span class="process-math">\(x-2y+4z=0\text{,}\)</span> so <span class="process-math">\(x=2y-4z\text{,}\)</span> and</div>
+<div class="displaymath process-math">
 \begin{equation*}
-\xx_{1,1}=\bbm 1\\-1\\0\ebm, \quad \text{ and } \quad \xx_{1,2}=\bbm 1\\0\\-1\ebm\text{,}
+\bbm x\\y\\z\ebm = \bbm 2y-4z\\y\\z\ebm = y\bbm 2\\1\\0\ebm + z\bbm -4\\0\\1\ebm\text{,}
 \end{equation*}
 </div>
-<p class="continuation">so</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
+<div class="para">so <span class="process-math">\(\uu=\bbm 2\\1\\0\ebm\)</span> and <span class="process-math">\(\vv\bbm -4\\0\\1\ebm\)</span> are parallel to the plane. We then compute the normal vector</div>
+<div class="displaymath process-math">
 \begin{equation*}
-E_{-1}(A) = \spn\left\{\bbm 1\\-1\\0\ebm, \bbm 1\\0\\-1\ebm\right\}\text{.}
+\mathbf{n}=\uu\times\vv=\bbm 1\\-2\\4\ebm\text{,}
 \end{equation*}
 </div>
-<p>For the second eigenvector, we have <span class="process-math">\(A-2I = \bbm -2\amp 1\amp 1\\1\amp -2\amp 1\\1\amp 1\amp -2\ebm\text{,}\)</span> which has reduced row-echelon form <span class="process-math">\(\bbm 1\amp 0\amp -1\\0\amp 1\amp -1\\0\amp 0\amp 0\ebm\text{.}\)</span> An eigenvector in this case is given by</p>
-<div class="displaymath process-math" data-contains-math-knowls="">
+<div class="para">and compute the projection of the position vector <span class="process-math">\(\mathbf{p}=\bbm 3,1,-2\ebm\)</span> for the point <span class="process-math">\(P=(3,1,-2)\)</span> onto <span class="process-math">\(\mathbf{n}\text{.}\)</span> This gives the vector</div>
+<div class="displaymath process-math">
 \begin{equation*}
-\xx_2 = \bbm 1\\1\\1\ebm\text{.}
+\xx = \left(\frac{\mathbf{p}\dotp\mathbf{n}}{\len{\mathbf{n}}^2}\right)\mathbf{n} = \frac{-7}{21}\bbm 1\\-2\\4\ebm =\bbm-1/3\\2/3\\-4/3\ebm\text{.}
 \end{equation*}
+</div>
+</div> <div class="para logical">
+<div class="para">Now, this vector is <em class="emphasis">parallel</em> to <span class="process-math">\(\mathbf{n}\text{,}\)</span> so it’s perpendicular to the plane. Subtracting it from <span class="process-math">\(\mathbf{p}\)</span> gives a vector parallel to the plane, and this is the position vector for the point we seek.</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\mathbf{q}=\mathbf{p}-\xx=\bbm 3\\1\\-2\ebm-\bbm -1/3\\-2/3\\-4/3\ebm = \bbm 10/3\\1/3\\-2/3\ebm
+\end{equation*}
+</div>
+<div class="para">so the closest point is <span class="process-math">\(Q=\bigl(\frac{10}{3},\frac13,-\frac{2}{3}\bigr)\text{.}\)</span> We weren’t asked for it, but note that if we wanted the distance from the point <span class="process-math">\(P\)</span> to the plane, this is given by <span class="process-math">\(\len{\xx}=\frac13\sqrt{21}\text{.}\)</span>
+</div>
 </div>
 </div></body>
 </html>

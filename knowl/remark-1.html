@@ -14,22 +14,24 @@
 <article class="remark remark-like"><h3 class="heading">
 <span class="type">Remark</span><span class="space"> </span><span class="codenumber">1.3.5</span><span class="period">.</span>
 </h3>
-<p>Often we define subsets of a vector space by an equation. For example, instead of specifying a plane through the origin in <span class="process-math">\(\R^3\)</span> using a pair of vectors, as we did in <a href="" class="xref" data-knowl="./knowl/ex-subspace-lines-and-planes.html" title="Example 1.3.4">Example 1.3.4</a>, we could define it using a single equation, of the form <span class="process-math">\(ax+by+cz=0\text{,}\)</span> where <span class="process-math">\(a,b,c\in\R\text{,}\)</span> and <span class="process-math">\((x,y,z)\)</span> are coordinates in <span class="process-math">\(\R^3\text{.}\)</span></p>
-<p>Given a vector space <span class="process-math">\(V\)</span> and some equation (or other condition) that defines a subset, one of the things we need to be able to do is determine whether or not the subset is in fact a subspace. We do so using <a href="" class="xref" data-knowl="./knowl/thm-subspace-test.html" title="Theorem 1.3.2: Subspace Test">Subspace Test</a>. Applying the subspace test is relatively straightforward, but we would also like to develop some intiution to help us decide whether or not a subset is likely to be a subspace, before attempting a proof.</p>
-<p>There are a few relatively easy things we can check before we begin:</p>
+<div class="para">Often we define subsets of a vector space by an equation. For example, instead of specifying a plane through the origin in <span class="process-math">\(\R^3\)</span> using a pair of vectors, as we did in <a href="" class="xref" data-knowl="./knowl/ex-subspace-lines-and-planes.html" title="Example 1.3.4">Example 1.3.4</a>, we could define it using a single equation, of the form <span class="process-math">\(ax+by+cz=0\text{,}\)</span> where <span class="process-math">\(a,b,c\in\R\text{,}\)</span> and <span class="process-math">\((x,y,z)\)</span> are coordinates in <span class="process-math">\(\R^3\text{.}\)</span>
+</div> <div class="para">Given a vector space <span class="process-math">\(V\)</span> and some equation (or other condition) that defines a subset, one of the things we need to be able to do is determine whether or not the subset is in fact a subspace. We do so using <a href="" class="xref" data-knowl="./knowl/thm-subspace-test.html" title="Theorem 1.3.2: Subspace Test">Subspace Test</a>. Applying the subspace test is relatively straightforward, but we would also like to develop some intiution to help us decide whether or not a subset is likely to be a subspace, before attempting a proof.</div> <div class="para logical">
+<div class="para">There are a few relatively easy things we can check before we begin:</div>
 <ol class="decimal">
 <li>
-<p>Does the subset contain the zero vector?</p>
-<p>This is part of the subspace test, of course, but it tends to be easy to check, and if the answer is no, then we've already ruled out the possibility that this subset could be a subspace.</p>
+<div class="para">Does the subset contain the zero vector?</div>
+<div class="para">This is part of the subspace test, of course, but it tends to be easy to check, and if the answer is no, then we’ve already ruled out the possibility that this subset could be a subspace.</div>
 </li>
 <li>
-<p>Is the equation defining the subset linear?</p>
-<p>If not, your subset is probably not a subspace, and you should look for a counterexample. For example, the set <span class="process-math">\(\{(x,y)\in\R^2 \,|\, y=x^2\}\)</span> contains zero, but it is defined by the nonlinear equation <span class="process-math">\(y=x^2\text{.}\)</span> This tells us that our set is unlikely to be a subspace, but we still have to demonstrate this. Typically, we do so by showing that one of the two closure axioms fails. For example, we know that <span class="process-math">\((1,1)\)</span> and <span class="process-math">\((2,4)\)</span> belong to the subset, but <span class="process-math">\((1,1)+(2,4)=(3,5)\text{,}\)</span> and since <span class="process-math">\(5\neq 3^2\text{,}\)</span> the subset is not closed under addition, and therefore is not a subspace.</p>
+<div class="para">Is the equation defining the subset linear?</div>
+<div class="para">If not, your subset is probably not a subspace, and you should look for a counterexample. For example, the set <span class="process-math">\(\{(x,y)\in\R^2 \,|\, y=x^2\}\)</span> contains zero, but it is defined by the nonlinear equation <span class="process-math">\(y=x^2\text{.}\)</span> This tells us that our set is unlikely to be a subspace, but we still have to demonstrate this. Typically, we do so by showing that one of the two closure axioms fails. For example, we know that <span class="process-math">\((1,1)\)</span> and <span class="process-math">\((2,4)\)</span> belong to the subset, but <span class="process-math">\((1,1)+(2,4)=(3,5)\text{,}\)</span> and since <span class="process-math">\(5\neq 3^2\text{,}\)</span> the subset is not closed under addition, and therefore is not a subspace.</div>
 </li>
 <li>
-<p>Is the equation defining the subset homogeneous?</p>
-<p>Even if an equation is linear, it may fail to define a subspace due to the special role played by the zero vector. For example, the plane in <span class="process-math">\(\R^3\)</span> defined by the equation <span class="process-math">\(x+2y-5z=4\)</span> is not a subspace. The fastest way to see this is to note that the equation is not satisfied by the zero vector! But both closure conditions fail as well. For example, the point <span class="process-math">\((2,1,0)\)</span> is on the plane. But <span class="process-math">\(2(2,1,0)=(4,2,0)\)</span> is not, since <span class="process-math">\(4+2(2)-5(0)=8\neq 4\text{.}\)</span></p>
+<div class="para">Is the equation defining the subset homogeneous?</div>
+<div class="para">Even if an equation is linear, it may fail to define a subspace due to the special role played by the zero vector. For example, the plane in <span class="process-math">\(\R^3\)</span> defined by the equation <span class="process-math">\(x+2y-5z=4\)</span> is not a subspace. The fastest way to see this is to note that the equation is not satisfied by the zero vector! But both closure conditions fail as well. For example, the point <span class="process-math">\((2,1,0)\)</span> is on the plane. But <span class="process-math">\(2(2,1,0)=(4,2,0)\)</span> is not, since <span class="process-math">\(4+2(2)-5(0)=8\neq 4\text{.}\)</span>
+</div>
 </li>
-</ol></article><span class="incontext"><a href="sec-subspace.html#remark-1" class="internal">in-context</a></span>
+</ol>
+</div></article><span class="incontext"><a href="sec-subspace.html#remark-1" class="internal">in-context</a></span>
 </body>
 </html>
