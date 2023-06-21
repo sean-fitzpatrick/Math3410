@@ -25,8 +25,35 @@
   <p>
     We can then observe a number of properties enjoyed by these operations.
     In your first course, you may have observed some of these properties geometrically,
-    using the <q>tip-to-tail</q> rule for vector addition.
+    using the <q>tip-to-tail</q> rule for vector addition, as shown in <xref ref="fig-vector-addition"/>
   </p>
+
+  <figure xml:id="fig-vector-addition">
+    <image width="47%" xml:id="img-vector-addition">
+      <description>
+        Two vectors in the plane, with the tail of the second vector placed at the tip of the first.
+        The vector drawn from the tail of the first vector to the tip of the second is the sum of the two vectors.
+      </description>
+      <latex-image>
+      
+        \begin{tikzpicture}[&gt;=stealth]
+
+        \begin{axis}[
+        axis on top,
+        ymin=-1,ymax=7,
+        xmin=-1,xmax=7
+        ]
+
+        \draw [very thick,-&gt;,blue] (axis cs:0,0) -- (axis cs:3,1) node [pos=.5,above,rotate=18.4] { $\vec v$};
+        \draw [very thick,-&gt;,red] (axis cs:3,1) -- (axis cs:5,5) node [pos=.5,above,rotate=63.4] { $\vec w$};
+        \draw [very thick,-&gt;,magenta] (axis cs:0,0) -- (axis cs:5,5) node [pos=.5,above,rotate=45] {$\vec{v}+\vec{w}$};
+        \end{axis}
+
+        \end{tikzpicture}
+
+      </latex-image>
+    </image>
+  </figure>
 
   <p>
     <ol>
