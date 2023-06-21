@@ -194,9 +194,9 @@
     Division doesn't quite make sense in this context,
     but it certainly does make sense to multiply both sides by <m>1/c</m>,
     the multiplicative inverse of <m>c</m>.
-    We then have <m>(1/c)(c\vv)=(1/c)\ww</m>, and since scalar multiplication is associative,
-    <m>(1/c\cdot c)\vv = (1/c)\ww</m>.
-    We know that <m>1/c \cdot c = 1</m>, so this boils down to <m>1\vv=(1/c)\ww</m>.
+    We then have <m>\left(\frac1c\right)(c\vv)=\left(\frac1c\right)\ww</m>, and since scalar multiplication is associative,
+    <m>\left(frac1c \cdot c\right)\vv = \left(\frac1c\right)\ww</m>.
+    We know that <m>\frac1c \cdot c = 1</m>, so this boils down to <m>1\vv=(1/c)\ww</m>.
     It appears that we've solved the equation, but <em>only if we know</em> that <m>1\vv = \vv</m>.
   </p>
 
@@ -208,6 +208,16 @@
     Algebra becomes very strange with this version of scalar multiplication.
     In particular, we can no longer conclude that if <m>2\vv=2\ww</m>, then <m>\vv=\ww</m>!
   </p>
+
+  <exercise label="ex-vsp-intro-strange-mult">
+    <statement>
+      <p>
+        Given an example of vectors <m>\vv</m> and <m>\ww</m> such that <m>2\vv=2\ww</m>,
+        but <m>\vv\neq \ww</m>, if scalar multiplication is defined as above.
+      </p>
+    </statement>
+    <response/>
+  </exercise>
 
   <p>
     In a first course in linear algebra,
@@ -395,6 +405,46 @@
     While it is possible to study linear algebra over <em>finite fields</em> (like the integers modulo a prime number)
     we will only consider two fields: the real numbers <m>\R</m>, and the complex numbers <m>\C</m>.
   </p>
+
+  <exercise label="ex-vsp-intro-finite-field">
+    <introduction>
+      <p>
+        Before we move on, let's look at one example involving finite fields.
+        Let <m>\mathbb{Z}_n=\{0,1,2,\ldots, n-1\}</m>, with addition and multiplication defined modulo <m>n</m>.
+        (For example, <m>3+5=1</m> in <m>\mathbb{Z}_7</m>, since <m>8\equiv 1 \pmod{7}</m>.)
+      </p>
+    </introduction>
+    <task>
+      <statement>
+        <p>
+          Show that <m>\mathbb{Z}_5</m> is a field.
+        </p>
+      </statement>
+      <response/>
+      <hint>
+        <p>
+          You will need to recall properties of congruence from your introduction to proofs course.
+        </p>
+      </hint>
+    </task>
+    <task>
+      <statement>
+        <p>
+          Show that <m>\mathbb{Z}_6</m> is <em>not</em> a field.
+        </p>
+      </statement>
+      <response/>
+    </task>
+    <task>
+      <statement>
+        <p>
+          Why does this work for <m>n=5</m> but not for <m>n=6</m>?
+          For which <m>n</m> do you think <m>\mathbb{Z}_n</m> will be a field?
+        </p>
+      </statement>
+      <response/>
+    </task>
+  </exercise>
 
   <p>
     A vector space whose scalars are complex numbers will be called a <em>complex vector space</em>.
