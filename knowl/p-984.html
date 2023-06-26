@@ -11,15 +11,19 @@
 <meta name="robots" content="noindex, nofollow">
 </head>
 <body class="ignore-math">
-<h4 class="heading"><span class="type">Paragraph</span></h4>
+<h5 class="heading"><span class="type">Paragraph</span></h5>
 <div class="para logical">
-<div class="para">Let <span class="process-math">\(A\)</span> be an <span class="process-math">\(m\times n\)</span> matrix with columns <span class="process-math">\(C_1,C_2,\ldots, C_n\text{.}\)</span> If the reduced row-echelon form of <span class="process-math">\(A\)</span> has leading ones in columns <span class="process-math">\(j_1,j_2,\ldots, j_k\text{,}\)</span> then</div>
+<div class="para">If <span class="process-math">\(B=T(A)=A-A^T\text{,}\)</span> then</div>
 <div class="displaymath process-math">
 \begin{equation*}
-\{C_{j_1},C_{j_2},\ldots, C_{j_k}\}
+B^T = (A-A^T)^T = A^T-A = -B\text{,}
 \end{equation*}
 </div>
-<div class="para">is a basis for <span class="process-math">\(\csp(A)\text{.}\)</span>
+<div class="para">so certainly every matrix in <span class="process-math">\(\im A\)</span> is skew-symmetric. On the other hand, if <span class="process-math">\(B\)</span> is skew-symmetric, then <span class="process-math">\(B=T(\frac12 B)\text{,}\)</span> since</div>
+<div class="displaymath process-math">
+\begin{equation*}
+T\Bigl(\frac12 B\Bigr) = \frac12 T(B) = \frac12(B-B^T) = \frac12(B-(-B))= B\text{.}
+\end{equation*}
 </div>
 </div>
 <span class="incontext"><a href="sec-kernel-image.html#p-984" class="internal">in-context</a></span>

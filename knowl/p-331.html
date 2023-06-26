@@ -12,28 +12,7 @@
 </head>
 <body class="ignore-math">
 <h4 class="heading"><span class="type">Paragraph</span></h4>
-<div class="para logical">
-<div class="para">We seek scalars <span class="process-math">\(s,t\)</span> such that</div>
-<div class="displaymath process-math">
-\begin{equation*}
-s(1+2x-2x^2)+t(3+5x+2x^2)=1+x+4x^2\text{.}
-\end{equation*}
-</div>
-<div class="para">On the left-hand side, we expand and gather terms:</div>
-<div class="displaymath process-math">
-\begin{equation*}
-(s+3t)+(2s+5t)x+(-2s+2t)x^2 = 1+x+4x^2\text{.}
-\end{equation*}
-</div>
-<div class="para">These two polynomials are equal if and only if we can solve the system</div>
-<div class="displaymath process-math">
-\begin{align*}
-s+3t \amp = 1 \\
-2s+5t \amp =1\\
--2s+2t \amp =4\text{.}
-\end{align*}
-</div>
-</div>
+<div class="para">The above code produces the reduced row-echelon form of the augmented matrix for our system. (The tuple <span class="process-math">\((0,1)\)</span> lists the pivot columns — note that Python indexes the columns starting at <span class="process-math">\(0\)</span> rather than <span class="process-math">\(1\text{.}\)</span> If you’d rather just get the reduced matrix without this extra information, try adding <code class="code-inline tex2jax_ignore">pivots=False</code> as an optional argument, in the empty parentheses of the <code class="code-inline tex2jax_ignore">rref</code> command.) Do you remember how to get the answer from here? Here’s another approach.</div>
 <span class="incontext"><a href="sec-span.html#p-331" class="internal">in-context</a></span>
 </body>
 </html>

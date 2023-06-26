@@ -11,37 +11,17 @@
 <meta name="robots" content="noindex, nofollow">
 </head>
 <body class="ignore-math"><div class="solution solution-like"><div class="para logical">
-<div class="para">We have</div>
-<div class="displaymath process-math">
-\begin{align*}
-T(1) \amp = (1,0) = 1(1,0)+0(1,-1) \\
-T(1-x) \amp= (1,-2) = -1(1,0)+2(1,-1) \\
-T((1-x)^2) = T(1-2+x^2) \amp = (2, -4) = -2(1,0)+4(1,-1)\text{.}
-\end{align*}
+<div class="para">Finding this matrix requires us to first write the vectors in <span class="process-math">\(B\)</span> in terms of the vectors in <span class="process-math">\(D\text{.}\)</span> However, it’s much easier to do this the other way around. We easily find</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/thm-change-matrix.html">
+\begin{equation*}
+P_{B\leftarrow D} = \bbm 1\amp 0\amp 2\\1\amp 1\amp -3\\0\amp 1\amp 1\ebm\text{,}
+\end{equation*}
 </div>
-<div class="para">Thus,</div>
-<div class="displaymath process-math">
-\begin{align*}
-M_{DB}(T) \amp = \bbm C_D(T(1))\amp C_D(T(1-x)) \amp C_D(T((1-x)^2))\ebm\\
-\amp = \bbm 1\amp -1\amp -2\\0\amp 2\amp 4\ebm\text{.}
-\end{align*}
-</div>
-<div class="para">To confirm, note that</div>
-<div class="displaymath process-math">
-\begin{align*}
-M_{DB}(T)C_B\amp (a+bx+cx^2)\\
-\amp = M_{DB}(T)C_B((a+b+c)-(b+2c)(1-x)+c(1-x)^2)\\
-\amp = \bbm 1\amp -1\amp -2\\0\amp 2\amp 4\ebm\bbm a+b+c\\ -b-2c\\c\ebm\\
-\amp \bbm (a+b+c)+(b+2c)-2c\\0-2(b+2c)+4c\ebm = \bbm a+2b+c\\-2b\ebm\text{,}
-\end{align*}
-</div>
-<div class="para">while on the other hand,</div>
-<div class="displaymath process-math">
-\begin{align*}
-C_D(T(a+bx+cx^2)) \amp= C_D(a+c,2b)\\
-\amp = C_D((a+2b+c)(1,0)-2b(1,-1))\\
-\amp = \bbm a+2b+c\\-2b\ebm\text{.}
-\end{align*}
+<div class="para">and by <a href="" class="xref" data-knowl="./knowl/thm-change-matrix.html" title="Theorem 5.2.6">Theorem 5.2.6</a>, we have</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/thm-change-matrix.html">
+\begin{equation*}
+P_{D\leftarrow B} = (P_{B\leftarrow D})^{-1} = \frac16\bbm 4\amp 2\amp -2\\-1\amp 1\amp 5\\1\amp -1\amp 1\ebm\text{.}
+\end{equation*}
 </div>
 </div></div></body>
 </html>

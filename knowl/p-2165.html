@@ -13,41 +13,11 @@
 <body class="ignore-math">
 <h4 class="heading"><span class="type">Paragraph</span></h4>
 <div class="para logical">
-<div class="para">We have the following general syntax:</div>
-<ul class="disc">
-<li><div class="para logical">
-<div class="para">To swap two rows:</div>
-<ul class="circle">
-<li><div class="para"><code class="code-inline tex2jax_ignore">op='n&lt;-&gt;m'</code></div></li>
-<li><div class="para">
-<code class="code-inline tex2jax_ignore">row1=i</code>, where <code class="code-inline tex2jax_ignore">i</code> is the index of the first row being swapped (remembering that rows are indexed starting with <span class="process-math">\(0\)</span> for the first row).</div></li>
-<li><div class="para">
-<code class="code-inline tex2jax_ignore">row2=j</code>, where <code class="code-inline tex2jax_ignore">j</code> is the index of the second row being swapped.</div></li>
-</ul>
-</div></li>
-<li><div class="para logical">
-<div class="para">To rescale a row:</div>
-<ul class="circle">
-<li><div class="para"><code class="code-inline tex2jax_ignore">op='n-&gt;kn'</code></div></li>
-<li><div class="para">
-<code class="code-inline tex2jax_ignore">row=i</code>, where <code class="code-inline tex2jax_ignore">i</code> is the index of the row being rescaled.</div></li>
-<li><div class="para">
-<code class="code-inline tex2jax_ignore">k=c</code>, where <code class="code-inline tex2jax_ignore">c</code> is the value of the scalar you want to multiply by.</div></li>
-</ul>
-</div></li>
-<li><div class="para logical">
-<div class="para">To add a multiple of one row to another:</div>
-<ul class="circle">
-<li><div class="para"><code class="code-inline tex2jax_ignore">op='n-&gt;n+km'</code></div></li>
-<li><div class="para">
-<code class="code-inline tex2jax_ignore">row=i</code>, where <code class="code-inline tex2jax_ignore">i</code> is the index of the row you want to change.</div></li>
-<li><div class="para">
-<code class="code-inline tex2jax_ignore">k=c</code>, where <code class="code-inline tex2jax_ignore">c</code> is the multiple of the other row.</div></li>
-<li><div class="para">
-<code class="code-inline tex2jax_ignore">row2=j</code>, where <code class="code-inline tex2jax_ignore">j</code> is the index of the other row.</div></li>
-</ul>
-</div></li>
-</ul>
+<div class="para">If we know that <span class="process-math">\(3\)</span> is an eigenvalue of a <span class="process-math">\(4\times 4\)</span> matrix <span class="process-math">\(A\text{,}\)</span> one way to get a basis for the eigenspace <span class="process-math">\(E_3(A)\)</span> is to do:</div>
+<pre class="code-display tex2jax_ignore">B=A-3*eye(4)
+B.nullspace()
+</pre>
+<div class="para">If you just want all the eigenvalues and eigenvectors without going through the steps, then you can simply execute <code class="code-inline tex2jax_ignore">A.eigenvects()</code>. The result is a list of lists — each list in the list is of the form: eigenvalue, multiplicity, basis for the eigenspace.</div>
 </div>
 <span class="incontext"><a href="sec-sympy.html#p-2165" class="internal">in-context</a></span>
 </body>

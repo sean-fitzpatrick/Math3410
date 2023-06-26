@@ -12,40 +12,16 @@
 </head>
 <body class="ignore-math">
 <article class="exercise exercise-like"><h3 class="heading">
-<span class="type">Worksheet Exercise</span><span class="space"> </span><span class="codenumber">4<span class="period">.</span></span>
+<span class="type">Worksheet Exercise</span><span class="space"> </span><span class="codenumber">6<span class="period">.</span></span>
 </h3>
-<div class="introduction">
-<div class="para">As a more practical example, consider the following (over-simplified) predator-prey system. It is based on an example in <a class="external" href="https://personal.math.ubc.ca/~tbjw/ila/dds.html" target="_blank">Interactive Linear Algebra</a><a href="" class="fn-knowl original" data-knowl="./knowl/fn-11-hidden.html" title="Footnote 4.5.1"><sup> 1 </sup></a>, by Margalit, Rabinoff, and Williams, but adapted to the wildlife here in Lethbridge. An ecosystem contains both coyotes and deer. Initially, there is a population of <span class="process-math">\(20\)</span> coyotes, and <span class="process-math">\(500\)</span> deer.</div> <div class="para logical">
-<div class="para">We assume the following:</div>
-<ul class="disc">
-<li><div class="para">the share of the deer population eaten by a typical coyote in a year is <span class="process-math">\(10\)</span> deer</div></li>
-<li><div class="para">in the absence of the coyotes, the deer population would increase by <span class="process-math">\(50\)</span>% per year</div></li>
-<li><div class="para">
-<span class="process-math">\(20\)</span>% of the coyote population dies each year of natural causes</div></li>
-<li><div class="para">the growth rate of the coyote population depends on the number of deer: for each 100 deer, <span class="process-math">\(10\)</span> coyote pups will survive to adulthood.</div></li>
-</ul>
-</div> <div class="para logical">
-<div class="para">If we let <span class="process-math">\(d_t\)</span> denote the number of deer after <span class="process-math">\(t\)</span> years, and <span class="process-math">\(c_t\)</span> the number of coyotes, then we have</div>
-<div class="displaymath process-math">
-\begin{align*}
-d_{t+1} \amp = 1.5d_t - 10c_t\\
-c_{t+1} \amp = 0.1d_t + 0.8c_t\text{,}
-\end{align*}
-</div>
-<div class="para">or, in matrix form,</div>
+<div class="para logical">
+<div class="para">Find the equation of the best fit line for the following set of data points:</div>
 <div class="displaymath process-math">
 \begin{equation*}
-\mathbf{p}_{t+1} = A\mathbf{p}_t\text{,}
+(1,2.03), (2, 2.37), (3, 2.91), (4, 3.58), (5, 4.11), (6, 4.55), (7, 4.93), (8, 5.44), (9, 6.18)\text{.}
 \end{equation*}
 </div>
-<div class="para">where <span class="process-math">\(\mathbf{p}_t=\bbm d_t\\c_t\ebm\)</span> and <span class="process-math">\(A = \bbm 1.5 \amp -10\\0.1 \amp 0.8\ebm\text{.}\)</span>
 </div>
-</div> <div class="para">After <span class="process-math">\(t\)</span> years, the two populations will be given by <span class="process-math">\(\mathbf{p}_t=A^t\mathbf{p}_0\text{,}\)</span> where <span class="process-math">\(\mathbf{p}_0=\bbm 500\\20\ebm\)</span> gives the initial populations of the two species. If possible, we would like to be able to find a closed-form formula for <span class="process-math">\(\mathbf{p}_t\text{,}\)</span> which would allow us to analyze the long-term predictions of our model.</div>
-</div>
-<article class="task exercise-like"><h4 class="heading"><span class="codenumber">(a)</span></h4>
-<div class="para">Analyze the eigenvalues of this matrix, and diagonalize. The <code class="code-inline tex2jax_ignore">sympy</code> library won't be up to the task. Instead, some combination of <code class="code-inline tex2jax_ignore">numpy</code> and <code class="code-inline tex2jax_ignore">scipy</code>, as described by <a class="external" href="https://patrickwalls.github.io/mathematicalpython/linear-algebra/eigenvalues-eigenvectors/" target="_blank">Patrick Walls on his website</a><a href="" class="fn-knowl original" data-knowl="./knowl/fn-12-hidden.html" title="Footnote 4.5.2"><sup> 2 </sup></a>, will be needed.</div></article><article class="task exercise-like"><h4 class="heading"><span class="codenumber">(b)</span></h4>
-<div class="para">The eigenvalues turn out to be complex! What does that tell you about the nature of the system? What is the long-term behaviour of this system?</div></article><article class="task exercise-like"><h4 class="heading"><span class="codenumber">(c)</span></h4>
-<div class="para">What if you adjust the parameters? Can you come up with a system where both species flourish? Or one where they both disappear? Or one where the populations oscillate regularly?</div></article><article class="task exercise-like"><h4 class="heading"><span class="codenumber">(d)</span></h4>
-<div class="para">You may have read this while wondering, “Does Sean actually know anything about ecology and population dynamics? Did he just make up those numbers?”</div> <div class="para">The answers are, respectively, no, and yes. Can you come up with numbers that are based on a realistic example? What does our model predict in that case? Is it accurate?</div></article></article><span class="incontext"><a href="worksheet-dynamical.html#exercise-153" class="internal">in-context</a></span>
+<div class="workspace" data-space="3in"></div></article><span class="incontext"><a href="worksheet-least-squares.html#exercise-153" class="internal">in-context</a></span>
 </body>
 </html>

@@ -9,24 +9,35 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="robots" content="noindex, nofollow">
+<script>// Make *any* pre with class 'sagecell-sage' an executable Sage cell
+// Their results will be linked, only within language type
+sagecell.makeSagecell({inputLocation: 'pre.sagecell-sage',
+                       linked: true,
+                       languages: ['sage'],
+                       evalButtonText: 'Evaluate (Sage)'});
+</script>
 </head>
 <body class="ignore-math">
 <div class="solution solution-like">
-<h4 class="heading">
-<span class="type">Solution</span><span class="space"> </span><span class="codenumber">3.1.3.3.1</span><span class="period">.</span>
-</h4>
-<div class="para">Note that the distributive property, together with symmetry, let us handle this dot product using what is essentially “FOIL”:</div> <div class="para logical"><div class="displaymath process-math">
+<h3 class="heading">
+<span class="type">Solution</span><span class="space"> </span><span class="codenumber">3.3.12.1</span><span class="period">.</span>
+</h3>
+<div class="para logical">
+<div class="para">First, we note that for a general element of <span class="process-math">\(U\text{,}\)</span> we have</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/thm-complement-matrix.html">
 \begin{equation*}
-\begin{aligned}
-(4\xx-3\yy)\dotp (\xx+5\yy)\amp = 
-(4\xx)\dotp \xx+(4\xx)\dotp(5\yy)+(-3\yy)\dotp \xx+(-3\yy)\dotp(5\yy)\\
-\amp = 4(\xx\dotp\xx)+(4\cdot 5)(\xx\dotp \yy)-3(\yy\dotp \xx)+(-3\cdot 5)(\yy\dotp\yy)\\
-\amp = 4\len{\xx}^2+20\xx\dotp\yy-3\xx\dotp\yy-15\len{\yy}^2\\
-\amp = 4(4)^2+17(1)-15(3)^2 = -54\text{.}
-\end{aligned}
+(a-b+3c, 2a+b, 3c, 4a-b+3c,a-4c) = a(1,2,0,4,1)+b(-1,1,0,-1,0)+c(3,0,3,3,-4)\text{,}
 \end{equation*}
-</div></div>
 </div>
-<span class="incontext"><a href="sec-orthogonal-sets.html#solution-58" class="internal">in-context</a></span>
+<div class="para">so <span class="process-math">\(\{(1,2,0,4,1),(-1,1,0,-1,0),(3,0,3,3,-4)\}\)</span> is a basis for <span class="process-math">\(U\text{.}\)</span> (We have just shown that this set spans <span class="process-math">\(U\text{;}\)</span> it is independent since the first two vectors are not parallel, and the third vector cannot be in the span of the first two, since its third entry is nonzero.) As in <a href="" class="xref" data-knowl="./knowl/thm-complement-matrix.html" title="Theorem 3.3.11">Theorem 3.3.11</a>, we set <span class="process-math">\(A=\bbm 1\amp -1\amp 3\\2\amp 1\amp 0\\0\amp 0\amp 3\\4\amp -1\amp 3\\1\amp 0\amp -4\ebm\text{.}\)</span>
+</div>
+</div> <div class="para">To find a basis for <span class="process-math">\(U^\bot\text{,}\)</span> we simply need to find the nullspace of <span class="process-math">\(A^T\text{,}\)</span> which we do below.</div> <pre class="ptx-sagecell sagecell-sage" id="sage-52"><script type="text/x-sage">from sympy import Matrix, init_printing
+init_printing()
+A = Matrix(5,3,[1,-1,3,2,1,0,0,0,3,4,-1,3,1,0,-4])
+B=A.T
+B.nullspace()
+</script></pre>
+</div>
+<span class="incontext"><a href="section-projection.html#solution-58" class="internal">in-context</a></span>
 </body>
 </html>

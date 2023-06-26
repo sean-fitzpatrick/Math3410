@@ -49,20 +49,36 @@ window.MathJax = {
     paths: {pretext: "https://pretextbook.org/js/lib"},
   },
   startup: {
-    /* Mathjax typesetting operation is under the control of React */
-    typeset: false,
+    pageReady() {
+      return MathJax.startup.defaultPageReady().then(function () {
+      console.log("in ready function");
+      rsMathReady();
+      }
+    )}
   },
 };
 </script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link href="https://webwork-dev.uleth.ca/webwork2_files/js/apps/MathView/mathview.css" rel="stylesheet">
-<script src="https://pretextbook.org/js/0.3/pretext-webwork/2.17/pretext-webwork.js"></script><script src="https://webwork-dev.uleth.ca/webwork2_files/node_modules/iframe-resizer/js/iframeResizer.min.js"></script><script>js_version = 0.3</script><script type="module" defer src="https://siefkenj.github.io/pretext-react/static/js/main.js"></script><link href="https://siefkenj.github.io/pretext-react/static/css/main.css" rel="stylesheet">
-<link rel="preconnect" href="https://fonts.googleapis.com">
+<script src="https://pretextbook.org/js/0.3/pretext-webwork/2.18/pretext-webwork.js"></script><script src="https://webwork-dev.uleth.ca/webwork2_files/node_modules/iframe-resizer/js/iframeResizer.min.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/themes/prism.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="https://pretextbook.org/js/0.3/pretext_search.js"></script><link href="https://pretextbook.org/css/0.7/pretext_search.css" rel="stylesheet" type="text/css">
+<script>js_version = 0.3</script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.3/pretext.js"></script><script>miniversion=0.1</script><script src="https://pretextbook.org/js/0.3/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/0.3/user_preferences.js"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+</script><link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&amp;family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&amp;family=Tinos:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" rel="stylesheet">
 <link href="https://fonts.cdnfonts.com/css/dejavu-serif" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz,wdth,wght@8..144,50..150,100..900&amp;display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wdth,wght@75..100,300..800&amp;display=swap" rel="stylesheet">
 <script type="application/json" class="js-hypothesis-config">{
-    "openSidebar": false,    "showHighlights": true,}</script><script src="https://hypothes.is/embed.js" async=""></script><!--** eBookCongig is necessary to configure interactive       **-->
+    "openSidebar": false,    "showHighlights": true,}</script><script src="https://hypothes.is/embed.js" async=""></script><link href="https://pretextbook.org/css/0.7/pretext.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/shell_crc.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/banner_crc.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/navbar_crc.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/toc_crc.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/knowls_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/style_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/colors_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/setcolors.css" rel="stylesheet" type="text/css">
+<!--** eBookCongig is necessary to configure interactive       **-->
 <!--** Runestone components to run locally in reader's browser **-->
 <!--** No external communication:                              **-->
 <!--**     log level is 0, Runestone Services are disabled     **-->
@@ -84,17 +100,17 @@ eBookConfig.allow_pairs = false;
 eBookConfig.enableScratchAC = false;
 eBookConfig.build_info = "";
 eBookConfig.python3 = null;
-eBookConfig.runestone_version = '7.0.0dev3';
+eBookConfig.runestone_version = '7.0.0dev4';
 eBookConfig.jobehost = '';
 eBookConfig.proxyuri_runs = '';
 eBookConfig.proxyuri_files = '';
 eBookConfig.enable_chatcodes =  false;
 </script>
 <!--*** Runestone Services ***-->
-<script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.0dev3/prefix-runtime.71ffd81c0faeb38b.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.0dev3/prefix-347.193e36c07abd0197.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.0dev3/prefix-runestone.e543e0dd19670ae2.bundle.js"></script><link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/7.0.0dev3/prefix-347.f9add1ca35d5ad93.css">
-<link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/7.0.0dev3/prefix-runestone.1f1f63d2cda36a4d.css">
+<script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.0dev4/prefix-runtime.3489f84c0d76065d.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.0dev4/prefix-347.193e36c07abd0197.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.0dev4/prefix-runestone.e543e0dd19670ae2.bundle.js"></script><link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/7.0.0dev4/prefix-347.f9add1ca35d5ad93.css">
+<link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/7.0.0dev4/prefix-runestone.931faef5361cf6e9.css">
 </head>
-<body id="Math3410" data-react-in-use="yes" class="pretext book ignore-math">
+<body id="Math3410" class="pretext book ignore-math">
 <a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead"><div class="ptx-banner">
 <a id="logo-link" class="logo-link" href=""></a><div class="title-container">
 <h1 class="heading"><a href="linear-algebra.html"><span class="title">Linear Algebra:</span> <span class="subtitle">A second course, featuring proofs and Python</span></a></h1>
@@ -106,7 +122,109 @@ eBookConfig.enable_chatcodes =  false;
 <div id="searchempty" class="searchempty"><span>No results.</span></div>
 <ol id="searchresults" class="searchresults"></ol>
 </div>
-</div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><span class="treebuttons"><a class="previous-button button" href="worksheet-gen-eigen.html" title="Previous"><span class="icon">&lt;</span><span class="name">Prev</span></a><a class="up-button button" href="ch-change-basis.html" title="Up"><span class="icon">^</span><span class="name">Up</span></a><a class="next-button button" href="sec-jordan-form.html" title="Next"><span class="name">Next</span><span class="icon">&gt;</span></a></span><div class="searchbox"><div class="searchwidget">
+</div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><button id="user-preferences-button" class="user-preferences-button button" title="Modify user preferences"><span id="avatarbutton" class="avatarbutton name">You!</span><div id="preferences_menu_holder" class="preferences_menu_holder hidden"><ol id="preferences_menu" class="preferences_menu" style="font-family: 'Roboto Serif', serif;">
+<li data-env="avatar" tabindex="-1">Choose avatar<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
+<ol class="hidden avatar">
+<li data-val="You!" tabindex="-1">
+<span id="theYou!" class="avatarcheck">✔️</span>You!</li>
+<li data-val="😺" tabindex="-1">
+<span id="the😺" class="avatarcheck"></span>😺</li>
+<li data-val="👤" tabindex="-1">
+<span id="the👤" class="avatarcheck"></span>👤</li>
+<li data-val="👽" tabindex="-1">
+<span id="the👽" class="avatarcheck"></span>👽</li>
+<li data-val="🐶" tabindex="-1">
+<span id="the🐶" class="avatarcheck"></span>🐶</li>
+<li data-val="🐼" tabindex="-1">
+<span id="the🐼" class="avatarcheck"></span>🐼</li>
+<li data-val="🌈" tabindex="-1">
+<span id="the🌈" class="avatarcheck"></span>🌈</li>
+</ol>
+</li>
+<li data-env="fontfamily" tabindex="-1">Font family<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
+<ol class="hidden fontfamily">
+<li data-val="face" data-change="OS" tabindex="-1" style="font-family: 'Open Sans'">
+<span id="theOS" class="ffcheck">✔️</span><span class="name">Open Sans</span><span class="sample">AaBbCc 123 PreTeXt</span>
+</li>
+<li data-val="face" data-change="RS" tabindex="-1" style="font-family: 'Roboto Serif'">
+<span id="theRS" class="ffcheck"></span><span class="name">Roboto Serif</span><span class="sample">AaBbCc 123 PreTeXt</span>
+</li>
+</ol>
+</li>
+<li data-env="font" tabindex="-1">Adjust font<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
+<ol class="hidden fonts">
+<li>Size</li>
+<li><span id="thesize">12</span></li>
+<li data-val="size" data-change="-1" tabindex="-1" style="font-size: 80%">Smaller</li>
+<li data-val="size" data-change="1" tabindex="-1" style="font-size: 110%">Larger</li>
+<li>Width</li>
+<li><span id="thewdth">100</span></li>
+<li data-val="wdth" data-change="-5" tabindex="-1" style="font-variation-settings: 'wdth' 60">narrower</li>
+<li data-val="wdth" data-change="5" tabindex="-1" style="font-variation-settings: 'wdth' 150">wider</li>
+<li>Weight</li>
+<li><span id="thewght">400</span></li>
+<li data-val="wght" data-change="-50" tabindex="-1" style="font-weight: 200">thinner</li>
+<li data-val="wght" data-change="50" tabindex="-1" style="font-weight: 700">heavier</li>
+<li>Letter spacing</li>
+<li>
+<span id="thelspace">0</span><span class="byunits">/200</span>
+</li>
+<li data-val="lspace" data-change="-1" tabindex="-1">closer</li>
+<li data-val="lspace" data-change="1" tabindex="-1">f a r t h e r</li>
+<li>Word spacing</li>
+<li>
+<span id="thewspace">0</span><span class="byunits">/50</span>
+</li>
+<li data-val="wspace" data-change="-1" tabindex="-1">smaller gap </li>
+<li data-val="wspace" data-change="1" tabindex="-1">larger gap</li>
+<li>Line Spacing</li>
+<li>
+<span id="theheight">135</span><span class="byunits">/100</span>
+</li>
+<li data-val="height" data-change="-5" tabindex="-1" style="line-height: 1">closer<br>together</li>
+<li data-val="height" data-change="5" tabindex="-1" style="line-height: 1.75">further<br>apart</li>
+</ol>
+</li>
+<li data-env="atmosphere" tabindex="-1">Light/dark mode<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
+<ol class="hidden atmosphere">
+<li data-val="default" tabindex="-1">
+<span id="thedefault" class="atmospherecheck">✔️</span>default</li>
+<li data-val="pastel" tabindex="-1">
+<span id="thepastel" class="atmospherecheck"></span>pastel</li>
+<li data-val="darktwilight" tabindex="-1">
+<span id="thedarktwilight" class="atmospherecheck"></span>twilight</li>
+<li data-val="dark" tabindex="-1">
+<span id="thedark" class="atmospherecheck"></span>dark</li>
+<li data-val="darkmidnight" tabindex="-1">
+<span id="thedarkmidnight" class="atmospherecheck"></span>midnight</li>
+</ol>
+</li>
+<li data-env="ruler" tabindex="-1">Reading ruler<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
+<ol class="hidden ruler">
+<li data-val="none" tabindex="-1">
+<span id="thenone" class="rulercheck">✔️</span>none</li>
+<li data-val="underline" tabindex="-1">
+<span id="theunderline" class="rulercheck"></span>underline</li>
+<li data-val="lunderline" tabindex="-1">
+<span id="thelunderline" class="rulercheck"></span>L-underline</li>
+<li data-val="greybar" tabindex="-1">
+<span id="thegreybar" class="rulercheck"></span>grey bar</li>
+<li data-val="lightbox" tabindex="-1">
+<span id="thelightbox" class="rulercheck"></span>light box</li>
+<li data-val="sunrise" tabindex="-1">
+<span id="thesunrise" class="rulercheck"></span>sunrise</li>
+<li data-val="sunriseunderline" tabindex="-1">
+<span id="thesunriseunderline" class="rulercheck"></span>sunrise underline</li>
+<li class="moveQ">Motion by:</li>
+<li data-val="mouse" tabindex="-1">
+<span id="themouse" class="motioncheck">✔️</span>follow the mouse</li>
+<li data-val="arrow" tabindex="-1">
+<span id="thearrow" class="motioncheck"></span>up/down arrows - not yet</li>
+<li data-val="eye" tabindex="-1">
+<span id="theeye" class="motioncheck"></span>eye tracking - not yet</li>
+</ol>
+</li>
+</ol></div></button><span class="treebuttons"><a class="previous-button button" href="worksheet-gen-eigen.html" title="Previous"><span class="icon">&lt;</span><span class="name">Prev</span></a><a class="up-button button" href="ch-change-basis.html" title="Up"><span class="icon">^</span><span class="name">Up</span></a><a class="next-button button" href="sec-jordan-form.html" title="Next"><span class="name">Next</span><span class="icon">&gt;</span></a></span><div class="searchbox"><div class="searchwidget">
 <input id="ptxsearch" class="ptxsearch" type="text" name="terms" placeholder="Search" onchange="doSearch()"><button id="searchbutton" class="searchbutton" type="button" onclick="doSearch()">🔍</button>
 </div></div></nav><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\require{boldsymbol}\newcommand{\spn}{\operatorname{span}}
 \newcommand{\bbm}{\begin{bmatrix}}
@@ -313,9 +431,9 @@ eBookConfig.enable_chatcodes =  false;
 <main class="ptx-main"><div id="ptx-content" class="ptx-content"><section class="section" id="sec-gen-eigen"><h2 class="heading hide-type">
 <span class="type">Section</span> <span class="codenumber">5.5</span> <span class="title">Generalized eigenspaces</span>
 </h2>
-<div class="para" id="p-2051">Example <a href="" class="xref" data-knowl="./knowl/eg-invariant-block.html" title="Example 5.3.8">Example 5.3.8</a> showed us that if <span class="process-math">\(V=U\oplus W\text{,}\)</span> where <span class="process-math">\(U\)</span> and <span class="process-math">\(W\)</span> are <span class="process-math">\(T\)</span>-invariant, then the matrix <span class="process-math">\(M_B(T)\)</span> has block diagonal form <span class="process-math">\(\bbm A \amp 0\\0\amp B\ebm\text{,}\)</span> as long as the basis <span class="process-math">\(B\)</span> is the union of bases of <span class="process-math">\(U\)</span> and <span class="process-math">\(W\text{.}\)</span>
+<div class="para" id="p-2030">Example <a href="" class="xref" data-knowl="./knowl/eg-invariant-block.html" title="Example 5.3.8">Example 5.3.8</a> showed us that if <span class="process-math">\(V=U\oplus W\text{,}\)</span> where <span class="process-math">\(U\)</span> and <span class="process-math">\(W\)</span> are <span class="process-math">\(T\)</span>-invariant, then the matrix <span class="process-math">\(M_B(T)\)</span> has block diagonal form <span class="process-math">\(\bbm A \amp 0\\0\amp B\ebm\text{,}\)</span> as long as the basis <span class="process-math">\(B\)</span> is the union of bases of <span class="process-math">\(U\)</span> and <span class="process-math">\(W\text{.}\)</span>
 </div>
-<div class="para logical" id="p-2052">
+<div class="para logical" id="p-2031">
 <div class="para">We want to take this idea further. If <span class="process-math">\(V = U_1\oplus U_2\oplus \cdots \oplus U_k\text{,}\)</span> where each subspace <span class="process-math">\(U_j\)</span> is <span class="process-math">\(T\)</span>-invariant, then with respect to a basis <span class="process-math">\(B\)</span> consisting of basis vectors for each subspace, we will have</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -328,8 +446,8 @@ M_B(T)=\bbm A_1 \amp 0 \amp \cdots \amp 0\\
 <div class="para">where each <span class="process-math">\(A_j\)</span> is the matrix of <span class="process-math">\(T|_{U_j}\)</span> with respect to some basis of <span class="process-math">\(U_j\text{.}\)</span>
 </div>
 </div>
-<div class="para" id="p-2053">Our goal moving forward is twofold: one, to make the blocks as small as possible, so that <span class="process-math">\(M_B(T)\)</span> is as close to diagonal as possible, and two, to make the blocks as simple as possible. Of course, if <span class="process-math">\(T\)</span> is diagonalizable, then we can get all blocks down to size <span class="process-math">\(1\times 1\text{,}\)</span> but this is not always possible.</div>
-<div class="para logical" id="p-2054">
+<div class="para" id="p-2032">Our goal moving forward is twofold: one, to make the blocks as small as possible, so that <span class="process-math">\(M_B(T)\)</span> is as close to diagonal as possible, and two, to make the blocks as simple as possible. Of course, if <span class="process-math">\(T\)</span> is diagonalizable, then we can get all blocks down to size <span class="process-math">\(1\times 1\text{,}\)</span> but this is not always possible.</div>
+<div class="para logical" id="p-2033">
 <div class="para">Recall from <a href="sec-eigen-basics.html" class="internal" title="Section 4.1: Eigenvalues and Eigenvectors">Section 4.1</a> that if the characteristic polynomial of <span class="process-math">\(T\)</span> (or equivalently, any matrix representation <span class="process-math">\(A\)</span> of <span class="process-math">\(T\)</span>) is</div>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/sec-eigen-basics.html">
 \begin{equation*}
@@ -338,7 +456,7 @@ c_T(x) = (x-\lambda_1)^{m_1}(x-\lambda_2)^{m_2}\cdots (x-\lambda_k)^{m_k}\text{,
 </div>
 <div class="para">then <span class="process-math">\(\dim E_{\lambda_j}(T)\leq m_j\)</span> for each <span class="process-math">\(j=1,\ldots, k\text{,}\)</span> and <span class="process-math">\(T\)</span> is diagonalizable if and only if we have equality for each <span class="process-math">\(j\text{.}\)</span> (This guarantees that we have sufficiently many independent eigenvectors to form a basis of <span class="process-math">\(V\text{.}\)</span>)</div>
 </div>
-<div class="para logical" id="p-2055">
+<div class="para logical" id="p-2034">
 <div class="para">Since eigenspaces are <span class="process-math">\(T\)</span>-invariant, we see that being able to diagonalize <span class="process-math">\(T\)</span> is equivalent to having the direct sum decomposition</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -347,27 +465,27 @@ V = E_{\lambda_1}(T)\oplus E_{\lambda_2}(T)\oplus \cdots \oplus E_{\lambda_k}(T)
 </div>
 <div class="para">If <span class="process-math">\(T\)</span> cannot be diagonalized, it’s because we came up short on the number of eigenvectors, and the direct sum of all eigenspaces only produces some subspace of <span class="process-math">\(V\)</span> of lower dimension. We now consider how one might enlarge a set of independent eigenvectors in some standard, and ideally optimal, way.</div>
 </div>
-<div class="para" id="p-2056">First, we note that for any operator <span class="process-math">\(T\text{,}\)</span> the restriction of <span class="process-math">\(T\)</span> to <span class="process-math">\(\ker T\)</span> is the zero operator, since by definition, <span class="process-math">\(T(\vv)=\zer\)</span> for all <span class="process-math">\(\vv\in\ker T\text{.}\)</span> Since we define <span class="process-math">\(E_{\lambda}(T)=\ker (T-\lambda I)\text{,}\)</span> it follows that <span class="process-math">\(T-\lambda I\)</span> restricts to the zero operator on the eigenspace <span class="process-math">\(E_\lambda(T)\text{.}\)</span> The idea is to relax the condition “identically zero” to something that will allow us to potentially enlarge some of our eigenspaces, so that we end up with enough vectors to span <span class="process-math">\(V\text{.}\)</span>
+<div class="para" id="p-2035">First, we note that for any operator <span class="process-math">\(T\text{,}\)</span> the restriction of <span class="process-math">\(T\)</span> to <span class="process-math">\(\ker T\)</span> is the zero operator, since by definition, <span class="process-math">\(T(\vv)=\zer\)</span> for all <span class="process-math">\(\vv\in\ker T\text{.}\)</span> Since we define <span class="process-math">\(E_{\lambda}(T)=\ker (T-\lambda I)\text{,}\)</span> it follows that <span class="process-math">\(T-\lambda I\)</span> restricts to the zero operator on the eigenspace <span class="process-math">\(E_\lambda(T)\text{.}\)</span> The idea is to relax the condition “identically zero” to something that will allow us to potentially enlarge some of our eigenspaces, so that we end up with enough vectors to span <span class="process-math">\(V\text{.}\)</span>
 </div>
-<div class="para" id="p-2057">It turns out that the correct replacement for “identically zero” is “nilpotent”. What we would like to find is some subspace <span class="process-math">\(G_\lambda(T)\)</span> such that the restriction of <span class="process-math">\(T-\lambda I\)</span> to <span class="process-math">\(G_\lambda(T)\)</span> will be nilpotent. (Recall that this means <span class="process-math">\((T-\lambda I)^k = 0\)</span> for some integer <span class="process-math">\(k\)</span> when restricted to <span class="process-math">\(G_\lambda(T)\text{.}\)</span>) The only problem is that we don’t (yet) know what this subspace should be. To figure it out, we rely on some ideas you may have explored in your last assignment.</div>
+<div class="para" id="p-2036">It turns out that the correct replacement for “identically zero” is “nilpotent”. What we would like to find is some subspace <span class="process-math">\(G_\lambda(T)\)</span> such that the restriction of <span class="process-math">\(T-\lambda I\)</span> to <span class="process-math">\(G_\lambda(T)\)</span> will be nilpotent. (Recall that this means <span class="process-math">\((T-\lambda I)^k = 0\)</span> for some integer <span class="process-math">\(k\)</span> when restricted to <span class="process-math">\(G_\lambda(T)\text{.}\)</span>) The only problem is that we don’t (yet) know what this subspace should be. To figure it out, we rely on some ideas you may have explored in your last assignment.</div>
 <article class="theorem theorem-like" id="thm-nullspace-power"><h3 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">5.5.1</span><span class="period">.</span>
 </h3>
-<div class="para logical" id="p-2058">
+<div class="para logical" id="p-2037">
 <div class="para">Let <span class="process-math">\(T:V\to V\)</span> be a linear operator. Then:</div>
 <ol class="decimal">
-<li id="li-361"><div class="para" id="p-derived-li-361"><span class="process-math">\(\displaystyle \{\zer\}\subseteq \ker T \subseteq \ker T^2 \subseteq \cdots \subseteq \ker T^k\subseteq \cdots\)</span></div></li>
-<li id="li-362"><div class="para" id="p-2059">If <span class="process-math">\(\ker T^{k+1}=\ker T^k\)</span> for some <span class="process-math">\(k\text{,}\)</span> then <span class="process-math">\(\ker T^{k+m}=\ker T^k\)</span> for all <span class="process-math">\(m\geq 0\text{.}\)</span>
+<li id="li-305"><div class="para" id="p-derived-li-305"><span class="process-math">\(\displaystyle \{\zer\}\subseteq \ker T \subseteq \ker T^2 \subseteq \cdots \subseteq \ker T^k\subseteq \cdots\)</span></div></li>
+<li id="li-306"><div class="para" id="p-2038">If <span class="process-math">\(\ker T^{k+1}=\ker T^k\)</span> for some <span class="process-math">\(k\text{,}\)</span> then <span class="process-math">\(\ker T^{k+m}=\ker T^k\)</span> for all <span class="process-math">\(m\geq 0\text{.}\)</span>
 </div></li>
-<li id="li-363"><div class="para" id="p-2060">If <span class="process-math">\(n=\dim V\text{,}\)</span> then <span class="process-math">\(\ker T^{n+1} = \ker T^n\text{.}\)</span>
+<li id="li-307"><div class="para" id="p-2039">If <span class="process-math">\(n=\dim V\text{,}\)</span> then <span class="process-math">\(\ker T^{n+1} = \ker T^n\text{.}\)</span>
 </div></li>
 </ol>
-</div></article><div class="para" id="p-2061">In other words, for any operator <span class="process-math">\(T\text{,}\)</span> the kernels of successive powers of <span class="process-math">\(T\)</span> can get bigger, but the moment the kernel doesn’t change for the next highest power, it stops changing for all further powers of <span class="process-math">\(T\text{.}\)</span> That is, we have a sequence of kernels of strictly greater dimension until we reach a maximum, at which point the kernels stop growing. And of course, the maximum dimension cannot be more than the dimension of <span class="process-math">\(V\text{.}\)</span>
+</div></article><div class="para" id="p-2040">In other words, for any operator <span class="process-math">\(T\text{,}\)</span> the kernels of successive powers of <span class="process-math">\(T\)</span> can get bigger, but the moment the kernel doesn’t change for the next highest power, it stops changing for all further powers of <span class="process-math">\(T\text{.}\)</span> That is, we have a sequence of kernels of strictly greater dimension until we reach a maximum, at which point the kernels stop growing. And of course, the maximum dimension cannot be more than the dimension of <span class="process-math">\(V\text{.}\)</span>
 </div>
 <article class="definition definition-like" id="def-generalized-eigenspace"><h3 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">5.5.2</span><span class="period">.</span>
 </h3>
-<div class="para logical" id="p-2062">
+<div class="para logical" id="p-2041">
 <div class="para">Let <span class="process-math">\(T:V\to V\)</span> be a linear operator, and let <span class="process-math">\(\lambda\)</span> be an eigenvalue of <span class="process-math">\(T\text{.}\)</span> The <dfn class="terminology">generalized eigenspace</dfn> of <span class="process-math">\(T\)</span> associated to the eigenvalue <span class="process-math">\(\lambda\)</span> is denoted <span class="process-math">\(G_\lambda(T)\text{,}\)</span> and defined as</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -376,22 +494,22 @@ G_\lambda(T) = \ker (T-\lambda I)^n\text{,}
 </div>
 <div class="para">where <span class="process-math">\(n=\dim V\text{.}\)</span>
 </div>
-</div></article><div class="para" id="p-2063">Some remarks are in order. First, we can actually define <span class="process-math">\(G_\lambda(T)\)</span> for any scalar <span class="process-math">\(\lambda\text{.}\)</span> But this space will be trivial if <span class="process-math">\(\lambda\)</span> is not an eigenvalue. Second, it is possible to show (although we will not do so here) that if <span class="process-math">\(\lambda\)</span> is an eigenvalue with multiplicity <span class="process-math">\(m\text{,}\)</span> then <span class="process-math">\(G_\lambda(T)=\ker (T-\lambda I)^m\text{.}\)</span> (The kernel will usually have stopped growing well before we hit <span class="process-math">\(n=\dim V\text{,}\)</span> but we know they’re all eventually equal, so using <span class="process-math">\(n\)</span> guarantees we have everything).</div>
-<div class="para" id="p-2064">We will not prove it here (see Nicholson, or Axler), but the advantage of using generalized eigenspaces is that they’re just big enough to cover all of <span class="process-math">\(V\text{.}\)</span>
+</div></article><div class="para" id="p-2042">Some remarks are in order. First, we can actually define <span class="process-math">\(G_\lambda(T)\)</span> for any scalar <span class="process-math">\(\lambda\text{.}\)</span> But this space will be trivial if <span class="process-math">\(\lambda\)</span> is not an eigenvalue. Second, it is possible to show (although we will not do so here) that if <span class="process-math">\(\lambda\)</span> is an eigenvalue with multiplicity <span class="process-math">\(m\text{,}\)</span> then <span class="process-math">\(G_\lambda(T)=\ker (T-\lambda I)^m\text{.}\)</span> (The kernel will usually have stopped growing well before we hit <span class="process-math">\(n=\dim V\text{,}\)</span> but we know they’re all eventually equal, so using <span class="process-math">\(n\)</span> guarantees we have everything).</div>
+<div class="para" id="p-2043">We will not prove it here (see Nicholson, or Axler), but the advantage of using generalized eigenspaces is that they’re just big enough to cover all of <span class="process-math">\(V\text{.}\)</span>
 </div>
 <article class="theorem theorem-like" id="thm-gen-eigen-decomp"><h3 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">5.5.3</span><span class="period">.</span>
 </h3>
-<div class="para logical" id="p-2065">
+<div class="para logical" id="p-2044">
 <div class="para">Let <span class="process-math">\(V\)</span> be a complex vector space, and let <span class="process-math">\(T:V\to V\)</span> be a linear operator. (We can take <span class="process-math">\(V\)</span> to be real if we assume that <span class="process-math">\(T\)</span> has all real eigenvalues.) Let <span class="process-math">\(\lambda_1,\ldots, \lambda_k\)</span> be the distinct eigenvalues of <span class="process-math">\(T\text{.}\)</span> Then each generalized eigenspace <span class="process-math">\(G_{\lambda_j}(T)\)</span> is <span class="process-math">\(T\)</span>-invariant, and we have the direct sum decomposition</div>
 <div class="displaymath process-math">
 \begin{equation*}
 V = G_{\lambda_1}(T)\oplus G_{\lambda_2}(T)\oplus \cdots \oplus G_{\lambda_k}(T)\text{.}
 \end{equation*}
 </div>
-</div></article><div class="para" id="p-2066">For each eigenvalue <span class="process-math">\(\lambda_j\)</span> of <span class="process-math">\(T\text{,}\)</span> let <span class="process-math">\(l_j\)</span> denote the <em class="emphasis">smallest</em> integer power such that <span class="process-math">\(G_{\lambda_j}(T) = (T-\lambda_j I)^{l_j}\text{.}\)</span> Then certainly we have <span class="process-math">\(l_j\leq m_j\)</span> for each <span class="process-math">\(j\text{.}\)</span> (Note also that if <span class="process-math">\(l_j=1\text{,}\)</span> then <span class="process-math">\(G_{\lambda_j}(T)=E_{\lambda_j}(T)\text{.}\)</span>)</div>
-<div class="para" id="p-2067">The polynomial <span class="process-math">\(m_T(x) = (x-\lambda_1)^{l_1}(x-\lambda_2)^{l_2}\cdots (x-\lambda_k)^{l_k}\)</span> is the polynomial of <em class="emphasis">smallest degree</em> such that <span class="process-math">\(m_T(T)=0\text{.}\)</span> The polynomial <span class="process-math">\(m_T(x)\)</span> is called the <dfn class="terminology">minimal polynomial</dfn> of <span class="process-math">\(T\text{.}\)</span> Note that <span class="process-math">\(T\)</span> is diagonalizable if and only if the minimal polynomial of <span class="process-math">\(T\)</span> has no repeated roots.</div>
-<div class="para" id="p-2068">In <a href="sec-jordan-form.html" class="internal" title="Section 5.6: Jordan Canonical Form">Section 5.6</a>, we’ll explore a systematic method for determining the generalized eigenspaces of a matrix, and in particular, for computing a basis for each generalized eigenspace, with respect to which the corresponding block in the block-diagonal form is especially simple.</div></section></div>
+</div></article><div class="para" id="p-2045">For each eigenvalue <span class="process-math">\(\lambda_j\)</span> of <span class="process-math">\(T\text{,}\)</span> let <span class="process-math">\(l_j\)</span> denote the <em class="emphasis">smallest</em> integer power such that <span class="process-math">\(G_{\lambda_j}(T) = (T-\lambda_j I)^{l_j}\text{.}\)</span> Then certainly we have <span class="process-math">\(l_j\leq m_j\)</span> for each <span class="process-math">\(j\text{.}\)</span> (Note also that if <span class="process-math">\(l_j=1\text{,}\)</span> then <span class="process-math">\(G_{\lambda_j}(T)=E_{\lambda_j}(T)\text{.}\)</span>)</div>
+<div class="para" id="p-2046">The polynomial <span class="process-math">\(m_T(x) = (x-\lambda_1)^{l_1}(x-\lambda_2)^{l_2}\cdots (x-\lambda_k)^{l_k}\)</span> is the polynomial of <em class="emphasis">smallest degree</em> such that <span class="process-math">\(m_T(T)=0\text{.}\)</span> The polynomial <span class="process-math">\(m_T(x)\)</span> is called the <dfn class="terminology">minimal polynomial</dfn> of <span class="process-math">\(T\text{.}\)</span> Note that <span class="process-math">\(T\)</span> is diagonalizable if and only if the minimal polynomial of <span class="process-math">\(T\)</span> has no repeated roots.</div>
+<div class="para" id="p-2047">In <a href="sec-jordan-form.html" class="internal" title="Section 5.6: Jordan Canonical Form">Section 5.6</a>, we’ll explore a systematic method for determining the generalized eigenspaces of a matrix, and in particular, for computing a basis for each generalized eigenspace, with respect to which the corresponding block in the block-diagonal form is especially simple.</div></section></div>
 <div class="ptx-content-footer">
 <a class="previous-button button" href="worksheet-gen-eigen.html" title="Previous"><span class="icon">&lt;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon">^</span><span class="name">Top</span></a><a class="next-button button" href="sec-jordan-form.html" title="Next"><span class="name">Next</span><span class="icon">&gt;</span></a>
 </div></main>

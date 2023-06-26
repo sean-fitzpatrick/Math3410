@@ -10,6 +10,20 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="robots" content="noindex, nofollow">
 </head>
-<body class="ignore-math"><div class="hint solution-like"><div class="para">You can use the fact that the transpose is linear: <span class="process-math">\((A+B)^T=A^T+B^T\)</span> and <span class="process-math">\((cA)^T=cA^T\text{.}\)</span>
-</div></div></body>
+<body class="ignore-math"><div class="hint solution-like">
+<div class="para">This is mostly a matter of using <a href="" class="xref" data-knowl="./knowl/thm-lt-props.html" title="Theorem 2.1.2">Theorem 2.1.2</a>, but it’s important to get the logic correct. We have a conditional statement of the form <span class="process-math">\(P\Rightarrow Q\text{,}\)</span> where both <span class="process-math">\(P\)</span> (“the set <span class="process-math">\(\{T(\vv_1),\ldots, T(\vv_n)\}\)</span> is independent”) and <span class="process-math">\(Q\)</span> (“the set <span class="process-math">\(\{\vv_1,\ldots, \vv_n\}\)</span> is independent”) are themselves conditional statements.</div> <div class="para logical">
+<div class="para">The overall structure therefore looks like <span class="process-math">\((A\Rightarrow B)\Rightarrow (C\Rightarrow D)\text{.}\)</span> A direct proof should be structured as follows:</div>
+<ol class="lower-alpha">
+<li><div class="para">Assume the main hypothesis: <span class="process-math">\(A\Rightarrow B\text{.}\)</span>
+</div></li>
+<li><div class="para">Assume the “sub”-hypothesis <span class="process-math">\(C\text{.}\)</span>
+</div></li>
+<li><div class="para">Figure out how to show that <span class="process-math">\(C\Rightarrow A\text{.}\)</span> (This is the “apply <span class="process-math">\(T\)</span> to both sides” step.)</div></li>
+<li><div class="para">If we know <span class="process-math">\(A\text{,}\)</span> and we’ve assumed <span class="process-math">\(A\Rightarrow B\text{,}\)</span> we know <span class="process-math">\(B\text{.}\)</span>
+</div></li>
+<li><div class="para">Realize that <span class="process-math">\(B\Rightarrow D\text{.}\)</span>
+</div></li>
+</ol>
+</div>
+</div></body>
 </html>

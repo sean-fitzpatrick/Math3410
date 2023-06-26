@@ -12,7 +12,21 @@
 </head>
 <body class="ignore-math">
 <h4 class="heading"><span class="type">Paragraph</span></h4>
-<div class="para">But why should we be interested in computing powers (in particular, <em class="emphasis">large</em> powers) of a matrix? An important context comes from the study of <a class="external" href="https://en.wikipedia.org/wiki/Linear_dynamical_system" target="_blank">discrete linear dynamical systems</a><a href="" class="fn-knowl original" data-knowl="./knowl/fn-9-hidden.html" title="Footnote 4.1.1"><sup> 1 </sup></a>, as well as <a class="external" href="https://en.wikipedia.org/wiki/Markov_chain" target="_blank">Markov chains</a><a href="" class="fn-knowl original" data-knowl="./knowl/fn-10-hidden.html" title="Footnote 4.1.2"><sup> 2 </sup></a>, where the evolution of a state is modelled by repeated multiplication of a vector by a matrix.</div>
+<div class="para logical">
+<div class="para">We begin with the characteristic polynomial. We have</div>
+<div class="displaymath process-math">
+\begin{align*}
+\det(xI_n - A) \amp =\det\bbm x \amp -1\amp -1\\-1\amp x \amp -1\\-1\amp -1\amp x\ebm\\
+\amp = x \begin{vmatrix}x \amp -1\\-1\amp x\end{vmatrix}
++1\begin{vmatrix}-1\amp -1\\-1\amp x\end{vmatrix}
+-1\begin{vmatrix}-1\amp x\\-1\amp -1\end{vmatrix}\\
+\amp = x(x^2-1)+(-x-1)-(1+x)\\
+\amp x(x-1)(x+1)-2(x+1)\\
+\amp (x+1)[x^2-x-2]\\
+\amp (x+1)^2(x-2)\text{.}
+\end{align*}
+</div>
+</div>
 <span class="incontext"><a href="sec-eigen-basics.html#p-1623" class="internal">in-context</a></span>
 </body>
 </html>

@@ -49,12 +49,16 @@ window.MathJax = {
     paths: {pretext: "https://pretextbook.org/js/lib"},
   },
   startup: {
-    /* Mathjax typesetting operation is under the control of React */
-    typeset: false,
+    pageReady() {
+      return MathJax.startup.defaultPageReady().then(function () {
+      console.log("in ready function");
+      rsMathReady();
+      }
+    )}
   },
 };
 </script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link href="https://webwork-dev.uleth.ca/webwork2_files/js/apps/MathView/mathview.css" rel="stylesheet">
-<script src="https://pretextbook.org/js/0.3/pretext-webwork/2.17/pretext-webwork.js"></script><script src="https://webwork-dev.uleth.ca/webwork2_files/node_modules/iframe-resizer/js/iframeResizer.min.js"></script><script>// Make *any* pre with class 'sagecell-sage' an executable Sage cell
+<script src="https://pretextbook.org/js/0.3/pretext-webwork/2.18/pretext-webwork.js"></script><script src="https://webwork-dev.uleth.ca/webwork2_files/node_modules/iframe-resizer/js/iframeResizer.min.js"></script><script>// Make *any* pre with class 'sagecell-sage' an executable Sage cell
 // Their results will be linked, only within language type
 sagecell.makeSagecell({inputLocation: 'pre.sagecell-sage',
                        linked: true,
@@ -66,15 +70,27 @@ sagecell.makeSagecell({inputLocation: 'pre.sagecell-html',
                        linked: true,
                        languages: ['html'],
                        evalButtonText: 'Evaluate (HTML)'});
-</script><script>js_version = 0.3</script><script type="module" defer src="https://siefkenj.github.io/pretext-react/static/js/main.js"></script><link href="https://siefkenj.github.io/pretext-react/static/css/main.css" rel="stylesheet">
-<link rel="preconnect" href="https://fonts.googleapis.com">
+</script><link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/themes/prism.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="https://pretextbook.org/js/0.3/pretext_search.js"></script><link href="https://pretextbook.org/css/0.7/pretext_search.css" rel="stylesheet" type="text/css">
+<script>js_version = 0.3</script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.3/pretext.js"></script><script>miniversion=0.1</script><script src="https://pretextbook.org/js/0.3/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/0.3/user_preferences.js"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+</script><link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&amp;family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&amp;family=Tinos:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" rel="stylesheet">
 <link href="https://fonts.cdnfonts.com/css/dejavu-serif" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz,wdth,wght@8..144,50..150,100..900&amp;display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wdth,wght@75..100,300..800&amp;display=swap" rel="stylesheet">
 <script type="application/json" class="js-hypothesis-config">{
-    "openSidebar": false,    "showHighlights": true,}</script><script src="https://hypothes.is/embed.js" async=""></script><!--** eBookCongig is necessary to configure interactive       **-->
+    "openSidebar": false,    "showHighlights": true,}</script><script src="https://hypothes.is/embed.js" async=""></script><link href="https://pretextbook.org/css/0.7/pretext.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/shell_crc.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/banner_crc.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/navbar_crc.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/toc_crc.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/knowls_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/style_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/colors_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/setcolors.css" rel="stylesheet" type="text/css">
+<!--** eBookCongig is necessary to configure interactive       **-->
 <!--** Runestone components to run locally in reader's browser **-->
 <!--** No external communication:                              **-->
 <!--**     log level is 0, Runestone Services are disabled     **-->
@@ -96,17 +112,17 @@ eBookConfig.allow_pairs = false;
 eBookConfig.enableScratchAC = false;
 eBookConfig.build_info = "";
 eBookConfig.python3 = null;
-eBookConfig.runestone_version = '7.0.0dev3';
+eBookConfig.runestone_version = '7.0.0dev4';
 eBookConfig.jobehost = '';
 eBookConfig.proxyuri_runs = '';
 eBookConfig.proxyuri_files = '';
 eBookConfig.enable_chatcodes =  false;
 </script>
 <!--*** Runestone Services ***-->
-<script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.0dev3/prefix-runtime.71ffd81c0faeb38b.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.0dev3/prefix-347.193e36c07abd0197.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.0dev3/prefix-runestone.e543e0dd19670ae2.bundle.js"></script><link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/7.0.0dev3/prefix-347.f9add1ca35d5ad93.css">
-<link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/7.0.0dev3/prefix-runestone.1f1f63d2cda36a4d.css">
+<script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.0dev4/prefix-runtime.3489f84c0d76065d.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.0dev4/prefix-347.193e36c07abd0197.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.0dev4/prefix-runestone.e543e0dd19670ae2.bundle.js"></script><link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/7.0.0dev4/prefix-347.f9add1ca35d5ad93.css">
+<link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/7.0.0dev4/prefix-runestone.931faef5361cf6e9.css">
 </head>
-<body id="Math3410" data-react-in-use="yes" class="pretext book ignore-math">
+<body id="Math3410" class="pretext book ignore-math">
 <a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead"><div class="ptx-banner">
 <a id="logo-link" class="logo-link" href=""></a><div class="title-container">
 <h1 class="heading"><a href="linear-algebra.html"><span class="title">Linear Algebra:</span> <span class="subtitle">A second course, featuring proofs and Python</span></a></h1>
@@ -118,7 +134,109 @@ eBookConfig.enable_chatcodes =  false;
 <div id="searchempty" class="searchempty"><span>No results.</span></div>
 <ol id="searchresults" class="searchresults"></ol>
 </div>
-</div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><span class="treebuttons"><a class="previous-button button" href="section-matrix-factor.html" title="Previous"><span class="icon">&lt;</span><span class="name">Prev</span></a><a class="up-button button" href="ch-diagonalization.html" title="Up"><span class="icon">^</span><span class="name">Up</span></a><a class="next-button button" href="ch-change-basis.html" title="Next"><span class="name">Next</span><span class="icon">&gt;</span></a></span><div class="searchbox"><div class="searchwidget">
+</div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><button id="user-preferences-button" class="user-preferences-button button" title="Modify user preferences"><span id="avatarbutton" class="avatarbutton name">You!</span><div id="preferences_menu_holder" class="preferences_menu_holder hidden"><ol id="preferences_menu" class="preferences_menu" style="font-family: 'Roboto Serif', serif;">
+<li data-env="avatar" tabindex="-1">Choose avatar<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
+<ol class="hidden avatar">
+<li data-val="You!" tabindex="-1">
+<span id="theYou!" class="avatarcheck">✔️</span>You!</li>
+<li data-val="😺" tabindex="-1">
+<span id="the😺" class="avatarcheck"></span>😺</li>
+<li data-val="👤" tabindex="-1">
+<span id="the👤" class="avatarcheck"></span>👤</li>
+<li data-val="👽" tabindex="-1">
+<span id="the👽" class="avatarcheck"></span>👽</li>
+<li data-val="🐶" tabindex="-1">
+<span id="the🐶" class="avatarcheck"></span>🐶</li>
+<li data-val="🐼" tabindex="-1">
+<span id="the🐼" class="avatarcheck"></span>🐼</li>
+<li data-val="🌈" tabindex="-1">
+<span id="the🌈" class="avatarcheck"></span>🌈</li>
+</ol>
+</li>
+<li data-env="fontfamily" tabindex="-1">Font family<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
+<ol class="hidden fontfamily">
+<li data-val="face" data-change="OS" tabindex="-1" style="font-family: 'Open Sans'">
+<span id="theOS" class="ffcheck">✔️</span><span class="name">Open Sans</span><span class="sample">AaBbCc 123 PreTeXt</span>
+</li>
+<li data-val="face" data-change="RS" tabindex="-1" style="font-family: 'Roboto Serif'">
+<span id="theRS" class="ffcheck"></span><span class="name">Roboto Serif</span><span class="sample">AaBbCc 123 PreTeXt</span>
+</li>
+</ol>
+</li>
+<li data-env="font" tabindex="-1">Adjust font<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
+<ol class="hidden fonts">
+<li>Size</li>
+<li><span id="thesize">12</span></li>
+<li data-val="size" data-change="-1" tabindex="-1" style="font-size: 80%">Smaller</li>
+<li data-val="size" data-change="1" tabindex="-1" style="font-size: 110%">Larger</li>
+<li>Width</li>
+<li><span id="thewdth">100</span></li>
+<li data-val="wdth" data-change="-5" tabindex="-1" style="font-variation-settings: 'wdth' 60">narrower</li>
+<li data-val="wdth" data-change="5" tabindex="-1" style="font-variation-settings: 'wdth' 150">wider</li>
+<li>Weight</li>
+<li><span id="thewght">400</span></li>
+<li data-val="wght" data-change="-50" tabindex="-1" style="font-weight: 200">thinner</li>
+<li data-val="wght" data-change="50" tabindex="-1" style="font-weight: 700">heavier</li>
+<li>Letter spacing</li>
+<li>
+<span id="thelspace">0</span><span class="byunits">/200</span>
+</li>
+<li data-val="lspace" data-change="-1" tabindex="-1">closer</li>
+<li data-val="lspace" data-change="1" tabindex="-1">f a r t h e r</li>
+<li>Word spacing</li>
+<li>
+<span id="thewspace">0</span><span class="byunits">/50</span>
+</li>
+<li data-val="wspace" data-change="-1" tabindex="-1">smaller gap </li>
+<li data-val="wspace" data-change="1" tabindex="-1">larger gap</li>
+<li>Line Spacing</li>
+<li>
+<span id="theheight">135</span><span class="byunits">/100</span>
+</li>
+<li data-val="height" data-change="-5" tabindex="-1" style="line-height: 1">closer<br>together</li>
+<li data-val="height" data-change="5" tabindex="-1" style="line-height: 1.75">further<br>apart</li>
+</ol>
+</li>
+<li data-env="atmosphere" tabindex="-1">Light/dark mode<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
+<ol class="hidden atmosphere">
+<li data-val="default" tabindex="-1">
+<span id="thedefault" class="atmospherecheck">✔️</span>default</li>
+<li data-val="pastel" tabindex="-1">
+<span id="thepastel" class="atmospherecheck"></span>pastel</li>
+<li data-val="darktwilight" tabindex="-1">
+<span id="thedarktwilight" class="atmospherecheck"></span>twilight</li>
+<li data-val="dark" tabindex="-1">
+<span id="thedark" class="atmospherecheck"></span>dark</li>
+<li data-val="darkmidnight" tabindex="-1">
+<span id="thedarkmidnight" class="atmospherecheck"></span>midnight</li>
+</ol>
+</li>
+<li data-env="ruler" tabindex="-1">Reading ruler<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
+<ol class="hidden ruler">
+<li data-val="none" tabindex="-1">
+<span id="thenone" class="rulercheck">✔️</span>none</li>
+<li data-val="underline" tabindex="-1">
+<span id="theunderline" class="rulercheck"></span>underline</li>
+<li data-val="lunderline" tabindex="-1">
+<span id="thelunderline" class="rulercheck"></span>L-underline</li>
+<li data-val="greybar" tabindex="-1">
+<span id="thegreybar" class="rulercheck"></span>grey bar</li>
+<li data-val="lightbox" tabindex="-1">
+<span id="thelightbox" class="rulercheck"></span>light box</li>
+<li data-val="sunrise" tabindex="-1">
+<span id="thesunrise" class="rulercheck"></span>sunrise</li>
+<li data-val="sunriseunderline" tabindex="-1">
+<span id="thesunriseunderline" class="rulercheck"></span>sunrise underline</li>
+<li class="moveQ">Motion by:</li>
+<li data-val="mouse" tabindex="-1">
+<span id="themouse" class="motioncheck">✔️</span>follow the mouse</li>
+<li data-val="arrow" tabindex="-1">
+<span id="thearrow" class="motioncheck"></span>up/down arrows - not yet</li>
+<li data-val="eye" tabindex="-1">
+<span id="theeye" class="motioncheck"></span>eye tracking - not yet</li>
+</ol>
+</li>
+</ol></div></button><span class="treebuttons"><a class="previous-button button" href="section-matrix-factor.html" title="Previous"><span class="icon">&lt;</span><span class="name">Prev</span></a><a class="up-button button" href="ch-diagonalization.html" title="Up"><span class="icon">^</span><span class="name">Up</span></a><a class="next-button button" href="ch-change-basis.html" title="Next"><span class="name">Next</span><span class="icon">&gt;</span></a></span><div class="searchbox"><div class="searchwidget">
 <input id="ptxsearch" class="ptxsearch" type="text" name="terms" placeholder="Search" onchange="doSearch()"><button id="searchbutton" class="searchbutton" type="button" onclick="doSearch()">🔍</button>
 </div></div></nav><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\require{boldsymbol}\newcommand{\spn}{\operatorname{span}}
 \newcommand{\bbm}{\begin{bmatrix}}
@@ -328,37 +446,37 @@ eBookConfig.enable_chatcodes =  false;
 <a href="worksheet-svd-a4.html" class="a4">A4</a><a href="worksheet-svd-letter.html" class="us">US</a>
 </div>
 </h2>
-<section class="onepage" id="page-27"><div class="introduction" id="introduction-34">
-<div class="para" id="p-1918">For this worksheet, the reader is directed to <a href="section-matrix-factor.html" class="internal" title="Section 4.6: Matrix Factorizations and Eigenvalues">Section 4.6</a>. Further details may be found in Section 8.6 of <em class="emphasis">Linear Algebra with Applications</em>, by Keith Nicholson. (See also <a class="external" href="https://www.juanklopper.com/wp-content/uploads/2015/03/III_05_Singular_value_decomposition.html" target="_blank">notebook by Dr. Juan H Klopper</a><a href="" data-knowl="" class="id-ref fn-knowl original" data-refid="hk-fn-18" id="fn-18"><sup> 1 </sup></a>.)</div> <div class="para" id="p-1919">In <a href="section-matrix-factor.html" class="internal" title="Section 4.6: Matrix Factorizations and Eigenvalues">Section 4.6</a> we saw that the <code class="code-inline tex2jax_ignore">singular_value_decomposition</code> algorithm in SymPy does things a little bit differently than in <a href="section-matrix-factor.html" class="internal" title="Section 4.6: Matrix Factorizations and Eigenvalues">Section 4.6</a>. If we start with a square matrix <span class="process-math">\(A\text{,}\)</span> the results are the same, but if <span class="process-math">\(A\)</span> is not square, the decomposition <span class="process-math">\(A = P\Sigma_A Q^T\)</span> looks a little different. In particular, if <span class="process-math">\(A\)</span> is <span class="process-math">\(m\times n\text{,}\)</span> the matrix <span class="process-math">\(\Sigma_A\)</span> defined in <a href="section-matrix-factor.html" class="internal" title="Section 4.6: Matrix Factorizations and Eigenvalues">Section 4.6</a> will also be <span class="process-math">\(m\times n\text{,}\)</span> but it will contain some rows or columns of zeros that are added to get the desired size. The matrix <span class="process-math">\(Q\)</span> is an orthogonal <span class="process-math">\(n\times n\)</span> matrix whose columns are an orthonormal basis of eigenvectors for <span class="process-math">\(A^TA\text{.}\)</span> The matrix <span class="process-math">\(P\)</span> is an orthogonal <span class="process-math">\(m\times m\)</span> matrix whose columns are an orthonormal basis of <span class="process-math">\(\R^m\text{.}\)</span> (The first <span class="process-math">\(r\)</span> columns of <span class="process-math">\(P\)</span> are given by <span class="process-math">\(A\vecq_i\text{,}\)</span> where <span class="process-math">\(\vecq_i\)</span> is the eigenvector of <span class="process-math">\(A^TA\)</span> corresponding to the positive singular value <span class="process-math">\(\sigma_i\text{.}\)</span>)</div> <div class="para" id="p-1920">The algorithm provided by SymPy replaces <span class="process-math">\(\Sigma_A\)</span> by the <span class="process-math">\(r\times r\)</span> diagonal matrix of nonzero singular values. (This is common in most algorithms, since we don’t want to bother storing data we don’t need.) The matrix <span class="process-math">\(Q\)</span> is replaced by the <span class="process-math">\(n\times r\)</span> matrix whose columns are the first <span class="process-math">\(r\)</span> eigenvectors of <span class="process-math">\(A^TA\text{,}\)</span> and the matrix <span class="process-math">\(P\)</span> is replaced by the <span class="process-math">\(m\times r\)</span> matrix whose columns are the orthonormal basis for the column space of <span class="process-math">\(A\text{.}\)</span> (Note that the rank of <span class="process-math">\(A^TA\)</span> is equal to the rank of <span class="process-math">\(A\text{,}\)</span> which is equal to the number <span class="process-math">\(r\)</span> of nonzero eigenvectors of <span class="process-math">\(A^TA\)</span> (counted with multiplicity).)</div> <div class="para" id="p-1921">The product <span class="process-math">\(P\Sigma_A Q^T\)</span> will be the same in both cases, and the matrix <span class="process-math">\(P\)</span> is the same as well.</div>
-</div> <div class="para" id="p-1922">This time, rather than using the SymPy algorithm, we will work through the process outlined in <a href="section-matrix-factor.html" class="internal" title="Section 4.6: Matrix Factorizations and Eigenvalues">Section 4.6</a> step-by-step. First, we will work through (again) <a href="" class="xref" data-knowl="./knowl/example-svd.html" title="Example 4.6.4">Example 4.6.4</a>. Let <span class="process-math">\(A = \bbm 1\amp 1\amp 1\\1\amp 0\amp -1\ebm\text{.}\)</span> First, we get the singular values:</div> <pre class="ptx-sagecell sagecell-sage" id="sage-101"><script type="text/x-sage">from sympy import Matrix,init_printing
+<section class="onepage" id="page-27"><div class="introduction" id="introduction-35">
+<div class="para" id="p-1897">For this worksheet, the reader is directed to <a href="section-matrix-factor.html" class="internal" title="Section 4.6: Matrix Factorizations and Eigenvalues">Section 4.6</a>. Further details may be found in Section 8.6 of <em class="emphasis">Linear Algebra with Applications</em>, by Keith Nicholson. (See also <a class="external" href="https://www.juanklopper.com/wp-content/uploads/2015/03/III_05_Singular_value_decomposition.html" target="_blank">notebook by Dr. Juan H Klopper</a><a href="" data-knowl="" class="id-ref fn-knowl original" data-refid="hk-fn-18" id="fn-18"><sup> 1 </sup></a>.)</div> <div class="para" id="p-1898">In <a href="section-matrix-factor.html" class="internal" title="Section 4.6: Matrix Factorizations and Eigenvalues">Section 4.6</a> we saw that the <code class="code-inline tex2jax_ignore">singular_value_decomposition</code> algorithm in SymPy does things a little bit differently than in <a href="section-matrix-factor.html" class="internal" title="Section 4.6: Matrix Factorizations and Eigenvalues">Section 4.6</a>. If we start with a square matrix <span class="process-math">\(A\text{,}\)</span> the results are the same, but if <span class="process-math">\(A\)</span> is not square, the decomposition <span class="process-math">\(A = P\Sigma_A Q^T\)</span> looks a little different. In particular, if <span class="process-math">\(A\)</span> is <span class="process-math">\(m\times n\text{,}\)</span> the matrix <span class="process-math">\(\Sigma_A\)</span> defined in <a href="section-matrix-factor.html" class="internal" title="Section 4.6: Matrix Factorizations and Eigenvalues">Section 4.6</a> will also be <span class="process-math">\(m\times n\text{,}\)</span> but it will contain some rows or columns of zeros that are added to get the desired size. The matrix <span class="process-math">\(Q\)</span> is an orthogonal <span class="process-math">\(n\times n\)</span> matrix whose columns are an orthonormal basis of eigenvectors for <span class="process-math">\(A^TA\text{.}\)</span> The matrix <span class="process-math">\(P\)</span> is an orthogonal <span class="process-math">\(m\times m\)</span> matrix whose columns are an orthonormal basis of <span class="process-math">\(\R^m\text{.}\)</span> (The first <span class="process-math">\(r\)</span> columns of <span class="process-math">\(P\)</span> are given by <span class="process-math">\(A\vecq_i\text{,}\)</span> where <span class="process-math">\(\vecq_i\)</span> is the eigenvector of <span class="process-math">\(A^TA\)</span> corresponding to the positive singular value <span class="process-math">\(\sigma_i\text{.}\)</span>)</div> <div class="para" id="p-1899">The algorithm provided by SymPy replaces <span class="process-math">\(\Sigma_A\)</span> by the <span class="process-math">\(r\times r\)</span> diagonal matrix of nonzero singular values. (This is common in most algorithms, since we don’t want to bother storing data we don’t need.) The matrix <span class="process-math">\(Q\)</span> is replaced by the <span class="process-math">\(n\times r\)</span> matrix whose columns are the first <span class="process-math">\(r\)</span> eigenvectors of <span class="process-math">\(A^TA\text{,}\)</span> and the matrix <span class="process-math">\(P\)</span> is replaced by the <span class="process-math">\(m\times r\)</span> matrix whose columns are the orthonormal basis for the column space of <span class="process-math">\(A\text{.}\)</span> (Note that the rank of <span class="process-math">\(A^TA\)</span> is equal to the rank of <span class="process-math">\(A\text{,}\)</span> which is equal to the number <span class="process-math">\(r\)</span> of nonzero eigenvectors of <span class="process-math">\(A^TA\)</span> (counted with multiplicity).)</div> <div class="para" id="p-1900">The product <span class="process-math">\(P\Sigma_A Q^T\)</span> will be the same in both cases, and the matrix <span class="process-math">\(P\)</span> is the same as well.</div>
+</div> <div class="para" id="p-1901">This time, rather than using the SymPy algorithm, we will work through the process outlined in <a href="section-matrix-factor.html" class="internal" title="Section 4.6: Matrix Factorizations and Eigenvalues">Section 4.6</a> step-by-step. First, we will work through (again) <a href="" class="xref" data-knowl="./knowl/example-svd.html" title="Example 4.6.4">Example 4.6.4</a>. Let <span class="process-math">\(A = \bbm 1\amp 1\amp 1\\1\amp 0\amp -1\ebm\text{.}\)</span> First, we get the singular values:</div> <pre class="ptx-sagecell sagecell-sage" id="sage-101"><script type="text/x-sage">from sympy import Matrix,init_printing
 init_printing()
 A = Matrix([[1,1,1],[1,0,-1]])
 L0=A.singular_values()
 L0
-</script></pre> <div class="para" id="p-1923">Next, we get the eigenvalues and eigenvectors of <span class="process-math">\(A^TA\text{:}\)</span>
+</script></pre> <div class="para" id="p-1902">Next, we get the eigenvalues and eigenvectors of <span class="process-math">\(A^TA\text{:}\)</span>
 </div> <pre class="ptx-sagecell sagecell-sage" id="sage-102"><script type="text/x-sage">B = (A.T)*A
 L1=B.eigenvects()
 L1
-</script></pre> <div class="para" id="p-1924">Now we need to normalize the eigenvectors, in the correct order. Note that the eigenvectors were listed in <em class="emphasis">increasing</em> order of eigenvalue, so we need to reverse the order. Note that <code class="code-inline tex2jax_ignore">L1</code> is a list of lists. The eigenvector is the third entry (index 2) in the list (eigenvalue, multiplicity, eigenvector). We also need to turn list elements into matrices. So, for example the second eigenvector is <code class="code-inline tex2jax_ignore">Matrix(L1[1][2])</code>.</div> <pre class="ptx-sagecell sagecell-sage" id="sage-103"><script type="text/x-sage">R1=Matrix(L1[2][2])
+</script></pre> <div class="para" id="p-1903">Now we need to normalize the eigenvectors, in the correct order. Note that the eigenvectors were listed in <em class="emphasis">increasing</em> order of eigenvalue, so we need to reverse the order. Note that <code class="code-inline tex2jax_ignore">L1</code> is a list of lists. The eigenvector is the third entry (index 2) in the list (eigenvalue, multiplicity, eigenvector). We also need to turn list elements into matrices. So, for example the second eigenvector is <code class="code-inline tex2jax_ignore">Matrix(L1[1][2])</code>.</div> <pre class="ptx-sagecell sagecell-sage" id="sage-103"><script type="text/x-sage">R1=Matrix(L1[2][2])
 R2=Matrix(L1[1][2])
 R3=Matrix(L1[0][2])
 Q1 = (1/R1.norm())*R1
 Q2 = (1/R2.norm())*R2
 Q3 = (1/R3.norm())*R3
 Q1,Q2,Q3
-</script></pre></section><section class="onepage" id="page-28"><div class="para" id="p-1925">Next, we can assemble these vectors into a matrix, and confirm that it’s orthogonal.</div> <pre class="ptx-sagecell sagecell-sage" id="sage-104"><script type="text/x-sage">from sympy import BlockMatrix
+</script></pre></section><section class="onepage" id="page-28"><div class="para" id="p-1904">Next, we can assemble these vectors into a matrix, and confirm that it’s orthogonal.</div> <pre class="ptx-sagecell sagecell-sage" id="sage-104"><script type="text/x-sage">from sympy import BlockMatrix
 Q = Matrix(BlockMatrix([Q1,Q2,Q3]))
 Q,Q*Q.T
-</script></pre> <div class="para" id="p-1926">We’ve made the matrix <span class="process-math">\(Q\text{!}\)</span> Next, we construct <span class="process-math">\(\Sigma_A\text{.}\)</span> This we will do by hand.</div> <pre class="ptx-sagecell sagecell-sage" id="sage-105"><script type="text/x-sage">SigA = Matrix([[L0[0],0,0],[0,L0[1],0]])
+</script></pre> <div class="para" id="p-1905">We’ve made the matrix <span class="process-math">\(Q\text{!}\)</span> Next, we construct <span class="process-math">\(\Sigma_A\text{.}\)</span> This we will do by hand.</div> <pre class="ptx-sagecell sagecell-sage" id="sage-105"><script type="text/x-sage">SigA = Matrix([[L0[0],0,0],[0,L0[1],0]])
 SigA
-</script></pre> <div class="para" id="p-1927">Alternatively, you could do <code class="code-inline tex2jax_ignore">SigA = diag(L0[0],L0[1]).row_join(Matrix([0,0]))</code>. Finally, we need to make the matrix <span class="process-math">\(P\text{.}\)</span> First, we find the vectors <span class="process-math">\(A\vecq_1, A\vecq_2\)</span> and normalize. (Note that <span class="process-math">\(A\vecq_3=\zer\text{,}\)</span> so this vector is unneeded, as expected.)</div> <pre class="ptx-sagecell sagecell-sage" id="sage-106"><script type="text/x-sage">S1 = A*Q1
+</script></pre> <div class="para" id="p-1906">Alternatively, you could do <code class="code-inline tex2jax_ignore">SigA = diag(L0[0],L0[1]).row_join(Matrix([0,0]))</code>. Finally, we need to make the matrix <span class="process-math">\(P\text{.}\)</span> First, we find the vectors <span class="process-math">\(A\vecq_1, A\vecq_2\)</span> and normalize. (Note that <span class="process-math">\(A\vecq_3=\zer\text{,}\)</span> so this vector is unneeded, as expected.)</div> <pre class="ptx-sagecell sagecell-sage" id="sage-106"><script type="text/x-sage">S1 = A*Q1
 S2 = A*Q2
 P1 = (1/S1.norm())*S1
 P2 = (1/S2.norm())*S2
 P = Matrix(BlockMatrix([P1,P2]))
 P
-</script></pre> <div class="para" id="p-1928">Note that the matrix <span class="process-math">\(P\)</span> is already the correct size, because <span class="process-math">\(\rank(A)=2\dim(\R^2)\text{.}\)</span> In general, for an <span class="process-math">\(m\times n\)</span> matrix <span class="process-math">\(A\text{,}\)</span> if <span class="process-math">\(\rank(A)=r\lt m\text{,}\)</span> we would have to extend the set <span class="process-math">\(\{\vecp_1,\ldots, \vecp_r\}\)</span> to a basis for <span class="process-math">\(\R^m\text{.}\)</span> Finally, we check that our matrices work as advertised.</div> <pre class="ptx-sagecell sagecell-sage" id="sage-107"><script type="text/x-sage">P*SigA*(Q.T)
-</script></pre> <div class="para" id="p-1929">For convenience, here is all of the above code, with all print commands (except the last one) removed.</div> <div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><pre class="program"><code class="language-none">from sympy import Matrix,BlockMatrix,init_printing
+</script></pre> <div class="para" id="p-1907">Note that the matrix <span class="process-math">\(P\)</span> is already the correct size, because <span class="process-math">\(\rank(A)=2\dim(\R^2)\text{.}\)</span> In general, for an <span class="process-math">\(m\times n\)</span> matrix <span class="process-math">\(A\text{,}\)</span> if <span class="process-math">\(\rank(A)=r\lt m\text{,}\)</span> we would have to extend the set <span class="process-math">\(\{\vecp_1,\ldots, \vecp_r\}\)</span> to a basis for <span class="process-math">\(\R^m\text{.}\)</span> Finally, we check that our matrices work as advertised.</div> <pre class="ptx-sagecell sagecell-sage" id="sage-107"><script type="text/x-sage">P*SigA*(Q.T)
+</script></pre> <div class="para" id="p-1908">For convenience, here is all of the above code, with all print commands (except the last one) removed.</div> <div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><pre class="program"><code class="language-none">from sympy import Matrix,BlockMatrix,init_printing
 init_printing()
 A = Matrix([[1,1,1],[1,0,-1]])
 B=(A.T)*A
@@ -378,8 +496,8 @@ P1 = (1/S1.norm())*S1
 P2 = (1/S2.norm())*S2
 P = Matrix(BlockMatrix([P1,P2]))
 P,SigA,Q,P*SigA*Q.T
-</code></pre></div></section><section class="onepage" id="page-29"><article class="exercise exercise-like" id="exercise-169"><h3 class="heading"><span class="codenumber">1<span class="period">.</span></span></h3>
-<div class="para logical" id="p-1930">
+</code></pre></div></section><section class="onepage" id="page-29"><article class="exercise exercise-like" id="exercise-172"><h3 class="heading"><span class="codenumber">1<span class="period">.</span></span></h3>
+<div class="para logical" id="p-1909">
 <div class="para">Do Exercise 8.6.9 in Nicholson: compute the SVD for the matrices</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -388,8 +506,8 @@ P,SigA,Q,P*SigA*Q.T
 </div>
 <div class="para">Note that for these matrices, you will need to do some additional work to extend the <span class="process-math">\(\vecp_i\)</span> vectors to an orthonormal basis. You can adapt the code above, but you will have to think about how to implement additional code to construct any extra vectors you need.</div>
 </div>
-<div class="workspace" data-space="3.5in"></div></article> <pre class="ptx-sagecell sagecell-sage" id="sage-108"><script type="text/x-sage"></script></pre> <article class="exercise exercise-like" id="exercise-170"><h3 class="heading"><span class="codenumber">2<span class="period">.</span></span></h3>
-<div class="para" id="p-1931">Either by reading Nicholson or by searching online (or both), come up with a couple of answers to the question: “Why are people interested in the singular value decomposition?”</div>
+<div class="workspace" data-space="3.5in"></div></article> <pre class="ptx-sagecell sagecell-sage" id="sage-108"><script type="text/x-sage"></script></pre> <article class="exercise exercise-like" id="exercise-173"><h3 class="heading"><span class="codenumber">2<span class="period">.</span></span></h3>
+<div class="para" id="p-1910">Either by reading Nicholson or by searching online (or both), come up with a couple of answers to the question: “Why are people interested in the singular value decomposition?”</div>
 <div class="workspace" data-space="3.5in"></div></article> <pre class="ptx-sagecell sagecell-html" id="sage-109"><script type="text/x-sage"></script></pre></section></section><div class="hidden-content tex2jax_ignore" id="hk-fn-18"><div class="fn"><code class="code-inline tex2jax_ignore">www.juanklopper.com/wp-content/uploads/2015/03/III_05_Singular_value_decomposition.html</code></div></div>
 </div>
 <div class="ptx-content-footer">

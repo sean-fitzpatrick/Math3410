@@ -13,19 +13,27 @@
 <body class="ignore-math">
 <h4 class="heading"><span class="type">Paragraph</span></h4>
 <div class="para logical">
-<div class="para">Notice also that if we set <span class="process-math">\(N=T-\lambda I\text{,}\)</span> then</div>
+<div class="para">We tackle the repeated eigenvalue first. The reduced row-echelon form of <span class="process-math">\(M-I\)</span> is given by</div>
 <div class="displaymath process-math">
 \begin{equation*}
-\vv_1 = N\vv_2, \vv_2 = N\vv_3, \ldots, \vv_{m-1} = N\vv_m
+R_1 = \bbm 1\amp 0\amp 0\amp 0\\0\amp 1\amp 0\amp 0\\0\amp 0\amp 1\amp 0\\0\amp 0\amp 0\amp 0\ebm\text{,}
 \end{equation*}
 </div>
-<div class="para">so our basis for <span class="process-math">\(G_\lambda(T)\)</span> is of the form</div>
+<div class="para">so</div>
 <div class="displaymath process-math">
 \begin{equation*}
-\vv, N\vv, N^2\vv, \ldots, N^{m-1}\vv\text{,}
+E_1(M) = \spn\{\xx_1\}, \text{ where } \xx_1 = \bbm 0\\0\\0\\1\ebm\text{.}
 \end{equation*}
 </div>
-<div class="para">where <span class="process-math">\(\vv = \vv_m\text{,}\)</span> and <span class="process-math">\(\vv_1=N^{m-1}\vv\)</span> is an eigenvector. (Note that <span class="process-math">\(N^m\vv = (T-\lambda I)\vv_1=\zer\text{,}\)</span> and indeed <span class="process-math">\(N^m\vv_j=\zer\)</span> for each <span class="process-math">\(j=1,\ldots, m\text{.}\)</span>) Such a basis is known as a <dfn class="terminology">chain basis</dfn>.</div>
+<div class="para">We now attempt to solve <span class="process-math">\((M-I)\xx=\xx_1\text{.}\)</span> We find</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\left(\begin{matrix}0\amp 1\amp 0\amp 0\\0\amp 0\amp 0\amp 0\\0\amp -1\amp 1\amp 0\\1\amp -1\amp 1\amp 0\end{matrix}\right|\left.\begin{matrix}0\\0\\0\\1\end{matrix}\right)
+\xrightarrow{\text{RREF}}
+\left(\begin{matrix} 1\amp 0\amp 0\amp 0\\0\amp 1\amp 0\amp 0\\0\amp 0\amp 1\amp 0\\0\amp 0\amp 0\amp 0\end{matrix}\right|\left.\begin{matrix}1\\0\\0\\0\end{matrix}\right)\text{,}
+\end{equation*}
+</div>
+<div class="para">so <span class="process-math">\(\xx = t\xx_1+\xx_2\text{,}\)</span> where <span class="process-math">\(\xx_2 = \bbm 1\\0\\0\\0\ebm\text{.}\)</span> We take <span class="process-math">\(\xx_2\)</span> as our first generalized eigenvector. Note that <span class="process-math">\((M-I)^2\xx_2 = (M-I)\xx_1=\zer\text{,}\)</span> so <span class="process-math">\(\xx_2\in \nll (M-I)^2\text{,}\)</span> as expected.</div>
 </div>
 <span class="incontext"><a href="sec-jordan-form.html#p-2086" class="internal">in-context</a></span>
 </body>

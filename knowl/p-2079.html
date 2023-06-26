@@ -11,18 +11,15 @@
 <meta name="robots" content="noindex, nofollow">
 </head>
 <body class="ignore-math">
-<h3 class="heading"><span class="type">Paragraph</span></h3>
+<h4 class="heading"><span class="type">Paragraph</span></h4>
 <div class="para logical">
-<div class="para">If the previous point wasn’t clear, note that with an appropriate choice of basis, the block <span class="process-math">\(A_i\)</span> in <a href="" class="xref" data-knowl="./knowl/thm-block-eigen.html" title="Theorem 5.6.2">Theorem 5.6.2</a> has the form</div>
-<div class="displaymath process-math" data-contains-math-knowls="./knowl/thm-block-eigen.html">
-\begin{equation*}
-A_i = \bbm \lambda_i \amp \ast \amp \cdots \amp \ast\\
-0 \amp \lambda_i \amp \cdots \amp \ast\\
-\vdots \amp \vdots \amp \ddots\amp \vdots\\
-0 \amp 0 \amp \cdots \amp \lambda_i\ebm\text{.}
-\end{equation*}
-</div>
-<div class="para">Thus, <span class="process-math">\(M_B(T)-\lambda_j I\)</span> will have blocks that are upper triangular, with diagonal entries <span class="process-math">\(\lambda_i-\lambda_j\neq 0\)</span> when <span class="process-math">\(i\neq j\text{,}\)</span> but when <span class="process-math">\(i=j\)</span> we get a matrix that is strictly upper triangular, and therefore nilpotent, since its diagonal entries will be <span class="process-math">\(\lambda_j-\lambda_j=0\text{.}\)</span>
+<div class="para">Solving the system <span class="process-math">\((A-3I)\zz = \yy_1+\yy_2\text{,}\)</span> using the code above, we find</div>
+<div class="displaymath process-math">
+\begin{align*}
+\zz \amp = \bbm \frac12 +\frac12 s-\frac12 t\\1-s+t\\1+s\\s\\t\ebm\\
+\amp = \bbm \frac12\\1\\1\\0\\0\ebm + s\bbm\frac12\\-1\\1\\1\\0\ebm+t\bbm -\frac12\\1\\0\\0\\1\ebm\\
+\amp = \bbm \frac12\\1\\1\\0\\0\ebm \frac{s}{2}\yy_1+\frac{t}{2}\yy_2\text{.}
+\end{align*}
 </div>
 </div>
 <span class="incontext"><a href="sec-jordan-form.html#p-2079" class="internal">in-context</a></span>

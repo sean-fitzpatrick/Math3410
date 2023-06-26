@@ -13,13 +13,18 @@
 <body class="ignore-math">
 <h5 class="heading"><span class="type">Paragraph</span></h5>
 <div class="para logical">
-<div class="para">Clearly, all three vectors are nonzero. To confirm the set is orthogonal, we simply compute dot products:</div>
+<div class="para">We compute</div>
 <div class="displaymath process-math">
 \begin{align*}
-(1,0,1,0)\dotp (-1,0,1,1)\amp =-1+0+1+0=0\\
-(-1,0,1,1)\dotp (1,1,-1,2)\amp =-1+0-1+2=0\\
-(1,0,1,0)\dotp (1,1,-1,2) \amp = 1+0-1+0=0\text{.}
+\left(\frac{\vv\dotp\xx_1}{\len{\xx_1}^2}\right)\xx_1
+\amp +\left(\frac{\vv\dotp\xx_2}{\len{\xx_2}^2}\right)\xx_2
++\left(\frac{\vv\dotp\xx_3}{\len{\xx_3}^2}\right)\xx_3\\
+\amp = \frac{4}{2}\xx_1+\frac{-9}{3}\xx_2+\frac{-28}{7}\xx_3\\
+\amp = 2(1,0,1,0)-3(-1,0,1,1)-4(1,1,-1,2)\\
+\amp = (1,-4,3,-11) = \vv\text{,}
 \end{align*}
+</div>
+<div class="para">so <span class="process-math">\(\vv\in\spn\{\xx_1,\xx_2,\xx_3\}\text{.}\)</span>
 </div>
 </div>
 <span class="incontext"><a href="sec-orthogonal-sets.html#p-1350" class="internal">in-context</a></span>

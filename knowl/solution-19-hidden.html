@@ -9,8 +9,19 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="robots" content="noindex, nofollow">
+<script>// Make *any* pre with class 'sagecell-sage' an executable Sage cell
+// Their results will be linked, only within language type
+sagecell.makeSagecell({inputLocation: 'pre.sagecell-sage',
+                       linked: true,
+                       languages: ['sage'],
+                       evalButtonText: 'Evaluate (Sage)'});
+</script>
 </head>
 <body class="ignore-math"><div class="solution solution-like">
-<span class="process-math">\(\left\lbrace{\bf u}_1,{\bf u}_2,{\bf u}_3\right\rbrace\)</span> is a proper subset of span<span class="process-math">\(\left\lbrace{\bf u}_1,{\bf u}_2,{\bf u}_3,{\bf u}_4\right\rbrace\text{.}\)</span>
+<div class="para">We set up a matrix and reduce:</div> <pre class="ptx-sagecell sagecell-sage" id="sage-17"><script type="text/x-sage">from sympy import Matrix,init_printing
+init_printing()
+A = Matrix(3,3,[1,-1,-1,2,0,4,0,3,9])
+A.rref()
+</script></pre> <div class="para">Notice that this time we don’t get a unique solution, so we can conclude that these vectors are <em class="emphasis">not</em> independent. Furthermore, you can probably deduce from the above that we have <span class="process-math">\(2\vv_1+3\vv_2-\vv_3=\zer\text{.}\)</span> Now suppose that <span class="process-math">\(\ww\in\spn\{\vv_1,\vv_2,\vv_3\}\text{.}\)</span> In how many ways can we write <span class="process-math">\(\ww\)</span> as a linear combination of these vectors?</div>
 </div></body>
 </html>

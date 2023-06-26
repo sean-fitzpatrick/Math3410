@@ -49,26 +49,42 @@ window.MathJax = {
     paths: {pretext: "https://pretextbook.org/js/lib"},
   },
   startup: {
-    /* Mathjax typesetting operation is under the control of React */
-    typeset: false,
+    pageReady() {
+      return MathJax.startup.defaultPageReady().then(function () {
+      console.log("in ready function");
+      rsMathReady();
+      }
+    )}
   },
 };
 </script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link href="https://webwork-dev.uleth.ca/webwork2_files/js/apps/MathView/mathview.css" rel="stylesheet">
-<script src="https://pretextbook.org/js/0.3/pretext-webwork/2.17/pretext-webwork.js"></script><script src="https://webwork-dev.uleth.ca/webwork2_files/node_modules/iframe-resizer/js/iframeResizer.min.js"></script><script>// Make *any* pre with class 'sagecell-sage' an executable Sage cell
+<script src="https://pretextbook.org/js/0.3/pretext-webwork/2.18/pretext-webwork.js"></script><script src="https://webwork-dev.uleth.ca/webwork2_files/node_modules/iframe-resizer/js/iframeResizer.min.js"></script><script>// Make *any* pre with class 'sagecell-sage' an executable Sage cell
 // Their results will be linked, only within language type
 sagecell.makeSagecell({inputLocation: 'pre.sagecell-sage',
                        linked: true,
                        languages: ['sage'],
                        evalButtonText: 'Evaluate (Sage)'});
-</script><script>js_version = 0.3</script><script type="module" defer src="https://siefkenj.github.io/pretext-react/static/js/main.js"></script><link href="https://siefkenj.github.io/pretext-react/static/css/main.css" rel="stylesheet">
-<link rel="preconnect" href="https://fonts.googleapis.com">
+</script><link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/themes/prism.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="https://pretextbook.org/js/0.3/pretext_search.js"></script><link href="https://pretextbook.org/css/0.7/pretext_search.css" rel="stylesheet" type="text/css">
+<script>js_version = 0.3</script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.3/pretext.js"></script><script>miniversion=0.1</script><script src="https://pretextbook.org/js/0.3/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/0.3/user_preferences.js"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+</script><link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&amp;family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&amp;family=Tinos:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" rel="stylesheet">
 <link href="https://fonts.cdnfonts.com/css/dejavu-serif" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz,wdth,wght@8..144,50..150,100..900&amp;display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wdth,wght@75..100,300..800&amp;display=swap" rel="stylesheet">
 <script type="application/json" class="js-hypothesis-config">{
-    "openSidebar": false,    "showHighlights": true,}</script><script src="https://hypothes.is/embed.js" async=""></script><!--** eBookCongig is necessary to configure interactive       **-->
+    "openSidebar": false,    "showHighlights": true,}</script><script src="https://hypothes.is/embed.js" async=""></script><link href="https://pretextbook.org/css/0.7/pretext.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/shell_crc.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/banner_crc.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/navbar_crc.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/toc_crc.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/knowls_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/style_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/colors_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/setcolors.css" rel="stylesheet" type="text/css">
+<!--** eBookCongig is necessary to configure interactive       **-->
 <!--** Runestone components to run locally in reader's browser **-->
 <!--** No external communication:                              **-->
 <!--**     log level is 0, Runestone Services are disabled     **-->
@@ -90,17 +106,17 @@ eBookConfig.allow_pairs = false;
 eBookConfig.enableScratchAC = false;
 eBookConfig.build_info = "";
 eBookConfig.python3 = null;
-eBookConfig.runestone_version = '7.0.0dev3';
+eBookConfig.runestone_version = '7.0.0dev4';
 eBookConfig.jobehost = '';
 eBookConfig.proxyuri_runs = '';
 eBookConfig.proxyuri_files = '';
 eBookConfig.enable_chatcodes =  false;
 </script>
 <!--*** Runestone Services ***-->
-<script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.0dev3/prefix-runtime.71ffd81c0faeb38b.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.0dev3/prefix-347.193e36c07abd0197.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.0dev3/prefix-runestone.e543e0dd19670ae2.bundle.js"></script><link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/7.0.0dev3/prefix-347.f9add1ca35d5ad93.css">
-<link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/7.0.0dev3/prefix-runestone.1f1f63d2cda36a4d.css">
+<script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.0dev4/prefix-runtime.3489f84c0d76065d.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.0dev4/prefix-347.193e36c07abd0197.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.0dev4/prefix-runestone.e543e0dd19670ae2.bundle.js"></script><link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/7.0.0dev4/prefix-347.f9add1ca35d5ad93.css">
+<link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/7.0.0dev4/prefix-runestone.931faef5361cf6e9.css">
 </head>
-<body id="Math3410" data-react-in-use="yes" class="pretext book ignore-math">
+<body id="Math3410" class="pretext book ignore-math">
 <a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead"><div class="ptx-banner">
 <a id="logo-link" class="logo-link" href=""></a><div class="title-container">
 <h1 class="heading"><a href="linear-algebra.html"><span class="title">Linear Algebra:</span> <span class="subtitle">A second course, featuring proofs and Python</span></a></h1>
@@ -112,7 +128,109 @@ eBookConfig.enable_chatcodes =  false;
 <div id="searchempty" class="searchempty"><span>No results.</span></div>
 <ol id="searchresults" class="searchresults"></ol>
 </div>
-</div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><span class="treebuttons"><a class="previous-button button" href="sec-independence.html" title="Previous"><span class="icon">&lt;</span><span class="name">Prev</span></a><a class="up-button button" href="ch-vector-space.html" title="Up"><span class="icon">^</span><span class="name">Up</span></a><a class="next-button button" href="sec-subspace-combine.html" title="Next"><span class="name">Next</span><span class="icon">&gt;</span></a></span><div class="searchbox"><div class="searchwidget">
+</div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><button id="user-preferences-button" class="user-preferences-button button" title="Modify user preferences"><span id="avatarbutton" class="avatarbutton name">You!</span><div id="preferences_menu_holder" class="preferences_menu_holder hidden"><ol id="preferences_menu" class="preferences_menu" style="font-family: 'Roboto Serif', serif;">
+<li data-env="avatar" tabindex="-1">Choose avatar<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
+<ol class="hidden avatar">
+<li data-val="You!" tabindex="-1">
+<span id="theYou!" class="avatarcheck">✔️</span>You!</li>
+<li data-val="😺" tabindex="-1">
+<span id="the😺" class="avatarcheck"></span>😺</li>
+<li data-val="👤" tabindex="-1">
+<span id="the👤" class="avatarcheck"></span>👤</li>
+<li data-val="👽" tabindex="-1">
+<span id="the👽" class="avatarcheck"></span>👽</li>
+<li data-val="🐶" tabindex="-1">
+<span id="the🐶" class="avatarcheck"></span>🐶</li>
+<li data-val="🐼" tabindex="-1">
+<span id="the🐼" class="avatarcheck"></span>🐼</li>
+<li data-val="🌈" tabindex="-1">
+<span id="the🌈" class="avatarcheck"></span>🌈</li>
+</ol>
+</li>
+<li data-env="fontfamily" tabindex="-1">Font family<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
+<ol class="hidden fontfamily">
+<li data-val="face" data-change="OS" tabindex="-1" style="font-family: 'Open Sans'">
+<span id="theOS" class="ffcheck">✔️</span><span class="name">Open Sans</span><span class="sample">AaBbCc 123 PreTeXt</span>
+</li>
+<li data-val="face" data-change="RS" tabindex="-1" style="font-family: 'Roboto Serif'">
+<span id="theRS" class="ffcheck"></span><span class="name">Roboto Serif</span><span class="sample">AaBbCc 123 PreTeXt</span>
+</li>
+</ol>
+</li>
+<li data-env="font" tabindex="-1">Adjust font<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
+<ol class="hidden fonts">
+<li>Size</li>
+<li><span id="thesize">12</span></li>
+<li data-val="size" data-change="-1" tabindex="-1" style="font-size: 80%">Smaller</li>
+<li data-val="size" data-change="1" tabindex="-1" style="font-size: 110%">Larger</li>
+<li>Width</li>
+<li><span id="thewdth">100</span></li>
+<li data-val="wdth" data-change="-5" tabindex="-1" style="font-variation-settings: 'wdth' 60">narrower</li>
+<li data-val="wdth" data-change="5" tabindex="-1" style="font-variation-settings: 'wdth' 150">wider</li>
+<li>Weight</li>
+<li><span id="thewght">400</span></li>
+<li data-val="wght" data-change="-50" tabindex="-1" style="font-weight: 200">thinner</li>
+<li data-val="wght" data-change="50" tabindex="-1" style="font-weight: 700">heavier</li>
+<li>Letter spacing</li>
+<li>
+<span id="thelspace">0</span><span class="byunits">/200</span>
+</li>
+<li data-val="lspace" data-change="-1" tabindex="-1">closer</li>
+<li data-val="lspace" data-change="1" tabindex="-1">f a r t h e r</li>
+<li>Word spacing</li>
+<li>
+<span id="thewspace">0</span><span class="byunits">/50</span>
+</li>
+<li data-val="wspace" data-change="-1" tabindex="-1">smaller gap </li>
+<li data-val="wspace" data-change="1" tabindex="-1">larger gap</li>
+<li>Line Spacing</li>
+<li>
+<span id="theheight">135</span><span class="byunits">/100</span>
+</li>
+<li data-val="height" data-change="-5" tabindex="-1" style="line-height: 1">closer<br>together</li>
+<li data-val="height" data-change="5" tabindex="-1" style="line-height: 1.75">further<br>apart</li>
+</ol>
+</li>
+<li data-env="atmosphere" tabindex="-1">Light/dark mode<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
+<ol class="hidden atmosphere">
+<li data-val="default" tabindex="-1">
+<span id="thedefault" class="atmospherecheck">✔️</span>default</li>
+<li data-val="pastel" tabindex="-1">
+<span id="thepastel" class="atmospherecheck"></span>pastel</li>
+<li data-val="darktwilight" tabindex="-1">
+<span id="thedarktwilight" class="atmospherecheck"></span>twilight</li>
+<li data-val="dark" tabindex="-1">
+<span id="thedark" class="atmospherecheck"></span>dark</li>
+<li data-val="darkmidnight" tabindex="-1">
+<span id="thedarkmidnight" class="atmospherecheck"></span>midnight</li>
+</ol>
+</li>
+<li data-env="ruler" tabindex="-1">Reading ruler<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
+<ol class="hidden ruler">
+<li data-val="none" tabindex="-1">
+<span id="thenone" class="rulercheck">✔️</span>none</li>
+<li data-val="underline" tabindex="-1">
+<span id="theunderline" class="rulercheck"></span>underline</li>
+<li data-val="lunderline" tabindex="-1">
+<span id="thelunderline" class="rulercheck"></span>L-underline</li>
+<li data-val="greybar" tabindex="-1">
+<span id="thegreybar" class="rulercheck"></span>grey bar</li>
+<li data-val="lightbox" tabindex="-1">
+<span id="thelightbox" class="rulercheck"></span>light box</li>
+<li data-val="sunrise" tabindex="-1">
+<span id="thesunrise" class="rulercheck"></span>sunrise</li>
+<li data-val="sunriseunderline" tabindex="-1">
+<span id="thesunriseunderline" class="rulercheck"></span>sunrise underline</li>
+<li class="moveQ">Motion by:</li>
+<li data-val="mouse" tabindex="-1">
+<span id="themouse" class="motioncheck">✔️</span>follow the mouse</li>
+<li data-val="arrow" tabindex="-1">
+<span id="thearrow" class="motioncheck"></span>up/down arrows - not yet</li>
+<li data-val="eye" tabindex="-1">
+<span id="theeye" class="motioncheck"></span>eye tracking - not yet</li>
+</ol>
+</li>
+</ol></div></button><span class="treebuttons"><a class="previous-button button" href="sec-independence.html" title="Previous"><span class="icon">&lt;</span><span class="name">Prev</span></a><a class="up-button button" href="ch-vector-space.html" title="Up"><span class="icon">^</span><span class="name">Up</span></a><a class="next-button button" href="sec-subspace-combine.html" title="Next"><span class="name">Next</span><span class="icon">&gt;</span></a></span><div class="searchbox"><div class="searchwidget">
 <input id="ptxsearch" class="ptxsearch" type="text" name="terms" placeholder="Search" onchange="doSearch()"><button id="searchbutton" class="searchbutton" type="button" onclick="doSearch()">🔍</button>
 </div></div></nav><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\require{boldsymbol}\newcommand{\spn}{\operatorname{span}}
 \newcommand{\bbm}{\begin{bmatrix}}
@@ -319,12 +437,12 @@ eBookConfig.enable_chatcodes =  false;
 <main class="ptx-main"><div id="ptx-content" class="ptx-content"><section class="section" id="sec-dimension"><h2 class="heading hide-type">
 <span class="type">Section</span> <span class="codenumber">1.7</span> <span class="title">Basis and dimension</span>
 </h2>
-<div class="para" id="p-529">Next, we begin with an important result, sometimes known as the “Fundamental Theorem”:</div>
+<div class="para" id="p-510">Next, we begin with an important result, sometimes known as the “Fundamental Theorem”:</div>
 <article class="theorem theorem-like" id="theorem-steinitz"><h3 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">1.7.1</span><span class="period">.</span><span class="space"> </span><span class="title">Fundamental Theorem (Steinitz Exchange Lemma).</span>
 </h3>
-<div class="para" id="p-530">Suppose <span class="process-math">\(V = \spn\{\vv_1,\ldots, \vv_n\}\text{.}\)</span> If <span class="process-math">\(\{\ww_1,\ldots, \ww_m\}\)</span> is a linearly independent set of vectors in <span class="process-math">\(V\text{,}\)</span> then <span class="process-math">\(m\leq n\text{.}\)</span>
-</div></article><article class="hiddenproof" id="proof-9"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-9"><h3 class="heading"><span class="title">Strategy.</span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-9"><article class="hiddenproof"> <div class="para logical" id="p-531">
+<div class="para" id="p-511">Suppose <span class="process-math">\(V = \spn\{\vv_1,\ldots, \vv_n\}\text{.}\)</span> If <span class="process-math">\(\{\ww_1,\ldots, \ww_m\}\)</span> is a linearly independent set of vectors in <span class="process-math">\(V\text{,}\)</span> then <span class="process-math">\(m\leq n\text{.}\)</span>
+</div></article><article class="hiddenproof" id="proof-9"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-9"><h3 class="heading"><span class="title">Strategy.</span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-9"><article class="hiddenproof"> <div class="para logical" id="p-512">
 <div class="para">We won’t give a complete proof of this theorem. The idea is straightforward, but checking all the details takes some work. Since <span class="process-math">\(\{\vv_1,\ldots, \vv_k\}\)</span> is a spanning set, each of the vectors in our independent set can be written as a linear combination of <span class="process-math">\(\vv_1,\ldots, \vv_k\text{.}\)</span> In particular, we can write</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -332,7 +450,7 @@ eBookConfig.enable_chatcodes =  false;
 \end{equation*}
 </div>
 <div class="para">for scalars <span class="process-math">\(a_1,\ldots, a_n\text{,}\)</span> and these scalars can’t all be zero. (Why? And why is this important?)</div>
-</div> <div class="para" id="p-532">The next step is to argue that <span class="process-math">\(V=\{\ww_1,\vv_2,\ldots, \vv_n\}\text{;}\)</span> that is, that we can replace <span class="process-math">\(\vv_1\)</span> by <span class="process-math">\(\ww_1\)</span> without changing the span. This will involve chasing some linear combinations, and remember that we need to check both inclusions to prove set equality. (This step requires us to have assumed that the scalar <span class="process-math">\(a_1\)</span> is nonzero. Do you see why?)</div> <div class="para logical" id="p-533">
+</div> <div class="para" id="p-513">The next step is to argue that <span class="process-math">\(V=\{\ww_1,\vv_2,\ldots, \vv_n\}\text{;}\)</span> that is, that we can replace <span class="process-math">\(\vv_1\)</span> by <span class="process-math">\(\ww_1\)</span> without changing the span. This will involve chasing some linear combinations, and remember that we need to check both inclusions to prove set equality. (This step requires us to have assumed that the scalar <span class="process-math">\(a_1\)</span> is nonzero. Do you see why?)</div> <div class="para logical" id="p-514">
 <div class="para">Next, we similarly replace <span class="process-math">\(\vv_2\)</span> with <span class="process-math">\(\ww_2\text{.}\)</span> Note that we can write</div>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/ex-li-subset.html">
 \begin{equation*}
@@ -340,26 +458,26 @@ eBookConfig.enable_chatcodes =  false;
 \end{equation*}
 </div>
 <div class="para">and at least one of the <span class="process-math">\(b_i\)</span> must be nonzero. (Why can’t they all be zero? What does <a href="" class="xref" data-knowl="./knowl/ex-li-subset.html" title="Exercise 1.6.10">Exercise 1.6.10</a> tell you about <span class="process-math">\(\{\ww_1,\ww_2\}\text{?}\)</span>)</div>
-</div> <div class="para" id="p-534">If we assume that <span class="process-math">\(b_2\)</span> is one of the nonzero scalars, we can solve for <span class="process-math">\(\vv_2\)</span> in the equation above, and replace <span class="process-math">\(\vv_2\)</span> by <span class="process-math">\(\ww_2\)</span> in our spanning set. At this point, you will have successfully argued that <span class="process-math">\(V=\spn\{\ww_1,\ww_2,\vv_3,\ldots, \vv_n\}\text{.}\)</span>
-</div> <div class="para" id="p-535">Now, we repeat the process. If <span class="process-math">\(m\leq n\text{,}\)</span> we eventually run out of <span class="process-math">\(\ww_i\)</span> vectors, and all is well. The question is, what goes wrong if <span class="process-math">\(m\gt n\text{?}\)</span> Then we run out of <span class="process-math">\(\vv_j\)</span> vectors first. We’ll be able to write <span class="process-math">\(V=\spn\{\ww_1,\ldots, \ww_n\}\text{,}\)</span> and there will be some vectors <span class="process-math">\(\ww_{n+1},\ldots, \ww_m\)</span> leftover. Why is this a problem? (What assumption about the <span class="process-math">\(\ww_i\)</span> will we contradict?)</div></article></div>
-<div class="para" id="p-536">If a set of vectors spans a vector space <span class="process-math">\(V\text{,}\)</span> but it is not independent, we observed that it is possible to remove a vector from the set and still span <span class="process-math">\(V\)</span> using a smaller set. This suggests that spanning sets that are also linearly independent are of particular importance, and indeed, they are important enough to have a name.</div>
+</div> <div class="para" id="p-515">If we assume that <span class="process-math">\(b_2\)</span> is one of the nonzero scalars, we can solve for <span class="process-math">\(\vv_2\)</span> in the equation above, and replace <span class="process-math">\(\vv_2\)</span> by <span class="process-math">\(\ww_2\)</span> in our spanning set. At this point, you will have successfully argued that <span class="process-math">\(V=\spn\{\ww_1,\ww_2,\vv_3,\ldots, \vv_n\}\text{.}\)</span>
+</div> <div class="para" id="p-516">Now, we repeat the process. If <span class="process-math">\(m\leq n\text{,}\)</span> we eventually run out of <span class="process-math">\(\ww_i\)</span> vectors, and all is well. The question is, what goes wrong if <span class="process-math">\(m\gt n\text{?}\)</span> Then we run out of <span class="process-math">\(\vv_j\)</span> vectors first. We’ll be able to write <span class="process-math">\(V=\spn\{\ww_1,\ldots, \ww_n\}\text{,}\)</span> and there will be some vectors <span class="process-math">\(\ww_{n+1},\ldots, \ww_m\)</span> leftover. Why is this a problem? (What assumption about the <span class="process-math">\(\ww_i\)</span> will we contradict?)</div></article></div>
+<div class="para" id="p-517">If a set of vectors spans a vector space <span class="process-math">\(V\text{,}\)</span> but it is not independent, we observed that it is possible to remove a vector from the set and still span <span class="process-math">\(V\)</span> using a smaller set. This suggests that spanning sets that are also linearly independent are of particular importance, and indeed, they are important enough to have a name.</div>
 <article class="definition definition-like" id="def-basis"><h3 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">1.7.2</span><span class="period">.</span>
 </h3>
-<div class="para" id="p-537">Let <span class="process-math">\(V\)</span> be a vector space. A set <span class="process-math">\(\mathcal{B}=\{\mathbf{e}_1,\ldots, \mathbf{e}_n\}\)</span> is called a <dfn class="terminology">basis</dfn> of <span class="process-math">\(V\)</span> if <span class="process-math">\(\mathcal{B}\)</span> is linearly independent, and <span class="process-math">\(\spn\mathcal{B} = V\text{.}\)</span>
-</div></article><div class="para" id="p-538">The importance of a basis is that vector vector <span class="process-math">\(\vv\in V\)</span> can be written in terms of the basis, and this expression as a linear combination of basis vectors is <em class="emphasis">unique</em>. Another important fact is that every basis has the same number of elements.</div>
+<div class="para" id="p-518">Let <span class="process-math">\(V\)</span> be a vector space. A set <span class="process-math">\(\mathcal{B}=\{\mathbf{e}_1,\ldots, \mathbf{e}_n\}\)</span> is called a <dfn class="terminology">basis</dfn> of <span class="process-math">\(V\)</span> if <span class="process-math">\(\mathcal{B}\)</span> is linearly independent, and <span class="process-math">\(\spn\mathcal{B} = V\text{.}\)</span>
+</div></article><div class="para" id="p-519">The importance of a basis is that vector vector <span class="process-math">\(\vv\in V\)</span> can be written in terms of the basis, and this expression as a linear combination of basis vectors is <em class="emphasis">unique</em>. Another important fact is that every basis has the same number of elements.</div>
 <article class="theorem theorem-like" id="thm-invariance"><h3 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">1.7.3</span><span class="period">.</span><span class="space"> </span><span class="title">Invariance Theorem.</span>
 </h3>
-<div class="para" id="p-539">If <span class="process-math">\(\{\mathbf{e}_1,\ldots, \mathbf{e}_n\}\)</span> and <span class="process-math">\(\{\mathbf{f}_1,\ldots, \mathbf{f}_m\}\)</span> are both bases of a vector space <span class="process-math">\(V\text{,}\)</span> then <span class="process-math">\(m=n\text{.}\)</span>
-</div></article><article class="hiddenproof" id="proof-10"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-10"><h3 class="heading"><span class="title">Strategy.</span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-10"><article class="hiddenproof"> <div class="para" id="p-540">One way of proving the equality <span class="process-math">\(m=n\)</span> is to show that <span class="process-math">\(m\leq n\)</span> and <span class="process-math">\(m\geq n\text{.}\)</span> We know that since both sets are bases, both sets are independent, and they both span <span class="process-math">\(V\text{.}\)</span> Can you see a way to use <a href="" class="xref" data-knowl="./knowl/theorem-steinitz.html" title="Theorem 1.7.1: Fundamental Theorem (Steinitz Exchange Lemma)">Theorem 1.7.1</a> (twice)?</div></article></div>
-<article class="hiddenproof" id="proof-11"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-11"><h3 class="heading"><span class="type">Proof<span class="period">.</span></span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-11"><article class="hiddenproof"><div class="para" id="p-541">Let <span class="process-math">\(A=\{\mathbf{e}_1,\ldots, \mathbf{e}_n\}\)</span> and let <span class="process-math">\(B=\{\mathbf{f}_1,\ldots, \mathbf{f}_m\}\text{.}\)</span> Since both <span class="process-math">\(A\)</span> and <span class="process-math">\(B\)</span> are bases, both sets are linearly independent, and both sets span <span class="process-math">\(V\text{.}\)</span> Since <span class="process-math">\(A\)</span> is independent and <span class="process-math">\(\spn B=V\text{,}\)</span> we must have <span class="process-math">\(n\leq m\text{,}\)</span> by <a href="" class="xref" data-knowl="./knowl/theorem-steinitz.html" title="Theorem 1.7.1: Fundamental Theorem (Steinitz Exchange Lemma)">Theorem 1.7.1</a>. Similarly, since <span class="process-math">\(\spn A = V\)</span> and <span class="process-math">\(B\)</span> is independent, we must have <span class="process-math">\(n\geq m\text{,}\)</span> and therefore, <span class="process-math">\(n=m\text{.}\)</span>
+<div class="para" id="p-520">If <span class="process-math">\(\{\mathbf{e}_1,\ldots, \mathbf{e}_n\}\)</span> and <span class="process-math">\(\{\mathbf{f}_1,\ldots, \mathbf{f}_m\}\)</span> are both bases of a vector space <span class="process-math">\(V\text{,}\)</span> then <span class="process-math">\(m=n\text{.}\)</span>
+</div></article><article class="hiddenproof" id="proof-10"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-10"><h3 class="heading"><span class="title">Strategy.</span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-10"><article class="hiddenproof"> <div class="para" id="p-521">One way of proving the equality <span class="process-math">\(m=n\)</span> is to show that <span class="process-math">\(m\leq n\)</span> and <span class="process-math">\(m\geq n\text{.}\)</span> We know that since both sets are bases, both sets are independent, and they both span <span class="process-math">\(V\text{.}\)</span> Can you see a way to use <a href="" class="xref" data-knowl="./knowl/theorem-steinitz.html" title="Theorem 1.7.1: Fundamental Theorem (Steinitz Exchange Lemma)">Theorem 1.7.1</a> (twice)?</div></article></div>
+<article class="hiddenproof" id="proof-11"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-11"><h3 class="heading"><span class="type">Proof<span class="period">.</span></span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-11"><article class="hiddenproof"><div class="para" id="p-522">Let <span class="process-math">\(A=\{\mathbf{e}_1,\ldots, \mathbf{e}_n\}\)</span> and let <span class="process-math">\(B=\{\mathbf{f}_1,\ldots, \mathbf{f}_m\}\text{.}\)</span> Since both <span class="process-math">\(A\)</span> and <span class="process-math">\(B\)</span> are bases, both sets are linearly independent, and both sets span <span class="process-math">\(V\text{.}\)</span> Since <span class="process-math">\(A\)</span> is independent and <span class="process-math">\(\spn B=V\text{,}\)</span> we must have <span class="process-math">\(n\leq m\text{,}\)</span> by <a href="" class="xref" data-knowl="./knowl/theorem-steinitz.html" title="Theorem 1.7.1: Fundamental Theorem (Steinitz Exchange Lemma)">Theorem 1.7.1</a>. Similarly, since <span class="process-math">\(\spn A = V\)</span> and <span class="process-math">\(B\)</span> is independent, we must have <span class="process-math">\(n\geq m\text{,}\)</span> and therefore, <span class="process-math">\(n=m\text{.}\)</span>
 </div></article></div>
-<div class="para" id="p-542">Suppose <span class="process-math">\(V=\spn\{\vv_1,\ldots,\vv_n\}\text{.}\)</span> If this set is not linearly independent, <a href="" class="xref" data-knowl="./knowl/theorem-surplus-span.html" title="Theorem 1.4.10">Theorem 1.4.10</a> tells us that we can remove a vector from the set, and still span <span class="process-math">\(V\text{.}\)</span> We can repeat this procedure until we have a linearly independent set of vectors, which will then be a basis. These results let us make a definition.</div>
+<div class="para" id="p-523">Suppose <span class="process-math">\(V=\spn\{\vv_1,\ldots,\vv_n\}\text{.}\)</span> If this set is not linearly independent, <a href="" class="xref" data-knowl="./knowl/theorem-surplus-span.html" title="Theorem 1.4.10">Theorem 1.4.10</a> tells us that we can remove a vector from the set, and still span <span class="process-math">\(V\text{.}\)</span> We can repeat this procedure until we have a linearly independent set of vectors, which will then be a basis. These results let us make a definition.</div>
 <article class="definition definition-like" id="def-dimension"><h3 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">1.7.4</span><span class="period">.</span>
 </h3>
-<div class="para logical" id="p-543">
+<div class="para logical" id="p-524">
 <div class="para">Let <span class="process-math">\(V\)</span> be a vector space. If <span class="process-math">\(V\)</span> can be spanned by a finite number of vectors, then we call <span class="process-math">\(V\)</span> a <dfn class="terminology">finite-dimensional</dfn> vector space. If <span class="process-math">\(V\)</span> is finite-dimensional (and non-trivial), and <span class="process-math">\(\{\mathbf{e}_1,\ldots, \mathbf{e}_n\}\)</span> is a basis of <span class="process-math">\(V\text{,}\)</span> we say that <span class="process-math">\(V\)</span> has <dfn class="terminology">dimension</dfn> <span class="process-math">\(n\text{,}\)</span> and write</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -370,11 +488,11 @@ eBookConfig.enable_chatcodes =  false;
 </div></article><article class="exercise exercise-like" id="ex-basis-m22"><h3 class="heading">
 <span class="type">Exercise</span><span class="space"> </span><span class="codenumber">1.7.5</span><span class="period">.</span>
 </h3>
-<div class="para" id="p-544">Find a basis for <span class="process-math">\(U=\{X\in M_{22} \,|\, XA = AX\}\text{,}\)</span> if <span class="process-math">\(A = \bbm 1\amp 1\\0\amp 0\ebm\)</span>
+<div class="para" id="p-525">Find a basis for <span class="process-math">\(U=\{X\in M_{22} \,|\, XA = AX\}\text{,}\)</span> if <span class="process-math">\(A = \bbm 1\amp 1\\0\amp 0\ebm\)</span>
 </div></article><article class="example example-like" id="ex-standard-bases"><h3 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">1.7.6</span><span class="period">.</span><span class="space"> </span><span class="title">Standard bases.</span>
 </h3>
-<div class="para logical" id="p-547">
+<div class="para logical" id="p-528">
 <div class="para">Most of the vector spaces we work with come equipped with a <em class="emphasis">standard basis</em>. The standard basis for a vector space is typically a basis such that the scalars needed to express a vector in terms of that basis are the same scalars used to define the vector in the first place. For example, we write an element of <span class="process-math">\(\R^3\)</span> as <span class="process-math">\((x,y,z)\)</span> (or <span class="process-math">\(\langle x,y,z\rangle\text{,}\)</span> or <span class="process-math">\(\begin{bmatrix}x\amp y\amp z\end{bmatrix}\text{,}\)</span> or <span class="process-math">\(\begin{bmatrix}x\\y\\z\end{bmatrix}\)</span>…). We can also write</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -389,7 +507,7 @@ eBookConfig.enable_chatcodes =  false;
 </div>
 <div class="para">From this, we can conclude (unsurprisingly) that <span class="process-math">\(\dim \R^n = n\text{.}\)</span>
 </div>
-</div> <div class="para logical" id="p-548">
+</div> <div class="para logical" id="p-529">
 <div class="para">Similarly, a polynomial <span class="process-math">\(p(x)\in P_n(\R)\)</span> is usually written as</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -398,7 +516,7 @@ p(x) = a_0+a_1x+a_2x^2+\cdots + a_nx^n\text{,}
 </div>
 <div class="para">suggesting the standard basis <span class="process-math">\(\{1,x,x^2,\ldots, x^n\}\text{.}\)</span> As a result, we see that <span class="process-math">\(\dim P_n(\R)=n+1\text{.}\)</span>
 </div>
-</div> <div class="para logical" id="p-549">
+</div> <div class="para logical" id="p-530">
 <div class="para">For one more example, we note that a <span class="process-math">\(2\times 2\)</span> matrix <span class="process-math">\(A\in M_{22}(\R)\)</span> can be written as</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -410,15 +528,15 @@ p(x) = a_0+a_1x+a_2x^2+\cdots + a_nx^n\text{,}
 </div></article><article class="exercise exercise-like" id="ex-basis-r3"><h3 class="heading">
 <span class="type">Exercise</span><span class="space"> </span><span class="codenumber">1.7.7</span><span class="period">.</span>
 </h3>
-<div class="introduction" id="introduction-7"><div class="para" id="p-550">Show that the following sets are bases of <span class="process-math">\(\R^3\text{.}\)</span>
+<div class="introduction" id="introduction-8"><div class="para" id="p-531">Show that the following sets are bases of <span class="process-math">\(\R^3\text{.}\)</span>
 </div></div>
 <article class="task exercise-like" id="basis-r3a"><h4 class="heading"><span class="codenumber">(a)</span></h4>
-<div class="para" id="p-551"><span class="process-math">\(\{(1,1,0),(1,0,1),(0,1,1)\}\)</span></div></article><article class="task exercise-like" id="basis-r3b"><h4 class="heading"><span class="codenumber">(b)</span></h4>
-<div class="para" id="p-558"><span class="process-math">\(\{(-1,1,1),(1,-1,1),(1,1,-1)\}\)</span></div></article></article><div class="para" id="p-561">The next two exercises are left to the reader to solve. In each case, your goal should be to turn the questions of independence and span into a system of equations, which you can then solve using the computer.</div>
+<div class="para" id="p-532"><span class="process-math">\(\{(1,1,0),(1,0,1),(0,1,1)\}\)</span></div></article><article class="task exercise-like" id="basis-r3b"><h4 class="heading"><span class="codenumber">(b)</span></h4>
+<div class="para" id="p-539"><span class="process-math">\(\{(-1,1,1),(1,-1,1),(1,1,-1)\}\)</span></div></article></article><div class="para" id="p-542">The next two exercises are left to the reader to solve. In each case, your goal should be to turn the questions of independence and span into a system of equations, which you can then solve using the computer.</div>
 <article class="exercise exercise-like" id="ex-basis-m22a"><h3 class="heading">
 <span class="type">Exercise</span><span class="space"> </span><span class="codenumber">1.7.8</span><span class="period">.</span>
 </h3>
-<div class="para logical" id="p-562">
+<div class="para logical" id="p-543">
 <div class="para">Show that the following is a basis of <span class="process-math">\(M_{22}\text{:}\)</span>
 </div>
 <div class="displaymath process-math">
@@ -428,7 +546,7 @@ p(x) = a_0+a_1x+a_2x^2+\cdots + a_nx^n\text{,}
 </div>
 </div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-12" id="hint-12"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-12"><div class="hint solution-like"><div class="para logical" id="p-563">
+<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-13" id="hint-13"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-13"><div class="hint solution-like"><div class="para logical" id="p-544">
 <div class="para">For independence, consider the linear combination</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -441,10 +559,10 @@ w\bbm 1\amp 0\\0\amp 1\ebm + x\bbm 0\amp 1\\1\amp 0\ebm +y\bbm 1\amp 1\\0\amp 1\
 <article class="exercise exercise-like" id="ex-basis-p3"><h3 class="heading">
 <span class="type">Exercise</span><span class="space"> </span><span class="codenumber">1.7.9</span><span class="period">.</span>
 </h3>
-<div class="para" id="p-564">Show that <span class="process-math">\(\{1+x,x+x^2,x^2+x^3,x^3\}\)</span> is a basis for <span class="process-math">\(P_3\text{.}\)</span>
+<div class="para" id="p-545">Show that <span class="process-math">\(\{1+x,x+x^2,x^2+x^3,x^3\}\)</span> is a basis for <span class="process-math">\(P_3\text{.}\)</span>
 </div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-13" id="hint-13"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-13"><div class="hint solution-like"><div class="para logical" id="p-565">
+<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-14" id="hint-14"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-14"><div class="hint solution-like"><div class="para logical" id="p-546">
 <div class="para">For independence, consider the linear combination</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -463,12 +581,12 @@ a\cdot 1 +(a+b)x+(b+c)x^2+(c+d)x^3=0\text{,}
 <article class="exercise exercise-like" id="ex-basis-p2"><h3 class="heading">
 <span class="type">Exercise</span><span class="space"> </span><span class="codenumber">1.7.10</span><span class="period">.</span>
 </h3>
-<div class="introduction" id="introduction-8"><div class="para" id="p-566">Find a basis and dimension for the following subspaces of <span class="process-math">\(P_2\text{:}\)</span>
+<div class="introduction" id="introduction-9"><div class="para" id="p-547">Find a basis and dimension for the following subspaces of <span class="process-math">\(P_2\text{:}\)</span>
 </div></div>
 <article class="task exercise-like" id="basis-p2a"><h4 class="heading"><span class="codenumber">(a)</span></h4>
-<div class="para" id="p-567"><span class="process-math">\(U_1 = \{a(1+x)+b(x+x^2)\,|\, a,b\in\R\}\)</span></div></article><article class="task exercise-like" id="basis-p2b"><h4 class="heading"><span class="codenumber">(b)</span></h4>
-<div class="para" id="p-569"><span class="process-math">\(U_2=\{p(x)\in P_2 \,|\, p(1)=0\}\)</span></div></article><article class="task exercise-like" id="basis-p2c"><h4 class="heading"><span class="codenumber">(c)</span></h4>
-<div class="para" id="p-572"><span class="process-math">\(U_3 = \{p(x)\in P_2 \,|\, p(x)=p(-x)\}\)</span></div></article></article><div class="para logical" id="p-575">
+<div class="para" id="p-548"><span class="process-math">\(U_1 = \{a(1+x)+b(x+x^2)\,|\, a,b\in\R\}\)</span></div></article><article class="task exercise-like" id="basis-p2b"><h4 class="heading"><span class="codenumber">(b)</span></h4>
+<div class="para" id="p-550"><span class="process-math">\(U_2=\{p(x)\in P_2 \,|\, p(1)=0\}\)</span></div></article><article class="task exercise-like" id="basis-p2c"><h4 class="heading"><span class="codenumber">(c)</span></h4>
+<div class="para" id="p-553"><span class="process-math">\(U_3 = \{p(x)\in P_2 \,|\, p(x)=p(-x)\}\)</span></div></article></article><div class="para logical" id="p-556">
 <div class="para">We’ve noted a few times now that if <span class="process-math">\(\ww\in\spn\{\vv_1,\ldots, \vv_n\}\text{,}\)</span> then</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -480,8 +598,8 @@ a\cdot 1 +(a+b)x+(b+c)x^2+(c+d)x^3=0\text{,}
 <article class="lemma theorem-like" id="lemma-independent"><h3 class="heading">
 <span class="type">Lemma</span><span class="space"> </span><span class="codenumber">1.7.11</span><span class="period">.</span><span class="space"> </span><span class="title">Independent Lemma.</span>
 </h3>
-<div class="para" id="p-576">Suppose <span class="process-math">\(\{\vv_1,\ldots, \vv_n\}\)</span> is a linearly independent set of vectors in a vector space <span class="process-math">\(V\text{.}\)</span> If <span class="process-math">\(\uu\in V\)</span> but <span class="process-math">\(\uu\notin \spn\{\vv_1,\ldots, \vv_n\}\text{,}\)</span> then <span class="process-math">\(\{\uu,\vv_1,\ldots, \vv_n\}\)</span> is independent.</div></article><article class="hiddenproof" id="proof-12"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-12"><h3 class="heading"><span class="title">Strategy.</span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-12"><article class="hiddenproof"> <div class="para" id="p-577">We want to show that a set of vectors is linearly independent, so we should begin by setting a linear combination of these vectors equal to the zero vector. Our goal is to show that all the coefficients have to be zero.</div> <div class="para" id="p-578">Since the vector <span class="process-math">\(\uu\)</span> is “special”, its coefficient gets a different treatment, using a familiar tautology: either this coefficient is zero, or it isn’t.</div> <div class="para" id="p-579">what if the coefficient of <span class="process-math">\(\uu\)</span> is nonzero? Does that contradict one of our assumptions? If the coefficient of <span class="process-math">\(\uu\)</span> is zero, then it disappears from our linear combination. What assumption applies to the remaining vectors?</div></article></div>
-<article class="hiddenproof" id="proof-13"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-13"><h3 class="heading"><span class="type">Proof<span class="period">.</span></span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-13"><article class="hiddenproof"><div class="para logical" id="p-580">
+<div class="para" id="p-557">Suppose <span class="process-math">\(\{\vv_1,\ldots, \vv_n\}\)</span> is a linearly independent set of vectors in a vector space <span class="process-math">\(V\text{.}\)</span> If <span class="process-math">\(\uu\in V\)</span> but <span class="process-math">\(\uu\notin \spn\{\vv_1,\ldots, \vv_n\}\text{,}\)</span> then <span class="process-math">\(\{\uu,\vv_1,\ldots, \vv_n\}\)</span> is independent.</div></article><article class="hiddenproof" id="proof-12"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-12"><h3 class="heading"><span class="title">Strategy.</span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-12"><article class="hiddenproof"> <div class="para" id="p-558">We want to show that a set of vectors is linearly independent, so we should begin by setting a linear combination of these vectors equal to the zero vector. Our goal is to show that all the coefficients have to be zero.</div> <div class="para" id="p-559">Since the vector <span class="process-math">\(\uu\)</span> is “special”, its coefficient gets a different treatment, using a familiar tautology: either this coefficient is zero, or it isn’t.</div> <div class="para" id="p-560">what if the coefficient of <span class="process-math">\(\uu\)</span> is nonzero? Does that contradict one of our assumptions? If the coefficient of <span class="process-math">\(\uu\)</span> is zero, then it disappears from our linear combination. What assumption applies to the remaining vectors?</div></article></div>
+<article class="hiddenproof" id="proof-13"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-13"><h3 class="heading"><span class="type">Proof<span class="period">.</span></span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-13"><article class="hiddenproof"><div class="para logical" id="p-561">
 <div class="para">Suppose <span class="process-math">\(S=\{\vv_1,\ldots, \vv_n\}\)</span> is independent, and that <span class="process-math">\(\uu\notin\spn S\text{.}\)</span> Suppose we have</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -495,7 +613,7 @@ a\uu+c_1\vv_1+c_2\vv_2+\cdots +c_n\mathbf{b}_n=\zer
 \end{equation*}
 </div>
 <div class="para">but this would mean that <span class="process-math">\(\uu\in \spn S\text{,}\)</span> contradicting our assumption.</div>
-</div> <div class="para logical" id="p-581">
+</div> <div class="para logical" id="p-562">
 <div class="para">With <span class="process-math">\(a=0\)</span> we’re left with</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -504,32 +622,32 @@ c_1\vv_1+c_2\vv_2+\cdots +c_n\mathbf{b}_n=\zer\text{,}
 </div>
 <div class="para">and since we assumed that the set <span class="process-math">\(S\)</span> is independent, we must have <span class="process-math">\(c_1=c_2=\cdots=c_n=0\text{.}\)</span> Since we already showed <span class="process-math">\(a=0\text{,}\)</span> this shows that <span class="process-math">\(\{\uu,\vv_1,\ldots, \vv_n\}\)</span> is independent.</div>
 </div></article></div>
-<div class="para" id="p-582">This is, in fact, an “if and only if” result. If <span class="process-math">\(\uu\in\spn\{\vv_1,\ldots, \vv_n\}\text{,}\)</span> then <span class="process-math">\(\{\uu,\vv_1,\ldots, \vv_n\}\)</span> is not independent. Above, we argued that if <span class="process-math">\(V\)</span> is finite dimensional, then any spanning set for <span class="process-math">\(V\)</span> can be reduced to a basis. It probably won’t surprise you that the following is also true.</div>
+<div class="para" id="p-563">This is, in fact, an “if and only if” result. If <span class="process-math">\(\uu\in\spn\{\vv_1,\ldots, \vv_n\}\text{,}\)</span> then <span class="process-math">\(\{\uu,\vv_1,\ldots, \vv_n\}\)</span> is not independent. Above, we argued that if <span class="process-math">\(V\)</span> is finite dimensional, then any spanning set for <span class="process-math">\(V\)</span> can be reduced to a basis. It probably won’t surprise you that the following is also true.</div>
 <article class="lemma theorem-like" id="lem-enlarge-independent"><h3 class="heading">
 <span class="type">Lemma</span><span class="space"> </span><span class="codenumber">1.7.12</span><span class="period">.</span>
 </h3>
-<div class="para" id="p-583">Let <span class="process-math">\(V\)</span> be a finite-dimensional vector space, and let <span class="process-math">\(U\)</span> be any subspace of <span class="process-math">\(V\text{.}\)</span> Then any independent set of vectors <span class="process-math">\(\{\uu_1,\ldots, \uu_k\}\)</span> in <span class="process-math">\(U\)</span> can be enlarged to a basis of <span class="process-math">\(U\text{.}\)</span>
-</div></article><article class="hiddenproof" id="proof-14"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-14"><h3 class="heading"><span class="title">Strategy.</span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-14"><article class="hiddenproof"> <div class="para" id="p-584">We have an independent set of vectors that doesn’t span our subspace. That means there must be some vector in <span class="process-math">\(U\)</span> that isn’t in the span, so <a href="" class="xref" data-knowl="./knowl/lemma-independent.html" title="Lemma 1.7.11: Independent Lemma">Lemma 1.7.11</a> applies: we can add that vector to our set, and get a larger independent set.</div> <div class="para" id="p-585">Now it’s just a matter of repeating this process until we get a spanning set. But there’s one gap: how do we know the process has to stop? Why can’t we just keep adding vectors forever, getting larger and larger independent sets?</div></article></div>
-<article class="hiddenproof" id="proof-15"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-15"><h3 class="heading"><span class="type">Proof<span class="period">.</span></span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-15"><article class="hiddenproof"><div class="para" id="p-586">This follows from <a href="" class="xref" data-knowl="./knowl/lemma-independent.html" title="Lemma 1.7.11: Independent Lemma">Lemma 1.7.11</a>. If our independent set of vectors spans <span class="process-math">\(U\text{,}\)</span> then it’s a basis and we’re done. If not, we can find some vector not in the span, and add it to our set to obtain a larger set that is still independent. We can continue adding vectors in this fashion until we obtain a spanning set.</div> <div class="para" id="p-587">Note that this process <em class="emphasis">must</em> terminate: <span class="process-math">\(V\)</span> is finite-dimensional, so there is a finite spanning set for <span class="process-math">\(V\text{.}\)</span> By the Steinitz Exchange lemma, our independent set cannot get larger than this spanning set.</div></article></div>
+<div class="para" id="p-564">Let <span class="process-math">\(V\)</span> be a finite-dimensional vector space, and let <span class="process-math">\(U\)</span> be any subspace of <span class="process-math">\(V\text{.}\)</span> Then any independent set of vectors <span class="process-math">\(\{\uu_1,\ldots, \uu_k\}\)</span> in <span class="process-math">\(U\)</span> can be enlarged to a basis of <span class="process-math">\(U\text{.}\)</span>
+</div></article><article class="hiddenproof" id="proof-14"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-14"><h3 class="heading"><span class="title">Strategy.</span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-14"><article class="hiddenproof"> <div class="para" id="p-565">We have an independent set of vectors that doesn’t span our subspace. That means there must be some vector in <span class="process-math">\(U\)</span> that isn’t in the span, so <a href="" class="xref" data-knowl="./knowl/lemma-independent.html" title="Lemma 1.7.11: Independent Lemma">Lemma 1.7.11</a> applies: we can add that vector to our set, and get a larger independent set.</div> <div class="para" id="p-566">Now it’s just a matter of repeating this process until we get a spanning set. But there’s one gap: how do we know the process has to stop? Why can’t we just keep adding vectors forever, getting larger and larger independent sets?</div></article></div>
+<article class="hiddenproof" id="proof-15"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-15"><h3 class="heading"><span class="type">Proof<span class="period">.</span></span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-15"><article class="hiddenproof"><div class="para" id="p-567">This follows from <a href="" class="xref" data-knowl="./knowl/lemma-independent.html" title="Lemma 1.7.11: Independent Lemma">Lemma 1.7.11</a>. If our independent set of vectors spans <span class="process-math">\(U\text{,}\)</span> then it’s a basis and we’re done. If not, we can find some vector not in the span, and add it to our set to obtain a larger set that is still independent. We can continue adding vectors in this fashion until we obtain a spanning set.</div> <div class="para" id="p-568">Note that this process <em class="emphasis">must</em> terminate: <span class="process-math">\(V\)</span> is finite-dimensional, so there is a finite spanning set for <span class="process-math">\(V\text{.}\)</span> By the Steinitz Exchange lemma, our independent set cannot get larger than this spanning set.</div></article></div>
 <article class="theorem theorem-like" id="thm-basis-exist"><h3 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">1.7.13</span><span class="period">.</span>
 </h3>
-<div class="para logical" id="p-588">
+<div class="para logical" id="p-569">
 <div class="para">Any finite-dimensional (non-trivial) vector space <span class="process-math">\(V\)</span> has a basis. Moreover:</div>
 <ol class="decimal">
-<li id="li-135"><div class="para" id="p-589">If <span class="process-math">\(V\)</span> can be spanned by <span class="process-math">\(m\)</span> vectors, then <span class="process-math">\(\dim V\leq m\text{.}\)</span>
+<li id="li-79"><div class="para" id="p-570">If <span class="process-math">\(V\)</span> can be spanned by <span class="process-math">\(m\)</span> vectors, then <span class="process-math">\(\dim V\leq m\text{.}\)</span>
 </div></li>
-<li id="li-136"><div class="para" id="p-590">Given an independent set <span class="process-math">\(I\)</span> in <span class="process-math">\(V\)</span> that does not span <span class="process-math">\(V\text{,}\)</span> and a basis <span class="process-math">\(\mathcal{B}\)</span> of <span class="process-math">\(V\text{,}\)</span> we can enlarge <span class="process-math">\(I\)</span> to a basis of <span class="process-math">\(V\)</span> by adding elements of <span class="process-math">\(\mathcal{B}\text{.}\)</span>
+<li id="li-80"><div class="para" id="p-571">Given an independent set <span class="process-math">\(I\)</span> in <span class="process-math">\(V\)</span> that does not span <span class="process-math">\(V\text{,}\)</span> and a basis <span class="process-math">\(\mathcal{B}\)</span> of <span class="process-math">\(V\text{,}\)</span> we can enlarge <span class="process-math">\(I\)</span> to a basis of <span class="process-math">\(V\)</span> by adding elements of <span class="process-math">\(\mathcal{B}\text{.}\)</span>
 </div></li>
 </ol>
-</div></article><article class="hiddenproof" id="proof-16"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-16"><h3 class="heading"><span class="title">Strategy.</span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-16"><article class="hiddenproof"> <div class="para" id="p-591">Much of this theorem sums up some of what we’ve learned so far: As long as a vector space <span class="process-math">\(V\)</span> contains a nonzero vector <span class="process-math">\(\vv\text{,}\)</span> the set <span class="process-math">\(\{\vv\}\)</span> is independent and can be enlarged to a basis, by <a href="" class="xref" data-knowl="./knowl/lem-enlarge-independent.html" title="Lemma 1.7.12">Lemma 1.7.12</a>. The size of any spanning set is at least as big as the dimension of <span class="process-math">\(V\text{,}\)</span> by <a href="" class="xref" data-knowl="./knowl/theorem-steinitz.html" title="Theorem 1.7.1: Fundamental Theorem (Steinitz Exchange Lemma)">Theorem 1.7.1</a>.</div> <div class="para" id="p-592">To understand why we can enlarge a given independent set using elements of an <em class="emphasis">existing</em> basis, we need to think about why there must be some vector in this basis that is not in the span of our independent set, so that we can apply <a href="" class="xref" data-knowl="./knowl/lem-enlarge-independent.html" title="Lemma 1.7.12">Lemma 1.7.12</a>.</div></article></div>
-<article class="hiddenproof" id="proof-17"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-17"><h3 class="heading"><span class="type">Proof<span class="period">.</span></span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-17"><article class="hiddenproof"><div class="para" id="p-593">Let <span class="process-math">\(V\)</span> be a finite-dimensional, non-trivial vector space. If <span class="process-math">\(\vv\neq \zer\)</span> is a vector in <span class="process-math">\(V\text{,}\)</span> then <span class="process-math">\(\{\vv\}\)</span> is linearly independent. By <a href="" class="xref" data-knowl="./knowl/lem-enlarge-independent.html" title="Lemma 1.7.12">Lemma 1.7.12</a>, we can enlarge this set to a basis of <span class="process-math">\(V\text{,}\)</span> so <span class="process-math">\(V\)</span> has a basis.</div> <div class="para" id="p-594">Now, suppose <span class="process-math">\(V = \spn\{\ww_1,\ldots, \ww_m\}\text{,}\)</span> and let <span class="process-math">\(B=\{\vv_1,\ldots, \vv_n\}\)</span> be a basis for <span class="process-math">\(V\text{.}\)</span> By definition, we have <span class="process-math">\(\dim V=n\text{,}\)</span> and by <a href="" class="xref" data-knowl="./knowl/theorem-steinitz.html" title="Theorem 1.7.1: Fundamental Theorem (Steinitz Exchange Lemma)">Theorem 1.7.1</a>, since <span class="process-math">\(B\)</span> is linearly independent, we must have <span class="process-math">\(n\leq m\text{.}\)</span>
-</div> <div class="para" id="p-595">Let us now consider an independent set <span class="process-math">\(I=\{\uu_1,\ldots, \uu_k\}\text{.}\)</span> Since <span class="process-math">\(I\)</span> is independent and <span class="process-math">\(B\)</span> spans <span class="process-math">\(V\text{,}\)</span> we must have <span class="process-math">\(k\leq n\text{.}\)</span> If <span class="process-math">\(\spn I\neq V\text{,}\)</span> there must be some element of <span class="process-math">\(B\)</span> that is not in the span of <span class="process-math">\(I\text{:}\)</span> if every element of <span class="process-math">\(B\)</span> is in <span class="process-math">\(\spn I\text{,}\)</span> then <span class="process-math">\(\spn I = \spn (B\cup I)\)</span> by <a href="" class="xref" data-knowl="./knowl/theorem-surplus-span.html" title="Theorem 1.4.10">Theorem 1.4.10</a>. And since <span class="process-math">\(B\)</span> is a basis, it spans <span class="process-math">\(V\text{,}\)</span> so every element of <span class="process-math">\(I\)</span> is in the span of <span class="process-math">\(B\text{,}\)</span> and we similarly have that <span class="process-math">\(\spn (B\cup I)=\spn B\text{,}\)</span> so <span class="process-math">\(\spn B=\spn I\text{.}\)</span>
-</div> <div class="para" id="p-596">Since we can find an element of <span class="process-math">\(B\)</span> that is not in the span of <span class="process-math">\(I\text{,}\)</span> we can add that element to <span class="process-math">\(I\text{,}\)</span> and the resulting set is still independent. If the new set spans <span class="process-math">\(V\text{,}\)</span> we’re done. If not, we can repeat the process, adding another vector from <span class="process-math">\(B\text{.}\)</span> Since the set <span class="process-math">\(B\)</span> is finite, this process must eventually end.</div></article></div>
+</div></article><article class="hiddenproof" id="proof-16"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-16"><h3 class="heading"><span class="title">Strategy.</span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-16"><article class="hiddenproof"> <div class="para" id="p-572">Much of this theorem sums up some of what we’ve learned so far: As long as a vector space <span class="process-math">\(V\)</span> contains a nonzero vector <span class="process-math">\(\vv\text{,}\)</span> the set <span class="process-math">\(\{\vv\}\)</span> is independent and can be enlarged to a basis, by <a href="" class="xref" data-knowl="./knowl/lem-enlarge-independent.html" title="Lemma 1.7.12">Lemma 1.7.12</a>. The size of any spanning set is at least as big as the dimension of <span class="process-math">\(V\text{,}\)</span> by <a href="" class="xref" data-knowl="./knowl/theorem-steinitz.html" title="Theorem 1.7.1: Fundamental Theorem (Steinitz Exchange Lemma)">Theorem 1.7.1</a>.</div> <div class="para" id="p-573">To understand why we can enlarge a given independent set using elements of an <em class="emphasis">existing</em> basis, we need to think about why there must be some vector in this basis that is not in the span of our independent set, so that we can apply <a href="" class="xref" data-knowl="./knowl/lem-enlarge-independent.html" title="Lemma 1.7.12">Lemma 1.7.12</a>.</div></article></div>
+<article class="hiddenproof" id="proof-17"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-17"><h3 class="heading"><span class="type">Proof<span class="period">.</span></span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-17"><article class="hiddenproof"><div class="para" id="p-574">Let <span class="process-math">\(V\)</span> be a finite-dimensional, non-trivial vector space. If <span class="process-math">\(\vv\neq \zer\)</span> is a vector in <span class="process-math">\(V\text{,}\)</span> then <span class="process-math">\(\{\vv\}\)</span> is linearly independent. By <a href="" class="xref" data-knowl="./knowl/lem-enlarge-independent.html" title="Lemma 1.7.12">Lemma 1.7.12</a>, we can enlarge this set to a basis of <span class="process-math">\(V\text{,}\)</span> so <span class="process-math">\(V\)</span> has a basis.</div> <div class="para" id="p-575">Now, suppose <span class="process-math">\(V = \spn\{\ww_1,\ldots, \ww_m\}\text{,}\)</span> and let <span class="process-math">\(B=\{\vv_1,\ldots, \vv_n\}\)</span> be a basis for <span class="process-math">\(V\text{.}\)</span> By definition, we have <span class="process-math">\(\dim V=n\text{,}\)</span> and by <a href="" class="xref" data-knowl="./knowl/theorem-steinitz.html" title="Theorem 1.7.1: Fundamental Theorem (Steinitz Exchange Lemma)">Theorem 1.7.1</a>, since <span class="process-math">\(B\)</span> is linearly independent, we must have <span class="process-math">\(n\leq m\text{.}\)</span>
+</div> <div class="para" id="p-576">Let us now consider an independent set <span class="process-math">\(I=\{\uu_1,\ldots, \uu_k\}\text{.}\)</span> Since <span class="process-math">\(I\)</span> is independent and <span class="process-math">\(B\)</span> spans <span class="process-math">\(V\text{,}\)</span> we must have <span class="process-math">\(k\leq n\text{.}\)</span> If <span class="process-math">\(\spn I\neq V\text{,}\)</span> there must be some element of <span class="process-math">\(B\)</span> that is not in the span of <span class="process-math">\(I\text{:}\)</span> if every element of <span class="process-math">\(B\)</span> is in <span class="process-math">\(\spn I\text{,}\)</span> then <span class="process-math">\(\spn I = \spn (B\cup I)\)</span> by <a href="" class="xref" data-knowl="./knowl/theorem-surplus-span.html" title="Theorem 1.4.10">Theorem 1.4.10</a>. And since <span class="process-math">\(B\)</span> is a basis, it spans <span class="process-math">\(V\text{,}\)</span> so every element of <span class="process-math">\(I\)</span> is in the span of <span class="process-math">\(B\text{,}\)</span> and we similarly have that <span class="process-math">\(\spn (B\cup I)=\spn B\text{,}\)</span> so <span class="process-math">\(\spn B=\spn I\text{.}\)</span>
+</div> <div class="para" id="p-577">Since we can find an element of <span class="process-math">\(B\)</span> that is not in the span of <span class="process-math">\(I\text{,}\)</span> we can add that element to <span class="process-math">\(I\text{,}\)</span> and the resulting set is still independent. If the new set spans <span class="process-math">\(V\text{,}\)</span> we’re done. If not, we can repeat the process, adding another vector from <span class="process-math">\(B\text{.}\)</span> Since the set <span class="process-math">\(B\)</span> is finite, this process must eventually end.</div></article></div>
 <article class="exercise exercise-like" id="ex-basis-extend-m22"><h3 class="heading">
 <span class="type">Exercise</span><span class="space"> </span><span class="codenumber">1.7.14</span><span class="period">.</span>
 </h3>
-<div class="para logical" id="p-597">
+<div class="para logical" id="p-578">
 <div class="para">Find a basis of <span class="process-math">\(M_{22}(\R)\)</span> that contains the vectors</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -539,199 +657,191 @@ c_1\vv_1+c_2\vv_2+\cdots +c_n\mathbf{b}_n=\zer\text{,}
 </div></article><article class="exercise exercise-like" id="ex-basis-extend-p3"><h3 class="heading">
 <span class="type">Exercise</span><span class="space"> </span><span class="codenumber">1.7.15</span><span class="period">.</span>
 </h3>
-<div class="para" id="p-599">Extend the set <span class="process-math">\(\{1+x,x+x^2,x-x^3\}\)</span> to a basis of <span class="process-math">\(P_3(\R)\text{.}\)</span>
+<div class="para" id="p-580">Extend the set <span class="process-math">\(\{1+x,x+x^2,x-x^3\}\)</span> to a basis of <span class="process-math">\(P_3(\R)\text{.}\)</span>
 </div></article><article class="exercise exercise-like" id="ex-dim-inf"><h3 class="heading">
 <span class="type">Exercise</span><span class="space"> </span><span class="codenumber">1.7.16</span><span class="period">.</span>
 </h3>
-<div class="para" id="p-601">Give two examples of infinite-dimensional vector spaces. Support your answer.</div></article><article class="exercise exercise-like" id="ex-basis-tf"><h3 class="heading">
+<div class="para" id="p-582">Give two examples of infinite-dimensional vector spaces. Support your answer.</div></article><article class="exercise exercise-like" id="ex-basis-tf"><h3 class="heading">
 <span class="type">Exercise</span><span class="space"> </span><span class="codenumber">1.7.17</span><span class="period">.</span>
 </h3>
-<div class="introduction" id="introduction-9"><div class="para" id="p-602">Determine whether the following statements are true or false.</div></div>
+<div class="introduction" id="introduction-10"><div class="para" id="p-583">Determine whether the following statements are true or false.</div></div>
 <article class="task exercise-like" id="ex-tf-basis1"><h4 class="heading"><span class="codenumber">(a)</span></h4>
 <div class="ptx-runestone-container"><div class="runestone"><ul data-component="multiplechoice" data-multipleanswers="false" id="ex-tf-basis1">
-<div class="para" id="p-603">A set of 2 vectors can span <span class="process-math">\(\R^3\text{.}\)</span>
+<div class="para" id="p-584">A set of 2 vectors can span <span class="process-math">\(\R^3\text{.}\)</span>
 </div>
 <li data-component="answer" id="ex-tf-basis1_opt_t"><p>True.</p></li>
-<li data-component="feedback" id="ex-tf-basis1_opt_t"><div class="para" id="p-604">We know that the standard basis for <span class="process-math">\(\R^3\)</span> contains three vectors, and as a basis, it is linearly independent. According to <a href="" class="xref" data-knowl="./knowl/theorem-steinitz.html" title="Theorem 1.7.1: Fundamental Theorem (Steinitz Exchange Lemma)">Theorem 1.7.1</a>, a spanning set cannot be larger than an independent set.</div></li>
+<li data-component="feedback" id="ex-tf-basis1_opt_t"><div class="para" id="p-585">We know that the standard basis for <span class="process-math">\(\R^3\)</span> contains three vectors, and as a basis, it is linearly independent. According to <a href="" class="xref" data-knowl="./knowl/theorem-steinitz.html" title="Theorem 1.7.1: Fundamental Theorem (Steinitz Exchange Lemma)">Theorem 1.7.1</a>, a spanning set cannot be larger than an independent set.</div></li>
 <li data-component="answer" id="ex-tf-basis1_opt_f" data-correct=""><p>False.</p></li>
-<li data-component="feedback" id="ex-tf-basis1_opt_f"><div class="para" id="p-604">We know that the standard basis for <span class="process-math">\(\R^3\)</span> contains three vectors, and as a basis, it is linearly independent. According to <a href="" class="xref" data-knowl="./knowl/theorem-steinitz.html" title="Theorem 1.7.1: Fundamental Theorem (Steinitz Exchange Lemma)">Theorem 1.7.1</a>, a spanning set cannot be larger than an independent set.</div></li>
+<li data-component="feedback" id="ex-tf-basis1_opt_f"><div class="para" id="p-585">We know that the standard basis for <span class="process-math">\(\R^3\)</span> contains three vectors, and as a basis, it is linearly independent. According to <a href="" class="xref" data-knowl="./knowl/theorem-steinitz.html" title="Theorem 1.7.1: Fundamental Theorem (Steinitz Exchange Lemma)">Theorem 1.7.1</a>, a spanning set cannot be larger than an independent set.</div></li>
 </ul></div></div></article><article class="task exercise-like" id="ex-tf-basis2"><h4 class="heading"><span class="codenumber">(b)</span></h4>
 <div class="ptx-runestone-container"><div class="runestone"><ul data-component="multiplechoice" data-multipleanswers="false" id="ex-tf-basis2">
-<div class="para" id="p-605">It is possible for a set of 2 vectors to be linearly independent in <span class="process-math">\(\R^3\text{.}\)</span>
+<div class="para" id="p-586">It is possible for a set of 2 vectors to be linearly independent in <span class="process-math">\(\R^3\text{.}\)</span>
 </div>
 <li data-component="answer" id="ex-tf-basis2_opt_t" data-correct=""><p>True.</p></li>
-<li data-component="feedback" id="ex-tf-basis2_opt_t"><div class="para" id="p-606">There are many such examples, including <span class="process-math">\(\{(1,0,0),(0,1,0)\}\text{.}\)</span>
+<li data-component="feedback" id="ex-tf-basis2_opt_t"><div class="para" id="p-587">There are many such examples, including <span class="process-math">\(\{(1,0,0),(0,1,0)\}\text{.}\)</span>
 </div></li>
 <li data-component="answer" id="ex-tf-basis2_opt_f"><p>False.</p></li>
-<li data-component="feedback" id="ex-tf-basis2_opt_f"><div class="para" id="p-606">There are many such examples, including <span class="process-math">\(\{(1,0,0),(0,1,0)\}\text{.}\)</span>
+<li data-component="feedback" id="ex-tf-basis2_opt_f"><div class="para" id="p-587">There are many such examples, including <span class="process-math">\(\{(1,0,0),(0,1,0)\}\text{.}\)</span>
 </div></li>
 </ul></div></div></article><article class="task exercise-like" id="ex-tf-basis3"><h4 class="heading"><span class="codenumber">(c)</span></h4>
 <div class="ptx-runestone-container"><div class="runestone"><ul data-component="multiplechoice" data-multipleanswers="false" id="ex-tf-basis3">
-<div class="para" id="p-607">A set of 4 vectors can span <span class="process-math">\(\R^3\text{.}\)</span>
+<div class="para" id="p-588">A set of 4 vectors can span <span class="process-math">\(\R^3\text{.}\)</span>
 </div>
 <li data-component="answer" id="ex-tf-basis3_opt_t" data-correct=""><p>True.</p></li>
-<li data-component="feedback" id="ex-tf-basis3_opt_t"><div class="para" id="p-608">Add any vector you want to a basis for <span class="process-math">\(\R^3\text{,}\)</span> and the resulting set will span.</div></li>
+<li data-component="feedback" id="ex-tf-basis3_opt_t"><div class="para" id="p-589">Add any vector you want to a basis for <span class="process-math">\(\R^3\text{,}\)</span> and the resulting set will span.</div></li>
 <li data-component="answer" id="ex-tf-basis3_opt_f"><p>False.</p></li>
-<li data-component="feedback" id="ex-tf-basis3_opt_f"><div class="para" id="p-608">Add any vector you want to a basis for <span class="process-math">\(\R^3\text{,}\)</span> and the resulting set will span.</div></li>
+<li data-component="feedback" id="ex-tf-basis3_opt_f"><div class="para" id="p-589">Add any vector you want to a basis for <span class="process-math">\(\R^3\text{,}\)</span> and the resulting set will span.</div></li>
 </ul></div></div></article><article class="task exercise-like" id="ex-tf-basis4"><h4 class="heading"><span class="codenumber">(d)</span></h4>
 <div class="ptx-runestone-container"><div class="runestone"><ul data-component="multiplechoice" data-multipleanswers="false" id="ex-tf-basis4">
-<div class="para" id="p-609">It is possible for a set of 4 vectors to be linearly independent in <span class="process-math">\(\R^3\text{.}\)</span>
+<div class="para" id="p-590">It is possible for a set of 4 vectors to be linearly independent in <span class="process-math">\(\R^3\text{.}\)</span>
 </div>
 <li data-component="answer" id="ex-tf-basis4_opt_t"><p>True.</p></li>
-<li data-component="feedback" id="ex-tf-basis4_opt_t"><div class="para" id="p-610">We know that 3 vectors can span <span class="process-math">\(\R^3\text{,}\)</span> and an independent set cannot be larger than a spanning set.</div></li>
+<li data-component="feedback" id="ex-tf-basis4_opt_t"><div class="para" id="p-591">We know that 3 vectors can span <span class="process-math">\(\R^3\text{,}\)</span> and an independent set cannot be larger than a spanning set.</div></li>
 <li data-component="answer" id="ex-tf-basis4_opt_f" data-correct=""><p>False.</p></li>
-<li data-component="feedback" id="ex-tf-basis4_opt_f"><div class="para" id="p-610">We know that 3 vectors can span <span class="process-math">\(\R^3\text{,}\)</span> and an independent set cannot be larger than a spanning set.</div></li>
-</ul></div></div></article></article><div class="para logical" id="p-611">
+<li data-component="feedback" id="ex-tf-basis4_opt_f"><div class="para" id="p-591">We know that 3 vectors can span <span class="process-math">\(\R^3\text{,}\)</span> and an independent set cannot be larger than a spanning set.</div></li>
+</ul></div></div></article></article><div class="para logical" id="p-592">
 <div class="para">Let’s recap our results so far:</div>
 <ul class="disc">
-<li id="li-137"><div class="para" id="p-612">A basis for a vector space <span class="process-math">\(V\)</span> is an independent set of vectors that spans <span class="process-math">\(V\text{.}\)</span>
+<li id="li-81"><div class="para" id="p-593">A basis for a vector space <span class="process-math">\(V\)</span> is an independent set of vectors that spans <span class="process-math">\(V\text{.}\)</span>
 </div></li>
-<li id="li-138"><div class="para" id="p-613">The number of vectors in any basis of <span class="process-math">\(V\)</span> is a constant, called the dimension of <span class="process-math">\(V\text{.}\)</span>
+<li id="li-82"><div class="para" id="p-594">The number of vectors in any basis of <span class="process-math">\(V\)</span> is a constant, called the dimension of <span class="process-math">\(V\text{.}\)</span>
 </div></li>
-<li id="li-139"><div class="para" id="p-614">The number of vectors in any independent set is always less than or equal to the number of vectors in a spanning set.</div></li>
-<li id="li-140"><div class="para" id="p-615">In a finite-dimensional vector space, any independent set can be enlarged to a basis, and any spanning set can be cut down to a basis by deleting vectors that are in the span of the remaining vectors.</div></li>
+<li id="li-83"><div class="para" id="p-595">The number of vectors in any independent set is always less than or equal to the number of vectors in a spanning set.</div></li>
+<li id="li-84"><div class="para" id="p-596">In a finite-dimensional vector space, any independent set can be enlarged to a basis, and any spanning set can be cut down to a basis by deleting vectors that are in the span of the remaining vectors.</div></li>
 </ul>
 <div class="para">Another important aspect of dimension is that it reduces many problems, such as determining equality of subspaces, to counting problems.</div>
 </div>
 <article class="theorem theorem-like" id="thm-subspace-dim"><h3 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">1.7.18</span><span class="period">.</span>
 </h3>
-<div class="para logical" id="p-616">
+<div class="para logical" id="p-597">
 <div class="para">Let <span class="process-math">\(U\)</span> and <span class="process-math">\(W\)</span> be subspaces of a finite-dimensional vector space <span class="process-math">\(V\text{.}\)</span>
 </div>
 <ol class="decimal">
-<li id="li-141"><div class="para" id="p-617">If <span class="process-math">\(U\subseteq W\text{,}\)</span> then <span class="process-math">\(\dim U\leq \dim W\text{.}\)</span>
+<li id="li-85"><div class="para" id="p-598">If <span class="process-math">\(U\subseteq W\text{,}\)</span> then <span class="process-math">\(\dim U\leq \dim W\text{.}\)</span>
 </div></li>
-<li id="li-142"><div class="para" id="p-618">If <span class="process-math">\(U\subseteq W\)</span> and <span class="process-math">\(\dim U=\dim W\text{,}\)</span> then <span class="process-math">\(U=W\text{.}\)</span>
+<li id="li-86"><div class="para" id="p-599">If <span class="process-math">\(U\subseteq W\)</span> and <span class="process-math">\(\dim U=\dim W\text{,}\)</span> then <span class="process-math">\(U=W\text{.}\)</span>
 </div></li>
 </ol>
-</div></article><article class="hiddenproof" id="proof-18"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-18"><h3 class="heading"><span class="type">Proof<span class="period">.</span></span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-18"><article class="hiddenproof"><div class="para logical" id="p-619"><ol class="decimal">
-<li id="li-143"><div class="para" id="p-620">Suppose <span class="process-math">\(U\subseteq W\text{,}\)</span> and let <span class="process-math">\(B=\{\uu_1,\ldots, \uu_k\}\)</span> be a basis for <span class="process-math">\(U\text{.}\)</span> Since <span class="process-math">\(B\)</span> is a basis, it’s independent. And since <span class="process-math">\(B\subseteq U\)</span> and <span class="process-math">\(U\subseteq W\text{,}\)</span> <span class="process-math">\(B\subseteq W\text{.}\)</span> Thus, <span class="process-math">\(B\)</span> is an independent subset of <span class="process-math">\(W\text{,}\)</span> and since any basis of <span class="process-math">\(W\)</span> spans <span class="process-math">\(W\text{,}\)</span> we know that <span class="process-math">\(\dim U = k \leq \dim W\text{,}\)</span> by <a href="" class="xref" data-knowl="./knowl/theorem-steinitz.html" title="Theorem 1.7.1: Fundamental Theorem (Steinitz Exchange Lemma)">Theorem 1.7.1</a>.</div></li>
-<li id="li-144"><div class="para" id="p-621">Suppose <span class="process-math">\(U\subseteq W\)</span> and <span class="process-math">\(\dim U = \dim W\text{.}\)</span> Let <span class="process-math">\(B\)</span> be a basis for <span class="process-math">\(U\text{.}\)</span> As above, <span class="process-math">\(B\)</span> is an independent subset of <span class="process-math">\(W\text{.}\)</span> If <span class="process-math">\(W\neq U\text{,}\)</span> then there is some <span class="process-math">\(\ww\in W\)</span> with <span class="process-math">\(\ww\notin U\text{.}\)</span> But <span class="process-math">\(U=\spn B\text{,}\)</span> so that would mean that <span class="process-math">\(B\cup \{\ww\}\)</span> is a linearly independent set containing <span class="process-math">\(\dim U+1\)</span> vectors. This is impossible, since <span class="process-math">\(\dim W=\dim U\text{,}\)</span> so no independent set can contain more than <span class="process-math">\(\dim U\)</span> vectors.</div></li>
+</div></article><article class="hiddenproof" id="proof-18"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-18"><h3 class="heading"><span class="type">Proof<span class="period">.</span></span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-18"><article class="hiddenproof"><div class="para logical" id="p-600"><ol class="decimal">
+<li id="li-87"><div class="para" id="p-601">Suppose <span class="process-math">\(U\subseteq W\text{,}\)</span> and let <span class="process-math">\(B=\{\uu_1,\ldots, \uu_k\}\)</span> be a basis for <span class="process-math">\(U\text{.}\)</span> Since <span class="process-math">\(B\)</span> is a basis, it’s independent. And since <span class="process-math">\(B\subseteq U\)</span> and <span class="process-math">\(U\subseteq W\text{,}\)</span> <span class="process-math">\(B\subseteq W\text{.}\)</span> Thus, <span class="process-math">\(B\)</span> is an independent subset of <span class="process-math">\(W\text{,}\)</span> and since any basis of <span class="process-math">\(W\)</span> spans <span class="process-math">\(W\text{,}\)</span> we know that <span class="process-math">\(\dim U = k \leq \dim W\text{,}\)</span> by <a href="" class="xref" data-knowl="./knowl/theorem-steinitz.html" title="Theorem 1.7.1: Fundamental Theorem (Steinitz Exchange Lemma)">Theorem 1.7.1</a>.</div></li>
+<li id="li-88"><div class="para" id="p-602">Suppose <span class="process-math">\(U\subseteq W\)</span> and <span class="process-math">\(\dim U = \dim W\text{.}\)</span> Let <span class="process-math">\(B\)</span> be a basis for <span class="process-math">\(U\text{.}\)</span> As above, <span class="process-math">\(B\)</span> is an independent subset of <span class="process-math">\(W\text{.}\)</span> If <span class="process-math">\(W\neq U\text{,}\)</span> then there is some <span class="process-math">\(\ww\in W\)</span> with <span class="process-math">\(\ww\notin U\text{.}\)</span> But <span class="process-math">\(U=\spn B\text{,}\)</span> so that would mean that <span class="process-math">\(B\cup \{\ww\}\)</span> is a linearly independent set containing <span class="process-math">\(\dim U+1\)</span> vectors. This is impossible, since <span class="process-math">\(\dim W=\dim U\text{,}\)</span> so no independent set can contain more than <span class="process-math">\(\dim U\)</span> vectors.</div></li>
 </ol></div></article></div>
-<div class="para" id="p-622">An even more useful counting result is the following:</div>
+<div class="para" id="p-603">An even more useful counting result is the following:</div>
 <article class="theorem theorem-like" id="thm-half-the-work"><h3 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">1.7.19</span><span class="period">.</span>
 </h3>
-<div class="para" id="p-623">Let <span class="process-math">\(V\)</span> be an <span class="process-math">\(n\)</span>-dimensional vector space. If the set <span class="process-math">\(S\)</span> contains <span class="process-math">\(n\)</span> vectors, then <span class="process-math">\(S\)</span> is independent if and only if <span class="process-math">\(\spn S=V\text{.}\)</span>
-</div></article><article class="hiddenproof" id="proof-19"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-19"><h3 class="heading"><span class="title">Strategy.</span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-19"><article class="hiddenproof"> <div class="para logical" id="p-624">
+<div class="para" id="p-604">Let <span class="process-math">\(V\)</span> be an <span class="process-math">\(n\)</span>-dimensional vector space. If the set <span class="process-math">\(S\)</span> contains <span class="process-math">\(n\)</span> vectors, then <span class="process-math">\(S\)</span> is independent if and only if <span class="process-math">\(\spn S=V\text{.}\)</span>
+</div></article><article class="hiddenproof" id="proof-19"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-19"><h3 class="heading"><span class="title">Strategy.</span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-19"><article class="hiddenproof"> <div class="para logical" id="p-605">
 <div class="para">This result is a combination of three observations:</div>
 <ol class="decimal">
-<li id="li-145"><div class="para" id="p-625">The dimension of <span class="process-math">\(V\)</span> is the size of any basis</div></li>
-<li id="li-146"><div class="para" id="p-626">Any independent set can be enlarged to a basis, and cannot have more vectors than a basis.</div></li>
-<li id="li-147"><div class="para" id="p-627">Any spanning set contains a basis, and cannot have fewer vectors than a basis.</div></li>
+<li id="li-89"><div class="para" id="p-606">The dimension of <span class="process-math">\(V\)</span> is the size of any basis</div></li>
+<li id="li-90"><div class="para" id="p-607">Any independent set can be enlarged to a basis, and cannot have more vectors than a basis.</div></li>
+<li id="li-91"><div class="para" id="p-608">Any spanning set contains a basis, and cannot have fewer vectors than a basis.</div></li>
 </ol>
 </div></article></div>
-<article class="hiddenproof" id="proof-20"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-20"><h3 class="heading"><span class="type">Proof<span class="period">.</span></span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-20"><article class="hiddenproof"><div class="para" id="p-628">If <span class="process-math">\(S\)</span> is independent, then it can be extended to a basis <span class="process-math">\(B\)</span> with <span class="process-math">\(S\subseteq B\text{.}\)</span> But <span class="process-math">\(S\)</span> and <span class="process-math">\(B\)</span> both contain <span class="process-math">\(n\)</span> vectors (since <span class="process-math">\(\dim V=n\)</span>), so we must have <span class="process-math">\(S=B\text{.}\)</span>
-</div> <div class="para" id="p-629">If <span class="process-math">\(S\)</span> spans <span class="process-math">\(V\text{,}\)</span> then <span class="process-math">\(S\)</span> must contain a basis <span class="process-math">\(B\text{,}\)</span> and as above, since <span class="process-math">\(S\)</span> and <span class="process-math">\(B\)</span> contain the same number of vectors, they must be equal.</div></article></div>
-<div class="para" id="p-630">
+<article class="hiddenproof" id="proof-20"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-20"><h3 class="heading"><span class="type">Proof<span class="period">.</span></span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-20"><article class="hiddenproof"><div class="para" id="p-609">If <span class="process-math">\(S\)</span> is independent, then it can be extended to a basis <span class="process-math">\(B\)</span> with <span class="process-math">\(S\subseteq B\text{.}\)</span> But <span class="process-math">\(S\)</span> and <span class="process-math">\(B\)</span> both contain <span class="process-math">\(n\)</span> vectors (since <span class="process-math">\(\dim V=n\)</span>), so we must have <span class="process-math">\(S=B\text{.}\)</span>
+</div> <div class="para" id="p-610">If <span class="process-math">\(S\)</span> spans <span class="process-math">\(V\text{,}\)</span> then <span class="process-math">\(S\)</span> must contain a basis <span class="process-math">\(B\text{,}\)</span> and as above, since <span class="process-math">\(S\)</span> and <span class="process-math">\(B\)</span> contain the same number of vectors, they must be equal.</div></article></div>
+<div class="para" id="p-611">
 <a href="" class="xref" data-knowl="./knowl/thm-half-the-work.html" title="Theorem 1.7.19">Theorem 1.7.19</a> saves us a lot of time, since it tells us that, when we know the dimension of <span class="process-math">\(V\text{,}\)</span> we do not have to check both independence and span to confirm a basis; checking one of the two implies the other. (And usually independence is easier to check.)</div>
-<div class="para" id="p-631">We saw this in <a href="" class="xref" data-knowl="./knowl/ex-basis-r3.html" title="Exercise 1.7.7">Exercise 1.7.7</a>: given a set of vectors in <span class="process-math">\(\R^3\text{,}\)</span> we form the matrix <span class="process-math">\(A\)</span> with these vectors as columns. This matrix becomes the coefficient matrix for the system of equations we obtain when checking for independence, <em class="emphasis">and</em> for the system we obtain when checking for span. In both cases, the condition on <span class="process-math">\(A\)</span> is the same; namely, that it must be invertible.</div>
+<div class="para" id="p-612">We saw this in <a href="" class="xref" data-knowl="./knowl/ex-basis-r3.html" title="Exercise 1.7.7">Exercise 1.7.7</a>: given a set of vectors in <span class="process-math">\(\R^3\text{,}\)</span> we form the matrix <span class="process-math">\(A\)</span> with these vectors as columns. This matrix becomes the coefficient matrix for the system of equations we obtain when checking for independence, <em class="emphasis">and</em> for the system we obtain when checking for span. In both cases, the condition on <span class="process-math">\(A\)</span> is the same; namely, that it must be invertible.</div>
 <section class="exercises" id="exercises-5"><h3 class="heading hide-type">
 <span class="type">Exercises</span> <span class="codenumber"></span> <span class="title">Exercises</span>
 </h3>
 <article class="exercise exercise-like" id="ex-ww-basis1"><h4 class="heading"><span class="codenumber">1<span class="period">.</span></span></h4>
-<div id="webwork-19" class="exercise-wrapper" data-domain="https://webwork-dev.uleth.ca" data-seed="19" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/NAU/setLinearAlgebra/P3subspaceBasis.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
-<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-19')">Activate</button></div>
-<div class="problem-contents">
-<div class="para" id="p-632">Find a basis <span class="process-math">\(\lbrace p(x), q(x) \rbrace\)</span> for the vector space <span class="process-math">\(\lbrace f(x)\in{\mathbb P}_3[x] \mid f'(-8)=f(1) \rbrace\)</span> where <span class="process-math">\({\mathbb P}_3[x]\)</span> is the vector space of polynomials in <span class="process-math">\(x\)</span> with degree less than 3.</div> <div class="para" id="p-633">
-<span class="process-math">\(p(x) =\)</span> <span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span>, <span class="process-math">\(q(x) =\)</span> <span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span>
-</div>
-</div>
+<div id="webwork-15" class="exercise-wrapper" data-domain="https://webwork-dev.uleth.ca" data-seed="15" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="local/Library/NAU/setLinearAlgebra/P3subspaceBasis.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-15')">Activate</button></div>
+<div class="problem-contents"><div class="para" id="p-613">Find a basis <span class="process-math">\(\lbrace p(x), q(x) \rbrace\)</span> for the vector space <span class="process-math">\(\lbrace f(x)\in P_2(\mathbb{R}) \mid f'(3)=f(1) \rbrace\)</span> where <span class="process-math">\(P_2(\mathbb{R})\)</span> is the vector space of polynomials in <span class="process-math">\(x\)</span> with degree less than or equal to 2.</div></div>
 </div></article><article class="exercise exercise-like" id="ex-ww-basis2"><h4 class="heading"><span class="codenumber">2<span class="period">.</span></span></h4>
-<div id="webwork-20" class="exercise-wrapper" data-domain="https://webwork-dev.uleth.ca" data-seed="20" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="local/Library/NAU/setLinearAlgebra/basisTrace0b.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
-<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-20')">Activate</button></div>
-<div class="problem-contents">
-<div class="para" id="p-635">Find a basis for the vector space <span class="process-math">\(\lbrace A\in {\mathbb R}^{2\times 2} \mid \text{tr}(A)=0\rbrace\)</span> of <span class="process-math">\(2\times 2\)</span> matrices with trace 0.</div> <div class="para" id="p-636">
-<span class="process-math">\(B = \Biggl\lbrace\)</span><span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>,<span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>,<span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span> <span class="process-math">\(\Biggr\rbrace\text{.}\)</span>
-</div>
-</div>
+<div id="webwork-16" class="exercise-wrapper" data-domain="https://webwork-dev.uleth.ca" data-seed="16" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="local/Library/NAU/setLinearAlgebra/basisTrace0.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-16')">Activate</button></div>
+<div class="problem-contents"><div class="para" id="p-615">Find a basis for the vector space <span class="process-math">\(\lbrace A\in M_{22}(\mathbb R) \mid \text{tr}(A)=0\rbrace\)</span> of <span class="process-math">\(2\times 2\)</span> matrices with trace 0.</div></div>
 </div></article><article class="exercise exercise-like" id="ex-rs-basis3"><h4 class="heading"><span class="codenumber">3<span class="period">.</span></span></h4>
 <div class="ptx-runestone-container"><div class="runestone"><ul data-component="multiplechoice" data-multipleanswers="false" id="ex-rs-basis3">
-<div class="para" id="p-638">True or false: if a set <span class="process-math">\(S\)</span> of vectors is linearly independent in a vector space <span class="process-math">\(V\text{,}\)</span> but <span class="process-math">\(S\)</span> does not span <span class="process-math">\(V\text{,}\)</span> then <span class="process-math">\(S\)</span> can be extended to a basis for <span class="process-math">\(V\)</span> by adding vectors.</div>
+<div class="para" id="p-617">True or false: if a set <span class="process-math">\(S\)</span> of vectors is linearly independent in a vector space <span class="process-math">\(V\text{,}\)</span> but <span class="process-math">\(S\)</span> does not span <span class="process-math">\(V\text{,}\)</span> then <span class="process-math">\(S\)</span> can be extended to a basis for <span class="process-math">\(V\)</span> by adding vectors.</div>
 <li data-component="answer" id="ex-rs-basis3_opt_t"><p>True.</p></li>
-<li data-component="feedback" id="ex-rs-basis3_opt_t"><div class="para" id="p-639">What if <span class="process-math">\(V\)</span> is infinite-dimensional?</div></li>
+<li data-component="feedback" id="ex-rs-basis3_opt_t"><div class="para" id="p-618">What if <span class="process-math">\(V\)</span> is infinite-dimensional?</div></li>
 <li data-component="answer" id="ex-rs-basis3_opt_f" data-correct=""><p>False.</p></li>
-<li data-component="feedback" id="ex-rs-basis3_opt_f"><div class="para" id="p-639">What if <span class="process-math">\(V\)</span> is infinite-dimensional?</div></li>
+<li data-component="feedback" id="ex-rs-basis3_opt_f"><div class="para" id="p-618">What if <span class="process-math">\(V\)</span> is infinite-dimensional?</div></li>
 </ul></div></div></article><article class="exercise exercise-like" id="ex-rs-basis4"><h4 class="heading"><span class="codenumber">4<span class="period">.</span></span></h4>
 <div class="ptx-runestone-container"><div class="runestone"><ul data-component="multiplechoice" data-multipleanswers="false" id="ex-rs-basis4">
-<div class="para" id="p-640">True or false: if <span class="process-math">\(V=\spn\{\vv_1,\vv_2,\vv_3\}\text{,}\)</span> then <span class="process-math">\(\dim V=3\text{.}\)</span>
+<div class="para" id="p-619">True or false: if <span class="process-math">\(V=\spn\{\vv_1,\vv_2,\vv_3\}\text{,}\)</span> then <span class="process-math">\(\dim V=3\text{.}\)</span>
 </div>
 <li data-component="answer" id="ex-rs-basis4_opt_t"><p>True.</p></li>
-<li data-component="feedback" id="ex-rs-basis4_opt_t"><div class="para" id="p-641">What if the set <span class="process-math">\(\{\vv_1,\vv_2,\vv_3\}\)</span> is linearly dependent?</div></li>
+<li data-component="feedback" id="ex-rs-basis4_opt_t"><div class="para" id="p-620">What if the set <span class="process-math">\(\{\vv_1,\vv_2,\vv_3\}\)</span> is linearly dependent?</div></li>
 <li data-component="answer" id="ex-rs-basis4_opt_f" data-correct=""><p>False.</p></li>
-<li data-component="feedback" id="ex-rs-basis4_opt_f"><div class="para" id="p-641">What if the set <span class="process-math">\(\{\vv_1,\vv_2,\vv_3\}\)</span> is linearly dependent?</div></li>
+<li data-component="feedback" id="ex-rs-basis4_opt_f"><div class="para" id="p-620">What if the set <span class="process-math">\(\{\vv_1,\vv_2,\vv_3\}\)</span> is linearly dependent?</div></li>
 </ul></div></div></article><article class="exercise exercise-like" id="ex-rs-basis5"><h4 class="heading"><span class="codenumber">5<span class="period">.</span></span></h4>
 <div class="ptx-runestone-container"><div class="runestone"><ul data-component="multiplechoice" data-multipleanswers="false" id="ex-rs-basis5">
-<div class="para" id="p-642">True or false: if <span class="process-math">\(U\)</span> is a subspace of a vector space <span class="process-math">\(V\text{,}\)</span> and <span class="process-math">\(U=\spn(S)\)</span> for a finite set of vectors <span class="process-math">\(S\text{,}\)</span> then <span class="process-math">\(S\)</span> contains a basis for <span class="process-math">\(U\text{.}\)</span>
+<div class="para" id="p-621">True or false: if <span class="process-math">\(U\)</span> is a subspace of a vector space <span class="process-math">\(V\text{,}\)</span> and <span class="process-math">\(U=\spn(S)\)</span> for a finite set of vectors <span class="process-math">\(S\text{,}\)</span> then <span class="process-math">\(S\)</span> contains a basis for <span class="process-math">\(U\text{.}\)</span>
 </div>
 <li data-component="answer" id="ex-rs-basis5_opt_t" data-correct=""><p>True.</p></li>
-<li data-component="feedback" id="ex-rs-basis5_opt_t"><div class="para" id="p-643">Since <span class="process-math">\(S\)</span> is finite and spans <span class="process-math">\(U\text{,}\)</span> the subspace <span class="process-math">\(U\)</span> is finite-dimensional. If <span class="process-math">\(S\)</span> is linearly dependent, we can remove vectors from <span class="process-math">\(S\)</span> until we obtain a set that spans <span class="process-math">\(U\)</span> and is linearly independent.</div></li>
+<li data-component="feedback" id="ex-rs-basis5_opt_t"><div class="para" id="p-622">Since <span class="process-math">\(S\)</span> is finite and spans <span class="process-math">\(U\text{,}\)</span> the subspace <span class="process-math">\(U\)</span> is finite-dimensional. If <span class="process-math">\(S\)</span> is linearly dependent, we can remove vectors from <span class="process-math">\(S\)</span> until we obtain a set that spans <span class="process-math">\(U\)</span> and is linearly independent.</div></li>
 <li data-component="answer" id="ex-rs-basis5_opt_f"><p>False.</p></li>
-<li data-component="feedback" id="ex-rs-basis5_opt_f"><div class="para" id="p-643">Since <span class="process-math">\(S\)</span> is finite and spans <span class="process-math">\(U\text{,}\)</span> the subspace <span class="process-math">\(U\)</span> is finite-dimensional. If <span class="process-math">\(S\)</span> is linearly dependent, we can remove vectors from <span class="process-math">\(S\)</span> until we obtain a set that spans <span class="process-math">\(U\)</span> and is linearly independent.</div></li>
+<li data-component="feedback" id="ex-rs-basis5_opt_f"><div class="para" id="p-622">Since <span class="process-math">\(S\)</span> is finite and spans <span class="process-math">\(U\text{,}\)</span> the subspace <span class="process-math">\(U\)</span> is finite-dimensional. If <span class="process-math">\(S\)</span> is linearly dependent, we can remove vectors from <span class="process-math">\(S\)</span> until we obtain a set that spans <span class="process-math">\(U\)</span> and is linearly independent.</div></li>
 </ul></div></div></article><article class="exercise exercise-like" id="ex-ww-basis6"><h4 class="heading"><span class="codenumber">6<span class="period">.</span></span></h4>
-<div id="webwork-21" class="exercise-wrapper" data-domain="https://webwork-dev.uleth.ca" data-seed="21" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/WHFreeman/Holt_linear_algebra/Chaps_1-4/4.2.55.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
-<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-21')">Activate</button></div>
+<div id="webwork-17" class="exercise-wrapper" data-domain="https://webwork-dev.uleth.ca" data-seed="17" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/WHFreeman/Holt_linear_algebra/Chaps_1-4/4.2.55.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-17')">Activate</button></div>
 <div class="problem-contents">
-<div class="para" id="p-644">Suppose that <span class="process-math">\(S_1\)</span> and <span class="process-math">\(S_2\)</span> are nonzero subspaces, with <span class="process-math">\(S_1\)</span> contained inside <span class="process-math">\(S_2\text{,}\)</span> and suppose that <span class="process-math">\(dim(S_2) = 3\text{.}\)</span>
-</div> <div class="para" id="p-645">
+<div class="para" id="p-623">Suppose that <span class="process-math">\(S_1\)</span> and <span class="process-math">\(S_2\)</span> are nonzero subspaces, with <span class="process-math">\(S_1\)</span> contained inside <span class="process-math">\(S_2\text{,}\)</span> and suppose that <span class="process-math">\(dim(S_2) = 3\text{.}\)</span>
+</div> <div class="para" id="p-624">
 <em class="alert">(a)</em> What are the possible dimensions of <span class="process-math">\(S_1\text{?}\)</span>  <ul style="list-style:circle;">
-<li id="li-149"><div class="para" id="p-647">1</div></li>
-<li id="li-150"><div class="para" id="p-648">2</div></li>
-<li id="li-151"><div class="para" id="p-649">3</div></li>
-<li id="li-152"><div class="para" id="p-650">1 or 2</div></li>
-<li id="li-153"><div class="para" id="p-651">1,2, or 3</div></li>
+<li id="li-93"><div class="para" id="p-626">1</div></li>
+<li id="li-94"><div class="para" id="p-627">2</div></li>
+<li id="li-95"><div class="para" id="p-628">3</div></li>
+<li id="li-96"><div class="para" id="p-629">1 or 2</div></li>
+<li id="li-97"><div class="para" id="p-630">1,2, or 3</div></li>
 </ul>
-</div> <div class="para" id="p-652">
+</div> <div class="para" id="p-631">
 <em class="alert">(b)</em> If <span class="process-math">\(S_1\neq S_2\)</span> then what are the possible dimensions of <span class="process-math">\(S_1\text{?}\)</span>  <ul style="list-style:circle;">
-<li id="li-155"><div class="para" id="p-654">1</div></li>
-<li id="li-156"><div class="para" id="p-655">2</div></li>
-<li id="li-157"><div class="para" id="p-656">3</div></li>
-<li id="li-158"><div class="para" id="p-657">1 or 2</div></li>
-<li id="li-159"><div class="para" id="p-658">1,2, or 3</div></li>
+<li id="li-99"><div class="para" id="p-633">1</div></li>
+<li id="li-100"><div class="para" id="p-634">2</div></li>
+<li id="li-101"><div class="para" id="p-635">3</div></li>
+<li id="li-102"><div class="para" id="p-636">1 or 2</div></li>
+<li id="li-103"><div class="para" id="p-637">1,2, or 3</div></li>
 </ul>
 </div>
 </div>
 </div></article><article class="exercise exercise-like" id="ex-ww-basis7"><h4 class="heading"><span class="codenumber">7<span class="period">.</span></span></h4>
-<div id="webwork-22" class="exercise-wrapper" data-domain="https://webwork-dev.uleth.ca" data-seed="22" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="local/Library/Hope/Multi1/03-04-Basis-dim/Basis_05.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
-<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-22')">Activate</button></div>
+<div id="webwork-18" class="exercise-wrapper" data-domain="https://webwork-dev.uleth.ca" data-seed="18" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="local/Library/Hope/Multi1/03-04-Basis-dim/Basis_05.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-18')">Activate</button></div>
 <div class="problem-contents">
-<div class="para" id="p-661">Let <span class="process-math">\(\mathcal{P}_2\)</span> be the vector space of all polynomials of degree 2 or less, and let <span class="process-math">\(H\)</span> be the subspace spanned by <span class="process-math">\({13-\left(5x^{2}+20x\right)}, \ {5-\left(2x^{2}+8x\right)}\)</span> and <span class="process-math">\({3x^{2}+12x-7}\text{.}\)</span>
-</div> <div class="para logical" id="p-662"><ul class="disc">
-<li id="li-160"><div class="para" id="p-663">What is the dimension of the subspace <span class="process-math">\(H\text{?}\)</span>
+<div class="para" id="p-640">Let <span class="process-math">\(\mathcal{P}_2\)</span> be the vector space of all polynomials of degree 2 or less, and let <span class="process-math">\(H\)</span> be the subspace spanned by <span class="process-math">\({7x^{2}-x-2}, \ {4x^{2}-1}\)</span> and <span class="process-math">\({2-\left(9x^{2}+x\right)}\text{.}\)</span>
+</div> <div class="para logical" id="p-641"><ul class="disc">
+<li id="li-104"><div class="para" id="p-642">What is the dimension of the subspace <span class="process-math">\(H\text{?}\)</span>
 </div></li>
-<li id="li-161">
-<div class="para" id="p-664">Is <span class="process-math">\(\lbrace {13-\left(5x^{2}+20x\right)}, {5-\left(2x^{2}+8x\right)}, {3x^{2}+12x-7} \rbrace\)</span> a basis for <span class="process-math">\(\mathcal{P}_2\text{?}\)</span>
+<li id="li-105">
+<div class="para" id="p-643">Is <span class="process-math">\(\lbrace {7x^{2}-x-2}, {4x^{2}-1}, {2-\left(9x^{2}+x\right)} \rbrace\)</span> a basis for <span class="process-math">\(\mathcal{P}_2\text{?}\)</span>
 </div>
-<div class="para" id="p-665">
+<div class="para" id="p-644">
 <ul style="list-style:circle;">
-<li id="li-162"><div class="para" id="p-derived-li-162"></div></li>
-<li id="li-163"><div class="para" id="p-666">basis for P_2</div></li>
-<li id="li-164"><div class="para" id="p-667">not a basis for P_2</div></li>
+<li id="li-106"><div class="para" id="p-derived-li-106"></div></li>
+<li id="li-107"><div class="para" id="p-645">basis for P_2</div></li>
+<li id="li-108"><div class="para" id="p-646">not a basis for P_2</div></li>
 </ul> Be sure you can explain and justify your answer.</div>
 </li>
-</ul></div> <div class="para logical" id="p-668"><ul class="disc"><li id="li-165"><div class="para" id="p-669">Give a basis for the subspace <span class="process-math">\(H\text{.}\)</span>
+</ul></div> <div class="para logical" id="p-647"><ul class="disc"><li id="li-109"><div class="para" id="p-648">Give a basis for the subspace <span class="process-math">\(H\text{.}\)</span>
 </div></li></ul></div>
 </div>
 </div></article><article class="exercise exercise-like" id="ex-ww-basis8"><h4 class="heading"><span class="codenumber">8<span class="period">.</span></span></h4>
-<div id="webwork-23" class="exercise-wrapper" data-domain="https://webwork-dev.uleth.ca" data-seed="23" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="local/Library/Hope/Multi1/03-04-Basis-dim/Basis_06.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
-<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-23')">Activate</button></div>
+<div id="webwork-19" class="exercise-wrapper" data-domain="https://webwork-dev.uleth.ca" data-seed="19" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="local/Library/Hope/Multi1/03-04-Basis-dim/Basis_06.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-19')">Activate</button></div>
 <div class="problem-contents">
-<div class="para" id="p-673">Let <span class="process-math">\(\mathcal{P}_2\)</span> be the vector space of all polynomials of degree 2 or less, and let <span class="process-math">\(H\)</span> be the subspace spanned by <span class="process-math">\({3x^{2}+12x+19}, \ {9x^{2}+29x+51}\)</span> and <span class="process-math">\({x+1}\text{.}\)</span>
-</div> <div class="para logical" id="p-674"><ul class="disc">
-<li id="li-166"><div class="para" id="p-675">What is the dimension of the subspace <span class="process-math">\(H\text{?}\)</span>
+<div class="para" id="p-652">Let <span class="process-math">\(\mathcal{P}_2\)</span> be the vector space of all polynomials of degree 2 or less, and let <span class="process-math">\(H\)</span> be the subspace spanned by <span class="process-math">\({7x^{2}-10x-5}, \ {19x^{2}-7x-7}\)</span> and <span class="process-math">\({-\left(3x+1\right)}\text{.}\)</span>
+</div> <div class="para logical" id="p-653"><ul class="disc">
+<li id="li-110"><div class="para" id="p-654">What is the dimension of the subspace <span class="process-math">\(H\text{?}\)</span>
 </div></li>
-<li id="li-167">
-<div class="para" id="p-676">Is <span class="process-math">\(\lbrace {3x^{2}+12x+19}, {9x^{2}+29x+51}, {x+1} \rbrace\)</span> a basis for <span class="process-math">\(\mathcal{P}_2\text{?}\)</span>
+<li id="li-111">
+<div class="para" id="p-655">Is <span class="process-math">\(\lbrace {7x^{2}-10x-5}, {19x^{2}-7x-7}, {-\left(3x+1\right)} \rbrace\)</span> a basis for <span class="process-math">\(\mathcal{P}_2\text{?}\)</span>
 </div>
-<div class="para" id="p-677"><ul style="list-style:circle;">
-<li id="li-168"><div class="para" id="p-678">choose</div></li>
-<li id="li-169"><div class="para" id="p-679">basis for P_2</div></li>
-<li id="li-170"><div class="para" id="p-680">not a basis for P_2</div></li>
+<div class="para" id="p-656"><ul style="list-style:circle;">
+<li id="li-112"><div class="para" id="p-657">choose</div></li>
+<li id="li-113"><div class="para" id="p-658">basis for P_2</div></li>
+<li id="li-114"><div class="para" id="p-659">not a basis for P_2</div></li>
 </ul></div>
-<div class="para" id="p-681">Be sure you can explain and justify your answer.</div>
+<div class="para" id="p-660">Be sure you can explain and justify your answer.</div>
 </li>
-</ul></div> <div class="para logical" id="p-682"><ul class="disc"><li id="li-171"><div class="para" id="p-683">Give a basis for the subspace <span class="process-math">\(H\text{.}\)</span>
+</ul></div> <div class="para logical" id="p-661"><ul class="disc"><li id="li-115"><div class="para" id="p-662">Give a basis for the subspace <span class="process-math">\(H\text{.}\)</span>
 </div></li></ul></div>
 </div>
 </div></article></section></section></div>

@@ -13,11 +13,20 @@
 <body class="ignore-math">
 <h4 class="heading"><span class="type">Paragraph</span></h4>
 <div class="para logical">
-<div class="para">Consider a recurrence of length 2, of the form</div>
+<div class="para">If we let <span class="process-math">\(d_t\)</span> denote the number of deer after <span class="process-math">\(t\)</span> years, and <span class="process-math">\(c_t\)</span> the number of coyotes, then we have</div>
+<div class="displaymath process-math">
+\begin{align*}
+d_{t+1} \amp = 1.5d_t - 10c_t\\
+c_{t+1} \amp = 0.1d_t + 0.8c_t\text{,}
+\end{align*}
+</div>
+<div class="para">or, in matrix form,</div>
 <div class="displaymath process-math">
 \begin{equation*}
-x_{k+2} = ax_k+bx_{k+1}\text{.}
+\mathbf{p}_{t+1} = A\mathbf{p}_t\text{,}
 \end{equation*}
+</div>
+<div class="para">where <span class="process-math">\(\mathbf{p}_t=\bbm d_t\\c_t\ebm\)</span> and <span class="process-math">\(A = \bbm 1.5 \amp -10\\0.1 \amp 0.8\ebm\text{.}\)</span>
 </div>
 </div>
 <span class="incontext"><a href="worksheet-dynamical.html#p-1792" class="internal">in-context</a></span>

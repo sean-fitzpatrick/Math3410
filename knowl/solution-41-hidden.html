@@ -10,8 +10,18 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="robots" content="noindex, nofollow">
 </head>
-<body class="ignore-math"><div class="solution solution-like">
-<div class="para">Since <span class="process-math">\(\dim U = 3\text{,}\)</span> any complement of <span class="process-math">\(U\)</span> must have dimension 2. We therefore need to find two independent vectors that do not belong to <span class="process-math">\(U\text{.}\)</span>
-</div> <div class="para">Recall that <span class="process-math">\(U\)</span> is defined by two conditions: <span class="process-math">\(x_1=3x_3\)</span> and <span class="process-math">\(3x_2-5x_4=x_5\text{.}\)</span> Therefore, a vector is <em class="emphasis">not</em> in <span class="process-math">\(U\)</span> if <span class="process-math">\(x_1\neq x_3\text{,}\)</span> <em class="emphasis">or</em> <span class="process-math">\(x_5\neq 3x_2-5x_4\text{.}\)</span> This suggests that we define two vectors, each of which violates one of these conditions.</div> <div class="para">For the first, let us take <span class="process-math">\(\xx=(1,0,1,0,0)\text{.}\)</span> This is not in <span class="process-math">\(U\)</span> because <span class="process-math">\(1\neq 3(1)\text{.}\)</span> For the second, let us take <span class="process-math">\(\yy=(0,1,0,1,1)\text{.}\)</span> This is not in <span class="process-math">\(U\)</span> because <span class="process-math">\(1\neq 3(1)-5(1)\text{.}\)</span> We know that <span class="process-math">\(\{\xx,\yy\}\)</span> is linearly independent, because each vector has nonzero entries in different positions. Therefore, <span class="process-math">\(W=\spn\{\xx,\yy\}\)</span> is a complement of <span class="process-math">\(U\text{,}\)</span> since it is spanned by vectors not in <span class="process-math">\(U\text{,}\)</span> and it has the correct dimension.</div>
-</div></body>
+<body class="ignore-math"><div class="solution solution-like"><div class="para logical">
+<div class="para">We have <span class="process-math">\(T(0)=0\)</span> since <span class="process-math">\(0^T=0\text{.}\)</span> Using proerties of the transpose and matrix algebra, we have</div>
+<div class="displaymath process-math">
+\begin{equation*}
+T(A+B) = (A+B)-(A+B)^T = (A-A^T)+(B-B^T) = T(A)+T(B)
+\end{equation*}
+</div>
+<div class="para">and</div>
+<div class="displaymath process-math">
+\begin{equation*}
+T(kA) = (kA) - (kA)^T = kA-kA^T = k(A-A^T) = kT(A)\text{.}
+\end{equation*}
+</div>
+</div></div></body>
 </html>

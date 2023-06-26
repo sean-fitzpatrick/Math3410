@@ -12,8 +12,24 @@
 </head>
 <body class="ignore-math">
 <h3 class="heading"><span class="type">Paragraph</span></h3>
-<div class="para">Next, we get the eigenvalues and eigenvectors of <span class="process-math">\(A^TA\text{:}\)</span>
+<div class="para logical">
+<div class="para">On the other hand,</div>
+<div class="displaymath process-math">
+\begin{align*}
+T(\xx) \amp = T(c_1\vv_1+\cdots + c_n\vv_n) \\
+\amp = c_1T(\vv_1)+\cdots + c_nT(\vv_n)\\
+\amp = c_1(a_{11}\ww_1+\cdots + a_{m1}\ww_m)+\cdots c_n(a_{1n}\ww_1+\cdots + a_{mn}\ww_m)\\
+\amp = (c_1a_{11}+\cdots + c_na_{1n})\ww_1 + \cdots + (c_1a_{m1}+\cdots + c_na_{mn})\ww_m\text{.}
+\end{align*}
 </div>
-<span class="incontext"><a href="worksheet-svd.html#p-1923" class="internal">in-context</a></span>
+<div class="para">Therefore,</div>
+<div class="displaymath process-math">
+\begin{equation*}
+C_D(T(\xx)) = \bbm c_1a_{11}+\cdots + c_na_{1n}\\ \vdots \\ c_1a_{m1}+\cdots + c_na_{mn}\ebm = T_A(C_B(\xx))\text{.}
+\end{equation*}
+</div>
+<div class="para">Thus, we see that <span class="process-math">\(C_DT = T_AC_B\text{,}\)</span> or <span class="process-math">\(T_A = C_DTC_B^{-1}\text{,}\)</span> as expected.</div>
+</div>
+<span class="incontext"><a href="sec-matrix-of-transformation.html#p-1923" class="internal">in-context</a></span>
 </body>
 </html>

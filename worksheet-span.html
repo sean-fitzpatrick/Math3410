@@ -49,12 +49,16 @@ window.MathJax = {
     paths: {pretext: "https://pretextbook.org/js/lib"},
   },
   startup: {
-    /* Mathjax typesetting operation is under the control of React */
-    typeset: false,
+    pageReady() {
+      return MathJax.startup.defaultPageReady().then(function () {
+      console.log("in ready function");
+      rsMathReady();
+      }
+    )}
   },
 };
 </script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link href="https://webwork-dev.uleth.ca/webwork2_files/js/apps/MathView/mathview.css" rel="stylesheet">
-<script src="https://pretextbook.org/js/0.3/pretext-webwork/2.17/pretext-webwork.js"></script><script src="https://webwork-dev.uleth.ca/webwork2_files/node_modules/iframe-resizer/js/iframeResizer.min.js"></script><script>// Make *any* pre with class 'sagecell-sage' an executable Sage cell
+<script src="https://pretextbook.org/js/0.3/pretext-webwork/2.18/pretext-webwork.js"></script><script src="https://webwork-dev.uleth.ca/webwork2_files/node_modules/iframe-resizer/js/iframeResizer.min.js"></script><script>// Make *any* pre with class 'sagecell-sage' an executable Sage cell
 // Their results will be linked, only within language type
 sagecell.makeSagecell({inputLocation: 'pre.sagecell-sage',
                        linked: true,
@@ -66,15 +70,27 @@ sagecell.makeSagecell({inputLocation: 'pre.sagecell-html',
                        linked: true,
                        languages: ['html'],
                        evalButtonText: 'Evaluate (HTML)'});
-</script><script>js_version = 0.3</script><script type="module" defer src="https://siefkenj.github.io/pretext-react/static/js/main.js"></script><link href="https://siefkenj.github.io/pretext-react/static/css/main.css" rel="stylesheet">
-<link rel="preconnect" href="https://fonts.googleapis.com">
+</script><link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/themes/prism.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="https://pretextbook.org/js/0.3/pretext_search.js"></script><link href="https://pretextbook.org/css/0.7/pretext_search.css" rel="stylesheet" type="text/css">
+<script>js_version = 0.3</script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.3/pretext.js"></script><script>miniversion=0.1</script><script src="https://pretextbook.org/js/0.3/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/0.3/user_preferences.js"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+</script><link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&amp;family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&amp;family=Tinos:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" rel="stylesheet">
 <link href="https://fonts.cdnfonts.com/css/dejavu-serif" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz,wdth,wght@8..144,50..150,100..900&amp;display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wdth,wght@75..100,300..800&amp;display=swap" rel="stylesheet">
 <script type="application/json" class="js-hypothesis-config">{
-    "openSidebar": false,    "showHighlights": true,}</script><script src="https://hypothes.is/embed.js" async=""></script><!--** eBookCongig is necessary to configure interactive       **-->
+    "openSidebar": false,    "showHighlights": true,}</script><script src="https://hypothes.is/embed.js" async=""></script><link href="https://pretextbook.org/css/0.7/pretext.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/shell_crc.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/banner_crc.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/navbar_crc.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/toc_crc.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/knowls_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/style_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/colors_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/setcolors.css" rel="stylesheet" type="text/css">
+<!--** eBookCongig is necessary to configure interactive       **-->
 <!--** Runestone components to run locally in reader's browser **-->
 <!--** No external communication:                              **-->
 <!--**     log level is 0, Runestone Services are disabled     **-->
@@ -96,17 +112,17 @@ eBookConfig.allow_pairs = false;
 eBookConfig.enableScratchAC = false;
 eBookConfig.build_info = "";
 eBookConfig.python3 = null;
-eBookConfig.runestone_version = '7.0.0dev3';
+eBookConfig.runestone_version = '7.0.0dev4';
 eBookConfig.jobehost = '';
 eBookConfig.proxyuri_runs = '';
 eBookConfig.proxyuri_files = '';
 eBookConfig.enable_chatcodes =  false;
 </script>
 <!--*** Runestone Services ***-->
-<script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.0dev3/prefix-runtime.71ffd81c0faeb38b.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.0dev3/prefix-347.193e36c07abd0197.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.0dev3/prefix-runestone.e543e0dd19670ae2.bundle.js"></script><link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/7.0.0dev3/prefix-347.f9add1ca35d5ad93.css">
-<link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/7.0.0dev3/prefix-runestone.1f1f63d2cda36a4d.css">
+<script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.0dev4/prefix-runtime.3489f84c0d76065d.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.0dev4/prefix-347.193e36c07abd0197.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.0dev4/prefix-runestone.e543e0dd19670ae2.bundle.js"></script><link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/7.0.0dev4/prefix-347.f9add1ca35d5ad93.css">
+<link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/7.0.0dev4/prefix-runestone.931faef5361cf6e9.css">
 </head>
-<body id="Math3410" data-react-in-use="yes" class="pretext book ignore-math">
+<body id="Math3410" class="pretext book ignore-math">
 <a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead"><div class="ptx-banner">
 <a id="logo-link" class="logo-link" href=""></a><div class="title-container">
 <h1 class="heading"><a href="linear-algebra.html"><span class="title">Linear Algebra:</span> <span class="subtitle">A second course, featuring proofs and Python</span></a></h1>
@@ -118,7 +134,109 @@ eBookConfig.enable_chatcodes =  false;
 <div id="searchempty" class="searchempty"><span>No results.</span></div>
 <ol id="searchresults" class="searchresults"></ol>
 </div>
-</div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><span class="treebuttons"><a class="previous-button button" href="sec-span.html" title="Previous"><span class="icon">&lt;</span><span class="name">Prev</span></a><a class="up-button button" href="ch-vector-space.html" title="Up"><span class="icon">^</span><span class="name">Up</span></a><a class="next-button button" href="sec-independence.html" title="Next"><span class="name">Next</span><span class="icon">&gt;</span></a></span><div class="searchbox"><div class="searchwidget">
+</div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><button id="user-preferences-button" class="user-preferences-button button" title="Modify user preferences"><span id="avatarbutton" class="avatarbutton name">You!</span><div id="preferences_menu_holder" class="preferences_menu_holder hidden"><ol id="preferences_menu" class="preferences_menu" style="font-family: 'Roboto Serif', serif;">
+<li data-env="avatar" tabindex="-1">Choose avatar<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
+<ol class="hidden avatar">
+<li data-val="You!" tabindex="-1">
+<span id="theYou!" class="avatarcheck">✔️</span>You!</li>
+<li data-val="😺" tabindex="-1">
+<span id="the😺" class="avatarcheck"></span>😺</li>
+<li data-val="👤" tabindex="-1">
+<span id="the👤" class="avatarcheck"></span>👤</li>
+<li data-val="👽" tabindex="-1">
+<span id="the👽" class="avatarcheck"></span>👽</li>
+<li data-val="🐶" tabindex="-1">
+<span id="the🐶" class="avatarcheck"></span>🐶</li>
+<li data-val="🐼" tabindex="-1">
+<span id="the🐼" class="avatarcheck"></span>🐼</li>
+<li data-val="🌈" tabindex="-1">
+<span id="the🌈" class="avatarcheck"></span>🌈</li>
+</ol>
+</li>
+<li data-env="fontfamily" tabindex="-1">Font family<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
+<ol class="hidden fontfamily">
+<li data-val="face" data-change="OS" tabindex="-1" style="font-family: 'Open Sans'">
+<span id="theOS" class="ffcheck">✔️</span><span class="name">Open Sans</span><span class="sample">AaBbCc 123 PreTeXt</span>
+</li>
+<li data-val="face" data-change="RS" tabindex="-1" style="font-family: 'Roboto Serif'">
+<span id="theRS" class="ffcheck"></span><span class="name">Roboto Serif</span><span class="sample">AaBbCc 123 PreTeXt</span>
+</li>
+</ol>
+</li>
+<li data-env="font" tabindex="-1">Adjust font<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
+<ol class="hidden fonts">
+<li>Size</li>
+<li><span id="thesize">12</span></li>
+<li data-val="size" data-change="-1" tabindex="-1" style="font-size: 80%">Smaller</li>
+<li data-val="size" data-change="1" tabindex="-1" style="font-size: 110%">Larger</li>
+<li>Width</li>
+<li><span id="thewdth">100</span></li>
+<li data-val="wdth" data-change="-5" tabindex="-1" style="font-variation-settings: 'wdth' 60">narrower</li>
+<li data-val="wdth" data-change="5" tabindex="-1" style="font-variation-settings: 'wdth' 150">wider</li>
+<li>Weight</li>
+<li><span id="thewght">400</span></li>
+<li data-val="wght" data-change="-50" tabindex="-1" style="font-weight: 200">thinner</li>
+<li data-val="wght" data-change="50" tabindex="-1" style="font-weight: 700">heavier</li>
+<li>Letter spacing</li>
+<li>
+<span id="thelspace">0</span><span class="byunits">/200</span>
+</li>
+<li data-val="lspace" data-change="-1" tabindex="-1">closer</li>
+<li data-val="lspace" data-change="1" tabindex="-1">f a r t h e r</li>
+<li>Word spacing</li>
+<li>
+<span id="thewspace">0</span><span class="byunits">/50</span>
+</li>
+<li data-val="wspace" data-change="-1" tabindex="-1">smaller gap </li>
+<li data-val="wspace" data-change="1" tabindex="-1">larger gap</li>
+<li>Line Spacing</li>
+<li>
+<span id="theheight">135</span><span class="byunits">/100</span>
+</li>
+<li data-val="height" data-change="-5" tabindex="-1" style="line-height: 1">closer<br>together</li>
+<li data-val="height" data-change="5" tabindex="-1" style="line-height: 1.75">further<br>apart</li>
+</ol>
+</li>
+<li data-env="atmosphere" tabindex="-1">Light/dark mode<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
+<ol class="hidden atmosphere">
+<li data-val="default" tabindex="-1">
+<span id="thedefault" class="atmospherecheck">✔️</span>default</li>
+<li data-val="pastel" tabindex="-1">
+<span id="thepastel" class="atmospherecheck"></span>pastel</li>
+<li data-val="darktwilight" tabindex="-1">
+<span id="thedarktwilight" class="atmospherecheck"></span>twilight</li>
+<li data-val="dark" tabindex="-1">
+<span id="thedark" class="atmospherecheck"></span>dark</li>
+<li data-val="darkmidnight" tabindex="-1">
+<span id="thedarkmidnight" class="atmospherecheck"></span>midnight</li>
+</ol>
+</li>
+<li data-env="ruler" tabindex="-1">Reading ruler<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
+<ol class="hidden ruler">
+<li data-val="none" tabindex="-1">
+<span id="thenone" class="rulercheck">✔️</span>none</li>
+<li data-val="underline" tabindex="-1">
+<span id="theunderline" class="rulercheck"></span>underline</li>
+<li data-val="lunderline" tabindex="-1">
+<span id="thelunderline" class="rulercheck"></span>L-underline</li>
+<li data-val="greybar" tabindex="-1">
+<span id="thegreybar" class="rulercheck"></span>grey bar</li>
+<li data-val="lightbox" tabindex="-1">
+<span id="thelightbox" class="rulercheck"></span>light box</li>
+<li data-val="sunrise" tabindex="-1">
+<span id="thesunrise" class="rulercheck"></span>sunrise</li>
+<li data-val="sunriseunderline" tabindex="-1">
+<span id="thesunriseunderline" class="rulercheck"></span>sunrise underline</li>
+<li class="moveQ">Motion by:</li>
+<li data-val="mouse" tabindex="-1">
+<span id="themouse" class="motioncheck">✔️</span>follow the mouse</li>
+<li data-val="arrow" tabindex="-1">
+<span id="thearrow" class="motioncheck"></span>up/down arrows - not yet</li>
+<li data-val="eye" tabindex="-1">
+<span id="theeye" class="motioncheck"></span>eye tracking - not yet</li>
+</ol>
+</li>
+</ol></div></button><span class="treebuttons"><a class="previous-button button" href="sec-span.html" title="Previous"><span class="icon">&lt;</span><span class="name">Prev</span></a><a class="up-button button" href="ch-vector-space.html" title="Up"><span class="icon">^</span><span class="name">Up</span></a><a class="next-button button" href="sec-independence.html" title="Next"><span class="name">Next</span><span class="icon">&gt;</span></a></span><div class="searchbox"><div class="searchwidget">
 <input id="ptxsearch" class="ptxsearch" type="text" name="terms" placeholder="Search" onchange="doSearch()"><button id="searchbutton" class="searchbutton" type="button" onclick="doSearch()">🔍</button>
 </div></div></nav><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\require{boldsymbol}\newcommand{\spn}{\operatorname{span}}
 \newcommand{\bbm}{\begin{bmatrix}}
@@ -328,15 +446,15 @@ eBookConfig.enable_chatcodes =  false;
 <a href="worksheet-span-a4.html" class="a4">A4</a><a href="worksheet-span-letter.html" class="us">US</a>
 </div>
 </h2>
-<section class="introduction" id="introduction-6"><div class="para" id="p-405">In this worksheet, we will attempt to understand the concept of span. Recall from <a href="sec-span.html" class="internal" title="Section 1.4: Span">Section 1.4</a> that the span of a set of vectors <span class="process-math">\(\vv_1, \vv_2,\ldots, \vv_k\)</span> in a vector space <span class="process-math">\(V\)</span> is the set of all linear combinations that can be generated from those vectors.</div> <div class="para" id="p-406">Therefore, the question “Does the vector <span class="process-math">\(\ww\)</span> belong to the span of <span class="process-math">\(\vv_1, \vv_2,\ldots, \vv_k\text{?}\)</span>” is equivalent to asking, “Can I write <span class="process-math">\(\ww\)</span> as a linear combination of the <span class="process-math">\(\vv_i\text{?}\)</span>”, which, in turn, is equivalent to asking:</div> <div class="para logical" id="p-407">
+<section class="introduction" id="introduction-7"><div class="para" id="p-399">In this worksheet, we will attempt to understand the concept of span. Recall from <a href="sec-span.html" class="internal" title="Section 1.4: Span">Section 1.4</a> that the span of a set of vectors <span class="process-math">\(\vv_1, \vv_2,\ldots, \vv_k\)</span> in a vector space <span class="process-math">\(V\)</span> is the set of all linear combinations that can be generated from those vectors.</div> <div class="para" id="p-400">Therefore, the question “Does the vector <span class="process-math">\(\ww\)</span> belong to the span of <span class="process-math">\(\vv_1, \vv_2,\ldots, \vv_k\text{?}\)</span>” is equivalent to asking, “Can I write <span class="process-math">\(\ww\)</span> as a linear combination of the <span class="process-math">\(\vv_i\text{?}\)</span>”, which, in turn, is equivalent to asking:</div> <div class="para logical" id="p-401">
 <div class="para">Do there exist scalars <span class="process-math">\(c_1,c_2,\ldots, c_k\)</span> such that</div>
 <div class="displaymath process-math">
 \begin{equation*}
 \ww=c_1\vv_1+c_2\vv_2+\cdots +c_k\vv_k\text{?}
 \end{equation*}
 </div>
-</div> <div class="para" id="p-408">In any finite-dimensional vector space, this last question can be turned into a system of equations. If that system has a solution, then yes — your vector is in the span. If the system is inconsistent, then the answer is no.</div></section><section class="onepage" id="page-1"><article class="exercise exercise-like" id="exercise-23"><h3 class="heading"><span class="codenumber">1<span class="period">.</span></span></h3>
-<div class="para logical" id="p-409">
+</div> <div class="para" id="p-402">In any finite-dimensional vector space, this last question can be turned into a system of equations. If that system has a solution, then yes — your vector is in the span. If the system is inconsistent, then the answer is no.</div></section><section class="onepage" id="page-1"><article class="exercise exercise-like" id="exercise-25"><h3 class="heading"><span class="codenumber">1<span class="period">.</span></span></h3>
+<div class="para logical" id="p-403">
 <div class="para">Determine whether or not the vector <span class="process-math">\(\ww=\langle 3,-1, 4, 2\rangle\)</span> in <span class="process-math">\(\R^4\)</span> belongs to the span of the vectors</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -344,10 +462,10 @@ eBookConfig.enable_chatcodes =  false;
 \end{equation*}
 </div>
 </div>
-<div class="workspace" data-space="1.6in"></div></article> <div class="para" id="p-410">To assist with solving this problem, a code cell is provided below. Once you have determined the augmented matrix of your system of equations, see <a href="sec-sympy.html" class="internal" title="Section B.3: SymPy for linear algebra">Section B.3</a> for details on how to enter your matrix, and then compute its reduced row-echelon form.</div> <pre class="ptx-sagecell sagecell-sage" id="sage-9"><script type="text/x-sage">from sympy import Matrix, init_printing
+<div class="workspace" data-space="1.6in"></div></article> <div class="para" id="p-404">To assist with solving this problem, a code cell is provided below. Once you have determined the augmented matrix of your system of equations, see <a href="sec-sympy.html" class="internal" title="Section B.3: SymPy for linear algebra">Section B.3</a> for details on how to enter your matrix, and then compute its reduced row-echelon form.</div> <pre class="ptx-sagecell sagecell-sage" id="sage-9"><script type="text/x-sage">from sympy import Matrix, init_printing
 init_printing()
-</script></pre> <article class="exercise exercise-like" id="exercise-24"><h3 class="heading"><span class="codenumber">2<span class="period">.</span></span></h3>
-<div class="para logical" id="p-411">
+</script></pre> <article class="exercise exercise-like" id="exercise-26"><h3 class="heading"><span class="codenumber">2<span class="period">.</span></span></h3>
+<div class="para logical" id="p-405">
 <div class="para">Determine whether or not the polynomial <span class="process-math">\(q(x) = 4-6x-11x^2\)</span> belongs to the span of the polynomials</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -355,9 +473,9 @@ p_1(x) = x-3x^2, p_2(x)=2-x, p_3(x) = -1+4x+x^2\text{.}
 \end{equation*}
 </div>
 </div>
-<div class="workspace" data-space="1.6in"></div></article> <pre class="ptx-sagecell sagecell-sage" id="sage-10"><script type="text/x-sage"></script></pre> <div class="para" id="p-412"></div></section><section class="onepage" id="page-2"><div class="para" id="p-413">For our next activity, we are going to look at <abbr class="initialism">RGB</abbr> colours. Here, <abbr class="initialism">RGB</abbr> stands for Red, Green, Blue. All colours displayed by your computer monitor can be expressed in terms of these colours.</div> <div class="para" id="p-414">First, we load some Python libraries we’ll need. These are intended for use in a Jupyter notebook and won’t run properly if you are using Sagecell in the <abbr class="initialism">HTML</abbr> textbook.</div> <pre class="ptx-sagecell sagecell-sage" id="sage-11"><script type="text/x-sage">import ipywidgets as wid
+<div class="workspace" data-space="1.6in"></div></article> <pre class="ptx-sagecell sagecell-sage" id="sage-10"><script type="text/x-sage"></script></pre> <div class="para" id="p-406"></div></section><section class="onepage" id="page-2"><div class="para" id="p-407">For our next activity, we are going to look at <abbr class="initialism">RGB</abbr> colours. Here, <abbr class="initialism">RGB</abbr> stands for Red, Green, Blue. All colours displayed by your computer monitor can be expressed in terms of these colours.</div> <div class="para" id="p-408">First, we load some Python libraries we’ll need. These are intended for use in a Jupyter notebook and won’t run properly if you are using Sagecell in the <abbr class="initialism">HTML</abbr> textbook.</div> <pre class="ptx-sagecell sagecell-sage" id="sage-11"><script type="text/x-sage">import ipywidgets as wid
 import matplotlib.pyplot as plt
-</script></pre> <div class="para" id="p-415">Next, we will create a widget that lets us select values for red, green, and blue. The <abbr class="initialism">RGB</abbr> colour system assigns 8-bit values to each colour. Possible values for each range from 0 to 255; this indicates how much of each colour will be blended to create the colour you want. Extensive information on the <abbr class="initialism">RGB</abbr> colour system can be found <a class="external" href="https://en.wikipedia.org/wiki/RGB_color_model" target="_blank">on wikipedia</a><a href="" data-knowl="" class="id-ref fn-knowl original" data-refid="hk-fn-4" id="fn-4"><sup> 1 </sup></a>, and there are a number of good online resources about the use of <abbr class="initialism">RGB</abbr> in web design, <a class="external" href="https://www.w3schools.com/colors/colors_rgb.asp" target="_blank">such as this one from w3schools</a><a href="" data-knowl="" class="id-ref fn-knowl original" data-refid="hk-fn-5" id="fn-5"><sup> 2 </sup></a>.</div> <pre class="ptx-sagecell sagecell-sage" id="sage-12"><script type="text/x-sage">r=wid.IntSlider(
+</script></pre> <div class="para" id="p-409">Next, we will create a widget that lets us select values for red, green, and blue. The <abbr class="initialism">RGB</abbr> colour system assigns 8-bit values to each colour. Possible values for each range from 0 to 255; this indicates how much of each colour will be blended to create the colour you want. Extensive information on the <abbr class="initialism">RGB</abbr> colour system can be found <a class="external" href="https://en.wikipedia.org/wiki/RGB_color_model" target="_blank">on wikipedia</a><a href="" data-knowl="" class="id-ref fn-knowl original" data-refid="hk-fn-4" id="fn-4"><sup> 1 </sup></a>, and there are a number of good online resources about the use of <abbr class="initialism">RGB</abbr> in web design, <a class="external" href="https://www.w3schools.com/colors/colors_rgb.asp" target="_blank">such as this one from w3schools</a><a href="" data-knowl="" class="id-ref fn-knowl original" data-refid="hk-fn-5" id="fn-5"><sup> 2 </sup></a>.</div> <pre class="ptx-sagecell sagecell-sage" id="sage-12"><script type="text/x-sage">r=wid.IntSlider(
     value=155,
     min=0,
     max=255,
@@ -379,11 +497,11 @@ b=wid.IntSlider(
     description='Blue:'
 )
 display(r,g,b)
-</script></pre> <div class="para" id="p-416">By moving the sliders generated above, you can create different colours. To see what colour you’ve created by moving the sliders, run the code below.</div> <pre class="ptx-sagecell sagecell-sage" id="sage-13"><script type="text/x-sage">plt.imshow([[(r.value/255, g.value/255, b.value/255)]])
-</script></pre></section><section class="onepage" id="page-3"><article class="exercise exercise-like" id="exercise-25"><h3 class="heading"><span class="codenumber">3<span class="period">.</span></span></h3>
-<div class="para" id="p-417">In what ways can you explain the <abbr class="initialism">RGB</abbr> colour system in terms of span?</div>
-<div class="workspace" data-space="3in"></div></article> <pre class="ptx-sagecell sagecell-html" id="sage-14"><script type="text/x-sage"></script></pre> <article class="exercise exercise-like" id="exercise-26"><h3 class="heading"><span class="codenumber">4<span class="period">.</span></span></h3>
-<div class="para" id="p-418">Why would it nonetheless be inappropriate to describe the set of all <abbr class="initialism">RGB</abbr> colours as a vector space?</div>
+</script></pre> <div class="para" id="p-410">By moving the sliders generated above, you can create different colours. To see what colour you’ve created by moving the sliders, run the code below.</div> <pre class="ptx-sagecell sagecell-sage" id="sage-13"><script type="text/x-sage">plt.imshow([[(r.value/255, g.value/255, b.value/255)]])
+</script></pre></section><section class="onepage" id="page-3"><article class="exercise exercise-like" id="exercise-27"><h3 class="heading"><span class="codenumber">3<span class="period">.</span></span></h3>
+<div class="para" id="p-411">In what ways can you explain the <abbr class="initialism">RGB</abbr> colour system in terms of span?</div>
+<div class="workspace" data-space="3in"></div></article> <pre class="ptx-sagecell sagecell-html" id="sage-14"><script type="text/x-sage"></script></pre> <article class="exercise exercise-like" id="exercise-28"><h3 class="heading"><span class="codenumber">4<span class="period">.</span></span></h3>
+<div class="para" id="p-412">Why would it nonetheless be inappropriate to describe the set of all <abbr class="initialism">RGB</abbr> colours as a vector space?</div>
 <div class="workspace" data-space="4in"></div></article> <pre class="ptx-sagecell sagecell-html" id="sage-15"><script type="text/x-sage"></script></pre></section></section><div class="hidden-content tex2jax_ignore" id="hk-fn-4"><div class="fn"><code class="code-inline tex2jax_ignore">en.wikipedia.org/wiki/RGB_color_model</code></div></div>
 <div class="hidden-content tex2jax_ignore" id="hk-fn-5"><div class="fn"><code class="code-inline tex2jax_ignore">www.w3schools.com/colors/colors_rgb.asp</code></div></div>
 </div>

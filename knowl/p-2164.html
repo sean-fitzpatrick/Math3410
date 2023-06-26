@@ -12,7 +12,7 @@
 </head>
 <body class="ignore-math">
 <h4 class="heading"><span class="type">Paragraph</span></h4>
-<div class="para">It is possible to manually perform row operations when you need additional control. This is achieved using the function <code class="code-inline tex2jax_ignore">A.elementary_row_op(&lt;arguments&gt;)</code>, with arguments <code class="code-inline tex2jax_ignore">op,row,k,row1,row2</code>.</div>
+<div class="para">For the characteristic polynomial, use <code class="code-inline tex2jax_ignore">A.charpoly()</code>. However, the result will give you something SymPy calls a “PurePoly”, and the <code class="code-inline tex2jax_ignore">factor</code> command will have no effect. Instead, use <code class="code-inline tex2jax_ignore">A.charpoly().as_expr()</code>.</div>
 <span class="incontext"><a href="sec-sympy.html#p-2164" class="internal">in-context</a></span>
 </body>
 </html>

@@ -12,7 +12,21 @@
 </head>
 <body class="ignore-math">
 <h3 class="heading"><span class="type">Paragraph</span></h3>
-<div class="para">This time, rather than using the SymPy algorithm, we will work through the process outlined in <a href="section-matrix-factor.html" class="internal" title="Section 4.6: Matrix Factorizations and Eigenvalues">Section 4.6</a> step-by-step. First, we will work through (again) <a href="" class="xref" data-knowl="./knowl/example-svd.html" title="Example 4.6.4">Example 4.6.4</a>. Let <span class="process-math">\(A = \bbm 1\amp 1\amp 1\\1\amp 0\amp -1\ebm\text{.}\)</span> First, we get the singular values:</div>
-<span class="incontext"><a href="worksheet-svd.html#p-1922" class="internal">in-context</a></span>
+<div class="para logical">
+<div class="para">Given <span class="process-math">\(\xx\in V\text{,}\)</span> write <span class="process-math">\(\xx = c_1\vv_1+\cdots + c_n\vv_n\text{,}\)</span> so that <span class="process-math">\(C_B(\xx) = \bbm c_1\\\vdots \\c_n\ebm\text{.}\)</span> Then</div>
+<div class="displaymath process-math">
+\begin{equation*}
+T_A(C_B(\xx)) = \bbm a_{11}\amp a_{12} \amp \cdots \amp a_{1n}\\
+a_{21}\amp a_{22} \amp \cdots \amp a_{2n}\\
+\vdots \amp \vdots \amp \ddots \amp \vdots\\
+a_{m1}\amp a_{m2} \amp \cdots \amp a_{mn}\ebm\bbm c_1\\c_2\\ \vdots \\c_n\ebm
+= \bbm a_{11}c_1+a_{12}c_2+\cdots +a_{1n}c_n\\
+a_{21}c_1+a_{22}c_2+\cdots +a_{2n}c_n\\
+\vdots\\
+a_{m1}c_1+a_{m2}c_2+\cdots +a_{mn}c_n\ebm\text{.}
+\end{equation*}
+</div>
+</div>
+<span class="incontext"><a href="sec-matrix-of-transformation.html#p-1922" class="internal">in-context</a></span>
 </body>
 </html>

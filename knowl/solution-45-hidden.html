@@ -9,52 +9,23 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="robots" content="noindex, nofollow">
-<script>// Make *any* pre with class 'sagecell-sage' an executable Sage cell
-// Their results will be linked, only within language type
-sagecell.makeSagecell({inputLocation: 'pre.sagecell-sage',
-                       linked: true,
-                       languages: ['sage'],
-                       evalButtonText: 'Evaluate (Sage)'});
-</script>
 </head>
 <body class="ignore-math"><div class="solution solution-like">
 <div class="para logical">
-<div class="para">Since <span class="process-math">\(\{(1,2),(-1,1)\}\)</span> forms a basis of <span class="process-math">\(\R^2\)</span> (the vectors are not parallel and there are two of them), it suffices to determine how to write a general vector in terms of this basis. Suppose</div>
+<div class="para">Suppose <span class="process-math">\(T:V\to W\)</span> is surjective. Then <span class="process-math">\(\dim \im T = \dim W\text{,}\)</span> so</div>
 <div class="displaymath process-math">
 \begin{equation*}
-x(1,2)+y(-1,1)=(a,b)
+\dim V = \dim \ker T + \dim W \geq  \dim W\text{.}
 \end{equation*}
 </div>
-<div class="para">for a general element <span class="process-math">\((a,b)\in \R^2\text{.}\)</span> This is equivalent to the matrix equation <span class="process-math">\(\bbm 1\amp -1\\2\amp 1\ebm\bbm x\\y\ebm = \bbm a\\b\ebm\text{,}\)</span> which we can solve as <span class="process-math">\(\bbm x\\y\ebm = \bbm 1\amp -1\\2\amp 1\ebm^{-1}\bbm a\\b\ebm\text{:}\)</span>
-</div>
-</div> <pre class="ptx-sagecell sagecell-sage" id="sage-24"><script type="text/x-sage">from sympy import Matrix, init_printing, symbols
-init_printing()
-a, b = symbols('a b', real = True, constant = True)
-A = Matrix(2,2,[1,-1,2,1])
-B = Matrix(2,1,[a,b])
-(A**-1)*B
-</script></pre> <div class="para logical">
-<div class="para">This gives us the result</div>
+<div class="para">Conversely, suppose <span class="process-math">\(\dim V\geq \dim W\text{.}\)</span> Again, choose a basis <span class="process-math">\(\{\vv_1,\ldots, \vv_m\}\)</span> of <span class="process-math">\(V\text{,}\)</span> and a basis <span class="process-math">\(\{\ww_1,\ldots, \ww_n\}\)</span> of <span class="process-math">\(W\text{,}\)</span> where this time, <span class="process-math">\(m\geq n\text{.}\)</span> We can define a linear transformation as follows:</div>
 <div class="displaymath process-math">
 \begin{equation*}
-(a,b) = \frac13(a+b)\cdot (1,2)+\frac13(-2a+b)\cdot (-1,1).
+T(\vv_1)=\ww_1,\ldots, T(\vv_n)=\ww_n, \text{ and } T(\vv_j) = \zer \text{ for } j&gt;n.
 \end{equation*}
 </div>
-<div class="para">Thus,</div>
-<div class="displaymath process-math">
-\begin{align*}
-T(a,b) \amp = \frac13(a+b)\cdot T(1,2)+\frac13(-2a+b)\cdot T(-1,1) \\
-\amp = \frac13(a+b)\cdot (1,1,0)+\frac13(-2a+b)\cdot (0,2,-1)\\
-\amp = \left(\frac{a+b}{3}, -a+b, \frac{2a-b}{3}\right)\text{.}
-\end{align*}
+<div class="para">It’s easy to check that this map is a surjection: given <span class="process-math">\(\ww\in W\text{,}\)</span> we can write it in terms of our basis as <span class="process-math">\(\ww=c_1\ww_1+\cdots + c_n\ww_n\text{.}\)</span> Using these same scalars, we can define <span class="process-math">\(\vv=c_1\vv_1+\cdots + c_n\vv_n\in V\)</span> such that <span class="process-math">\(T(\vv)=\ww\text{.}\)</span>
 </div>
-</div> <div class="para logical">
-<div class="para">We conclude that</div>
-<div class="displaymath process-math">
-\begin{equation*}
-T(3,2) = \left(\frac53, -1, \frac43\right)\text{.}
-\end{equation*}
-</div>
-</div>
+</div> <div class="para">Note that it’s not important how we define <span class="process-math">\(T(\vv_j)\)</span> when <span class="process-math">\(j&gt;n\text{.}\)</span> The point is that this time, we run out of basis vectors for <span class="process-math">\(W\)</span> before we run out of basis vectors for <span class="process-math">\(V\text{.}\)</span> Once each vector in the basis of <span class="process-math">\(W\)</span> is in the image of <span class="process-math">\(T\text{,}\)</span> we’re guaranteed that <span class="process-math">\(T\)</span> is surjective, and we can define the value of <span class="process-math">\(T\)</span> on any remaining basis vectors however we want.</div>
 </div></body>
 </html>

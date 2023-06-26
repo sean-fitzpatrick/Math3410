@@ -10,44 +10,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="robots" content="noindex, nofollow">
 </head>
-<body class="ignore-math"><div class="solution solution-like">
-<div class="para">There are two things to check. First, we show that <span class="process-math">\(T^*(\phi)\in V^*\)</span> for each <span class="process-math">\(\phi\in W*\text{.}\)</span> Since <span class="process-math">\(T:V\to W\)</span> and <span class="process-math">\(\phi:W\to \R\text{,}\)</span> it follows that <span class="process-math">\(T^*\phi = \phi\circ T\)</span> is a map from <span class="process-math">\(V\)</span> to <span class="process-math">\(\R\text{.}\)</span> But we must also show that it’s linear.</div> <div class="para logical">
-<div class="para">Given <span class="process-math">\(v_1, v_2\in V\text{,}\)</span> we have</div>
-<div class="displaymath process-math">
-\begin{align*}
-(T^*\phi)(v_1+v_2) \amp = \phi(T(v_1+v_2))=\phi(T(v_1)+T(v_2)) \quad \text{ because } T \text{ is linear}\\
-\amp =\phi(T(v_1))+\phi(T(v_2)) \quad \text{ because } \phi \text{ is linear}\\
-\amp =(T^*\phi)(v_1)+(T^*\phi)(v_2)\text{.}
-\end{align*}
-</div>
-<div class="para">Similarly, for any scalar <span class="process-math">\(c\text{,}\)</span>
-</div>
+<body class="ignore-math"><div class="solution solution-like"><div class="para logical">
+<div class="para">Take <span class="process-math">\(\xx=\mathbf{e}_i\)</span> and <span class="process-math">\(\yy=\mathbf{e}_j\text{,}\)</span> where <span class="process-math">\(\{\mathbf{e}_1,\ldots, \mathbf{e}_n\}\)</span> is the standard basis for <span class="process-math">\(\R^n\text{.}\)</span> Then with <span class="process-math">\(A = [a_{ij}]\)</span> we have</div>
 <div class="displaymath process-math">
 \begin{equation*}
-(T^*\phi)(cv) = \phi(T(cv))=\phi(cT(v))=c(\phi(T(v)))=c((T^*\phi)(v))\text{.}
+a_{ij} =\mathbf{e}_i\dotp(A\mathbf{e}_j) = (A\mathbf{e}_i)\dotp \mathbf{e}_j = a_{ji}\text{,}
 \end{equation*}
 </div>
-<div class="para">This shows that <span class="process-math">\(T^*\phi\in V^*\text{.}\)</span>
+<div class="para">which shows that <span class="process-math">\(A^T=A\text{.}\)</span>
 </div>
-</div> <div class="para logical">
-<div class="para">Next, we need to show that <span class="process-math">\(T^*:W^*\to V^*\)</span> is a linear map. Let <span class="process-math">\(\phi,\psi\in W^*\text{,}\)</span> and let <span class="process-math">\(c\)</span> be a scalar. We have:</div>
-<div class="displaymath process-math">
-\begin{equation*}
-T^*(\phi+\psi) = (\phi+\psi)\circ T = \phi\circ T+\psi\circ T = T^*\phi+T^*\psi\text{,}
-\end{equation*}
-</div>
-<div class="para">and</div>
-<div class="displaymath process-math">
-\begin{equation*}
-T^*(c\phi) = (c\phi)\circ T = c(\phi\circ T) = cT^*\phi\text{.}
-\end{equation*}
-</div>
-<div class="para">This follows from the vector space structure on any space of functions. For a vector <span class="process-math">\(v\in V\text{,}\)</span> we have</div>
-<div class="displaymath process-math">
-\begin{equation*}
-(T^*(c\phi))(v) = (c\phi(T(v)))=c(\phi(T(v)))=c((T^*\phi)(v))\text{.}
-\end{equation*}
-</div>
-</div>
-</div></body>
+</div></div></body>
 </html>

@@ -13,18 +13,19 @@
 <body class="ignore-math">
 <h5 class="heading"><span class="type">Paragraph</span></h5>
 <div class="para logical">
-<div class="para">Let <span class="process-math">\(\xx=(x_1,x_2,\ldots, x_n)\)</span> and <span class="process-math">\(\yy=(y_1,y_2,\ldots, y_n)\)</span> be vectors in <span class="process-math">\(\R^n\text{.}\)</span> The <dfn class="terminology">dot product</dfn> of <span class="process-math">\(\xx\)</span> and <span class="process-math">\(\yy\text{,}\)</span> denoted by <span class="process-math">\(\xx\dotp\yy\)</span> is the scalar defined by</div>
-<div class="displaymath process-math">
-\begin{equation*}
-\xx\dotp \yy = x_1y_1+x_2y_2+\cdots + x_ny_n\text{.}
-\end{equation*}
-</div>
-<div class="para">The <dfn class="terminology">norm</dfn> of a vector <span class="process-math">\(\xx\)</span> is denoted <span class="process-math">\(\len{\xx}\)</span> and defined by</div>
-<div class="displaymath process-math">
-\begin{equation*}
-\len{\xx} = \sqrt{x_1^2+x_2^2+\cdots + x_n^2}\text{.}
-\end{equation*}
-</div>
+<div class="para">Using properties of the norm, we can show that this distance function meets the criteria of what’s called a <em class="emphasis">metric</em>. A metric is any function that takes a pair of vectors (or points) as input, and returns a number as output, with the following properties:</div>
+<ol class="decimal">
+<li><div class="para">
+<span class="process-math">\(d(\xx,\yy)=d(\yy,\xx)\)</span> for any <span class="process-math">\(\xx,\yy\)</span>
+</div></li>
+<li><div class="para">
+<span class="process-math">\(d(\xx,\yy)\geq 0\text{,}\)</span> and <span class="process-math">\(d(\xx,\yy)=0\)</span> if and only if <span class="process-math">\(\xx=\yy\)</span>
+</div></li>
+<li><div class="para">
+<span class="process-math">\(d(\xx,\yy)\leq d(\xx,\zz)+d(\zz,\yy)\)</span> for any <span class="process-math">\(\xx,\yy,\zz\)</span>
+</div></li>
+</ol>
+<div class="para">We leave it as an exercise to confirm that the distance function defined above is a metric.</div>
 </div>
 <span class="incontext"><a href="sec-orthogonal-sets.html#p-1307" class="internal">in-context</a></span>
 </body>

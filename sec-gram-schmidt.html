@@ -49,26 +49,42 @@ window.MathJax = {
     paths: {pretext: "https://pretextbook.org/js/lib"},
   },
   startup: {
-    /* Mathjax typesetting operation is under the control of React */
-    typeset: false,
+    pageReady() {
+      return MathJax.startup.defaultPageReady().then(function () {
+      console.log("in ready function");
+      rsMathReady();
+      }
+    )}
   },
 };
 </script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link href="https://webwork-dev.uleth.ca/webwork2_files/js/apps/MathView/mathview.css" rel="stylesheet">
-<script src="https://pretextbook.org/js/0.3/pretext-webwork/2.17/pretext-webwork.js"></script><script src="https://webwork-dev.uleth.ca/webwork2_files/node_modules/iframe-resizer/js/iframeResizer.min.js"></script><script>// Make *any* pre with class 'sagecell-sage' an executable Sage cell
+<script src="https://pretextbook.org/js/0.3/pretext-webwork/2.18/pretext-webwork.js"></script><script src="https://webwork-dev.uleth.ca/webwork2_files/node_modules/iframe-resizer/js/iframeResizer.min.js"></script><script>// Make *any* pre with class 'sagecell-sage' an executable Sage cell
 // Their results will be linked, only within language type
 sagecell.makeSagecell({inputLocation: 'pre.sagecell-sage',
                        linked: true,
                        languages: ['sage'],
                        evalButtonText: 'Evaluate (Sage)'});
-</script><script>js_version = 0.3</script><script type="module" defer src="https://siefkenj.github.io/pretext-react/static/js/main.js"></script><link href="https://siefkenj.github.io/pretext-react/static/css/main.css" rel="stylesheet">
-<link rel="preconnect" href="https://fonts.googleapis.com">
+</script><link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/themes/prism.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="https://pretextbook.org/js/0.3/pretext_search.js"></script><link href="https://pretextbook.org/css/0.7/pretext_search.css" rel="stylesheet" type="text/css">
+<script>js_version = 0.3</script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.3/pretext.js"></script><script>miniversion=0.1</script><script src="https://pretextbook.org/js/0.3/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/0.3/user_preferences.js"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+</script><link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&amp;family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&amp;family=Tinos:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" rel="stylesheet">
 <link href="https://fonts.cdnfonts.com/css/dejavu-serif" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz,wdth,wght@8..144,50..150,100..900&amp;display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wdth,wght@75..100,300..800&amp;display=swap" rel="stylesheet">
 <script type="application/json" class="js-hypothesis-config">{
-    "openSidebar": false,    "showHighlights": true,}</script><script src="https://hypothes.is/embed.js" async=""></script><!--** eBookCongig is necessary to configure interactive       **-->
+    "openSidebar": false,    "showHighlights": true,}</script><script src="https://hypothes.is/embed.js" async=""></script><link href="https://pretextbook.org/css/0.7/pretext.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/shell_crc.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/banner_crc.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/navbar_crc.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/toc_crc.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/knowls_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/style_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/colors_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/setcolors.css" rel="stylesheet" type="text/css">
+<!--** eBookCongig is necessary to configure interactive       **-->
 <!--** Runestone components to run locally in reader's browser **-->
 <!--** No external communication:                              **-->
 <!--**     log level is 0, Runestone Services are disabled     **-->
@@ -90,17 +106,17 @@ eBookConfig.allow_pairs = false;
 eBookConfig.enableScratchAC = false;
 eBookConfig.build_info = "";
 eBookConfig.python3 = null;
-eBookConfig.runestone_version = '7.0.0dev3';
+eBookConfig.runestone_version = '7.0.0dev4';
 eBookConfig.jobehost = '';
 eBookConfig.proxyuri_runs = '';
 eBookConfig.proxyuri_files = '';
 eBookConfig.enable_chatcodes =  false;
 </script>
 <!--*** Runestone Services ***-->
-<script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.0dev3/prefix-runtime.71ffd81c0faeb38b.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.0dev3/prefix-347.193e36c07abd0197.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.0dev3/prefix-runestone.e543e0dd19670ae2.bundle.js"></script><link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/7.0.0dev3/prefix-347.f9add1ca35d5ad93.css">
-<link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/7.0.0dev3/prefix-runestone.1f1f63d2cda36a4d.css">
+<script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.0dev4/prefix-runtime.3489f84c0d76065d.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.0dev4/prefix-347.193e36c07abd0197.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.0dev4/prefix-runestone.e543e0dd19670ae2.bundle.js"></script><link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/7.0.0dev4/prefix-347.f9add1ca35d5ad93.css">
+<link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/7.0.0dev4/prefix-runestone.931faef5361cf6e9.css">
 </head>
-<body id="Math3410" data-react-in-use="yes" class="pretext book ignore-math">
+<body id="Math3410" class="pretext book ignore-math">
 <a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead"><div class="ptx-banner">
 <a id="logo-link" class="logo-link" href=""></a><div class="title-container">
 <h1 class="heading"><a href="linear-algebra.html"><span class="title">Linear Algebra:</span> <span class="subtitle">A second course, featuring proofs and Python</span></a></h1>
@@ -112,7 +128,109 @@ eBookConfig.enable_chatcodes =  false;
 <div id="searchempty" class="searchempty"><span>No results.</span></div>
 <ol id="searchresults" class="searchresults"></ol>
 </div>
-</div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><span class="treebuttons"><a class="previous-button button" href="sec-orthogonal-sets.html" title="Previous"><span class="icon">&lt;</span><span class="name">Prev</span></a><a class="up-button button" href="ch-orthogonality.html" title="Up"><span class="icon">^</span><span class="name">Up</span></a><a class="next-button button" href="section-projection.html" title="Next"><span class="name">Next</span><span class="icon">&gt;</span></a></span><div class="searchbox"><div class="searchwidget">
+</div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><button id="user-preferences-button" class="user-preferences-button button" title="Modify user preferences"><span id="avatarbutton" class="avatarbutton name">You!</span><div id="preferences_menu_holder" class="preferences_menu_holder hidden"><ol id="preferences_menu" class="preferences_menu" style="font-family: 'Roboto Serif', serif;">
+<li data-env="avatar" tabindex="-1">Choose avatar<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
+<ol class="hidden avatar">
+<li data-val="You!" tabindex="-1">
+<span id="theYou!" class="avatarcheck">✔️</span>You!</li>
+<li data-val="😺" tabindex="-1">
+<span id="the😺" class="avatarcheck"></span>😺</li>
+<li data-val="👤" tabindex="-1">
+<span id="the👤" class="avatarcheck"></span>👤</li>
+<li data-val="👽" tabindex="-1">
+<span id="the👽" class="avatarcheck"></span>👽</li>
+<li data-val="🐶" tabindex="-1">
+<span id="the🐶" class="avatarcheck"></span>🐶</li>
+<li data-val="🐼" tabindex="-1">
+<span id="the🐼" class="avatarcheck"></span>🐼</li>
+<li data-val="🌈" tabindex="-1">
+<span id="the🌈" class="avatarcheck"></span>🌈</li>
+</ol>
+</li>
+<li data-env="fontfamily" tabindex="-1">Font family<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
+<ol class="hidden fontfamily">
+<li data-val="face" data-change="OS" tabindex="-1" style="font-family: 'Open Sans'">
+<span id="theOS" class="ffcheck">✔️</span><span class="name">Open Sans</span><span class="sample">AaBbCc 123 PreTeXt</span>
+</li>
+<li data-val="face" data-change="RS" tabindex="-1" style="font-family: 'Roboto Serif'">
+<span id="theRS" class="ffcheck"></span><span class="name">Roboto Serif</span><span class="sample">AaBbCc 123 PreTeXt</span>
+</li>
+</ol>
+</li>
+<li data-env="font" tabindex="-1">Adjust font<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
+<ol class="hidden fonts">
+<li>Size</li>
+<li><span id="thesize">12</span></li>
+<li data-val="size" data-change="-1" tabindex="-1" style="font-size: 80%">Smaller</li>
+<li data-val="size" data-change="1" tabindex="-1" style="font-size: 110%">Larger</li>
+<li>Width</li>
+<li><span id="thewdth">100</span></li>
+<li data-val="wdth" data-change="-5" tabindex="-1" style="font-variation-settings: 'wdth' 60">narrower</li>
+<li data-val="wdth" data-change="5" tabindex="-1" style="font-variation-settings: 'wdth' 150">wider</li>
+<li>Weight</li>
+<li><span id="thewght">400</span></li>
+<li data-val="wght" data-change="-50" tabindex="-1" style="font-weight: 200">thinner</li>
+<li data-val="wght" data-change="50" tabindex="-1" style="font-weight: 700">heavier</li>
+<li>Letter spacing</li>
+<li>
+<span id="thelspace">0</span><span class="byunits">/200</span>
+</li>
+<li data-val="lspace" data-change="-1" tabindex="-1">closer</li>
+<li data-val="lspace" data-change="1" tabindex="-1">f a r t h e r</li>
+<li>Word spacing</li>
+<li>
+<span id="thewspace">0</span><span class="byunits">/50</span>
+</li>
+<li data-val="wspace" data-change="-1" tabindex="-1">smaller gap </li>
+<li data-val="wspace" data-change="1" tabindex="-1">larger gap</li>
+<li>Line Spacing</li>
+<li>
+<span id="theheight">135</span><span class="byunits">/100</span>
+</li>
+<li data-val="height" data-change="-5" tabindex="-1" style="line-height: 1">closer<br>together</li>
+<li data-val="height" data-change="5" tabindex="-1" style="line-height: 1.75">further<br>apart</li>
+</ol>
+</li>
+<li data-env="atmosphere" tabindex="-1">Light/dark mode<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
+<ol class="hidden atmosphere">
+<li data-val="default" tabindex="-1">
+<span id="thedefault" class="atmospherecheck">✔️</span>default</li>
+<li data-val="pastel" tabindex="-1">
+<span id="thepastel" class="atmospherecheck"></span>pastel</li>
+<li data-val="darktwilight" tabindex="-1">
+<span id="thedarktwilight" class="atmospherecheck"></span>twilight</li>
+<li data-val="dark" tabindex="-1">
+<span id="thedark" class="atmospherecheck"></span>dark</li>
+<li data-val="darkmidnight" tabindex="-1">
+<span id="thedarkmidnight" class="atmospherecheck"></span>midnight</li>
+</ol>
+</li>
+<li data-env="ruler" tabindex="-1">Reading ruler<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
+<ol class="hidden ruler">
+<li data-val="none" tabindex="-1">
+<span id="thenone" class="rulercheck">✔️</span>none</li>
+<li data-val="underline" tabindex="-1">
+<span id="theunderline" class="rulercheck"></span>underline</li>
+<li data-val="lunderline" tabindex="-1">
+<span id="thelunderline" class="rulercheck"></span>L-underline</li>
+<li data-val="greybar" tabindex="-1">
+<span id="thegreybar" class="rulercheck"></span>grey bar</li>
+<li data-val="lightbox" tabindex="-1">
+<span id="thelightbox" class="rulercheck"></span>light box</li>
+<li data-val="sunrise" tabindex="-1">
+<span id="thesunrise" class="rulercheck"></span>sunrise</li>
+<li data-val="sunriseunderline" tabindex="-1">
+<span id="thesunriseunderline" class="rulercheck"></span>sunrise underline</li>
+<li class="moveQ">Motion by:</li>
+<li data-val="mouse" tabindex="-1">
+<span id="themouse" class="motioncheck">✔️</span>follow the mouse</li>
+<li data-val="arrow" tabindex="-1">
+<span id="thearrow" class="motioncheck"></span>up/down arrows - not yet</li>
+<li data-val="eye" tabindex="-1">
+<span id="theeye" class="motioncheck"></span>eye tracking - not yet</li>
+</ol>
+</li>
+</ol></div></button><span class="treebuttons"><a class="previous-button button" href="sec-orthogonal-sets.html" title="Previous"><span class="icon">&lt;</span><span class="name">Prev</span></a><a class="up-button button" href="ch-orthogonality.html" title="Up"><span class="icon">^</span><span class="name">Up</span></a><a class="next-button button" href="section-projection.html" title="Next"><span class="name">Next</span><span class="icon">&gt;</span></a></span><div class="searchbox"><div class="searchwidget">
 <input id="ptxsearch" class="ptxsearch" type="text" name="terms" placeholder="Search" onchange="doSearch()"><button id="searchbutton" class="searchbutton" type="button" onclick="doSearch()">🔍</button>
 </div></div></nav><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\require{boldsymbol}\newcommand{\spn}{\operatorname{span}}
 \newcommand{\bbm}{\begin{bmatrix}}
@@ -320,7 +438,7 @@ eBookConfig.enable_chatcodes =  false;
 <section class="section" id="sec-gram-schmidt"><h2 class="heading hide-type">
 <span class="type">Section</span> <span class="codenumber">3.2</span> <span class="title">The Gram-Schmidt Procedure</span>
 </h2>
-<div class="para logical" id="p-1404">
+<div class="para logical" id="p-1383">
 <div class="para">Given an nonzero vector <span class="process-math">\(\uu\)</span> and a vector <span class="process-math">\(\vv\text{,}\)</span> the <em class="emphasis">projection</em> of <span class="process-math">\(\vv\)</span> onto <span class="process-math">\(\uu\)</span> is given by</div>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/thm-fourier-expansion.html" id="eqn-proj-single">
 \begin{equation}
@@ -329,25 +447,25 @@ eBookConfig.enable_chatcodes =  false;
 </div>
 <div class="para">Note that this looks just like one of the terms in <a href="" class="xref" data-knowl="./knowl/thm-fourier-expansion.html" title="Theorem 3.1.17: Fourier expansion theorem">Fourier expansion theorem</a>.</div>
 </div>
-<div class="para logical" id="p-1405">
+<div class="para logical" id="p-1384">
 <div class="para">The motivation for the projection is as follows: Given the vectors <span class="process-math">\(\vv\)</span> and <span class="process-math">\(\uu\text{,}\)</span> we want to find vectors <span class="process-math">\(\ww\)</span> and <span class="process-math">\(\zz\)</span> with the following properties:</div>
 <ol class="decimal">
-<li id="li-286"><div class="para" id="p-1406">The vector <span class="process-math">\(\ww\)</span> is parallel to the vector <span class="process-math">\(\uu\text{.}\)</span>
+<li id="li-230"><div class="para" id="p-1385">The vector <span class="process-math">\(\ww\)</span> is parallel to the vector <span class="process-math">\(\uu\text{.}\)</span>
 </div></li>
-<li id="li-287"><div class="para" id="p-1407">The vectors <span class="process-math">\(\ww\)</span> and <span class="process-math">\(\zz\)</span> add to <span class="process-math">\(\vv\text{.}\)</span>
+<li id="li-231"><div class="para" id="p-1386">The vectors <span class="process-math">\(\ww\)</span> and <span class="process-math">\(\zz\)</span> add to <span class="process-math">\(\vv\text{.}\)</span>
 </div></li>
-<li id="li-288"><div class="para" id="p-1408">The vectors <span class="process-math">\(\ww\)</span> and <span class="process-math">\(\zz\)</span> are orthogonal.</div></li>
+<li id="li-232"><div class="para" id="p-1387">The vectors <span class="process-math">\(\ww\)</span> and <span class="process-math">\(\zz\)</span> are orthogonal.</div></li>
 </ol>
 </div>
 <figure class="figure figure-like" id="fig-ortho-proj"><div class="image-box" style="width: 45%; margin-left: 27.5%; margin-right: 27.5%;"><img src="generated/latex-image/img-prtho-proj.svg" role="img" class="contained" alt="The diagram shows two given vectors u and v, along with vectors w and z. The vectors w is parallel to u, while the vector z is orthogonal to u, and the two vectors sum to the vector v. The vector w is the projection of v onto u."></div>
-<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">3.2.1<span class="period">.</span></span><span class="space"> </span>Illustrating the concept of orthogonal projection.</figcaption></figure><div class="para" id="p-1409">Motivation for the construction comes from Physics, where one needs to be able to decompose a force vector into parts that are parallel and orthogonal to a given direction.</div>
-<div class="para" id="p-1410">To derive the formula, we note that the vector <span class="process-math">\(\ww\)</span> must be a scalar multiple of <span class="process-math">\(\uu\text{,}\)</span> since it is parallel to <span class="process-math">\(\uu\text{,}\)</span> so <span class="process-math">\(\ww = c\uu\)</span> for some scalar <span class="process-math">\(c\text{.}\)</span> Next, since <span class="process-math">\(\ww\text{,}\)</span> <span class="process-math">\(\zz\text{,}\)</span> and <span class="process-math">\(\vv\)</span> form a right triangle, <a href="" data-knowl="" class="id-ref fn-knowl original" data-refid="hk-fn-6" id="fn-6"><sup> 1 </sup></a> we know that <span class="process-math">\(\len{\ww}=c\len{\uu}=\len{\vv}\cos(\theta)\text{.}\)</span> But <span class="process-math">\(\cos(\theta)=\frac{\vv\boldsymbol{\cdot}\uu}{\len{\vv}\len{\uu}}\text{.}\)</span> Plugging this in, and solving for <span class="process-math">\(c\text{,}\)</span> we get the formula in <a href="" class="xref" data-knowl="./knowl/eqn-proj-single.html" title="Equation 3.2.1">(3.2.1)</a>.</div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">3.2.1<span class="period">.</span></span><span class="space"> </span>Illustrating the concept of orthogonal projection.</figcaption></figure><div class="para" id="p-1388">Motivation for the construction comes from Physics, where one needs to be able to decompose a force vector into parts that are parallel and orthogonal to a given direction.</div>
+<div class="para" id="p-1389">To derive the formula, we note that the vector <span class="process-math">\(\ww\)</span> must be a scalar multiple of <span class="process-math">\(\uu\text{,}\)</span> since it is parallel to <span class="process-math">\(\uu\text{,}\)</span> so <span class="process-math">\(\ww = c\uu\)</span> for some scalar <span class="process-math">\(c\text{.}\)</span> Next, since <span class="process-math">\(\ww\text{,}\)</span> <span class="process-math">\(\zz\text{,}\)</span> and <span class="process-math">\(\vv\)</span> form a right triangle, <a href="" data-knowl="" class="id-ref fn-knowl original" data-refid="hk-fn-6" id="fn-6"><sup> 1 </sup></a> we know that <span class="process-math">\(\len{\ww}=c\len{\uu}=\len{\vv}\cos(\theta)\text{.}\)</span> But <span class="process-math">\(\cos(\theta)=\frac{\vv\boldsymbol{\cdot}\uu}{\len{\vv}\len{\uu}}\text{.}\)</span> Plugging this in, and solving for <span class="process-math">\(c\text{,}\)</span> we get the formula in <a href="" class="xref" data-knowl="./knowl/eqn-proj-single.html" title="Equation 3.2.1">(3.2.1)</a>.</div>
 <article class="exercise exercise-like" id="ex-match-projection"><h3 class="heading">
 <span class="type">Exercise</span><span class="space"> </span><span class="codenumber">3.2.2</span><span class="period">.</span>
 </h3>
 <div class="ptx-runestone-container"><div class="runestone"><ul data-component="dragndrop" data-question_label="" style="visibility: hidden;" id="ex-match-projection">
-<span data-subcomponent="question"><div class="para" id="p-1411">On the left, pairs of vectors <span class="process-math">\(\uu,\vv\)</span> are given, and on the right, pairs of vectors <span class="process-math">\(\ww,\zz\text{.}\)</span> Match each pair on the left with the pair on the right such that <span class="process-math">\(\ww=\proj{\uu}{\vv}\text{,}\)</span> and <span class="process-math">\(\zz=\vv-\ww\text{.}\)</span>
-</div></span><span data-subcomponent="feedback"><div class="para" id="p-1412">You can solve this problem without actually computing any projections. Think about the relationships between the different vectors.</div></span><li data-subcomponent="draggable" id="ex-match-projection_drag1">
+<span data-subcomponent="question"><div class="para" id="p-1390">On the left, pairs of vectors <span class="process-math">\(\uu,\vv\)</span> are given, and on the right, pairs of vectors <span class="process-math">\(\ww,\zz\text{.}\)</span> Match each pair on the left with the pair on the right such that <span class="process-math">\(\ww=\proj{\uu}{\vv}\text{,}\)</span> and <span class="process-math">\(\zz=\vv-\ww\text{.}\)</span>
+</div></span><span data-subcomponent="feedback"><div class="para" id="p-1391">You can solve this problem without actually computing any projections. Think about the relationships between the different vectors.</div></span><li data-subcomponent="draggable" id="ex-match-projection_drag1">
 <span class="process-math">\(\uu  = \langle 4,0,2\rangle\text{,}\)</span> <span class="process-math">\(\vv  =\langle 3,2,-1\rangle\)</span>
 </li>
 <li data-subcomponent="dropzone" for="ex-match-projection_drag1">
@@ -365,11 +483,11 @@ eBookConfig.enable_chatcodes =  false;
 <li data-subcomponent="dropzone" for="ex-match-projection_drag3">
 <span class="process-math">\(\ww  = \langle 3,-6,-3\rangle\text{,}\)</span> <span class="process-math">\(\zz  = \langle 2,2,-2\rangle\)</span>
 </li>
-</ul></div></div></article><div class="para" id="p-1413">An important part of the projection construction is that the vector <span class="process-math">\(\zz=\vv-\proj{\uu}{\vv}\)</span> is orthogonal to <span class="process-math">\(\uu\text{.}\)</span> Our next result is a generalization of this observation.</div>
+</ul></div></div></article><div class="para" id="p-1392">An important part of the projection construction is that the vector <span class="process-math">\(\zz=\vv-\proj{\uu}{\vv}\)</span> is orthogonal to <span class="process-math">\(\uu\text{.}\)</span> Our next result is a generalization of this observation.</div>
 <article class="theorem theorem-like" id="thm-orthogonal-lemma"><h3 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">3.2.3</span><span class="period">.</span><span class="space"> </span><span class="title">Orthogonal Lemma.</span>
 </h3>
-<div class="para logical" id="p-1414">
+<div class="para logical" id="p-1393">
 <div class="para">Let <span class="process-math">\(\{\vv_1,\vv_2,\ldots, \vv_m\}\)</span> be an orthogonal set of vectors in <span class="process-math">\(\R^n\text{,}\)</span> and let <span class="process-math">\(\xx\)</span> be any vector in <span class="process-math">\(\R^n\text{.}\)</span> Define the vector <span class="process-math">\(\vv_{m+1}\)</span> by</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -378,14 +496,14 @@ eBookConfig.enable_chatcodes =  false;
 </div>
 <div class="para">Then:</div>
 <ol class="decimal">
-<li id="li-289"><div class="para" id="p-1415">
+<li id="li-233"><div class="para" id="p-1394">
 <span class="process-math">\(\vv_{m+1}\dotp \vv_i = 0\)</span> for each <span class="process-math">\(i=1,\ldots, m\text{.}\)</span>
 </div></li>
-<li id="li-290"><div class="para" id="p-1416">If <span class="process-math">\(\xx\notin\spn\{\vv_1,\ldots, \vv_m\}\text{,}\)</span> then <span class="process-math">\(\vv_{m+1}\neq \zer\text{,}\)</span> and therefore, <span class="process-math">\(\{\vv_1,\ldots, \vv_m,\vv_{m+1}\}\)</span> is an orthogonal set.</div></li>
+<li id="li-234"><div class="para" id="p-1395">If <span class="process-math">\(\xx\notin\spn\{\vv_1,\ldots, \vv_m\}\text{,}\)</span> then <span class="process-math">\(\vv_{m+1}\neq \zer\text{,}\)</span> and therefore, <span class="process-math">\(\{\vv_1,\ldots, \vv_m,\vv_{m+1}\}\)</span> is an orthogonal set.</div></li>
 </ol>
-</div></article><article class="hiddenproof" id="proof-45"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-45"><h3 class="heading"><span class="title">Strategy.</span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-45"><article class="hiddenproof"> <div class="para" id="p-1417">For the first part, try calculating the dot product, using the definition of <span class="process-math">\(\vv_{m+1}\text{.}\)</span> Don’t forget that <span class="process-math">\(\vv_i\dotp\vv_j=0\)</span> if <span class="process-math">\(i\neq j\text{,}\)</span> since you are assuming you have an orthogonal set of vectors.</div> <div class="para" id="p-1418">For the second part, what does the Fourier Expansion Theorem say?</div></article></div>
-<article class="hiddenproof" id="proof-46"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-46"><h3 class="heading"><span class="type">Proof<span class="period">.</span></span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-46"><article class="hiddenproof"><div class="para logical" id="p-1419"><ol class="decimal">
-<li id="li-291"><div class="para logical" id="p-1420">
+</div></article><article class="hiddenproof" id="proof-45"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-45"><h3 class="heading"><span class="title">Strategy.</span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-45"><article class="hiddenproof"> <div class="para" id="p-1396">For the first part, try calculating the dot product, using the definition of <span class="process-math">\(\vv_{m+1}\text{.}\)</span> Don’t forget that <span class="process-math">\(\vv_i\dotp\vv_j=0\)</span> if <span class="process-math">\(i\neq j\text{,}\)</span> since you are assuming you have an orthogonal set of vectors.</div> <div class="para" id="p-1397">For the second part, what does the Fourier Expansion Theorem say?</div></article></div>
+<article class="hiddenproof" id="proof-46"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-46"><h3 class="heading"><span class="type">Proof<span class="period">.</span></span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-46"><article class="hiddenproof"><div class="para logical" id="p-1398"><ol class="decimal">
+<li id="li-235"><div class="para logical" id="p-1399">
 <div class="para">For any <span class="process-math">\(i=1,\ldots m\text{,}\)</span> we have</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -395,10 +513,10 @@ eBookConfig.enable_chatcodes =  false;
 <div class="para">since <span class="process-math">\(\vv_i\dotp\vv_j = 0\)</span> for <span class="process-math">\(i\neq j\text{.}\)</span>
 </div>
 </div></li>
-<li id="li-292"><div class="para" id="p-1421">It follows from the <a href="" class="xref" data-knowl="./knowl/thm-fourier-expansion.html" title="Theorem 3.1.17: Fourier expansion theorem">Fourier expansion theorem</a> that <span class="process-math">\(\vv_{m+1}=\zer\)</span> if and only if <span class="process-math">\(\xx\in\spn\{\vv_1,\ldots, \vv_m\}\text{,}\)</span> and the fact that <span class="process-math">\(\{\vv_1,\ldots, \vv_m,\vv_{m+1}\}\)</span> is an orthogonal set then follows from the first part.</div></li>
+<li id="li-236"><div class="para" id="p-1400">It follows from the <a href="" class="xref" data-knowl="./knowl/thm-fourier-expansion.html" title="Theorem 3.1.17: Fourier expansion theorem">Fourier expansion theorem</a> that <span class="process-math">\(\vv_{m+1}=\zer\)</span> if and only if <span class="process-math">\(\xx\in\spn\{\vv_1,\ldots, \vv_m\}\text{,}\)</span> and the fact that <span class="process-math">\(\{\vv_1,\ldots, \vv_m,\vv_{m+1}\}\)</span> is an orthogonal set then follows from the first part.</div></li>
 </ol></div></article></div>
-<div class="para" id="p-1422">It follows from the <a href="" class="xref" data-knowl="./knowl/thm-orthogonal-lemma.html" title="Theorem 3.2.3: Orthogonal Lemma">Orthogonal Lemma</a> that for any subspace <span class="process-math">\(U\subseteq \R^n\text{,}\)</span> any set of orthogonal vectors in <span class="process-math">\(U\)</span> can be extended to an orthogonal basis of <span class="process-math">\(U\text{.}\)</span> Since any set containing a single nonzero vector is orthogonal, it follows that every subspace has an orthogonal basis. (If <span class="process-math">\(U=\{\zer\}\text{,}\)</span> we consider the empty basis to be orthogonal.)</div>
-<div class="para logical" id="p-1423">
+<div class="para" id="p-1401">It follows from the <a href="" class="xref" data-knowl="./knowl/thm-orthogonal-lemma.html" title="Theorem 3.2.3: Orthogonal Lemma">Orthogonal Lemma</a> that for any subspace <span class="process-math">\(U\subseteq \R^n\text{,}\)</span> any set of orthogonal vectors in <span class="process-math">\(U\)</span> can be extended to an orthogonal basis of <span class="process-math">\(U\text{.}\)</span> Since any set containing a single nonzero vector is orthogonal, it follows that every subspace has an orthogonal basis. (If <span class="process-math">\(U=\{\zer\}\text{,}\)</span> we consider the empty basis to be orthogonal.)</div>
+<div class="para logical" id="p-1402">
 <div class="para">The procedure for creating an orthogonal basis is clear. Start with a single nonzero vector <span class="process-math">\(\xx_1\in U\text{,}\)</span> which we’ll also call <span class="process-math">\(\vv_1\text{.}\)</span> If <span class="process-math">\(U\neq \spn\{\vv_1\}\text{,}\)</span> choose a vector <span class="process-math">\(\xx_2\in U\)</span> with <span class="process-math">\(\xx_2\notin\spn\{\vv_1\}\text{.}\)</span> The <a href="" class="xref" data-knowl="./knowl/thm-orthogonal-lemma.html" title="Theorem 3.2.3: Orthogonal Lemma">Orthogonal Lemma</a> then provides us with a vector</div>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/thm-orthogonal-lemma.html ./knowl/thm-orthogonal-lemma.html">
 \begin{equation*}
@@ -407,11 +525,11 @@ eBookConfig.enable_chatcodes =  false;
 </div>
 <div class="para">such that <span class="process-math">\(\{\vv_1,\vv_2\}\)</span> is orthogonal. If <span class="process-math">\(U=\spn\{\vv_1,\vv_2\}\text{,}\)</span> we’re done. Otherwise, we repeat the process, choosing <span class="process-math">\(\xx_3\notin\spn\{\vv_1,\vv_2\}\text{,}\)</span> and then using the <a href="" class="xref" data-knowl="./knowl/thm-orthogonal-lemma.html" title="Theorem 3.2.3: Orthogonal Lemma">Orthogonal Lemma</a> to obtain <span class="process-math">\(\vv_3\text{,}\)</span> and so on, until an orthogonal basis is obtained.</div>
 </div>
-<div class="para" id="p-1424">With one minor modification, the above procedure provides us with a major result. Suppose <span class="process-math">\(U\)</span> is a subspace of <span class="process-math">\(\R^n\text{,}\)</span> and start with <em class="emphasis">any</em> basis <span class="process-math">\(\{\xx_1,\ldots, \xx_m\}\)</span> of <span class="process-math">\(U\text{.}\)</span> By choosing our <span class="process-math">\(\xx_i\)</span> in the procedure above to be these basis vectors, we obtain the <em class="emphasis">Gram-Schmidt algorithm</em> for constructing an orthogonal basis.</div>
+<div class="para" id="p-1403">With one minor modification, the above procedure provides us with a major result. Suppose <span class="process-math">\(U\)</span> is a subspace of <span class="process-math">\(\R^n\text{,}\)</span> and start with <em class="emphasis">any</em> basis <span class="process-math">\(\{\xx_1,\ldots, \xx_m\}\)</span> of <span class="process-math">\(U\text{.}\)</span> By choosing our <span class="process-math">\(\xx_i\)</span> in the procedure above to be these basis vectors, we obtain the <em class="emphasis">Gram-Schmidt algorithm</em> for constructing an orthogonal basis.</div>
 <article class="theorem theorem-like" id="thm-gram-schmidt"><h3 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">3.2.4</span><span class="period">.</span><span class="space"> </span><span class="title">Gram-Schmidt Orthonormalization Algorithm.</span>
 </h3>
-<div class="para logical" id="p-1425">
+<div class="para logical" id="p-1404">
 <div class="para">Let <span class="process-math">\(U\)</span> be a subspace of <span class="process-math">\(\R^n\text{,}\)</span> and let <span class="process-math">\(\{\xx_1,\ldots, \xx_m\}\)</span> be a basis of <span class="process-math">\(U\text{.}\)</span> Define vectors <span class="process-math">\(\vv_1,\ldots, \vv_m\)</span> in <span class="process-math">\(U\)</span> as follows:</div>
 <div class="displaymath process-math" id="md-51">
 \begin{align*}
@@ -428,7 +546,7 @@ eBookConfig.enable_chatcodes =  false;
 \spn\{\vv_1,\ldots, \vv_k\} = \spn\{\xx_1,\ldots, \xx_k\}\text{.}
 \end{equation*}
 </div>
-</div></article><div class="para logical" id="p-1426">
+</div></article><div class="para logical" id="p-1405">
 <div class="para">Of course, once we’ve used Gram-Schmidt to find an orthogonal basis, we can normalize each vector to get an orthonormal basis. The Gram-Schmidt algorithm is ideal when we know how to find <em class="emphasis">a</em> basis for a subspace, but we need to know an orthogonal basis. For example, suppose we want an orthonormal basis for the nullspace of the matrix</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -445,7 +563,7 @@ A = Matrix([[2,-1,3,0,5],
             [2,1,0,1,9]])
 A.nullspace()
 </script></pre>
-<div class="para logical" id="p-1427">
+<div class="para logical" id="p-1406">
 <div class="para">Let’s make that basis look a little nicer by using some scalar multiplication to clear fractions.</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -471,27 +589,27 @@ B=\left\{\xx_1=\bbm 3\\-6\\-4\\0\\0\ebm, \xx_2=\bbm 1\\2\\0\\-4\\0\ebm, \xx_3=\b
 B = A.nullspace()
 GramSchmidt(B)
 </script></pre>
-<div class="para" id="p-1428">What if we want our vectors normalized? Turns out the <code class="code-inline tex2jax_ignore">GramSchmidt</code> function has an optional argument of true or false. The default is false, which is to not normalize. Setting it to true gives an orthonormal basis:</div>
+<div class="para" id="p-1407">What if we want our vectors normalized? Turns out the <code class="code-inline tex2jax_ignore">GramSchmidt</code> function has an optional argument of true or false. The default is false, which is to not normalize. Setting it to true gives an orthonormal basis:</div>
 <pre class="ptx-sagecell sagecell-sage" id="sage-47"><script type="text/x-sage">GramSchmidt(B,true)
 </script></pre>
-<div class="para" id="p-1429">OK, so that’s nice, and fairly intimidating looking. Did it work? We can specify the vectors in our list by giving their positions, which are 0, 1, and 2, respectively.</div>
+<div class="para" id="p-1408">OK, so that’s nice, and fairly intimidating looking. Did it work? We can specify the vectors in our list by giving their positions, which are 0, 1, and 2, respectively.</div>
 <pre class="ptx-sagecell sagecell-sage" id="sage-48"><script type="text/x-sage">L=GramSchmidt(B)
 L[0],L[1],L[2]
 </script></pre>
-<div class="para" id="p-1430">Let’s compute dot products:</div>
+<div class="para" id="p-1409">Let’s compute dot products:</div>
 <pre class="ptx-sagecell sagecell-sage" id="sage-49"><script type="text/x-sage">L[0].dot(L[1]),L[1].dot(L[2]),L[0].dot(L[2])
 </script></pre>
-<div class="para" id="p-1431">Let’s also confirm that these are indeed in the nullspace.</div>
+<div class="para" id="p-1410">Let’s also confirm that these are indeed in the nullspace.</div>
 <pre class="ptx-sagecell sagecell-sage" id="sage-50"><script type="text/x-sage">A*L[0],A*L[1],A*L[2]
 </script></pre>
-<div class="para" id="p-1432">Boom. Let’s try another example. This time we’ll keep the vectors a little smaller in case you want to try it by hand.</div>
+<div class="para" id="p-1411">Boom. Let’s try another example. This time we’ll keep the vectors a little smaller in case you want to try it by hand.</div>
 <article class="example example-like" id="eg-gram2"><h3 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">3.2.5</span><span class="period">.</span>
 </h3>
-<div class="para" id="p-1433">Confirm that the set <span class="process-math">\(B=\{(1,-2,1), (3,0,-2), (-1,1,2)\}\)</span> is a basis for <span class="process-math">\(\R^3\text{,}\)</span> and use the <a href="" class="xref" data-knowl="./knowl/thm-gram-schmidt.html" title="Theorem 3.2.4: Gram-Schmidt Orthonormalization Algorithm">Gram-Schmidt Orthonormalization Algorithm</a> to find an orthonormal basis.</div>
+<div class="para" id="p-1412">Confirm that the set <span class="process-math">\(B=\{(1,-2,1), (3,0,-2), (-1,1,2)\}\)</span> is a basis for <span class="process-math">\(\R^3\text{,}\)</span> and use the <a href="" class="xref" data-knowl="./knowl/thm-gram-schmidt.html" title="Theorem 3.2.4: Gram-Schmidt Orthonormalization Algorithm">Gram-Schmidt Orthonormalization Algorithm</a> to find an orthonormal basis.</div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-60" id="solution-60"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-60"><div class="solution solution-like">
-<div class="para" id="p-1434">First, note that we can actually jump right into the Gram-Schmidt procedure. If the set <span class="process-math">\(B\)</span> is not a basis, then it won’t be independent, and when we attempt to construct the third vector in our orthonormal basis, its projection on the the subspace spanned by the first two will be the same as the original vector, and we’ll get zero when we subtract the two.</div> <div class="para logical" id="p-1435">
+<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-55" id="solution-55"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-55"><div class="solution solution-like">
+<div class="para" id="p-1413">First, note that we can actually jump right into the Gram-Schmidt procedure. If the set <span class="process-math">\(B\)</span> is not a basis, then it won’t be independent, and when we attempt to construct the third vector in our orthonormal basis, its projection on the the subspace spanned by the first two will be the same as the original vector, and we’ll get zero when we subtract the two.</div> <div class="para logical" id="p-1414">
 <div class="para">We let <span class="process-math">\(\xx_1=(1,-2,1), \xx_2=(3,0,-2), \xx_3=(-1,1,2)\text{,}\)</span> and set <span class="process-math">\(\vv_1=\xx_1\text{.}\)</span> Then we have</div>
 <div class="displaymath process-math" id="md-53">
 \begin{align*}
@@ -500,7 +618,7 @@ L[0],L[1],L[2]
 \amp = \frac16(17,2,-3) \text{.}
 \end{align*}
 </div>
-</div> <aside class="aside aside-like" id="aside-5"><div class="para logical" id="p-1436">
+</div> <aside class="aside aside-like" id="aside-5"><div class="para logical" id="p-1415">
 <div class="para">You’ll notice that we’re using <span class="process-math">\(6\vv_2\)</span> rather than <span class="process-math">\(\vv_2\)</span> in the calculation of <span class="process-math">\(\vv_3\text{.}\)</span> This lets us avoid fractions (momentarily), and doesn’t affect the answer, since for any nonzero scalar <span class="process-math">\(c\text{,}\)</span>
 </div>
 <div class="displaymath process-math" id="md-54">
@@ -510,7 +628,7 @@ L[0],L[1],L[2]
 \amp=\left(\frac{\vv\dotp\xx}{\len{\vv^2}}\right)\vv\text{.}
 \end{align*}
 </div>
-</div></aside> <div class="para logical" id="p-1437">
+</div></aside> <div class="para logical" id="p-1416">
 <div class="para">Next, we compute <span class="process-math">\(\vv_3\text{.}\)</span>
 </div>
 <div class="displaymath process-math" id="md-55">
@@ -522,7 +640,7 @@ L[0],L[1],L[2]
 \amp = \frac{1}{606}(277,488,1187)\text{.}
 \end{align*}
 </div>
-</div> <div class="para" id="p-1438">We got it done! But doing this sort of thing by hand makes it possible that we made a calculation error somewhere. To check our work, we can turn to the computer.</div> <pre class="ptx-sagecell hidden-sagecell-sage" id="sage-51"><script type="text/x-sage">from sympy import Matrix, init_printing, GramSchmidt
+</div> <div class="para" id="p-1417">We got it done! But doing this sort of thing by hand makes it possible that we made a calculation error somewhere. To check our work, we can turn to the computer.</div> <pre class="ptx-sagecell hidden-sagecell-sage" id="sage-51"><script type="text/x-sage">from sympy import Matrix, init_printing, GramSchmidt
 init_printing()
 L=(Matrix([1,-2,1]),Matrix([3,0,-2]),Matrix([-1,1,2]))
 GramSchmidt(L)
@@ -532,92 +650,92 @@ GramSchmidt(L)
 <span class="type">Exercises</span> <span class="codenumber"></span> <span class="title">Exercises</span>
 </h3>
 <article class="exercise exercise-like" id="ex-ww-gs1"><h4 class="heading"><span class="codenumber">1<span class="period">.</span></span></h4>
-<div id="webwork-53" class="exercise-wrapper" data-domain="https://webwork-dev.uleth.ca" data-seed="53" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="local/Library/WinonaState/LinearAlgebra/Gram-Schmidt/Gram-Schmidt_1.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
-<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-53')">Activate</button></div>
+<div id="webwork-49" class="exercise-wrapper" data-domain="https://webwork-dev.uleth.ca" data-seed="49" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="local/Library/WinonaState/LinearAlgebra/Gram-Schmidt/Gram-Schmidt_1.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-49')">Activate</button></div>
 <div class="problem-contents">
-<div class="para logical" id="p-1439">
+<div class="para logical" id="p-1418">
 <div class="para">Let</div>
 <div class="displaymath process-math">
 \begin{equation*}
-\mathbf{v}_1 = {\left[\begin{array}{c}2\\5\\0\\4\\0\\0\\\end{array}\right]}, \mathbf{v}_2 = {\left[\begin{array}{c}-3\\0\\2\\-4\\0\\-5\\\end{array}\right]}, \text{ and } \mathbf{v}_3 = {\left[\begin{array}{c}-3\\0\\0\\-5\\5\\-5\\\end{array}\right]}.
+\mathbf{v}_1 = {\left[\begin{array}{c}-5\\3\\0\\-3\\0\\1\\\end{array}\right]}, \mathbf{v}_2 = {\left[\begin{array}{c}-3\\0\\2\\3\\0\\-1\\\end{array}\right]}, \text{ and } \mathbf{v}_3 = {\left[\begin{array}{c}-1\\0\\0\\0\\4\\-4\\\end{array}\right]}.
 \end{equation*}
 </div>
-</div> <div class="para" id="p-1440">Use the Gram-Schmidt procedure to produce an orthogonal set with the same span.</div> <div class="para" id="p-1441">
+</div> <div class="para" id="p-1419">Use the Gram-Schmidt procedure to produce an orthogonal set with the same span.</div> <div class="para" id="p-1420">
 <span class="process-math">\(\mathbf{u}_1 =\)</span> <span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>
-</div> <div class="para" id="p-1442">
+</div> <div class="para" id="p-1421">
 <span class="process-math">\(\mathbf{u}_1 \cdot \mathbf{v}_2  =\)</span> <span class="fillin underline" role="img" aria-label="6-character blank" style="width: 2.727272727272727em;"></span>
-</div> <div class="para" id="p-1443">
+</div> <div class="para" id="p-1422">
 <span class="process-math">\(\mathbf{u}_1 \cdot \mathbf{u}_1  =\)</span> <span class="fillin underline" role="img" aria-label="6-character blank" style="width: 2.727272727272727em;"></span>
-</div> <div class="para" id="p-1444">
+</div> <div class="para" id="p-1423">
 <span class="process-math">\(\mathbf{u}_2 =\)</span> <span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>
-</div> <div class="para" id="p-1445">
+</div> <div class="para" id="p-1424">
 <span class="process-math">\(\mathbf{u}_1 \cdot \mathbf{v}_3  =\)</span> <span class="fillin underline" role="img" aria-label="6-character blank" style="width: 2.727272727272727em;"></span>
-</div> <div class="para" id="p-1446">
+</div> <div class="para" id="p-1425">
 <span class="process-math">\(\mathbf{u}_2 \cdot \mathbf{v}_3  =\)</span> <span class="fillin underline" role="img" aria-label="6-character blank" style="width: 2.727272727272727em;"></span>
-</div> <div class="para" id="p-1447">
+</div> <div class="para" id="p-1426">
 <span class="process-math">\(\mathbf{u}_2 \cdot \mathbf{u}_2  =\)</span> <span class="fillin underline" role="img" aria-label="6-character blank" style="width: 2.727272727272727em;"></span>
-</div> <div class="para" id="p-1448">
+</div> <div class="para" id="p-1427">
 <span class="process-math">\(\mathbf{u}_3 =\)</span> <span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>
 </div>
 </div>
 </div></article><article class="exercise exercise-like" id="ex-ww-gs2"><h4 class="heading"><span class="codenumber">2<span class="period">.</span></span></h4>
-<div id="webwork-54" class="exercise-wrapper" data-domain="https://webwork-dev.uleth.ca" data-seed="54" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="local/Library/WinonaState/LinearAlgebra/Gram-Schmidt/Gram-Schmidt_2.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
-<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-54')">Activate</button></div>
+<div id="webwork-50" class="exercise-wrapper" data-domain="https://webwork-dev.uleth.ca" data-seed="50" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="local/Library/WinonaState/LinearAlgebra/Gram-Schmidt/Gram-Schmidt_2.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-50')">Activate</button></div>
 <div class="problem-contents">
-<div class="para logical" id="p-1457">
+<div class="para logical" id="p-1436">
 <div class="para">Let</div>
 <div class="displaymath process-math">
 \begin{equation*}
-\mathbf{v}_1 = {\left[\begin{array}{c}3\\0\\2\\0\\2\\-1\\\end{array}\right]}, \mathbf{v}_2 = {\left[\begin{array}{c}3\\-4\\1\\0\\4\\0\\\end{array}\right]}, \text{ and } \mathbf{v}_3 = {\left[\begin{array}{c}3\\0\\3\\-5\\2\\0\\\end{array}\right]}.
+\mathbf{v}_1 = {\left[\begin{array}{c}3\\0\\4\\0\\4\\-3\\\end{array}\right]}, \mathbf{v}_2 = {\left[\begin{array}{c}3\\-4\\2\\0\\4\\0\\\end{array}\right]}, \text{ and } \mathbf{v}_3 = {\left[\begin{array}{c}3\\0\\4\\-1\\1\\0\\\end{array}\right]}.
 \end{equation*}
 </div>
-</div> <div class="para" id="p-1458">Use the Gram-Schmidt procedure to produce an orthogonal set with the same span.</div> <div class="para" id="p-1459">
+</div> <div class="para" id="p-1437">Use the Gram-Schmidt procedure to produce an orthogonal set with the same span.</div> <div class="para" id="p-1438">
 <span class="process-math">\(\mathbf{u}_1 =\)</span> <span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>
-</div> <div class="para" id="p-1460">
+</div> <div class="para" id="p-1439">
 <span class="process-math">\(\mathbf{u}_1 \cdot \mathbf{v}_2  =\)</span> <span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>
-</div> <div class="para" id="p-1461">
+</div> <div class="para" id="p-1440">
 <span class="process-math">\(\mathbf{u}_1 \cdot \mathbf{u}_1  =\)</span> <span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>
-</div> <div class="para" id="p-1462">
+</div> <div class="para" id="p-1441">
 <span class="process-math">\(\mathbf{u}_2 =\)</span> <span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>
-</div> <div class="para" id="p-1463">
+</div> <div class="para" id="p-1442">
 <span class="process-math">\(\mathbf{u}_1 \cdot \mathbf{v}_3  =\)</span> <span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>
-</div> <div class="para" id="p-1464">
+</div> <div class="para" id="p-1443">
 <span class="process-math">\(\mathbf{u}_2 \cdot \mathbf{v}_3  =\)</span> <span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>
-</div> <div class="para" id="p-1465">
+</div> <div class="para" id="p-1444">
 <span class="process-math">\(\mathbf{u}_2 \cdot \mathbf{u}_2  =\)</span> <span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>
-</div> <div class="para" id="p-1466">
+</div> <div class="para" id="p-1445">
 <span class="process-math">\(\mathbf{u}_3 =\)</span> <span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>
 </div>
 </div>
 </div></article><article class="exercise exercise-like" id="ex-ww-gs3"><h4 class="heading"><span class="codenumber">3<span class="period">.</span></span></h4>
-<div id="webwork-55" class="exercise-wrapper" data-domain="https://webwork-dev.uleth.ca" data-seed="55" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="local/Library/WinonaState/LinearAlgebra/Gram-Schmidt/Gram-Schmidt_3.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
-<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-55')">Activate</button></div>
+<div id="webwork-51" class="exercise-wrapper" data-domain="https://webwork-dev.uleth.ca" data-seed="51" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="local/Library/WinonaState/LinearAlgebra/Gram-Schmidt/Gram-Schmidt_3.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-51')">Activate</button></div>
 <div class="problem-contents">
-<div class="para logical" id="p-1475">
+<div class="para logical" id="p-1454">
 <div class="para">Let</div>
 <div class="displaymath process-math">
 \begin{equation*}
-\mathbf{v}_1 = {\left[\begin{array}{c}0\\0\\5\\3\\4\\0\\\end{array}\right]}, \mathbf{v}_2 = {\left[\begin{array}{c}1\\0\\2\\0\\2\\15\\\end{array}\right]}, \text{ and } \mathbf{v}_3 = {\left[\begin{array}{c}2\\5\\5\\0\\3\\0\\\end{array}\right]}.
+\mathbf{v}_1 = {\left[\begin{array}{c}0\\0\\3\\11\\1\\0\\\end{array}\right]}, \mathbf{v}_2 = {\left[\begin{array}{c}1\\0\\2\\0\\2\\2\\\end{array}\right]}, \text{ and } \mathbf{v}_3 = {\left[\begin{array}{c}2\\14\\2\\0\\2\\0\\\end{array}\right]}.
 \end{equation*}
 </div>
-</div> <div class="para" id="p-1476">Use the Gram-Schmidt procedure to produce an orthogonal set with the same span.</div> <div class="para" id="p-1477">
+</div> <div class="para" id="p-1455">Use the Gram-Schmidt procedure to produce an orthogonal set with the same span.</div> <div class="para" id="p-1456">
 <span class="process-math">\(\mathbf{u}_1 =\)</span><span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>,  <span class="process-math">\(\mathbf{u}_2 =\)</span><span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>, <span class="process-math">\(\mathbf{u}_3 =\)</span><span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>
 </div>
 </div>
 </div></article><article class="exercise exercise-like" id="ex-ww-gs4"><h4 class="heading"><span class="codenumber">4<span class="period">.</span></span></h4>
-<div id="webwork-56" class="exercise-wrapper" data-domain="https://webwork-dev.uleth.ca" data-seed="56" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="local/Library/Rochester/setLinearAlgebra18OrthogonalBases/ur_la_18_9.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
-<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-56')">Activate</button></div>
+<div id="webwork-52" class="exercise-wrapper" data-domain="https://webwork-dev.uleth.ca" data-seed="52" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="local/Library/Rochester/setLinearAlgebra18OrthogonalBases/ur_la_18_9.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-52')">Activate</button></div>
 <div class="problem-contents">
-<div class="para" id="p-1481">Let <span class="process-math">\(\displaystyle{ A = {\left[\begin{array}{cccc}
-0 \amp -1 \amp -4 \amp -1\cr
-4 \amp -1 \amp -8 \amp -3\cr
--12 \amp -1 \amp 8 \amp 5\cr
-12 \amp 0 \amp -12 \amp -6
+<div class="para" id="p-1460">Let <span class="process-math">\(\displaystyle{ A = {\left[\begin{array}{cccc}
+3 \amp -1 \amp 0 \amp 1\cr
+6 \amp 1 \amp -9 \amp 5\cr
+3 \amp -2 \amp 3 \amp 0\cr
+6 \amp -1 \amp -3 \amp 3
 \end{array}\right]}. }\)</span>
-</div> <div class="para" id="p-1482">Find orthonormal bases of the kernel and image of <span class="process-math">\(A\text{.}\)</span>
-</div> <div class="para" id="p-1483">
+</div> <div class="para" id="p-1461">Find orthonormal bases of the kernel and image of <span class="process-math">\(A\text{.}\)</span>
+</div> <div class="para" id="p-1462">
 <span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span>  <span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span>
-</div> <div class="para" id="p-1484">
+</div> <div class="para" id="p-1463">
 <span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span>  <span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span>
 </div>
 </div>

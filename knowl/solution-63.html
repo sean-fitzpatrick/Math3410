@@ -9,35 +9,46 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="robots" content="noindex, nofollow">
-<script>// Make *any* pre with class 'sagecell-sage' an executable Sage cell
-// Their results will be linked, only within language type
-sagecell.makeSagecell({inputLocation: 'pre.sagecell-sage',
-                       linked: true,
-                       languages: ['sage'],
-                       evalButtonText: 'Evaluate (Sage)'});
-</script>
 </head>
 <body class="ignore-math">
 <div class="solution solution-like">
 <h3 class="heading">
-<span class="type">Solution</span><span class="space"> </span><span class="codenumber">3.3.12.1</span><span class="period">.</span>
+<span class="type">Solution</span><span class="space"> </span><span class="codenumber">3.4.5.1</span><span class="period">.</span>
 </h3>
 <div class="para logical">
-<div class="para">First, we note that for a general element of <span class="process-math">\(U\text{,}\)</span> we have</div>
-<div class="displaymath process-math" data-contains-math-knowls="./knowl/thm-complement-matrix.html">
+<div class="para">As per the hint, suppose <span class="process-math">\(\phi = c_1\phi_1+c_2\phi_2+c_3\phi_3+c_4\phi_4\text{,}\)</span> and that <span class="process-math">\(\phi\in U^0\text{.}\)</span> Then</div>
+<div class="displaymath process-math">
+\begin{align*}
+\phi(2a+b,3b,a,a-2b) \amp  = c_1\phi_1(2a+b,3b,a,a-2b)+c_2\phi_2(2a+b,3b,a,a-2b)\\
+\amp \quad + c_3\phi_3(2a+b,3b,a,a-2b)+c_4\phi_4(2a+b,3b,a,a-2b)\\
+\amp  = c_1(2a+b)+c_2(3b)+c_3(a)+c_4(a-2b)\\
+\amp  = a(2c_1+c_3+c_4)+b(c_1+3c_2-2c_4)\text{.}
+\end{align*}
+</div>
+</div> <div class="para logical">
+<div class="para">We wish for this to be zero for all possible values of <span class="process-math">\(a\)</span> and <span class="process-math">\(b\text{.}\)</span> Therefore, we must have</div>
+<div class="displaymath process-math">
+\begin{align*}
+2c_1+c_3+c_4\amp =0\\
+c_1+3c_2-2c_4\amp =0\text{.}
+\end{align*}
+</div>
+<div class="para">Solving gives us <span class="process-math">\(c_1=-\frac12 c_3-\frac12 c_4\)</span> and <span class="process-math">\(c_2=\frac16 c_3+\frac56 c_4\text{,}\)</span> so</div>
+<div class="displaymath process-math">
+\begin{align*}
+\phi \amp = \left(-\frac12 c_3-\frac12 c_4\right)\phi_1 +\left(\frac16 c_3+\frac56 c_4\right)\phi_2 + c_3\phi_3 + c_4\phi_4\\
+\amp  = c_3\left(-\frac12 \phi_1 + \frac16 \phi_2+\phi_3\right)+c_4\left(-\frac12\phi_1+\frac56 \phi_2 + \phi_4\right)\text{.}
+\end{align*}
+</div>
+<div class="para">This gives us the following basis for <span class="process-math">\(U^0\text{:}\)</span>
+</div>
+<div class="displaymath process-math">
 \begin{equation*}
-(a-b+3c, 2a+b, 3c, 4a-b+3c,a-4c) = a(1,2,0,4,1)+b(-1,1,0,-1,0)+c(3,0,3,3,-4)\text{,}
+\left\{\phi_3-\frac12 \phi_1+\frac16 \phi_2, \phi_4-\frac12\phi_1+\frac56\phi_3\right\}\text{.}
 \end{equation*}
 </div>
-<div class="para">so <span class="process-math">\(\{(1,2,0,4,1),(-1,1,0,-1,0),(3,0,3,3,-4)\}\)</span> is a basis for <span class="process-math">\(U\text{.}\)</span> (We have just shown that this set spans <span class="process-math">\(U\text{;}\)</span> it is independent since the first two vectors are not parallel, and the third vector cannot be in the span of the first two, since its third entry is nonzero.) As in <a href="" class="xref" data-knowl="./knowl/thm-complement-matrix.html" title="Theorem 3.3.11">Theorem 3.3.11</a>, we set <span class="process-math">\(A=\bbm 1\amp -1\amp 3\\2\amp 1\amp 0\\0\amp 0\amp 3\\4\amp -1\amp 3\\1\amp 0\amp -4\ebm\text{.}\)</span>
 </div>
-</div> <div class="para">To find a basis for <span class="process-math">\(U^\bot\text{,}\)</span> we simply need to find the nullspace of <span class="process-math">\(A^T\text{,}\)</span> which we do below.</div> <pre class="ptx-sagecell sagecell-sage" id="sage-52"><script type="text/x-sage">from sympy import Matrix, init_printing
-init_printing()
-A = Matrix(5,3,[1,-1,3,2,1,0,0,0,3,4,-1,3,1,0,-4])
-B=A.T
-B.nullspace()
-</script></pre>
 </div>
-<span class="incontext"><a href="section-projection.html#solution-63" class="internal">in-context</a></span>
+<span class="incontext"><a href="worksheet-dual-basis.html#solution-63" class="internal">in-context</a></span>
 </body>
 </html>

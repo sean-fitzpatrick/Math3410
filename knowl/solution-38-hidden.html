@@ -9,9 +9,36 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="robots" content="noindex, nofollow">
+<script>// Make *any* pre with class 'sagecell-sage' an executable Sage cell
+// Their results will be linked, only within language type
+sagecell.makeSagecell({inputLocation: 'pre.sagecell-sage',
+                       linked: true,
+                       languages: ['sage'],
+                       evalButtonText: 'Evaluate (Sage)'});
+</script>
 </head>
 <body class="ignore-math"><div class="solution solution-like">
-<div class="para">Since <span class="process-math">\(p(1)=0\text{,}\)</span> we know that <span class="process-math">\(p(x)=(x-1)q(x)\text{,}\)</span> for some <span class="process-math">\(q(x)=ax^2+bx+c\text{.}\)</span> Thus, <span class="process-math">\(p(x)=ax^2(x-1)+bx(x-1)+c(x-1)\text{,}\)</span> so a basis is given by <span class="process-math">\(\{(x-1),x(x-1),x^2(x-1)\}\text{.}\)</span>
-</div> <div class="para">(Another option is <span class="process-math">\(\{(x-1),(x-1)^2,(x-1)^3\}\text{.}\)</span>)</div>
+<div class="para">At first, this example looks the same as the one above, and to some extent, it is. The difference is that this time, we’re given the values of <span class="process-math">\(T\)</span> on a basis that is not the standard one. This means we first have to do some work to determine how to write the given vector in terms of the given basis.</div> <div class="para logical">
+<div class="para">Suppose we have <span class="process-math">\(a\bbm 3\\1\ebm+b\bbm 2\\-5\ebm = \bbm 4\\3\ebm\)</span> for scalars <span class="process-math">\(a,b\text{.}\)</span> This is equivalent to the matrix equation</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\bbm 3\amp 2\\1\amp -5\ebm\bbm a\\b\ebm = \bbm 4\\3\ebm.
+\end{equation*}
+</div>
+<div class="para">Solving (perhaps using the code cell below), we get <span class="process-math">\(a=\frac{26}{17}, b = -\frac{5}{17}\text{.}\)</span>
+</div>
+</div> <pre class="ptx-sagecell sagecell-sage" id="sage-23"><script type="text/x-sage">from sympy import Matrix,init_printing
+init_printing()
+A = Matrix(2,2,[3,2,1,-5])
+B = Matrix(2,1,[4,3])
+(A**-1)*B
+</script></pre> <div class="para logical">
+<div class="para">Therefore,</div>
+<div class="displaymath process-math">
+\begin{equation*}
+T\bbm 4\\3\ebm = \frac{26}{17}\bbm 1\\4\ebm -\frac{5}{17}\bbm 2\\-1\ebm = \bbm 16/17\\109/17\ebm\text{.}
+\end{equation*}
+</div>
+</div>
 </div></body>
 </html>

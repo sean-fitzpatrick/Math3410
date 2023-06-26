@@ -13,17 +13,19 @@
 <body class="ignore-math">
 <h5 class="heading"><span class="type">Paragraph</span></h5>
 <div class="para logical">
-<div class="para">The definition of a positive matrix is equivalent to requiring that all its eigenvalues are non-negative. Every positive matrix <span class="process-math">\(A\)</span> has a unique positive square root: a matrix <span class="process-math">\(R\)</span> such that <span class="process-math">\(R^2=A\text{.}\)</span> Since <span class="process-math">\(A\)</span> is symmetric/hermitian, it can be diagonalized. Writing <span class="process-math">\(A = PDP^{-1}\)</span> where <span class="process-math">\(P\)</span> is orthogonal/unitary and</div>
+<div class="para">The matrix <span class="process-math">\(\Sigma_A\)</span> is the same size as <span class="process-math">\(A\text{.}\)</span> First, we list the positive singular values of <span class="process-math">\(A\)</span> in decreasing order:</div>
 <div class="displaymath process-math">
 \begin{equation*}
-D = \bbm \lambda_1 \amp 0\amp \cdots \amp 0\\0\amp \lambda_2 \amp \cdots \amp 0\\ \vdots \amp \vdots \amp \ddots \amp \vdots\\ 0\amp 0\amp \cdots \amp \lambda_n\ebm\text{,}
+\sigma_1\geq \sigma_2\geq \cdots \geq \sigma_k\gt 0\text{.}
 \end{equation*}
 </div>
-<div class="para">we have <span class="process-math">\(R=PEP^{-1}\text{,}\)</span> where</div>
+<div class="para">Then, we let <span class="process-math">\(D_A = \operatorname{diag}(\sigma_1,\ldots, \sigma_k)\text{,}\)</span> and set</div>
 <div class="displaymath process-math">
 \begin{equation*}
-D = \bbm \sqrt{\lambda_1} \amp 0\amp \cdots \amp 0\\0\amp \sqrt{\lambda_2} \amp \cdots \amp 0\\ \vdots \amp \vdots \amp \ddots \amp \vdots\\ 0\amp 0\amp \cdots \amp \sqrt{\lambda_n}\ebm\text{.}
+\Sigma_A = \begin{bmatrix}D_A\amp 0\\0\amp 0\end{bmatrix}\text{.}
 \end{equation*}
+</div>
+<div class="para">That is, we put <span class="process-math">\(D_A\)</span> in the upper-left, and then fill in zeros as needed, until <span class="process-math">\(\Sigma_A\)</span> is the same size as <span class="process-math">\(A\text{.}\)</span>
 </div>
 </div>
 <span class="incontext"><a href="section-matrix-factor.html#p-1841" class="internal">in-context</a></span>

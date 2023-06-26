@@ -12,23 +12,14 @@
 </head>
 <body class="ignore-math"><div class="solution solution-like">
 <div class="para logical">
-<div class="para">Let <span class="process-math">\(X=\bbm a\amp b\\c\amp d\ebm\text{.}\)</span> Then <span class="process-math">\(AX = \bbm a+c\amp b+d\\0\amp 0\ebm\text{,}\)</span> and <span class="process-math">\(XA = \bbm a\amp a\\c\amp c\ebm\text{,}\)</span> so the condition <span class="process-math">\(AX=XA\)</span> requires:</div>
-<div class="displaymath process-math">
-\begin{align*}
-a+c \amp = a\\
-b+d \amp = a\\
-0 \amp = c\\
-0 \amp =c\text{.}
-\end{align*}
-</div>
-</div> <div class="para logical">
-<div class="para">So <span class="process-math">\(c=0\text{,}\)</span> in which case the first equation <span class="process-math">\(a=a\)</span> is trivial, and we are left with the single equation <span class="process-math">\(a=b+d\text{.}\)</span> Thus, our matrix <span class="process-math">\(X\)</span> must be of the form</div>
+<div class="para">If <span class="process-math">\(p(x)=p(-x)\text{,}\)</span> then <span class="process-math">\(p(x)\)</span> is an even polynomial, and therefore <span class="process-math">\(p(x)=a+bx^2\)</span> for <span class="process-math">\(a,b\in\R\text{.}\)</span> (If you didn’t know this it’s easily verified: if</div>
 <div class="displaymath process-math">
 \begin{equation*}
-X = \bbm b+d \amp b\\0\amp d\ebm = b\bbm 1\amp 1\\0\amp 0\ebm + d\bbm 1\amp 0\\0\amp 1\ebm\text{.}
+a+bx+cx^2 = a+b(-x)+c(-x)^2\text{,}
 \end{equation*}
 </div>
-<div class="para">Since the matrices <span class="process-math">\(\bbm 1\amp 1\\0\amp 0\ebm\)</span> and <span class="process-math">\(\bbm 1\amp 0\\0\amp 1\ebm\)</span> are not scalar multiples of each other, they must be independent, and therefore, they form a basis for <span class="process-math">\(U\text{.}\)</span> (Why do we know these matrices span <span class="process-math">\(U\text{?}\)</span>)</div>
+<div class="para">we can immediately cancel <span class="process-math">\(a\)</span> from each side, and since <span class="process-math">\((-x)^2=x^2\text{,}\)</span> we can cancel <span class="process-math">\(cx^2\)</span> as well. This leaves <span class="process-math">\(bx=-bx\text{,}\)</span> or <span class="process-math">\(2bx=0\text{,}\)</span> which implies that <span class="process-math">\(b=0\text{.}\)</span>)</div>
+</div> <div class="para">It follows that the set <span class="process-math">\(\{1,x^2\}\)</span> spans <span class="process-math">\(U_3\text{,}\)</span> and since this is a subset of the standard basis <span class="process-math">\(\{1,x,x^2\}\)</span> of <span class="process-math">\(P_2\text{,}\)</span> it must be independent, and is therefore a basis of <span class="process-math">\(U_3\text{,}\)</span> letting us conclude that <span class="process-math">\(\dim U_3=2\text{.}\)</span>
 </div>
 </div></body>
 </html>

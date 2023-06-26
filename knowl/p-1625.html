@@ -12,7 +12,20 @@
 </head>
 <body class="ignore-math">
 <h4 class="heading"><span class="type">Paragraph</span></h4>
-<div class="para">Eigenvalues and eigenvectors can just as easily be defined for a general linear operator <span class="process-math">\(T:V\to V\text{.}\)</span> In this context, and eigenvector <span class="process-math">\(\xx\)</span> is sometimes referred to as a <em class="emphasis">characteristic vector</em> (or characteristic direction) for <span class="process-math">\(T\text{,}\)</span> since the property <span class="process-math">\(T(\xx)=\lambda \xx\)</span> simply states that the transformed vector <span class="process-math">\(T(\xx)\)</span> is parallel to the original vector <span class="process-math">\(\xx\text{.}\)</span> Some linear algebra textbooks that focus more on general linear transformations frame this topic in the context of <em class="emphasis">invariant subspaces</em> for a linear operator.</div>
+<div class="para logical">
+<div class="para">We find that <span class="process-math">\(A-(-1)I_n = \bbm 1\amp 1\amp 1\\1\amp 1\amp 1\\1\amp 1\amp 1\ebm\text{,}\)</span> which has reduced row-echelon form <span class="process-math">\(\bbm 1\amp 1\amp 1\\0\amp 0\amp 0\\0\amp 0\amp 0\ebm\text{.}\)</span> Solving for the nullspace, we find that there are two independent eigenvectors:</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\xx_{1,1}=\bbm 1\\-1\\0\ebm, \quad \text{ and } \quad \xx_{1,2}=\bbm 1\\0\\-1\ebm\text{,}
+\end{equation*}
+</div>
+<div class="para">so</div>
+<div class="displaymath process-math">
+\begin{equation*}
+E_{-1}(A) = \spn\left\{\bbm 1\\-1\\0\ebm, \bbm 1\\0\\-1\ebm\right\}\text{.}
+\end{equation*}
+</div>
+</div>
 <span class="incontext"><a href="sec-eigen-basics.html#p-1625" class="internal">in-context</a></span>
 </body>
 </html>

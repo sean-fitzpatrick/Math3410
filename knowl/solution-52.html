@@ -13,27 +13,38 @@
 <body class="ignore-math">
 <div class="solution solution-like">
 <h4 class="heading">
-<span class="type">Solution</span><span class="space"> </span><span class="codenumber">2.3.7.1</span><span class="period">.</span>
+<span class="type">Solution</span><span class="space"> </span><span class="codenumber">3.1.18.1</span><span class="period">.</span>
 </h4>
 <div class="para logical">
-<div class="para">Suppose we have linear maps <span class="process-math">\(U\xrightarrow{T} V\xrightarrow{S} W\text{,}\)</span> and let <span class="process-math">\(\uu_1,\uu_2\in U\text{.}\)</span> Then</div>
+<div class="para">We compute</div>
 <div class="displaymath process-math">
 \begin{align*}
-ST(\uu_1+\uu_2) \amp = S(T(\uu_1+\uu_2)) \\
-\amp = S(T(\uu_1)+T(\uu_2))\\
-\amp = S(T(\uu_1))+S(T(\uu_2)) \\
-\amp = ST(\uu_1)+ST(\uu_2)\text{,}
+\left(\frac{\vv\dotp\xx_1}{\len{\xx_1}^2}\right)\xx_1
+\amp +\left(\frac{\vv\dotp\xx_2}{\len{\xx_2}^2}\right)\xx_2
++\left(\frac{\vv\dotp\xx_3}{\len{\xx_3}^2}\right)\xx_3\\
+\amp = \frac{4}{2}\xx_1+\frac{-9}{3}\xx_2+\frac{-28}{7}\xx_3\\
+\amp = 2(1,0,1,0)-3(-1,0,1,1)-4(1,1,-1,2)\\
+\amp = (1,-4,3,-11) = \vv\text{,}
 \end{align*}
 </div>
-<div class="para">and for any scalar <span class="process-math">\(c\text{,}\)</span>
+<div class="para">so <span class="process-math">\(\vv\in\spn\{\xx_1,\xx_2,\xx_3\}\text{.}\)</span>
 </div>
+</div> <div class="para logical">
+<div class="para">On the other hand, repeating the same calculation with <span class="process-math">\(\ww\text{,}\)</span> we find</div>
 <div class="displaymath process-math">
-\begin{equation*}
-ST(c\uu_1) = S(T(c\uu_1))=S(cT(\uu_1)) = cS(T(\uu_1))=c(ST(\uu_1))\text{.}
-\end{equation*}
+\begin{align*}
+\left(\frac{\vv\dotp\xx_1}{\len{\xx_1}^2}\right)\xx_1
+\amp +\left(\frac{\vv\dotp\xx_2}{\len{\xx_2}^2}\right)\xx_2
++\left(\frac{\vv\dotp\xx_3}{\len{\xx_3}^2}\right)\xx_3\\
+\amp =\frac12 (1,0,1,0)-\frac53 (-1,0,1,1) +\frac47 (1,1,-1,2)\\
+\amp = \left(\frac{73}{42},\frac47,-\frac{115}{42},-\frac{11}{21}\right)\neq \ww\text{,}
+\end{align*}
+</div>
+<div class="para">so <span class="process-math">\(\ww\notin\spn\{\xx_1,\xx_2,\xx_3\}\text{.}\)</span>
+</div>
+</div> <div class="para">Soon, we’ll see that the quantity we computed when showing that <span class="process-math">\(\ww\notin\spn\{\xx_1,\xx_2,\xx_3\}\)</span> is, in fact, the <em class="emphasis">orthogonal projection</em> of <span class="process-math">\(\ww\)</span> onto the subspace <span class="process-math">\(\spn\{\xx_1,\xx_2,\xx_3\}\text{.}\)</span>
 </div>
 </div>
-</div>
-<span class="incontext"><a href="sec-isomorphism.html#solution-52" class="internal">in-context</a></span>
+<span class="incontext"><a href="sec-orthogonal-sets.html#solution-52" class="internal">in-context</a></span>
 </body>
 </html>

@@ -13,10 +13,27 @@
 <body class="ignore-math">
 <div class="solution solution-like">
 <h4 class="heading">
-<span class="type">Solution</span><span class="space"> </span><span class="codenumber">2.2.10.b.1</span><span class="period">.</span>
+<span class="type">Solution</span><span class="space"> </span><span class="codenumber">2.3.7.1</span><span class="period">.</span>
 </h4>
-<div class="para">It’s clear that if <span class="process-math">\(A^T=A\text{,}\)</span> then <span class="process-math">\(T(A)=0\text{.}\)</span> On the other hand, if <span class="process-math">\(T(A)=0\text{,}\)</span> then <span class="process-math">\(A-A^T=0\text{,}\)</span> so <span class="process-math">\(A=A^T\text{.}\)</span> Thus, the kernel consists of all symmetric matrices.</div>
+<div class="para logical">
+<div class="para">Suppose we have linear maps <span class="process-math">\(U\xrightarrow{T} V\xrightarrow{S} W\text{,}\)</span> and let <span class="process-math">\(\uu_1,\uu_2\in U\text{.}\)</span> Then</div>
+<div class="displaymath process-math">
+\begin{align*}
+ST(\uu_1+\uu_2) \amp = S(T(\uu_1+\uu_2)) \\
+\amp = S(T(\uu_1)+T(\uu_2))\\
+\amp = S(T(\uu_1))+S(T(\uu_2)) \\
+\amp = ST(\uu_1)+ST(\uu_2)\text{,}
+\end{align*}
 </div>
-<span class="incontext"><a href="sec-kernel-image.html#solution-47" class="internal">in-context</a></span>
+<div class="para">and for any scalar <span class="process-math">\(c\text{,}\)</span>
+</div>
+<div class="displaymath process-math">
+\begin{equation*}
+ST(c\uu_1) = S(T(c\uu_1))=S(cT(\uu_1)) = cS(T(\uu_1))=c(ST(\uu_1))\text{.}
+\end{equation*}
+</div>
+</div>
+</div>
+<span class="incontext"><a href="sec-isomorphism.html#solution-47" class="internal">in-context</a></span>
 </body>
 </html>

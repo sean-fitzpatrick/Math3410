@@ -9,17 +9,52 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="robots" content="noindex, nofollow">
+<script>// Make *any* pre with class 'sagecell-sage' an executable Sage cell
+// Their results will be linked, only within language type
+sagecell.makeSagecell({inputLocation: 'pre.sagecell-sage',
+                       linked: true,
+                       languages: ['sage'],
+                       evalButtonText: 'Evaluate (Sage)'});
+</script>
 </head>
 <body class="ignore-math"><div class="solution solution-like">
 <div class="para logical">
-<div class="para">If <span class="process-math">\(\uu\in U\text{,}\)</span> then</div>
+<div class="para">Since <span class="process-math">\(\{(1,2),(-1,1)\}\)</span> forms a basis of <span class="process-math">\(\R^2\)</span> (the vectors are not parallel and there are two of them), it suffices to determine how to write a general vector in terms of this basis. Suppose</div>
+<div class="displaymath process-math">
+\begin{equation*}
+x(1,2)+y(-1,1)=(a,b)
+\end{equation*}
+</div>
+<div class="para">for a general element <span class="process-math">\((a,b)\in \R^2\text{.}\)</span> This is equivalent to the matrix equation <span class="process-math">\(\bbm 1\amp -1\\2\amp 1\ebm\bbm x\\y\ebm = \bbm a\\b\ebm\text{,}\)</span> which we can solve as <span class="process-math">\(\bbm x\\y\ebm = \bbm 1\amp -1\\2\amp 1\ebm^{-1}\bbm a\\b\ebm\text{:}\)</span>
+</div>
+</div> <pre class="ptx-sagecell sagecell-sage" id="sage-24"><script type="text/x-sage">from sympy import Matrix, init_printing, symbols
+init_printing()
+a, b = symbols('a b', real = True, constant = True)
+A = Matrix(2,2,[1,-1,2,1])
+B = Matrix(2,1,[a,b])
+(A**-1)*B
+</script></pre> <div class="para logical">
+<div class="para">This gives us the result</div>
+<div class="displaymath process-math">
+\begin{equation*}
+(a,b) = \frac13(a+b)\cdot (1,2)+\frac13(-2a+b)\cdot (-1,1).
+\end{equation*}
+</div>
+<div class="para">Thus,</div>
 <div class="displaymath process-math">
 \begin{align*}
-\uu \amp = (3x_3,x_2,x_3,x_4,3x_2-5x_4)\\
-\amp = (0,x_2,0,0,3x_2)+(3x_3,0,x_3,0,0)+(0,0,0,x_4,-5x_4)\\
-\amp = x_2(0,1,0,0,3)+x_3(3,0,1,0,0)+x_4(0,0,0,1,-5)\text{.}
+T(a,b) \amp = \frac13(a+b)\cdot T(1,2)+\frac13(-2a+b)\cdot T(-1,1) \\
+\amp = \frac13(a+b)\cdot (1,1,0)+\frac13(-2a+b)\cdot (0,2,-1)\\
+\amp = \left(\frac{a+b}{3}, -a+b, \frac{2a-b}{3}\right)\text{.}
 \end{align*}
 </div>
-</div> <div class="para">This shows that <span class="process-math">\(U=\spn \{(0,1,0,0,3), (3,0,1,0,0), (0,0,0,1,-5)\}\text{.}\)</span> These vectors are also linearly independent, since each one has its first leading (nonzero) entry in a different position. (Think about what this implies for the <abbr class="initialism">RREF</abbr> of the resulting matrix.)</div>
+</div> <div class="para logical">
+<div class="para">We conclude that</div>
+<div class="displaymath process-math">
+\begin{equation*}
+T(3,2) = \left(\frac53, -1, \frac43\right)\text{.}
+\end{equation*}
+</div>
+</div>
 </div></body>
 </html>

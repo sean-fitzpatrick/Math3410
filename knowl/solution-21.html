@@ -9,24 +9,22 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="robots" content="noindex, nofollow">
-<script>// Make *any* pre with class 'sagecell-sage' an executable Sage cell
-// Their results will be linked, only within language type
-sagecell.makeSagecell({inputLocation: 'pre.sagecell-sage',
-                       linked: true,
-                       languages: ['sage'],
-                       evalButtonText: 'Evaluate (Sage)'});
-</script>
 </head>
 <body class="ignore-math">
 <div class="solution solution-like">
 <h3 class="heading">
-<span class="type">Solution</span><span class="space"> </span><span class="codenumber">1.6.7.1</span><span class="period">.</span>
+<span class="type">Solution</span><span class="space"> </span><span class="codenumber">1.6.9.1</span><span class="period">.</span>
 </h3>
-<div class="para">We set up a matrix and reduce:</div> <pre class="ptx-sagecell sagecell-sage" id="sage-17"><script type="text/x-sage">from sympy import Matrix,init_printing
-init_printing()
-A = Matrix(3,3,[1,-1,-1,2,0,4,0,3,9])
-A.rref()
-</script></pre> <div class="para">Notice that this time we don’t get a unique solution, so we can conclude that these vectors are <em class="emphasis">not</em> independent. Furthermore, you can probably deduce from the above that we have <span class="process-math">\(2\vv_1+3\vv_2-\vv_3=\zer\text{.}\)</span> Now suppose that <span class="process-math">\(\ww\in\spn\{\vv_1,\vv_2,\vv_3\}\text{.}\)</span> In how many ways can we write <span class="process-math">\(\ww\)</span> as a linear combination of these vectors?</div>
+<div class="para logical">
+<div class="para">We set a linear combination equal to the zero vector, and combine:</div>
+<div class="displaymath process-math">
+\begin{align*}
+a\bbm -1\amp 0\\0\amp -1\ebm +b\bbm 1\amp -1\\ -1\amp 1\ebm
++c\bbm 1\amp 1\\1\amp 1\ebm +d \bbm 0\amp -1\\-1\amp 0\ebm = \bbm 0\amp 0\\ 0\amp 0\ebm\\
+\bbm -a+b+c\amp -b+c-d\\-b+c-d\amp -a+b+c\ebm = \bbm 0\amp 0\\0\amp 0\ebm\text{.}
+\end{align*}
+</div>
+</div> <div class="para">We could proceed, but we might instead notice right away that equations 1 and 4 are identical, and so are equations 2 and 3. With only two distinct equations and 4 unknowns, we’re certain to find nontrivial solutions.</div>
 </div>
 <span class="incontext"><a href="sec-independence.html#solution-21" class="internal">in-context</a></span>
 </body>

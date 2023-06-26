@@ -12,7 +12,16 @@
 </head>
 <body class="ignore-math">
 <h4 class="heading"><span class="type">Paragraph</span></h4>
-<div class="para">To do the above exercise using SymPy, we first define <span class="process-math">\(A\)</span> and ask for the eigenvectors.</div>
+<div class="para logical">
+<div class="para">Given a polynomial <span class="process-math">\(p(x) = a_0+a_1x+\cdots + a_nx_n\text{,}\)</span> we define <span class="process-math">\(p(A)\)</span> as</div>
+<div class="displaymath process-math">
+\begin{equation*}
+p(A) = a_0I+a_1A+\cdots + a_nA^n\text{.}
+\end{equation*}
+</div>
+<div class="para">(Note the presence of the identity matrix in the first term, since it does not make sense to add a scalar to a matrix.) Note further that since <span class="process-math">\((P^{-1}AP)^n = P^{-1}A^nP\)</span> for any invertible matrix <span class="process-math">\(P\)</span> and positive integer <span class="process-math">\(n\text{,}\)</span> we have <span class="process-math">\(p(U^HAU)=U^Hp(A)U\)</span> for any polynomial <span class="process-math">\(p\)</span> and unitary matrix <span class="process-math">\(U\text{.}\)</span>
+</div>
+</div>
 <span class="incontext"><a href="sec-complex.html#p-1763" class="internal">in-context</a></span>
 </body>
 </html>

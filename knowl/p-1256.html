@@ -13,19 +13,15 @@
 <body class="ignore-math">
 <h3 class="heading"><span class="type">Paragraph</span></h3>
 <div class="para logical">
-<div class="para">Because <span class="process-math">\(T_A\)</span> is a linear transformation, we can compute it as long as we’re given its values on a basis. If <span class="process-math">\(\{\vv_1, \vv_2,\ldots, \vv_n\}\)</span> is a basis for <span class="process-math">\(\R^n\text{,}\)</span> then for any <span class="process-math">\(\xx\in\R^n\)</span> there exist unique scalars <span class="process-math">\(c_1,c_2,\ldots, c_n\)</span> such that</div>
+<div class="para">A <em class="emphasis">linear recurrence</em> of length <span class="process-math">\(k\)</span> is a sequence <span class="process-math">\((x_n)\)</span> that is recursively defined, with successive terms in the sequence defined in terms of the previous <span class="process-math">\(k\)</span> terms, via a linear recursion formula of the form</div>
 <div class="displaymath process-math">
 \begin{equation*}
-\xx = c_1\vv_1+c_2\vv_2+\cdots + c_n\vv_n\text{,}
+x_{n+k} = a_0x_k + a_1x_{k+1}+\cdots + a_{k-1}x_{n+k-1}\text{.}
 \end{equation*}
 </div>
-<div class="para">and since <span class="process-math">\(T_A\)</span> is linear, we have</div>
-<div class="displaymath process-math">
-\begin{equation*}
-T_A(\xx)=c_1T_A(\vv_1)+c_2T_A(\vv_2)+\cdots +c_nT_A(\vv_n)\text{.}
-\end{equation*}
+<div class="para">(Here we assume <span class="process-math">\(a_0\neq 0\)</span> to have the appropriate length.) The most famous example of a linear recurrence is, of course, the Fibonacci sequence, which is defined by <span class="process-math">\(x_0=1, x_1=1\text{,}\)</span> and <span class="process-math">\(x_{n+2}=x_n+x_{n+1}\)</span> for all <span class="process-math">\(n\geq 0\text{.}\)</span>
 </div>
 </div>
-<span class="incontext"><a href="worksheet-transformations.html#p-1256" class="internal">in-context</a></span>
+<span class="incontext"><a href="worksheet-recurrence.html#p-1256" class="internal">in-context</a></span>
 </body>
 </html>

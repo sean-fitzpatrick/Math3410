@@ -49,20 +49,36 @@ window.MathJax = {
     paths: {pretext: "https://pretextbook.org/js/lib"},
   },
   startup: {
-    /* Mathjax typesetting operation is under the control of React */
-    typeset: false,
+    pageReady() {
+      return MathJax.startup.defaultPageReady().then(function () {
+      console.log("in ready function");
+      rsMathReady();
+      }
+    )}
   },
 };
 </script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link href="https://webwork-dev.uleth.ca/webwork2_files/js/apps/MathView/mathview.css" rel="stylesheet">
-<script src="https://pretextbook.org/js/0.3/pretext-webwork/2.17/pretext-webwork.js"></script><script src="https://webwork-dev.uleth.ca/webwork2_files/node_modules/iframe-resizer/js/iframeResizer.min.js"></script><script>js_version = 0.3</script><script type="module" defer src="https://siefkenj.github.io/pretext-react/static/js/main.js"></script><link href="https://siefkenj.github.io/pretext-react/static/css/main.css" rel="stylesheet">
-<link rel="preconnect" href="https://fonts.googleapis.com">
+<script src="https://pretextbook.org/js/0.3/pretext-webwork/2.18/pretext-webwork.js"></script><script src="https://webwork-dev.uleth.ca/webwork2_files/node_modules/iframe-resizer/js/iframeResizer.min.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/themes/prism.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="https://pretextbook.org/js/0.3/pretext_search.js"></script><link href="https://pretextbook.org/css/0.7/pretext_search.css" rel="stylesheet" type="text/css">
+<script>js_version = 0.3</script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.3/pretext.js"></script><script>miniversion=0.1</script><script src="https://pretextbook.org/js/0.3/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/0.3/user_preferences.js"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+</script><link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&amp;family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&amp;family=Tinos:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" rel="stylesheet">
 <link href="https://fonts.cdnfonts.com/css/dejavu-serif" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz,wdth,wght@8..144,50..150,100..900&amp;display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wdth,wght@75..100,300..800&amp;display=swap" rel="stylesheet">
 <script type="application/json" class="js-hypothesis-config">{
-    "openSidebar": false,    "showHighlights": true,}</script><script src="https://hypothes.is/embed.js" async=""></script><!--** eBookCongig is necessary to configure interactive       **-->
+    "openSidebar": false,    "showHighlights": true,}</script><script src="https://hypothes.is/embed.js" async=""></script><link href="https://pretextbook.org/css/0.7/pretext.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/shell_crc.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/banner_crc.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/navbar_crc.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/toc_crc.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/knowls_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/style_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/colors_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/setcolors.css" rel="stylesheet" type="text/css">
+<!--** eBookCongig is necessary to configure interactive       **-->
 <!--** Runestone components to run locally in reader's browser **-->
 <!--** No external communication:                              **-->
 <!--**     log level is 0, Runestone Services are disabled     **-->
@@ -84,17 +100,17 @@ eBookConfig.allow_pairs = false;
 eBookConfig.enableScratchAC = false;
 eBookConfig.build_info = "";
 eBookConfig.python3 = null;
-eBookConfig.runestone_version = '7.0.0dev3';
+eBookConfig.runestone_version = '7.0.0dev4';
 eBookConfig.jobehost = '';
 eBookConfig.proxyuri_runs = '';
 eBookConfig.proxyuri_files = '';
 eBookConfig.enable_chatcodes =  false;
 </script>
 <!--*** Runestone Services ***-->
-<script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.0dev3/prefix-runtime.71ffd81c0faeb38b.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.0dev3/prefix-347.193e36c07abd0197.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.0dev3/prefix-runestone.e543e0dd19670ae2.bundle.js"></script><link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/7.0.0dev3/prefix-347.f9add1ca35d5ad93.css">
-<link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/7.0.0dev3/prefix-runestone.1f1f63d2cda36a4d.css">
+<script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.0dev4/prefix-runtime.3489f84c0d76065d.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.0dev4/prefix-347.193e36c07abd0197.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.0dev4/prefix-runestone.e543e0dd19670ae2.bundle.js"></script><link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/7.0.0dev4/prefix-347.f9add1ca35d5ad93.css">
+<link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/7.0.0dev4/prefix-runestone.931faef5361cf6e9.css">
 </head>
-<body id="Math3410" data-react-in-use="yes" class="pretext book ignore-math">
+<body id="Math3410" class="pretext book ignore-math">
 <a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead"><div class="ptx-banner">
 <a id="logo-link" class="logo-link" href=""></a><div class="title-container">
 <h1 class="heading"><a href="linear-algebra.html"><span class="title">Linear Algebra:</span> <span class="subtitle">A second course, featuring proofs and Python</span></a></h1>
@@ -106,7 +122,109 @@ eBookConfig.enable_chatcodes =  false;
 <div id="searchempty" class="searchempty"><span>No results.</span></div>
 <ol id="searchresults" class="searchresults"></ol>
 </div>
-</div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><span class="treebuttons"><a class="previous-button button" href="sec-complex.html" title="Previous"><span class="icon">&lt;</span><span class="name">Prev</span></a><a class="up-button button" href="ch-diagonalization.html" title="Up"><span class="icon">^</span><span class="name">Up</span></a><a class="next-button button" href="section-matrix-factor.html" title="Next"><span class="name">Next</span><span class="icon">&gt;</span></a></span><div class="searchbox"><div class="searchwidget">
+</div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><button id="user-preferences-button" class="user-preferences-button button" title="Modify user preferences"><span id="avatarbutton" class="avatarbutton name">You!</span><div id="preferences_menu_holder" class="preferences_menu_holder hidden"><ol id="preferences_menu" class="preferences_menu" style="font-family: 'Roboto Serif', serif;">
+<li data-env="avatar" tabindex="-1">Choose avatar<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
+<ol class="hidden avatar">
+<li data-val="You!" tabindex="-1">
+<span id="theYou!" class="avatarcheck">✔️</span>You!</li>
+<li data-val="😺" tabindex="-1">
+<span id="the😺" class="avatarcheck"></span>😺</li>
+<li data-val="👤" tabindex="-1">
+<span id="the👤" class="avatarcheck"></span>👤</li>
+<li data-val="👽" tabindex="-1">
+<span id="the👽" class="avatarcheck"></span>👽</li>
+<li data-val="🐶" tabindex="-1">
+<span id="the🐶" class="avatarcheck"></span>🐶</li>
+<li data-val="🐼" tabindex="-1">
+<span id="the🐼" class="avatarcheck"></span>🐼</li>
+<li data-val="🌈" tabindex="-1">
+<span id="the🌈" class="avatarcheck"></span>🌈</li>
+</ol>
+</li>
+<li data-env="fontfamily" tabindex="-1">Font family<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
+<ol class="hidden fontfamily">
+<li data-val="face" data-change="OS" tabindex="-1" style="font-family: 'Open Sans'">
+<span id="theOS" class="ffcheck">✔️</span><span class="name">Open Sans</span><span class="sample">AaBbCc 123 PreTeXt</span>
+</li>
+<li data-val="face" data-change="RS" tabindex="-1" style="font-family: 'Roboto Serif'">
+<span id="theRS" class="ffcheck"></span><span class="name">Roboto Serif</span><span class="sample">AaBbCc 123 PreTeXt</span>
+</li>
+</ol>
+</li>
+<li data-env="font" tabindex="-1">Adjust font<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
+<ol class="hidden fonts">
+<li>Size</li>
+<li><span id="thesize">12</span></li>
+<li data-val="size" data-change="-1" tabindex="-1" style="font-size: 80%">Smaller</li>
+<li data-val="size" data-change="1" tabindex="-1" style="font-size: 110%">Larger</li>
+<li>Width</li>
+<li><span id="thewdth">100</span></li>
+<li data-val="wdth" data-change="-5" tabindex="-1" style="font-variation-settings: 'wdth' 60">narrower</li>
+<li data-val="wdth" data-change="5" tabindex="-1" style="font-variation-settings: 'wdth' 150">wider</li>
+<li>Weight</li>
+<li><span id="thewght">400</span></li>
+<li data-val="wght" data-change="-50" tabindex="-1" style="font-weight: 200">thinner</li>
+<li data-val="wght" data-change="50" tabindex="-1" style="font-weight: 700">heavier</li>
+<li>Letter spacing</li>
+<li>
+<span id="thelspace">0</span><span class="byunits">/200</span>
+</li>
+<li data-val="lspace" data-change="-1" tabindex="-1">closer</li>
+<li data-val="lspace" data-change="1" tabindex="-1">f a r t h e r</li>
+<li>Word spacing</li>
+<li>
+<span id="thewspace">0</span><span class="byunits">/50</span>
+</li>
+<li data-val="wspace" data-change="-1" tabindex="-1">smaller gap </li>
+<li data-val="wspace" data-change="1" tabindex="-1">larger gap</li>
+<li>Line Spacing</li>
+<li>
+<span id="theheight">135</span><span class="byunits">/100</span>
+</li>
+<li data-val="height" data-change="-5" tabindex="-1" style="line-height: 1">closer<br>together</li>
+<li data-val="height" data-change="5" tabindex="-1" style="line-height: 1.75">further<br>apart</li>
+</ol>
+</li>
+<li data-env="atmosphere" tabindex="-1">Light/dark mode<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
+<ol class="hidden atmosphere">
+<li data-val="default" tabindex="-1">
+<span id="thedefault" class="atmospherecheck">✔️</span>default</li>
+<li data-val="pastel" tabindex="-1">
+<span id="thepastel" class="atmospherecheck"></span>pastel</li>
+<li data-val="darktwilight" tabindex="-1">
+<span id="thedarktwilight" class="atmospherecheck"></span>twilight</li>
+<li data-val="dark" tabindex="-1">
+<span id="thedark" class="atmospherecheck"></span>dark</li>
+<li data-val="darkmidnight" tabindex="-1">
+<span id="thedarkmidnight" class="atmospherecheck"></span>midnight</li>
+</ol>
+</li>
+<li data-env="ruler" tabindex="-1">Reading ruler<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
+<ol class="hidden ruler">
+<li data-val="none" tabindex="-1">
+<span id="thenone" class="rulercheck">✔️</span>none</li>
+<li data-val="underline" tabindex="-1">
+<span id="theunderline" class="rulercheck"></span>underline</li>
+<li data-val="lunderline" tabindex="-1">
+<span id="thelunderline" class="rulercheck"></span>L-underline</li>
+<li data-val="greybar" tabindex="-1">
+<span id="thegreybar" class="rulercheck"></span>grey bar</li>
+<li data-val="lightbox" tabindex="-1">
+<span id="thelightbox" class="rulercheck"></span>light box</li>
+<li data-val="sunrise" tabindex="-1">
+<span id="thesunrise" class="rulercheck"></span>sunrise</li>
+<li data-val="sunriseunderline" tabindex="-1">
+<span id="thesunriseunderline" class="rulercheck"></span>sunrise underline</li>
+<li class="moveQ">Motion by:</li>
+<li data-val="mouse" tabindex="-1">
+<span id="themouse" class="motioncheck">✔️</span>follow the mouse</li>
+<li data-val="arrow" tabindex="-1">
+<span id="thearrow" class="motioncheck"></span>up/down arrows - not yet</li>
+<li data-val="eye" tabindex="-1">
+<span id="theeye" class="motioncheck"></span>eye tracking - not yet</li>
+</ol>
+</li>
+</ol></div></button><span class="treebuttons"><a class="previous-button button" href="sec-complex.html" title="Previous"><span class="icon">&lt;</span><span class="name">Prev</span></a><a class="up-button button" href="ch-diagonalization.html" title="Up"><span class="icon">^</span><span class="name">Up</span></a><a class="next-button button" href="section-matrix-factor.html" title="Next"><span class="name">Next</span><span class="icon">&gt;</span></a></span><div class="searchbox"><div class="searchwidget">
 <input id="ptxsearch" class="ptxsearch" type="text" name="terms" placeholder="Search" onchange="doSearch()"><button id="searchbutton" class="searchbutton" type="button" onclick="doSearch()">🔍</button>
 </div></div></nav><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\require{boldsymbol}\newcommand{\spn}{\operatorname{span}}
 \newcommand{\bbm}{\begin{bmatrix}}
@@ -316,15 +434,15 @@ eBookConfig.enable_chatcodes =  false;
 <a href="worksheet-dynamical-a4.html" class="a4">A4</a><a href="worksheet-dynamical-letter.html" class="us">US</a>
 </div>
 </h2>
-<section class="onepage" id="page-21"><div class="introduction" id="introduction-24">
-<div class="para logical" id="p-1789">
+<section class="onepage" id="page-21"><div class="introduction" id="introduction-25">
+<div class="para logical" id="p-1768">
 <div class="para">Suppose we have a sequence <span class="process-math">\((x_n)\)</span> defined by a linear recurrence of length <span class="process-math">\(k\text{,}\)</span> as in <a href="worksheet-recurrence.html" class="internal" title="Worksheet 2.5: Worksheet: linear recurrences">Worksheet 2.5</a>:</div>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/worksheet-recurrence.html">
 \begin{equation*}
 x_{n+k} = a_0x_k + a_1x_{k+1}+\cdots + a_{k-1}x_{n-k+1}\text{.}
 \end{equation*}
 </div>
-</div> <div class="para" id="p-1790">We would like to represent this as a matrix equation, and then use eigenvalues to analyze, replacing the recurrence formula with a matrix equation of the form <span class="process-math">\(\vv_{k+1}=A\vv_k\text{.}\)</span> A sequence of vectors generated in this way is called a <dfn class="terminology">linear dynamical system</dfn>. It is a good model for systems with discrete time evolution (where changes occur in steps, rather than continuously).</div> <div class="para logical" id="p-1791">
+</div> <div class="para" id="p-1769">We would like to represent this as a matrix equation, and then use eigenvalues to analyze, replacing the recurrence formula with a matrix equation of the form <span class="process-math">\(\vv_{k+1}=A\vv_k\text{.}\)</span> A sequence of vectors generated in this way is called a <dfn class="terminology">linear dynamical system</dfn>. It is a good model for systems with discrete time evolution (where changes occur in steps, rather than continuously).</div> <div class="para logical" id="p-1770">
 <div class="para">To determine the long term evolution of the system, we would like to be able to compute</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -334,8 +452,8 @@ x_{n+k} = a_0x_k + a_1x_{k+1}+\cdots + a_{k-1}x_{n-k+1}\text{.}
 <div class="para">without first finding all the intermediate states, so this is a situation where we would like to be able to efficiently compute powers of a matrix. Fortunately, we know how to do this when <span class="process-math">\(A\)</span> is diagonalizable: <span class="process-math">\(A^n = PD^nP^{-1}\text{,}\)</span> where <span class="process-math">\(D\)</span> is a diagonal matrix whose entries are the eigenvalues of <span class="process-math">\(A\text{,}\)</span> and <span class="process-math">\(P\)</span> is the matrix of corresponding eigenvectors of <span class="process-math">\(A\text{.}\)</span>
 </div>
 </div>
-</div></section><section class="onepage" id="page-22"><article class="exercise exercise-like" id="exercise-161"><h3 class="heading"><span class="codenumber">1<span class="period">.</span></span></h3>
-<div class="introduction" id="introduction-25"><div class="para logical" id="p-1792">
+</div></section><section class="onepage" id="page-22"><article class="exercise exercise-like" id="exercise-164"><h3 class="heading"><span class="codenumber">1<span class="period">.</span></span></h3>
+<div class="introduction" id="introduction-26"><div class="para logical" id="p-1771">
 <div class="para">Consider a recurrence of length 2, of the form</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -343,10 +461,10 @@ x_{k+2} = ax_k+bx_{k+1}\text{.}
 \end{equation*}
 </div>
 </div></div>
-<article class="task exercise-like" id="task-44"><h4 class="heading"><span class="codenumber">(a)</span></h4>
-<div class="para" id="p-1793">According to <a href="worksheet-recurrence.html" class="internal" title="Worksheet 2.5: Worksheet: linear recurrences">Worksheet 2.5</a>, what is the polynomial associated to this recurrence?</div>
-<div class="workspace" data-space="2.5in"></div></article><article class="task exercise-like" id="task-45"><h4 class="heading"><span class="codenumber">(b)</span></h4>
-<div class="para logical" id="p-1794">
+<article class="task exercise-like" id="task-47"><h4 class="heading"><span class="codenumber">(a)</span></h4>
+<div class="para" id="p-1772">According to <a href="worksheet-recurrence.html" class="internal" title="Worksheet 2.5: Worksheet: linear recurrences">Worksheet 2.5</a>, what is the polynomial associated to this recurrence?</div>
+<div class="workspace" data-space="2.5in"></div></article><article class="task exercise-like" id="task-48"><h4 class="heading"><span class="codenumber">(b)</span></h4>
+<div class="para logical" id="p-1773">
 <div class="para">Let <span class="process-math">\(\vv_k = \begin{bmatrix}x_k\\x_{k+1}\end{bmatrix}\text{,}\)</span> for each <span class="process-math">\(k\geq 0\text{,}\)</span> and let <span class="process-math">\(A=\begin{bmatrix}0\amp 1\\a \amp b\end{bmatrix}\text{.}\)</span> Show that</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -354,10 +472,10 @@ x_{k+2} = ax_k+bx_{k+1}\text{.}
 \end{equation*}
 </div>
 </div>
-<div class="workspace" data-space="2.5in"></div></article><article class="task exercise-like" id="task-46"><h4 class="heading"><span class="codenumber">(c)</span></h4>
-<div class="para" id="p-1795">Compute the characteristic polynomial of <span class="process-math">\(A\text{.}\)</span> What do you observe?</div>
-<div class="workspace" data-space="2.5in"></div></article></article></section><section class="onepage" id="page-23"><article class="exercise exercise-like" id="exercise-162"><h3 class="heading"><span class="codenumber">2<span class="period">.</span></span></h3>
-<div class="introduction" id="introduction-26"><div class="para logical" id="p-1796">
+<div class="workspace" data-space="2.5in"></div></article><article class="task exercise-like" id="task-49"><h4 class="heading"><span class="codenumber">(c)</span></h4>
+<div class="para" id="p-1774">Compute the characteristic polynomial of <span class="process-math">\(A\text{.}\)</span> What do you observe?</div>
+<div class="workspace" data-space="2.5in"></div></article></article></section><section class="onepage" id="page-23"><article class="exercise exercise-like" id="exercise-165"><h3 class="heading"><span class="codenumber">2<span class="period">.</span></span></h3>
+<div class="introduction" id="introduction-27"><div class="para logical" id="p-1775">
 <div class="para">For a recurrence of length 3, given by</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -365,20 +483,20 @@ x_{k+3} = ax_k+bx_{k+1}+cx_{k+2}\text{:}
 \end{equation*}
 </div>
 </div></div>
-<article class="task exercise-like" id="task-47"><h4 class="heading"><span class="codenumber">(a)</span></h4>
-<div class="para" id="p-1797">Determine a matrix <span class="process-math">\(A\)</span> such that <span class="process-math">\(\vv_{k+1}=A\vv_k\text{,}\)</span> where <span class="process-math">\(\vv_k = \begin{bmatrix}x_k\\x_{k+1}\\x_{k+2}\end{bmatrix}\text{.}\)</span>
-</div>
-<div class="workspace" data-space="2.25in"></div></article><article class="task exercise-like" id="task-48"><h4 class="heading"><span class="codenumber">(b)</span></h4>
-<div class="para" id="p-1798">Compute the characteristic polynomial of <span class="process-math">\(A\text{,}\)</span> and compare it to the associated polynomial of the recurrence.</div>
-<div class="workspace" data-space="2.25in"></div></article><article class="task exercise-like" id="task-49"><h4 class="heading"><span class="codenumber">(c)</span></h4>
-<div class="para" id="p-1799">Show that if <span class="process-math">\(\lambda\)</span> is an eigenvalue of <span class="process-math">\(A\text{,}\)</span> then <span class="process-math">\(\xx = \begin{bmatrix}1\\ \lambda\\ \lambda^2\end{bmatrix}\)</span> is an associated eigenvector.</div>
-<div class="workspace" data-space="2.25in"></div></article></article></section><section class="onepage" id="page-24"><article class="exercise exercise-like" id="exercise-163"><h3 class="heading"><span class="codenumber">3<span class="period">.</span></span></h3>
-<div class="introduction" id="introduction-27"><div class="para" id="p-1800">Consider the Fibonacci sequence, defined by <span class="process-math">\(x_0=1, x_1=1\text{,}\)</span> and <span class="process-math">\(x_{k+2}=x_k+x_{k+1}\text{.}\)</span> Let <span class="process-math">\(A\)</span> be the matrix associated to this sequence.</div></div>
 <article class="task exercise-like" id="task-50"><h4 class="heading"><span class="codenumber">(a)</span></h4>
-<div class="para" id="p-1801">State the matrix <span class="process-math">\(A\text{,}\)</span> and show that <span class="process-math">\(A\)</span> has eigenvalues <span class="process-math">\(\lambda_\pm = \frac{1}{2}(1\pm \sqrt{5})\text{,}\)</span> with associated eigenvectors <span class="process-math">\(\xx_\pm = \begin{bmatrix}1\\ \lambda_\pm\end{bmatrix}\text{.}\)</span>
+<div class="para" id="p-1776">Determine a matrix <span class="process-math">\(A\)</span> such that <span class="process-math">\(\vv_{k+1}=A\vv_k\text{,}\)</span> where <span class="process-math">\(\vv_k = \begin{bmatrix}x_k\\x_{k+1}\\x_{k+2}\end{bmatrix}\text{.}\)</span>
+</div>
+<div class="workspace" data-space="2.25in"></div></article><article class="task exercise-like" id="task-51"><h4 class="heading"><span class="codenumber">(b)</span></h4>
+<div class="para" id="p-1777">Compute the characteristic polynomial of <span class="process-math">\(A\text{,}\)</span> and compare it to the associated polynomial of the recurrence.</div>
+<div class="workspace" data-space="2.25in"></div></article><article class="task exercise-like" id="task-52"><h4 class="heading"><span class="codenumber">(c)</span></h4>
+<div class="para" id="p-1778">Show that if <span class="process-math">\(\lambda\)</span> is an eigenvalue of <span class="process-math">\(A\text{,}\)</span> then <span class="process-math">\(\xx = \begin{bmatrix}1\\ \lambda\\ \lambda^2\end{bmatrix}\)</span> is an associated eigenvector.</div>
+<div class="workspace" data-space="2.25in"></div></article></article></section><section class="onepage" id="page-24"><article class="exercise exercise-like" id="exercise-166"><h3 class="heading"><span class="codenumber">3<span class="period">.</span></span></h3>
+<div class="introduction" id="introduction-28"><div class="para" id="p-1779">Consider the Fibonacci sequence, defined by <span class="process-math">\(x_0=1, x_1=1\text{,}\)</span> and <span class="process-math">\(x_{k+2}=x_k+x_{k+1}\text{.}\)</span> Let <span class="process-math">\(A\)</span> be the matrix associated to this sequence.</div></div>
+<article class="task exercise-like" id="task-53"><h4 class="heading"><span class="codenumber">(a)</span></h4>
+<div class="para" id="p-1780">State the matrix <span class="process-math">\(A\text{,}\)</span> and show that <span class="process-math">\(A\)</span> has eigenvalues <span class="process-math">\(\lambda_\pm = \frac{1}{2}(1\pm \sqrt{5})\text{,}\)</span> with associated eigenvectors <span class="process-math">\(\xx_\pm = \begin{bmatrix}1\\ \lambda_\pm\end{bmatrix}\text{.}\)</span>
 </div>
 <div class="workspace" data-space="1.75in"></div></article><article class="task exercise-like" id="part-dynamical"><h4 class="heading"><span class="codenumber">(b)</span></h4>
-<div class="para" id="p-1802">Let <span class="process-math">\(P = \begin{bmatrix}1\amp 1\\ \lambda_+ \amp \lambda_-\end{bmatrix}\text{,}\)</span> let <span class="process-math">\(D = \begin{bmatrix}\lambda_+ \amp 0\\ 0 \amp \lambda_-\end{bmatrix}\text{,}\)</span> and let <span class="process-math">\(\mathbf{a_0}=\begin{bmatrix}a_0\\a_1\end{bmatrix}=P^{-1}\vv_0\text{,}\)</span> where <span class="process-math">\(\vv_0=\begin{bmatrix}1\\1\end{bmatrix}\)</span> gives the initial values of the sequence.</div> <div class="para logical" id="p-1803">
+<div class="para" id="p-1781">Let <span class="process-math">\(P = \begin{bmatrix}1\amp 1\\ \lambda_+ \amp \lambda_-\end{bmatrix}\text{,}\)</span> let <span class="process-math">\(D = \begin{bmatrix}\lambda_+ \amp 0\\ 0 \amp \lambda_-\end{bmatrix}\text{,}\)</span> and let <span class="process-math">\(\mathbf{a_0}=\begin{bmatrix}a_0\\a_1\end{bmatrix}=P^{-1}\vv_0\text{,}\)</span> where <span class="process-math">\(\vv_0=\begin{bmatrix}1\\1\end{bmatrix}\)</span> gives the initial values of the sequence.</div> <div class="para logical" id="p-1782">
 <div class="para">Show that</div>
 <div class="displaymath process-math" id="md-68">
 \begin{align*}
@@ -387,20 +505,20 @@ x_{k+3} = ax_k+bx_{k+1}+cx_{k+2}\text{:}
 \end{align*}
 </div>
 </div>
-<div class="workspace" data-space="1.75in"></div></article><article class="task exercise-like" id="task-52"><h4 class="heading"><span class="codenumber">(c)</span></h4>
-<div class="para" id="p-1804">Note that <a href="" class="xref" data-knowl="./knowl/part-dynamical.html" title="Part 4.5.3.b">Part 4.5.3.b</a> tells us that although the Fibonacci sequence is not a geometric sequence, it is the <em class="emphasis">sum</em> of two geometric sequences!</div> <div class="para" id="p-1805">By considering the numerical values of the eigenvalues <span class="process-math">\(\lambda_+\)</span> and <span class="process-math">\(\lambda_-\text{,}\)</span> explain why we can nonetheless treat the Fibonacci sequence as <em class="emphasis">approximately</em> geometric when <span class="process-math">\(n\)</span> is large.</div> <div class="para" id="p-1806">(This is true more generally: if a matrix <span class="process-math">\(A\)</span> has one eigenvalue that is larger in absolute value than all the others, this eigenvalue is called the <dfn class="terminology">dominant eigenvalue</dfn>. If <span class="process-math">\(A\)</span> is the matrix of some linear recurrence, and <span class="process-math">\(A\)</span> is diagonalizable, then we can consider the sequence as a sum of geometric sequences that will become approximately geometric in the long run.)</div>
-<div class="workspace" data-space="1.75in"></div></article></article></section><section class="onepage" id="page-25"> <article class="exercise exercise-like" id="exercise-164"><h3 class="heading"><span class="codenumber">4<span class="period">.</span></span></h3>
-<div class="introduction" id="introduction-28">
-<div class="para" id="p-1807">As a more practical example, consider the following (over-simplified) predator-prey system. It is based on an example in <a class="external" href="https://personal.math.ubc.ca/~tbjw/ila/dds.html" target="_blank">Interactive Linear Algebra</a><a href="" data-knowl="" class="id-ref fn-knowl original" data-refid="hk-fn-11" id="fn-11"><sup> 1 </sup></a>, by Margalit, Rabinoff, and Williams, but adapted to the wildlife here in Lethbridge. An ecosystem contains both coyotes and deer. Initially, there is a population of <span class="process-math">\(20\)</span> coyotes, and <span class="process-math">\(500\)</span> deer.</div> <div class="para logical" id="p-1808">
+<div class="workspace" data-space="1.75in"></div></article><article class="task exercise-like" id="task-55"><h4 class="heading"><span class="codenumber">(c)</span></h4>
+<div class="para" id="p-1783">Note that <a href="" class="xref" data-knowl="./knowl/part-dynamical.html" title="Part 4.5.3.b">Part 4.5.3.b</a> tells us that although the Fibonacci sequence is not a geometric sequence, it is the <em class="emphasis">sum</em> of two geometric sequences!</div> <div class="para" id="p-1784">By considering the numerical values of the eigenvalues <span class="process-math">\(\lambda_+\)</span> and <span class="process-math">\(\lambda_-\text{,}\)</span> explain why we can nonetheless treat the Fibonacci sequence as <em class="emphasis">approximately</em> geometric when <span class="process-math">\(n\)</span> is large.</div> <div class="para" id="p-1785">(This is true more generally: if a matrix <span class="process-math">\(A\)</span> has one eigenvalue that is larger in absolute value than all the others, this eigenvalue is called the <dfn class="terminology">dominant eigenvalue</dfn>. If <span class="process-math">\(A\)</span> is the matrix of some linear recurrence, and <span class="process-math">\(A\)</span> is diagonalizable, then we can consider the sequence as a sum of geometric sequences that will become approximately geometric in the long run.)</div>
+<div class="workspace" data-space="1.75in"></div></article></article></section><section class="onepage" id="page-25"> <article class="exercise exercise-like" id="exercise-167"><h3 class="heading"><span class="codenumber">4<span class="period">.</span></span></h3>
+<div class="introduction" id="introduction-29">
+<div class="para" id="p-1786">As a more practical example, consider the following (over-simplified) predator-prey system. It is based on an example in <a class="external" href="https://personal.math.ubc.ca/~tbjw/ila/dds.html" target="_blank">Interactive Linear Algebra</a><a href="" data-knowl="" class="id-ref fn-knowl original" data-refid="hk-fn-11" id="fn-11"><sup> 1 </sup></a>, by Margalit, Rabinoff, and Williams, but adapted to the wildlife here in Lethbridge. An ecosystem contains both coyotes and deer. Initially, there is a population of <span class="process-math">\(20\)</span> coyotes, and <span class="process-math">\(500\)</span> deer.</div> <div class="para logical" id="p-1787">
 <div class="para">We assume the following:</div>
 <ul class="disc">
-<li id="li-331"><div class="para" id="p-1809">the share of the deer population eaten by a typical coyote in a year is <span class="process-math">\(10\)</span> deer</div></li>
-<li id="li-332"><div class="para" id="p-1810">in the absence of the coyotes, the deer population would increase by <span class="process-math">\(50\)</span>% per year</div></li>
-<li id="li-333"><div class="para" id="p-1811">
+<li id="li-275"><div class="para" id="p-1788">the share of the deer population eaten by a typical coyote in a year is <span class="process-math">\(10\)</span> deer</div></li>
+<li id="li-276"><div class="para" id="p-1789">in the absence of the coyotes, the deer population would increase by <span class="process-math">\(50\)</span>% per year</div></li>
+<li id="li-277"><div class="para" id="p-1790">
 <span class="process-math">\(20\)</span>% of the coyote population dies each year of natural causes</div></li>
-<li id="li-334"><div class="para" id="p-1812">the growth rate of the coyote population depends on the number of deer: for each 100 deer, <span class="process-math">\(10\)</span> coyote pups will survive to adulthood.</div></li>
+<li id="li-278"><div class="para" id="p-1791">the growth rate of the coyote population depends on the number of deer: for each 100 deer, <span class="process-math">\(10\)</span> coyote pups will survive to adulthood.</div></li>
 </ul>
-</div> <div class="para logical" id="p-1813">
+</div> <div class="para logical" id="p-1792">
 <div class="para">If we let <span class="process-math">\(d_t\)</span> denote the number of deer after <span class="process-math">\(t\)</span> years, and <span class="process-math">\(c_t\)</span> the number of coyotes, then we have</div>
 <div class="displaymath process-math" id="md-69">
 \begin{align*}
@@ -416,30 +534,30 @@ c_{t+1} \amp = 0.1d_t + 0.8c_t\text{,}
 </div>
 <div class="para">where <span class="process-math">\(\mathbf{p}_t=\bbm d_t\\c_t\ebm\)</span> and <span class="process-math">\(A = \bbm 1.5 \amp -10\\0.1 \amp 0.8\ebm\text{.}\)</span>
 </div>
-</div> <div class="para" id="p-1814">After <span class="process-math">\(t\)</span> years, the two populations will be given by <span class="process-math">\(\mathbf{p}_t=A^t\mathbf{p}_0\text{,}\)</span> where <span class="process-math">\(\mathbf{p}_0=\bbm 500\\20\ebm\)</span> gives the initial populations of the two species. If possible, we would like to be able to find a closed-form formula for <span class="process-math">\(\mathbf{p}_t\text{,}\)</span> which would allow us to analyze the long-term predictions of our model.</div>
+</div> <div class="para" id="p-1793">After <span class="process-math">\(t\)</span> years, the two populations will be given by <span class="process-math">\(\mathbf{p}_t=A^t\mathbf{p}_0\text{,}\)</span> where <span class="process-math">\(\mathbf{p}_0=\bbm 500\\20\ebm\)</span> gives the initial populations of the two species. If possible, we would like to be able to find a closed-form formula for <span class="process-math">\(\mathbf{p}_t\text{,}\)</span> which would allow us to analyze the long-term predictions of our model.</div>
 </div>
-<article class="task exercise-like" id="task-53"><h4 class="heading"><span class="codenumber">(a)</span></h4>
-<div class="para" id="p-1815">Analyze the eigenvalues of this matrix, and diagonalize. The <code class="code-inline tex2jax_ignore">sympy</code> library won’t be up to the task. Instead, some combination of <code class="code-inline tex2jax_ignore">numpy</code> and <code class="code-inline tex2jax_ignore">scipy</code>, as described by <a class="external" href="https://patrickwalls.github.io/mathematicalpython/linear-algebra/eigenvalues-eigenvectors/" target="_blank">Patrick Walls on his website</a><a href="" data-knowl="" class="id-ref fn-knowl original" data-refid="hk-fn-12" id="fn-12"><sup> 2 </sup></a>, will be needed.</div></article><article class="task exercise-like" id="part-pred-prey"><h4 class="heading"><span class="codenumber">(b)</span></h4>
-<div class="para" id="p-1816">The eigenvalues turn out to be complex! What does that tell you about the nature of the system? What is the long-term behaviour of this system?</div></article><article class="task exercise-like" id="task-55"><h4 class="heading"><span class="codenumber">(c)</span></h4>
-<div class="para" id="p-1818">What if you adjust the parameters? Can you come up with a system where both species flourish? Or one where they both disappear? Or one where the populations oscillate regularly?</div></article><article class="task exercise-like" id="task-56"><h4 class="heading"><span class="codenumber">(d)</span></h4>
-<div class="para" id="p-1820">You may have read this while wondering, “Does Sean actually know anything about ecology and population dynamics? Did he just make up those numbers?”</div> <div class="para" id="p-1821">The answers are, respectively, no, and yes. Can you come up with numbers that are based on a realistic example? What does our model predict in that case? Is it accurate?</div></article></article></section><section class="onepage" id="page-26"> <article class="exercise exercise-like" id="exercise-165"><h3 class="heading"><span class="codenumber">5<span class="period">.</span></span></h3>
-<div class="introduction" id="introduction-29">
-<div class="para" id="p-1822">A special type of linear dynamical system occurs when the matrix <span class="process-math">\(A\)</span> is <dfn class="terminology">stochastic</dfn>. A stochastic matrix is one where each entry of the matrix is between <span class="process-math">\(0\)</span> and <span class="process-math">\(1\text{,}\)</span> and all of the columns of the matrix sum to <span class="process-math">\(1\text{.}\)</span>
-</div> <div class="para" id="p-1823">The reason for these conditions is that the entries of a stochastic matrix represent probabilities; in particular, they are <dfn class="terminology">transition probabilities</dfn>. That is, each number represents the probability of one state changing to another.</div> <div class="para" id="p-1824">If a system can be in one of <span class="process-math">\(n\)</span> possible states, we represent the system by an <span class="process-math">\(n\times 1\)</span> vector <span class="process-math">\(\vv_t\text{,}\)</span> whose entries indicate the probability that the system is in a given state at time <span class="process-math">\(t\text{.}\)</span> If we know that the system starts out in a particular state, then <span class="process-math">\(\vv_0\)</span> will have a <span class="process-math">\(1\)</span> in one of its entries, and <span class="process-math">\(0\)</span> everywhere else.</div> <div class="para" id="p-1825">A Markov chain is given by such an initial vector, and a stochastic matrix. As an example, we will consider the following scenario, described in the book <em class="emphasis">Shape</em>, by Jordan Ellenberg:</div> <div class="para" id="p-1826">A mosquito is born in a swamp, which we will call Swamp A. There is another nearby swamp, called Swamp B. Observational data suggests that when a mosquito is at Swamp A, there is a 40% chance that it will remain there, and a 60% chance that it will move to Swamp B. When the mosquito is at Swamp B, there is a 70% chance that it will remain, and a 30% chance that it will return to Swamp A.</div>
+<article class="task exercise-like" id="task-56"><h4 class="heading"><span class="codenumber">(a)</span></h4>
+<div class="para" id="p-1794">Analyze the eigenvalues of this matrix, and diagonalize. The <code class="code-inline tex2jax_ignore">sympy</code> library won’t be up to the task. Instead, some combination of <code class="code-inline tex2jax_ignore">numpy</code> and <code class="code-inline tex2jax_ignore">scipy</code>, as described by <a class="external" href="https://patrickwalls.github.io/mathematicalpython/linear-algebra/eigenvalues-eigenvectors/" target="_blank">Patrick Walls on his website</a><a href="" data-knowl="" class="id-ref fn-knowl original" data-refid="hk-fn-12" id="fn-12"><sup> 2 </sup></a>, will be needed.</div></article><article class="task exercise-like" id="part-pred-prey"><h4 class="heading"><span class="codenumber">(b)</span></h4>
+<div class="para" id="p-1795">The eigenvalues turn out to be complex! What does that tell you about the nature of the system? What is the long-term behaviour of this system?</div></article><article class="task exercise-like" id="task-58"><h4 class="heading"><span class="codenumber">(c)</span></h4>
+<div class="para" id="p-1797">What if you adjust the parameters? Can you come up with a system where both species flourish? Or one where they both disappear? Or one where the populations oscillate regularly?</div></article><article class="task exercise-like" id="task-59"><h4 class="heading"><span class="codenumber">(d)</span></h4>
+<div class="para" id="p-1799">You may have read this while wondering, “Does Sean actually know anything about ecology and population dynamics? Did he just make up those numbers?”</div> <div class="para" id="p-1800">The answers are, respectively, no, and yes. Can you come up with numbers that are based on a realistic example? What does our model predict in that case? Is it accurate?</div></article></article></section><section class="onepage" id="page-26"> <article class="exercise exercise-like" id="exercise-168"><h3 class="heading"><span class="codenumber">5<span class="period">.</span></span></h3>
+<div class="introduction" id="introduction-30">
+<div class="para" id="p-1801">A special type of linear dynamical system occurs when the matrix <span class="process-math">\(A\)</span> is <dfn class="terminology">stochastic</dfn>. A stochastic matrix is one where each entry of the matrix is between <span class="process-math">\(0\)</span> and <span class="process-math">\(1\text{,}\)</span> and all of the columns of the matrix sum to <span class="process-math">\(1\text{.}\)</span>
+</div> <div class="para" id="p-1802">The reason for these conditions is that the entries of a stochastic matrix represent probabilities; in particular, they are <dfn class="terminology">transition probabilities</dfn>. That is, each number represents the probability of one state changing to another.</div> <div class="para" id="p-1803">If a system can be in one of <span class="process-math">\(n\)</span> possible states, we represent the system by an <span class="process-math">\(n\times 1\)</span> vector <span class="process-math">\(\vv_t\text{,}\)</span> whose entries indicate the probability that the system is in a given state at time <span class="process-math">\(t\text{.}\)</span> If we know that the system starts out in a particular state, then <span class="process-math">\(\vv_0\)</span> will have a <span class="process-math">\(1\)</span> in one of its entries, and <span class="process-math">\(0\)</span> everywhere else.</div> <div class="para" id="p-1804">A Markov chain is given by such an initial vector, and a stochastic matrix. As an example, we will consider the following scenario, described in the book <em class="emphasis">Shape</em>, by Jordan Ellenberg:</div> <div class="para" id="p-1805">A mosquito is born in a swamp, which we will call Swamp A. There is another nearby swamp, called Swamp B. Observational data suggests that when a mosquito is at Swamp A, there is a 40% chance that it will remain there, and a 60% chance that it will move to Swamp B. When the mosquito is at Swamp B, there is a 70% chance that it will remain, and a 30% chance that it will return to Swamp A.</div>
 </div>
-<article class="task exercise-like" id="task-57"><h4 class="heading"><span class="codenumber">(a)</span></h4>
-<div class="para" id="p-1827">Give a stochastic matrix <span class="process-math">\(M\)</span> and a vector <span class="process-math">\(\vv_0\)</span> that represent the transition probabilities and initial state given above.</div></article><article class="task exercise-like" id="task-58"><h4 class="heading"><span class="codenumber">(b)</span></h4>
-<div class="para" id="p-1828">By diagonalizing the matrix <span class="process-math">\(M\text{,}\)</span> determine the long-term probability that the mosquito will be found in either swamp.</div></article><article class="task exercise-like" id="task-59"><h4 class="heading"><span class="codenumber">(c)</span></h4>
-<div class="para" id="p-1829">You should have found that one of the eigenvalues of <span class="process-math">\(M\)</span> was <span class="process-math">\(\lambda=1\text{.}\)</span> The corresponding eigenvector <span class="process-math">\(\vv\)</span> satisfies <span class="process-math">\(M\vv=\vv\text{.}\)</span> This is known as a <dfn class="terminology">steady-state vector</dfn>: if our system begins with state <span class="process-math">\(\vv\text{,}\)</span> it will remain there forever.</div> <div class="para" id="p-1830">Confirm that if the eigenvector <span class="process-math">\(\vv\)</span> is rescaled so that its entries sum to 1, the resulting values agree with the long-term probabilities found in the previous part.</div></article></article> <article class="exercise exercise-like" id="exercise-166"><h3 class="heading"><span class="codenumber">6<span class="period">.</span></span></h3>
-<div class="introduction" id="introduction-30"><div class="para" id="p-1831">A stochastic matrix <span class="process-math">\(M\)</span> is called <dfn class="terminology">regular</dfn> some power <span class="process-math">\(M^k\)</span> has all positive entries. It is a theorem that every regular stochastic matrix has a steady-state vector.</div></div>
 <article class="task exercise-like" id="task-60"><h4 class="heading"><span class="codenumber">(a)</span></h4>
-<div class="para" id="p-1832">Prove that if <span class="process-math">\(M\)</span> is a <span class="process-math">\(2\times 2\)</span> stochastic matrix with no entry equal to zero, then <span class="process-math">\(1\)</span> is an eigenvalue of <span class="process-math">\(M\text{.}\)</span>
-</div></article><article class="task exercise-like" id="task-61"><h4 class="heading"><span class="codenumber">(b)</span></h4>
-<div class="para" id="p-1833">Prove that the product of two <span class="process-math">\(2\times 2\)</span> stochastic matrices is stochastic. Conclude that if <span class="process-math">\(M\)</span> is stochastic, so is <span class="process-math">\(M^k\)</span> for each <span class="process-math">\(k=1,2,3,\ldots\text{.}\)</span>
-</div></article><article class="task exercise-like" id="task-62"><h4 class="heading"><span class="codenumber">(c)</span></h4>
-<div class="para" id="p-1834">Also prove that if <span class="process-math">\(M^k\)</span> has positive entries for some <span class="process-math">\(k\text{,}\)</span> then <span class="process-math">\(1\)</span> is an eigenvalue of <span class="process-math">\(M\text{.}\)</span>
-</div></article></article> <article class="exercise exercise-like" id="exercise-167"><h3 class="heading"><span class="codenumber">7<span class="period">.</span></span></h3>
-<div class="para" id="p-1836">By searching online or in other textbooks, find and state a more interesting/complicated example of a Markov chain problem, and show how to solve it.</div></article></section></section><div class="hidden-content tex2jax_ignore" id="hk-fn-11"><div class="fn"><code class="code-inline tex2jax_ignore">personal.math.ubc.ca/~tbjw/ila/dds.html</code></div></div>
+<div class="para" id="p-1806">Give a stochastic matrix <span class="process-math">\(M\)</span> and a vector <span class="process-math">\(\vv_0\)</span> that represent the transition probabilities and initial state given above.</div></article><article class="task exercise-like" id="task-61"><h4 class="heading"><span class="codenumber">(b)</span></h4>
+<div class="para" id="p-1807">By diagonalizing the matrix <span class="process-math">\(M\text{,}\)</span> determine the long-term probability that the mosquito will be found in either swamp.</div></article><article class="task exercise-like" id="task-62"><h4 class="heading"><span class="codenumber">(c)</span></h4>
+<div class="para" id="p-1808">You should have found that one of the eigenvalues of <span class="process-math">\(M\)</span> was <span class="process-math">\(\lambda=1\text{.}\)</span> The corresponding eigenvector <span class="process-math">\(\vv\)</span> satisfies <span class="process-math">\(M\vv=\vv\text{.}\)</span> This is known as a <dfn class="terminology">steady-state vector</dfn>: if our system begins with state <span class="process-math">\(\vv\text{,}\)</span> it will remain there forever.</div> <div class="para" id="p-1809">Confirm that if the eigenvector <span class="process-math">\(\vv\)</span> is rescaled so that its entries sum to 1, the resulting values agree with the long-term probabilities found in the previous part.</div></article></article> <article class="exercise exercise-like" id="exercise-169"><h3 class="heading"><span class="codenumber">6<span class="period">.</span></span></h3>
+<div class="introduction" id="introduction-31"><div class="para" id="p-1810">A stochastic matrix <span class="process-math">\(M\)</span> is called <dfn class="terminology">regular</dfn> some power <span class="process-math">\(M^k\)</span> has all positive entries. It is a theorem that every regular stochastic matrix has a steady-state vector.</div></div>
+<article class="task exercise-like" id="task-63"><h4 class="heading"><span class="codenumber">(a)</span></h4>
+<div class="para" id="p-1811">Prove that if <span class="process-math">\(M\)</span> is a <span class="process-math">\(2\times 2\)</span> stochastic matrix with no entry equal to zero, then <span class="process-math">\(1\)</span> is an eigenvalue of <span class="process-math">\(M\text{.}\)</span>
+</div></article><article class="task exercise-like" id="task-64"><h4 class="heading"><span class="codenumber">(b)</span></h4>
+<div class="para" id="p-1812">Prove that the product of two <span class="process-math">\(2\times 2\)</span> stochastic matrices is stochastic. Conclude that if <span class="process-math">\(M\)</span> is stochastic, so is <span class="process-math">\(M^k\)</span> for each <span class="process-math">\(k=1,2,3,\ldots\text{.}\)</span>
+</div></article><article class="task exercise-like" id="task-65"><h4 class="heading"><span class="codenumber">(c)</span></h4>
+<div class="para" id="p-1813">Also prove that if <span class="process-math">\(M^k\)</span> has positive entries for some <span class="process-math">\(k\text{,}\)</span> then <span class="process-math">\(1\)</span> is an eigenvalue of <span class="process-math">\(M\text{.}\)</span>
+</div></article></article> <article class="exercise exercise-like" id="exercise-170"><h3 class="heading"><span class="codenumber">7<span class="period">.</span></span></h3>
+<div class="para" id="p-1815">By searching online or in other textbooks, find and state a more interesting/complicated example of a Markov chain problem, and show how to solve it.</div></article></section></section><div class="hidden-content tex2jax_ignore" id="hk-fn-11"><div class="fn"><code class="code-inline tex2jax_ignore">personal.math.ubc.ca/~tbjw/ila/dds.html</code></div></div>
 <div class="hidden-content tex2jax_ignore" id="hk-fn-12"><div class="fn"><code class="code-inline tex2jax_ignore">patrickwalls.github.io/mathematicalpython/linear-algebra/eigenvalues-eigenvectors/</code></div></div>
 </div>
 <div class="ptx-content-footer">
