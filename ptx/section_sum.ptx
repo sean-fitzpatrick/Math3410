@@ -755,6 +755,7 @@
 
     <exercise xml:id="ex-ww-sum" label="ex-ww-sum">
       <webwork>
+        <macros>parserPopUp.pl</macros>
         <pg-code>
           $a = random(1,9,1);
           $b = random(1,9,1);
@@ -768,44 +769,48 @@
           $p2 = Formula("-($d)x^2+($b)x")->reduce;
           $p3 = Formula("($e)x^3-($a)x^2")->reduce;
           $p4 = Formula("($r)x^2-($s)x-($t)")->reduce;
-          $isbasis = PopUp([' ','Yes','No'],'No');
+          $isbasis = PopUp(['?','Yes','No'],2, showInStatic => 0);
         </pg-code>
       
-        <statement>
+        <introduction>
           <p>
             Let <m>U=\spn\{<var name="$p1"/>,<var name="$p2"/>\}</m> and <m>W=\spn\{<var name="$p3"/>,<var name="$p4"/>\}</m>
             be subspaces of the vector space <m>V=P_3(\R)</m>.
           </p>
+        </introduction>
 
-          <p>
-            <ol>
-              <li>
-                <p>
-                  Is <m>\{<var name="$p1"/>,<var name="$p2"/>,<var name="$p3"/>,<var name="$p4"/>\}</m> a basis for <m>V</m>?
-                </p>
-                <p>
-                  <var name="$isbasis" form="popup"/>
-                </p>
-              </li>
-              <li>
-                <p>
-                  What is the dimension of <m>U+W</m>?
-                </p>
-                <p>
-                  <var name="'3'" width="5"/>
-                </p>
-              </li>
-              <li>
-                <p>
-                  What is the dimension of <m>U\cap W</m>?
-                </p>
-                <p>
-                  <var name="'1'" width="5"/>
-                </p>
-              </li>
-            </ol>
-          </p>
-        </statement>
+        <task label="ex-ww-sum-a">
+          <statement>
+            <p>
+              Is <m>\{<var name="$p1"/>,<var name="$p2"/>,<var name="$p3"/>,<var name="$p4"/>\}</m> a basis for <m>V</m>?
+            </p>
+            <p>
+              <var name="$isbasis" form="popup"/>
+            </p>
+          </statement>
+        </task>
+
+        <task label="ex-ww-sum-b">
+          <statement>
+            <p>
+              What is the dimension of <m>U+W</m>?
+            </p>
+            <p>
+              <var name="'3'" width="5"/>
+            </p>
+          </statement>
+        </task>
+
+        <task label="ex-ww-sum-c">
+          <statement>
+            <p>
+              What is the dimension of <m>U\cap W</m>?
+            </p>
+            <p>
+              <var name="'1'" width="5"/>
+            </p>
+          </statement>
+        </task>
       </webwork>
     </exercise>
   </exercises>
