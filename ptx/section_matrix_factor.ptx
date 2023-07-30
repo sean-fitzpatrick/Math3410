@@ -79,13 +79,14 @@
         What is interesting is that the converse to the above statement is also true.
         The <term>Cholesky factorization</term> of a positive-definite matrix <m>A</m>
         is given by <m>A=U^TU</m>, where <m>U</m> is upper-triangular,
-        with positive diagonal entries. (See Nicholson for details.)
+        with positive diagonal entries.
       </p>
 
       <p>
         Even better is that there is a very simple algorithm for obtaining the factorization:
         Carry the matrix <m>A</m> to triangular form, using only row operations of the type
-        <m>R_i+kR_j\to R_i</m>. Then divide each row by the square root of the diagonal entry.
+        <m>R_i+kR_j\to R_i</m>. Then divide each row by the square root of the diagonal entry
+        to obtain the matrix <m>U</m>.
       </p>
 
       <p>
@@ -809,4 +810,18 @@
     </subsubsection>
   </subsection>
 
+  <exercises>
+    <exercise label="ex-ww-svd1">
+      <webwork source="local/Library/Rochester/setLinearAlgebra24SingularValues/ur_la_24_1.pg"/>
+    </exercise>
+    <exercise label="ex-ww-svd2">
+      <webwork source="local/Library/Rochester/setLinearAlgebra24SingularValues/ur_la_24_5.pg"/>
+    </exercise>
+    <exercise label="ex-ww-qr1">
+      <webwork source="local/Library/Rochester/setLinearAlgebra19QRfactorization/ur_la_19_2.pg"/>
+    </exercise>
+    <exercise label="ex-ww-qr2">
+      <webwork source="local/Library/Rochester/setLinearAlgebra19QRfactorization/ur_la_19_3.pg"/>
+    </exercise>
+  </exercises>
 </section>
