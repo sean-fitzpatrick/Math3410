@@ -140,4 +140,69 @@
     This lets us see that our new coordinate axes are simply a rotation (by <m>\pi/4</m>) of the old coordinate axes,
     and our conic section is, accordingly, an ellipse that has been rotated by the same angle.
   </p>
+
+  <remark>
+    <p>
+      One reason to study quadratic forms is the classification of critical points in calculus.
+      You may recall (if you took Calculus 1) that for a differentiable function <m>f(x)</m>,
+      if <m>f'(c)=0</m> and <m>f''(c)\gt 0</m> at some number <m>c</m>,
+      then <m>f</m> has a <term>local minimum</term> at <m>c</m>.
+      Similarly, if <m>f'(C)=0</m> and <m>f''(c)\lt 0</m>, then <m>f</m> has a <term>local maximum</term> at <m>c</m>.
+    </p>
+
+    <p>
+      For functions of two or more variables, determining whether a critical point is a maximum or minimum (or something else)
+      is more complicated. Or rather, it is more complicated for those unfamiliar with linear algebra!
+      The second-order partial derivatives of our function
+      can be arranged into a matrix called the <term>Hessian</term> matrix.
+      For example, a function <m>f(x,y)</m> of two variables has first-order partial derivatives
+      <m>f_x(x,y)</m> and <m>f_y(x,y)</m> with respect to <m>x</m> and <m>y</m>, respectively,
+      and second-order partial derivatives <m>f_{xx}(x,y)</m> (twice with respect to <m>x</m>),
+      <m>f_{xy}(x,y)</m> (first <m>x</m>, then <m>y</m>), <m>f_{yx}(x,y)</m> (first <m>y</m>, then <m>x</m>),
+      and <m>f_{yy}(x,y)</m> (twice with respect to <m>y</m>).
+    </p>
+
+    <p>
+      The Hessian matrix at a point <m>(a,b)</m> is
+      <me>
+        H_f(a,b) = \bbm f_{xx}(a,b) \amp f_{xy}(a,b)\\f_{yx}(a,b) \amp f_{yy}(a,b)\ebm
+      </me>.
+      As long as the second-order partial derivatives are <em>continuous</em> at <m>(a,b)</m>,
+      it is guaranteed that the Hessian matrix is <em>symmetric</em>!
+      That means that there is a corresponding quadratic form,
+      and when the first-order derivatives <m>f_x(a,b)</m> and <m>f_y(a,b)</m> are both zero
+      (a critical point), it turns out that this quadratic form provides the best quadratic approximation to <m>f(x,y)</m>
+      near the point <m>(a,b)</m>. This is true for three or more variables as well.
+    </p>
+
+    <p>
+      The eigenvalues of this matrix then give us some information about the behaviour of our function near the critical point.
+      If all eigenvalues are positive at a point, we say that the corresponding quadratic form is <term>positive-definite</term>,
+      and the function <m>f</m> has a local minimum at that point.
+      If all eigenvalues are negative at a point, we say that the corresponding quadratic form is <term>negative-definite</term>,
+      and the function <m>f</m> has a local maximum at that point.
+      If all eigenvalues are nonzero at a point, with some positive and some negative,
+      we say that <m>f</m> has a <em>saddle point</em>. The corresponding quadratic form is called <term>indefinite</term>,
+      and this term applies even if some eigenvalues are zero.
+    </p>
+
+    <p>
+      If a quadratic form corresponds to a symmetric matrix whose eigenvalues are positive <em>or zero</em>,
+      we say that the quadratic form is <term>positive-semidefinite</term>.
+      Similarly, a <term>negative-semidefinite</term> quadratic form corresponds to symmetric matrix
+      whose eigenvalues are all less than or equal to zero.
+    </p>
+  </remark>
+
+  <exercises>
+    <exercise label="ex-ww-quadratic1">
+      <webwork source="local/Library/Rochester/setLinearAlgebra23QuadraticForms/ur_la_23_1.pg"/>
+    </exercise>
+    <exercise label="ex-ww-quadratic2">
+      <webwork source="local/Library/Rochester/setLinearAlgebra23QuadraticForms/ur_la_23_5.pg"/>
+    </exercise>
+    <exercise label="ex-ww-quadratic3">
+      <webwork source="local/Library/Rochester/setLinearAlgebra23QuadraticForms/ur_la_23_3.pg"/>
+    </exercise>
+  </exercises>
 </section>
