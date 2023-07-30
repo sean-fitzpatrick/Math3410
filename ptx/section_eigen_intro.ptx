@@ -2,6 +2,12 @@
 
 <section xml:id="sec-eigen-basics">
   <title>Eigenvalues and Eigenvectors</title>
+
+  <p>
+    We jump right into the definition,
+    which you have probably seen previously in your first course in linear algebra.
+  </p>
+
   <definition xml:id="def-eigenvalue">
     <statement>
       <p>
@@ -49,7 +55,7 @@
   <remark>    
     <p>
       Eigenvalues and eigenvectors can just as easily be defined for a general linear operator <m>T:V\to V</m>.
-      In this context, and eigenvector <m>\xx</m> is sometimes referred to as a <em>characteristic vector</em> (or characteristic direction)
+      In this context, an eigenvector <m>\xx</m> is sometimes referred to as a <em>characteristic vector</em> (or characteristic direction)
       for <m>T</m>, since the property <m>T(\xx)=\lambda \xx</m>
       simply states that the transformed vector <m>T(\xx)</m> is parallel to the original vector <m>\xx</m>.
       Some linear algebra textbooks that focus more on general linear transformations frame this topic in the context of
@@ -178,6 +184,27 @@
     is called the <term>characteristic equation</term> of <m>A</m>.
     The solutions to this equation are precisely the eigenvalues of <m>A</m>.
   </p>
+
+  <remark>
+    <p>
+      A careful study of eigenvalues and eigenvectors relies heavily on polynomials.
+      An interesting fact is that we can plug any square matrix into a polynomial!
+      Given the polynomial <m>p(x) = a_0+a_1x+a_2 x^2 + \cdots + a_nx^n</m>
+      and an <m>n\times n</m> matrix <m>A</m>, we define
+      <me>
+        p(A) = a_0I_n+a_1A+a_2A^2+\cdots+a_nA^n
+      </me>.
+      Note the use of the identity matrix in the first term,
+      since it doesn't make sense to add a scalar to a matrix.
+    </p>
+
+    <p>
+      One interesting aspect of this is the relationship between the eigenvalues of <m>A</m>
+      and the eigenvalues of <m>p(A)</m>.
+      For example, if <m>A</m> has the eigenvalue <m>\lambda</m>,
+      see if you can prove that <m>A^k</m> has the eigenvalue <m>\lambda^k</m>.
+    </p>
+  </remark>
 
   <exercise label="ex-match-eigen2">
     <statement>
@@ -505,4 +532,31 @@
     matrices, and soon we will see that for such matrices, eigenvectors corresponding to different eigenvalues are
     not just independent, but <em>orthogonal</em>.
   </p>
+
+  <exercises>
+    <exercise label="ex-ww-eigen1">
+      <webwork source="local/Library/Rochester/setLinearAlgebra11Eigenvalues/ur_la_11_2.pg"/>
+    </exercise>
+    <exercise label="ex-ww-eigen2">
+      <webwork source="local/Library/Rochester/setLinearAlgebra11Eigenvalues/ur_la_11_28.pg"/>
+    </exercise>
+    <exercise label="ex-ww-eigen3">
+      <webwork source="local/Library/Rochester/setLinearAlgebra11Eigenvalues/ur_la_11_19.pg"/>
+    </exercise>
+    <exercise label="ex-ww-eigen4">
+      <webwork source="local/Library/Rochester/setLinearAlgebra11Eigenvalues/ur_la_11_24a.pg"/>
+    </exercise>
+    <exercise label="ex-ww-eigen5">
+      <webwork source="Library/Rochester/setLinearAlgebra11Eigenvalues/ur_la_11_16.pg"/>
+    </exercise>
+    <exercise label="ex-ww-eigen6">
+      <webwork source="Library/Rochester/setLinearAlgebra11Eigenvalues/ur_la_11_22.pg"/>
+    </exercise>
+    <exercise label="ex-ww-eigen7">
+      <webwork source="local/Library/Rochester/setLinearAlgebra11Eigenvalues/ur_la_11_9.pg"/>
+    </exercise>
+    <exercise label="ex-ww-eigen8">
+      <webwork source="local/Library/Rochester/setLinearAlgebra11Eigenvalues/ur_la_11_27.pg"/>
+    </exercise>
+  </exercises>
 </section>
