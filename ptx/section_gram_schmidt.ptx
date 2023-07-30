@@ -384,7 +384,7 @@
         <md>
           <mrow>\vv_2 \amp = \xx_2-\left(\frac{\xx_2\dotp \vv_1}{\len{\vv_1}^2}\right)\vv_1 </mrow>
           <mrow> \amp = (3,0,-2)-\frac{1}{6}(1,-2,1)</mrow>
-          <mrow> \amp = \frac16(17,2,-3) </mrow>
+          <mrow> \amp = \frac16(17,2,-13) </mrow>
         </md>.
       </p>
 
@@ -406,10 +406,9 @@
         Next, we compute <m>\vv_3</m>.
         <md>
           <mrow>\vv_3 \amp = \xx_3-\left(\frac{\xx_3\dotp \vv_1}{\len{\vv_1}^2}\right)\vv_1 - \left(\frac{\xx_3\dotp \vv_2}{\len{\vv_2}^2}\right)\vv_2</mrow>
-          <mrow> \amp = (-1,1,2)-\frac{-1}{6}(1,-2,1)-\cdot \frac{-21}{303}(17,2,-3)</mrow>
-          <mrow> \amp = (-1,1,2)+\frac16(1,-2,1)+\frac{7}{101}(17,2,-3)</mrow>
-          <mrow> \amp = \frac{1}{606}\bigl((-606,606,1212)+(101,-202,101)+(782,84,-126)\bigr)</mrow>
-          <mrow> \amp = \frac{1}{606}(277,488,1187)</mrow>
+          <mrow> \amp = (-1,1,2)-\frac{-1}{6}(1,-2,1)- \frac{-41}{36}(17,2,-13)</mrow>
+          <mrow> \amp = \frac{1}{462}\bigl((-462,462,924)+(77,-154,77)+(697,82,-533)\bigr)</mrow>
+          <mrow> \amp = \frac{1}{462}(312,390,468) = \frac{1}{77}(52,65,78)</mrow>
         </md>.
       </p>
 
@@ -429,6 +428,12 @@
           \[\left[\bbm 1\\-2\\1\ebm, \bbm \frac{17}{6}\\ \frac13\\ -\frac{13}{6}\ebm, \bbm \frac{52}{77}\\ \frac{65}{77}\\ \frac{78}{77}\ebm\right]\]
         </output>
       </sage>
+
+      <p>
+        Success! Full disclosure: there was indeed a mistake in the manual computation.
+        Whether it was a typo or a miscalculation, the <m>-13/6</m> entry was originally written as <m>-3/6</m>.
+        This led, as you might expect, to some very wrong answers for <m>\vv_3</m>.
+      </p>
     </solution>
   </example>
   <exercises>
