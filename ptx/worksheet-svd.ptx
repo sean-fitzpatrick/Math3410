@@ -41,7 +41,7 @@
     <p>
       This time, rather than using the SymPy algorithm,
       we will work through the process outlined in <xref ref="section-matrix-factor"/> step-by-step.
-      First, we will work through (again) <xref ref="example-svd"/>.
+      Let's revisit <xref ref="example-svd"/>.
       Let <m>A = \bbm 1\amp 1\amp 1\\1\amp 0\amp -1\ebm</m>.
       First, we get the singular values:
     </p>
@@ -177,14 +177,15 @@
   </page>
 
   <page>
-    <exercise workspace="3.5in">
+    <exercise workspace="2.5in" xml:id="ex-worksheet-svd1" label="ex-worksheet-svd1">
       <statement>
         <p>
-          Do Exercise 8.6.9 in Nicholson: compute the SVD for the matrices
+          Compute the SVD for the matrices
           <me>
-            \bbm 1\amp -1\\1\amp 0\\0\amp 1\ebm \quad \quad \bbm 1\amp 1\amp 1\\-1\amp 0\amp -2 \\1\amp 2\amp 0\ebm
+            \bbm 2\amp -1 \amp 1\\1\amp 0 \amp -2\ebm \quad \quad \bbm 2\amp -1\\-1\amp 3\\1\amp -1\ebm
+            \quad \quad \bbm 1\amp 1\amp 0\\ 0\amp 1\amp 2\\1\amp 0 \amp -2\ebm
           </me>.
-           Note that for these matrices, you will need to do some additional work to extend the <m>\vecp_i</m>
+           Note that for these matrices, you may need to do some additional work to extend the <m>\vecp_i</m>
            vectors to an orthonormal basis. You can adapt the code above,
            but you will have to think about how to implement additional code to construct any extra vectors you need.
         </p>
@@ -195,18 +196,84 @@
 
     </sage>
 
-    <exercise workspace="3.5in">
+    <exercise workspace="3.5in" xml:id="ex-worksheet-svd2" label="ex-worksheet-svd2">
       <statement>
         <p>
-          Either by reading Nicholson or by searching online (or both),
-          come up with a couple of answers to the question:
-          <q>Why are people interested in the singular value decomposition?</q>
+          By making some very minor changes in the matrices in <xref ref="ex-worksheet-svd1"/>,
+          convince yourself that (a) those matrices were chosen very carefully,
+          and (b) there's a reason why most people do SVD numerically.
         </p>
       </statement>
     </exercise>
 
-    <sage language="html">
+    <sage>
 
     </sage>
+
+  </page>
+
+  <page>
+    <exercise xml:id="ex-worksheet-svd3" label="ex-worksheet-svd3">
+      <introduction>
+        <p>
+          Recall from <xref ref="worksheet-least-squares"/> that for an inconsistent system <m>A\xx = \mathbf{b}</m>,
+          we wish to find a vector <m>\yy</m> so that <m>A\xx=\yy</m> is consistent,
+          with <m>\yy</m> as close to <m>\mathbf{b}</m> as possible.
+        </p>
+
+        <p>
+          In other words, we want to minimize <m>\len{A\xx-\mathbf{b}}</m>, or equivialently, <m>\len{A\xx-\mathbf{b}}^2</m>.
+        </p>
+      </introduction>
+
+      <task workspace="2.5in" label="ex-worksheet-svd3a">
+        <statement>
+          <p>
+            Let <m>A = P\Sigma_A Q^T</m> be the singular value decomposition of <m>A</m>.
+            Show that
+            <me>
+              \len{A\xx-\mathbf{b}} = \len{\Sigma_A\yy-\zz}
+            </me>,
+            where <m>\yy = Q^T\xx</m>, and <m>\zz = P^T\mathbf{b}</m>.
+          </p>
+        </statement>
+
+        <sage language="html">
+
+        </sage>
+      </task>
+      <task workspace="2.5in" label="ex-worksheet-svd3b">
+        <statement>
+          <p>
+            Show that setting <m>\yy_i = \begin{cases}\zz_i/\sigma_i, \amp \text{ if } \sigma_i\neq 0\\
+                                                       0, \amp \text{ if } \sigma_i=0\end{cases}</m>
+            minimizes the value of <m>\len{\Sigma_A\yy-\zz}</m>.
+          </p>
+        </statement>
+
+        <sage language="html">
+
+        </sage>
+      </task>
+      <task workspace="2.5in" label="ex-worksheet-svd3c">
+        <statement>
+          <p>
+            Recall that we set <m>\Sigma_A = \bbm D_A \amp 0\\ 0 \amp 0\ebm</m>,
+            where <m>D_A</m> is the diagonal matrix of nonzero singular values.
+            Let us define the <term>pseudo-inverse</term> of <m>\Sigma_A</m> to be the matrix
+            <m>\Sigma_A^+ = \bbm D_A^{-1}\amp 0\\0\amp 0\ebm</m>.
+          </p>
+
+          <p>
+            Show that the solution to the least squares problem is given by <m>\xx = A^+\mathbf{b}</m>,
+            where <m>A^+ = Q\Sigma_A^+ P^T</m>.
+          </p>
+
+          <sage language="html">
+
+          </sage>
+        </statement>
+      </task>
+    </exercise>
   </page>
 </worksheet>
