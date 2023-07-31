@@ -32,7 +32,7 @@
   <p>
     The following result collects several useful properties of the <m>B</m>-matrix of an operator.
     Most of these were already encountered for the matrix <m>M_{DB}(T)</m> of a transformation,
-    although not all were stated formally. (Formal statements can be found in the textbook by Nicholson.)
+    although not all were stated formally.
   </p>
 
   <theorem xml:id="thm-bmatrix-properties">
@@ -156,7 +156,8 @@
     <md>
       <mrow>M_B(T) \amp = \bbm C_B(T(\mathbf{b}_1)) \amp \cdots \amp C_B(T(\mathbf{b_n})\ebm</mrow>
       <mrow> \amp = P^{-1}\bbm C_{B_0}(T(\mathbf{b}_1)) \amp \cdots \amp C_{B_0}(T(\mathbf{b_n})\ebm</mrow>
-    </md>.
+    </md>,
+    since multiplying by <m>P^{-1}</m> converts vectors written in terms of <m>B_0</m> to vectors written in terms of <m>B</m>.
   </p>
 
   <p>
@@ -173,16 +174,16 @@
     <me>
       M_{B}(T)=P^{-1}\bbm C_{B_0}T(1-x)\amp C_{B_0}(T(x+3x^2)\amp C_{B_0}(T(2-x^2))\ebm
     </me>
-    and note that for any polynomial <m>p(x)</m>, <m>C_{B_0}T(p(x)) = M_{B_0}C_{B_0}(p(x))</m>. But
+    and note that for any polynomial <m>p(x)</m>, <m>C_{B_0}(T(p(x))) = M_{B_0}(T)C_{B_0}(p(x))</m>. But
     <me>
       \bbm C_{B_0}(1-x) \amp C_{B_0}(x+3x^2)\amp C_{B_0}(2-x^2)\ebm = P
     </me>,
     so we get
     <md>
       <mrow>M_B(T) \amp = P^{-1}\bbm C_{B_0}T(1-x)\amp C_{B_0}(T(x+3x^2)\amp C_{B_0}(T(2-x^2))\ebm</mrow>
-      <mrow> \amp = P^{-1}\bbm M_{B_0}C_{B_0}(1-x)\amp M_{B_0}C_{B_0}(x+3x^2)\amp M_{B_0}C_{B_0}(2-x^2)\ebm </mrow>
-      <mrow> \amp = P^{-1}M_{B_0}\bbm C_{B_0}(1-x) \amp C_{B_0}(x+3x^2)\amp C_{B_0}(2-x^2)\ebm</mrow>
-      <mrow> \amp = P^{-1}M_{B_0}P</mrow>
+      <mrow> \amp = P^{-1}\bbm M_{B_0}(T)C_{B_0}(1-x)\amp M_{B_0}(T)C_{B_0}(x+3x^2)\amp M_{B_0}(T)C_{B_0}(2-x^2)\ebm </mrow>
+      <mrow> \amp = P^{-1}M_{B_0}(T)\bbm C_{B_0}(1-x) \amp C_{B_0}(x+3x^2)\amp C_{B_0}(2-x^2)\ebm</mrow>
+      <mrow> \amp = P^{-1}M_{B_0}(T)P</mrow>
     </md>.
   </p>
 
@@ -284,6 +285,21 @@
     </statement>
   </theorem>
 
+  <exercise>
+    <statement>
+      <p>
+        Prove <xref ref="thm-change-matrix"/>.
+      </p>
+    </statement>
+    <hint>
+      <p>
+        The identity operator does nothing. Convince yourself <m>M_{DB}(1_V)</m> amounts to taking the vectors in <m>B</m>
+        and writing them in terms of the vectors in <m>D</m>.
+      </p>
+    </hint>
+    <response/>
+  </exercise>
+
   <example>
     <statement>
       <p>
@@ -338,4 +354,12 @@
     This means that we can unambiguously define the determinant and trace of an  <em>operator</em>,
     and that we can compute eigenvalues of an operator using any matrix representation of that operator.
   </p>
+  <exercises>
+    <exercise label="ex-ww-op-matrix1">
+      <webwork source="local/Library/Rochester/setLinearAlgebra14TransfOfRn/ur_la_14_3.pg"/>
+    </exercise>
+    <exercise label="ex-ww-op-matrix2">
+      <webwork source="local/Library/Hope/Multi1/04-04-Basis-and-functions/Matrix_rep_05.pg"/>
+    </exercise>
+  </exercises>
 </section>

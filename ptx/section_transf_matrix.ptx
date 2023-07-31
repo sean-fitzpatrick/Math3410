@@ -37,6 +37,70 @@
     according to the diagram we gave in <xref ref="fig_transformation_matrix">Figure</xref>.
   </p>
 
+  <exercise number="ex-mc-transf-matrix1">
+    <statement>
+      <p>
+        What is the size of the matrix <m>A</m> used for the matrix transformation <m>T_A:\R^n\to \R^m</m>?
+      </p>
+    </statement>
+    <choices randomize="yes">
+      <choice correct="yes">
+        <statement>
+          <p>
+            <m>m\times n</m>
+          </p>
+        </statement>
+        <feedback>
+          <p>
+            Correct! We need to be able to multiply on the right by an <m>n\times 1</m>
+            column vector, and get an <m>m\times 1</m> column vector as output.
+          </p>
+        </feedback>
+      </choice>
+      <choice correct="no">
+        <statement>
+          <p>
+            <m>n\times m</m>
+          </p>
+        </statement>
+        <feedback>
+          <p>
+            The domain of <m>T_A</m> is <m>\R^n</m>,
+            and the product <m>A\xx</m> is only defined if the number of columns (<m>m</m>)
+            is equal to the dimension of the domain.
+          </p>
+        </feedback>
+      </choice>
+      <choice correct="no">
+        <statement>
+          <p>
+            <m>m\times m</m>
+          </p>
+        </statement>
+        <feedback>
+          <p>
+            The domain of <m>T_A</m> is <m>\R^n</m>,
+            and the product <m>A\xx</m> is only defined if the number of columns (<m>m</m>)
+            is equal to the dimension of the domain.
+          </p>
+        </feedback>
+      </choice>
+      <choice correct="no">
+        <statement>
+          <p>
+            <m>n\times n</m>
+          </p>
+        </statement>
+        <feedback>
+          <p>
+            Although the product <m>A\xx</m> would be defined in this case,
+            the result would be a vector in <m>\R^n</m>, and we want a vector in <m>\R^m</m>.
+          </p>
+        </feedback>
+      </choice>
+    </choices>
+  </exercise>
+
   <p>
     We should stress one important point about the coefficient isomorphism, however.
     It depends on the choice of basis, but also on the <em>order</em> of the basis elements.
@@ -51,7 +115,7 @@
     in order to make the assignment <m>C_B(\vv) = \bbm c_1\\\vdots \\c_n\ebm</m>.
   </p>
 
-  <exercise>
+  <exercise label="ex-confirm-iso">
     <statement>
       <p>
         Show that the coefficient isomorphism is, indeed,
@@ -179,7 +243,7 @@
     as was demonstrated above.
   </p>
 
-  <exercise>
+  <exercise label="ex-transf-matrix-compute">
     <statement>
       <p>
         Suppose <m>T:P_2(\R)\to \R^2</m> is given by
@@ -232,7 +296,7 @@
     then we need a systematic way of writing elements of <m>V</m> in terms of the given basis.
   </p>
 
-  <example>
+  <example xml:id="eg-using-transf-matrix">
     <title>Working with the matrix of a transformation</title>
 
 
@@ -491,7 +555,7 @@
     and we can use a computer to calculate <m>P^{-1}</m> and the product <m>QM_0P^{-1}</m>.
   </p>
 
-  <exercise>
+  <exercise label="ex-find-transf-from-matrix">
     <statement>
       <p>
         Suppose <m>T:M_{22}(\R)\to P_2(\R)</m> has the matrix
@@ -612,4 +676,22 @@
     obtained by using the same basis for both domain and codomain.
     Second, we will want to know how this matrix changes if we change the choice of basis.
   </p>
+
+  <exercises>
+    <exercise label="ex-ww-transf-mat1">
+      <webwork source="local/Library/Hope/Multi1/04-04-Basis-and-functions/Matrix_rep_06.pg"/>
+    </exercise>
+    <exercise label="ex-ww-transf-mat2">
+      <webwork source="local/Library/Hope/Multi1/04-04-Basis-and-functions/Matrix_rep_07.pg"/>
+    </exercise>
+    <exercise label="ex-ww-transf-mat3">
+      <webwork source="local/Library/Hope/Multi1/04-04-Basis-and-functions/Matrix_rep_08.pg"/>
+    </exercise>
+    <exercise label="ex-ww-transf-mat4">
+      <webwork source="local/Library/Hope/Multi1/04-04-Basis-and-functions/Matrix_rep_02.pg"/>
+    </exercise>
+    <exercise label="ex-ww-transf-mat5">
+      <webwork source="local/Library/Hope/Multi1/04-04-Basis-and-functions/Matrix_rep_04.pg"/>
+    </exercise>
+  </exercises>
 </section>
