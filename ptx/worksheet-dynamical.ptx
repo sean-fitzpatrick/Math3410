@@ -35,7 +35,7 @@
   </page>
 
   <page>
-    <exercise workspace="2.5in">
+    <exercise workspace="2.5in" label="ex-dynamical-recurrence-2">
       <introduction>
         <p>
           Consider a recurrence of length 2, of the form
@@ -45,7 +45,7 @@
         </p>
       </introduction>
 
-      <task>
+      <task label="ex-dynamical-recurrence-2a">
         <statement>
           <p>
             According to <xref ref="worksheet-recurrence"/>, what is the polynomial associated to this recurrence?
@@ -53,7 +53,7 @@
         </statement>
       </task>
 
-      <task>
+      <task label="ex-dynamical-recurrence-2b">
         <statement>
           <p>
             Let <m>\vv_k = \begin{bmatrix}x_k\\x_{k+1}\end{bmatrix}</m>, for each <m>k\geq 0</m>,
@@ -65,7 +65,7 @@
         </statement>
       </task>
 
-      <task>
+      <task label="ex-dynamical-recurrence-2c">
         <statement>
           <p>
             Compute the characteristic polynomial of <m>A</m>. What do you observe?
@@ -76,7 +76,7 @@
   </page>
 
   <page>
-    <exercise workspace="2.25in">
+    <exercise workspace="2.25in" label="ex-dynamical-recurrence-3">
       <introduction>
         <p>
           For a recurrence of length 3, given by
@@ -86,7 +86,7 @@
         </p>
       </introduction>
 
-      <task>
+      <task label="ex-dynamical-recurrence-3a">
         <statement>
           <p>
             Determine a matrix <m>A</m> such that <m>\vv_{k+1}=A\vv_k</m>,
@@ -95,7 +95,7 @@
         </statement>
       </task>
 
-      <task>
+      <task label="ex-dynamical-recurrence-3b">
         <statement>
           <p>
             Compute the characteristic polynomial of <m>A</m>,
@@ -104,7 +104,7 @@
         </statement>
       </task>
 
-      <task>
+      <task label="ex-dynamical-recurrence-3c">
         <statement>
           <p>
             Show that if <m>\lambda</m> is an eigenvalue of <m>A</m>,
@@ -116,7 +116,7 @@
   </page>
 
   <page>
-    <exercise workspace="1.75in">
+    <exercise workspace="1.75in" label="ex-dynamical-fibonacci">
       <introduction>
         <p>
           Consider the Fibonacci sequence, defined by <m>x_0=1, x_1=1</m>,
@@ -124,7 +124,7 @@
         </p>
       </introduction>
 
-      <task>
+      <task label="ex-dynamical-fibonacci-a">
         <statement>
           <p>
             State the matrix <m>A</m>, and show that <m>A</m> has eigenvalues <m>\lambda_\pm = \frac{1}{2}(1\pm \sqrt{5})</m>,
@@ -133,7 +133,7 @@
         </statement>
       </task>
 
-      <task xml:id="part-dynamical">
+      <task xml:id="part-dynamical"  label="ex-dynamical-fibonacci-b">
         <statement>
           <p>
             Let <m>P = \begin{bmatrix}1\amp 1\\ \lambda_+ \amp \lambda_-\end{bmatrix}</m>,
@@ -152,7 +152,7 @@
         </statement>
       </task>
 
-      <task>
+      <task label="ex-dynamical-fibonacci-c">
         <statement>
           <p>
             Note that <xref ref="part-dynamical"/> tells us that although the Fibonacci sequence is not a geometric sequence,
@@ -178,7 +178,7 @@
 
   <page>
     <title>Challenge/Project Problem: Predator-Prey Systems</title>
-    <exercise>
+    <exercise label="ex-dynamical-predator">
       <introduction>
         <p>
           As a more practical example, consider the following (over-simplified) predator-prey system.
@@ -237,7 +237,7 @@
         </p>
       </introduction>
 
-      <task>
+      <task label="ex-dynamical-predator-a">
         <statement>
           <p>
             Analyze the eigenvalues of this matrix, and diagonalize.
@@ -249,7 +249,7 @@
         </statement>
       </task>
 
-      <task xml:id="part-pred-prey">
+      <task xml:id="part-pred-prey" label="ex-dynamical-predator-b">
         <statement>
           <p>
             The eigenvalues turn out to be complex! What does that tell you about the nature of the system?
@@ -272,7 +272,7 @@
         </hint>
       </task>
 
-      <task>
+      <task label="ex-dynamical-predator-c">
         <statement>
           <p>
             What if you adjust the parameters? Can you come up with a system where both species flourish?
@@ -289,7 +289,7 @@
         </hint>
       </task>
 
-      <task>
+      <task label="ex-dynamical-predator-d">
         <statement>
           <p>
             You may have read this while wondering,
@@ -309,7 +309,7 @@
 
   <page>
     <title>Challenge/Project Problem: Markov Chains</title>
-    <exercise>
+    <exercise label="ex-dynamical-markov">
       <introduction>
         <p>
           A special type of linear dynamical system occurs when the matrix <m>A</m>
@@ -349,7 +349,7 @@
         </p>
       </introduction>
 
-      <task>
+      <task label="ex-dynamical-markov-a">
         <statement>
           <p>
             Give a stochastic matrix <m>M</m> and a vector <m>\vv_0</m>
@@ -358,7 +358,7 @@
         </statement>
       </task>
 
-      <task>
+      <task label="ex-dynamical-markov-b">
         <statement>
           <p>
             By diagonalizing the matrix <m>M</m>,
@@ -367,7 +367,7 @@
         </statement>
       </task>
 
-      <task>
+      <task label="ex-dynamical-markov-c">
         <statement>
           <p>
             You should have found that one of the eigenvalues of <m>M</m> was <m>\lambda=1</m>.
@@ -384,7 +384,7 @@
       </task>
     </exercise>
 
-    <exercise>
+    <exercise label="ex-dynamical-stochastic">
       <introduction>
         <p>
           A stochastic matrix <m>M</m> is called <term>regular</term>
@@ -392,7 +392,7 @@
           It is a theorem that every regular stochastic matrix has a steady-state vector.
         </p>
       </introduction>
-      <task>
+      <task label="ex-dynamical-stochastic-a">
         <statement>
           <p>
             Prove that if <m>M</m> is a <m>2\times 2</m> stochastic matrix with no entry equal to zero,
@@ -401,7 +401,7 @@
         </statement>
       </task>
 
-      <task>
+      <task label="ex-dynamical-stochastic-b">
         <statement>
           <p>
             Prove that the product of two <m>2\times 2</m> stochastic matrices is stochastic.
@@ -410,7 +410,7 @@
         </statement>
       </task>
 
-      <task>
+      <task label="ex-dynamical-stochastic-c">
         <statement>
           <p>
             Also prove that if <m>M^k</m> has positive entries for some <m>k</m>,
@@ -429,7 +429,7 @@
       </task>
     </exercise>
 
-    <exercise>
+    <exercise label="ex-dynamical-markov-example">
       <statement>
         <p>
           By searching online or in other textbooks,
