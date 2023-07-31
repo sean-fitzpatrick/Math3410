@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="remark remark-like"><h3 class="heading">
+<span class="type">Remark</span><span class="space"> </span><span class="codenumber">4.3.2</span><span class="period">.</span>
+</h3>
+<div class="para">One reason to study quadratic forms is the classification of critical points in calculus. You may recall (if you took Calculus 1) that for a differentiable function <span class="process-math">\(f(x)\text{,}\)</span> if <span class="process-math">\(f'(c)=0\)</span> and <span class="process-math">\(f''(c)\gt 0\)</span> at some number <span class="process-math">\(c\text{,}\)</span> then <span class="process-math">\(f\)</span> has a <dfn class="terminology">local minimum</dfn> at <span class="process-math">\(c\text{.}\)</span> Similarly, if <span class="process-math">\(f'(C)=0\)</span> and <span class="process-math">\(f''(c)\lt 0\text{,}\)</span> then <span class="process-math">\(f\)</span> has a <dfn class="terminology">local maximum</dfn> at <span class="process-math">\(c\text{.}\)</span>
+</div> <div class="para">For functions of two or more variables, determining whether a critical point is a maximum or minimum (or something else) is more complicated. Or rather, it is more complicated for those unfamiliar with linear algebra! The second-order partial derivatives of our function can be arranged into a matrix called the <dfn class="terminology">Hessian</dfn> matrix. For example, a function <span class="process-math">\(f(x,y)\)</span> of two variables has first-order partial derivatives <span class="process-math">\(f_x(x,y)\)</span> and <span class="process-math">\(f_y(x,y)\)</span> with respect to <span class="process-math">\(x\)</span> and <span class="process-math">\(y\text{,}\)</span> respectively, and second-order partial derivatives <span class="process-math">\(f_{xx}(x,y)\)</span> (twice with respect to <span class="process-math">\(x\)</span>), <span class="process-math">\(f_{xy}(x,y)\)</span> (first <span class="process-math">\(x\text{,}\)</span> then <span class="process-math">\(y\)</span>), <span class="process-math">\(f_{yx}(x,y)\)</span> (first <span class="process-math">\(y\text{,}\)</span> then <span class="process-math">\(x\)</span>), and <span class="process-math">\(f_{yy}(x,y)\)</span> (twice with respect to <span class="process-math">\(y\)</span>).</div> <div class="para logical">
+<div class="para">The Hessian matrix at a point <span class="process-math">\((a,b)\)</span> is</div>
+<div class="displaymath process-math">
+\begin{equation*}
+H_f(a,b) = \bbm f_{xx}(a,b) \amp f_{xy}(a,b)\\f_{yx}(a,b) \amp f_{yy}(a,b)\ebm\text{.}
+\end{equation*}
+</div>
+<div class="para">As long as the second-order partial derivatives are <em class="emphasis">continuous</em> at <span class="process-math">\((a,b)\text{,}\)</span> it is guaranteed that the Hessian matrix is <em class="emphasis">symmetric</em>! That means that there is a corresponding quadratic form, and when the first-order derivatives <span class="process-math">\(f_x(a,b)\)</span> and <span class="process-math">\(f_y(a,b)\)</span> are both zero (a critical point), it turns out that this quadratic form provides the best quadratic approximation to <span class="process-math">\(f(x,y)\)</span> near the point <span class="process-math">\((a,b)\text{.}\)</span> This is true for three or more variables as well.</div>
+</div> <div class="para">The eigenvalues of this matrix then give us some information about the behaviour of our function near the critical point. If all eigenvalues are positive at a point, we say that the corresponding quadratic form is <dfn class="terminology">positive-definite</dfn>, and the function <span class="process-math">\(f\)</span> has a local minimum at that point. If all eigenvalues are negative at a point, we say that the corresponding quadratic form is <dfn class="terminology">negative-definite</dfn>, and the function <span class="process-math">\(f\)</span> has a local maximum at that point. If all eigenvalues are nonzero at a point, with some positive and some negative, we say that <span class="process-math">\(f\)</span> has a <em class="emphasis">saddle point</em>. The corresponding quadratic form is called <dfn class="terminology">indefinite</dfn>, and this term applies even if some eigenvalues are zero.</div> <div class="para">If a quadratic form corresponds to a symmetric matrix whose eigenvalues are positive <em class="emphasis">or zero</em>, we say that the quadratic form is <dfn class="terminology">positive-semidefinite</dfn>. Similarly, a <dfn class="terminology">negative-semidefinite</dfn> quadratic form corresponds to symmetric matrix whose eigenvalues are all less than or equal to zero.</div></article><span class="incontext"><a href="sec-quadratic.html#remark-19" class="internal">in-context</a></span>
+</body>
+</html>

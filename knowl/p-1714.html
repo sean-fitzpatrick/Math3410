@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="en-US" dir="ltr">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
 <!--*                                          *-->
@@ -11,14 +11,15 @@
 <meta name="robots" content="noindex, nofollow">
 </head>
 <body class="ignore-math">
-<h5 class="heading"><span class="type">Paragraph</span></h5>
+<h4 class="heading"><span class="type">Paragraph</span></h4>
 <div class="para logical">
-<div class="para">The <dfn class="terminology">conjugate</dfn> of a matrix <span class="process-math">\(A=[a_{ij}]\in M_{mn}(\C)\)</span> is the matrix <span class="process-math">\(\bar{A}=[\bar{a}_{ij}]\text{.}\)</span> The <dfn class="terminology">conjugate transpose</dfn> of <span class="process-math">\(A\)</span> is the matrix <span class="process-math">\(A^H\)</span> defined by</div>
+<div class="para">Try the above modifications, in sequence. First, replacing the second line by <code class="code-inline tex2jax_ignore">L[0]</code> will give the first list item, which is another list:</div>
 <div class="displaymath process-math">
 \begin{equation*}
-A^H = (\bar{A})^T=\overline{(A^T)}\text{.}
+\left(-1,1,\left[\bbm -\frac35+\frac{i}{5}\ebm\right]\right)\text{.}
 \end{equation*}
 </div>
+<div class="para">We want the third item in the list, so try <code class="code-inline tex2jax_ignore">(L[0])[2]</code>. But note the extra set of brackets! There could (in theory) be more than one eigenvector, so this is a list with one item. To finally get the vector out, try <code class="code-inline tex2jax_ignore">((L[0])[2])[0]</code>. (There is probably a better way to do this. Someone who is more fluent in Python is welcome to advise.)</div>
 </div>
 <span class="incontext"><a href="sec-complex.html#p-1714" class="internal">in-context</a></span>
 </body>

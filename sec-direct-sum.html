@@ -5,7 +5,7 @@
 <!--*         https://pretextbook.org          *-->
 <!--*                                          *-->
 <!--********************************************-->
-<html lang="en-US">
+<html lang="en-US" dir="ltr">
 <head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Direct Sums and Invariant Subspaces</title>
@@ -14,20 +14,38 @@
 <meta property="og:type" content="book">
 <meta property="book:title" content="Linear Algebra">
 <meta property="book:author" content="Sean Fitzpatrick">
-<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>
+var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
 window.MathJax = {
-  tex: {
-    inlineMath: [['\\(','\\)']],
-    tags: "none",
-    tagSide: "right",
-    tagIndent: ".8em",
-    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'color', 'newcommand', 'knowl']}
+  "tex": {
+    "inlineMath": [
+      [
+        "\\(",
+        "\\)"
+      ]
+    ],
+    "tags": "none",
+    "tagSide": "right",
+    "tagIndent": ".8em",
+    "packages": {
+      "[+]": [
+        "base",
+        "extpfeil",
+        "ams",
+        "amscd",
+        "color",
+        "newcommand",
+        "knowl"
+      ]
+    }
   },
-  options: {
-    ignoreHtmlClass: "tex2jax_ignore|ignore-math",
-    processHtmlClass: "process-math",
-    renderActions: {
-        findScript: [10, function (doc) {
+  "options": {
+    "ignoreHtmlClass": "tex2jax_ignore|ignore-math",
+    "processHtmlClass": "process-math",
+    "renderActions": {
+      "findScript": [
+        10,
+        function (doc) {
             document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
                 var display = !!node.type.match(/; *mode=display/);
                 var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
@@ -37,25 +55,36 @@ window.MathJax = {
                 math.end = {node: text, delim: '', n: 0};
                 doc.math.push(math);
             });
-        }, '']
-    },
+        },
+        ""
+      ]
+    }
   },
-  chtml: {
-    scale: 0.98,
-    mtextInheritFont: true
+  "chtml": {
+    "scale": 0.98,
+    "mtextInheritFont": true
   },
-  loader: {
-    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/color', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
-    paths: {pretext: "https://pretextbook.org/js/lib"},
+  "loader": {
+    "load": [
+      "input/asciimath",
+      "[tex]/extpfeil",
+      "[tex]/amscd",
+      "[tex]/color",
+      "[tex]/newcommand",
+      "[pretext]/mathjaxknowl3.js"
+    ],
+    "paths": {
+      "pretext": "https://pretextbook.org/js/lib"
+    }
   },
-  startup: {
+  "startup": {
     pageReady() {
       return MathJax.startup.defaultPageReady().then(function () {
       console.log("in ready function");
       rsMathReady();
       }
     )}
-  },
+  }
 };
 </script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link href="https://webwork-dev.uleth.ca/webwork2_files/js/apps/MathView/mathview.css" rel="stylesheet">
 <script src="https://pretextbook.org/js/0.3/pretext-webwork/2.18/pretext-webwork.js"></script><script src="https://webwork-dev.uleth.ca/webwork2_files/node_modules/iframe-resizer/js/iframeResizer.min.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/themes/prism.css" rel="stylesheet">
@@ -100,17 +129,17 @@ eBookConfig.allow_pairs = false;
 eBookConfig.enableScratchAC = false;
 eBookConfig.build_info = "";
 eBookConfig.python3 = null;
-eBookConfig.runestone_version = '7.0.0dev4';
+eBookConfig.runestone_version = '7.0.7';
 eBookConfig.jobehost = '';
 eBookConfig.proxyuri_runs = '';
 eBookConfig.proxyuri_files = '';
 eBookConfig.enable_chatcodes =  false;
 </script>
 <!--*** Runestone Services ***-->
-<script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.0dev4/prefix-runtime.3489f84c0d76065d.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.0dev4/prefix-347.193e36c07abd0197.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.0dev4/prefix-runestone.e543e0dd19670ae2.bundle.js"></script><link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/7.0.0dev4/prefix-347.f9add1ca35d5ad93.css">
-<link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/7.0.0dev4/prefix-runestone.931faef5361cf6e9.css">
+<script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.7/prefix-runtime.fd9ce61c3c71cb22.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.7/prefix-347.193e36c07abd0197.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.7/prefix-runestone.89acb6c6122954e4.bundle.js"></script><link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/7.0.7/prefix-347.f9add1ca35d5ad93.css">
+<link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/7.0.7/prefix-runestone.8d2f742bc74f4a41.css">
 </head>
-<body id="Math3410" class="pretext book ignore-math">
+<body id="linearpython" class="pretext book ignore-math">
 <a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead"><div class="ptx-banner">
 <a id="logo-link" class="logo-link" href=""></a><div class="title-container">
 <h1 class="heading"><a href="linear-algebra.html"><span class="title">Linear Algebra:</span> <span class="subtitle">A second course, featuring proofs and Python</span></a></h1>
@@ -354,14 +383,21 @@ eBookConfig.enable_chatcodes =  false;
 <li>
 <div class="toc-item"><a href="ch-diagonalization.html" class="internal"><span class="codenumber">4</span> <span class="title">Diagonalization</span></a></div>
 <ul class="structural">
-<li><div class="toc-item"><a href="sec-eigen-basics.html" class="internal"><span class="codenumber">4.1</span> <span class="title">Eigenvalues and Eigenvectors</span></a></div></li>
+<li>
+<div class="toc-item"><a href="sec-eigen-basics.html" class="internal"><span class="codenumber">4.1</span> <span class="title">Eigenvalues and Eigenvectors</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="sec-eigen-basics.html#exercises-13" class="internal"><span class="codenumber">4.1</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
 <li><div class="toc-item"><a href="subsec-ortho-diag.html" class="internal"><span class="codenumber">4.2</span> <span class="title">Diagonalization of symmetric matrices</span></a></div></li>
-<li><div class="toc-item"><a href="sec-quadratic.html" class="internal"><span class="codenumber">4.3</span> <span class="title">Quadratic forms</span></a></div></li>
+<li>
+<div class="toc-item"><a href="sec-quadratic.html" class="internal"><span class="codenumber">4.3</span> <span class="title">Quadratic forms</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="sec-quadratic.html#exercises-14" class="internal"><span class="codenumber">4.3</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
 <li>
 <div class="toc-item"><a href="sec-complex.html" class="internal"><span class="codenumber">4.4</span> <span class="title">Diagonalization of complex matrices</span></a></div>
 <ul class="structural">
 <li><div class="toc-item"><a href="sec-complex.html#subsec-complex-vector" class="internal"><span class="codenumber">4.4.1</span> <span class="title">Complex vectors</span></a></div></li>
 <li><div class="toc-item"><a href="sec-complex.html#subsec-complex-matrix" class="internal"><span class="codenumber">4.4.2</span> <span class="title">Complex matrices</span></a></div></li>
+<li><div class="toc-item"><a href="sec-complex.html#exercises-15" class="internal"><span class="codenumber">4.4.3</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
 <li><div class="toc-item"><a href="worksheet-dynamical.html" class="internal"><span class="codenumber">4.5</span> <span class="title">Worksheet: linear dynamical systems</span></a></div></li>
@@ -383,6 +419,7 @@ eBookConfig.enable_chatcodes =  false;
 <li><div class="toc-item"><a href="section-matrix-factor.html#pars-qr-algorithm" class="internal"><span class="codenumber">4.6.2.2</span> <span class="title">The QR Algorithm</span></a></div></li>
 </ul>
 </li>
+<li><div class="toc-item"><a href="section-matrix-factor.html#exercises-16" class="internal"><span class="codenumber">4.6.3</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
 <li><div class="toc-item"><a href="worksheet-svd.html" class="internal"><span class="codenumber">4.7</span> <span class="title">Worksheet: Singular Value Decomposition</span></a></div></li>
@@ -391,8 +428,14 @@ eBookConfig.enable_chatcodes =  false;
 <li>
 <div class="toc-item"><a href="ch-change-basis.html" class="internal"><span class="codenumber">5</span> <span class="title">Change of Basis</span></a></div>
 <ul class="structural">
-<li><div class="toc-item"><a href="sec-matrix-of-transformation.html" class="internal"><span class="codenumber">5.1</span> <span class="title">The matrix of a linear transformation</span></a></div></li>
-<li><div class="toc-item"><a href="sec-matrix-operator.html" class="internal"><span class="codenumber">5.2</span> <span class="title">The matrix of a linear operator</span></a></div></li>
+<li>
+<div class="toc-item"><a href="sec-matrix-of-transformation.html" class="internal"><span class="codenumber">5.1</span> <span class="title">The matrix of a linear transformation</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="sec-matrix-of-transformation.html#exercises-17" class="internal"><span class="codenumber">5.1</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li>
+<div class="toc-item"><a href="sec-matrix-operator.html" class="internal"><span class="codenumber">5.2</span> <span class="title">The matrix of a linear operator</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="sec-matrix-operator.html#exercises-18" class="internal"><span class="codenumber">5.2</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
 <li class="active">
 <div class="toc-item"><a href="sec-direct-sum.html" class="internal"><span class="codenumber">5.3</span> <span class="title">Direct Sums and Invariant Subspaces</span></a></div>
 <ul class="structural">
@@ -403,7 +446,10 @@ eBookConfig.enable_chatcodes =  false;
 </li>
 <li><div class="toc-item"><a href="worksheet-gen-eigen.html" class="internal"><span class="codenumber">5.4</span> <span class="title">Worksheet: generalized eigenvectors</span></a></div></li>
 <li><div class="toc-item"><a href="sec-gen-eigen.html" class="internal"><span class="codenumber">5.5</span> <span class="title">Generalized eigenspaces</span></a></div></li>
-<li><div class="toc-item"><a href="sec-jordan-form.html" class="internal"><span class="codenumber">5.6</span> <span class="title">Jordan Canonical Form</span></a></div></li>
+<li>
+<div class="toc-item"><a href="sec-jordan-form.html" class="internal"><span class="codenumber">5.6</span> <span class="title">Jordan Canonical Form</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="sec-jordan-form.html#exercises-19" class="internal"><span class="codenumber">5.6</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
 </ul>
 </li>
 <li>
@@ -431,16 +477,16 @@ eBookConfig.enable_chatcodes =  false;
 <main class="ptx-main"><div id="ptx-content" class="ptx-content"><section class="section" id="sec-direct-sum"><h2 class="heading hide-type">
 <span class="type">Section</span> <span class="codenumber">5.3</span> <span class="title">Direct Sums and Invariant Subspaces</span>
 </h2>
-<section class="introduction" id="introduction-36"><div class="para" id="p-1981">This section continues the discussion of direct sums (from <a href="sec-subspace-combine.html" class="internal" title="Section 1.8: New subspaces from old">Section 1.8</a>) and invariant subspaces (from <a href="sec-eigen-basics.html" class="internal" title="Section 4.1: Eigenvalues and Eigenvectors">Section 4.1</a>), to better understand the structure of linear operators.</div></section><section class="subsection" id="subsec-invariant"><h3 class="heading hide-type">
+<section class="introduction" id="introduction-40"><div class="para" id="p-2024">This section continues the discussion of direct sums (from <a href="sec-subspace-combine.html" class="internal" title="Section 1.8: New subspaces from old">Section 1.8</a>) and invariant subspaces (from <a href="sec-eigen-basics.html" class="internal" title="Section 4.1: Eigenvalues and Eigenvectors">Section 4.1</a>), to better understand the structure of linear operators.</div></section><section class="subsection" id="subsec-invariant"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">5.3.1</span> <span class="title">Invariant subspaces</span>
 </h3>
 <article class="definition definition-like" id="def-invariant-subspace"><h4 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">5.3.1</span><span class="period">.</span>
 </h4>
-<div class="para" id="p-1982">Given an operator <span class="process-math">\(T:V\to V\text{,}\)</span> we say that a subspace <span class="process-math">\(U\subseteq V\)</span> is <span class="process-math">\(T\)</span>-<dfn class="terminology">invariant</dfn> if <span class="process-math">\(T(\uu)\in U\)</span> for all <span class="process-math">\(\uu\in U\text{.}\)</span>
-</div></article><div class="para" id="p-1983">Given a basis <span class="process-math">\(B=\basis{u}{k}\)</span> of <span class="process-math">\(U\text{,}\)</span> note that <span class="process-math">\(U\)</span> is <span class="process-math">\(T\)</span>-invariant if and only if <span class="process-math">\(T(\uu_i)\in U\)</span> for each <span class="process-math">\(i=1,2,\ldots, k\text{.}\)</span>
+<div class="para" id="p-2025">Given an operator <span class="process-math">\(T:V\to V\text{,}\)</span> we say that a subspace <span class="process-math">\(U\subseteq V\)</span> is <span class="process-math">\(T\)</span>-<dfn class="terminology">invariant</dfn> if <span class="process-math">\(T(\uu)\in U\)</span> for all <span class="process-math">\(\uu\in U\text{.}\)</span>
+</div></article><div class="para" id="p-2026">Given a basis <span class="process-math">\(B=\basis{u}{k}\)</span> of <span class="process-math">\(U\text{,}\)</span> note that <span class="process-math">\(U\)</span> is <span class="process-math">\(T\)</span>-invariant if and only if <span class="process-math">\(T(\uu_i)\in U\)</span> for each <span class="process-math">\(i=1,2,\ldots, k\text{.}\)</span>
 </div>
-<div class="para logical" id="p-1984">
+<div class="para logical" id="p-2027">
 <div class="para">For any operator <span class="process-math">\(T:V\to V\text{,}\)</span> there are four subspaces that are always <span class="process-math">\(T\)</span>-invariant:</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -450,25 +496,33 @@ eBookConfig.enable_chatcodes =  false;
 <div class="para">Of course, some of these subspaces might be the same; for example, if <span class="process-math">\(T\)</span> is invertible, then <span class="process-math">\(\ker T = \{\zer\}\)</span> and <span class="process-math">\(\im T = V\text{.}\)</span>
 </div>
 </div>
-<article class="exercise exercise-like" id="exercise-178"><h4 class="heading">
+<article class="exercise exercise-like" id="exercise-211"><h4 class="heading">
 <span class="type">Exercise</span><span class="space"> </span><span class="codenumber">5.3.2</span><span class="period">.</span>
 </h4>
-<div class="para" id="p-1985">Show that for any linear operator <span class="process-math">\(T\text{,}\)</span> the subspaces <span class="process-math">\(\ker T\)</span> and <span class="process-math">\(\im T\)</span> are <span class="process-math">\(T\)</span>-invariant.</div>
+<div class="para" id="p-2028">Show that for any linear operator <span class="process-math">\(T\text{,}\)</span> the subspaces <span class="process-math">\(\ker T\)</span> and <span class="process-math">\(\im T\)</span> are <span class="process-math">\(T\)</span>-invariant.</div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-49" id="hint-49"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-49"><div class="hint solution-like"><div class="para" id="p-1986">In each case, choose an element <span class="process-math">\(\vv\)</span> of the subspace. What does the definition of the space tell you about that element? (For example, if <span class="process-math">\(\vv\in\ker T\text{,}\)</span> what is the value of <span class="process-math">\(T(\vv)\text{?}\)</span>) Then show that <span class="process-math">\(T(\vv)\)</span> also fits the defintion of that space.</div></div></div>
-</div></article><div class="para" id="p-1987">A subspace <span class="process-math">\(U\)</span> is <span class="process-math">\(T\)</span>-invariant if <span class="process-math">\(T\)</span> does not map any vectors in <span class="process-math">\(U\)</span> outside of <span class="process-math">\(U\text{.}\)</span> Notice that if we shrink the domain of <span class="process-math">\(T\)</span> to <span class="process-math">\(U\text{,}\)</span> then we get an operator from <span class="process-math">\(U\)</span> to <span class="process-math">\(U\text{,}\)</span> since the image <span class="process-math">\(T(U)\)</span> is contained in <span class="process-math">\(U\text{.}\)</span>
+<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-50" id="hint-50"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-50"><div class="hint solution-like"><div class="para" id="p-2029">In each case, choose an element <span class="process-math">\(\vv\)</span> of the subspace. What does the definition of the space tell you about that element? (For example, if <span class="process-math">\(\vv\in\ker T\text{,}\)</span> what is the value of <span class="process-math">\(T(\vv)\text{?}\)</span>) Then show that <span class="process-math">\(T(\vv)\)</span> also fits the defintion of that space.</div></div></div>
+</div></article><div class="para" id="p-2030">A subspace <span class="process-math">\(U\)</span> is <span class="process-math">\(T\)</span>-invariant if <span class="process-math">\(T\)</span> does not map any vectors in <span class="process-math">\(U\)</span> outside of <span class="process-math">\(U\text{.}\)</span> Notice that if we shrink the domain of <span class="process-math">\(T\)</span> to <span class="process-math">\(U\text{,}\)</span> then we get an operator from <span class="process-math">\(U\)</span> to <span class="process-math">\(U\text{,}\)</span> since the image <span class="process-math">\(T(U)\)</span> is contained in <span class="process-math">\(U\text{.}\)</span>
 </div>
 <article class="definition definition-like" id="def-restriction"><h4 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">5.3.3</span><span class="period">.</span>
 </h4>
-<div class="para" id="p-1988">Let <span class="process-math">\(T:V\to V\)</span> be a linear operator, and let <span class="process-math">\(U\)</span> be a <span class="process-math">\(T\)</span>-invariant subspace. The <dfn class="terminology">restriction</dfn> of <span class="process-math">\(T\)</span> to <span class="process-math">\(U\text{,}\)</span> denoted <span class="process-math">\(T|_U\text{,}\)</span> is the operator <span class="process-math">\(T|_U:U\to U\)</span> defined by <span class="process-math">\(T|_U(\uu)=T(\uu)\)</span> for all <span class="process-math">\(\uu\in U\text{.}\)</span>
-</div></article><div class="para" id="p-1989">Notice that the restriction <span class="process-math">\(T|_U\)</span> is defined by the same “rule” as <span class="process-math">\(T\text{,}\)</span> but its domain is the subspace <span class="process-math">\(U\)</span> instead of the entire vector space <span class="process-math">\(V\text{.}\)</span>
-</div>
-<div class="para" id="p-1990">A lot can be learned by studying the restrictions of an operator to invariant subspaces. Indeed, the textbook by Axler does almost everything from this point of view. One reason to study invariant subspaces is that they allow us to put the matrix of <span class="process-math">\(T\)</span> into simpler forms.</div>
-<article class="theorem theorem-like" id="thm-invariant-block-triangular"><h4 class="heading">
-<span class="type">Theorem</span><span class="space"> </span><span class="codenumber">5.3.4</span><span class="period">.</span>
+<div class="para" id="p-2031">Let <span class="process-math">\(T:V\to V\)</span> be a linear operator, and let <span class="process-math">\(U\)</span> be a <span class="process-math">\(T\)</span>-invariant subspace. The <dfn class="terminology">restriction</dfn> of <span class="process-math">\(T\)</span> to <span class="process-math">\(U\text{,}\)</span> denoted <span class="process-math">\(T|_U\text{,}\)</span> is the operator <span class="process-math">\(T|_U:U\to U\)</span> defined by <span class="process-math">\(T|_U(\uu)=T(\uu)\)</span> for all <span class="process-math">\(\uu\in U\text{.}\)</span>
+</div></article><article class="exercise exercise-like" id="ex-tf-restriction"><h4 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">5.3.4</span><span class="period">.</span>
 </h4>
-<div class="para logical" id="p-1991">
+<div class="ptx-runestone-container"><div class="runestone"><ul data-component="multiplechoice" data-multipleanswers="false" id="ex-tf-restriction">
+<div class="para" id="p-2032">True or false: the restriction <span class="process-math">\(T|_U\)</span> is the same function as the operator <span class="process-math">\(T\text{.}\)</span>
+</div>
+<li data-component="answer" id="ex-tf-restriction_opt_t"><p>True.</p></li>
+<li data-component="feedback" id="ex-tf-restriction_opt_t"><div class="para" id="p-2033">The definition of a function includes its domain and codomain. Since the domain of <span class="process-math">\(T|_U\)</span> is different from that of <span class="process-math">\(T\text{,}\)</span> they are not the same function.</div></li>
+<li data-component="answer" id="ex-tf-restriction_opt_f" data-correct=""><p>False.</p></li>
+<li data-component="feedback" id="ex-tf-restriction_opt_f"><div class="para" id="p-2033">The definition of a function includes its domain and codomain. Since the domain of <span class="process-math">\(T|_U\)</span> is different from that of <span class="process-math">\(T\text{,}\)</span> they are not the same function.</div></li>
+</ul></div></div></article><div class="para" id="p-2034">A lot can be learned by studying the restrictions of an operator to invariant subspaces. Indeed, the textbook by Axler does almost everything from this point of view. One reason to study invariant subspaces is that they allow us to put the matrix of <span class="process-math">\(T\)</span> into simpler forms.</div>
+<article class="theorem theorem-like" id="thm-invariant-block-triangular"><h4 class="heading">
+<span class="type">Theorem</span><span class="space"> </span><span class="codenumber">5.3.5</span><span class="period">.</span>
+</h4>
+<div class="para logical" id="p-2035">
 <div class="para">Let <span class="process-math">\(T:V\to V\)</span> be a linear operator, and let <span class="process-math">\(U\)</span> be a <span class="process-math">\(T\)</span>-invariant subspace. Let <span class="process-math">\(B_U = \basis{u}{k}\)</span> be a basis of <span class="process-math">\(U\text{,}\)</span> and extend this to a basis</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -483,7 +537,7 @@ M_B(T) = \bbm M_{B_U}(T_U) \amp P\\0 \amp Q\ebm
 </div>
 <div class="para">for some <span class="process-math">\((n-k)\times (n-k)\)</span> matrix <span class="process-math">\(Q\text{.}\)</span>
 </div>
-</div></article><div class="para logical" id="p-1992">
+</div></article><div class="para logical" id="p-2036">
 <div class="para">Reducing a matrix to block triangular form is useful, because it simplifies computations such as determinants and eigenvalues (and determinants and eigenvalues are computationally expensive). In particular, if a matrix <span class="process-math">\(A\)</span> has the block form</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -498,7 +552,7 @@ A = \bbm A_{11} \amp A_{12} \amp \cdots \amp A_{1n}\\
 </div></section><section class="subsection" id="subsec-eigenspace"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">5.3.2</span> <span class="title">Eigenspaces</span>
 </h3>
-<div class="para logical" id="p-1993">
+<div class="para logical" id="p-2037">
 <div class="para">An important source of invariant subspaces is eigenspaces. Recall that for any real number <span class="process-math">\(\lambda\text{,}\)</span> and any operator <span class="process-math">\(T:V\to V\text{,}\)</span> we define</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -508,19 +562,19 @@ E_\lambda(T) = \ker(T-\lambda 1_V) = \{\vv\in V \,|\, T(\vv) = \lambda\vv\}\text
 <div class="para">For most values of <span class="process-math">\(\lambda\text{,}\)</span> we’ll have <span class="process-math">\(E_\lambda(T)=\{\zer\}\text{.}\)</span> The values of <span class="process-math">\(\lambda\)</span> for which <span class="process-math">\(E_\lambda(T)\)</span> is non-trivial are precisely the eigenvalues of <span class="process-math">\(T\text{.}\)</span> Note that since similar matrices have the same characteristic polynomial, any matrix representation <span class="process-math">\(M_B(T)\)</span> will have the same eigenvalues. They do <em class="emphasis">not</em> generally have the same eigenspaces, but we do have the following.</div>
 </div>
 <article class="theorem theorem-like" id="thm-eigenspace-invariant"><h4 class="heading">
-<span class="type">Theorem</span><span class="space"> </span><span class="codenumber">5.3.5</span><span class="period">.</span>
+<span class="type">Theorem</span><span class="space"> </span><span class="codenumber">5.3.6</span><span class="period">.</span>
 </h4>
-<div class="para logical" id="p-1994">
+<div class="para logical" id="p-2038">
 <div class="para">Let <span class="process-math">\(T:V\to V\)</span> be a linear operator. For any scalar <span class="process-math">\(\lambda\text{,}\)</span> the eigenspace <span class="process-math">\(E_\lambda(T)\)</span> is <span class="process-math">\(T\)</span>-invariant. Moreover, for any ordered basis <span class="process-math">\(B\)</span> of <span class="process-math">\(V\text{,}\)</span> the coefficient isomorphism <span class="process-math">\(C_B:V\to \R^n\)</span> induces an isomorphism</div>
 <div class="displaymath process-math">
 \begin{equation*}
 C_B|_{E_\lambda(T)}:E_\lambda(T)\to E_{\lambda}(M_B(T))\text{.}
 \end{equation*}
 </div>
-</div></article></section><section class="subsection" id="subsec-direct-sum"><h3 class="heading hide-type">
+</div></article><div class="para" id="p-2039">In other words, the two eigenspaces are isomorphic, although the isomorphism depends on a choice of basis.</div></section><section class="subsection" id="subsec-direct-sum"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">5.3.3</span> <span class="title">Direct Sums</span>
 </h3>
-<div class="para logical" id="p-1995">
+<div class="para logical" id="p-2040">
 <div class="para">Recall that for any subspaces <span class="process-math">\(U,W\)</span> of a vector space <span class="process-math">\(V\text{,}\)</span> the sets</div>
 <div class="displaymath process-math" id="md-89">
 \begin{align*}
@@ -531,15 +585,15 @@ U\cap W \amp = \{\vv \in V \,|\, \vv\in U \text{ and } \vv\in W\}
 <div class="para">are subspaces of <span class="process-math">\(V\text{.}\)</span> Saying that <span class="process-math">\(\vv\in U+W\)</span> means that <span class="process-math">\(\vv\)</span> can be written as a sum of a vector in <span class="process-math">\(U\)</span> and a vector in <span class="process-math">\(W\text{.}\)</span> However, this sum may not be unique. If <span class="process-math">\(\vv\in U\cap W\text{,}\)</span> <span class="process-math">\(\uu\in U\)</span> and <span class="process-math">\(\ww\in W\text{,}\)</span> then we can write <span class="process-math">\((\uu+\vv)+\ww = \uu + (\vv+\ww)\text{,}\)</span> giving two different representations of a vector as an element of <span class="process-math">\(U+W\text{.}\)</span>
 </div>
 </div>
-<div class="para" id="p-1996">We proved in <a href="" class="xref" data-knowl="./knowl/thm-unique-sum.html" title="Theorem 1.8.9">Theorem 1.8.9</a> in <a href="sec-subspace-combine.html" class="internal" title="Section 1.8: New subspaces from old">Section 1.8</a> that for any <span class="process-math">\(\vv\in U+W\text{,}\)</span> there exist <em class="emphasis">unique</em> vectors <span class="process-math">\(\uu\in U\)</span> and <span class="process-math">\(\ww\in W\)</span> such that <span class="process-math">\(\vv=\uu+\ww\text{,}\)</span> if and only if <span class="process-math">\(U\cap W=\{\zer\}\text{.}\)</span>
+<div class="para" id="p-2041">We proved in <a href="" class="xref" data-knowl="./knowl/thm-unique-sum.html" title="Theorem 1.8.9">Theorem 1.8.9</a> in <a href="sec-subspace-combine.html" class="internal" title="Section 1.8: New subspaces from old">Section 1.8</a> that for any <span class="process-math">\(\vv\in U+W\text{,}\)</span> there exist <em class="emphasis">unique</em> vectors <span class="process-math">\(\uu\in U\)</span> and <span class="process-math">\(\ww\in W\)</span> such that <span class="process-math">\(\vv=\uu+\ww\text{,}\)</span> if and only if <span class="process-math">\(U\cap W=\{\zer\}\text{.}\)</span>
 </div>
-<div class="para" id="p-1997">In <a href="" class="xref" data-knowl="./knowl/def-direct-sum.html" title="Definition 1.8.8">Definition 1.8.8</a>, we said that a sum <span class="process-math">\(U+W\)</span> where <span class="process-math">\(U\cap W=\{\zer\}\)</span> is called a <dfn class="terminology">direct sum</dfn>, written as <span class="process-math">\(U\oplus W\text{.}\)</span>
+<div class="para" id="p-2042">In <a href="" class="xref" data-knowl="./knowl/def-direct-sum.html" title="Definition 1.8.8">Definition 1.8.8</a>, we said that a sum <span class="process-math">\(U+W\)</span> where <span class="process-math">\(U\cap W=\{\zer\}\)</span> is called a <dfn class="terminology">direct sum</dfn>, written as <span class="process-math">\(U\oplus W\text{.}\)</span>
 </div>
-<div class="para" id="p-1998">Typically we are interested in the case that the two subspaces sum to <span class="process-math">\(V\text{.}\)</span> Recall from <a href="" class="xref" data-knowl="./knowl/def-subspace-complement.html" title="Definition 1.8.11">Definition 1.8.11</a> that if <span class="process-math">\(V = U\oplus W\text{,}\)</span> we say that <span class="process-math">\(W\)</span> is a <dfn class="terminology">complement</dfn> of <span class="process-math">\(U\text{.}\)</span> We also say that <span class="process-math">\(U\oplus W\)</span> is a direct sum decomposition of <span class="process-math">\(V\text{.}\)</span> Of course, the orthogonal complement <span class="process-math">\(U^\bot\)</span> of a subspace <span class="process-math">\(U\)</span> is a complement in this sense, if <span class="process-math">\(V\)</span> is equipped with an inner product. (Without an inner product we have no concept of “orthogonal”.) But even if we don’t have an inner product, finding a complement is not too difficult, as the next example shows.</div>
+<div class="para" id="p-2043">Typically we are interested in the case that the two subspaces sum to <span class="process-math">\(V\text{.}\)</span> Recall from <a href="" class="xref" data-knowl="./knowl/def-subspace-complement.html" title="Definition 1.8.11">Definition 1.8.11</a> that if <span class="process-math">\(V = U\oplus W\text{,}\)</span> we say that <span class="process-math">\(W\)</span> is a <dfn class="terminology">complement</dfn> of <span class="process-math">\(U\text{.}\)</span> We also say that <span class="process-math">\(U\oplus W\)</span> is a direct sum decomposition of <span class="process-math">\(V\text{.}\)</span> Of course, the orthogonal complement <span class="process-math">\(U^\bot\)</span> of a subspace <span class="process-math">\(U\)</span> is a complement in this sense, if <span class="process-math">\(V\)</span> is equipped with an inner product. (Without an inner product we have no concept of “orthogonal”.) But even if we don’t have an inner product, finding a complement is not too difficult, as the next example shows.</div>
 <article class="example example-like" id="eg-direct-sum-basis"><h4 class="heading">
-<span class="type">Example</span><span class="space"> </span><span class="codenumber">5.3.6</span><span class="period">.</span><span class="space"> </span><span class="title">Finding a complement by extending a basis.</span>
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">5.3.7</span><span class="period">.</span><span class="space"> </span><span class="title">Finding a complement by extending a basis.</span>
 </h4>
-<div class="para logical" id="p-1999">
+<div class="para logical" id="p-2044">
 <div class="para">The easiest way to determine a direct sum decomposition (or equivalently, a complement) is through the use of a basis. Suppose <span class="process-math">\(U\)</span> is a subspace of <span class="process-math">\(V\)</span> with basis <span class="process-math">\(\basis{e}{k}\text{,}\)</span> and extend this to a basis</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -560,7 +614,7 @@ a_1\mathbf{e}_1+\cdots + a_k\mathbf{e}_k-b_1\mathbf{e}_{k+1}-\cdots - b_{n-k}\ma
 </div>
 <div class="para">so <span class="process-math">\(a_1=\cdots b_{n-k}=0\)</span> by the linear independence of <span class="process-math">\(B\text{,}\)</span> showing that <span class="process-math">\(\vv=\zer\text{.}\)</span>
 </div>
-</div> <div class="para logical" id="p-2000">
+</div> <div class="para logical" id="p-2045">
 <div class="para">Conversely, if <span class="process-math">\(V=U\oplus W\text{,}\)</span> and we have bases <span class="process-math">\(\basis{u}{k}\)</span> of <span class="process-math">\(U\)</span> and <span class="process-math">\(\basis{v}{l}\)</span> of <span class="process-math">\(W\text{,}\)</span> then</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -574,18 +628,18 @@ a_1\uu_1+\cdots + a_k\uu_k+b_1\ww_1+\cdots b_l\ww_l=\zer
 \end{equation*}
 </div>
 <div class="para">then <span class="process-math">\(a_1\uu_1+\cdots + a_k\uu_k = -b_1\ww_1-\cdots -b_l\ww_l\text{,}\)</span> and equality is only possible if both sides belong to <span class="process-math">\(U\cap W = \{\zer\}\text{.}\)</span> Since <span class="process-math">\(\basis{u}{k}\)</span> is independent, the <span class="process-math">\(a_i\)</span> have to be zero, and since <span class="process-math">\(\basis{w}{l}\)</span> is independent, the <span class="process-math">\(b_j\)</span> have to be zero.</div>
-</div></article><div class="para" id="p-2001">The argument given in the second part of <a href="" class="xref" data-knowl="./knowl/eg-direct-sum-basis.html" title="Example 5.3.6: Finding a complement by extending a basis">Example 5.3.6</a> has an immediate, but important consequence.</div>
+</div></article><div class="para" id="p-2046">The argument given in the second part of <a href="" class="xref" data-knowl="./knowl/eg-direct-sum-basis.html" title="Example 5.3.7: Finding a complement by extending a basis">Example 5.3.7</a> has an immediate, but important consequence.</div>
 <article class="theorem theorem-like" id="thm-direct-sum-dimension"><h4 class="heading">
-<span class="type">Theorem</span><span class="space"> </span><span class="codenumber">5.3.7</span><span class="period">.</span>
+<span class="type">Theorem</span><span class="space"> </span><span class="codenumber">5.3.8</span><span class="period">.</span>
 </h4>
-<div class="para" id="p-2002">Suppose <span class="process-math">\(V=U\oplus W\text{,}\)</span> where <span class="process-math">\(\dim U = m\)</span> and <span class="process-math">\(\dim W = n\text{.}\)</span> Then <span class="process-math">\(V\)</span> is finite-dimensional, and <span class="process-math">\(\dim V = m+n\text{.}\)</span>
+<div class="para" id="p-2047">Suppose <span class="process-math">\(V=U\oplus W\text{,}\)</span> where <span class="process-math">\(\dim U = m\)</span> and <span class="process-math">\(\dim W = n\text{.}\)</span> Then <span class="process-math">\(V\)</span> is finite-dimensional, and <span class="process-math">\(\dim V = m+n\text{.}\)</span>
 </div></article><article class="example example-like" id="eg-invariant-block"><h4 class="heading">
-<span class="type">Example</span><span class="space"> </span><span class="codenumber">5.3.8</span><span class="period">.</span>
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">5.3.9</span><span class="period">.</span>
 </h4>
-<div class="para" id="p-2003">Suppose <span class="process-math">\(V=U\oplus W\text{,}\)</span> where <span class="process-math">\(U\)</span> and <span class="process-math">\(W\)</span> are <span class="process-math">\(T\)</span>-invariant subspaces for some operator <span class="process-math">\(T:V\to V\text{.}\)</span> Let <span class="process-math">\(B_U=\basis{u}{m}\)</span> and let <span class="process-math">\(B_W = \basis{w}{n}\)</span> be bases for <span class="process-math">\(U\)</span> and <span class="process-math">\(W\text{,}\)</span> respectively. Determine the matrix of <span class="process-math">\(T\)</span> with respect to the basis <span class="process-math">\(B=B_U\cup B_W\)</span> of <span class="process-math">\(V\text{.}\)</span>
+<div class="para" id="p-2048">Suppose <span class="process-math">\(V=U\oplus W\text{,}\)</span> where <span class="process-math">\(U\)</span> and <span class="process-math">\(W\)</span> are <span class="process-math">\(T\)</span>-invariant subspaces for some operator <span class="process-math">\(T:V\to V\text{.}\)</span> Let <span class="process-math">\(B_U=\basis{u}{m}\)</span> and let <span class="process-math">\(B_W = \basis{w}{n}\)</span> be bases for <span class="process-math">\(U\)</span> and <span class="process-math">\(W\text{,}\)</span> respectively. Determine the matrix of <span class="process-math">\(T\)</span> with respect to the basis <span class="process-math">\(B=B_U\cup B_W\)</span> of <span class="process-math">\(V\text{.}\)</span>
 </div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-77" id="solution-77"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-77"><div class="solution solution-like"><div class="para logical" id="p-2004">
+<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-77" id="solution-77"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-77"><div class="solution solution-like"><div class="para logical" id="p-2049">
 <div class="para">Since we don’t know the map <span class="process-math">\(T\)</span> or anything about the bases <span class="process-math">\(B_U,B_W\text{,}\)</span> we’re looking for a fairly general statement here. Since <span class="process-math">\(U\)</span> is <span class="process-math">\(T\)</span>-invariant, we must have <span class="process-math">\(T(\uu_i)\in U\)</span> for each <span class="process-math">\(i=1,\ldots, m\text{.}\)</span> Similarly, <span class="process-math">\(T(\ww_j)\in W\)</span> for each <span class="process-math">\(j=1,\ldots, n\text{.}\)</span> This means that we have</div>
 <div class="displaymath process-math" id="md-90">
 \begin{align*}

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="en-US" dir="ltr">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
 <!--*                                          *-->
@@ -11,17 +11,23 @@
 <meta name="robots" content="noindex, nofollow">
 </head>
 <body class="ignore-math">
-<h3 class="heading"><span class="type">Paragraph</span></h3>
+<h4 class="heading"><span class="type">Paragraph</span></h4>
 <div class="para logical">
-<div class="para">Note that if <span class="process-math">\(\xx\)</span> is an eigenvector of the matrix <span class="process-math">\(A\text{,}\)</span> then we have</div>
+<div class="para">To see this, suppose <span class="process-math">\(A\)</span> is symmetric, and that we have</div>
 <div class="displaymath process-math">
-\begin{equation}
-(A-\lambda I_n)\xx=\zer\text{,}\tag{4.1.1}
-\end{equation}
+\begin{equation*}
+A\xx_1=\lambda_1\xx_1\quad \text{ and } A\xx_2=\lambda_2\xx_2\text{,}
+\end{equation*}
 </div>
-<div class="para">where <span class="process-math">\(I_n\)</span> denotes the <span class="process-math">\(n\times n\)</span> identity matrix. Thus, if <span class="process-math">\(\lambda\)</span> is an eigenvalue of <span class="process-math">\(A\text{,}\)</span> any corresponding eigenvector is an element of <span class="process-math">\(\nll(A-\lambda I_n)\text{.}\)</span>
+<div class="para">with <span class="process-math">\(\xx_1\neq\zer,\xx_2\neq \zer\text{,}\)</span> and <span class="process-math">\(\lambda_1\neq \lambda_2\text{.}\)</span> We then have, since <span class="process-math">\(A\)</span> is symmetric, and using the result above,</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\lambda_1(\xx_1\dotp \xx_2) = (\lambda_1\xx_1)\dotp \xx_2 = (A\xx_1)\dotp \xx_2 = \xx_1\dotp(A\xx_2) = \xx_1(\lambda_2\xx_2) = \lambda_2(\xx_1\dotp\xx_2)\text{.}
+\end{equation*}
+</div>
+<div class="para">It follows that <span class="process-math">\((\lambda_1-\lambda_2)(\xx_1\dotp \xx_2)=0\text{,}\)</span> and since <span class="process-math">\(\lambda_1\neq \lambda_2\text{,}\)</span> we must have <span class="process-math">\(\xx_1\dotp \xx_2=0\text{.}\)</span>
 </div>
 </div>
-<span class="incontext"><a href="sec-eigen-basics.html#p-1608" class="internal">in-context</a></span>
+<span class="incontext"><a href="subsec-ortho-diag.html#p-1608" class="internal">in-context</a></span>
 </body>
 </html>

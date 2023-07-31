@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="en-US" dir="ltr">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
 <!--*                                          *-->
@@ -11,8 +11,30 @@
 <meta name="robots" content="noindex, nofollow">
 </head>
 <body class="ignore-math">
-<h4 class="heading"><span class="type">Paragraph</span></h4>
-<div class="para">By hypothesis, the set <span class="process-math">\(\{\vv_2,\ldots, \vv_k\}\)</span> of <span class="process-math">\(k-1\)</span> eigenvectors is linearly independent. We know that <span class="process-math">\(\lambda_j-\lambda_1\neq 0\)</span> for <span class="process-math">\(j=2,\ldots, k\text{,}\)</span> since the eigenvalues are all distinct. Therefore, the only way this linear combination can equal zero is if <span class="process-math">\(c_2=0,\ldots, c_k=0\text{.}\)</span> This leaves us with <span class="process-math">\(c_1\vv_1=\zer\text{,}\)</span> but <span class="process-math">\(\zz_1\neq \zer\text{,}\)</span> so <span class="process-math">\(c_1=0\)</span> as well.</div>
-<span class="incontext"><a href="sec-eigen-basics.html#p-1641" class="internal">in-context</a></span>
+<h3 class="heading"><span class="type">Paragraph</span></h3>
+<div class="para logical">
+<div class="para">The resulting orthogonal matrix is <span class="process-math">\(P=\frac{1}{\sqrt{2}}\bbm 1\amp -1\\1\amp 1\ebm\text{,}\)</span> and we find</div>
+<div class="displaymath process-math">
+\begin{equation*}
+P^TAP = \bbm 2\amp 0\\0\amp 6\ebm, \text{ or } A = PDP^T,
+\end{equation*}
+</div>
+<div class="para">where <span class="process-math">\(D = \bbm 2\amp 0\\0\amp 6\ebm\text{.}\)</span> If we define new variables <span class="process-math">\(y_1,y_2\)</span> by</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\bbm y_1\\y_2\ebm = P^T\bbm x_1\\x_2\ebm\text{,}
+\end{equation*}
+</div>
+<div class="para">then we find that</div>
+<div class="displaymath process-math">
+\begin{align*}
+\bbm x_1\amp x_2\ebm A\bbm x_1\\x_2\ebm \amp = (\bbm x_1\amp x_2\ebm P)D\left(P^T\bbm x_1\\x_2\ebm\right) \\
+\amp = \bbm y_1 \amp y_2\ebm\bbm 2\amp 0\\0\amp 6\ebm\bbm y_1\\y_2\ebm\\
+\amp = 2y_1^2+6y_2^2\text{.}
+\end{align*}
+</div>
+<div class="para">Note that there is no longer any cross term.</div>
+</div>
+<span class="incontext"><a href="sec-quadratic.html#p-1641" class="internal">in-context</a></span>
 </body>
 </html>

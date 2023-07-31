@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="en-US" dir="ltr">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
 <!--*                                          *-->
@@ -11,17 +11,18 @@
 <meta name="robots" content="noindex, nofollow">
 </head>
 <body class="ignore-math">
-<h4 class="heading"><span class="type">Paragraph</span></h4>
+<h3 class="heading"><span class="type">Paragraph</span></h3>
 <div class="para logical">
-<div class="para">Let <span class="process-math">\(\{\xx_1,\ldots, \xx_k\}\)</span> be a set of linearly independent eigenvectors of a matrix <span class="process-math">\(A\text{,}\)</span> with corresponding eigenvalues <span class="process-math">\(\lambda_1,\ldots, \lambda_k\)</span> (not necessarily distinct). Extend this set to a basis <span class="process-math">\(\{\xx_1,\ldots, \xx_k,\xx_{k+1},\ldots, \xx_n\}\text{,}\)</span> and let <span class="process-math">\(P=\bbm \xx_1\amp \cdots \amp \xx_n\ebm\)</span> be the matrix whose columns are the basis vectors. (Note that <span class="process-math">\(P\)</span> is necessarily invertible.) Then</div>
+<div class="para">A basic fact about orthogonal matrices is that they <em class="emphasis">preserve length</em>. Indeed, for any vector <span class="process-math">\(\xx\)</span> in <span class="process-math">\(\R^n\)</span> and any orthogonal matrix <span class="process-math">\(P\text{,}\)</span>
+</div>
 <div class="displaymath process-math">
 \begin{equation*}
-P^{-1}AP = \bbm \diag(\lambda_1,\ldots, \lambda_k) \amp B\\0\amp A_1\ebm\text{,}
+\len{P\xx}^2 = (P\xx)\dotp (P\xx) = (P\xx)^T(P\xx) = (\xx^TP^T)(P\xx) = \xx^T\xx=\len{\xx}^2\text{,}
 \end{equation*}
 </div>
-<div class="para">where <span class="process-math">\(B\)</span> has size <span class="process-math">\(k\times (n-k)\text{,}\)</span> and <span class="process-math">\(A_1\)</span> has size <span class="process-math">\((n-k)\times (n-k)\text{.}\)</span>
+<div class="para">since <span class="process-math">\(P^TP=I_n\text{.}\)</span>
 </div>
 </div>
-<span class="incontext"><a href="sec-eigen-basics.html#p-1633" class="internal">in-context</a></span>
+<span class="incontext"><a href="sec-quadratic.html#p-1633" class="internal">in-context</a></span>
 </body>
 </html>

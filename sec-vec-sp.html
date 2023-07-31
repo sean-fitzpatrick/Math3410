@@ -5,7 +5,7 @@
 <!--*         https://pretextbook.org          *-->
 <!--*                                          *-->
 <!--********************************************-->
-<html lang="en-US">
+<html lang="en-US" dir="ltr">
 <head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Definition and examples</title>
@@ -14,20 +14,38 @@
 <meta property="og:type" content="book">
 <meta property="book:title" content="Linear Algebra">
 <meta property="book:author" content="Sean Fitzpatrick">
-<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>
+var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
 window.MathJax = {
-  tex: {
-    inlineMath: [['\\(','\\)']],
-    tags: "none",
-    tagSide: "right",
-    tagIndent: ".8em",
-    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'color', 'newcommand', 'knowl']}
+  "tex": {
+    "inlineMath": [
+      [
+        "\\(",
+        "\\)"
+      ]
+    ],
+    "tags": "none",
+    "tagSide": "right",
+    "tagIndent": ".8em",
+    "packages": {
+      "[+]": [
+        "base",
+        "extpfeil",
+        "ams",
+        "amscd",
+        "color",
+        "newcommand",
+        "knowl"
+      ]
+    }
   },
-  options: {
-    ignoreHtmlClass: "tex2jax_ignore|ignore-math",
-    processHtmlClass: "process-math",
-    renderActions: {
-        findScript: [10, function (doc) {
+  "options": {
+    "ignoreHtmlClass": "tex2jax_ignore|ignore-math",
+    "processHtmlClass": "process-math",
+    "renderActions": {
+      "findScript": [
+        10,
+        function (doc) {
             document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
                 var display = !!node.type.match(/; *mode=display/);
                 var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
@@ -37,25 +55,36 @@ window.MathJax = {
                 math.end = {node: text, delim: '', n: 0};
                 doc.math.push(math);
             });
-        }, '']
-    },
+        },
+        ""
+      ]
+    }
   },
-  chtml: {
-    scale: 0.98,
-    mtextInheritFont: true
+  "chtml": {
+    "scale": 0.98,
+    "mtextInheritFont": true
   },
-  loader: {
-    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/color', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
-    paths: {pretext: "https://pretextbook.org/js/lib"},
+  "loader": {
+    "load": [
+      "input/asciimath",
+      "[tex]/extpfeil",
+      "[tex]/amscd",
+      "[tex]/color",
+      "[tex]/newcommand",
+      "[pretext]/mathjaxknowl3.js"
+    ],
+    "paths": {
+      "pretext": "https://pretextbook.org/js/lib"
+    }
   },
-  startup: {
+  "startup": {
     pageReady() {
       return MathJax.startup.defaultPageReady().then(function () {
       console.log("in ready function");
       rsMathReady();
       }
     )}
-  },
+  }
 };
 </script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link href="https://webwork-dev.uleth.ca/webwork2_files/js/apps/MathView/mathview.css" rel="stylesheet">
 <script src="https://pretextbook.org/js/0.3/pretext-webwork/2.18/pretext-webwork.js"></script><script src="https://webwork-dev.uleth.ca/webwork2_files/node_modules/iframe-resizer/js/iframeResizer.min.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/themes/prism.css" rel="stylesheet">
@@ -100,17 +129,17 @@ eBookConfig.allow_pairs = false;
 eBookConfig.enableScratchAC = false;
 eBookConfig.build_info = "";
 eBookConfig.python3 = null;
-eBookConfig.runestone_version = '7.0.0dev4';
+eBookConfig.runestone_version = '7.0.7';
 eBookConfig.jobehost = '';
 eBookConfig.proxyuri_runs = '';
 eBookConfig.proxyuri_files = '';
 eBookConfig.enable_chatcodes =  false;
 </script>
 <!--*** Runestone Services ***-->
-<script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.0dev4/prefix-runtime.3489f84c0d76065d.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.0dev4/prefix-347.193e36c07abd0197.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.0dev4/prefix-runestone.e543e0dd19670ae2.bundle.js"></script><link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/7.0.0dev4/prefix-347.f9add1ca35d5ad93.css">
-<link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/7.0.0dev4/prefix-runestone.931faef5361cf6e9.css">
+<script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.7/prefix-runtime.fd9ce61c3c71cb22.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.7/prefix-347.193e36c07abd0197.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.7/prefix-runestone.89acb6c6122954e4.bundle.js"></script><link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/7.0.7/prefix-347.f9add1ca35d5ad93.css">
+<link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/7.0.7/prefix-runestone.8d2f742bc74f4a41.css">
 </head>
-<body id="Math3410" class="pretext book ignore-math">
+<body id="linearpython" class="pretext book ignore-math">
 <a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead"><div class="ptx-banner">
 <a id="logo-link" class="logo-link" href=""></a><div class="title-container">
 <h1 class="heading"><a href="linear-algebra.html"><span class="title">Linear Algebra:</span> <span class="subtitle">A second course, featuring proofs and Python</span></a></h1>
@@ -354,14 +383,21 @@ eBookConfig.enable_chatcodes =  false;
 <li>
 <div class="toc-item"><a href="ch-diagonalization.html" class="internal"><span class="codenumber">4</span> <span class="title">Diagonalization</span></a></div>
 <ul class="structural">
-<li><div class="toc-item"><a href="sec-eigen-basics.html" class="internal"><span class="codenumber">4.1</span> <span class="title">Eigenvalues and Eigenvectors</span></a></div></li>
+<li>
+<div class="toc-item"><a href="sec-eigen-basics.html" class="internal"><span class="codenumber">4.1</span> <span class="title">Eigenvalues and Eigenvectors</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="sec-eigen-basics.html#exercises-13" class="internal"><span class="codenumber">4.1</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
 <li><div class="toc-item"><a href="subsec-ortho-diag.html" class="internal"><span class="codenumber">4.2</span> <span class="title">Diagonalization of symmetric matrices</span></a></div></li>
-<li><div class="toc-item"><a href="sec-quadratic.html" class="internal"><span class="codenumber">4.3</span> <span class="title">Quadratic forms</span></a></div></li>
+<li>
+<div class="toc-item"><a href="sec-quadratic.html" class="internal"><span class="codenumber">4.3</span> <span class="title">Quadratic forms</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="sec-quadratic.html#exercises-14" class="internal"><span class="codenumber">4.3</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
 <li>
 <div class="toc-item"><a href="sec-complex.html" class="internal"><span class="codenumber">4.4</span> <span class="title">Diagonalization of complex matrices</span></a></div>
 <ul class="structural">
 <li><div class="toc-item"><a href="sec-complex.html#subsec-complex-vector" class="internal"><span class="codenumber">4.4.1</span> <span class="title">Complex vectors</span></a></div></li>
 <li><div class="toc-item"><a href="sec-complex.html#subsec-complex-matrix" class="internal"><span class="codenumber">4.4.2</span> <span class="title">Complex matrices</span></a></div></li>
+<li><div class="toc-item"><a href="sec-complex.html#exercises-15" class="internal"><span class="codenumber">4.4.3</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
 <li><div class="toc-item"><a href="worksheet-dynamical.html" class="internal"><span class="codenumber">4.5</span> <span class="title">Worksheet: linear dynamical systems</span></a></div></li>
@@ -383,6 +419,7 @@ eBookConfig.enable_chatcodes =  false;
 <li><div class="toc-item"><a href="section-matrix-factor.html#pars-qr-algorithm" class="internal"><span class="codenumber">4.6.2.2</span> <span class="title">The QR Algorithm</span></a></div></li>
 </ul>
 </li>
+<li><div class="toc-item"><a href="section-matrix-factor.html#exercises-16" class="internal"><span class="codenumber">4.6.3</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
 <li><div class="toc-item"><a href="worksheet-svd.html" class="internal"><span class="codenumber">4.7</span> <span class="title">Worksheet: Singular Value Decomposition</span></a></div></li>
@@ -391,8 +428,14 @@ eBookConfig.enable_chatcodes =  false;
 <li>
 <div class="toc-item"><a href="ch-change-basis.html" class="internal"><span class="codenumber">5</span> <span class="title">Change of Basis</span></a></div>
 <ul class="structural">
-<li><div class="toc-item"><a href="sec-matrix-of-transformation.html" class="internal"><span class="codenumber">5.1</span> <span class="title">The matrix of a linear transformation</span></a></div></li>
-<li><div class="toc-item"><a href="sec-matrix-operator.html" class="internal"><span class="codenumber">5.2</span> <span class="title">The matrix of a linear operator</span></a></div></li>
+<li>
+<div class="toc-item"><a href="sec-matrix-of-transformation.html" class="internal"><span class="codenumber">5.1</span> <span class="title">The matrix of a linear transformation</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="sec-matrix-of-transformation.html#exercises-17" class="internal"><span class="codenumber">5.1</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li>
+<div class="toc-item"><a href="sec-matrix-operator.html" class="internal"><span class="codenumber">5.2</span> <span class="title">The matrix of a linear operator</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="sec-matrix-operator.html#exercises-18" class="internal"><span class="codenumber">5.2</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
 <li>
 <div class="toc-item"><a href="sec-direct-sum.html" class="internal"><span class="codenumber">5.3</span> <span class="title">Direct Sums and Invariant Subspaces</span></a></div>
 <ul class="structural">
@@ -403,7 +446,10 @@ eBookConfig.enable_chatcodes =  false;
 </li>
 <li><div class="toc-item"><a href="worksheet-gen-eigen.html" class="internal"><span class="codenumber">5.4</span> <span class="title">Worksheet: generalized eigenvectors</span></a></div></li>
 <li><div class="toc-item"><a href="sec-gen-eigen.html" class="internal"><span class="codenumber">5.5</span> <span class="title">Generalized eigenspaces</span></a></div></li>
-<li><div class="toc-item"><a href="sec-jordan-form.html" class="internal"><span class="codenumber">5.6</span> <span class="title">Jordan Canonical Form</span></a></div></li>
+<li>
+<div class="toc-item"><a href="sec-jordan-form.html" class="internal"><span class="codenumber">5.6</span> <span class="title">Jordan Canonical Form</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="sec-jordan-form.html#exercises-19" class="internal"><span class="codenumber">5.6</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
 </ul>
 </li>
 <li>
@@ -795,21 +841,30 @@ c\odot(x\oplus y) = c\odot x\oplus c\odot y\text{.}
 <div id="webwork-1" class="exercise-wrapper" data-domain="https://webwork-dev.uleth.ca" data-seed="1" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="local/Library/NAU/setLinearAlgebra/shiftedSpace.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-1')">Activate</button></div>
 <div class="problem-contents">
-<div class="para" id="p-118">Let <span class="process-math">\(V={\mathbb R}\text{.}\)</span> For <span class="process-math">\(u,v \in V\)</span> and <span class="process-math">\(a\in{\mathbb R}\)</span> define vector addition by <span class="process-math">\(u \boxplus v := u+v + 3\)</span> and scalar multiplication by <span class="process-math">\(a \boxdot u := au + 3a - 3\text{.}\)</span> It can be shown that <span class="process-math">\((V,\boxplus,\boxdot)\)</span> is a vector space over the scalar field <span class="process-math">\(\mathbb R\text{.}\)</span> Find the following:</div> <div class="para" id="p-119">(a) The sum <span class="process-math">\(5\boxplus -6\)</span>
-</div> <div class="para" id="p-120">(b) The scalar multiple <span class="process-math">\(8\boxdot 5\)</span>
-</div> <div class="para" id="p-121">(c) The zero vector, <span class="process-math">\(\underline{0}_V\)</span>
-</div> <div class="para" id="p-122">(d) The additive inverse of <span class="process-math">\(x\text{,}\)</span> <span class="process-math">\(\boxminus x\)</span>
+<div class="para" id="p-118">Let <span class="process-math">\(V={\mathbb R}\text{.}\)</span> For <span class="process-math">\(u,v \in V\)</span> and <span class="process-math">\(a\in{\mathbb R}\)</span> define vector addition by <span class="process-math">\(u \boxplus v := u+v + 3\)</span> and scalar multiplication by <span class="process-math">\(a \boxdot u := au + 3a - 3\text{.}\)</span> It can be shown that <span class="process-math">\((V,\boxplus,\boxdot)\)</span> is a vector space over the scalar field <span class="process-math">\(\mathbb R\text{.}\)</span> Find the following:</div> <div class="para" id="p-119">
+<em class="alert">(a)</em> The sum <span class="process-math">\(5\boxplus -6\)</span>
+</div> <div class="para" id="p-120">
+<em class="alert">(b)</em> The scalar multiple <span class="process-math">\(8\boxdot 5\)</span>
+</div> <div class="para" id="p-121">
+<em class="alert">(c)</em> The zero vector, <span class="process-math">\(\underline{0}_V\)</span>
+</div> <div class="para" id="p-122">
+<em class="alert">(d)</em> The additive inverse of <span class="process-math">\(x\text{,}\)</span> <span class="process-math">\(\boxminus x\)</span>
 </div>
 </div>
 </div></article><article class="exercise exercise-like" id="ex-ww-vs2"><h4 class="heading"><span class="codenumber">6<span class="period">.</span></span></h4>
 <div id="webwork-2" class="exercise-wrapper" data-domain="https://webwork-dev.uleth.ca" data-seed="2" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="local/Library/NAU/setLinearAlgebra/shiftedSpace3.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-2')">Activate</button></div>
 <div class="problem-contents">
-<div class="para" id="p-127">Let <span class="process-math">\(V=(-5,\infty)\text{.}\)</span> For <span class="process-math">\(u,v \in V\)</span> and <span class="process-math">\(a\in{\mathbb R}\)</span> define vector addition by <span class="process-math">\(u \boxplus v := uv + 5(u+v)+20\)</span> and scalar multiplication by <span class="process-math">\(a \boxdot u := (u + 5)^a - 5\text{.}\)</span> It can be shown that <span class="process-math">\((V,\boxplus,\boxdot)\)</span> is a vector space over the scalar field <span class="process-math">\(\mathbb R\text{.}\)</span> Find the following:</div> <div class="para" id="p-128">(a) The sum <span class="process-math">\(-1\boxplus 1\)</span>
-</div> <div class="para" id="p-129">(b) The scalar multiple <span class="process-math">\(2\boxdot -1\)</span>
-</div> <div class="para" id="p-130">(c) The additive inverse of <span class="process-math">\(-1\text{,}\)</span> <span class="process-math">\(\boxminus -1\)</span>
-</div> <div class="para" id="p-131">(d) The zero vector, <span class="process-math">\(\underline{0}_V\)</span>
-</div> <div class="para" id="p-132">(e) The additive inverse of <span class="process-math">\(x\text{,}\)</span> <span class="process-math">\(\boxminus x\)</span>
+<div class="para" id="p-127">Let <span class="process-math">\(V=(-5,\infty)\text{.}\)</span> For <span class="process-math">\(u,v \in V\)</span> and <span class="process-math">\(a\in{\mathbb R}\)</span> define vector addition by <span class="process-math">\(u \boxplus v := uv + 5(u+v)+20\)</span> and scalar multiplication by <span class="process-math">\(a \boxdot u := (u + 5)^a - 5\text{.}\)</span> It can be shown that <span class="process-math">\((V,\boxplus,\boxdot)\)</span> is a vector space over the scalar field <span class="process-math">\(\mathbb R\text{.}\)</span> Find the following:</div> <div class="para" id="p-128">
+<em class="alert">(a)</em> The sum <span class="process-math">\(-1\boxplus 1\)</span>
+</div> <div class="para" id="p-129">
+<em class="alert">(b)</em> The scalar multiple <span class="process-math">\(2\boxdot -1\)</span>
+</div> <div class="para" id="p-130">
+<em class="alert">(c)</em> The additive inverse of <span class="process-math">\(-1\text{,}\)</span> <span class="process-math">\(\boxminus -1\)</span>
+</div> <div class="para" id="p-131">
+<em class="alert">(d)</em> The zero vector, <span class="process-math">\(\underline{0}_V\)</span>
+</div> <div class="para" id="p-132">
+<em class="alert">(e)</em> The additive inverse of <span class="process-math">\(x\text{,}\)</span> <span class="process-math">\(\boxminus x\)</span>
 </div>
 </div>
 </div></article></section></section><div class="hidden-content tex2jax_ignore" id="hk-fn-3"><div class="fn"><code class="code-inline tex2jax_ignore">en.wikipedia.org/wiki/Examples_of_vector_spaces</code></div></div>

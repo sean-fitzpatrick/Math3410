@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="en-US" dir="ltr">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
 <!--*                                          *-->
@@ -13,15 +13,23 @@
 <body class="ignore-math">
 <h4 class="heading"><span class="type">Paragraph</span></h4>
 <div class="para logical">
-<div class="para">Find a basis for the space <span class="process-math">\(V\)</span> of sequences <span class="process-math">\((x_n)\)</span> satisfying the recurrence</div>
+<div class="para">The process of creating unit vectors does typically introduce square root coefficients in our vectors. This can seem undesirable, but there remains value in having an orthonormal basis. For example, suppose we wanted to write the vector <span class="process-math">\(\vv=(3,5,-1,2)\)</span> in terms of our basis. We can quickly compute</div>
+<div class="displaymath process-math">
+\begin{align*}
+\vv\dotp\hat{\uu}_1 \amp = \frac{3}{\sqrt{2}}-\frac{1}{\sqrt{2}}=\sqrt{2}\\
+\vv\dotp\hat{\uu}_2 \amp = -\frac{3}{\sqrt{3}}-\frac{1}{\sqrt{3}}+\frac{2}{\sqrt{3}}=-\frac{2}{\sqrt{3}}\\
+\vv\dotp\hat{\uu}_3 \amp = \frac{3}{\sqrt{7}}+\frac{5}{\sqrt{7}}+\frac{1}{\sqrt{7}}+\frac{4}{\sqrt{7}} = \frac{11}{\sqrt{7}}\\
+\vv\dotp\hat{\uu}_4 \amp = \frac{3}{\sqrt{42}}-\frac{30}{\sqrt{42}}+\frac{1}{\sqrt{42}}+\frac{4}{\sqrt{42}} = -\frac{22}{\sqrt{42}}\text{,}
+\end{align*}
+</div>
+<div class="para">and so</div>
 <div class="displaymath process-math">
 \begin{equation*}
-x_{n+3} = 8x_n-12x_{n+1}+6x_{n+2}\text{.}
+\vv = \sqrt{2}\hat{\uu}_1-\frac{2}{\sqrt{3}}\hat{\uu}_2+\frac{11}{\sqrt{7}}\hat{\uu}_3-\frac{22}{\sqrt{42}}\hat{\uu}_4\text{.}
 \end{equation*}
 </div>
-<div class="para">Then find a formula for the sequence satisfying the initial conditions <span class="process-math">\(x_0=2, x_1=-5, x_2=3\text{.}\)</span>
+<div class="para">There’s still work to be done, but it is comparatively simpler than solving the corresponding system of equations.</div>
 </div>
-</div>
-<span class="incontext"><a href="worksheet-recurrence.html#p-1279" class="internal">in-context</a></span>
+<span class="incontext"><a href="sec-orthogonal-sets.html#p-1279" class="internal">in-context</a></span>
 </body>
 </html>

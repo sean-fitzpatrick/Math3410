@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="en-US" dir="ltr">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
 <!--*                                          *-->
@@ -11,10 +11,29 @@
 <meta name="robots" content="noindex, nofollow">
 </head>
 <body class="ignore-math">
-<h5 class="heading"><span class="type">Paragraph</span></h5>
-<div class="para">
-<span class="process-math">\(\vv_i\dotp\vv_j = 0\)</span> for all <span class="process-math">\(i\neq j\)</span>
+<h3 class="heading"><span class="type">Paragraph</span></h3>
+<div class="para logical">
+<div class="para">Let’s make that basis look a little nicer by using some scalar multiplication to clear fractions.</div>
+<div class="displaymath process-math">
+\begin{equation*}
+B=\left\{\xx_1=\bbm 3\\-6\\-4\\0\\0\ebm, \xx_2=\bbm 1\\2\\0\\-4\\0\ebm, \xx_3=\bbm 7\\4\\0\\0\\-2\ebm\right\}
+\end{equation*}
 </div>
-<span class="incontext"><a href="sec-orthogonal-sets.html#p-1326" class="internal">in-context</a></span>
+<div class="para">This is definitely not an orthogonal basis. So we take <span class="process-math">\(\vv_1=\xx_1\text{,}\)</span> and</div>
+<div class="displaymath process-math">
+\begin{align*}
+\vv_2 \amp = \xx_2-\left(\frac{\xx_2\dotp\vv_1}{\len{\vv_1}^2}\right)\vv_1\\
+\amp = \bbm 1\\2\\0\\-4\\0\ebm -\frac{-9}{61}\bbm 3\\-6\\-4\\-0\\0\ebm \text{,}
+\end{align*}
+</div>
+<div class="para">which equals something we probably don’t want to try to simplify. Finally, we find</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\vv_3 = \xx_3-\left(\frac{\xx_3\dotp \vv_1}{\len{\vv_1}^2}\right)\vv_1-\left(\frac{\xx_3\dotp\vv_2}{\len{\vv_2}^2}\right)\vv_2\text{.}
+\end{equation*}
+</div>
+<div class="para">And now we probably get about five minutes into the fractions and say something that shouldn’t appear in print. This sounds like a job for the computer.</div>
+</div>
+<span class="incontext"><a href="sec-gram-schmidt.html#p-1326" class="internal">in-context</a></span>
 </body>
 </html>

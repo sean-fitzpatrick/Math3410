@@ -5,7 +5,7 @@
 <!--*         https://pretextbook.org          *-->
 <!--*                                          *-->
 <!--********************************************-->
-<html lang="en-US">
+<html lang="en-US" dir="ltr">
 <head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Eigenvalues and Eigenvectors</title>
@@ -14,20 +14,38 @@
 <meta property="og:type" content="book">
 <meta property="book:title" content="Linear Algebra">
 <meta property="book:author" content="Sean Fitzpatrick">
-<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>
+var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
 window.MathJax = {
-  tex: {
-    inlineMath: [['\\(','\\)']],
-    tags: "none",
-    tagSide: "right",
-    tagIndent: ".8em",
-    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'color', 'newcommand', 'knowl']}
+  "tex": {
+    "inlineMath": [
+      [
+        "\\(",
+        "\\)"
+      ]
+    ],
+    "tags": "none",
+    "tagSide": "right",
+    "tagIndent": ".8em",
+    "packages": {
+      "[+]": [
+        "base",
+        "extpfeil",
+        "ams",
+        "amscd",
+        "color",
+        "newcommand",
+        "knowl"
+      ]
+    }
   },
-  options: {
-    ignoreHtmlClass: "tex2jax_ignore|ignore-math",
-    processHtmlClass: "process-math",
-    renderActions: {
-        findScript: [10, function (doc) {
+  "options": {
+    "ignoreHtmlClass": "tex2jax_ignore|ignore-math",
+    "processHtmlClass": "process-math",
+    "renderActions": {
+      "findScript": [
+        10,
+        function (doc) {
             document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
                 var display = !!node.type.match(/; *mode=display/);
                 var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
@@ -37,33 +55,48 @@ window.MathJax = {
                 math.end = {node: text, delim: '', n: 0};
                 doc.math.push(math);
             });
-        }, '']
-    },
+        },
+        ""
+      ]
+    }
   },
-  chtml: {
-    scale: 0.98,
-    mtextInheritFont: true
+  "chtml": {
+    "scale": 0.98,
+    "mtextInheritFont": true
   },
-  loader: {
-    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/color', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
-    paths: {pretext: "https://pretextbook.org/js/lib"},
+  "loader": {
+    "load": [
+      "input/asciimath",
+      "[tex]/extpfeil",
+      "[tex]/amscd",
+      "[tex]/color",
+      "[tex]/newcommand",
+      "[pretext]/mathjaxknowl3.js"
+    ],
+    "paths": {
+      "pretext": "https://pretextbook.org/js/lib"
+    }
   },
-  startup: {
+  "startup": {
     pageReady() {
       return MathJax.startup.defaultPageReady().then(function () {
       console.log("in ready function");
       rsMathReady();
       }
     )}
-  },
+  }
 };
 </script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link href="https://webwork-dev.uleth.ca/webwork2_files/js/apps/MathView/mathview.css" rel="stylesheet">
 <script src="https://pretextbook.org/js/0.3/pretext-webwork/2.18/pretext-webwork.js"></script><script src="https://webwork-dev.uleth.ca/webwork2_files/node_modules/iframe-resizer/js/iframeResizer.min.js"></script><script>// Make *any* pre with class 'sagecell-sage' an executable Sage cell
 // Their results will be linked, only within language type
-sagecell.makeSagecell({inputLocation: 'pre.sagecell-sage',
-                       linked: true,
-                       languages: ['sage'],
-                       evalButtonText: 'Evaluate (Sage)'});
+sagecell.makeSagecell({
+  "inputLocation": "pre.sagecell-sage",
+  "linked": true,
+  "languages": [
+    "sage"
+  ],
+  "evalButtonText": "Evaluate (Sage)"
+});
 </script><link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/themes/prism.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="https://pretextbook.org/js/0.3/pretext_search.js"></script><link href="https://pretextbook.org/css/0.7/pretext_search.css" rel="stylesheet" type="text/css">
 <script>js_version = 0.3</script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.3/pretext.js"></script><script>miniversion=0.1</script><script src="https://pretextbook.org/js/0.3/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/0.3/user_preferences.js"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
@@ -106,17 +139,17 @@ eBookConfig.allow_pairs = false;
 eBookConfig.enableScratchAC = false;
 eBookConfig.build_info = "";
 eBookConfig.python3 = null;
-eBookConfig.runestone_version = '7.0.0dev4';
+eBookConfig.runestone_version = '7.0.7';
 eBookConfig.jobehost = '';
 eBookConfig.proxyuri_runs = '';
 eBookConfig.proxyuri_files = '';
 eBookConfig.enable_chatcodes =  false;
 </script>
 <!--*** Runestone Services ***-->
-<script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.0dev4/prefix-runtime.3489f84c0d76065d.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.0dev4/prefix-347.193e36c07abd0197.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.0dev4/prefix-runestone.e543e0dd19670ae2.bundle.js"></script><link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/7.0.0dev4/prefix-347.f9add1ca35d5ad93.css">
-<link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/7.0.0dev4/prefix-runestone.931faef5361cf6e9.css">
+<script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.7/prefix-runtime.fd9ce61c3c71cb22.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.7/prefix-347.193e36c07abd0197.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.7/prefix-runestone.89acb6c6122954e4.bundle.js"></script><link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/7.0.7/prefix-347.f9add1ca35d5ad93.css">
+<link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/7.0.7/prefix-runestone.8d2f742bc74f4a41.css">
 </head>
-<body id="Math3410" class="pretext book ignore-math">
+<body id="linearpython" class="pretext book ignore-math">
 <a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead"><div class="ptx-banner">
 <a id="logo-link" class="logo-link" href=""></a><div class="title-container">
 <h1 class="heading"><a href="linear-algebra.html"><span class="title">Linear Algebra:</span> <span class="subtitle">A second course, featuring proofs and Python</span></a></h1>
@@ -360,14 +393,21 @@ eBookConfig.enable_chatcodes =  false;
 <li>
 <div class="toc-item"><a href="ch-diagonalization.html" class="internal"><span class="codenumber">4</span> <span class="title">Diagonalization</span></a></div>
 <ul class="structural">
-<li class="active"><div class="toc-item"><a href="sec-eigen-basics.html" class="internal"><span class="codenumber">4.1</span> <span class="title">Eigenvalues and Eigenvectors</span></a></div></li>
+<li class="active">
+<div class="toc-item"><a href="sec-eigen-basics.html" class="internal"><span class="codenumber">4.1</span> <span class="title">Eigenvalues and Eigenvectors</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="sec-eigen-basics.html#exercises-13" class="internal"><span class="codenumber">4.1</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
 <li><div class="toc-item"><a href="subsec-ortho-diag.html" class="internal"><span class="codenumber">4.2</span> <span class="title">Diagonalization of symmetric matrices</span></a></div></li>
-<li><div class="toc-item"><a href="sec-quadratic.html" class="internal"><span class="codenumber">4.3</span> <span class="title">Quadratic forms</span></a></div></li>
+<li>
+<div class="toc-item"><a href="sec-quadratic.html" class="internal"><span class="codenumber">4.3</span> <span class="title">Quadratic forms</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="sec-quadratic.html#exercises-14" class="internal"><span class="codenumber">4.3</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
 <li>
 <div class="toc-item"><a href="sec-complex.html" class="internal"><span class="codenumber">4.4</span> <span class="title">Diagonalization of complex matrices</span></a></div>
 <ul class="structural">
 <li><div class="toc-item"><a href="sec-complex.html#subsec-complex-vector" class="internal"><span class="codenumber">4.4.1</span> <span class="title">Complex vectors</span></a></div></li>
 <li><div class="toc-item"><a href="sec-complex.html#subsec-complex-matrix" class="internal"><span class="codenumber">4.4.2</span> <span class="title">Complex matrices</span></a></div></li>
+<li><div class="toc-item"><a href="sec-complex.html#exercises-15" class="internal"><span class="codenumber">4.4.3</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
 <li><div class="toc-item"><a href="worksheet-dynamical.html" class="internal"><span class="codenumber">4.5</span> <span class="title">Worksheet: linear dynamical systems</span></a></div></li>
@@ -389,6 +429,7 @@ eBookConfig.enable_chatcodes =  false;
 <li><div class="toc-item"><a href="section-matrix-factor.html#pars-qr-algorithm" class="internal"><span class="codenumber">4.6.2.2</span> <span class="title">The QR Algorithm</span></a></div></li>
 </ul>
 </li>
+<li><div class="toc-item"><a href="section-matrix-factor.html#exercises-16" class="internal"><span class="codenumber">4.6.3</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
 <li><div class="toc-item"><a href="worksheet-svd.html" class="internal"><span class="codenumber">4.7</span> <span class="title">Worksheet: Singular Value Decomposition</span></a></div></li>
@@ -397,8 +438,14 @@ eBookConfig.enable_chatcodes =  false;
 <li>
 <div class="toc-item"><a href="ch-change-basis.html" class="internal"><span class="codenumber">5</span> <span class="title">Change of Basis</span></a></div>
 <ul class="structural">
-<li><div class="toc-item"><a href="sec-matrix-of-transformation.html" class="internal"><span class="codenumber">5.1</span> <span class="title">The matrix of a linear transformation</span></a></div></li>
-<li><div class="toc-item"><a href="sec-matrix-operator.html" class="internal"><span class="codenumber">5.2</span> <span class="title">The matrix of a linear operator</span></a></div></li>
+<li>
+<div class="toc-item"><a href="sec-matrix-of-transformation.html" class="internal"><span class="codenumber">5.1</span> <span class="title">The matrix of a linear transformation</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="sec-matrix-of-transformation.html#exercises-17" class="internal"><span class="codenumber">5.1</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li>
+<div class="toc-item"><a href="sec-matrix-operator.html" class="internal"><span class="codenumber">5.2</span> <span class="title">The matrix of a linear operator</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="sec-matrix-operator.html#exercises-18" class="internal"><span class="codenumber">5.2</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
 <li>
 <div class="toc-item"><a href="sec-direct-sum.html" class="internal"><span class="codenumber">5.3</span> <span class="title">Direct Sums and Invariant Subspaces</span></a></div>
 <ul class="structural">
@@ -409,7 +456,10 @@ eBookConfig.enable_chatcodes =  false;
 </li>
 <li><div class="toc-item"><a href="worksheet-gen-eigen.html" class="internal"><span class="codenumber">5.4</span> <span class="title">Worksheet: generalized eigenvectors</span></a></div></li>
 <li><div class="toc-item"><a href="sec-gen-eigen.html" class="internal"><span class="codenumber">5.5</span> <span class="title">Generalized eigenspaces</span></a></div></li>
-<li><div class="toc-item"><a href="sec-jordan-form.html" class="internal"><span class="codenumber">5.6</span> <span class="title">Jordan Canonical Form</span></a></div></li>
+<li>
+<div class="toc-item"><a href="sec-jordan-form.html" class="internal"><span class="codenumber">5.6</span> <span class="title">Jordan Canonical Form</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="sec-jordan-form.html#exercises-19" class="internal"><span class="codenumber">5.6</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
 </ul>
 </li>
 <li>
@@ -438,10 +488,11 @@ eBookConfig.enable_chatcodes =  false;
 <section class="section" id="sec-eigen-basics"><h2 class="heading hide-type">
 <span class="type">Section</span> <span class="codenumber">4.1</span> <span class="title">Eigenvalues and Eigenvectors</span>
 </h2>
+<div class="para" id="p-1501">We jump right into the definition, which you have probably seen previously in your first course in linear algebra.</div>
 <article class="definition definition-like" id="def-eigenvalue"><h3 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">4.1.1</span><span class="period">.</span>
 </h3>
-<div class="para logical" id="p-1600">
+<div class="para logical" id="p-1502">
 <div class="para">Let <span class="process-math">\(A\)</span> be an <span class="process-math">\(n\times n\)</span> matrix. A number <span class="process-math">\(\lambda\)</span> is called an <dfn class="terminology">eigenvalue</dfn> of <span class="process-math">\(A\)</span> if there exists a nonzero vector <span class="process-math">\(\xx\)</span> such that</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -453,10 +504,10 @@ A\xx = \lambda\xx\text{.}
 </div></article><article class="remark remark-like" id="remark-16"><h3 class="heading">
 <span class="type">Remark</span><span class="space"> </span><span class="codenumber">4.1.2</span><span class="period">.</span>
 </h3>
-<div class="para" id="p-1601">You might reasonably wonder: where does this definition come from? And why should I care? We are assuming that you saw at least a basic introduction to eigenvalues in your first course on linear algebra, but that course probably focused on mechanics. Possibly you learned that diagonalizing a matrix lets you compute powers of that matrix.</div> <div class="para" id="p-1602">But why should we be interested in computing powers (in particular, <em class="emphasis">large</em> powers) of a matrix? An important context comes from the study of <a class="external" href="https://en.wikipedia.org/wiki/Linear_dynamical_system" target="_blank">discrete linear dynamical systems</a><a href="" data-knowl="" class="id-ref fn-knowl original" data-refid="hk-fn-9" id="fn-9"><sup> 1 </sup></a>, as well as <a class="external" href="https://en.wikipedia.org/wiki/Markov_chain" target="_blank">Markov chains</a><a href="" data-knowl="" class="id-ref fn-knowl original" data-refid="hk-fn-10" id="fn-10"><sup> 2 </sup></a>, where the evolution of a state is modelled by repeated multiplication of a vector by a matrix.</div> <div class="para" id="p-1603">When we’re able to diagonalize our matrix using eigenvalues and eigenvectors, not only does it become easy to compute powers of a matrix, it also enables us to see that the entire process is just a linear combination of geometric sequences! If you have completed <a href="worksheet-recurrence.html" class="internal" title="Worksheet 2.5: Worksheet: linear recurrences">Worksheet 2.5</a>, you probably will not be surprised to learn that the polynomial roots you found are, in fact, eigenvalues of a suitable matrix. </div></article><article class="remark remark-like" id="remark-17"><h3 class="heading">
+<div class="para" id="p-1503">You might reasonably wonder: where does this definition come from? And why should I care? We are assuming that you saw at least a basic introduction to eigenvalues in your first course on linear algebra, but that course probably focused on mechanics. Possibly you learned that diagonalizing a matrix lets you compute powers of that matrix.</div> <div class="para" id="p-1504">But why should we be interested in computing powers (in particular, <em class="emphasis">large</em> powers) of a matrix? An important context comes from the study of <a class="external" href="https://en.wikipedia.org/wiki/Linear_dynamical_system" target="_blank">discrete linear dynamical systems</a><a href="" data-knowl="" class="id-ref fn-knowl original" data-refid="hk-fn-9" id="fn-9"><sup> 1 </sup></a>, as well as <a class="external" href="https://en.wikipedia.org/wiki/Markov_chain" target="_blank">Markov chains</a><a href="" data-knowl="" class="id-ref fn-knowl original" data-refid="hk-fn-10" id="fn-10"><sup> 2 </sup></a>, where the evolution of a state is modelled by repeated multiplication of a vector by a matrix.</div> <div class="para" id="p-1505">When we’re able to diagonalize our matrix using eigenvalues and eigenvectors, not only does it become easy to compute powers of a matrix, it also enables us to see that the entire process is just a linear combination of geometric sequences! If you have completed <a href="worksheet-recurrence.html" class="internal" title="Worksheet 2.5: Worksheet: linear recurrences">Worksheet 2.5</a>, you probably will not be surprised to learn that the polynomial roots you found are, in fact, eigenvalues of a suitable matrix. </div></article><article class="remark remark-like" id="remark-17"><h3 class="heading">
 <span class="type">Remark</span><span class="space"> </span><span class="codenumber">4.1.3</span><span class="period">.</span>
 </h3>
-<div class="para" id="p-1604">Eigenvalues and eigenvectors can just as easily be defined for a general linear operator <span class="process-math">\(T:V\to V\text{.}\)</span> In this context, and eigenvector <span class="process-math">\(\xx\)</span> is sometimes referred to as a <em class="emphasis">characteristic vector</em> (or characteristic direction) for <span class="process-math">\(T\text{,}\)</span> since the property <span class="process-math">\(T(\xx)=\lambda \xx\)</span> simply states that the transformed vector <span class="process-math">\(T(\xx)\)</span> is parallel to the original vector <span class="process-math">\(\xx\text{.}\)</span> Some linear algebra textbooks that focus more on general linear transformations frame this topic in the context of <em class="emphasis">invariant subspaces</em> for a linear operator.</div> <div class="para logical" id="p-1605">
+<div class="para" id="p-1506">Eigenvalues and eigenvectors can just as easily be defined for a general linear operator <span class="process-math">\(T:V\to V\text{.}\)</span> In this context, an eigenvector <span class="process-math">\(\xx\)</span> is sometimes referred to as a <em class="emphasis">characteristic vector</em> (or characteristic direction) for <span class="process-math">\(T\text{,}\)</span> since the property <span class="process-math">\(T(\xx)=\lambda \xx\)</span> simply states that the transformed vector <span class="process-math">\(T(\xx)\)</span> is parallel to the original vector <span class="process-math">\(\xx\text{.}\)</span> Some linear algebra textbooks that focus more on general linear transformations frame this topic in the context of <em class="emphasis">invariant subspaces</em> for a linear operator.</div> <div class="para logical" id="p-1507">
 <div class="para">A subspace <span class="process-math">\(U\subseteq V\)</span> is <em class="emphasis">invariant</em> with respect to <span class="process-math">\(T\)</span> if <span class="process-math">\(T(\uu)\in U\)</span> for all <span class="process-math">\(\uu\in U\text{.}\)</span> Note that if <span class="process-math">\(\xx\)</span> is an eigenvector of <span class="process-math">\(T\text{,}\)</span> then <span class="process-math">\(\spn\{\xx\}\)</span> is an invariant subspace. To see this, note that if <span class="process-math">\(T(\xx)=\lambda \xx\)</span> and <span class="process-math">\(\yy=k\xx\text{,}\)</span> then</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -467,7 +518,7 @@ T(\yy)=T(k\xx)=kT(\xx)=k(\lambda \xx)=\lambda(k\xx)=\lambda\yy\text{.}
 <span class="type">Exercise</span><span class="space"> </span><span class="codenumber">4.1.4</span><span class="period">.</span>
 </h3>
 <div class="ptx-runestone-container"><div class="runestone"><ul data-component="dragndrop" data-question_label="" style="visibility: hidden;" id="ex-match-eigen1">
-<span data-subcomponent="question"><div class="para" id="p-1606">For the matrix <span class="process-math">\(A = \bbm -1\amp 0\amp 3\\1\amp -1\amp 0\\1\amp 0\amp 1\ebm\text{,}\)</span> match each vector on the left with the corresponding eigenvalue on the right. (For typographical reasons, column vectors have been transposed.)</div></span><li data-subcomponent="draggable" id="ex-match-eigen1_drag1"><span class="process-math">\(\bbm -3\amp 3\amp 1\ebm^T\)</span></li>
+<span data-subcomponent="question"><div class="para" id="p-1508">For the matrix <span class="process-math">\(A = \bbm -1\amp 0\amp 3\\1\amp -1\amp 0\\1\amp 0\amp 1\ebm\text{,}\)</span> match each vector on the left with the corresponding eigenvalue on the right. (For typographical reasons, column vectors have been transposed.)</div></span><li data-subcomponent="draggable" id="ex-match-eigen1_drag1"><span class="process-math">\(\bbm -3\amp 3\amp 1\ebm^T\)</span></li>
 <li data-subcomponent="dropzone" for="ex-match-eigen1_drag1"><span class="process-math">\(-2\)</span></li>
 <li data-subcomponent="draggable" id="ex-match-eigen1_drag2"><span class="process-math">\(\bbm 0\amp 1\amp 0\ebm^T\)</span></li>
 <li data-subcomponent="dropzone" for="ex-match-eigen1_drag2"><span class="process-math">\(-1\)</span></li>
@@ -477,8 +528,8 @@ T(\yy)=T(k\xx)=kT(\xx)=k(\lambda \xx)=\lambda(k\xx)=\lambda\yy\text{.}
 <li data-subcomponent="dropzone" for="ex-match-eigen1_drag4">Not an eigenvector</li>
 </ul></div></div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-42" id="hint-42"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-42"><div class="hint solution-like"><div class="para" id="p-1607">Use <a href="" class="xref" data-knowl="./knowl/def-eigenvalue.html" title="Definition 4.1.1">Definition 4.1.1</a>.</div></div></div>
-</div></article><div class="para logical" id="p-1608">
+<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-42" id="hint-42"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-42"><div class="hint solution-like"><div class="para" id="p-1509">Use <a href="" class="xref" data-knowl="./knowl/def-eigenvalue.html" title="Definition 4.1.1">Definition 4.1.1</a>.</div></div></div>
+</div></article><div class="para logical" id="p-1510">
 <div class="para">Note that if <span class="process-math">\(\xx\)</span> is an eigenvector of the matrix <span class="process-math">\(A\text{,}\)</span> then we have</div>
 <div class="displaymath process-math" id="eq-eigen-null">
 \begin{equation}
@@ -491,31 +542,31 @@ T(\yy)=T(k\xx)=kT(\xx)=k(\lambda \xx)=\lambda(k\xx)=\lambda\yy\text{.}
 <article class="definition definition-like" id="def-eigenspace"><h3 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">4.1.5</span><span class="period">.</span>
 </h3>
-<div class="para logical" id="p-1609">
+<div class="para logical" id="p-1511">
 <div class="para">For any real number <span class="process-math">\(\lambda\)</span> and <span class="process-math">\(n\times n\)</span> matrix <span class="process-math">\(A\text{,}\)</span> we define the <dfn class="terminology">eigenspace</dfn> <span class="process-math">\(E_\lambda(A)\)</span> by</div>
 <div class="displaymath process-math">
 \begin{equation*}
 E_\lambda(A) = \nll (A-\lambda I_n)\text{.}
 \end{equation*}
 </div>
-</div></article><div class="para" id="p-1610">Since we know that the null space of any matrix is a subspace, it follows that eigenspaces are subspaces of <span class="process-math">\(\R^n\text{.}\)</span>
+</div></article><div class="para" id="p-1512">Since we know that the null space of any matrix is a subspace, it follows that eigenspaces are subspaces of <span class="process-math">\(\R^n\text{.}\)</span>
 </div>
-<div class="para" id="p-1611">Note that <span class="process-math">\(E_\lambda(A)\)</span> can be defined for any real number <span class="process-math">\(\lambda\text{,}\)</span> whether or not <span class="process-math">\(\lambda\)</span> is an eigenvalue. However, the eigenvalues of <span class="process-math">\(A\)</span> are distinguished by the property that there is a <em class="emphasis">nonzero</em> solution to <a href="" class="xref" data-knowl="./knowl/eq-eigen-null.html" title="Equation 4.1.1">(4.1.1)</a>. Furthermore, we know that <a href="" class="xref" data-knowl="./knowl/eq-eigen-null.html" title="Equation 4.1.1">(4.1.1)</a> can only have nontrivial solutions if the matrix <span class="process-math">\(A-\lambda I_n\)</span> is not invertible. We also know that <span class="process-math">\(A-\lambda I_n\)</span> is non-invertible if and only if <span class="process-math">\(\det (A-\lambda I_n) = 0\text{.}\)</span> This gives us the following theorem.</div>
+<div class="para" id="p-1513">Note that <span class="process-math">\(E_\lambda(A)\)</span> can be defined for any real number <span class="process-math">\(\lambda\text{,}\)</span> whether or not <span class="process-math">\(\lambda\)</span> is an eigenvalue. However, the eigenvalues of <span class="process-math">\(A\)</span> are distinguished by the property that there is a <em class="emphasis">nonzero</em> solution to <a href="" class="xref" data-knowl="./knowl/eq-eigen-null.html" title="Equation 4.1.1">(4.1.1)</a>. Furthermore, we know that <a href="" class="xref" data-knowl="./knowl/eq-eigen-null.html" title="Equation 4.1.1">(4.1.1)</a> can only have nontrivial solutions if the matrix <span class="process-math">\(A-\lambda I_n\)</span> is not invertible. We also know that <span class="process-math">\(A-\lambda I_n\)</span> is non-invertible if and only if <span class="process-math">\(\det (A-\lambda I_n) = 0\text{.}\)</span> This gives us the following theorem.</div>
 <article class="theorem theorem-like" id="thm-eigenspace-nonzero"><h3 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">4.1.6</span><span class="period">.</span>
 </h3>
-<div class="para logical" id="p-1612">
+<div class="para logical" id="p-1514">
 <div class="para">The following are equivalent for any <span class="process-math">\(n\times n\)</span> matrix <span class="process-math">\(A\)</span> and real number <span class="process-math">\(\lambda\text{:}\)</span>
 </div>
 <ol class="decimal">
-<li id="li-254"><div class="para" id="p-1613">
+<li id="li-190"><div class="para" id="p-1515">
 <span class="process-math">\(\lambda\)</span> is an eigenvalue of <span class="process-math">\(A\text{.}\)</span>
 </div></li>
-<li id="li-255"><div class="para" id="p-derived-li-255"><span class="process-math">\(\displaystyle E_\lambda(A)\neq \{\zer\}\)</span></div></li>
-<li id="li-256"><div class="para" id="p-derived-li-256"><span class="process-math">\(\displaystyle \det(A-\lambda I_n) = 0\)</span></div></li>
+<li id="li-191"><div class="para" id="p-derived-li-191"><span class="process-math">\(\displaystyle E_\lambda(A)\neq \{\zer\}\)</span></div></li>
+<li id="li-192"><div class="para" id="p-derived-li-192"><span class="process-math">\(\displaystyle \det(A-\lambda I_n) = 0\)</span></div></li>
 </ol>
-</div></article><article class="hiddenproof" id="proof-50"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-50"><h3 class="heading"><span class="title">Strategy.</span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-50"><article class="hiddenproof"> <div class="para" id="p-1614">To prove a theorem involving a “the following are equivalent” statement, a good strategy is to show that the first implies the second, the second implies the third, and the third implies the first. The ideas needed for the proof are given in the paragraph preceding the theorem. See if you can turn them into a formal proof.</div></article></div>
-<div class="para logical" id="p-1615">
+</div></article><article class="hiddenproof" id="proof-50"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-50"><h3 class="heading"><span class="title">Strategy.</span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-50"><article class="hiddenproof"> <div class="para" id="p-1516">To prove a theorem involving a “the following are equivalent” statement, a good strategy is to show that the first implies the second, the second implies the third, and the third implies the first. The ideas needed for the proof are given in the paragraph preceding the theorem. See if you can turn them into a formal proof.</div></article></div>
+<div class="para logical" id="p-1517">
 <div class="para">The polynomial <span class="process-math">\(p_A(x)=\det(xI_n -A)\)</span> is called the <dfn class="terminology">characteristic polynomial</dfn> of <span class="process-math">\(A\text{.}\)</span> (Note that <span class="process-math">\(\det(x I_n-A) = (-1)^n\det(A-x I_n)\text{.}\)</span> We choose this order so that the coefficient of <span class="process-math">\(x^n\)</span> is always 1.) The equation</div>
 <div class="displaymath process-math" id="eq-characteristic">
 \begin{equation}
@@ -525,11 +576,23 @@ E_\lambda(A) = \nll (A-\lambda I_n)\text{.}
 <div class="para">is called the <dfn class="terminology">characteristic equation</dfn> of <span class="process-math">\(A\text{.}\)</span> The solutions to this equation are precisely the eigenvalues of <span class="process-math">\(A\text{.}\)</span>
 </div>
 </div>
-<article class="exercise exercise-like" id="ex-match-eigen2"><h3 class="heading">
-<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">4.1.7</span><span class="period">.</span>
+<article class="remark remark-like" id="remark-18"><h3 class="heading">
+<span class="type">Remark</span><span class="space"> </span><span class="codenumber">4.1.7</span><span class="period">.</span>
+</h3>
+<div class="para logical" id="p-1518">
+<div class="para">A careful study of eigenvalues and eigenvectors relies heavily on polynomials. An interesting fact is that we can plug any square matrix into a polynomial! Given the polynomial <span class="process-math">\(p(x) = a_0+a_1x+a_2 x^2 + \cdots + a_nx^n\)</span> and an <span class="process-math">\(n\times n\)</span> matrix <span class="process-math">\(A\text{,}\)</span> we define</div>
+<div class="displaymath process-math">
+\begin{equation*}
+p(A) = a_0I_n+a_1A+a_2A^2+\cdots+a_nA^n\text{.}
+\end{equation*}
+</div>
+<div class="para">Note the use of the identity matrix in the first term, since it doesn’t make sense to add a scalar to a matrix.</div>
+</div> <div class="para" id="p-1519">One interesting aspect of this is the relationship between the eigenvalues of <span class="process-math">\(A\)</span> and the eigenvalues of <span class="process-math">\(p(A)\text{.}\)</span> For example, if <span class="process-math">\(A\)</span> has the eigenvalue <span class="process-math">\(\lambda\text{,}\)</span> see if you can prove that <span class="process-math">\(A^k\)</span> has the eigenvalue <span class="process-math">\(\lambda^k\text{.}\)</span>
+</div></article><article class="exercise exercise-like" id="ex-match-eigen2"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">4.1.8</span><span class="period">.</span>
 </h3>
 <div class="ptx-runestone-container"><div class="runestone"><ul data-component="dragndrop" data-question_label="" style="visibility: hidden;" id="ex-match-eigen2">
-<span data-subcomponent="question"><div class="para" id="p-1616">In order for certain properties of a matrix <span class="process-math">\(A\)</span> to be satisfied, the eigenvalues of <span class="process-math">\(A\)</span> need to have particular values. Match each property of a matrix <span class="process-math">\(A\)</span> on the left with the corresponding information about the eigenvalues of <span class="process-math">\(A\)</span> on the right. Be sure that you can justify your answers with a suitable proof.</div></span><li data-subcomponent="draggable" id="ex-match-eigen2_drag1">
+<span data-subcomponent="question"><div class="para" id="p-1520">In order for certain properties of a matrix <span class="process-math">\(A\)</span> to be satisfied, the eigenvalues of <span class="process-math">\(A\)</span> need to have particular values. Match each property of a matrix <span class="process-math">\(A\)</span> on the left with the corresponding information about the eigenvalues of <span class="process-math">\(A\)</span> on the right. Be sure that you can justify your answers with a suitable proof.</div></span><li data-subcomponent="draggable" id="ex-match-eigen2_drag1">
 <span class="process-math">\(A\)</span> is invertible</li>
 <li data-subcomponent="dropzone" for="ex-match-eigen2_drag1">
 <span class="process-math">\(0\)</span> is not an eigenvalue of <span class="process-math">\(A\)</span>
@@ -552,23 +615,23 @@ E_\lambda(A) = \nll (A-\lambda I_n)\text{.}
 <li data-subcomponent="dropzone" for="ex-match-eigen2_drag5">
 <span class="process-math">\(0\text{,}\)</span> <span class="process-math">\(1\text{,}\)</span> and <span class="process-math">\(-1\)</span> are the eigenvalues of <span class="process-math">\(A\)</span>
 </li>
-</ul></div></div></article><div class="para" id="p-1617">Recall that a matrix <span class="process-math">\(B\)</span> is said to be <dfn class="terminology">similar</dfn> to a matrix <span class="process-math">\(A\)</span> if there exists an invertible matrix <span class="process-math">\(P\)</span> such that <span class="process-math">\(B = P^{-1}AP\text{.}\)</span> Much of what follows concerns the question of whether or not a given <span class="process-math">\(n\times n\)</span> matrix <span class="process-math">\(A\)</span> is <dfn class="terminology">diagonalizable</dfn>.</div>
+</ul></div></div></article><div class="para" id="p-1521">Recall that a matrix <span class="process-math">\(B\)</span> is said to be <dfn class="terminology">similar</dfn> to a matrix <span class="process-math">\(A\)</span> if there exists an invertible matrix <span class="process-math">\(P\)</span> such that <span class="process-math">\(B = P^{-1}AP\text{.}\)</span> Much of what follows concerns the question of whether or not a given <span class="process-math">\(n\times n\)</span> matrix <span class="process-math">\(A\)</span> is <dfn class="terminology">diagonalizable</dfn>.</div>
 <article class="definition definition-like" id="def-diagonalizable"><h3 class="heading">
-<span class="type">Definition</span><span class="space"> </span><span class="codenumber">4.1.8</span><span class="period">.</span>
+<span class="type">Definition</span><span class="space"> </span><span class="codenumber">4.1.9</span><span class="period">.</span>
 </h3>
-<div class="para" id="p-1618">An <span class="process-math">\(n\times n\)</span> matrix <span class="process-math">\(A\)</span> is said to be <dfn class="terminology">diagonalizable</dfn> if <span class="process-math">\(A\)</span> is similar to a diagonal matrix.</div></article><div class="para" id="p-1619">The following results will frequently be useful.</div>
+<div class="para" id="p-1522">An <span class="process-math">\(n\times n\)</span> matrix <span class="process-math">\(A\)</span> is said to be <dfn class="terminology">diagonalizable</dfn> if <span class="process-math">\(A\)</span> is similar to a diagonal matrix.</div></article><div class="para" id="p-1523">The following results will frequently be useful.</div>
 <article class="theorem theorem-like" id="thm-similar-properties"><h3 class="heading">
-<span class="type">Theorem</span><span class="space"> </span><span class="codenumber">4.1.9</span><span class="period">.</span>
+<span class="type">Theorem</span><span class="space"> </span><span class="codenumber">4.1.10</span><span class="period">.</span>
 </h3>
-<div class="para logical" id="p-1620">
+<div class="para logical" id="p-1524">
 <div class="para">The relation <span class="process-math">\(A\sim B\)</span> if and only if <span class="process-math">\(A\)</span> is similar to <span class="process-math">\(B\)</span> is an equivalence relation. Moreover, if <span class="process-math">\(A\sim B\text{,}\)</span> then:</div>
 <ul class="disc">
-<li id="li-257"><div class="para" id="p-derived-li-257"><span class="process-math">\(\displaystyle \det A = \det B\)</span></div></li>
-<li id="li-258"><div class="para" id="p-derived-li-258"><span class="process-math">\(\displaystyle \tr A = \tr B\)</span></div></li>
-<li id="li-259"><div class="para" id="p-derived-li-259"><span class="process-math">\(\displaystyle c_A(x) = c_B(x)\)</span></div></li>
+<li id="li-193"><div class="para" id="p-derived-li-193"><span class="process-math">\(\displaystyle \det A = \det B\)</span></div></li>
+<li id="li-194"><div class="para" id="p-derived-li-194"><span class="process-math">\(\displaystyle \tr A = \tr B\)</span></div></li>
+<li id="li-195"><div class="para" id="p-derived-li-195"><span class="process-math">\(\displaystyle c_A(x) = c_B(x)\)</span></div></li>
 </ul>
 <div class="para">In other words, <span class="process-math">\(A\)</span> and <span class="process-math">\(B\)</span> have the same determinant, trace, and characteristic polynomial (and thus, the same eigenvalues).</div>
-</div></article><article class="hiddenproof" id="proof-51"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-51"><h3 class="heading"><span class="type">Proof<span class="period">.</span></span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-51"><article class="hiddenproof"><div class="para logical" id="p-1621">
+</div></article><article class="hiddenproof" id="proof-51"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-51"><h3 class="heading"><span class="type">Proof<span class="period">.</span></span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-51"><article class="hiddenproof"><div class="para logical" id="p-1525">
 <div class="para">The first two follow directly from properties of the determinant and trace. For the last, note that if <span class="process-math">\(B = P^{-1}AP\text{,}\)</span> then</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -579,13 +642,13 @@ P^{-1}(xI_n-A)P = P^{-1}(xI_n)P-P^{-1}AP = xI_n B\text{,}
 </div>
 </div></article></div>
 <article class="example example-like" id="example-eigenvectors"><h3 class="heading">
-<span class="type">Example</span><span class="space"> </span><span class="codenumber">4.1.10</span><span class="period">.</span>
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">4.1.11</span><span class="period">.</span>
 </h3>
-<div class="para" id="p-1622">Determine the eigenvalues and eigenvectors of <span class="process-math">\(A = \bbm 0\amp 1\amp 1\\1\amp 0\amp 1\\1\amp 1\amp 0\ebm\text{.}\)</span>
+<div class="para" id="p-1526">Determine the eigenvalues and eigenvectors of <span class="process-math">\(A = \bbm 0\amp 1\amp 1\\1\amp 0\amp 1\\1\amp 1\amp 0\ebm\text{.}\)</span>
 </div>
 <div class="solutions">
 <a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-64" id="solution-64"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-64"><div class="solution solution-like">
-<div class="para logical" id="p-1623">
+<div class="para logical" id="p-1527">
 <div class="para">We begin with the characteristic polynomial. We have</div>
 <div class="displaymath process-math" id="md-62">
 \begin{align*}
@@ -599,7 +662,7 @@ P^{-1}(xI_n-A)P = P^{-1}(xI_n)P-P^{-1}AP = xI_n B\text{,}
 \amp (x+1)^2(x-2)\text{.}
 \end{align*}
 </div>
-</div> <div class="para" id="p-1624">The roots of the characteristic polynomial are our eigenvalues, so we have <span class="process-math">\(\lambda_1=-1\)</span> and <span class="process-math">\(\lambda_2=2\text{.}\)</span> Note that the first eigenvalue comes from a repeated root. This is typically where things get interesting. If an eigenvalue does not come from a repeated root, then there will only be one (independent) eigenvector that corresponds to it. (That is, <span class="process-math">\(\dim E_\lambda(A)=1\text{.}\)</span>) If an eigenvalue is repeated, it could have more than one eigenvector, but this is not guaranteed.</div> <div class="para logical" id="p-1625">
+</div> <div class="para" id="p-1528">The roots of the characteristic polynomial are our eigenvalues, so we have <span class="process-math">\(\lambda_1=-1\)</span> and <span class="process-math">\(\lambda_2=2\text{.}\)</span> Note that the first eigenvalue comes from a repeated root. This is typically where things get interesting. If an eigenvalue does not come from a repeated root, then there will only be one (independent) eigenvector that corresponds to it. (That is, <span class="process-math">\(\dim E_\lambda(A)=1\text{.}\)</span>) If an eigenvalue is repeated, it could have more than one eigenvector, but this is not guaranteed.</div> <div class="para logical" id="p-1529">
 <div class="para">We find that <span class="process-math">\(A-(-1)I_n = \bbm 1\amp 1\amp 1\\1\amp 1\amp 1\\1\amp 1\amp 1\ebm\text{,}\)</span> which has reduced row-echelon form <span class="process-math">\(\bbm 1\amp 1\amp 1\\0\amp 0\amp 0\\0\amp 0\amp 0\ebm\text{.}\)</span> Solving for the nullspace, we find that there are two independent eigenvectors:</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -612,7 +675,7 @@ P^{-1}(xI_n-A)P = P^{-1}(xI_n)P-P^{-1}AP = xI_n B\text{,}
 E_{-1}(A) = \spn\left\{\bbm 1\\-1\\0\ebm, \bbm 1\\0\\-1\ebm\right\}\text{.}
 \end{equation*}
 </div>
-</div> <div class="para logical" id="p-1626">
+</div> <div class="para logical" id="p-1530">
 <div class="para">For the second eigenvector, we have <span class="process-math">\(A-2I = \bbm -2\amp 1\amp 1\\1\amp -2\amp 1\\1\amp 1\amp -2\ebm\text{,}\)</span> which has reduced row-echelon form <span class="process-math">\(\bbm 1\amp 0\amp -1\\0\amp 1\amp -1\\0\amp 0\amp 0\ebm\text{.}\)</span> An eigenvector in this case is given by</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -621,7 +684,7 @@ E_{-1}(A) = \spn\left\{\bbm 1\\-1\\0\ebm, \bbm 1\\0\\-1\ebm\right\}\text{.}
 </div>
 </div>
 </div></div>
-</div></article><div class="para logical" id="p-1627">
+</div></article><div class="para logical" id="p-1531">
 <div class="para">In general, if the characteristic polynomial can be factored as</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -630,23 +693,23 @@ p_A(x)=(x-\lambda)^mq(x)\text{,}
 </div>
 <div class="para">where <span class="process-math">\(q(x)\)</span> is not divisible by <span class="process-math">\(x-\lambda\text{,}\)</span> then we say that <span class="process-math">\(\lambda\)</span> is an eigenvalue of <dfn class="terminology">multiplicity</dfn> <span class="process-math">\(m\text{.}\)</span> In the example above, <span class="process-math">\(\lambda_1=-1\)</span> has multiplicty 2, and <span class="process-math">\(\lambda_2=2\)</span> has multiplicty 1.</div>
 </div>
-<div class="para" id="p-1628">The <code class="code-inline tex2jax_ignore">eigenvects</code> command in SymPy takes a square matrix as input, and outputs a list of lists (one list for each eigenvalue). For a given eigenvalue, the corresponding list has the form <code class="code-inline tex2jax_ignore">(eigenvalue, multiplicity, eigenvectors)</code>. Using SymPy to solve <a href="" class="xref" data-knowl="./knowl/example-eigenvectors.html" title="Example 4.1.10">Example 4.1.10</a> looks as follows:</div>
+<div class="para" id="p-1532">The <code class="code-inline tex2jax_ignore">eigenvects</code> command in SymPy takes a square matrix as input, and outputs a list of lists (one list for each eigenvalue). For a given eigenvalue, the corresponding list has the form <code class="code-inline tex2jax_ignore">(eigenvalue, multiplicity, eigenvectors)</code>. Using SymPy to solve <a href="" class="xref" data-knowl="./knowl/example-eigenvectors.html" title="Example 4.1.11">Example 4.1.11</a> looks as follows:</div>
 <pre class="ptx-sagecell sagecell-sage" id="sage-60"><script type="text/x-sage">from sympy import Matrix, init_printing
 init_printing()
 A = Matrix([[0,1,1],[1,0,1],1,1,0])
 A.eigenvects()
 </script></pre>
-<div class="para" id="p-1629">An important result about multiplicity is the following.</div>
+<div class="para" id="p-1533">An important result about multiplicity is the following.</div>
 <article class="theorem theorem-like" id="thm-multiplicity"><h3 class="heading">
-<span class="type">Theorem</span><span class="space"> </span><span class="codenumber">4.1.11</span><span class="period">.</span>
+<span class="type">Theorem</span><span class="space"> </span><span class="codenumber">4.1.12</span><span class="period">.</span>
 </h3>
-<div class="para" id="p-1630">Let <span class="process-math">\(\lambda\)</span> be an eigenvalue of <span class="process-math">\(A\)</span> of multiplicity <span class="process-math">\(m\text{.}\)</span> Then <span class="process-math">\(\dim E_\lambda(A)\leq m\text{.}\)</span>
-</div></article><aside class="aside aside-like" id="aside-8"><div class="para" id="p-1631">Some textbooks refer to the multiplicity <span class="process-math">\(m\)</span> of an eigenvalue as the <em class="emphasis">algebraic multiplicity</em> of <span class="process-math">\(\lambda\text{,}\)</span> and the number <span class="process-math">\(\dim E_\lambda(A)\)</span> as the <em class="emphasis">geometric multiplicity</em> of <span class="process-math">\(\lambda\text{.}\)</span>
-</div></aside><div class="para" id="p-1632">To prove <a href="" class="xref" data-knowl="./knowl/thm-multiplicity.html" title="Theorem 4.1.11">Theorem 4.1.11</a> we need the following lemma, which we’ve borrowed from Section 5.5 of Nicholson’s textbook.</div>
+<div class="para" id="p-1534">Let <span class="process-math">\(\lambda\)</span> be an eigenvalue of <span class="process-math">\(A\)</span> of multiplicity <span class="process-math">\(m\text{.}\)</span> Then <span class="process-math">\(\dim E_\lambda(A)\leq m\text{.}\)</span>
+</div></article><aside class="aside aside-like" id="aside-8"><div class="para" id="p-1535">Some textbooks refer to the multiplicity <span class="process-math">\(m\)</span> of an eigenvalue as the <em class="emphasis">algebraic multiplicity</em> of <span class="process-math">\(\lambda\text{,}\)</span> and the number <span class="process-math">\(\dim E_\lambda(A)\)</span> as the <em class="emphasis">geometric multiplicity</em> of <span class="process-math">\(\lambda\text{.}\)</span>
+</div></aside><div class="para" id="p-1536">To prove <a href="" class="xref" data-knowl="./knowl/thm-multiplicity.html" title="Theorem 4.1.12">Theorem 4.1.12</a> we need the following lemma, which we’ve borrowed from Section 5.5 of Nicholson’s textbook.</div>
 <article class="lemma theorem-like" id="lem-block-eigen"><h3 class="heading">
-<span class="type">Lemma</span><span class="space"> </span><span class="codenumber">4.1.12</span><span class="period">.</span>
+<span class="type">Lemma</span><span class="space"> </span><span class="codenumber">4.1.13</span><span class="period">.</span>
 </h3>
-<div class="para logical" id="p-1633">
+<div class="para logical" id="p-1537">
 <div class="para">Let <span class="process-math">\(\{\xx_1,\ldots, \xx_k\}\)</span> be a set of linearly independent eigenvectors of a matrix <span class="process-math">\(A\text{,}\)</span> with corresponding eigenvalues <span class="process-math">\(\lambda_1,\ldots, \lambda_k\)</span> (not necessarily distinct). Extend this set to a basis <span class="process-math">\(\{\xx_1,\ldots, \xx_k,\xx_{k+1},\ldots, \xx_n\}\text{,}\)</span> and let <span class="process-math">\(P=\bbm \xx_1\amp \cdots \amp \xx_n\ebm\)</span> be the matrix whose columns are the basis vectors. (Note that <span class="process-math">\(P\)</span> is necessarily invertible.) Then</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -655,7 +718,7 @@ P^{-1}AP = \bbm \diag(\lambda_1,\ldots, \lambda_k) \amp B\\0\amp A_1\ebm\text{,}
 </div>
 <div class="para">where <span class="process-math">\(B\)</span> has size <span class="process-math">\(k\times (n-k)\text{,}\)</span> and <span class="process-math">\(A_1\)</span> has size <span class="process-math">\((n-k)\times (n-k)\text{.}\)</span>
 </div>
-</div></article><article class="hiddenproof" id="proof-52"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-52"><h3 class="heading"><span class="type">Proof<span class="period">.</span></span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-52"><article class="hiddenproof"><div class="para logical" id="p-1634">
+</div></article><article class="hiddenproof" id="proof-52"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-52"><h3 class="heading"><span class="type">Proof<span class="period">.</span></span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-52"><article class="hiddenproof"><div class="para logical" id="p-1538">
 <div class="para">We have</div>
 <div class="displaymath process-math" id="md-63">
 \begin{align*}
@@ -671,8 +734,8 @@ P^{-1}AP \amp = P^{-1}A\bbm \xx_1\amp \cdots \amp \xx_n\ebm\\
 </div>
 <div class="para">But <span class="process-math">\(P^{-1}\xx_i\)</span> is the <span class="process-math">\(i\)</span>th column of <span class="process-math">\(P^{-1}P = I_n\text{,}\)</span> which proves the result.</div>
 </div></article></div>
-<div class="para logical" id="p-1635">
-<div class="para">We can use <a href="" class="xref" data-knowl="./knowl/lem-block-eigen.html" title="Lemma 4.1.12">Lemma 4.1.12</a> to prove that <span class="process-math">\(\dim E_\lambda(A)\leq m\)</span> as follows. Suppose <span class="process-math">\(\{\xx_1,\ldots, \xx_k\}\)</span> is a basis for <span class="process-math">\(E_\lambda(A)\text{.}\)</span> Then this is a linearly independent set of eigenvectors, so our lemma guarantees the existence of a matrix <span class="process-math">\(P\)</span> such that</div>
+<div class="para logical" id="p-1539">
+<div class="para">We can use <a href="" class="xref" data-knowl="./knowl/lem-block-eigen.html" title="Lemma 4.1.13">Lemma 4.1.13</a> to prove that <span class="process-math">\(\dim E_\lambda(A)\leq m\)</span> as follows. Suppose <span class="process-math">\(\{\xx_1,\ldots, \xx_k\}\)</span> is a basis for <span class="process-math">\(E_\lambda(A)\text{.}\)</span> Then this is a linearly independent set of eigenvectors, so our lemma guarantees the existence of a matrix <span class="process-math">\(P\)</span> such that</div>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/lem-block-eigen.html">
 \begin{equation*}
 P^{-1}AP = \bbm \lambda I_k \amp B\\0\amp A_1\ebm\text{.}
@@ -687,12 +750,12 @@ P^{-1}AP = \bbm \lambda I_k \amp B\\0\amp A_1\ebm\text{.}
 <div class="para">This shows that <span class="process-math">\(c_A(x)\)</span> is divisible by <span class="process-math">\((x-\lambda)^k\text{.}\)</span> Since <span class="process-math">\(m\)</span> is the largest integer such that <span class="process-math">\(c_A(x)\)</span> is divisible by <span class="process-math">\((x-\lambda)^m\text{,}\)</span> we must have <span class="process-math">\(\dim E_\lambda(A)=k\leq m\text{.}\)</span>
 </div>
 </div>
-<div class="para" id="p-1636">Another important result is the following. The proof is a bit tricky: it requires mathematical induction, and a couple of clever observations.</div>
+<div class="para" id="p-1540">Another important result is the following. The proof is a bit tricky: it requires mathematical induction, and a couple of clever observations.</div>
 <article class="theorem theorem-like" id="thm-eigen-independent"><h3 class="heading">
-<span class="type">Theorem</span><span class="space"> </span><span class="codenumber">4.1.13</span><span class="period">.</span>
+<span class="type">Theorem</span><span class="space"> </span><span class="codenumber">4.1.14</span><span class="period">.</span>
 </h3>
-<div class="para" id="p-1637">Let <span class="process-math">\(\vv_1,\ldots, \vv_k\)</span> be eigenvectors corresponding to distinct eigenvalues <span class="process-math">\(\lambda_1,\ldots, \lambda_k\)</span> of a matrix <span class="process-math">\(A\text{.}\)</span> Then <span class="process-math">\(\{\vv_1,\ldots, \vv_k\}\)</span> is linearly independent.</div></article><article class="hiddenproof" id="proof-53"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-53"><h3 class="heading"><span class="type">Proof<span class="period">.</span></span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-53"><article class="hiddenproof"><div class="para" id="p-1638">The proof is by induction on the number <span class="process-math">\(k\)</span> of distinct eigenvalues. Since eigenvectors are nonzero, any set consisting of a single eigenvector <span class="process-math">\(\vv_1\)</span> is independent. Suppose, then, that a set of eigenvectors corresponding to <span class="process-math">\(k-1\)</span> distinct eigenvalues is independent, and let <span class="process-math">\(\vv_1,\ldots, \vv_k\)</span> be eigenvectors corresponding to distinct eigenvalues <span class="process-math">\(\lambda_1,\ldots, \lambda_k\text{.}\)</span>
-</div> <div class="para logical" id="p-1639">
+<div class="para" id="p-1541">Let <span class="process-math">\(\vv_1,\ldots, \vv_k\)</span> be eigenvectors corresponding to distinct eigenvalues <span class="process-math">\(\lambda_1,\ldots, \lambda_k\)</span> of a matrix <span class="process-math">\(A\text{.}\)</span> Then <span class="process-math">\(\{\vv_1,\ldots, \vv_k\}\)</span> is linearly independent.</div></article><article class="hiddenproof" id="proof-53"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-53"><h3 class="heading"><span class="type">Proof<span class="period">.</span></span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-53"><article class="hiddenproof"><div class="para" id="p-1542">The proof is by induction on the number <span class="process-math">\(k\)</span> of distinct eigenvalues. Since eigenvectors are nonzero, any set consisting of a single eigenvector <span class="process-math">\(\vv_1\)</span> is independent. Suppose, then, that a set of eigenvectors corresponding to <span class="process-math">\(k-1\)</span> distinct eigenvalues is independent, and let <span class="process-math">\(\vv_1,\ldots, \vv_k\)</span> be eigenvectors corresponding to distinct eigenvalues <span class="process-math">\(\lambda_1,\ldots, \lambda_k\text{.}\)</span>
+</div> <div class="para logical" id="p-1543">
 <div class="para">Consider the equation</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -708,7 +771,7 @@ A(c_1\vv_1+c_2\vv_2+\cdots +c_k\vv_k)\tag{4.1.4}\\
 \amp =c_1\lambda_1\vv_1+c_2\lambda_2\vv_2+\cdots + c_k\lambda_k\vv_k\text{.}\tag{4.1.6}
 \end{align}
 </div>
-</div> <div class="para logical" id="p-1640">
+</div> <div class="para logical" id="p-1544">
 <div class="para">On the other hand, we can also multiply both sides by the eigenvalue <span class="process-math">\(\lambda_1\text{,}\)</span> giving</div>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/eqn-eigen-indep2.html ./knowl/eqn-eigen-indep1.html" id="eqn-eigen-indep2">
 \begin{equation}
@@ -721,10 +784,164 @@ A(c_1\vv_1+c_2\vv_2+\cdots +c_k\vv_k)\tag{4.1.4}\\
 c_2(\lambda_2-\lambda_1)\vv_2+\cdots + c_k(\lambda_k-\lambda_1)\vv_k=\zer\text{.}
 \end{equation*}
 </div>
-</div> <div class="para" id="p-1641">By hypothesis, the set <span class="process-math">\(\{\vv_2,\ldots, \vv_k\}\)</span> of <span class="process-math">\(k-1\)</span> eigenvectors is linearly independent. We know that <span class="process-math">\(\lambda_j-\lambda_1\neq 0\)</span> for <span class="process-math">\(j=2,\ldots, k\text{,}\)</span> since the eigenvalues are all distinct. Therefore, the only way this linear combination can equal zero is if <span class="process-math">\(c_2=0,\ldots, c_k=0\text{.}\)</span> This leaves us with <span class="process-math">\(c_1\vv_1=\zer\text{,}\)</span> but <span class="process-math">\(\zz_1\neq \zer\text{,}\)</span> so <span class="process-math">\(c_1=0\)</span> as well.</div></article></div>
-<div class="para" id="p-1642">
-<a href="" class="xref" data-knowl="./knowl/thm-eigen-independent.html" title="Theorem 4.1.13">Theorem 4.1.13</a> tells us that vectors from different eigenspaces are independent. In particular, a union of bases from each eigenspace will be an independent set. Therefore, <a href="" class="xref" data-knowl="./knowl/thm-multiplicity.html" title="Theorem 4.1.11">Theorem 4.1.11</a> provides an initial criterion for diagonalization: if the dimension of each eigenspace <span class="process-math">\(E_\lambda(A)\)</span> is equal to the multiplicity of <span class="process-math">\(\lambda\text{,}\)</span> then <span class="process-math">\(A\)</span> is diagonalizable.</div>
-<div class="para" id="p-1643">Our focus in the next section will be on diagonalization of <em class="emphasis">symmetric</em> matrices, and soon we will see that for such matrices, eigenvectors corresponding to different eigenvalues are not just independent, but <em class="emphasis">orthogonal</em>.</div></section><div class="hidden-content tex2jax_ignore" id="hk-fn-9"><div class="fn"><code class="code-inline tex2jax_ignore">en.wikipedia.org/wiki/Linear_dynamical_system</code></div></div>
+</div> <div class="para" id="p-1545">By hypothesis, the set <span class="process-math">\(\{\vv_2,\ldots, \vv_k\}\)</span> of <span class="process-math">\(k-1\)</span> eigenvectors is linearly independent. We know that <span class="process-math">\(\lambda_j-\lambda_1\neq 0\)</span> for <span class="process-math">\(j=2,\ldots, k\text{,}\)</span> since the eigenvalues are all distinct. Therefore, the only way this linear combination can equal zero is if <span class="process-math">\(c_2=0,\ldots, c_k=0\text{.}\)</span> This leaves us with <span class="process-math">\(c_1\vv_1=\zer\text{,}\)</span> but <span class="process-math">\(\zz_1\neq \zer\text{,}\)</span> so <span class="process-math">\(c_1=0\)</span> as well.</div></article></div>
+<div class="para" id="p-1546">
+<a href="" class="xref" data-knowl="./knowl/thm-eigen-independent.html" title="Theorem 4.1.14">Theorem 4.1.14</a> tells us that vectors from different eigenspaces are independent. In particular, a union of bases from each eigenspace will be an independent set. Therefore, <a href="" class="xref" data-knowl="./knowl/thm-multiplicity.html" title="Theorem 4.1.12">Theorem 4.1.12</a> provides an initial criterion for diagonalization: if the dimension of each eigenspace <span class="process-math">\(E_\lambda(A)\)</span> is equal to the multiplicity of <span class="process-math">\(\lambda\text{,}\)</span> then <span class="process-math">\(A\)</span> is diagonalizable.</div>
+<div class="para" id="p-1547">Our focus in the next section will be on diagonalization of <em class="emphasis">symmetric</em> matrices, and soon we will see that for such matrices, eigenvectors corresponding to different eigenvalues are not just independent, but <em class="emphasis">orthogonal</em>.</div>
+<section class="exercises" id="exercises-13"><h3 class="heading hide-type">
+<span class="type">Exercises</span> <span class="codenumber"></span> <span class="title">Exercises</span>
+</h3>
+<article class="exercise exercise-like" id="ex-ww-eigen1"><h4 class="heading"><span class="codenumber">1<span class="period">.</span></span></h4>
+<div id="webwork-59" class="exercise-wrapper" data-domain="https://webwork-dev.uleth.ca" data-seed="59" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="local/Library/Rochester/setLinearAlgebra11Eigenvalues/ur_la_11_2.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-59')">Activate</button></div>
+<div class="problem-contents"><div class="para" id="p-1548">Find the characteristic polynomial of the matrix <span class="process-math">\(A = {\left[\begin{array}{ccc}
+1 \amp -2 \amp 0\cr
+0 \amp 4 \amp -4\cr
+-3 \amp 1 \amp 0
+\end{array}\right]}.\)</span>
+</div></div>
+</div></article><article class="exercise exercise-like" id="ex-ww-eigen2"><h4 class="heading"><span class="codenumber">2<span class="period">.</span></span></h4>
+<div id="webwork-60" class="exercise-wrapper" data-domain="https://webwork-dev.uleth.ca" data-seed="60" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="local/Library/Rochester/setLinearAlgebra11Eigenvalues/ur_la_11_28.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-60')">Activate</button></div>
+<div class="problem-contents"><div class="para" id="p-1550">Find the three distinct real eigenvalues of the matrix <span class="process-math">\(B = {\left[\begin{array}{ccc}
+-1 \amp 4 \amp 7\cr
+0 \amp -4 \amp -8\cr
+0 \amp 0 \amp 7
+\end{array}\right]}.\)</span>
+</div></div>
+</div></article><article class="exercise exercise-like" id="ex-ww-eigen3"><h4 class="heading"><span class="codenumber">3<span class="period">.</span></span></h4>
+<div id="webwork-61" class="exercise-wrapper" data-domain="https://webwork-dev.uleth.ca" data-seed="61" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="local/Library/Rochester/setLinearAlgebra11Eigenvalues/ur_la_11_19.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-61')">Activate</button></div>
+<div class="problem-contents"><div class="para" id="p-1552">The matrix <span class="process-math">\(A={\left[\begin{array}{ccc}
+-8 \amp -4 \amp -12\cr
+-4 \amp -8 \amp -12\cr
+4 \amp 4 \amp 8
+\end{array}\right]}\)</span> has two real eigenvalues, one of multiplicity <span class="process-math">\(1\)</span> and one of multiplicity <span class="process-math">\(2\text{.}\)</span> Find the eigenvalues and a basis for each eigenspace.</div></div>
+</div></article><article class="exercise exercise-like" id="ex-ww-eigen4"><h4 class="heading"><span class="codenumber">4<span class="period">.</span></span></h4>
+<div id="webwork-62" class="exercise-wrapper" data-domain="https://webwork-dev.uleth.ca" data-seed="62" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="local/Library/Rochester/setLinearAlgebra11Eigenvalues/ur_la_11_24a.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-62')">Activate</button></div>
+<div class="problem-contents"><div class="para" id="p-1557">The matrix <span class="process-math">\(A={\left[\begin{array}{cccc}
+5 \amp 2 \amp -14 \amp 2\cr
+-2 \amp 1 \amp 5 \amp -2\cr
+1 \amp 1 \amp -4 \amp 1\cr
+1 \amp 1 \amp -7 \amp 4
+\end{array}\right]}\)</span> has two distinct real eigenvalues <span class="process-math">\(\lambda_1 \lt  \lambda_2\text{.}\)</span> Find the eigenvalues and a basis for each eigenspace.</div></div>
+</div></article><article class="exercise exercise-like" id="ex-ww-eigen5"><h4 class="heading"><span class="codenumber">5<span class="period">.</span></span></h4>
+<div id="webwork-63" class="exercise-wrapper" data-domain="https://webwork-dev.uleth.ca" data-seed="63" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Rochester/setLinearAlgebra11Eigenvalues/ur_la_11_16.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-63')">Activate</button></div>
+<div class="problem-contents">
+<div class="para logical" id="p-1562">
+<div class="para">The matrix</div>
+<div class="displaymath process-math">
+\begin{equation*}
+A = \left[\begin{array}{ccc}
+2 \amp 1 \amp 0\cr
+-9 \amp -4 \amp 1\cr
+k \amp 0 \amp 0\cr
+\end{array}\right]
+\end{equation*}
+</div>
+<div class="para">has three distinct real eigenvalues if and only if</div>
+</div> <div class="para" id="p-1563">
+<span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span> <span class="process-math">\(\lt  k \lt \)</span> <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>.</div>
+</div>
+</div></article><article class="exercise exercise-like" id="ex-ww-eigen6"><h4 class="heading"><span class="codenumber">6<span class="period">.</span></span></h4>
+<div id="webwork-64" class="exercise-wrapper" data-domain="https://webwork-dev.uleth.ca" data-seed="64" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Rochester/setLinearAlgebra11Eigenvalues/ur_la_11_22.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-64')">Activate</button></div>
+<div class="problem-contents">
+<div class="para logical" id="p-1566">
+<div class="para">The matrix</div>
+<div class="displaymath process-math">
+\begin{equation*}
+A=\left[\begin{array}{cccc}
+4 \amp -4 \amp -8 \amp -4\cr
+-2 \amp 2 \amp 4 \amp 2\cr
+2 \amp -2 \amp -4 \amp -2\cr
+0 \amp 0 \amp 0 \amp 0
+\end{array}\right]
+\end{equation*}
+</div>
+<div class="para">has two real eigenvalues <span class="process-math">\(\lambda_1 \lt  \lambda_2\text{.}\)</span> Find these eigenvalues, their multiplicities, and the dimensions of their corresponding eigenspaces.</div>
+</div> <div class="para" id="p-1567">The smaller eigenvalue <span class="process-math">\(\lambda_1 =\)</span> <span class="fillin underline" role="img" aria-label="5-character blank" style="width: 2.272727272727273em;"></span> has multiplicity <span class="fillin underline" role="img" aria-label="5-character blank" style="width: 2.272727272727273em;"></span> and the dimension of its corresponding eigenspace is <span class="fillin underline" role="img" aria-label="5-character blank" style="width: 2.272727272727273em;"></span>.</div> <div class="para" id="p-1568">The larger eigenvalue <span class="process-math">\(\lambda_2=\)</span> <span class="fillin underline" role="img" aria-label="5-character blank" style="width: 2.272727272727273em;"></span> has multiplicity <span class="fillin underline" role="img" aria-label="5-character blank" style="width: 2.272727272727273em;"></span> and the dimension of its corresponding eigenspace is <span class="fillin underline" role="img" aria-label="5-character blank" style="width: 2.272727272727273em;"></span>.</div>
+</div>
+</div></article><article class="exercise exercise-like" id="ex-ww-eigen7"><h4 class="heading"><span class="codenumber">7<span class="period">.</span></span></h4>
+<div id="webwork-65" class="exercise-wrapper" data-domain="https://webwork-dev.uleth.ca" data-seed="65" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="local/Library/Rochester/setLinearAlgebra11Eigenvalues/ur_la_11_9.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-65')">Activate</button></div>
+<div class="problem-contents">
+<div class="para" id="p-1575">Supppose <span class="process-math">\(A\)</span> is an invertible <span class="process-math">\(n\times n\)</span> matrix and <span class="process-math">\(\vec{v}\)</span> is an eigenvector of <span class="process-math">\(A\)</span> with associated eigenvalue <span class="process-math">\(3\text{.}\)</span> Convince yourself that <span class="process-math">\(\vec{v}\)</span> is an eigenvector of the following matrices, and find the associated eigenvalues.</div> <div class="para logical" id="p-1576"><ol class="lower-alpha">
+<li id="li-196"><div class="para" id="p-1577">The eigenvalue of the matrix <span class="process-math">\(A^{8}\text{.}\)</span>
+</div></li>
+<li id="li-197"><div class="para" id="p-1578">The eigenvalue of the matrix <span class="process-math">\(A^{-1}\text{.}\)</span>
+</div></li>
+<li id="li-198"><div class="para" id="p-1579">The eigenvalue of the matrix <span class="process-math">\(A  - 3 I_n\text{.}\)</span>
+</div></li>
+<li id="li-199"><div class="para" id="p-1580">The eigenvalue of the matrix <span class="process-math">\(-3 A\text{.}\)</span>
+</div></li>
+</ol></div>
+</div>
+</div></article><article class="exercise exercise-like" id="ex-ww-eigen8"><h4 class="heading"><span class="codenumber">8<span class="period">.</span></span></h4>
+<div id="webwork-66" class="exercise-wrapper" data-domain="https://webwork-dev.uleth.ca" data-seed="66" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="local/Library/Rochester/setLinearAlgebra11Eigenvalues/ur_la_11_27.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-66')">Activate</button></div>
+<div class="problem-contents">
+<div class="para logical" id="p-1585">
+<div class="para">Let</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\vec{v}_1={\left[\begin{array}{c}
+0\cr
+-3\cr
+-1
+\end{array}\right]}, \vec{v}_2 = {\left[\begin{array}{c}
+-3\cr
+3\cr
+0
+\end{array}\right]}, \vec{v}_3 = {\left[\begin{array}{c}
+-1\cr
+0\cr
+1
+\end{array}\right]}
+\end{equation*}
+</div>
+<div class="para">be eigenvectors of the matrix <span class="process-math">\(A\)</span> which correspond to the eigenvalues <span class="process-math">\(\lambda_1 = -1\text{,}\)</span> <span class="process-math">\(\lambda_2 = 0\text{,}\)</span> and <span class="process-math">\(\lambda_3 = 4\text{,}\)</span> respectively, and let</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\vec{x}={\left[\begin{array}{c}
+2\cr
+3\cr
+3
+\end{array}\right]}.
+\end{equation*}
+</div>
+</div> <div class="para" id="p-1586">Express <span class="process-math">\(\vec{x}\)</span> as a linear combination <span class="process-math">\(\vec{x} =a\vec{v}_1 + b\vec{v}_2 +c\vec{v}_3\text{,}\)</span> and find <span class="process-math">\(A\vec{x}\text{.}\)</span>
+</div>
+</div>
+</div></article><article class="exercise exercise-like" id="ex-ww-eigen9"><h4 class="heading"><span class="codenumber">9<span class="period">.</span></span></h4>
+<div id="webwork-67" class="exercise-wrapper" data-domain="https://webwork-dev.uleth.ca" data-seed="67" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="local/Library/NAU/setLinearAlgebra/similar3.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-67')">Activate</button></div>
+<div class="problem-contents">
+<div class="para" id="p-1591">Recall that similarity of matrices is an equivalence relation; that is, the relation is reflexive, symmetric and transitive.</div> <div class="para" id="p-1592">Verify that <span class="process-math">\(A={\left[\begin{array}{cc}
+0 \amp 1\cr
+1 \amp -1
+\end{array}\right]}\)</span> is similar to itself  by finding a <span class="process-math">\(T\)</span> such that <span class="process-math">\(A = T^{-1} A T\text{.}\)</span>
+</div> <div class="para" id="p-1593">We know that <span class="process-math">\(A\)</span> and <span class="process-math">\(B={\left[\begin{array}{cc}
+1 \amp -1\cr
+1 \amp -2
+\end{array}\right]}\)</span> are similar since <span class="process-math">\(A = P^{-1} B P\)</span> where <span class="process-math">\(P = {\left[\begin{array}{cc}
+1 \amp -1\cr
+2 \amp -3
+\end{array}\right]}\text{.}\)</span>
+</div> <div class="para" id="p-1594">Verify that <span class="process-math">\(B\sim A\)</span> by finding an <span class="process-math">\(S\)</span> such that <span class="process-math">\(B = S^{-1} A S\text{.}\)</span>
+</div> <div class="para" id="p-1595">We also know that <span class="process-math">\(B\)</span> and <span class="process-math">\(C={\left[\begin{array}{cc}
+-3 \amp 5\cr
+-1 \amp 2
+\end{array}\right]}\)</span> are similar since <span class="process-math">\(B = Q^{-1} C Q\)</span> where <span class="process-math">\(Q = {\left[\begin{array}{cc}
+1 \amp 1\cr
+1 \amp 0
+\end{array}\right]}\text{.}\)</span>
+</div> <div class="para" id="p-1596">Verify that <span class="process-math">\(A\sim C\)</span> by finding an <span class="process-math">\(R\)</span> such that <span class="process-math">\(A = R^{-1} C R\text{.}\)</span>
+</div>
+</div>
+</div></article></section></section><div class="hidden-content tex2jax_ignore" id="hk-fn-9"><div class="fn"><code class="code-inline tex2jax_ignore">en.wikipedia.org/wiki/Linear_dynamical_system</code></div></div>
 <div class="hidden-content tex2jax_ignore" id="hk-fn-10"><div class="fn"><code class="code-inline tex2jax_ignore">en.wikipedia.org/wiki/Markov_chain</code></div></div>
 </div>
 <div class="ptx-content-footer">

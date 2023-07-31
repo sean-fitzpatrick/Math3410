@@ -14,13 +14,7 @@
 <article class="li"><h4 class="heading">
 <span class="type">Item</span><span class="period">.</span>
 </h4>
-<div class="para logical">
-<div class="para">If we know that <span class="process-math">\(3\)</span> is an eigenvalue of a <span class="process-math">\(4\times 4\)</span> matrix <span class="process-math">\(A\text{,}\)</span> one way to get a basis for the eigenspace <span class="process-math">\(E_3(A)\)</span> is to do:</div>
-<pre class="code-display tex2jax_ignore">B=A-3*eye(4)
-B.nullspace()
-</pre>
-<div class="para">If you just want all the eigenvalues and eigenvectors without going through the steps, then you can simply execute <code class="code-inline tex2jax_ignore">A.eigenvects()</code>. The result is a list of lists — each list in the list is of the form: eigenvalue, multiplicity, basis for the eigenspace.</div>
-</div>
-<div class="para">For diagonalization, one can do <code class="code-inline tex2jax_ignore">A.diagonalize()</code>. But this will not necessarily produce orthogonal diagonalization for a symmetric matrix.</div></article><span class="incontext"><a href="sec-sympy.html#li-329" class="internal">in-context</a></span>
+<div class="para">A <span class="process-math">\(QR\)</span>-factorization can be performed using <code class="code-inline tex2jax_ignore">Q,R=A.QRdecomposition()</code>
+</div></article><span class="incontext"><a href="sec-sympy.html#li-329" class="internal">in-context</a></span>
 </body>
 </html>

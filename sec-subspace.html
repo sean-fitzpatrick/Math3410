@@ -5,7 +5,7 @@
 <!--*         https://pretextbook.org          *-->
 <!--*                                          *-->
 <!--********************************************-->
-<html lang="en-US">
+<html lang="en-US" dir="ltr">
 <head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Subspaces</title>
@@ -14,20 +14,38 @@
 <meta property="og:type" content="book">
 <meta property="book:title" content="Linear Algebra">
 <meta property="book:author" content="Sean Fitzpatrick">
-<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>
+var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
 window.MathJax = {
-  tex: {
-    inlineMath: [['\\(','\\)']],
-    tags: "none",
-    tagSide: "right",
-    tagIndent: ".8em",
-    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'color', 'newcommand', 'knowl']}
+  "tex": {
+    "inlineMath": [
+      [
+        "\\(",
+        "\\)"
+      ]
+    ],
+    "tags": "none",
+    "tagSide": "right",
+    "tagIndent": ".8em",
+    "packages": {
+      "[+]": [
+        "base",
+        "extpfeil",
+        "ams",
+        "amscd",
+        "color",
+        "newcommand",
+        "knowl"
+      ]
+    }
   },
-  options: {
-    ignoreHtmlClass: "tex2jax_ignore|ignore-math",
-    processHtmlClass: "process-math",
-    renderActions: {
-        findScript: [10, function (doc) {
+  "options": {
+    "ignoreHtmlClass": "tex2jax_ignore|ignore-math",
+    "processHtmlClass": "process-math",
+    "renderActions": {
+      "findScript": [
+        10,
+        function (doc) {
             document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
                 var display = !!node.type.match(/; *mode=display/);
                 var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
@@ -37,25 +55,36 @@ window.MathJax = {
                 math.end = {node: text, delim: '', n: 0};
                 doc.math.push(math);
             });
-        }, '']
-    },
+        },
+        ""
+      ]
+    }
   },
-  chtml: {
-    scale: 0.98,
-    mtextInheritFont: true
+  "chtml": {
+    "scale": 0.98,
+    "mtextInheritFont": true
   },
-  loader: {
-    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/color', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
-    paths: {pretext: "https://pretextbook.org/js/lib"},
+  "loader": {
+    "load": [
+      "input/asciimath",
+      "[tex]/extpfeil",
+      "[tex]/amscd",
+      "[tex]/color",
+      "[tex]/newcommand",
+      "[pretext]/mathjaxknowl3.js"
+    ],
+    "paths": {
+      "pretext": "https://pretextbook.org/js/lib"
+    }
   },
-  startup: {
+  "startup": {
     pageReady() {
       return MathJax.startup.defaultPageReady().then(function () {
       console.log("in ready function");
       rsMathReady();
       }
     )}
-  },
+  }
 };
 </script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link href="https://webwork-dev.uleth.ca/webwork2_files/js/apps/MathView/mathview.css" rel="stylesheet">
 <script src="https://pretextbook.org/js/0.3/pretext-webwork/2.18/pretext-webwork.js"></script><script src="https://webwork-dev.uleth.ca/webwork2_files/node_modules/iframe-resizer/js/iframeResizer.min.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/themes/prism.css" rel="stylesheet">
@@ -100,17 +129,17 @@ eBookConfig.allow_pairs = false;
 eBookConfig.enableScratchAC = false;
 eBookConfig.build_info = "";
 eBookConfig.python3 = null;
-eBookConfig.runestone_version = '7.0.0dev4';
+eBookConfig.runestone_version = '7.0.7';
 eBookConfig.jobehost = '';
 eBookConfig.proxyuri_runs = '';
 eBookConfig.proxyuri_files = '';
 eBookConfig.enable_chatcodes =  false;
 </script>
 <!--*** Runestone Services ***-->
-<script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.0dev4/prefix-runtime.3489f84c0d76065d.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.0dev4/prefix-347.193e36c07abd0197.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.0dev4/prefix-runestone.e543e0dd19670ae2.bundle.js"></script><link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/7.0.0dev4/prefix-347.f9add1ca35d5ad93.css">
-<link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/7.0.0dev4/prefix-runestone.931faef5361cf6e9.css">
+<script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.7/prefix-runtime.fd9ce61c3c71cb22.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.7/prefix-347.193e36c07abd0197.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.7/prefix-runestone.89acb6c6122954e4.bundle.js"></script><link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/7.0.7/prefix-347.f9add1ca35d5ad93.css">
+<link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/7.0.7/prefix-runestone.8d2f742bc74f4a41.css">
 </head>
-<body id="Math3410" class="pretext book ignore-math">
+<body id="linearpython" class="pretext book ignore-math">
 <a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead"><div class="ptx-banner">
 <a id="logo-link" class="logo-link" href=""></a><div class="title-container">
 <h1 class="heading"><a href="linear-algebra.html"><span class="title">Linear Algebra:</span> <span class="subtitle">A second course, featuring proofs and Python</span></a></h1>
@@ -354,14 +383,21 @@ eBookConfig.enable_chatcodes =  false;
 <li>
 <div class="toc-item"><a href="ch-diagonalization.html" class="internal"><span class="codenumber">4</span> <span class="title">Diagonalization</span></a></div>
 <ul class="structural">
-<li><div class="toc-item"><a href="sec-eigen-basics.html" class="internal"><span class="codenumber">4.1</span> <span class="title">Eigenvalues and Eigenvectors</span></a></div></li>
+<li>
+<div class="toc-item"><a href="sec-eigen-basics.html" class="internal"><span class="codenumber">4.1</span> <span class="title">Eigenvalues and Eigenvectors</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="sec-eigen-basics.html#exercises-13" class="internal"><span class="codenumber">4.1</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
 <li><div class="toc-item"><a href="subsec-ortho-diag.html" class="internal"><span class="codenumber">4.2</span> <span class="title">Diagonalization of symmetric matrices</span></a></div></li>
-<li><div class="toc-item"><a href="sec-quadratic.html" class="internal"><span class="codenumber">4.3</span> <span class="title">Quadratic forms</span></a></div></li>
+<li>
+<div class="toc-item"><a href="sec-quadratic.html" class="internal"><span class="codenumber">4.3</span> <span class="title">Quadratic forms</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="sec-quadratic.html#exercises-14" class="internal"><span class="codenumber">4.3</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
 <li>
 <div class="toc-item"><a href="sec-complex.html" class="internal"><span class="codenumber">4.4</span> <span class="title">Diagonalization of complex matrices</span></a></div>
 <ul class="structural">
 <li><div class="toc-item"><a href="sec-complex.html#subsec-complex-vector" class="internal"><span class="codenumber">4.4.1</span> <span class="title">Complex vectors</span></a></div></li>
 <li><div class="toc-item"><a href="sec-complex.html#subsec-complex-matrix" class="internal"><span class="codenumber">4.4.2</span> <span class="title">Complex matrices</span></a></div></li>
+<li><div class="toc-item"><a href="sec-complex.html#exercises-15" class="internal"><span class="codenumber">4.4.3</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
 <li><div class="toc-item"><a href="worksheet-dynamical.html" class="internal"><span class="codenumber">4.5</span> <span class="title">Worksheet: linear dynamical systems</span></a></div></li>
@@ -383,6 +419,7 @@ eBookConfig.enable_chatcodes =  false;
 <li><div class="toc-item"><a href="section-matrix-factor.html#pars-qr-algorithm" class="internal"><span class="codenumber">4.6.2.2</span> <span class="title">The QR Algorithm</span></a></div></li>
 </ul>
 </li>
+<li><div class="toc-item"><a href="section-matrix-factor.html#exercises-16" class="internal"><span class="codenumber">4.6.3</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
 <li><div class="toc-item"><a href="worksheet-svd.html" class="internal"><span class="codenumber">4.7</span> <span class="title">Worksheet: Singular Value Decomposition</span></a></div></li>
@@ -391,8 +428,14 @@ eBookConfig.enable_chatcodes =  false;
 <li>
 <div class="toc-item"><a href="ch-change-basis.html" class="internal"><span class="codenumber">5</span> <span class="title">Change of Basis</span></a></div>
 <ul class="structural">
-<li><div class="toc-item"><a href="sec-matrix-of-transformation.html" class="internal"><span class="codenumber">5.1</span> <span class="title">The matrix of a linear transformation</span></a></div></li>
-<li><div class="toc-item"><a href="sec-matrix-operator.html" class="internal"><span class="codenumber">5.2</span> <span class="title">The matrix of a linear operator</span></a></div></li>
+<li>
+<div class="toc-item"><a href="sec-matrix-of-transformation.html" class="internal"><span class="codenumber">5.1</span> <span class="title">The matrix of a linear transformation</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="sec-matrix-of-transformation.html#exercises-17" class="internal"><span class="codenumber">5.1</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li>
+<div class="toc-item"><a href="sec-matrix-operator.html" class="internal"><span class="codenumber">5.2</span> <span class="title">The matrix of a linear operator</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="sec-matrix-operator.html#exercises-18" class="internal"><span class="codenumber">5.2</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
 <li>
 <div class="toc-item"><a href="sec-direct-sum.html" class="internal"><span class="codenumber">5.3</span> <span class="title">Direct Sums and Invariant Subspaces</span></a></div>
 <ul class="structural">
@@ -403,7 +446,10 @@ eBookConfig.enable_chatcodes =  false;
 </li>
 <li><div class="toc-item"><a href="worksheet-gen-eigen.html" class="internal"><span class="codenumber">5.4</span> <span class="title">Worksheet: generalized eigenvectors</span></a></div></li>
 <li><div class="toc-item"><a href="sec-gen-eigen.html" class="internal"><span class="codenumber">5.5</span> <span class="title">Generalized eigenspaces</span></a></div></li>
-<li><div class="toc-item"><a href="sec-jordan-form.html" class="internal"><span class="codenumber">5.6</span> <span class="title">Jordan Canonical Form</span></a></div></li>
+<li>
+<div class="toc-item"><a href="sec-jordan-form.html" class="internal"><span class="codenumber">5.6</span> <span class="title">Jordan Canonical Form</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="sec-jordan-form.html#exercises-19" class="internal"><span class="codenumber">5.6</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
 </ul>
 </li>
 <li>
@@ -660,45 +706,39 @@ a+b+c+d=8a+4b+2c+d\text{,}
 <div class="problem-contents">
 <div class="para" id="p-250">A square matrix <span class="process-math">\(A\)</span> is idempotent if <span class="process-math">\(A^2 = A\text{.}\)</span>
 </div> <div class="para" id="p-251">Let <span class="process-math">\(V\)</span> be the vector space of all <span class="process-math">\(2 \times 2\)</span> matrices with real entries. Let <span class="process-math">\(H\)</span> be the set of all <span class="process-math">\(2 \times 2\)</span> idempotent matrices with real entries. Is <span class="process-math">\(H\)</span> a subspace of the vector space <span class="process-math">\(V\text{?}\)</span>
-</div> <div class="para" id="p-252">(a) Does <span class="process-math">\(H\)</span> contain the zero vector of <span class="process-math">\(V\text{?}\)</span>
-</div> <div class="para" id="p-253"><ul style="list-style:circle;">
-<li id="li-51"><div class="para" id="p-254">H contains the zero vector of V</div></li>
-<li id="li-52"><div class="para" id="p-255">H does not contain the zero vector of V</div></li>
-</ul></div> <div class="para" id="p-256">(b) Is <span class="process-math">\(H\)</span> closed under addition?</div> <div class="para" id="p-257">(Hint: to show that <span class="process-math">\(H\)</span> is not closed under addition, it is sufficient to find two idempotent matrices <span class="process-math">\(A\)</span> and <span class="process-math">\(B\)</span> such that <span class="process-math">\((A+B)^2 \ne (A+B)\text{.}\)</span>)</div> <div class="para" id="p-258">(c) Is <span class="process-math">\(H\)</span> closed under scalar multiplication?</div> <div class="para" id="p-259">(Hint: to show that <span class="process-math">\(H\)</span> is not closed under scalar multiplication, it is sufficient to find a real number <span class="process-math">\(r\)</span> and an idempotent matrix <span class="process-math">\(A\)</span> such that <span class="process-math">\((rA)^2 \ne (rA)\text{.}\)</span>)</div> <div class="para" id="p-260">(d) Is <span class="process-math">\(H\)</span> a subspace of the vector space <span class="process-math">\(V\text{?}\)</span>
-</div> <div class="para" id="p-261">You should be able to justify your answer by writing a complete, coherent, and detailed proof based on your answers to parts a-c.</div> <div class="para" id="p-262"><ul style="list-style:circle;">
-<li id="li-53"><div class="para" id="p-263">H is a subspace of V</div></li>
-<li id="li-54"><div class="para" id="p-264">H is not a subspace of V</div></li>
-</ul></div>
+</div> <div class="para" id="p-252">
+<em class="alert">(a)</em> Does <span class="process-math">\(H\)</span> contain the zero vector of <span class="process-math">\(V\text{?}\)</span>
+</div> <div class="para" id="p-253">
+<em class="alert">(b)</em> Is <span class="process-math">\(H\)</span> closed under addition?</div> <div class="para" id="p-254">(Hint: to show that <span class="process-math">\(H\)</span> is not closed under addition, it is sufficient to find two idempotent matrices <span class="process-math">\(A\)</span> and <span class="process-math">\(B\)</span> such that <span class="process-math">\((A+B)^2 \ne (A+B)\text{.}\)</span>)</div> <div class="para" id="p-255">
+<em class="alert">(c)</em> Is <span class="process-math">\(H\)</span> closed under scalar multiplication?</div> <div class="para" id="p-256">(Hint: to show that <span class="process-math">\(H\)</span> is not closed under scalar multiplication, it is sufficient to find a real number <span class="process-math">\(r\)</span> and an idempotent matrix <span class="process-math">\(A\)</span> such that <span class="process-math">\((rA)^2 \ne (rA)\text{.}\)</span>)</div> <div class="para" id="p-257">
+<em class="alert">(d)</em> Is <span class="process-math">\(H\)</span> a subspace of the vector space <span class="process-math">\(V\text{?}\)</span>
+</div> <div class="para" id="p-258">You should be able to justify your answer by writing a complete, coherent, and detailed proof based on your answers to parts a-c.</div>
 </div>
 </div></article><article class="exercise exercise-like" id="ex-ww-sub3"><h4 class="heading"><span class="codenumber">3<span class="period">.</span></span></h4>
 <div id="webwork-4" class="exercise-wrapper" data-domain="https://webwork-dev.uleth.ca" data-seed="4" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="local/Library/Hope/Multi1/03-02-Vector-subspaces/Subspaces_zero_11.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-4')">Activate</button></div>
 <div class="problem-contents">
-<div class="para" id="p-269">The trace of a square <span class="process-math">\(n \times n\)</span> matrix <span class="process-math">\(A = (a_{ij})\)</span> is the sum <span class="process-math">\(a_{11} + a_{22} + \cdots + a_{nn}\)</span> of the entries on its main diagonal.</div> <div class="para" id="p-270">Let <span class="process-math">\(V\)</span> be the vector space of all <span class="process-math">\(2 \times 2\)</span> matrices with real entries.</div> <div class="para" id="p-271">Let <span class="process-math">\(H\)</span> be the set of all <span class="process-math">\(2 \times 2\)</span> matrices with real entries that have trace <span class="process-math">\(0\text{.}\)</span> Is <span class="process-math">\(H\)</span> a subspace of the vector space <span class="process-math">\(V\text{?}\)</span>
-</div> <div class="para" id="p-272">(a) Does <span class="process-math">\(H\)</span> contain the zero vector of <span class="process-math">\(V\text{?}\)</span>
-</div> <div class="para" id="p-273"><ul style="list-style:circle;">
-<li id="li-55"><div class="para" id="p-274">H contains the zero vector of V</div></li>
-<li id="li-56"><div class="para" id="p-275">H does not contain the zero vector of V</div></li>
-</ul></div> <div class="para" id="p-276">(b) Is <span class="process-math">\(H\)</span> closed under addition?</div> <div class="para" id="p-277">(Hint: to show that <span class="process-math">\(H\)</span> is not closed under addition, it is sufficient to find two trace zero matrices <span class="process-math">\(A\)</span> and <span class="process-math">\(B\)</span> such that <span class="process-math">\(A+B\)</span> has nonzero trace.)</div> <div class="para" id="p-278">(c) Is <span class="process-math">\(H\)</span> closed under scalar multiplication?</div> <div class="para" id="p-279">(Hint: to show that <span class="process-math">\(H\)</span> is not closed under scalar multiplication, it is sufficient to find a real number <span class="process-math">\(r\)</span> and a trace zero matrix <span class="process-math">\(A\)</span> such that <span class="process-math">\(rA\)</span> has nonzero trace.)</div> <div class="para" id="p-280">(d) Is <span class="process-math">\(H\)</span> a subspace of the vector space <span class="process-math">\(V\text{?}\)</span>
-</div> <div class="para" id="p-281">You should be able to justify your answer by writing a complete, coherent, and detailed proof based on your answers to parts a-c.</div> <div class="para" id="p-282"><ul style="list-style:circle;">
-<li id="li-57"><div class="para" id="p-283">H is a subspace of V</div></li>
-<li id="li-58"><div class="para" id="p-284">H is not a subspace of V</div></li>
-</ul></div>
+<div class="para" id="p-263">The trace of a square <span class="process-math">\(n \times n\)</span> matrix <span class="process-math">\(A = (a_{ij})\)</span> is the sum <span class="process-math">\(a_{11} + a_{22} + \cdots + a_{nn}\)</span> of the entries on its main diagonal.</div> <div class="para" id="p-264">Let <span class="process-math">\(V\)</span> be the vector space of all <span class="process-math">\(2 \times 2\)</span> matrices with real entries.</div> <div class="para" id="p-265">Let <span class="process-math">\(H\)</span> be the set of all <span class="process-math">\(2 \times 2\)</span> matrices with real entries that have trace <span class="process-math">\(0\text{.}\)</span> Is <span class="process-math">\(H\)</span> a subspace of the vector space <span class="process-math">\(V\text{?}\)</span>
+</div> <div class="para" id="p-266">
+<em class="alert">(a)</em> Does <span class="process-math">\(H\)</span> contain the zero vector of <span class="process-math">\(V\text{?}\)</span>
+</div> <div class="para" id="p-267">
+<em class="alert">(b)</em> Is <span class="process-math">\(H\)</span> closed under addition?</div> <div class="para" id="p-268">(Hint: to show that <span class="process-math">\(H\)</span> is not closed under addition, it is sufficient to find two trace zero matrices <span class="process-math">\(A\)</span> and <span class="process-math">\(B\)</span> such that <span class="process-math">\(A+B\)</span> has nonzero trace.)</div> <div class="para" id="p-269">
+<em class="alert">(c)</em> Is <span class="process-math">\(H\)</span> closed under scalar multiplication?</div> <div class="para" id="p-270">(Hint: to show that <span class="process-math">\(H\)</span> is not closed under scalar multiplication, it is sufficient to find a real number <span class="process-math">\(r\)</span> and a trace zero matrix <span class="process-math">\(A\)</span> such that <span class="process-math">\(rA\)</span> has nonzero trace.)</div> <div class="para" id="p-271">
+<em class="alert">(d)</em> Is <span class="process-math">\(H\)</span> a subspace of the vector space <span class="process-math">\(V\text{?}\)</span>
+</div> <div class="para" id="p-272">You should be able to justify your answer by writing a complete, coherent, and detailed proof based on your answers to parts a-c.</div>
 </div>
 </div></article><article class="exercise exercise-like" id="ex-ww-sub4"><h4 class="heading"><span class="codenumber">4<span class="period">.</span></span></h4>
 <div id="webwork-5" class="exercise-wrapper" data-domain="https://webwork-dev.uleth.ca" data-seed="5" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="local/Library/Hope/Multi1/03-02-Vector-subspaces/Subspaces_zero_12.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-5')">Activate</button></div>
 <div class="problem-contents">
-<div class="para" id="p-289">The trace of a square <span class="process-math">\(n \times n\)</span> matrix <span class="process-math">\(A = (a_{ij})\)</span> is the sum <span class="process-math">\(a_{11} + a_{22} + \cdots + a_{nn}\)</span> of the entries on its main diagonal.</div> <div class="para" id="p-290">Let <span class="process-math">\(V\)</span> be the vector space of all <span class="process-math">\(2 \times 2\)</span> matrices with real entries. Let <span class="process-math">\(H\)</span> be the set of all <span class="process-math">\(2 \times 2\)</span> matrices with real entries that have trace <span class="process-math">\(1\text{.}\)</span> Is <span class="process-math">\(H\)</span> a subspace of the vector space <span class="process-math">\(V\text{?}\)</span>
-</div> <div class="para" id="p-291">(a) Does <span class="process-math">\(H\)</span> contain the zero vector of <span class="process-math">\(V\text{?}\)</span>
-</div> <div class="para" id="p-292"><ul style="list-style:circle;">
-<li id="li-59"><div class="para" id="p-293">H contains the zero vector of V</div></li>
-<li id="li-60"><div class="para" id="p-294">H does not contain the zero vector of V</div></li>
-</ul></div> <div class="para" id="p-295">(b) Is <span class="process-math">\(H\)</span> closed under addition?</div> <div class="para" id="p-296">(Hint: to show that <span class="process-math">\(H\)</span> is not closed under addition, it is sufficient to find two trace one matrices <span class="process-math">\(A\)</span> and <span class="process-math">\(B\)</span> such that <span class="process-math">\(A+B\)</span> has trace not equal to one.)</div> <div class="para" id="p-297">(c) Is <span class="process-math">\(H\)</span> closed under scalar multiplication?</div> <div class="para" id="p-298">(Hint: to show that <span class="process-math">\(H\)</span> is not closed under scalar multiplication, it is sufficient to find a real number <span class="process-math">\(r\)</span> and a trace one matrix <span class="process-math">\(A\)</span> such that <span class="process-math">\(rA\)</span> has trace not equal to one.)</div> <div class="para" id="p-299">(d) Is <span class="process-math">\(H\)</span> a subspace of the vector space <span class="process-math">\(V\text{?}\)</span>
-</div> <div class="para" id="p-300">You should be able to justify your answer by writing a complete, coherent, and detailed proof based on your answers to parts a-c.</div> <div class="para" id="p-301"><ul style="list-style:circle;">
-<li id="li-61"><div class="para" id="p-302">H is a subspace of V</div></li>
-<li id="li-62"><div class="para" id="p-303">H is not a subspace of V</div></li>
-</ul></div>
+<div class="para" id="p-277">The trace of a square <span class="process-math">\(n \times n\)</span> matrix <span class="process-math">\(A = (a_{ij})\)</span> is the sum <span class="process-math">\(a_{11} + a_{22} + \cdots + a_{nn}\)</span> of the entries on its main diagonal.</div> <div class="para" id="p-278">Let <span class="process-math">\(V\)</span> be the vector space of all <span class="process-math">\(2 \times 2\)</span> matrices with real entries. Let <span class="process-math">\(H\)</span> be the set of all <span class="process-math">\(2 \times 2\)</span> matrices with real entries that have trace <span class="process-math">\(1\text{.}\)</span> Is <span class="process-math">\(H\)</span> a subspace of the vector space <span class="process-math">\(V\text{?}\)</span>
+</div> <div class="para" id="p-279">
+<em class="alert">(a)</em> Does <span class="process-math">\(H\)</span> contain the zero vector of <span class="process-math">\(V\text{?}\)</span>
+</div> <div class="para" id="p-280">
+<em class="alert">(b)</em> Is <span class="process-math">\(H\)</span> closed under addition?</div> <div class="para" id="p-281">(Hint: to show that <span class="process-math">\(H\)</span> is not closed under addition, it is sufficient to find two trace one matrices <span class="process-math">\(A\)</span> and <span class="process-math">\(B\)</span> such that <span class="process-math">\(A+B\)</span> has trace not equal to one.)</div> <div class="para" id="p-282">
+<em class="alert">(c)</em> Is <span class="process-math">\(H\)</span> closed under scalar multiplication?</div> <div class="para" id="p-283">(Hint: to show that <span class="process-math">\(H\)</span> is not closed under scalar multiplication, it is sufficient to find a real number <span class="process-math">\(r\)</span> and a trace one matrix <span class="process-math">\(A\)</span> such that <span class="process-math">\(rA\)</span> has trace not equal to one.)</div> <div class="para" id="p-284">
+<em class="alert">(d)</em> Is <span class="process-math">\(H\)</span> a subspace of the vector space <span class="process-math">\(V\text{?}\)</span>
+</div> <div class="para" id="p-285">You should be able to justify your answer by writing a complete, coherent, and detailed proof based on your answers to parts a-c.</div>
 </div>
 </div></article></section></section></div>
 <div class="ptx-content-footer">

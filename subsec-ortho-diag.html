@@ -5,7 +5,7 @@
 <!--*         https://pretextbook.org          *-->
 <!--*                                          *-->
 <!--********************************************-->
-<html lang="en-US">
+<html lang="en-US" dir="ltr">
 <head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Diagonalization of symmetric matrices</title>
@@ -14,20 +14,38 @@
 <meta property="og:type" content="book">
 <meta property="book:title" content="Linear Algebra">
 <meta property="book:author" content="Sean Fitzpatrick">
-<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>
+var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
 window.MathJax = {
-  tex: {
-    inlineMath: [['\\(','\\)']],
-    tags: "none",
-    tagSide: "right",
-    tagIndent: ".8em",
-    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'color', 'newcommand', 'knowl']}
+  "tex": {
+    "inlineMath": [
+      [
+        "\\(",
+        "\\)"
+      ]
+    ],
+    "tags": "none",
+    "tagSide": "right",
+    "tagIndent": ".8em",
+    "packages": {
+      "[+]": [
+        "base",
+        "extpfeil",
+        "ams",
+        "amscd",
+        "color",
+        "newcommand",
+        "knowl"
+      ]
+    }
   },
-  options: {
-    ignoreHtmlClass: "tex2jax_ignore|ignore-math",
-    processHtmlClass: "process-math",
-    renderActions: {
-        findScript: [10, function (doc) {
+  "options": {
+    "ignoreHtmlClass": "tex2jax_ignore|ignore-math",
+    "processHtmlClass": "process-math",
+    "renderActions": {
+      "findScript": [
+        10,
+        function (doc) {
             document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
                 var display = !!node.type.match(/; *mode=display/);
                 var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
@@ -37,33 +55,48 @@ window.MathJax = {
                 math.end = {node: text, delim: '', n: 0};
                 doc.math.push(math);
             });
-        }, '']
-    },
+        },
+        ""
+      ]
+    }
   },
-  chtml: {
-    scale: 0.98,
-    mtextInheritFont: true
+  "chtml": {
+    "scale": 0.98,
+    "mtextInheritFont": true
   },
-  loader: {
-    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/color', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
-    paths: {pretext: "https://pretextbook.org/js/lib"},
+  "loader": {
+    "load": [
+      "input/asciimath",
+      "[tex]/extpfeil",
+      "[tex]/amscd",
+      "[tex]/color",
+      "[tex]/newcommand",
+      "[pretext]/mathjaxknowl3.js"
+    ],
+    "paths": {
+      "pretext": "https://pretextbook.org/js/lib"
+    }
   },
-  startup: {
+  "startup": {
     pageReady() {
       return MathJax.startup.defaultPageReady().then(function () {
       console.log("in ready function");
       rsMathReady();
       }
     )}
-  },
+  }
 };
 </script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link href="https://webwork-dev.uleth.ca/webwork2_files/js/apps/MathView/mathview.css" rel="stylesheet">
 <script src="https://pretextbook.org/js/0.3/pretext-webwork/2.18/pretext-webwork.js"></script><script src="https://webwork-dev.uleth.ca/webwork2_files/node_modules/iframe-resizer/js/iframeResizer.min.js"></script><script>// Make *any* pre with class 'sagecell-sage' an executable Sage cell
 // Their results will be linked, only within language type
-sagecell.makeSagecell({inputLocation: 'pre.sagecell-sage',
-                       linked: true,
-                       languages: ['sage'],
-                       evalButtonText: 'Evaluate (Sage)'});
+sagecell.makeSagecell({
+  "inputLocation": "pre.sagecell-sage",
+  "linked": true,
+  "languages": [
+    "sage"
+  ],
+  "evalButtonText": "Evaluate (Sage)"
+});
 </script><link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/themes/prism.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="https://pretextbook.org/js/0.3/pretext_search.js"></script><link href="https://pretextbook.org/css/0.7/pretext_search.css" rel="stylesheet" type="text/css">
 <script>js_version = 0.3</script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.3/pretext.js"></script><script>miniversion=0.1</script><script src="https://pretextbook.org/js/0.3/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/0.3/user_preferences.js"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
@@ -106,17 +139,17 @@ eBookConfig.allow_pairs = false;
 eBookConfig.enableScratchAC = false;
 eBookConfig.build_info = "";
 eBookConfig.python3 = null;
-eBookConfig.runestone_version = '7.0.0dev4';
+eBookConfig.runestone_version = '7.0.7';
 eBookConfig.jobehost = '';
 eBookConfig.proxyuri_runs = '';
 eBookConfig.proxyuri_files = '';
 eBookConfig.enable_chatcodes =  false;
 </script>
 <!--*** Runestone Services ***-->
-<script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.0dev4/prefix-runtime.3489f84c0d76065d.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.0dev4/prefix-347.193e36c07abd0197.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.0dev4/prefix-runestone.e543e0dd19670ae2.bundle.js"></script><link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/7.0.0dev4/prefix-347.f9add1ca35d5ad93.css">
-<link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/7.0.0dev4/prefix-runestone.931faef5361cf6e9.css">
+<script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.7/prefix-runtime.fd9ce61c3c71cb22.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.7/prefix-347.193e36c07abd0197.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.7/prefix-runestone.89acb6c6122954e4.bundle.js"></script><link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/7.0.7/prefix-347.f9add1ca35d5ad93.css">
+<link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/7.0.7/prefix-runestone.8d2f742bc74f4a41.css">
 </head>
-<body id="Math3410" class="pretext book ignore-math">
+<body id="linearpython" class="pretext book ignore-math">
 <a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead"><div class="ptx-banner">
 <a id="logo-link" class="logo-link" href=""></a><div class="title-container">
 <h1 class="heading"><a href="linear-algebra.html"><span class="title">Linear Algebra:</span> <span class="subtitle">A second course, featuring proofs and Python</span></a></h1>
@@ -360,14 +393,21 @@ eBookConfig.enable_chatcodes =  false;
 <li>
 <div class="toc-item"><a href="ch-diagonalization.html" class="internal"><span class="codenumber">4</span> <span class="title">Diagonalization</span></a></div>
 <ul class="structural">
-<li><div class="toc-item"><a href="sec-eigen-basics.html" class="internal"><span class="codenumber">4.1</span> <span class="title">Eigenvalues and Eigenvectors</span></a></div></li>
+<li>
+<div class="toc-item"><a href="sec-eigen-basics.html" class="internal"><span class="codenumber">4.1</span> <span class="title">Eigenvalues and Eigenvectors</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="sec-eigen-basics.html#exercises-13" class="internal"><span class="codenumber">4.1</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
 <li class="active"><div class="toc-item"><a href="subsec-ortho-diag.html" class="internal"><span class="codenumber">4.2</span> <span class="title">Diagonalization of symmetric matrices</span></a></div></li>
-<li><div class="toc-item"><a href="sec-quadratic.html" class="internal"><span class="codenumber">4.3</span> <span class="title">Quadratic forms</span></a></div></li>
+<li>
+<div class="toc-item"><a href="sec-quadratic.html" class="internal"><span class="codenumber">4.3</span> <span class="title">Quadratic forms</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="sec-quadratic.html#exercises-14" class="internal"><span class="codenumber">4.3</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
 <li>
 <div class="toc-item"><a href="sec-complex.html" class="internal"><span class="codenumber">4.4</span> <span class="title">Diagonalization of complex matrices</span></a></div>
 <ul class="structural">
 <li><div class="toc-item"><a href="sec-complex.html#subsec-complex-vector" class="internal"><span class="codenumber">4.4.1</span> <span class="title">Complex vectors</span></a></div></li>
 <li><div class="toc-item"><a href="sec-complex.html#subsec-complex-matrix" class="internal"><span class="codenumber">4.4.2</span> <span class="title">Complex matrices</span></a></div></li>
+<li><div class="toc-item"><a href="sec-complex.html#exercises-15" class="internal"><span class="codenumber">4.4.3</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
 <li><div class="toc-item"><a href="worksheet-dynamical.html" class="internal"><span class="codenumber">4.5</span> <span class="title">Worksheet: linear dynamical systems</span></a></div></li>
@@ -389,6 +429,7 @@ eBookConfig.enable_chatcodes =  false;
 <li><div class="toc-item"><a href="section-matrix-factor.html#pars-qr-algorithm" class="internal"><span class="codenumber">4.6.2.2</span> <span class="title">The QR Algorithm</span></a></div></li>
 </ul>
 </li>
+<li><div class="toc-item"><a href="section-matrix-factor.html#exercises-16" class="internal"><span class="codenumber">4.6.3</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
 <li><div class="toc-item"><a href="worksheet-svd.html" class="internal"><span class="codenumber">4.7</span> <span class="title">Worksheet: Singular Value Decomposition</span></a></div></li>
@@ -397,8 +438,14 @@ eBookConfig.enable_chatcodes =  false;
 <li>
 <div class="toc-item"><a href="ch-change-basis.html" class="internal"><span class="codenumber">5</span> <span class="title">Change of Basis</span></a></div>
 <ul class="structural">
-<li><div class="toc-item"><a href="sec-matrix-of-transformation.html" class="internal"><span class="codenumber">5.1</span> <span class="title">The matrix of a linear transformation</span></a></div></li>
-<li><div class="toc-item"><a href="sec-matrix-operator.html" class="internal"><span class="codenumber">5.2</span> <span class="title">The matrix of a linear operator</span></a></div></li>
+<li>
+<div class="toc-item"><a href="sec-matrix-of-transformation.html" class="internal"><span class="codenumber">5.1</span> <span class="title">The matrix of a linear transformation</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="sec-matrix-of-transformation.html#exercises-17" class="internal"><span class="codenumber">5.1</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li>
+<div class="toc-item"><a href="sec-matrix-operator.html" class="internal"><span class="codenumber">5.2</span> <span class="title">The matrix of a linear operator</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="sec-matrix-operator.html#exercises-18" class="internal"><span class="codenumber">5.2</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
 <li>
 <div class="toc-item"><a href="sec-direct-sum.html" class="internal"><span class="codenumber">5.3</span> <span class="title">Direct Sums and Invariant Subspaces</span></a></div>
 <ul class="structural">
@@ -409,7 +456,10 @@ eBookConfig.enable_chatcodes =  false;
 </li>
 <li><div class="toc-item"><a href="worksheet-gen-eigen.html" class="internal"><span class="codenumber">5.4</span> <span class="title">Worksheet: generalized eigenvectors</span></a></div></li>
 <li><div class="toc-item"><a href="sec-gen-eigen.html" class="internal"><span class="codenumber">5.5</span> <span class="title">Generalized eigenspaces</span></a></div></li>
-<li><div class="toc-item"><a href="sec-jordan-form.html" class="internal"><span class="codenumber">5.6</span> <span class="title">Jordan Canonical Form</span></a></div></li>
+<li>
+<div class="toc-item"><a href="sec-jordan-form.html" class="internal"><span class="codenumber">5.6</span> <span class="title">Jordan Canonical Form</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="sec-jordan-form.html#exercises-19" class="internal"><span class="codenumber">5.6</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
 </ul>
 </li>
 <li>
@@ -437,7 +487,7 @@ eBookConfig.enable_chatcodes =  false;
 <main class="ptx-main"><div id="ptx-content" class="ptx-content"><section class="section" id="subsec-ortho-diag"><h2 class="heading hide-type">
 <span class="type">Section</span> <span class="codenumber">4.2</span> <span class="title">Diagonalization of symmetric matrices</span>
 </h2>
-<div class="para logical" id="p-1644">
+<div class="para logical" id="p-1600">
 <div class="para">Recall that an <span class="process-math">\(n\times n\)</span> matrix <span class="process-math">\(A\)</span> is <dfn class="terminology">symmetric</dfn> if <span class="process-math">\(A^T=A\text{.}\)</span> Symmetry of <span class="process-math">\(A\)</span> is equivalent to the following: for any vectors <span class="process-math">\(\xx,\yy\in\R^n\text{,}\)</span>
 </div>
 <div class="displaymath process-math">
@@ -452,19 +502,19 @@ eBookConfig.enable_chatcodes =  false;
 \end{equation*}
 </div>
 </div>
-<aside class="aside aside-like" id="aside-9"><div class="para" id="p-1645">For inner product spaces, the above is taken as the <em class="emphasis">definition</em> of what it means for an operator to be symmetric.</div></aside><article class="exercise exercise-like" id="exercise-157"><h3 class="heading">
+<aside class="aside aside-like" id="aside-9"><div class="para" id="p-1601">For inner product spaces, the above is taken as the <em class="emphasis">definition</em> of what it means for an operator to be symmetric.</div></aside><article class="exercise exercise-like" id="exercise-166"><h3 class="heading">
 <span class="type">Exercise</span><span class="space"> </span><span class="codenumber">4.2.1</span><span class="period">.</span>
 </h3>
-<div class="para" id="p-1646">Prove that if <span class="process-math">\(\xx\dotp(A\yy)=(A\xx)\dotp \yy\)</span> for any <span class="process-math">\(\xx,\yy\in\R^n\text{,}\)</span> then <span class="process-math">\(A\)</span> is symmetric.</div>
+<div class="para" id="p-1602">Prove that if <span class="process-math">\(\xx\dotp(A\yy)=(A\xx)\dotp \yy\)</span> for any <span class="process-math">\(\xx,\yy\in\R^n\text{,}\)</span> then <span class="process-math">\(A\)</span> is symmetric.</div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-43" id="hint-43"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-43"><div class="hint solution-like"><div class="para" id="p-1647">If this condition is true for all <span class="process-math">\(\xx,\yy\in \R^n\text{,}\)</span> then it is true in particular for the vectors in the standard basis for <span class="process-math">\(\R^n\text{.}\)</span>
+<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-43" id="hint-43"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-43"><div class="hint solution-like"><div class="para" id="p-1603">If this condition is true for all <span class="process-math">\(\xx,\yy\in \R^n\text{,}\)</span> then it is true in particular for the vectors in the standard basis for <span class="process-math">\(\R^n\text{.}\)</span>
 </div></div></div>
-</div></article><div class="para" id="p-1649">A useful property of symmetric matrices, mentioned earlier, is that eigenvectors corresponding to distinct eigenvalues are orthogonal.</div>
+</div></article><div class="para" id="p-1605">A useful property of symmetric matrices, mentioned earlier, is that eigenvectors corresponding to distinct eigenvalues are orthogonal.</div>
 <article class="theorem theorem-like" id="thm-ortho-eigen-symm"><h3 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">4.2.2</span><span class="period">.</span>
 </h3>
-<div class="para" id="p-1650">If <span class="process-math">\(A\)</span> is a symmetric matrix, then eigenvectors corresponding to <em class="emphasis">distinct</em> eigenvalues are orthogonal.</div></article><article class="hiddenproof" id="proof-54"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-54"><h3 class="heading"><span class="title">Strategy.</span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-54"><article class="hiddenproof"> <div class="para" id="p-1651">We want to show that if <span class="process-math">\(\xx_1,\xx_2\)</span> are eigenvectors corresponding to distinct eigenvalues <span class="process-math">\(\lambda_1,\lambda_2\text{,}\)</span> then <span class="process-math">\(\xx_1\dotp \xx_2=0\text{.}\)</span> It was pointed out above that since <span class="process-math">\(A\)</span> is symmetric, we know <span class="process-math">\((A\xx_1)\dotp \xx_2=\xx_1\dotp (A\xx_2)\text{.}\)</span> Can you see how to use this, and the fact that <span class="process-math">\(\xx_1,\xx_2\)</span> are eigenvectors, to prove the result?</div></article></div>
-<article class="hiddenproof" id="proof-55"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-55"><h3 class="heading"><span class="type">Proof<span class="period">.</span></span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-55"><article class="hiddenproof"><div class="para logical" id="p-1652">
+<div class="para" id="p-1606">If <span class="process-math">\(A\)</span> is a symmetric matrix, then eigenvectors corresponding to <em class="emphasis">distinct</em> eigenvalues are orthogonal.</div></article><article class="hiddenproof" id="proof-54"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-54"><h3 class="heading"><span class="title">Strategy.</span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-54"><article class="hiddenproof"> <div class="para" id="p-1607">We want to show that if <span class="process-math">\(\xx_1,\xx_2\)</span> are eigenvectors corresponding to distinct eigenvalues <span class="process-math">\(\lambda_1,\lambda_2\text{,}\)</span> then <span class="process-math">\(\xx_1\dotp \xx_2=0\text{.}\)</span> It was pointed out above that since <span class="process-math">\(A\)</span> is symmetric, we know <span class="process-math">\((A\xx_1)\dotp \xx_2=\xx_1\dotp (A\xx_2)\text{.}\)</span> Can you see how to use this, and the fact that <span class="process-math">\(\xx_1,\xx_2\)</span> are eigenvectors, to prove the result?</div></article></div>
+<article class="hiddenproof" id="proof-55"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-55"><h3 class="heading"><span class="type">Proof<span class="period">.</span></span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-55"><article class="hiddenproof"><div class="para logical" id="p-1608">
 <div class="para">To see this, suppose <span class="process-math">\(A\)</span> is symmetric, and that we have</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -480,19 +530,19 @@ A\xx_1=\lambda_1\xx_1\quad \text{ and } A\xx_2=\lambda_2\xx_2\text{,}
 <div class="para">It follows that <span class="process-math">\((\lambda_1-\lambda_2)(\xx_1\dotp \xx_2)=0\text{,}\)</span> and since <span class="process-math">\(\lambda_1\neq \lambda_2\text{,}\)</span> we must have <span class="process-math">\(\xx_1\dotp \xx_2=0\text{.}\)</span>
 </div>
 </div></article></div>
-<div class="para" id="p-1653">The procedure for diagonalizing a matrix is as follows: assuming that <span class="process-math">\(\dim E_\lambda(A)\)</span> is equal to the multiplicity of <span class="process-math">\(\lambda\)</span> for each distinct eigenvalue <span class="process-math">\(\lambda\text{,}\)</span> we find a basis for <span class="process-math">\(E_\lambda(A)\text{.}\)</span> The union of the bases for each eigenspace is then a basis of eigenvectors for <span class="process-math">\(\R^n\text{,}\)</span> and the matrix <span class="process-math">\(P\)</span> whose columns are those eigenvectors will satisfy <span class="process-math">\(P^{-1}AP = D\text{,}\)</span> where <span class="process-math">\(D\)</span> is a diagonal matrix whose diagonal entries are the eigenvalues of <span class="process-math">\(A\text{.}\)</span>
+<div class="para" id="p-1609">The procedure for diagonalizing a matrix is as follows: assuming that <span class="process-math">\(\dim E_\lambda(A)\)</span> is equal to the multiplicity of <span class="process-math">\(\lambda\)</span> for each distinct eigenvalue <span class="process-math">\(\lambda\text{,}\)</span> we find a basis for <span class="process-math">\(E_\lambda(A)\text{.}\)</span> The union of the bases for each eigenspace is then a basis of eigenvectors for <span class="process-math">\(\R^n\text{,}\)</span> and the matrix <span class="process-math">\(P\)</span> whose columns are those eigenvectors will satisfy <span class="process-math">\(P^{-1}AP = D\text{,}\)</span> where <span class="process-math">\(D\)</span> is a diagonal matrix whose diagonal entries are the eigenvalues of <span class="process-math">\(A\text{.}\)</span>
 </div>
-<div class="para" id="p-1654">If <span class="process-math">\(A\)</span> is symmetric, we know that eigenvectors from <em class="emphasis">different</em> eigenspaces will be orthogonal to each other. If we further choose an orthogonal basis of eigenvectors for each eigenspace (which is possible via the Gram-Schmidt procedure), then we can construct an orthogonal basis of eigenvectors for <span class="process-math">\(\R^n\text{.}\)</span> Furthermore, if we normalize each vector, then we’ll have an orthonormal basis. The matrix <span class="process-math">\(P\)</span> whose columns consist of these orthonormal basis vectors has a name.</div>
+<div class="para" id="p-1610">If <span class="process-math">\(A\)</span> is symmetric, we know that eigenvectors from <em class="emphasis">different</em> eigenspaces will be orthogonal to each other. If we further choose an orthogonal basis of eigenvectors for each eigenspace (which is possible via the Gram-Schmidt procedure), then we can construct an orthogonal basis of eigenvectors for <span class="process-math">\(\R^n\text{.}\)</span> Furthermore, if we normalize each vector, then we’ll have an orthonormal basis. The matrix <span class="process-math">\(P\)</span> whose columns consist of these orthonormal basis vectors has a name.</div>
 <article class="definition definition-like" id="def-orthogonal-matrix"><h3 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">4.2.3</span><span class="period">.</span>
 </h3>
-<div class="para" id="p-1655">A matrix <span class="process-math">\(P\)</span> is called <dfn class="terminology">orthogonal</dfn> if <span class="process-math">\(P^T = P^{-1}\text{.}\)</span>
+<div class="para" id="p-1611">A matrix <span class="process-math">\(P\)</span> is called <dfn class="terminology">orthogonal</dfn> if <span class="process-math">\(P^T = P^{-1}\text{.}\)</span>
 </div></article><article class="theorem theorem-like" id="thm-ortho-matrix"><h3 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">4.2.4</span><span class="period">.</span>
 </h3>
-<div class="para" id="p-1656">A matrix <span class="process-math">\(P\)</span> is orthogonal if and only if the columns of <span class="process-math">\(P\)</span> form an orthonormal basis for <span class="process-math">\(\R^n\text{.}\)</span>
-</div></article><article class="hiddenproof" id="proof-56"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-56"><h3 class="heading"><span class="title">Strategy.</span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-56"><article class="hiddenproof"> <div class="para" id="p-1657">This more or less amounts to the fact that <span class="process-math">\(P^T=P^{-1}\)</span> if and only if <span class="process-math">\(PP^T=I\text{,}\)</span> and thinking about the matrix product in terms of dot products.</div></article></div>
-<div class="para logical" id="p-1658">
+<div class="para" id="p-1612">A matrix <span class="process-math">\(P\)</span> is orthogonal if and only if the columns of <span class="process-math">\(P\)</span> form an orthonormal basis for <span class="process-math">\(\R^n\text{.}\)</span>
+</div></article><article class="hiddenproof" id="proof-56"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-56"><h3 class="heading"><span class="title">Strategy.</span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-56"><article class="hiddenproof"> <div class="para" id="p-1613">This more or less amounts to the fact that <span class="process-math">\(P^T=P^{-1}\)</span> if and only if <span class="process-math">\(PP^T=I\text{,}\)</span> and thinking about the matrix product in terms of dot products.</div></article></div>
+<div class="para logical" id="p-1614">
 <div class="para">A fun fact is that if the columns of <span class="process-math">\(P\)</span> are orthonormal, then so are the rows. But this is not true if we ask for the columns to be merely orthogonal. For example, the columns of <span class="process-math">\(A = \bbm 1\amp 0\amp 5\\-2\amp 1\amp 2\\1\amp 2\amp -1\ebm \)</span> are orthogonal, but (as you can check) the rows are not. But if we normalize the columns, we get</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -504,25 +554,25 @@ P = \bbm 1/\sqrt{6}\amp 0 \amp 1/\sqrt{30}\\-2/\sqrt{6}\amp 1/\sqrt{5}\amp 2/\sq
 <article class="definition definition-like" id="def-ortho-diag"><h3 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">4.2.5</span><span class="period">.</span>
 </h3>
-<div class="para" id="p-1659">An <span class="process-math">\(n\times n\)</span> matrix <span class="process-math">\(A\)</span> is said to be <em class="emphasis">orthogonally diagonalizable</em> if there exists an orthogonal matrix <span class="process-math">\(P\)</span> such that <span class="process-math">\(P^TAP\)</span> is diagonal.</div></article><div class="para" id="p-1660">The above definition leads to the following result, also known as the Principal Axes Theorem. A careful proof is quite difficult, and omitted from this book. The hard part is showing that any symmetric matrix is orthogonally diagonalizable. There are a few ways to do this, most requiring induction on the size of the matrix. A common approach actually uses multivariable calculus! (Optimization via Lagrange multipliers, to be precise.) If you are reading this along with the book by Nicholson, there is a gap in his proof: in the induction step, he assumes the existence of a real eigenalue of <span class="process-math">\(A\text{,}\)</span> but this has to be proved!</div>
+<div class="para" id="p-1615">An <span class="process-math">\(n\times n\)</span> matrix <span class="process-math">\(A\)</span> is said to be <em class="emphasis">orthogonally diagonalizable</em> if there exists an orthogonal matrix <span class="process-math">\(P\)</span> such that <span class="process-math">\(P^TAP\)</span> is diagonal.</div></article><div class="para" id="p-1616">The above definition leads to the following result, also known as the Principal Axes Theorem. A careful proof is quite difficult, and omitted from this book. The hard part is showing that any symmetric matrix is orthogonally diagonalizable. There are a few ways to do this, most requiring induction on the size of the matrix. A common approach actually uses multivariable calculus! (Optimization via Lagrange multipliers, to be precise.) If you are reading this along with the book by Nicholson, there is a gap in his proof: in the induction step, he assumes the existence of a real eigenalue of <span class="process-math">\(A\text{,}\)</span> but this has to be proved!</div>
 <article class="theorem theorem-like" id="thm-real-spectral"><h3 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">4.2.6</span><span class="period">.</span><span class="space"> </span><span class="title">Real Spectral Theorem.</span>
 </h3>
-<div class="para logical" id="p-1661">
+<div class="para logical" id="p-1617">
 <div class="para">The following are equivalent for a real <span class="process-math">\(n\times n\)</span> matrix <span class="process-math">\(A\text{:}\)</span>
 </div>
 <ol class="decimal">
-<li id="li-260"><div class="para" id="p-1662">
+<li id="li-200"><div class="para" id="p-1618">
 <span class="process-math">\(A\)</span> is symmetric.</div></li>
-<li id="li-261"><div class="para" id="p-1663">There is an orthonormal basis for <span class="process-math">\(\R^n\)</span> consisting of eigenvectors of <span class="process-math">\(A\text{.}\)</span>
+<li id="li-201"><div class="para" id="p-1619">There is an orthonormal basis for <span class="process-math">\(\R^n\)</span> consisting of eigenvectors of <span class="process-math">\(A\text{.}\)</span>
 </div></li>
-<li id="li-262"><div class="para" id="p-1664">
+<li id="li-202"><div class="para" id="p-1620">
 <span class="process-math">\(A\)</span> is orthogonally diagonalizable.</div></li>
 </ol>
-</div></article><article class="exercise exercise-like" id="exercise-158"><h3 class="heading">
+</div></article><article class="exercise exercise-like" id="exercise-167"><h3 class="heading">
 <span class="type">Exercise</span><span class="space"> </span><span class="codenumber">4.2.7</span><span class="period">.</span>
 </h3>
-<div class="para" id="p-1665">Determine the eigenvalues of <span class="process-math">\(A=\bbm 5\amp -2\amp -4\\-2\amp 8\amp -2\\-4\amp -2\amp 5\ebm\text{,}\)</span> and find an orthogonal matrix <span class="process-math">\(P\)</span> such that <span class="process-math">\(P^TAP\)</span> is diagonal.</div></article></section></div>
+<div class="para" id="p-1621">Determine the eigenvalues of <span class="process-math">\(A=\bbm 5\amp -2\amp -4\\-2\amp 8\amp -2\\-4\amp -2\amp 5\ebm\text{,}\)</span> and find an orthogonal matrix <span class="process-math">\(P\)</span> such that <span class="process-math">\(P^TAP\)</span> is diagonal.</div></article></section></div>
 <div class="ptx-content-footer">
 <a class="previous-button button" href="sec-eigen-basics.html" title="Previous"><span class="icon">&lt;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon">^</span><span class="name">Top</span></a><a class="next-button button" href="sec-quadratic.html" title="Next"><span class="name">Next</span><span class="icon">&gt;</span></a>
 </div></main>

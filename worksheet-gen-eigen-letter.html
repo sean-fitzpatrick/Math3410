@@ -5,7 +5,7 @@
 <!--*         https://pretextbook.org          *-->
 <!--*                                          *-->
 <!--********************************************-->
-<html lang="en-US">
+<html lang="en-US" dir="ltr">
 <head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Worksheet: generalized eigenvectors</title>
@@ -14,20 +14,38 @@
 <meta property="og:type" content="book">
 <meta property="book:title" content="Linear Algebra">
 <meta property="book:author" content="Sean Fitzpatrick">
-<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>
+var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
 window.MathJax = {
-  tex: {
-    inlineMath: [['\\(','\\)']],
-    tags: "none",
-    tagSide: "right",
-    tagIndent: ".8em",
-    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'color', 'newcommand', 'knowl']}
+  "tex": {
+    "inlineMath": [
+      [
+        "\\(",
+        "\\)"
+      ]
+    ],
+    "tags": "none",
+    "tagSide": "right",
+    "tagIndent": ".8em",
+    "packages": {
+      "[+]": [
+        "base",
+        "extpfeil",
+        "ams",
+        "amscd",
+        "color",
+        "newcommand",
+        "knowl"
+      ]
+    }
   },
-  options: {
-    ignoreHtmlClass: "tex2jax_ignore|ignore-math",
-    processHtmlClass: "process-math",
-    renderActions: {
-        findScript: [10, function (doc) {
+  "options": {
+    "ignoreHtmlClass": "tex2jax_ignore|ignore-math",
+    "processHtmlClass": "process-math",
+    "renderActions": {
+      "findScript": [
+        10,
+        function (doc) {
             document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
                 var display = !!node.type.match(/; *mode=display/);
                 var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
@@ -37,39 +55,58 @@ window.MathJax = {
                 math.end = {node: text, delim: '', n: 0};
                 doc.math.push(math);
             });
-        }, '']
-    },
+        },
+        ""
+      ]
+    }
   },
-  chtml: {
-    scale: 0.98,
-    mtextInheritFont: true
+  "chtml": {
+    "scale": 0.98,
+    "mtextInheritFont": true
   },
-  loader: {
-    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/color', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
-    paths: {pretext: "https://pretextbook.org/js/lib"},
+  "loader": {
+    "load": [
+      "input/asciimath",
+      "[tex]/extpfeil",
+      "[tex]/amscd",
+      "[tex]/color",
+      "[tex]/newcommand",
+      "[pretext]/mathjaxknowl3.js"
+    ],
+    "paths": {
+      "pretext": "https://pretextbook.org/js/lib"
+    }
   },
-  startup: {
+  "startup": {
     pageReady() {
       return MathJax.startup.defaultPageReady().then(function () {
       console.log("in ready function");
       rsMathReady();
       }
     )}
-  },
+  }
 };
 </script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link href="https://webwork-dev.uleth.ca/webwork2_files/js/apps/MathView/mathview.css" rel="stylesheet">
 <script src="https://pretextbook.org/js/0.3/pretext-webwork/2.18/pretext-webwork.js"></script><script src="https://webwork-dev.uleth.ca/webwork2_files/node_modules/iframe-resizer/js/iframeResizer.min.js"></script><script>// Make *any* pre with class 'sagecell-sage' an executable Sage cell
 // Their results will be linked, only within language type
-sagecell.makeSagecell({inputLocation: 'pre.sagecell-sage',
-                       linked: true,
-                       languages: ['sage'],
-                       evalButtonText: 'Evaluate (Sage)'});
+sagecell.makeSagecell({
+  "inputLocation": "pre.sagecell-sage",
+  "linked": true,
+  "languages": [
+    "sage"
+  ],
+  "evalButtonText": "Evaluate (Sage)"
+});
 </script><script>// Make *any* pre with class 'sagecell-html' an executable Sage cell
 // Their results will be linked, only within language type
-sagecell.makeSagecell({inputLocation: 'pre.sagecell-html',
-                       linked: true,
-                       languages: ['html'],
-                       evalButtonText: 'Evaluate (HTML)'});
+sagecell.makeSagecell({
+  "inputLocation": "pre.sagecell-html",
+  "linked": true,
+  "languages": [
+    "html"
+  ],
+  "evalButtonText": "Evaluate (HTML)"
+});
 </script><link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/themes/prism.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="https://pretextbook.org/js/0.3/pretext_search.js"></script><link href="https://pretextbook.org/css/0.7/pretext_search.css" rel="stylesheet" type="text/css">
 <script>js_version = 0.3</script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.3/pretext.js"></script><script>miniversion=0.1</script><script src="https://pretextbook.org/js/0.3/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/0.3/user_preferences.js"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
@@ -112,17 +149,17 @@ eBookConfig.allow_pairs = false;
 eBookConfig.enableScratchAC = false;
 eBookConfig.build_info = "";
 eBookConfig.python3 = null;
-eBookConfig.runestone_version = '7.0.0dev4';
+eBookConfig.runestone_version = '7.0.7';
 eBookConfig.jobehost = '';
 eBookConfig.proxyuri_runs = '';
 eBookConfig.proxyuri_files = '';
 eBookConfig.enable_chatcodes =  false;
 </script>
 <!--*** Runestone Services ***-->
-<script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.0dev4/prefix-runtime.3489f84c0d76065d.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.0dev4/prefix-347.193e36c07abd0197.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.0dev4/prefix-runestone.e543e0dd19670ae2.bundle.js"></script><link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/7.0.0dev4/prefix-347.f9add1ca35d5ad93.css">
-<link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/7.0.0dev4/prefix-runestone.931faef5361cf6e9.css">
+<script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.7/prefix-runtime.fd9ce61c3c71cb22.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.7/prefix-347.193e36c07abd0197.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.7/prefix-runestone.89acb6c6122954e4.bundle.js"></script><link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/7.0.7/prefix-347.f9add1ca35d5ad93.css">
+<link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/7.0.7/prefix-runestone.8d2f742bc74f4a41.css">
 </head>
-<body id="Math3410" class="pretext book ignore-math standalone worksheet letter">
+<body id="linearpython" class="pretext book ignore-math standalone worksheet letter">
 <a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead"><div class="ptx-banner">
 <a id="logo-link" class="logo-link" href=""></a><div class="title-container">
 <h1 class="heading"><a href="linear-algebra.html"><span class="title">Linear Algebra:</span> <span class="subtitle">A second course, featuring proofs and Python</span></a></h1>
@@ -366,14 +403,21 @@ eBookConfig.enable_chatcodes =  false;
 <li>
 <div class="toc-item"><a href="ch-diagonalization.html" class="internal"><span class="codenumber">4</span> <span class="title">Diagonalization</span></a></div>
 <ul class="structural">
-<li><div class="toc-item"><a href="sec-eigen-basics.html" class="internal"><span class="codenumber">4.1</span> <span class="title">Eigenvalues and Eigenvectors</span></a></div></li>
+<li>
+<div class="toc-item"><a href="sec-eigen-basics.html" class="internal"><span class="codenumber">4.1</span> <span class="title">Eigenvalues and Eigenvectors</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="sec-eigen-basics.html#exercises-13" class="internal"><span class="codenumber">4.1</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
 <li><div class="toc-item"><a href="subsec-ortho-diag.html" class="internal"><span class="codenumber">4.2</span> <span class="title">Diagonalization of symmetric matrices</span></a></div></li>
-<li><div class="toc-item"><a href="sec-quadratic.html" class="internal"><span class="codenumber">4.3</span> <span class="title">Quadratic forms</span></a></div></li>
+<li>
+<div class="toc-item"><a href="sec-quadratic.html" class="internal"><span class="codenumber">4.3</span> <span class="title">Quadratic forms</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="sec-quadratic.html#exercises-14" class="internal"><span class="codenumber">4.3</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
 <li>
 <div class="toc-item"><a href="sec-complex.html" class="internal"><span class="codenumber">4.4</span> <span class="title">Diagonalization of complex matrices</span></a></div>
 <ul class="structural">
 <li><div class="toc-item"><a href="sec-complex.html#subsec-complex-vector" class="internal"><span class="codenumber">4.4.1</span> <span class="title">Complex vectors</span></a></div></li>
 <li><div class="toc-item"><a href="sec-complex.html#subsec-complex-matrix" class="internal"><span class="codenumber">4.4.2</span> <span class="title">Complex matrices</span></a></div></li>
+<li><div class="toc-item"><a href="sec-complex.html#exercises-15" class="internal"><span class="codenumber">4.4.3</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
 <li><div class="toc-item"><a href="worksheet-dynamical.html" class="internal"><span class="codenumber">4.5</span> <span class="title">Worksheet: linear dynamical systems</span></a></div></li>
@@ -395,6 +439,7 @@ eBookConfig.enable_chatcodes =  false;
 <li><div class="toc-item"><a href="section-matrix-factor.html#pars-qr-algorithm" class="internal"><span class="codenumber">4.6.2.2</span> <span class="title">The QR Algorithm</span></a></div></li>
 </ul>
 </li>
+<li><div class="toc-item"><a href="section-matrix-factor.html#exercises-16" class="internal"><span class="codenumber">4.6.3</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
 <li><div class="toc-item"><a href="worksheet-svd.html" class="internal"><span class="codenumber">4.7</span> <span class="title">Worksheet: Singular Value Decomposition</span></a></div></li>
@@ -403,8 +448,14 @@ eBookConfig.enable_chatcodes =  false;
 <li>
 <div class="toc-item"><a href="ch-change-basis.html" class="internal"><span class="codenumber">5</span> <span class="title">Change of Basis</span></a></div>
 <ul class="structural">
-<li><div class="toc-item"><a href="sec-matrix-of-transformation.html" class="internal"><span class="codenumber">5.1</span> <span class="title">The matrix of a linear transformation</span></a></div></li>
-<li><div class="toc-item"><a href="sec-matrix-operator.html" class="internal"><span class="codenumber">5.2</span> <span class="title">The matrix of a linear operator</span></a></div></li>
+<li>
+<div class="toc-item"><a href="sec-matrix-of-transformation.html" class="internal"><span class="codenumber">5.1</span> <span class="title">The matrix of a linear transformation</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="sec-matrix-of-transformation.html#exercises-17" class="internal"><span class="codenumber">5.1</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li>
+<div class="toc-item"><a href="sec-matrix-operator.html" class="internal"><span class="codenumber">5.2</span> <span class="title">The matrix of a linear operator</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="sec-matrix-operator.html#exercises-18" class="internal"><span class="codenumber">5.2</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
 <li>
 <div class="toc-item"><a href="sec-direct-sum.html" class="internal"><span class="codenumber">5.3</span> <span class="title">Direct Sums and Invariant Subspaces</span></a></div>
 <ul class="structural">
@@ -415,7 +466,10 @@ eBookConfig.enable_chatcodes =  false;
 </li>
 <li class="active"><div class="toc-item"><a href="worksheet-gen-eigen.html" class="internal"><span class="codenumber">5.4</span> <span class="title">Worksheet: generalized eigenvectors</span></a></div></li>
 <li><div class="toc-item"><a href="sec-gen-eigen.html" class="internal"><span class="codenumber">5.5</span> <span class="title">Generalized eigenspaces</span></a></div></li>
-<li><div class="toc-item"><a href="sec-jordan-form.html" class="internal"><span class="codenumber">5.6</span> <span class="title">Jordan Canonical Form</span></a></div></li>
+<li>
+<div class="toc-item"><a href="sec-jordan-form.html" class="internal"><span class="codenumber">5.6</span> <span class="title">Jordan Canonical Form</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="sec-jordan-form.html#exercises-19" class="internal"><span class="codenumber">5.6</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
 </ul>
 </li>
 <li>
@@ -446,18 +500,18 @@ eBookConfig.enable_chatcodes =  false;
 <a href="worksheet-gen-eigen-a4.html" class="a4">A4</a><a href="worksheet-gen-eigen-letter.html" class="us">US</a>
 </div>
 </h2>
-<section class="onepage" id="page-30"><div class="introduction" id="introduction-37">
-<div class="para" id="p-2005">Let <span class="process-math">\(V\)</span> be a finite-dimensional vector space, and let <span class="process-math">\(T:V\to V\)</span> be a linear operator. Assume that <span class="process-math">\(T\)</span> has all real eigenvalues (alternatively, assume we’re working over the complex numbers). Let <span class="process-math">\(A\)</span> be the matrix of <span class="process-math">\(T\)</span> with respect to some standard basis <span class="process-math">\(B_0\)</span> of <span class="process-math">\(V\text{.}\)</span>
-</div> <div class="para" id="p-2006">Our goal will be to replace the basis <span class="process-math">\(B_0\)</span> with a basis <span class="process-math">\(B\)</span> such that the matrix of <span class="process-math">\(T\)</span> with respect to <span class="process-math">\(B\)</span> is as simple as possible. (Where we agree that the "simplest" possible matrix would be diagonal.)</div> <div class="para logical" id="p-2007">
+<section class="onepage" id="page-31"><div class="introduction" id="introduction-41">
+<div class="para" id="p-2050">Let <span class="process-math">\(V\)</span> be a finite-dimensional vector space, and let <span class="process-math">\(T:V\to V\)</span> be a linear operator. Assume that <span class="process-math">\(T\)</span> has all real eigenvalues (alternatively, assume we’re working over the complex numbers). Let <span class="process-math">\(A\)</span> be the matrix of <span class="process-math">\(T\)</span> with respect to some standard basis <span class="process-math">\(B_0\)</span> of <span class="process-math">\(V\text{.}\)</span>
+</div> <div class="para" id="p-2051">Our goal will be to replace the basis <span class="process-math">\(B_0\)</span> with a basis <span class="process-math">\(B\)</span> such that the matrix of <span class="process-math">\(T\)</span> with respect to <span class="process-math">\(B\)</span> is as simple as possible. (Where we agree that the "simplest" possible matrix would be diagonal.)</div> <div class="para logical" id="p-2052">
 <div class="para">Recall the following results that we’ve observed so far:</div>
 <ul class="disc">
-<li id="li-300"><div class="para" id="p-2008">The characteristic polynomial <span class="process-math">\(c_T(x)\)</span> of <span class="process-math">\(T\)</span> does not depend on the choice of basis.</div></li>
-<li id="li-301"><div class="para" id="p-2009">The eigenvalues of <span class="process-math">\(T\)</span> are the roots of this polynomial.</div></li>
-<li id="li-302"><div class="para" id="p-2010">The eigenspaces <span class="process-math">\(E_\lambda(T)\)</span> are <span class="process-math">\(T\)</span>-invariant subspaces of <span class="process-math">\(V\text{.}\)</span>
+<li id="li-242"><div class="para" id="p-2053">The characteristic polynomial <span class="process-math">\(c_T(x)\)</span> of <span class="process-math">\(T\)</span> does not depend on the choice of basis.</div></li>
+<li id="li-243"><div class="para" id="p-2054">The eigenvalues of <span class="process-math">\(T\)</span> are the roots of this polynomial.</div></li>
+<li id="li-244"><div class="para" id="p-2055">The eigenspaces <span class="process-math">\(E_\lambda(T)\)</span> are <span class="process-math">\(T\)</span>-invariant subspaces of <span class="process-math">\(V\text{.}\)</span>
 </div></li>
-<li id="li-303"><div class="para" id="p-2011">The matrix <span class="process-math">\(A\)</span> can be diagonalized if and only if there is a basis of <span class="process-math">\(V\)</span> consisting of eigenvectors of <span class="process-math">\(T\text{.}\)</span>
+<li id="li-245"><div class="para" id="p-2056">The matrix <span class="process-math">\(A\)</span> can be diagonalized if and only if there is a basis of <span class="process-math">\(V\)</span> consisting of eigenvectors of <span class="process-math">\(T\text{.}\)</span>
 </div></li>
-<li id="li-304"><div class="para logical" id="p-2012">
+<li id="li-246"><div class="para logical" id="p-2057">
 <div class="para">Suppose</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -468,31 +522,31 @@ c_T(x) = (x-\lambda_1)^{m_1}(x-\lambda_2)^{m_2}\cdots (x-\lambda_k)^{m_k}\text{.
 </div>
 </div></li>
 </ul>
-</div> <div class="para logical" id="p-2013">
+</div> <div class="para logical" id="p-2058">
 <div class="para">In the case where <span class="process-math">\(A\)</span> can be diagonalized, we have the direct sum decomposition</div>
 <div class="displaymath process-math">
 \begin{equation*}
 V = E_{\lambda_1}(T)\oplus E_{\lambda_2}(T) \oplus \cdots \oplus E_{\lambda_k}(T)\text{.}
 \end{equation*}
 </div>
-</div> <div class="para" id="p-2014">The question is: what do we do if there aren’t enough eigenvectors to form a basis of <span class="process-math">\(V\text{?}\)</span> When that happens, the direct sum of all the eigenspaces will not give us all of <span class="process-math">\(V\text{.}\)</span>
-</div> <div class="para" id="p-2015">The idea: replace <span class="process-math">\(E_{\lambda_j}(T)\)</span> with a <dfn class="terminology">generalized eigenspace</dfn> <span class="process-math">\(G_{\lambda_j}(T)\)</span> whose dimension is <span class="process-math">\(m_i\text{.}\)</span>
-</div> <div class="para" id="p-2016">Our candidate: instead of <span class="process-math">\(E_{\lambda}(T) = \ker(T-\lambda I)\text{,}\)</span> we use <span class="process-math">\(G_\lambda(T) = \ker((T-\lambda I)^m)\text{,}\)</span> where <span class="process-math">\(m\)</span> is the multiplicity of <span class="process-math">\(\lambda\text{.}\)</span>
+</div> <div class="para" id="p-2059">The question is: what do we do if there aren’t enough eigenvectors to form a basis of <span class="process-math">\(V\text{?}\)</span> When that happens, the direct sum of all the eigenspaces will not give us all of <span class="process-math">\(V\text{.}\)</span>
+</div> <div class="para" id="p-2060">The idea: replace <span class="process-math">\(E_{\lambda_j}(T)\)</span> with a <dfn class="terminology">generalized eigenspace</dfn> <span class="process-math">\(G_{\lambda_j}(T)\)</span> whose dimension is <span class="process-math">\(m_i\text{.}\)</span>
+</div> <div class="para" id="p-2061">Our candidate: instead of <span class="process-math">\(E_{\lambda}(T) = \ker(T-\lambda I)\text{,}\)</span> we use <span class="process-math">\(G_\lambda(T) = \ker((T-\lambda I)^m)\text{,}\)</span> where <span class="process-math">\(m\)</span> is the multiplicity of <span class="process-math">\(\lambda\text{.}\)</span>
 </div>
-</div></section><section class="onepage" id="page-31"><article class="exercise exercise-like" id="ws-ge-ex1"><h3 class="heading"><span class="codenumber">1<span class="period">.</span></span></h3>
-<div class="para" id="p-2017">Recall that in class we proved that <span class="process-math">\(\ker(T)\)</span> and <span class="process-math">\(\operatorname{im}(T)\)</span> are <span class="process-math">\(T\)</span>-invariant subspaces. Let <span class="process-math">\(p(x)\)</span> be any polynomial, and prove that <span class="process-math">\(\ker (p(T))\)</span> and <span class="process-math">\(\operatorname{im}(p(T))\)</span> are also <span class="process-math">\(T\)</span>-invariant.</div> <div class="para" id="p-2018">
+</div></section><section class="onepage" id="page-32"><article class="exercise exercise-like" id="ws-ge-ex1"><h3 class="heading"><span class="codenumber">1<span class="period">.</span></span></h3>
+<div class="para" id="p-2062">Recall that in class we proved that <span class="process-math">\(\ker(T)\)</span> and <span class="process-math">\(\operatorname{im}(T)\)</span> are <span class="process-math">\(T\)</span>-invariant subspaces. Let <span class="process-math">\(p(x)\)</span> be any polynomial, and prove that <span class="process-math">\(\ker (p(T))\)</span> and <span class="process-math">\(\operatorname{im}(p(T))\)</span> are also <span class="process-math">\(T\)</span>-invariant.</div> <div class="para" id="p-2063">
 <em class="emphasis">Hint:</em> first show that <span class="process-math">\(p(T)T=Tp(T)\)</span> for any polynomial <span class="process-math">\(T\text{.}\)</span>
 </div>
-<div class="workspace" data-space="3in"></div></article> <pre class="ptx-sagecell sagecell-html" id="sage-119"><script type="text/x-sage"></script></pre> <div class="para" id="p-2019">Applying the result of Problem 1 to the polynomial <span class="process-math">\(p(x) = (x-\lambda)^m\)</span> shows that <span class="process-math">\(G_\lambda(T)\)</span> is <span class="process-math">\(T\)</span>-invariant. It is possible to show that <span class="process-math">\(\dim G_\lambda(T)=m\)</span> but I won’t ask you to do that. (A proof is in the book by Nicholson if you really want to see it.)</div> <div class="para" id="p-2020">Instead, we will try to understand what’s going on by exploring an example.</div> <div class="para" id="p-2021">Consider the following matrix.</div> <pre class="ptx-sagecell sagecell-sage" id="sage-120"><script type="text/x-sage">from sympy import *
+<div class="workspace" data-space="3in"></div></article> <pre class="ptx-sagecell sagecell-html" id="sage-122"><script type="text/x-sage"></script></pre> <div class="para" id="p-2064">Applying the result of Problem 1 to the polynomial <span class="process-math">\(p(x) = (x-\lambda)^m\)</span> shows that <span class="process-math">\(G_\lambda(T)\)</span> is <span class="process-math">\(T\)</span>-invariant. It is possible to show that <span class="process-math">\(\dim G_\lambda(T)=m\)</span> but I won’t ask you to do that. (A proof is in the book by Nicholson if you really want to see it.)</div> <div class="para" id="p-2065">Instead, we will try to understand what’s going on by exploring an example.</div> <div class="para" id="p-2066">Consider the following matrix.</div> <pre class="ptx-sagecell sagecell-sage" id="sage-123"><script type="text/x-sage">from sympy import *
 init_printing()
 A=Matrix([[2,0,0,1,0],[-1,0,1,2,3],[0,1,2,0,-1],[-2,-3,2,5,3],[0,-1,0,1,4]])
 A
 </script></pre> <article class="exercise exercise-like" id="ws-ge-ex2"><h3 class="heading"><span class="codenumber">2<span class="period">.</span></span></h3>
-<div class="para" id="p-2022">Find (and factor) the characteristic polynomial of <span class="process-math">\(A\text{.}\)</span> For the commands you might need, <a class="external" href="https://opentext.uleth.ca/Math3410/sec-sympy.html" target="_blank">refer to the textbook</a><a href="" data-knowl="" class="id-ref fn-knowl original" data-refid="hk-fn-19" id="fn-19"><sup> 1 </sup></a>.</div>
-<div class="workspace" data-space="1.5in"></div></article> <pre class="ptx-sagecell sagecell-sage" id="sage-121"><script type="text/x-sage"></script></pre></section><section class="onepage" id="page-32"><article class="exercise exercise-like" id="ws-ge-ex3"><h3 class="heading"><span class="codenumber">3<span class="period">.</span></span></h3>
-<div class="para" id="p-2023">Find the eigenvectors. What are the dimensions of the eigenspaces? Based on this observation, can <span class="process-math">\(A\)</span> be diagonalized?</div>
-<div class="workspace" data-space="3.25in"></div></article> <pre class="ptx-sagecell sagecell-sage" id="sage-122"><script type="text/x-sage"></script></pre> <article class="exercise exercise-like" id="ws-ge-ex4"><h3 class="heading"><span class="codenumber">4<span class="period">.</span></span></h3>
-<div class="para logical" id="p-2024">
+<div class="para" id="p-2067">Find (and factor) the characteristic polynomial of <span class="process-math">\(A\text{.}\)</span> For the commands you might need, <a class="external" href="https://opentext.uleth.ca/Math3410/sec-sympy.html" target="_blank">refer to the textbook</a><a href="" data-knowl="" class="id-ref fn-knowl original" data-refid="hk-fn-19" id="fn-19"><sup> 1 </sup></a>.</div>
+<div class="workspace" data-space="1.5in"></div></article> <pre class="ptx-sagecell sagecell-sage" id="sage-124"><script type="text/x-sage"></script></pre></section><section class="onepage" id="page-33"><article class="exercise exercise-like" id="ws-ge-ex3"><h3 class="heading"><span class="codenumber">3<span class="period">.</span></span></h3>
+<div class="para" id="p-2068">Find the eigenvectors. What are the dimensions of the eigenspaces? Based on this observation, can <span class="process-math">\(A\)</span> be diagonalized?</div>
+<div class="workspace" data-space="3.25in"></div></article> <pre class="ptx-sagecell sagecell-sage" id="sage-125"><script type="text/x-sage"></script></pre> <article class="exercise exercise-like" id="ws-ge-ex4"><h3 class="heading"><span class="codenumber">4<span class="period">.</span></span></h3>
+<div class="para logical" id="p-2069">
 <div class="para">Prove that for any <span class="process-math">\(n\times n\)</span> matrix <span class="process-math">\(A\text{,}\)</span> we have</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -500,14 +554,14 @@ A
 \end{equation*}
 </div>
 </div>
-<div class="workspace" data-space="3.25in"></div></article> <pre class="ptx-sagecell sagecell-html" id="sage-123"><script type="text/x-sage"></script></pre></section><section class="onepage" id="page-33"><div class="para" id="p-2025">It turns out that at some point, the null spaces stabilize. If <span class="process-math">\(\operatorname{null}(A^k)=\operatorname{null}A^{k+1}\)</span> for some <span class="process-math">\(k\text{,}\)</span> then <span class="process-math">\(\operatorname{null}(A^k)=\operatorname{null}(A^{k+l})\)</span> for all <span class="process-math">\(l\geq 0\text{.}\)</span>
+<div class="workspace" data-space="3.25in"></div></article> <pre class="ptx-sagecell sagecell-html" id="sage-126"><script type="text/x-sage"></script></pre></section><section class="onepage" id="page-34"><div class="para" id="p-2070">It turns out that at some point, the null spaces stabilize. If <span class="process-math">\(\operatorname{null}(A^k)=\operatorname{null}A^{k+1}\)</span> for some <span class="process-math">\(k\text{,}\)</span> then <span class="process-math">\(\operatorname{null}(A^k)=\operatorname{null}(A^{k+l})\)</span> for all <span class="process-math">\(l\geq 0\text{.}\)</span>
 </div> <article class="exercise exercise-like" id="ws-ge-ex5"><h3 class="heading"><span class="codenumber">5<span class="period">.</span></span></h3>
-<div class="para" id="p-2026">For each eigenvalue found in <a href="" class="xref" data-knowl="./knowl/ws-ge-ex2.html" title="Worksheet Exercise 5.4.2">Worksheet Exercise 5.4.2</a>, compute the nullspace of <span class="process-math">\(A-\lambda I\text{,}\)</span> <span class="process-math">\((A-\lambda I)^2\text{,}\)</span> <span class="process-math">\((A-\lambda I)^3\text{,}\)</span> etc. until you find two consecutive nullspaces that are the same.</div> <div class="para" id="p-2027">By <a href="" class="xref" data-knowl="./knowl/ws-ge-ex4.html" title="Worksheet Exercise 5.4.4">Worksheet Exercise 5.4.4</a>, any vector in <span class="process-math">\(\operatorname{null}(A-\lambda I)^m\)</span> will also be a vector in <span class="process-math">\(\operatorname{null}(A-\lambda I)^{m+1}\text{.}\)</span> In particular, at each step, we can find a basis for <span class="process-math">\(\operatorname{null}(A-\lambda I)^m\)</span> that includes the basis for <span class="process-math">\(\operatorname{null}(A-\lambda I)^{m-1}\text{.}\)</span>
-</div> <div class="para" id="p-2028">For each eigenvalue found in <a href="" class="xref" data-knowl="./knowl/ws-ge-ex2.html" title="Worksheet Exercise 5.4.2">Worksheet Exercise 5.4.2</a>, determine such a basis for the corresponding generalized eigenspace. You will want to list your vectors so that the vectors from the basis of the nullspace for <span class="process-math">\(A-\lambda I\)</span> come first, then the vectors for the basis of the nullspace for <span class="process-math">\((A-\lambda I)^2\text{,}\)</span> and so on.</div>
-<div class="workspace" data-space="2.5in"></div></article> <pre class="ptx-sagecell sagecell-sage" id="sage-124"><script type="text/x-sage"></script></pre> <article class="exercise exercise-like" id="ws-ge-ex6"><h3 class="heading"><span class="codenumber">6<span class="period">.</span></span></h3>
-<div class="para" id="p-2029">Finally, let’s see how all of this works. Let <span class="process-math">\(P\)</span> be the matrix whose columns consist of the vectors found in Problem 4. What do you get when you compute the matrix <span class="process-math">\(P^{-1}AP\text{?}\)</span>
+<div class="para" id="p-2071">For each eigenvalue found in <a href="" class="xref" data-knowl="./knowl/ws-ge-ex2.html" title="Worksheet Exercise 5.4.2">Worksheet Exercise 5.4.2</a>, compute the nullspace of <span class="process-math">\(A-\lambda I\text{,}\)</span> <span class="process-math">\((A-\lambda I)^2\text{,}\)</span> <span class="process-math">\((A-\lambda I)^3\text{,}\)</span> etc. until you find two consecutive nullspaces that are the same.</div> <div class="para" id="p-2072">By <a href="" class="xref" data-knowl="./knowl/ws-ge-ex4.html" title="Worksheet Exercise 5.4.4">Worksheet Exercise 5.4.4</a>, any vector in <span class="process-math">\(\operatorname{null}(A-\lambda I)^m\)</span> will also be a vector in <span class="process-math">\(\operatorname{null}(A-\lambda I)^{m+1}\text{.}\)</span> In particular, at each step, we can find a basis for <span class="process-math">\(\operatorname{null}(A-\lambda I)^m\)</span> that includes the basis for <span class="process-math">\(\operatorname{null}(A-\lambda I)^{m-1}\text{.}\)</span>
+</div> <div class="para" id="p-2073">For each eigenvalue found in <a href="" class="xref" data-knowl="./knowl/ws-ge-ex2.html" title="Worksheet Exercise 5.4.2">Worksheet Exercise 5.4.2</a>, determine such a basis for the corresponding generalized eigenspace. You will want to list your vectors so that the vectors from the basis of the nullspace for <span class="process-math">\(A-\lambda I\)</span> come first, then the vectors for the basis of the nullspace for <span class="process-math">\((A-\lambda I)^2\text{,}\)</span> and so on.</div>
+<div class="workspace" data-space="2.5in"></div></article> <pre class="ptx-sagecell sagecell-sage" id="sage-127"><script type="text/x-sage"></script></pre> <article class="exercise exercise-like" id="ws-ge-ex6"><h3 class="heading"><span class="codenumber">6<span class="period">.</span></span></h3>
+<div class="para" id="p-2074">Finally, let’s see how all of this works. Let <span class="process-math">\(P\)</span> be the matrix whose columns consist of the vectors found in Problem 4. What do you get when you compute the matrix <span class="process-math">\(P^{-1}AP\text{?}\)</span>
 </div>
-<div class="workspace" data-space="2.5in"></div></article> <pre class="ptx-sagecell sagecell-sage" id="sage-125"><script type="text/x-sage"></script></pre></section></section>
+<div class="workspace" data-space="2.5in"></div></article> <pre class="ptx-sagecell sagecell-sage" id="sage-128"><script type="text/x-sage"></script></pre></section></section>
 </div>
 <div class="ptx-content-footer">
 <a class="previous-button button" href="sec-direct-sum.html" title="Previous"><span class="icon">&lt;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon">^</span><span class="name">Top</span></a><a class="next-button button" href="sec-gen-eigen.html" title="Next"><span class="name">Next</span><span class="icon">&gt;</span></a>

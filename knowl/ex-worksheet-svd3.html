@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<script>// Make *any* pre with class 'sagecell-sage' an executable Sage cell
+// Their results will be linked, only within language type
+sagecell.makeSagecell({
+  "inputLocation": "pre.sagecell-sage",
+  "linked": true,
+  "languages": [
+    "sage"
+  ],
+  "evalButtonText": "Evaluate (Sage)"
+});
+</script><script>// Make *any* pre with class 'sagecell-html' an executable Sage cell
+// Their results will be linked, only within language type
+sagecell.makeSagecell({
+  "inputLocation": "pre.sagecell-html",
+  "linked": true,
+  "languages": [
+    "html"
+  ],
+  "evalButtonText": "Evaluate (HTML)"
+});
+</script>
+</head>
+<body class="ignore-math">
+<article class="exercise exercise-like"><h3 class="heading">
+<span class="type">Worksheet Exercise</span><span class="space"> </span><span class="codenumber">3<span class="period">.</span></span>
+</h3>
+<div class="introduction">
+<div class="para">Recall from <a href="worksheet-least-squares.html" class="internal" title="Worksheet 3.5: Worksheet: Least squares approximation">Worksheet 3.5</a> that for an inconsistent system <span class="process-math">\(A\xx = \mathbf{b}\text{,}\)</span> we wish to find a vector <span class="process-math">\(\yy\)</span> so that <span class="process-math">\(A\xx=\yy\)</span> is consistent, with <span class="process-math">\(\yy\)</span> as close to <span class="process-math">\(\mathbf{b}\)</span> as possible.</div> <div class="para">In other words, we want to minimize <span class="process-math">\(\len{A\xx-\mathbf{b}}\text{,}\)</span> or equivialently, <span class="process-math">\(\len{A\xx-\mathbf{b}}^2\text{.}\)</span>
+</div>
+</div>
+<article class="task exercise-like"><h4 class="heading"><span class="codenumber">(a)</span></h4>
+<div class="para logical">
+<div class="para">Let <span class="process-math">\(A = P\Sigma_A Q^T\)</span> be the singular value decomposition of <span class="process-math">\(A\text{.}\)</span> Show that</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\len{A\xx-\mathbf{b}} = \len{\Sigma_A\yy-\zz}\text{,}
+\end{equation*}
+</div>
+<div class="para">where <span class="process-math">\(\yy = Q^T\xx\text{,}\)</span> and <span class="process-math">\(\zz = P^T\mathbf{b}\text{.}\)</span>
+</div>
+</div>
+<div class="workspace" data-space="2.5in"></div></article><article class="task exercise-like"><h4 class="heading"><span class="codenumber">(b)</span></h4>
+<div class="para">Show that setting <span class="process-math">\(\yy_i = \begin{cases}\zz_i/\sigma_i, \amp \text{ if } \sigma_i\neq 0\\
+0, \amp \text{ if } \sigma_i=0\end{cases}\)</span> minimizes the value of <span class="process-math">\(\len{\Sigma_A\yy-\zz}\text{.}\)</span>
+</div>
+<div class="workspace" data-space="2.5in"></div></article><article class="task exercise-like"><h4 class="heading"><span class="codenumber">(c)</span></h4>
+<div class="para">Recall that we set <span class="process-math">\(\Sigma_A = \bbm D_A \amp 0\\ 0 \amp 0\ebm\text{,}\)</span> where <span class="process-math">\(D_A\)</span> is the diagonal matrix of nonzero singular values. Let us define the <dfn class="terminology">pseudo-inverse</dfn> of <span class="process-math">\(\Sigma_A\)</span> to be the matrix <span class="process-math">\(\Sigma_A^+ = \bbm D_A^{-1}\amp 0\\0\amp 0\ebm\text{.}\)</span>
+</div> <div class="para">Show that the solution to the least squares problem is given by <span class="process-math">\(\xx = A^+\mathbf{b}\text{,}\)</span> where <span class="process-math">\(A^+ = Q\Sigma_A^+ P^T\text{.}\)</span>
+</div> <pre class="ptx-sagecell sagecell-html" id="sage-112"><script type="text/x-sage"></script></pre>
+<div class="workspace" data-space="2.5in"></div></article></article><span class="incontext"><a href="worksheet-svd.html#ex-worksheet-svd3" class="internal">in-context</a></span>
+</body>
+</html>

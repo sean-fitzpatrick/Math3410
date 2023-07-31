@@ -5,7 +5,7 @@
 <!--*         https://pretextbook.org          *-->
 <!--*                                          *-->
 <!--********************************************-->
-<html lang="en-US">
+<html lang="en-US" dir="ltr">
 <head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Worksheet: matrix transformations</title>
@@ -14,20 +14,38 @@
 <meta property="og:type" content="book">
 <meta property="book:title" content="Linear Algebra">
 <meta property="book:author" content="Sean Fitzpatrick">
-<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>
+var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
 window.MathJax = {
-  tex: {
-    inlineMath: [['\\(','\\)']],
-    tags: "none",
-    tagSide: "right",
-    tagIndent: ".8em",
-    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'color', 'newcommand', 'knowl']}
+  "tex": {
+    "inlineMath": [
+      [
+        "\\(",
+        "\\)"
+      ]
+    ],
+    "tags": "none",
+    "tagSide": "right",
+    "tagIndent": ".8em",
+    "packages": {
+      "[+]": [
+        "base",
+        "extpfeil",
+        "ams",
+        "amscd",
+        "color",
+        "newcommand",
+        "knowl"
+      ]
+    }
   },
-  options: {
-    ignoreHtmlClass: "tex2jax_ignore|ignore-math",
-    processHtmlClass: "process-math",
-    renderActions: {
-        findScript: [10, function (doc) {
+  "options": {
+    "ignoreHtmlClass": "tex2jax_ignore|ignore-math",
+    "processHtmlClass": "process-math",
+    "renderActions": {
+      "findScript": [
+        10,
+        function (doc) {
             document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
                 var display = !!node.type.match(/; *mode=display/);
                 var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
@@ -37,39 +55,58 @@ window.MathJax = {
                 math.end = {node: text, delim: '', n: 0};
                 doc.math.push(math);
             });
-        }, '']
-    },
+        },
+        ""
+      ]
+    }
   },
-  chtml: {
-    scale: 0.98,
-    mtextInheritFont: true
+  "chtml": {
+    "scale": 0.98,
+    "mtextInheritFont": true
   },
-  loader: {
-    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/color', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
-    paths: {pretext: "https://pretextbook.org/js/lib"},
+  "loader": {
+    "load": [
+      "input/asciimath",
+      "[tex]/extpfeil",
+      "[tex]/amscd",
+      "[tex]/color",
+      "[tex]/newcommand",
+      "[pretext]/mathjaxknowl3.js"
+    ],
+    "paths": {
+      "pretext": "https://pretextbook.org/js/lib"
+    }
   },
-  startup: {
+  "startup": {
     pageReady() {
       return MathJax.startup.defaultPageReady().then(function () {
       console.log("in ready function");
       rsMathReady();
       }
     )}
-  },
+  }
 };
 </script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link href="https://webwork-dev.uleth.ca/webwork2_files/js/apps/MathView/mathview.css" rel="stylesheet">
 <script src="https://pretextbook.org/js/0.3/pretext-webwork/2.18/pretext-webwork.js"></script><script src="https://webwork-dev.uleth.ca/webwork2_files/node_modules/iframe-resizer/js/iframeResizer.min.js"></script><script>// Make *any* pre with class 'sagecell-sage' an executable Sage cell
 // Their results will be linked, only within language type
-sagecell.makeSagecell({inputLocation: 'pre.sagecell-sage',
-                       linked: true,
-                       languages: ['sage'],
-                       evalButtonText: 'Evaluate (Sage)'});
+sagecell.makeSagecell({
+  "inputLocation": "pre.sagecell-sage",
+  "linked": true,
+  "languages": [
+    "sage"
+  ],
+  "evalButtonText": "Evaluate (Sage)"
+});
 </script><script>// Make *any* pre with class 'sagecell-html' an executable Sage cell
 // Their results will be linked, only within language type
-sagecell.makeSagecell({inputLocation: 'pre.sagecell-html',
-                       linked: true,
-                       languages: ['html'],
-                       evalButtonText: 'Evaluate (HTML)'});
+sagecell.makeSagecell({
+  "inputLocation": "pre.sagecell-html",
+  "linked": true,
+  "languages": [
+    "html"
+  ],
+  "evalButtonText": "Evaluate (HTML)"
+});
 </script><link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/themes/prism.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="https://pretextbook.org/js/0.3/pretext_search.js"></script><link href="https://pretextbook.org/css/0.7/pretext_search.css" rel="stylesheet" type="text/css">
 <script>js_version = 0.3</script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.3/pretext.js"></script><script>miniversion=0.1</script><script src="https://pretextbook.org/js/0.3/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/0.3/user_preferences.js"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
@@ -112,17 +149,17 @@ eBookConfig.allow_pairs = false;
 eBookConfig.enableScratchAC = false;
 eBookConfig.build_info = "";
 eBookConfig.python3 = null;
-eBookConfig.runestone_version = '7.0.0dev4';
+eBookConfig.runestone_version = '7.0.7';
 eBookConfig.jobehost = '';
 eBookConfig.proxyuri_runs = '';
 eBookConfig.proxyuri_files = '';
 eBookConfig.enable_chatcodes =  false;
 </script>
 <!--*** Runestone Services ***-->
-<script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.0dev4/prefix-runtime.3489f84c0d76065d.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.0dev4/prefix-347.193e36c07abd0197.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.0dev4/prefix-runestone.e543e0dd19670ae2.bundle.js"></script><link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/7.0.0dev4/prefix-347.f9add1ca35d5ad93.css">
-<link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/7.0.0dev4/prefix-runestone.931faef5361cf6e9.css">
+<script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.7/prefix-runtime.fd9ce61c3c71cb22.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.7/prefix-347.193e36c07abd0197.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.7/prefix-runestone.89acb6c6122954e4.bundle.js"></script><link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/7.0.7/prefix-347.f9add1ca35d5ad93.css">
+<link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/7.0.7/prefix-runestone.8d2f742bc74f4a41.css">
 </head>
-<body id="Math3410" class="pretext book ignore-math">
+<body id="linearpython" class="pretext book ignore-math">
 <a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead"><div class="ptx-banner">
 <a id="logo-link" class="logo-link" href=""></a><div class="title-container">
 <h1 class="heading"><a href="linear-algebra.html"><span class="title">Linear Algebra:</span> <span class="subtitle">A second course, featuring proofs and Python</span></a></h1>
@@ -366,14 +403,21 @@ eBookConfig.enable_chatcodes =  false;
 <li>
 <div class="toc-item"><a href="ch-diagonalization.html" class="internal"><span class="codenumber">4</span> <span class="title">Diagonalization</span></a></div>
 <ul class="structural">
-<li><div class="toc-item"><a href="sec-eigen-basics.html" class="internal"><span class="codenumber">4.1</span> <span class="title">Eigenvalues and Eigenvectors</span></a></div></li>
+<li>
+<div class="toc-item"><a href="sec-eigen-basics.html" class="internal"><span class="codenumber">4.1</span> <span class="title">Eigenvalues and Eigenvectors</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="sec-eigen-basics.html#exercises-13" class="internal"><span class="codenumber">4.1</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
 <li><div class="toc-item"><a href="subsec-ortho-diag.html" class="internal"><span class="codenumber">4.2</span> <span class="title">Diagonalization of symmetric matrices</span></a></div></li>
-<li><div class="toc-item"><a href="sec-quadratic.html" class="internal"><span class="codenumber">4.3</span> <span class="title">Quadratic forms</span></a></div></li>
+<li>
+<div class="toc-item"><a href="sec-quadratic.html" class="internal"><span class="codenumber">4.3</span> <span class="title">Quadratic forms</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="sec-quadratic.html#exercises-14" class="internal"><span class="codenumber">4.3</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
 <li>
 <div class="toc-item"><a href="sec-complex.html" class="internal"><span class="codenumber">4.4</span> <span class="title">Diagonalization of complex matrices</span></a></div>
 <ul class="structural">
 <li><div class="toc-item"><a href="sec-complex.html#subsec-complex-vector" class="internal"><span class="codenumber">4.4.1</span> <span class="title">Complex vectors</span></a></div></li>
 <li><div class="toc-item"><a href="sec-complex.html#subsec-complex-matrix" class="internal"><span class="codenumber">4.4.2</span> <span class="title">Complex matrices</span></a></div></li>
+<li><div class="toc-item"><a href="sec-complex.html#exercises-15" class="internal"><span class="codenumber">4.4.3</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
 <li><div class="toc-item"><a href="worksheet-dynamical.html" class="internal"><span class="codenumber">4.5</span> <span class="title">Worksheet: linear dynamical systems</span></a></div></li>
@@ -395,6 +439,7 @@ eBookConfig.enable_chatcodes =  false;
 <li><div class="toc-item"><a href="section-matrix-factor.html#pars-qr-algorithm" class="internal"><span class="codenumber">4.6.2.2</span> <span class="title">The QR Algorithm</span></a></div></li>
 </ul>
 </li>
+<li><div class="toc-item"><a href="section-matrix-factor.html#exercises-16" class="internal"><span class="codenumber">4.6.3</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
 <li><div class="toc-item"><a href="worksheet-svd.html" class="internal"><span class="codenumber">4.7</span> <span class="title">Worksheet: Singular Value Decomposition</span></a></div></li>
@@ -403,8 +448,14 @@ eBookConfig.enable_chatcodes =  false;
 <li>
 <div class="toc-item"><a href="ch-change-basis.html" class="internal"><span class="codenumber">5</span> <span class="title">Change of Basis</span></a></div>
 <ul class="structural">
-<li><div class="toc-item"><a href="sec-matrix-of-transformation.html" class="internal"><span class="codenumber">5.1</span> <span class="title">The matrix of a linear transformation</span></a></div></li>
-<li><div class="toc-item"><a href="sec-matrix-operator.html" class="internal"><span class="codenumber">5.2</span> <span class="title">The matrix of a linear operator</span></a></div></li>
+<li>
+<div class="toc-item"><a href="sec-matrix-of-transformation.html" class="internal"><span class="codenumber">5.1</span> <span class="title">The matrix of a linear transformation</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="sec-matrix-of-transformation.html#exercises-17" class="internal"><span class="codenumber">5.1</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li>
+<div class="toc-item"><a href="sec-matrix-operator.html" class="internal"><span class="codenumber">5.2</span> <span class="title">The matrix of a linear operator</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="sec-matrix-operator.html#exercises-18" class="internal"><span class="codenumber">5.2</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
 <li>
 <div class="toc-item"><a href="sec-direct-sum.html" class="internal"><span class="codenumber">5.3</span> <span class="title">Direct Sums and Invariant Subspaces</span></a></div>
 <ul class="structural">
@@ -415,7 +466,10 @@ eBookConfig.enable_chatcodes =  false;
 </li>
 <li><div class="toc-item"><a href="worksheet-gen-eigen.html" class="internal"><span class="codenumber">5.4</span> <span class="title">Worksheet: generalized eigenvectors</span></a></div></li>
 <li><div class="toc-item"><a href="sec-gen-eigen.html" class="internal"><span class="codenumber">5.5</span> <span class="title">Generalized eigenspaces</span></a></div></li>
-<li><div class="toc-item"><a href="sec-jordan-form.html" class="internal"><span class="codenumber">5.6</span> <span class="title">Jordan Canonical Form</span></a></div></li>
+<li>
+<div class="toc-item"><a href="sec-jordan-form.html" class="internal"><span class="codenumber">5.6</span> <span class="title">Jordan Canonical Form</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="sec-jordan-form.html#exercises-19" class="internal"><span class="codenumber">5.6</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
 </ul>
 </li>
 <li>
@@ -445,9 +499,9 @@ eBookConfig.enable_chatcodes =  false;
 <a href="worksheet-transformations-a4.html" class="a4">A4</a><a href="worksheet-transformations-letter.html" class="us">US</a>
 </div>
 </h2>
-<section class="onepage" id="page-4"><div class="introduction" id="introduction-18">
-<div class="para" id="p-1231">This worksheet deals with matrix transformations, and in particular, kernel and image. The goal is to understand these important subspaces in a familiar context.</div> <div class="para" id="p-1232">Let <span class="process-math">\(A\)</span> be an <span class="process-math">\(m\times n\)</span> matrix. We can use <span class="process-math">\(A\)</span> to define a transformation <span class="process-math">\(T_A:\R^n\to \R^m\)</span> given by <span class="process-math">\(T_A(\xx)=A\xx\text{,}\)</span> where we view <span class="process-math">\(\xx\)</span> as an <span class="process-math">\(n\times 1\)</span> column vector.</div> <div class="para" id="p-1233">The <dfn class="terminology">kernel</dfn> of <span class="process-math">\(T_A\)</span> is the set of vectors <span class="process-math">\(\xx\)</span> such that <span class="process-math">\(T_A(\xx)=\zer\text{.}\)</span> That is, <span class="process-math">\(\ker T_A\)</span> is the set of solutions to the homogeneous system <span class="process-math">\(A\xx = \zer\text{.}\)</span>
-</div> <div class="para" id="p-1234">The <dfn class="terminology">image</dfn> of <span class="process-math">\(T_A\)</span> (also known as the range of <span class="process-math">\(T_A\)</span>) is the set of vectors <span class="process-math">\(\yy\in \R^m\)</span> such that <span class="process-math">\(\yy = A\xx\)</span> for some <span class="process-math">\(\xx\in\R^n\text{.}\)</span> In other words, <span class="process-math">\(\im(T_A)\)</span> is the set of vectors <span class="process-math">\(\yy\)</span> for which the non-homogeneous system <span class="process-math">\(A\xx=\yy\)</span> is consistent.</div> <div class="para logical" id="p-1235">
+<section class="onepage" id="page-4"><div class="introduction" id="introduction-20">
+<div class="para" id="p-1152">This worksheet deals with matrix transformations, and in particular, kernel and image. The goal is to understand these important subspaces in a familiar context.</div> <div class="para" id="p-1153">Let <span class="process-math">\(A\)</span> be an <span class="process-math">\(m\times n\)</span> matrix. We can use <span class="process-math">\(A\)</span> to define a transformation <span class="process-math">\(T_A:\R^n\to \R^m\)</span> given by <span class="process-math">\(T_A(\xx)=A\xx\text{,}\)</span> where we view <span class="process-math">\(\xx\)</span> as an <span class="process-math">\(n\times 1\)</span> column vector.</div> <div class="para" id="p-1154">The <dfn class="terminology">kernel</dfn> of <span class="process-math">\(T_A\)</span> is the set of vectors <span class="process-math">\(\xx\)</span> such that <span class="process-math">\(T_A(\xx)=\zer\text{.}\)</span> That is, <span class="process-math">\(\ker T_A\)</span> is the set of solutions to the homogeneous system <span class="process-math">\(A\xx = \zer\text{.}\)</span>
+</div> <div class="para" id="p-1155">The <dfn class="terminology">image</dfn> of <span class="process-math">\(T_A\)</span> (also known as the range of <span class="process-math">\(T_A\)</span>) is the set of vectors <span class="process-math">\(\yy\in \R^m\)</span> such that <span class="process-math">\(\yy = A\xx\)</span> for some <span class="process-math">\(\xx\in\R^n\text{.}\)</span> In other words, <span class="process-math">\(\im(T_A)\)</span> is the set of vectors <span class="process-math">\(\yy\)</span> for which the non-homogeneous system <span class="process-math">\(A\xx=\yy\)</span> is consistent.</div> <div class="para logical" id="p-1156">
 <div class="para">Because <span class="process-math">\(T_A\)</span> is a linear transformation, we can compute it as long as we’re given its values on a basis. If <span class="process-math">\(\{\vv_1, \vv_2,\ldots, \vv_n\}\)</span> is a basis for <span class="process-math">\(\R^n\text{,}\)</span> then for any <span class="process-math">\(\xx\in\R^n\)</span> there exist unique scalars <span class="process-math">\(c_1,c_2,\ldots, c_n\)</span> such that</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -460,9 +514,9 @@ eBookConfig.enable_chatcodes =  false;
 T_A(\xx)=c_1T_A(\vv_1)+c_2T_A(\vv_2)+\cdots +c_nT_A(\vv_n)\text{.}
 \end{equation*}
 </div>
-</div> <div class="para" id="p-1236">The main challenge, computationally speaking, is that if our basis is not the standard basis, some effort will be required to write <span class="process-math">\(\xx\)</span> in terms of the given basis.</div>
+</div> <div class="para" id="p-1157">The main challenge, computationally speaking, is that if our basis is not the standard basis, some effort will be required to write <span class="process-math">\(\xx\)</span> in terms of the given basis.</div>
 </div> <article class="exercise exercise-like" id="exercise-103"><h3 class="heading"><span class="codenumber">1<span class="period">.</span></span></h3>
-<div class="para logical" id="p-1237">
+<div class="para logical" id="p-1158">
 <div class="para">Confirm that</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -473,12 +527,12 @@ B=\left\{\begin{bmatrix}1\\0\\2\\3\end{bmatrix},\begin{bmatrix}4\\2\\0\\-3\end{b
 <div class="para">is a basis for <span class="process-math">\(\R^4\text{.}\)</span>
 </div>
 </div>
-<div class="workspace" data-space="3in"></div></article> <div class="para" id="p-1238">To assist with solving this problem, a code cell is provided below. Recall that you can enter the matrix <span class="process-math">\(\begin{bmatrix}a\amp b\amp c\\d\amp e\amp f\\g\amp h\amp i\end{bmatrix}\)</span> as <code class="code-inline tex2jax_ignore">Matrix([[a,b,c],[d,e,f],[g,h,i]])</code> or as <code class="code-inline tex2jax_ignore">Matrix(3,3,[a,b,c,d,e,f,g,h,i])</code>.</div></section><section class="onepage" id="page-5"><div class="para" id="p-1239">The reduced row-echeleon form of <code class="code-inline tex2jax_ignore">A</code> is given by <code class="code-inline tex2jax_ignore">A.rref()</code>. The product of matrices <code class="code-inline tex2jax_ignore">A</code> and <code class="code-inline tex2jax_ignore">B</code> is simply <code class="code-inline tex2jax_ignore">A*B</code>. The inverse of a matrix <code class="code-inline tex2jax_ignore">A</code> can be found using <code class="code-inline tex2jax_ignore">A.inv()</code> or simply <code class="code-inline tex2jax_ignore">A**(-1)</code>.</div> <div class="para" id="p-1240">One note of caution: in the <abbr class="initialism">HTML</abbr> worksheet, if you don’t import <code class="code-inline tex2jax_ignore">sympy</code> as your first line of code, you’ll instead use Sage syntax. Sage uses <code class="code-inline tex2jax_ignore">A.inverse()</code> instead of <code class="code-inline tex2jax_ignore">A.inv()</code>.</div> <div class="para" id="p-1241">In a Jupyter notebook, remember you can generate additional code cells by clicking on the <code class="code-inline tex2jax_ignore">+</code> button.</div> <pre class="ptx-sagecell sagecell-sage" id="sage-28"><script type="text/x-sage">from sympy import Matrix,init_printing
+<div class="workspace" data-space="3in"></div></article> <div class="para" id="p-1159">To assist with solving this problem, a code cell is provided below. Recall that you can enter the matrix <span class="process-math">\(\begin{bmatrix}a\amp b\amp c\\d\amp e\amp f\\g\amp h\amp i\end{bmatrix}\)</span> as <code class="code-inline tex2jax_ignore">Matrix([[a,b,c],[d,e,f],[g,h,i]])</code> or as <code class="code-inline tex2jax_ignore">Matrix(3,3,[a,b,c,d,e,f,g,h,i])</code>.</div></section><section class="onepage" id="page-5"><div class="para" id="p-1160">The reduced row-echeleon form of <code class="code-inline tex2jax_ignore">A</code> is given by <code class="code-inline tex2jax_ignore">A.rref()</code>. The product of matrices <code class="code-inline tex2jax_ignore">A</code> and <code class="code-inline tex2jax_ignore">B</code> is simply <code class="code-inline tex2jax_ignore">A*B</code>. The inverse of a matrix <code class="code-inline tex2jax_ignore">A</code> can be found using <code class="code-inline tex2jax_ignore">A.inv()</code> or simply <code class="code-inline tex2jax_ignore">A**(-1)</code>.</div> <div class="para" id="p-1161">One note of caution: in the <abbr class="initialism">HTML</abbr> worksheet, if you don’t import <code class="code-inline tex2jax_ignore">sympy</code> as your first line of code, you’ll instead use Sage syntax. Sage uses <code class="code-inline tex2jax_ignore">A.inverse()</code> instead of <code class="code-inline tex2jax_ignore">A.inv()</code>.</div> <div class="para" id="p-1162">In a Jupyter notebook, remember you can generate additional code cells by clicking on the <code class="code-inline tex2jax_ignore">+</code> button.</div> <pre class="ptx-sagecell sagecell-sage" id="sage-28"><script type="text/x-sage">from sympy import Matrix,init_printing
 init_printing()
-</script></pre> <div class="para" id="p-1242">You can also use the cell below to write down any necessary explanation.</div> <pre class="ptx-sagecell sagecell-html" id="sage-29"><script type="text/x-sage"></script></pre> <article class="exercise exercise-like" id="exercise-104"><h3 class="heading"><span class="codenumber">2<span class="period">.</span></span></h3>
-<div class="para" id="p-1243">Write each of the standard basis vectors in terms of this basis.</div> <div class="para" id="p-1244">
+</script></pre> <div class="para" id="p-1163">You can also use the cell below to write down any necessary explanation.</div> <pre class="ptx-sagecell sagecell-html" id="sage-29"><script type="text/x-sage"></script></pre> <article class="exercise exercise-like" id="exercise-104"><h3 class="heading"><span class="codenumber">2<span class="period">.</span></span></h3>
+<div class="para" id="p-1164">Write each of the standard basis vectors in terms of this basis.</div> <div class="para" id="p-1165">
 <em class="emphasis">Suggestion:</em> in each case, this can be done by solving a matrix equation, using the inverse of an appropriate matrix.</div>
-<div class="workspace" data-space="4.3in"></div></article> <pre class="ptx-sagecell sagecell-sage" id="sage-30"><script type="text/x-sage"></script></pre></section><section class="onepage" id="page-6"><div class="para logical" id="p-1245">
+<div class="workspace" data-space="4.3in"></div></article> <pre class="ptx-sagecell sagecell-sage" id="sage-30"><script type="text/x-sage"></script></pre></section><section class="onepage" id="page-6"><div class="para logical" id="p-1166">
 <div class="para">A linear transformation <span class="process-math">\(T:\R^4\to \R^4\)</span> is now defined as follows:</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -488,20 +542,20 @@ T\left(\begin{bmatrix}0\\4\\-3\\2\end{bmatrix}\right)=\begin{bmatrix}4\\2\\2\\4\
 T\left(\begin{bmatrix}3\\5\\-2\\1\end{bmatrix}\right)=\begin{bmatrix}2\\4\\0\\10\end{bmatrix}\text{.}
 \end{equation*}
 </div>
-</div> <div class="para" id="p-1246">Let <span class="process-math">\(\{\vece_1,\vece_2,\vece_3, \vece_4\}\)</span> denote the standard basis for <span class="process-math">\(\R^4\text{.}\)</span>
+</div> <div class="para" id="p-1167">Let <span class="process-math">\(\{\vece_1,\vece_2,\vece_3, \vece_4\}\)</span> denote the standard basis for <span class="process-math">\(\R^4\text{.}\)</span>
 </div> <article class="exercise exercise-like" id="exercise-105"><h3 class="heading"><span class="codenumber">3<span class="period">.</span></span></h3>
-<div class="para" id="p-1247">Determine <span class="process-math">\(T(\vece_i)\)</span> for <span class="process-math">\(i=1,2,3,4\text{,}\)</span> and in so doing, determine the matrix <span class="process-math">\(A\)</span> such that <span class="process-math">\(T=T_A\text{.}\)</span>
+<div class="para" id="p-1168">Determine <span class="process-math">\(T(\vece_i)\)</span> for <span class="process-math">\(i=1,2,3,4\text{,}\)</span> and in so doing, determine the matrix <span class="process-math">\(A\)</span> such that <span class="process-math">\(T=T_A\text{.}\)</span>
 </div>
 <div class="workspace" data-space="2.5in"></div></article> <pre class="ptx-sagecell sagecell-sage" id="sage-31"><script type="text/x-sage"></script></pre> <article class="exercise exercise-like" id="exercise-106"><h3 class="heading"><span class="codenumber">4<span class="period">.</span></span></h3>
-<div class="para" id="p-1248">Let <span class="process-math">\(M\)</span> be the matrix whose columns are given by the values of <span class="process-math">\(T\)</span> on the basis <span class="process-math">\(B\text{.}\)</span> (This would be the matrix of <span class="process-math">\(T\)</span> if <span class="process-math">\(B\)</span> was actually the standard basis.) Let <span class="process-math">\(N\)</span> be the matrix whose inverse you used to solve part (b). Can you find a way to combine these matrices to obtain the matrix <span class="process-math">\(A\text{?}\)</span> If so, explain why your result makes sense.</div>
-<div class="workspace" data-space="2.5in"></div></article> <pre class="ptx-sagecell sagecell-sage" id="sage-32"><script type="text/x-sage"></script></pre></section><section class="onepage" id="page-7"><div class="para" id="p-1249">Next we will compute the kernel and image of the transformation from the previous exercises. Recall that when solving a homogeneous system <span class="process-math">\(A\xx = \zer\text{,}\)</span> we find the <abbr class="initialism">RREF</abbr> of <span class="process-math">\(A\text{,}\)</span> and any variables whose columns do not contain a leading 1 are assigned as parameters. We then express the general solution <span class="process-math">\(x\)</span> in terms of those parameters.</div> <div class="para" id="p-1250">The image of a matrix transformation <span class="process-math">\(T_A\)</span> is also known as the <dfn class="terminology">column space</dfn> of <span class="process-math">\(A\text{,}\)</span> because the range of <span class="process-math">\(T_A\)</span> is precisely the span of the columns of <span class="process-math">\(A\text{.}\)</span> The <abbr class="initialism">RREF</abbr> of <span class="process-math">\(A\)</span> tells us which columns to keep: the columns of <span class="process-math">\(A\)</span> that correspond to the columns in the <abbr class="initialism">RREF</abbr> of <span class="process-math">\(A\)</span> with a leading 1.</div> <div class="para" id="p-1251">Let <span class="process-math">\(T\)</span> be the linear transformation given in the previous exercises.</div> <article class="exercise exercise-like" id="exercise-107"><h3 class="heading"><span class="codenumber">5<span class="period">.</span></span></h3>
-<div class="para" id="p-1252">Determine the kernel of <span class="process-math">\(T\text{.}\)</span>
+<div class="para" id="p-1169">Let <span class="process-math">\(M\)</span> be the matrix whose columns are given by the values of <span class="process-math">\(T\)</span> on the basis <span class="process-math">\(B\text{.}\)</span> (This would be the matrix of <span class="process-math">\(T\)</span> if <span class="process-math">\(B\)</span> was actually the standard basis.) Let <span class="process-math">\(N\)</span> be the matrix whose inverse you used to solve part (b). Can you find a way to combine these matrices to obtain the matrix <span class="process-math">\(A\text{?}\)</span> If so, explain why your result makes sense.</div>
+<div class="workspace" data-space="2.5in"></div></article> <pre class="ptx-sagecell sagecell-sage" id="sage-32"><script type="text/x-sage"></script></pre></section><section class="onepage" id="page-7"><div class="para" id="p-1170">Next we will compute the kernel and image of the transformation from the previous exercises. Recall that when solving a homogeneous system <span class="process-math">\(A\xx = \zer\text{,}\)</span> we find the <abbr class="initialism">RREF</abbr> of <span class="process-math">\(A\text{,}\)</span> and any variables whose columns do not contain a leading 1 are assigned as parameters. We then express the general solution <span class="process-math">\(x\)</span> in terms of those parameters.</div> <div class="para" id="p-1171">The image of a matrix transformation <span class="process-math">\(T_A\)</span> is also known as the <dfn class="terminology">column space</dfn> of <span class="process-math">\(A\text{,}\)</span> because the range of <span class="process-math">\(T_A\)</span> is precisely the span of the columns of <span class="process-math">\(A\text{.}\)</span> The <abbr class="initialism">RREF</abbr> of <span class="process-math">\(A\)</span> tells us which columns to keep: the columns of <span class="process-math">\(A\)</span> that correspond to the columns in the <abbr class="initialism">RREF</abbr> of <span class="process-math">\(A\)</span> with a leading 1.</div> <div class="para" id="p-1172">Let <span class="process-math">\(T\)</span> be the linear transformation given in the previous exercises.</div> <article class="exercise exercise-like" id="exercise-107"><h3 class="heading"><span class="codenumber">5<span class="period">.</span></span></h3>
+<div class="para" id="p-1173">Determine the kernel of <span class="process-math">\(T\text{.}\)</span>
 </div>
 <div class="workspace" data-space="1.25in"></div></article> <pre class="ptx-sagecell sagecell-sage" id="sage-33"><script type="text/x-sage"></script></pre> <article class="exercise exercise-like" id="exercise-108"><h3 class="heading"><span class="codenumber">6<span class="period">.</span></span></h3>
-<div class="para" id="p-1253">Determine the image of <span class="process-math">\(T\text{.}\)</span>
+<div class="para" id="p-1174">Determine the image of <span class="process-math">\(T\text{.}\)</span>
 </div>
 <div class="workspace" data-space="1.25in"></div></article> <pre class="ptx-sagecell sagecell-sage" id="sage-34"><script type="text/x-sage"></script></pre> <article class="exercise exercise-like" id="exercise-109"><h3 class="heading"><span class="codenumber">7<span class="period">.</span></span></h3>
-<div class="para logical" id="p-1254">
+<div class="para logical" id="p-1175">
 <div class="para">The <dfn class="terminology">Dimension Theorem</dfn> states that for a linear transformation <span class="process-math">\(T:V\to W\text{,}\)</span> where <span class="process-math">\(V\)</span> is finite-dimensional,</div>
 <div class="displaymath process-math">
 \begin{equation*}

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="en-US" dir="ltr">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
 <!--*                                          *-->
@@ -11,10 +11,14 @@
 <meta name="robots" content="noindex, nofollow">
 <script>// Make *any* pre with class 'sagecell-sage' an executable Sage cell
 // Their results will be linked, only within language type
-sagecell.makeSagecell({inputLocation: 'pre.sagecell-sage',
-                       linked: true,
-                       languages: ['sage'],
-                       evalButtonText: 'Evaluate (Sage)'});
+sagecell.makeSagecell({
+  "inputLocation": "pre.sagecell-sage",
+  "linked": true,
+  "languages": [
+    "sage"
+  ],
+  "evalButtonText": "Evaluate (Sage)"
+});
 </script>
 </head>
 <body class="ignore-math">
@@ -28,7 +32,7 @@ sagecell.makeSagecell({inputLocation: 'pre.sagecell-sage',
 \begin{align*}
 \vv_2 \amp = \xx_2-\left(\frac{\xx_2\dotp \vv_1}{\len{\vv_1}^2}\right)\vv_1 \\
 \amp = (3,0,-2)-\frac{1}{6}(1,-2,1)\\
-\amp = \frac16(17,2,-3) \text{.}
+\amp = \frac16(17,2,-13) \text{.}
 \end{align*}
 </div>
 </div> <aside class="aside aside-like"><div class="para logical">
@@ -47,17 +51,17 @@ sagecell.makeSagecell({inputLocation: 'pre.sagecell-sage',
 <div class="displaymath process-math">
 \begin{align*}
 \vv_3 \amp = \xx_3-\left(\frac{\xx_3\dotp \vv_1}{\len{\vv_1}^2}\right)\vv_1 - \left(\frac{\xx_3\dotp \vv_2}{\len{\vv_2}^2}\right)\vv_2\\
-\amp = (-1,1,2)-\frac{-1}{6}(1,-2,1)-\cdot \frac{-21}{303}(17,2,-3)\\
-\amp = (-1,1,2)+\frac16(1,-2,1)+\frac{7}{101}(17,2,-3)\\
-\amp = \frac{1}{606}\bigl((-606,606,1212)+(101,-202,101)+(782,84,-126)\bigr)\\
-\amp = \frac{1}{606}(277,488,1187)\text{.}
+\amp = (-1,1,2)-\frac{-1}{6}(1,-2,1)- \frac{-41}{36}(17,2,-13)\\
+\amp = \frac{1}{462}\bigl((-462,462,924)+(77,-154,77)+(697,82,-533)\bigr)\\
+\amp = \frac{1}{462}(312,390,468) = \frac{1}{77}(52,65,78)\text{.}
 \end{align*}
 </div>
 </div> <div class="para">We got it done! But doing this sort of thing by hand makes it possible that we made a calculation error somewhere. To check our work, we can turn to the computer.</div> <pre class="ptx-sagecell sagecell-sage" id="sage-51"><script type="text/x-sage">from sympy import Matrix, init_printing, GramSchmidt
 init_printing()
 L=(Matrix([1,-2,1]),Matrix([3,0,-2]),Matrix([-1,1,2]))
 GramSchmidt(L)
-</script></pre>
+</script></pre> <div class="para">Success! Full disclosure: there was indeed a mistake in the manual computation. Whether it was a typo or a miscalculation, the <span class="process-math">\(-13/6\)</span> entry was originally written as <span class="process-math">\(-3/6\text{.}\)</span> This led, as you might expect, to some very wrong answers for <span class="process-math">\(\vv_3\text{.}\)</span>
+</div>
 </div>
 <span class="incontext"><a href="sec-gram-schmidt.html#solution-55" class="internal">in-context</a></span>
 </body>

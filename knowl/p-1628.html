@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="en-US" dir="ltr">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
 <!--*                                          *-->
@@ -11,8 +11,16 @@
 <meta name="robots" content="noindex, nofollow">
 </head>
 <body class="ignore-math">
-<h3 class="heading"><span class="type">Paragraph</span></h3>
-<div class="para">The <code class="code-inline tex2jax_ignore">eigenvects</code> command in SymPy takes a square matrix as input, and outputs a list of lists (one list for each eigenvalue). For a given eigenvalue, the corresponding list has the form <code class="code-inline tex2jax_ignore">(eigenvalue, multiplicity, eigenvectors)</code>. Using SymPy to solve <a href="" class="xref" data-knowl="./knowl/example-eigenvectors.html" title="Example 4.1.10">Example 4.1.10</a> looks as follows:</div>
-<span class="incontext"><a href="sec-eigen-basics.html#p-1628" class="internal">in-context</a></span>
+<h4 class="heading"><span class="type">Paragraph</span></h4>
+<div class="para logical">
+<div class="para">This gives us an orthogonal basis of eigenvectors. Scaling to clear fractions, we have</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\left\{\bbm 2\\1\\2\ebm, \bbm -1\\2\\0\ebm, \bbm -4\\-2\\5\ebm\right\}
+\end{equation*}
+</div>
+<div class="para">From here, we need to normalize each vector to get the matrix <span class="process-math">\(P\text{.}\)</span> But we might not like that the last vector has norm <span class="process-math">\(\sqrt{45}\text{.}\)</span> One option to consider is to apply Gram-Schmidt with the vectors in the other order.</div>
+</div>
+<span class="incontext"><a href="subsec-ortho-diag.html#p-1628" class="internal">in-context</a></span>
 </body>
 </html>

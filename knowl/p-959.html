@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="en-US" dir="ltr">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
 <!--*                                          *-->
@@ -13,19 +13,25 @@
 <body class="ignore-math">
 <h4 class="heading"><span class="type">Paragraph</span></h4>
 <div class="para logical">
-<div class="para">To show that <span class="process-math">\(\ker T\)</span> is a subspace, first note that <span class="process-math">\(\zer\in \ker T\text{,}\)</span> since <span class="process-math">\(T(\zer)=\zer\)</span> for any linear transformation <span class="process-math">\(T\text{.}\)</span> Now, suppose that <span class="process-math">\(\vv,\ww\in \ker T\text{;}\)</span> this means that <span class="process-math">\(T(\vv)=\zer\)</span> and <span class="process-math">\(T(\ww)=0\text{,}\)</span> and therefore,</div>
-<div class="displaymath process-math">
+<div class="para">The trick is to realize that the reason we might have <span class="process-math">\(\xx\neq c_1\vv_1+\cdots +c_m\vv_m\)</span> is that we’re off by something in the kernel. Indeed, <a href="" class="xref" data-knowl="./knowl/eqn-almost-span.html" title="Equation 2.2.1">(2.2.1)</a> can be re-written as</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/eqn-almost-span.html">
 \begin{equation*}
-T(\vv+\ww)=T(\vv)+T(\ww)=\zer+\zer=\zer\text{.}
+T(\xx-c_1\vv_1-\cdots -c_m\vv_m) = \zer\text{,}
 \end{equation*}
 </div>
-<div class="para">Similarly, for any scalar <span class="process-math">\(c\text{,}\)</span> if <span class="process-math">\(\vv\in \ker T\)</span> then <span class="process-math">\(T(\vv)=\zer\text{,}\)</span> so</div>
-<div class="displaymath process-math">
+<div class="para">so <span class="process-math">\(\xx-c_1\vv_1-\cdots -c_m\vv_m\in\ker T\text{.}\)</span> But we have a basis for <span class="process-math">\(\ker T\text{,}\)</span> so we can write</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/eqn-almost-span.html">
 \begin{equation*}
-T(c\vv)=cT(\vv)=c\zer=\zer\text{.}
+\xx-c_1\vv_1-\cdots -c_m\vv_m=t_1\uu_1+\cdots +t_n\uu_n
 \end{equation*}
 </div>
-<div class="para">By the subspace test, <span class="process-math">\(\ker T\)</span> is a subspace.</div>
+<div class="para">for some scalars <span class="process-math">\(t_1,\ldots, t_n\text{,}\)</span> and this can be rearanged to give</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/eqn-almost-span.html">
+\begin{equation*}
+\xx=t_1\uu_1+\cdots +t_n\uu_n+c_1\vv_1+\cdots + c_m\vv_m\text{,}
+\end{equation*}
+</div>
+<div class="para">which completes the proof.</div>
 </div>
 <span class="incontext"><a href="sec-kernel-image.html#p-959" class="internal">in-context</a></span>
 </body>

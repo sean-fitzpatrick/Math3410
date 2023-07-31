@@ -5,7 +5,7 @@
 <!--*         https://pretextbook.org          *-->
 <!--*                                          *-->
 <!--********************************************-->
-<html lang="en-US">
+<html lang="en-US" dir="ltr">
 <head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Worksheet: Least squares approximation</title>
@@ -14,20 +14,38 @@
 <meta property="og:type" content="book">
 <meta property="book:title" content="Linear Algebra">
 <meta property="book:author" content="Sean Fitzpatrick">
-<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>
+var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
 window.MathJax = {
-  tex: {
-    inlineMath: [['\\(','\\)']],
-    tags: "none",
-    tagSide: "right",
-    tagIndent: ".8em",
-    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'color', 'newcommand', 'knowl']}
+  "tex": {
+    "inlineMath": [
+      [
+        "\\(",
+        "\\)"
+      ]
+    ],
+    "tags": "none",
+    "tagSide": "right",
+    "tagIndent": ".8em",
+    "packages": {
+      "[+]": [
+        "base",
+        "extpfeil",
+        "ams",
+        "amscd",
+        "color",
+        "newcommand",
+        "knowl"
+      ]
+    }
   },
-  options: {
-    ignoreHtmlClass: "tex2jax_ignore|ignore-math",
-    processHtmlClass: "process-math",
-    renderActions: {
-        findScript: [10, function (doc) {
+  "options": {
+    "ignoreHtmlClass": "tex2jax_ignore|ignore-math",
+    "processHtmlClass": "process-math",
+    "renderActions": {
+      "findScript": [
+        10,
+        function (doc) {
             document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
                 var display = !!node.type.match(/; *mode=display/);
                 var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
@@ -37,39 +55,58 @@ window.MathJax = {
                 math.end = {node: text, delim: '', n: 0};
                 doc.math.push(math);
             });
-        }, '']
-    },
+        },
+        ""
+      ]
+    }
   },
-  chtml: {
-    scale: 0.98,
-    mtextInheritFont: true
+  "chtml": {
+    "scale": 0.98,
+    "mtextInheritFont": true
   },
-  loader: {
-    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/color', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
-    paths: {pretext: "https://pretextbook.org/js/lib"},
+  "loader": {
+    "load": [
+      "input/asciimath",
+      "[tex]/extpfeil",
+      "[tex]/amscd",
+      "[tex]/color",
+      "[tex]/newcommand",
+      "[pretext]/mathjaxknowl3.js"
+    ],
+    "paths": {
+      "pretext": "https://pretextbook.org/js/lib"
+    }
   },
-  startup: {
+  "startup": {
     pageReady() {
       return MathJax.startup.defaultPageReady().then(function () {
       console.log("in ready function");
       rsMathReady();
       }
     )}
-  },
+  }
 };
 </script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link href="https://webwork-dev.uleth.ca/webwork2_files/js/apps/MathView/mathview.css" rel="stylesheet">
 <script src="https://pretextbook.org/js/0.3/pretext-webwork/2.18/pretext-webwork.js"></script><script src="https://webwork-dev.uleth.ca/webwork2_files/node_modules/iframe-resizer/js/iframeResizer.min.js"></script><script>// Make *any* pre with class 'sagecell-sage' an executable Sage cell
 // Their results will be linked, only within language type
-sagecell.makeSagecell({inputLocation: 'pre.sagecell-sage',
-                       linked: true,
-                       languages: ['sage'],
-                       evalButtonText: 'Evaluate (Sage)'});
+sagecell.makeSagecell({
+  "inputLocation": "pre.sagecell-sage",
+  "linked": true,
+  "languages": [
+    "sage"
+  ],
+  "evalButtonText": "Evaluate (Sage)"
+});
 </script><script>// Make *any* pre with class 'sagecell-html' an executable Sage cell
 // Their results will be linked, only within language type
-sagecell.makeSagecell({inputLocation: 'pre.sagecell-html',
-                       linked: true,
-                       languages: ['html'],
-                       evalButtonText: 'Evaluate (HTML)'});
+sagecell.makeSagecell({
+  "inputLocation": "pre.sagecell-html",
+  "linked": true,
+  "languages": [
+    "html"
+  ],
+  "evalButtonText": "Evaluate (HTML)"
+});
 </script><link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/themes/prism.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="https://pretextbook.org/js/0.3/pretext_search.js"></script><link href="https://pretextbook.org/css/0.7/pretext_search.css" rel="stylesheet" type="text/css">
 <script>js_version = 0.3</script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.3/pretext.js"></script><script>miniversion=0.1</script><script src="https://pretextbook.org/js/0.3/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/0.3/user_preferences.js"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
@@ -112,17 +149,17 @@ eBookConfig.allow_pairs = false;
 eBookConfig.enableScratchAC = false;
 eBookConfig.build_info = "";
 eBookConfig.python3 = null;
-eBookConfig.runestone_version = '7.0.0dev4';
+eBookConfig.runestone_version = '7.0.7';
 eBookConfig.jobehost = '';
 eBookConfig.proxyuri_runs = '';
 eBookConfig.proxyuri_files = '';
 eBookConfig.enable_chatcodes =  false;
 </script>
 <!--*** Runestone Services ***-->
-<script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.0dev4/prefix-runtime.3489f84c0d76065d.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.0dev4/prefix-347.193e36c07abd0197.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.0dev4/prefix-runestone.e543e0dd19670ae2.bundle.js"></script><link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/7.0.0dev4/prefix-347.f9add1ca35d5ad93.css">
-<link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/7.0.0dev4/prefix-runestone.931faef5361cf6e9.css">
+<script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.7/prefix-runtime.fd9ce61c3c71cb22.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.7/prefix-347.193e36c07abd0197.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.0.7/prefix-runestone.89acb6c6122954e4.bundle.js"></script><link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/7.0.7/prefix-347.f9add1ca35d5ad93.css">
+<link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/7.0.7/prefix-runestone.8d2f742bc74f4a41.css">
 </head>
-<body id="Math3410" class="pretext book ignore-math">
+<body id="linearpython" class="pretext book ignore-math">
 <a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead"><div class="ptx-banner">
 <a id="logo-link" class="logo-link" href=""></a><div class="title-container">
 <h1 class="heading"><a href="linear-algebra.html"><span class="title">Linear Algebra:</span> <span class="subtitle">A second course, featuring proofs and Python</span></a></h1>
@@ -366,14 +403,21 @@ eBookConfig.enable_chatcodes =  false;
 <li>
 <div class="toc-item"><a href="ch-diagonalization.html" class="internal"><span class="codenumber">4</span> <span class="title">Diagonalization</span></a></div>
 <ul class="structural">
-<li><div class="toc-item"><a href="sec-eigen-basics.html" class="internal"><span class="codenumber">4.1</span> <span class="title">Eigenvalues and Eigenvectors</span></a></div></li>
+<li>
+<div class="toc-item"><a href="sec-eigen-basics.html" class="internal"><span class="codenumber">4.1</span> <span class="title">Eigenvalues and Eigenvectors</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="sec-eigen-basics.html#exercises-13" class="internal"><span class="codenumber">4.1</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
 <li><div class="toc-item"><a href="subsec-ortho-diag.html" class="internal"><span class="codenumber">4.2</span> <span class="title">Diagonalization of symmetric matrices</span></a></div></li>
-<li><div class="toc-item"><a href="sec-quadratic.html" class="internal"><span class="codenumber">4.3</span> <span class="title">Quadratic forms</span></a></div></li>
+<li>
+<div class="toc-item"><a href="sec-quadratic.html" class="internal"><span class="codenumber">4.3</span> <span class="title">Quadratic forms</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="sec-quadratic.html#exercises-14" class="internal"><span class="codenumber">4.3</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
 <li>
 <div class="toc-item"><a href="sec-complex.html" class="internal"><span class="codenumber">4.4</span> <span class="title">Diagonalization of complex matrices</span></a></div>
 <ul class="structural">
 <li><div class="toc-item"><a href="sec-complex.html#subsec-complex-vector" class="internal"><span class="codenumber">4.4.1</span> <span class="title">Complex vectors</span></a></div></li>
 <li><div class="toc-item"><a href="sec-complex.html#subsec-complex-matrix" class="internal"><span class="codenumber">4.4.2</span> <span class="title">Complex matrices</span></a></div></li>
+<li><div class="toc-item"><a href="sec-complex.html#exercises-15" class="internal"><span class="codenumber">4.4.3</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
 <li><div class="toc-item"><a href="worksheet-dynamical.html" class="internal"><span class="codenumber">4.5</span> <span class="title">Worksheet: linear dynamical systems</span></a></div></li>
@@ -395,6 +439,7 @@ eBookConfig.enable_chatcodes =  false;
 <li><div class="toc-item"><a href="section-matrix-factor.html#pars-qr-algorithm" class="internal"><span class="codenumber">4.6.2.2</span> <span class="title">The QR Algorithm</span></a></div></li>
 </ul>
 </li>
+<li><div class="toc-item"><a href="section-matrix-factor.html#exercises-16" class="internal"><span class="codenumber">4.6.3</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
 <li><div class="toc-item"><a href="worksheet-svd.html" class="internal"><span class="codenumber">4.7</span> <span class="title">Worksheet: Singular Value Decomposition</span></a></div></li>
@@ -403,8 +448,14 @@ eBookConfig.enable_chatcodes =  false;
 <li>
 <div class="toc-item"><a href="ch-change-basis.html" class="internal"><span class="codenumber">5</span> <span class="title">Change of Basis</span></a></div>
 <ul class="structural">
-<li><div class="toc-item"><a href="sec-matrix-of-transformation.html" class="internal"><span class="codenumber">5.1</span> <span class="title">The matrix of a linear transformation</span></a></div></li>
-<li><div class="toc-item"><a href="sec-matrix-operator.html" class="internal"><span class="codenumber">5.2</span> <span class="title">The matrix of a linear operator</span></a></div></li>
+<li>
+<div class="toc-item"><a href="sec-matrix-of-transformation.html" class="internal"><span class="codenumber">5.1</span> <span class="title">The matrix of a linear transformation</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="sec-matrix-of-transformation.html#exercises-17" class="internal"><span class="codenumber">5.1</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li>
+<div class="toc-item"><a href="sec-matrix-operator.html" class="internal"><span class="codenumber">5.2</span> <span class="title">The matrix of a linear operator</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="sec-matrix-operator.html#exercises-18" class="internal"><span class="codenumber">5.2</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
 <li>
 <div class="toc-item"><a href="sec-direct-sum.html" class="internal"><span class="codenumber">5.3</span> <span class="title">Direct Sums and Invariant Subspaces</span></a></div>
 <ul class="structural">
@@ -415,7 +466,10 @@ eBookConfig.enable_chatcodes =  false;
 </li>
 <li><div class="toc-item"><a href="worksheet-gen-eigen.html" class="internal"><span class="codenumber">5.4</span> <span class="title">Worksheet: generalized eigenvectors</span></a></div></li>
 <li><div class="toc-item"><a href="sec-gen-eigen.html" class="internal"><span class="codenumber">5.5</span> <span class="title">Generalized eigenspaces</span></a></div></li>
-<li><div class="toc-item"><a href="sec-jordan-form.html" class="internal"><span class="codenumber">5.6</span> <span class="title">Jordan Canonical Form</span></a></div></li>
+<li>
+<div class="toc-item"><a href="sec-jordan-form.html" class="internal"><span class="codenumber">5.6</span> <span class="title">Jordan Canonical Form</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="sec-jordan-form.html#exercises-19" class="internal"><span class="codenumber">5.6</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
 </ul>
 </li>
 <li>
@@ -446,31 +500,31 @@ eBookConfig.enable_chatcodes =  false;
 <a href="worksheet-least-squares-a4.html" class="a4">A4</a><a href="worksheet-least-squares-letter.html" class="us">US</a>
 </div>
 </h2>
-<section class="onepage" id="page-16"><div class="introduction" id="introduction-22">
-<div class="para" id="p-1570">In many applied scenarios, it is not practical (or even, perhaps, possible) to find an exact solution to a problem. Sometimes we may be working with imperfect data. Other times, we may be dealing with a problem that is <dfn class="terminology">overdetermined</dfn>, <a href="" data-knowl="" class="id-ref fn-knowl original" data-refid="hk-fn-7" id="fn-7"><sup> 1 </sup></a> such as a system of linear equations with more equations than variables. (Quite often, both of these issues may be present.)</div> <div class="para" id="p-1571">An overdetermined system is quite likely to be inconsistent. That is, our problem requires finding a solution to a system <span class="process-math">\(A\xx=\mathbf{b}\text{,}\)</span> where no such solution exists! When no solution is possible, we can ask whether it is instead possible to find a <em class="emphasis">best approximation</em>.</div> <div class="para" id="p-1572">What would a best approximation look like in this case? Let <span class="process-math">\(U=\csp(A)\)</span> denote the column space of <span class="process-math">\(A\text{,}\)</span> which we know is a subspace of <span class="process-math">\(\R^n\)</span> (assuming <span class="process-math">\(A\)</span> is an <span class="process-math">\(m\times n\)</span> matrix). The subspace <span class="process-math">\(U\)</span> is precisely the set of all vectors <span class="process-math">\(\yy\)</span> such that <span class="process-math">\(A\xx=\yy\)</span> has a solution. Among these vectors, we would like to find the one that is <em class="emphasis">closest</em> to <span class="process-math">\(\mathbf{b}\text{,}\)</span> in the sense that <span class="process-math">\(\len{\yy-\mathbf{b}}\)</span> is as small as possible.</div> <div class="para" id="p-1573">But we know exactly what this vector <span class="process-math">\(\yy\)</span> should be: the orthogonal projection of <span class="process-math">\(\mathbf{b}\)</span> onto <span class="process-math">\(U\text{.}\)</span>
+<section class="onepage" id="page-16"><div class="introduction" id="introduction-24">
+<div class="para" id="p-1471">In many applied scenarios, it is not practical (or even, perhaps, possible) to find an exact solution to a problem. Sometimes we may be working with imperfect data. Other times, we may be dealing with a problem that is <dfn class="terminology">overdetermined</dfn>, <a href="" data-knowl="" class="id-ref fn-knowl original" data-refid="hk-fn-7" id="fn-7"><sup> 1 </sup></a> such as a system of linear equations with more equations than variables. (Quite often, both of these issues may be present.)</div> <div class="para" id="p-1472">An overdetermined system is quite likely to be inconsistent. That is, our problem requires finding a solution to a system <span class="process-math">\(A\xx=\mathbf{b}\text{,}\)</span> where no such solution exists! When no solution is possible, we can ask whether it is instead possible to find a <em class="emphasis">best approximation</em>.</div> <div class="para" id="p-1473">What would a best approximation look like in this case? Let <span class="process-math">\(U=\csp(A)\)</span> denote the column space of <span class="process-math">\(A\text{,}\)</span> which we know is a subspace of <span class="process-math">\(\R^n\)</span> (assuming <span class="process-math">\(A\)</span> is an <span class="process-math">\(m\times n\)</span> matrix). The subspace <span class="process-math">\(U\)</span> is precisely the set of all vectors <span class="process-math">\(\yy\)</span> such that <span class="process-math">\(A\xx=\yy\)</span> has a solution. Among these vectors, we would like to find the one that is <em class="emphasis">closest</em> to <span class="process-math">\(\mathbf{b}\text{,}\)</span> in the sense that <span class="process-math">\(\len{\yy-\mathbf{b}}\)</span> is as small as possible.</div> <div class="para" id="p-1474">But we know exactly what this vector <span class="process-math">\(\yy\)</span> should be: the orthogonal projection of <span class="process-math">\(\mathbf{b}\)</span> onto <span class="process-math">\(U\text{.}\)</span>
 </div>
-</div> <div class="para" id="p-1574">The presentation in this worksheet is based on the one given in the text by Nicholson (see Section 5.6). Further details may be found there, or, for the more statistically inclined, on <a class="external" href="https://en.wikipedia.org/wiki/Least_squares" target="_blank">Wikipedia</a><a href="" data-knowl="" class="id-ref fn-knowl original" data-refid="hk-fn-8" id="fn-8"><sup> 2 </sup></a>.</div> <div class="para logical" id="p-1575">
+</div> <div class="para" id="p-1475">The presentation in this worksheet is based on the one given in the text by Nicholson (see Section 5.6). Further details may be found there, or, for the more statistically inclined, on <a class="external" href="https://en.wikipedia.org/wiki/Least_squares" target="_blank">Wikipedia</a><a href="" data-knowl="" class="id-ref fn-knowl original" data-refid="hk-fn-8" id="fn-8"><sup> 2 </sup></a>.</div> <div class="para logical" id="p-1476">
 <div class="para">Given an inconsistent system <span class="process-math">\(A\xx = \mathbf{b}\text{,}\)</span> we have two problems to solve:</div>
 <ol class="lower-alpha">
-<li id="li-248"><div class="para" id="p-1576">Find the vector <span class="process-math">\(\yy = \proj{U}{\mathbf{b}}\text{,}\)</span> where <span class="process-math">\(U=\csp(A)\)</span>
+<li id="li-184"><div class="para" id="p-1477">Find the vector <span class="process-math">\(\yy = \proj{U}{\mathbf{b}}\text{,}\)</span> where <span class="process-math">\(U=\csp(A)\)</span>
 </div></li>
-<li id="li-249"><div class="para" id="p-1577">Find a vector <span class="process-math">\(\zz\)</span> such that <span class="process-math">\(A\zz=\yy\)</span>
+<li id="li-185"><div class="para" id="p-1478">Find a vector <span class="process-math">\(\zz\)</span> such that <span class="process-math">\(A\zz=\yy\)</span>
 </div></li>
 </ol>
 <div class="para">The vector <span class="process-math">\(\zz\)</span> is then our approximate solution.</div>
-</div> <div class="para logical" id="p-1578">
+</div> <div class="para logical" id="p-1479">
 <div class="para">This can be done directly, of course:</div>
 <ol class="lower-alpha">
-<li id="li-250"><div class="para" id="p-1579">Find a basis for <span class="process-math">\(U\)</span>
+<li id="li-186"><div class="para" id="p-1480">Find a basis for <span class="process-math">\(U\)</span>
 </div></li>
-<li id="li-251"><div class="para" id="p-1580">Use the <a href="" class="xref" data-knowl="./knowl/thm-gram-schmidt.html" title="Theorem 3.2.4: Gram-Schmidt Orthonormalization Algorithm">Gram-Schmidt Orthonormalization Algorithm</a> to construct an orthogonal basis for <span class="process-math">\(U\)</span>
+<li id="li-187"><div class="para" id="p-1481">Use the <a href="" class="xref" data-knowl="./knowl/thm-gram-schmidt.html" title="Theorem 3.2.4: Gram-Schmidt Orthonormalization Algorithm">Gram-Schmidt Orthonormalization Algorithm</a> to construct an orthogonal basis for <span class="process-math">\(U\)</span>
 </div></li>
-<li id="li-252"><div class="para" id="p-1581">Use this orthogonal basis to compute <span class="process-math">\(\yy=\proj{U}{\mathbf{b}}\)</span>
+<li id="li-188"><div class="para" id="p-1482">Use this orthogonal basis to compute <span class="process-math">\(\yy=\proj{U}{\mathbf{b}}\)</span>
 </div></li>
-<li id="li-253"><div class="para" id="p-1582">Solve the system <span class="process-math">\(A\zz=\yy\text{.}\)</span>
+<li id="li-189"><div class="para" id="p-1483">Solve the system <span class="process-math">\(A\zz=\yy\text{.}\)</span>
 </div></li>
 </ol>
-</div> <div class="para logical" id="p-1583">
+</div> <div class="para logical" id="p-1484">
 <div class="para">But there is another way to proceed: we know that <span class="process-math">\(\mathbf{b}-\yy=\mathbf{b}-A\zz\in U^\bot\text{,}\)</span> so for any vector <span class="process-math">\(A\xx\in U\text{,}\)</span> <span class="process-math">\((A\xx)\dotp (\mathbf{b}-A\zz)=0\text{.}\)</span> Therefore,</div>
 <div class="displaymath process-math" id="md-61">
 \begin{align*}
@@ -482,7 +536,7 @@ eBookConfig.enable_chatcodes =  false;
 </div>
 <div class="para">for any vector <span class="process-math">\(\xx\in\R^n\text{.}\)</span>
 </div>
-</div> <div class="para logical" id="p-1584">
+</div> <div class="para logical" id="p-1485">
 <div class="para">Therefore, <span class="process-math">\(A^T\mathbf{b}-A^TA\zz=0\text{,}\)</span> or</div>
 <div class="displaymath process-math" id="eqn-normal-approximation">
 \begin{equation}
@@ -490,7 +544,7 @@ A^TA\zz = A^T\mathbf{b}\text{.}\tag{3.5.1}
 \end{equation}
 </div>
 <div class="para">Solving this system, called the <dfn class="terminology">normal equations</dfn> for <span class="process-math">\(\zz\text{,}\)</span> will yield our approximate solution.</div>
-</div></section><section class="onepage" id="page-17"><div class="para logical" id="p-1585">
+</div></section><section class="onepage" id="page-17"><div class="para logical" id="p-1486">
 <div class="para">To begin, let’s compare the two methods discussed above for finding an approximate solution. Consider the system of equations <span class="process-math">\(A\xx=\mathbf{b}\text{,}\)</span> where</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -503,25 +557,25 @@ A = \bbm 3\amp -1 \amp 0\amp 5\\
 \end{equation*}
 </div>
 </div> <article class="exercise exercise-like" id="exercise-148"><h3 class="heading"><span class="codenumber">1<span class="period">.</span></span></h3>
-<div class="para" id="p-1586">Confirm that the system has no solution.</div>
+<div class="para" id="p-1487">Confirm that the system has no solution.</div>
 <div class="workspace" data-space="1.5in"></div></article> <pre class="ptx-sagecell sagecell-sage" id="sage-53"><script type="text/x-sage">from sympy import Matrix,init_printing
 init_printing()
 </script></pre> <pre class="ptx-sagecell sagecell-html" id="sage-54"><script type="text/x-sage">In Jupyter, double-click to edit, and change this to a markdown cell to explain your results.
 </script></pre> <article class="exercise exercise-like" id="exercise-149"><h3 class="heading"><span class="codenumber">2<span class="period">.</span></span></h3>
-<div class="para" id="p-1587">Find an orthogonal basis for the column space of <span class="process-math">\(A\text{.}\)</span>
+<div class="para" id="p-1488">Find an orthogonal basis for the column space of <span class="process-math">\(A\text{.}\)</span>
 </div>
 <div class="workspace" data-space="3in"></div></article> <pre class="ptx-sagecell sagecell-sage" id="sage-55"><script type="text/x-sage">from sympy import GramSchmidt
 </script></pre></section><section class="onepage" id="page-18"><article class="exercise exercise-like" id="exercise-150"><h3 class="heading"><span class="codenumber">3<span class="period">.</span></span></h3>
-<div class="para" id="p-1588">Compute the projection <span class="process-math">\(\yy\)</span> of <span class="process-math">\(\mathbf{b}\)</span> onto the column space of <span class="process-math">\(A\text{.}\)</span>
+<div class="para" id="p-1489">Compute the projection <span class="process-math">\(\yy\)</span> of <span class="process-math">\(\mathbf{b}\)</span> onto the column space of <span class="process-math">\(A\text{.}\)</span>
 </div>
 <div class="workspace" data-space="1.9in"></div></article> <pre class="ptx-sagecell sagecell-sage" id="sage-56"><script type="text/x-sage"></script></pre> <article class="exercise exercise-like" id="exercise-151"><h3 class="heading"><span class="codenumber">4<span class="period">.</span></span></h3>
-<div class="para" id="p-1589">Solve the system <span class="process-math">\(A\zz=\yy\)</span> for <span class="process-math">\(\zz\text{.}\)</span>
+<div class="para" id="p-1490">Solve the system <span class="process-math">\(A\zz=\yy\)</span> for <span class="process-math">\(\zz\text{.}\)</span>
 </div>
 <div class="workspace" data-space="1.9in"></div></article> <pre class="ptx-sagecell sagecell-sage" id="sage-57"><script type="text/x-sage"></script></pre> <article class="exercise exercise-like" id="exercise-152"><h3 class="heading"><span class="codenumber">5<span class="period">.</span></span></h3>
-<div class="para" id="p-1590">Solve the normal equations <a href="" class="xref" data-knowl="./knowl/eqn-normal-approximation.html" title="Equation 3.5.1">(3.5.1)</a> for <span class="process-math">\(\zz\text{.}\)</span>
+<div class="para" id="p-1491">Solve the normal equations <a href="" class="xref" data-knowl="./knowl/eqn-normal-approximation.html" title="Equation 3.5.1">(3.5.1)</a> for <span class="process-math">\(\zz\text{.}\)</span>
 </div>
-<div class="workspace" data-space="1.9in"></div></article> <pre class="ptx-sagecell sagecell-sage" id="sage-58"><script type="text/x-sage"></script></pre></section><section class="onepage" id="page-19"><div class="para" id="p-1591">Next, we want to consider a problem found in many introductory science labs: finding a line of <em class="emphasis">best fit</em>. The situation is as follows: in some experiment, data points <span class="process-math">\((x_1,y_1), (x_2,y_2),\ldots, (x_n,y_n)\)</span> have been found. We would like to find a function <span class="process-math">\(y=f(x)=ax+b\)</span> such that for each <span class="process-math">\(i=1,2,\ldots, n\text{,}\)</span> the value of <span class="process-math">\(f(x_i)\)</span> is as close as possible to <span class="process-math">\(y_i\text{.}\)</span>
-</div> <div class="para" id="p-1592">Note that we have only two parameters available to tune: <span class="process-math">\(a\)</span> and <span class="process-math">\(b\text{.}\)</span> We assume that some reasoning or experimental evidence has led us to conclude that a linear fit is reasonable. The challenge here is to make precise what we mean by “as close as possible”. We have <span class="process-math">\(n\)</span> differences (sometimes called <dfn class="terminology">residuals</dfn>) <span class="process-math">\(r_i=y_i-f(x_i)\)</span> that we want to make small, by adjusting <span class="process-math">\(a\)</span> and <span class="process-math">\(b\text{.}\)</span> But making one of the <span class="process-math">\(r_i\)</span> smaller might make another one larger!</div> <div class="para logical" id="p-1593">
+<div class="workspace" data-space="1.9in"></div></article> <pre class="ptx-sagecell sagecell-sage" id="sage-58"><script type="text/x-sage"></script></pre></section><section class="onepage" id="page-19"><div class="para" id="p-1492">Next, we want to consider a problem found in many introductory science labs: finding a line of <em class="emphasis">best fit</em>. The situation is as follows: in some experiment, data points <span class="process-math">\((x_1,y_1), (x_2,y_2),\ldots, (x_n,y_n)\)</span> have been found. We would like to find a function <span class="process-math">\(y=f(x)=ax+b\)</span> such that for each <span class="process-math">\(i=1,2,\ldots, n\text{,}\)</span> the value of <span class="process-math">\(f(x_i)\)</span> is as close as possible to <span class="process-math">\(y_i\text{.}\)</span>
+</div> <div class="para" id="p-1493">Note that we have only two parameters available to tune: <span class="process-math">\(a\)</span> and <span class="process-math">\(b\text{.}\)</span> We assume that some reasoning or experimental evidence has led us to conclude that a linear fit is reasonable. The challenge here is to make precise what we mean by “as close as possible”. We have <span class="process-math">\(n\)</span> differences (sometimes called <dfn class="terminology">residuals</dfn>) <span class="process-math">\(r_i=y_i-f(x_i)\)</span> that we want to make small, by adjusting <span class="process-math">\(a\)</span> and <span class="process-math">\(b\text{.}\)</span> But making one of the <span class="process-math">\(r_i\)</span> smaller might make another one larger!</div> <div class="para logical" id="p-1494">
 <div class="para">A measure of the overall error in the fit of the line is given by the sum of squares</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -529,7 +583,7 @@ S = r_1^2+r_2^2+\cdots + r_n^2\text{,}
 \end{equation*}
 </div>
 <div class="para">and this is the quantity that we want to minimize. (Hence the name, “least squares”.)</div>
-</div> <div class="para logical" id="p-1594">
+</div> <div class="para logical" id="p-1495">
 <div class="para">Let <span class="process-math">\(\vv=\bbm a\\b\ebm\text{,}\)</span> and note that <span class="process-math">\(f(x)=a+bx = \bbm 1\amp x\ebm\vv\text{.}\)</span> Set <span class="process-math">\(\yy = \bbm y_1\\y_2\\\vdots\\y_n\ebm\)</span> and <span class="process-math">\(\mathbf{r}=\bbm r_1\\r_2\\\vdots\\r_n\ebm\text{.}\)</span> Then</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -537,7 +591,7 @@ S = r_1^2+r_2^2+\cdots + r_n^2\text{,}
 \end{equation*}
 </div>
 <div class="para">where <span class="process-math">\(A = \bbm 1\amp x_1\\1\amp x_2\\\vdots \amp \vdots \\1\amp x_n\ebm\text{.}\)</span> (Note that we are using <span class="process-math">\(\yy\)</span> to denote a different sort of vector than on the previous page.)</div>
-</div> <div class="para logical" id="p-1595">
+</div> <div class="para logical" id="p-1496">
 <div class="para">We can safely assume that an exact solution <span class="process-math">\(A\vv=\yy\)</span> is impossible, so we search for an approximate one, with <span class="process-math">\(\mathbf{r}\)</span> as small as possible. (Note that the magnitude of <span class="process-math">\(\mathbf{r}\)</span> satisfies <span class="process-math">\(\len{\mathbf{r}}^2=S\text{.}\)</span>) But a solution <span class="process-math">\(\zz\)</span> that makes <span class="process-math">\(\yy-A\zz\)</span> as small as possible is exactly the sort of approximate solution that we just learned to calculate! Solving the normal equations for <span class="process-math">\(\zz=\bbm a\\b\ebm\text{,}\)</span> we find that</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -545,7 +599,7 @@ S = r_1^2+r_2^2+\cdots + r_n^2\text{,}
 \end{equation*}
 </div>
 </div></section><section class="onepage" id="page-20"><article class="exercise exercise-like" id="exercise-153"><h3 class="heading"><span class="codenumber">6<span class="period">.</span></span></h3>
-<div class="para logical" id="p-1596">
+<div class="para logical" id="p-1497">
 <div class="para">Find the equation of the best fit line for the following set of data points:</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -554,7 +608,7 @@ S = r_1^2+r_2^2+\cdots + r_n^2\text{,}
 </div>
 </div>
 <div class="workspace" data-space="3in"></div></article> <pre class="ptx-sagecell sagecell-sage" id="sage-59"><script type="text/x-sage"></script></pre> <article class="exercise exercise-like" id="exercise-154"><h3 class="heading"><span class="codenumber">7<span class="period">.</span></span></h3>
-<div class="para" id="p-1597">Suppose we were instead trying to find the best <em class="emphasis">quadratic</em> fit for a dataset. What would our parameters be? What would the matrix <span class="process-math">\(A\)</span> look like? Illustrate with an example of your own.</div>
+<div class="para" id="p-1498">Suppose we were instead trying to find the best <em class="emphasis">quadratic</em> fit for a dataset. What would our parameters be? What would the matrix <span class="process-math">\(A\)</span> look like? Illustrate with an example of your own.</div>
 <div class="workspace" data-space="4in"></div></article></section></section><div class="hidden-content tex2jax_ignore" id="hk-fn-7"><div class="fn">The term “overdetermined” is common in statistics. In other areas, such as physics, the term “over-constrained” is used instead.</div></div>
 <div class="hidden-content tex2jax_ignore" id="hk-fn-8"><div class="fn"><code class="code-inline tex2jax_ignore">en.wikipedia.org/wiki/Least_squares</code></div></div>
 </div>

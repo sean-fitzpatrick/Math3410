@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="en-US" dir="ltr">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
 <!--*                                          *-->
@@ -11,9 +11,18 @@
 <meta name="robots" content="noindex, nofollow">
 </head>
 <body class="ignore-math">
-<article class="remark remark-like"><h5 class="heading">
-<span class="type">Remark</span><span class="space"> </span><span class="codenumber">4.6.3</span><span class="period">.</span>
-</h5>
-<div class="para">The version of the <abbr class="initialism">SVD</abbr> given above is not used in computations, since it tends to be more resource intensive. In particular, it requires us to store more information than necessary: the last <span class="process-math">\(n-r\)</span> rows of <span class="process-math">\(Q\text{,}\)</span> and the last <span class="process-math">\(m-r\)</span> columns of <span class="process-math">\(P\text{,}\)</span> get multiplied by columns/rows of zeros in <span class="process-math">\(\Sigma_A\text{,}\)</span> so we don’t really need to keep track of these columns.</div> <div class="para">Instead, most algorithms that you find will give the <span class="process-math">\(r\times r\)</span> diagonal matrix <span class="process-math">\(D_A\text{,}\)</span> consisting of the nonzero singular values, and <span class="process-math">\(P\)</span> will be replaced by the <span class="process-math">\(m\times r\)</span> matrix consisting of its first <span class="process-math">\(r\)</span> columns, while <span class="process-math">\(Q\)</span> gets replaced by the <span class="process-math">\(r\times n\)</span> matrix consisting of its first <span class="process-math">\(r\)</span> rows. The resulting product is still equal to the original matrix.</div> <div class="para">In some cases, even the matrix <span class="process-math">\(D_A\)</span> is too large, and a decision is made to truncate to some smaller subset of singular values. In this case, the resulting product is no longer equal to the original matrix, but it does provide an approximation. A discussion can be found <a class="external" href="https://en.wikipedia.org/wiki/Singular_value_decomposition#Reduced_SVDs" target="_blank">on Wikipedia</a><a href="" class="fn-knowl original" data-knowl="./knowl/fn-14-hidden.html" title="Footnote 4.6.2"><sup> 2 </sup></a>.</div></article><span class="incontext"><a href="section-matrix-factor.html#remark-18" class="internal">in-context</a></span>
+<article class="remark remark-like"><h3 class="heading">
+<span class="type">Remark</span><span class="space"> </span><span class="codenumber">4.1.7</span><span class="period">.</span>
+</h3>
+<div class="para logical">
+<div class="para">A careful study of eigenvalues and eigenvectors relies heavily on polynomials. An interesting fact is that we can plug any square matrix into a polynomial! Given the polynomial <span class="process-math">\(p(x) = a_0+a_1x+a_2 x^2 + \cdots + a_nx^n\)</span> and an <span class="process-math">\(n\times n\)</span> matrix <span class="process-math">\(A\text{,}\)</span> we define</div>
+<div class="displaymath process-math">
+\begin{equation*}
+p(A) = a_0I_n+a_1A+a_2A^2+\cdots+a_nA^n\text{.}
+\end{equation*}
+</div>
+<div class="para">Note the use of the identity matrix in the first term, since it doesn’t make sense to add a scalar to a matrix.</div>
+</div> <div class="para">One interesting aspect of this is the relationship between the eigenvalues of <span class="process-math">\(A\)</span> and the eigenvalues of <span class="process-math">\(p(A)\text{.}\)</span> For example, if <span class="process-math">\(A\)</span> has the eigenvalue <span class="process-math">\(\lambda\text{,}\)</span> see if you can prove that <span class="process-math">\(A^k\)</span> has the eigenvalue <span class="process-math">\(\lambda^k\text{.}\)</span>
+</div></article><span class="incontext"><a href="sec-eigen-basics.html#remark-18" class="internal">in-context</a></span>
 </body>
 </html>
