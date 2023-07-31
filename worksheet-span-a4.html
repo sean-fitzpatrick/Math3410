@@ -507,7 +507,7 @@ eBookConfig.enable_chatcodes =  false;
 \ww=c_1\vv_1+c_2\vv_2+\cdots +c_k\vv_k\text{?}
 \end{equation*}
 </div>
-</div> <div class="para" id="p-384">In any finite-dimensional vector space, this last question can be turned into a system of equations. If that system has a solution, then yes — your vector is in the span. If the system is inconsistent, then the answer is no.</div></section><section class="onepage" id="page-1"><article class="exercise exercise-like" id="exercise-25"><h3 class="heading"><span class="codenumber">1<span class="period">.</span></span></h3>
+</div> <div class="para" id="p-384">In any finite-dimensional vector space, this last question can be turned into a system of equations. If that system has a solution, then yes — your vector is in the span. If the system is inconsistent, then the answer is no.</div></section><section class="onepage" id="page-1"><article class="exercise exercise-like" id="ex-ws-span-1"><h3 class="heading"><span class="codenumber">1<span class="period">.</span></span></h3>
 <div class="para logical" id="p-385">
 <div class="para">Determine whether or not the vector <span class="process-math">\(\ww=\langle 3,-1, 4, 2\rangle\)</span> in <span class="process-math">\(\R^4\)</span> belongs to the span of the vectors</div>
 <div class="displaymath process-math">
@@ -515,10 +515,9 @@ eBookConfig.enable_chatcodes =  false;
 \langle 2, 1, 4, -3\rangle, \langle 0, 2, 1, 4\rangle, \langle -1, 1, 0, 2\rangle\text{.}
 \end{equation*}
 </div>
-</div>
-<div class="workspace" data-space="1.6in"></div></article> <div class="para" id="p-386">To assist with solving this problem, a code cell is provided below. Once you have determined the augmented matrix of your system of equations, see <a href="sec-sympy.html" class="internal" title="Section B.3: SymPy for linear algebra">Section B.3</a> for details on how to enter your matrix, and then compute its reduced row-echelon form.</div> <pre class="ptx-sagecell sagecell-sage" id="sage-9"><script type="text/x-sage">from sympy import Matrix, init_printing
+</div></article> <div class="para" id="p-386">To assist with solving this problem, a code cell is provided below. Once you have determined the augmented matrix of your system of equations, see <a href="sec-sympy.html" class="internal" title="Section B.3: SymPy for linear algebra">Section B.3</a> for details on how to enter your matrix, and then compute its reduced row-echelon form.</div> <pre class="ptx-sagecell sagecell-sage" id="sage-9"><script type="text/x-sage">from sympy import Matrix, init_printing
 init_printing()
-</script></pre> <article class="exercise exercise-like" id="exercise-26"><h3 class="heading"><span class="codenumber">2<span class="period">.</span></span></h3>
+</script></pre> <article class="exercise exercise-like" id="ex-ws-span-2"><h3 class="heading"><span class="codenumber">2<span class="period">.</span></span></h3>
 <div class="para logical" id="p-387">
 <div class="para">Determine whether or not the polynomial <span class="process-math">\(q(x) = 4-6x-11x^2\)</span> belongs to the span of the polynomials</div>
 <div class="displaymath process-math">
@@ -526,8 +525,7 @@ init_printing()
 p_1(x) = x-3x^2, p_2(x)=2-x, p_3(x) = -1+4x+x^2\text{.}
 \end{equation*}
 </div>
-</div>
-<div class="workspace" data-space="1.6in"></div></article> <pre class="ptx-sagecell sagecell-sage" id="sage-10"><script type="text/x-sage"></script></pre> <div class="para" id="p-388"></div></section><section class="onepage" id="page-2"><div class="para" id="p-389">For our next activity, we are going to look at <abbr class="initialism">RGB</abbr> colours. Here, <abbr class="initialism">RGB</abbr> stands for Red, Green, Blue. All colours displayed by your computer monitor can be expressed in terms of these colours.</div> <div class="para" id="p-390">First, we load some Python libraries we’ll need. These are intended for use in a Jupyter notebook and won’t run properly if you are using Sagecell in the <abbr class="initialism">HTML</abbr> textbook.</div> <pre class="ptx-sagecell sagecell-sage" id="sage-11"><script type="text/x-sage">import ipywidgets as wid
+</div></article> <pre class="ptx-sagecell sagecell-sage" id="sage-10"><script type="text/x-sage"></script></pre> <div class="para" id="p-388"></div></section><section class="onepage" id="page-2"><div class="para" id="p-389">For our next activity, we are going to look at <abbr class="initialism">RGB</abbr> colours. Here, <abbr class="initialism">RGB</abbr> stands for Red, Green, Blue. All colours displayed by your computer monitor can be expressed in terms of these colours.</div> <div class="para" id="p-390">First, we load some Python libraries we’ll need. These are intended for use in a Jupyter notebook and won’t run properly if you are using Sagecell in the <abbr class="initialism">HTML</abbr> textbook.</div> <pre class="ptx-sagecell sagecell-sage" id="sage-11"><script type="text/x-sage">import ipywidgets as wid
 import matplotlib.pyplot as plt
 </script></pre> <div class="para" id="p-391">Next, we will create a widget that lets us select values for red, green, and blue. The <abbr class="initialism">RGB</abbr> colour system assigns 8-bit values to each colour. Possible values for each range from 0 to 255; this indicates how much of each colour will be blended to create the colour you want. Extensive information on the <abbr class="initialism">RGB</abbr> colour system can be found <a class="external" href="https://en.wikipedia.org/wiki/RGB_color_model" target="_blank">on wikipedia</a><a href="" data-knowl="" class="id-ref fn-knowl original" data-refid="hk-fn-4" id="fn-4"><sup> 1 </sup></a>, and there are a number of good online resources about the use of <abbr class="initialism">RGB</abbr> in web design, <a class="external" href="https://www.w3schools.com/colors/colors_rgb.asp" target="_blank">such as this one from w3schools</a><a href="" data-knowl="" class="id-ref fn-knowl original" data-refid="hk-fn-5" id="fn-5"><sup> 2 </sup></a>.</div> <pre class="ptx-sagecell sagecell-sage" id="sage-12"><script type="text/x-sage">r=wid.IntSlider(
     value=155,
@@ -552,11 +550,9 @@ b=wid.IntSlider(
 )
 display(r,g,b)
 </script></pre> <div class="para" id="p-392">By moving the sliders generated above, you can create different colours. To see what colour you’ve created by moving the sliders, run the code below.</div> <pre class="ptx-sagecell sagecell-sage" id="sage-13"><script type="text/x-sage">plt.imshow([[(r.value/255, g.value/255, b.value/255)]])
-</script></pre></section><section class="onepage" id="page-3"><article class="exercise exercise-like" id="exercise-27"><h3 class="heading"><span class="codenumber">3<span class="period">.</span></span></h3>
-<div class="para" id="p-393">In what ways can you explain the <abbr class="initialism">RGB</abbr> colour system in terms of span?</div>
-<div class="workspace" data-space="3in"></div></article> <pre class="ptx-sagecell sagecell-html" id="sage-14"><script type="text/x-sage"></script></pre> <article class="exercise exercise-like" id="exercise-28"><h3 class="heading"><span class="codenumber">4<span class="period">.</span></span></h3>
-<div class="para" id="p-394">Why would it nonetheless be inappropriate to describe the set of all <abbr class="initialism">RGB</abbr> colours as a vector space?</div>
-<div class="workspace" data-space="4in"></div></article> <pre class="ptx-sagecell sagecell-html" id="sage-15"><script type="text/x-sage"></script></pre></section></section>
+</script></pre></section><section class="onepage" id="page-3"><article class="exercise exercise-like" id="ex-ws-span-3"><h3 class="heading"><span class="codenumber">3<span class="period">.</span></span></h3>
+<div class="para" id="p-393">In what ways can you explain the <abbr class="initialism">RGB</abbr> colour system in terms of span?</div></article> <pre class="ptx-sagecell sagecell-html" id="sage-14"><script type="text/x-sage"></script></pre> <article class="exercise exercise-like" id="ex-ws-span-4"><h3 class="heading"><span class="codenumber">4<span class="period">.</span></span></h3>
+<div class="para" id="p-394">Why would it nonetheless be inappropriate to describe the set of all <abbr class="initialism">RGB</abbr> colours as a vector space?</div></article> <pre class="ptx-sagecell sagecell-html" id="sage-15"><script type="text/x-sage"></script></pre></section></section>
 </div>
 <div class="ptx-content-footer">
 <a class="previous-button button" href="sec-span.html" title="Previous"><span class="icon">&lt;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon">^</span><span class="name">Top</span></a><a class="next-button button" href="sec-independence.html" title="Next"><span class="name">Next</span><span class="icon">&gt;</span></a>

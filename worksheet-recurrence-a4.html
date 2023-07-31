@@ -555,7 +555,7 @@ p(x) = (x-\lambda_1)^{m_1}(x-\lambda_2)^{m_2}\cdots (x-\lambda_p)^{m_p}\text{,}
 \end{align*}
 </div>
 </div> <div class="para" id="p-1187">Once we have a basis, we can apply the given coefficients to determine how to write a particular sequence as a linear combination of the basis vectors.</div>
-</div></section><section class="onepage" id="page-9"><article class="exercise exercise-like" id="exercise-110"><h3 class="heading"><span class="codenumber">1<span class="period">.</span></span></h3>
+</div></section><section class="onepage" id="page-9"><article class="exercise exercise-like" id="ex-recurrence-1"><h3 class="heading"><span class="codenumber">1<span class="period">.</span></span></h3>
 <div class="para logical" id="p-1188">
 <div class="para">Find a basis for the space <span class="process-math">\(V\)</span> of sequences <span class="process-math">\((x_n)\)</span> satisfying the recurrence</div>
 <div class="displaymath process-math">
@@ -564,8 +564,7 @@ x_{n+3}=-2x_n+x_{n+1}+2x_{n+2}\text{.}
 \end{equation*}
 </div>
 </div> <div class="para" id="p-1189">Then find a formula for the sequence satisfying the initial conditions <span class="process-math">\(x_0=3, x_1=-2, x_2=4\text{.}\)</span>
-</div>
-<div class="workspace" data-space="3.75in"></div></article> <div class="para" id="p-1190">To solve this problem, you may use Python code, as outlined below. To get started, load the functions you’ll need from the SymPy library.</div> <pre class="ptx-sagecell sagecell-sage" id="sage-36"><script type="text/x-sage">from sympy import symbols,factor,init_printing
+</div></article> <div class="para" id="p-1190">To solve this problem, you may use Python code, as outlined below. To get started, load the functions you’ll need from the SymPy library.</div> <pre class="ptx-sagecell sagecell-sage" id="sage-36"><script type="text/x-sage">from sympy import symbols,factor,init_printing
 x = symbols('x')
 init_printing()
 </script></pre> <div class="para" id="p-1191">First, determine the associated polynomial for the recurrence.</div> <div class="para" id="p-1192">(Input your polynomial in the cell below. To get proper formatting, wrap your math in <code class="code-inline tex2jax_ignore">$</code> delimiters, and can use <code class="code-inline tex2jax_ignore">^</code> to enter exponents.)</div> <pre class="ptx-sagecell sagecell-html" id="sage-37"><script type="text/x-sage"></script></pre> <div class="para" id="p-1193">Next, factor the polynomial. You can do this using the <code class="code-inline tex2jax_ignore">factor()</code> command. In Python, you will need to enter <code class="code-inline tex2jax_ignore">**</code> for the exponents.</div> <pre class="ptx-sagecell sagecell-sage" id="sage-38"><script type="text/x-sage"></script></pre></section><section class="onepage" id="page-10"><div class="para" id="p-1194">In the cell below, list the roots of the polynomial, and the resulting basis <span class="process-math">\(B\)</span> for the space <span class="process-math">\(V\)</span> of solutions. Recall that if <span class="process-math">\(\lambda\)</span> is a root of the polynomial, then <span class="process-math">\((\lambda^n)\)</span> will be a basis vector for the vector space <span class="process-math">\(V\)</span> of solutions. You may wish to confirm that each of your basis sequences indeed satisfies our recursion.</div> <pre class="ptx-sagecell sagecell-html" id="sage-39"><script type="text/x-sage"></script></pre> <div class="para" id="p-1195">Next, let <span class="process-math">\(s=(x_n)\)</span> be the recursion that satisfies the given initial conditions. We want to write <span class="process-math">\((x_n)\)</span> in terms of the basis we just found. Since our basis has three elements, there is an isomorphism <span class="process-math">\(T:\R^3\to V\text{,}\)</span> where <span class="process-math">\(T(a,b,c)\)</span> is equal to the sequence <span class="process-math">\((x_n)\)</span> in <span class="process-math">\(V\)</span> that satisfies the initial conditions <span class="process-math">\(x_0=a, x_1=b, x_2=c\text{.}\)</span> Thus, our desired sequence is given by <span class="process-math">\(s=T(1,2,1)\text{.}\)</span>
@@ -591,7 +590,7 @@ B = Matrix((1,2,1])
 X = A**(-1)*B
 X
 </script></pre> <div class="para" id="p-1198">Using the solution above, state the answer to this exercise.</div> <pre class="ptx-sagecell sagecell-html" id="sage-41"><script type="text/x-sage"></script></pre> <div class="para" id="p-1199">Now, we leave you with a few more exercises. Recall that if the associated polynomial for your recursion has a repeated root <span class="process-math">\((x-\lambda)^k\text{,}\)</span> then your basis will include the sequences <span class="process-math">\((\lambda^n), (n\lambda^n), \ldots, (n^{k-1}\lambda^n)\text{.}\)</span>
-</div></section><section class="onepage" id="page-11"><article class="exercise exercise-like" id="exercise-111"><h3 class="heading"><span class="codenumber">2<span class="period">.</span></span></h3>
+</div></section><section class="onepage" id="page-11"><article class="exercise exercise-like" id="ex-recurrence-2"><h3 class="heading"><span class="codenumber">2<span class="period">.</span></span></h3>
 <div class="para logical" id="p-1200">
 <div class="para">Find a basis for the space <span class="process-math">\(V\)</span> of sequences <span class="process-math">\((x_n)\)</span> satisfying the recurrence</div>
 <div class="displaymath process-math">
@@ -601,8 +600,7 @@ x_{n+3} = 8x_n-12x_{n+1}+6x_{n+2}\text{.}
 </div>
 <div class="para">Then find a formula for the sequence satisfying the initial conditions <span class="process-math">\(x_0=2, x_1=-5, x_2=3\text{.}\)</span>
 </div>
-</div>
-<div class="workspace" data-space="3in"></div></article> <pre class="ptx-sagecell sagecell-sage" id="sage-42"><script type="text/x-sage"></script></pre> <article class="exercise exercise-like" id="exercise-112"><h3 class="heading"><span class="codenumber">3<span class="period">.</span></span></h3>
+</div></article> <pre class="ptx-sagecell sagecell-sage" id="sage-42"><script type="text/x-sage"></script></pre> <article class="exercise exercise-like" id="ex-recurrence-3"><h3 class="heading"><span class="codenumber">3<span class="period">.</span></span></h3>
 <div class="para logical" id="p-1201">
 <div class="para">Find a basis for the space <span class="process-math">\(V\)</span> of sequences <span class="process-math">\((x_n)\)</span> satisfying the recurrence</div>
 <div class="displaymath process-math">
@@ -612,8 +610,7 @@ x_{n+6} = 72x_n+12x_{n+1}-70x_{n+2}+5x_{n+3}+15x_{n+4}-x_{n+5}\text{.}
 </div>
 <div class="para">Then find a formula for the sequence satisfying the initial conditions <span class="process-math">\(x_0=1, x_1=-2, x_2=1,x_3=2,x_4=-3,x_5=4,x_6=0\text{.}\)</span>
 </div>
-</div>
-<div class="workspace" data-space="3in"></div></article> <pre class="ptx-sagecell sagecell-sage" id="sage-43"><script type="text/x-sage"></script></pre></section></section>
+</div></article> <pre class="ptx-sagecell sagecell-sage" id="sage-43"><script type="text/x-sage"></script></pre></section></section>
 </div>
 <div class="ptx-content-footer">
 <a class="previous-button button" href="worksheet-transformations.html" title="Previous"><span class="icon">&lt;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon">^</span><span class="name">Top</span></a><a class="next-button button" href="ch-orthogonality.html" title="Next"><span class="name">Next</span><span class="icon">&gt;</span></a>

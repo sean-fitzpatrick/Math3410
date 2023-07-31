@@ -496,36 +496,36 @@ var ptx_lunr_docs = [
   "body": " Worksheet: understanding span   In this worksheet, we will attempt to understand the concept of span. Recall from that the span of a set of vectors in a vector space is the set of all linear combinations that can be generated from those vectors.  Therefore, the question Does the vector belong to the span of ? is equivalent to asking, Can I write as a linear combination of the ? , which, in turn, is equivalent to asking:  Do there exist scalars such that ?  In any finite-dimensional vector space, this last question can be turned into a system of equations. If that system has a solution, then yes your vector is in the span. If the system is inconsistent, then the answer is no.     Determine whether or not the vector in belongs to the span of the vectors .   To assist with solving this problem, a code cell is provided below. Once you have determined the augmented matrix of your system of equations, see for details on how to enter your matrix, and then compute its reduced row-echelon form.    Determine whether or not the polynomial belongs to the span of the polynomials .       For our next activity, we are going to look at RGB colours. Here, RGB stands for Red, Green, Blue. All colours displayed by your computer monitor can be expressed in terms of these colours.  First, we load some Python libraries we'll need. These are intended for use in a Jupyter notebook and won't run properly if you are using Sagecell in the HTML textbook.   Next, we will create a widget that lets us select values for red, green, and blue. The RGB colour system assigns 8-bit values to each colour. Possible values for each range from 0 to 255; this indicates how much of each colour will be blended to create the colour you want. Extensive information on the RGB colour system can be found on wikipedia , and there are a number of good online resources about the use of RGB in web design, such as this one from w3schools .   By moving the sliders generated above, you can create different colours. To see what colour you've created by moving the sliders, run the code below.      In what ways can you explain the RGB colour system in terms of span?     Why would it nonetheless be inappropriate to describe the set of all RGB colours as a vector space?     "
 },
 {
-  "id": "exercise-25",
+  "id": "ex-ws-span-1",
   "level": "2",
-  "url": "worksheet-span.html#exercise-25",
+  "url": "worksheet-span.html#ex-ws-span-1",
   "type": "Worksheet Exercise",
   "number": "1.5.1",
   "title": "",
   "body": " Determine whether or not the vector in belongs to the span of the vectors .  "
 },
 {
-  "id": "exercise-26",
+  "id": "ex-ws-span-2",
   "level": "2",
-  "url": "worksheet-span.html#exercise-26",
+  "url": "worksheet-span.html#ex-ws-span-2",
   "type": "Worksheet Exercise",
   "number": "1.5.2",
   "title": "",
   "body": " Determine whether or not the polynomial belongs to the span of the polynomials .  "
 },
 {
-  "id": "exercise-27",
+  "id": "ex-ws-span-3",
   "level": "2",
-  "url": "worksheet-span.html#exercise-27",
+  "url": "worksheet-span.html#ex-ws-span-3",
   "type": "Worksheet Exercise",
   "number": "1.5.3",
   "title": "",
   "body": " In what ways can you explain the RGB colour system in terms of span?  "
 },
 {
-  "id": "exercise-28",
+  "id": "ex-ws-span-4",
   "level": "2",
-  "url": "worksheet-span.html#exercise-28",
+  "url": "worksheet-span.html#ex-ws-span-4",
   "type": "Worksheet Exercise",
   "number": "1.5.4",
   "title": "",
@@ -622,9 +622,9 @@ var ptx_lunr_docs = [
   "body": " Which of the following subsets of are independent?    In each case, we set up the defining equation for independence, collect terms, and then analyze the resulting system of equations. (If you work with polynomials often enough, you can probably jump straight to the matrix. For now, let's work out the details.)  Suppose . Then , so .  And in this case, we don't even need to ask the computer. The first equation gives right away, and putting that into the third equation gives , and the second equation then gives .  Since is the only solution, the set is independent.  Repeating for leads to the equation This gives us:   "
 },
 {
-  "id": "exercise-33",
+  "id": "ex-li-m22",
   "level": "2",
-  "url": "sec-independence.html#exercise-33",
+  "url": "sec-independence.html#ex-li-m22",
   "type": "Exercise",
   "number": "1.6.9",
   "title": "",
@@ -1711,27 +1711,27 @@ var ptx_lunr_docs = [
   "body": "inverse "
 },
 {
-  "id": "exercise-96",
+  "id": "ex-iso-composition",
   "level": "2",
-  "url": "sec-isomorphism.html#exercise-96",
+  "url": "sec-isomorphism.html#ex-iso-composition",
   "type": "Exercise",
   "number": "2.3.7",
   "title": "",
   "body": " Show that the composition of two linear maps is again a linear map.   Suppose we have linear maps , and let . Then , and for any scalar , .  "
 },
 {
-  "id": "exercise-97",
+  "id": "ex-iso-ker-im",
   "level": "2",
-  "url": "sec-isomorphism.html#exercise-97",
+  "url": "sec-isomorphism.html#ex-iso-ker-im",
   "type": "Exercise",
   "number": "2.3.8",
   "title": "",
   "body": " Given transformations and , show that:               This is simpler than it looks! It's mostly a matter of chasing the definitions: see .  "
 },
 {
-  "id": "exercise-98",
+  "id": "ex-iso-inverse-linear",
   "level": "2",
-  "url": "sec-isomorphism.html#exercise-98",
+  "url": "sec-isomorphism.html#ex-iso-inverse-linear",
   "type": "Exercise",
   "number": "2.3.9",
   "title": "",
@@ -1819,36 +1819,36 @@ var ptx_lunr_docs = [
   "body": "image "
 },
 {
-  "id": "exercise-103",
+  "id": "ex-ws-transf-1",
   "level": "2",
-  "url": "worksheet-transformations.html#exercise-103",
+  "url": "worksheet-transformations.html#ex-ws-transf-1",
   "type": "Worksheet Exercise",
   "number": "2.4.1",
   "title": "",
   "body": " Confirm that is a basis for .  "
 },
 {
-  "id": "exercise-104",
+  "id": "ex-ws-transf-2",
   "level": "2",
-  "url": "worksheet-transformations.html#exercise-104",
+  "url": "worksheet-transformations.html#ex-ws-transf-2",
   "type": "Worksheet Exercise",
   "number": "2.4.2",
   "title": "",
   "body": " Write each of the standard basis vectors in terms of this basis.   Suggestion: in each case, this can be done by solving a matrix equation, using the inverse of an appropriate matrix.  "
 },
 {
-  "id": "exercise-105",
+  "id": "ex-ws-transf-3",
   "level": "2",
-  "url": "worksheet-transformations.html#exercise-105",
+  "url": "worksheet-transformations.html#ex-ws-transf-3",
   "type": "Worksheet Exercise",
   "number": "2.4.3",
   "title": "",
   "body": " Determine for , and in so doing, determine the matrix such that .  "
 },
 {
-  "id": "exercise-106",
+  "id": "ex-ws-transf-4",
   "level": "2",
-  "url": "worksheet-transformations.html#exercise-106",
+  "url": "worksheet-transformations.html#ex-ws-transf-4",
   "type": "Worksheet Exercise",
   "number": "2.4.4",
   "title": "",
@@ -1864,27 +1864,27 @@ var ptx_lunr_docs = [
   "body": "column space "
 },
 {
-  "id": "exercise-107",
+  "id": "ex-ws-transf-5",
   "level": "2",
-  "url": "worksheet-transformations.html#exercise-107",
+  "url": "worksheet-transformations.html#ex-ws-transf-5",
   "type": "Worksheet Exercise",
   "number": "2.4.5",
   "title": "",
   "body": " Determine the kernel of .  "
 },
 {
-  "id": "exercise-108",
+  "id": "ex-ws-transf-6",
   "level": "2",
-  "url": "worksheet-transformations.html#exercise-108",
+  "url": "worksheet-transformations.html#ex-ws-transf-6",
   "type": "Worksheet Exercise",
   "number": "2.4.6",
   "title": "",
   "body": " Determine the image of .  "
 },
 {
-  "id": "exercise-109",
+  "id": "ex-ws-transf-7",
   "level": "2",
-  "url": "worksheet-transformations.html#exercise-109",
+  "url": "worksheet-transformations.html#ex-ws-transf-7",
   "type": "Worksheet Exercise",
   "number": "2.4.7",
   "title": "",
@@ -1900,27 +1900,27 @@ var ptx_lunr_docs = [
   "body": " Worksheet: linear recurrences    In this worksheet, we will sketch some of the basic ideas related to linear recurrence. For further reading, and more information, the reader is directed to Section 7.5 of Linear Algebra with Applications , by Keith Nicholson.  A linear recurrence of length is a sequence that is recursively defined, with successive terms in the sequence defined in terms of the previous terms, via a linear recursion formula of the form . (Here we assume to have the appropriate length.) The most famous example of a linear recurrence is, of course, the Fibonacci sequence, which is defined by , and for all .  Recall from that the set of all sequences of real numbers is a vector space, denoted by .  The set of all sequences satisfying a linear recursion of length form a subspace of the vector space of all real-valued sequences. (Can you prove this?) Since each sequence is determined by the initial conditions , each such subspace is isomorphic to .  The goal of this worksheeet is to understand how to obtain closed form expressions for a recursively defined sequence using linear algebra. That is, rather than having to generate terms of the sequence one-by-one using the recursion formula, we want a function of that will produce each term in the sequence.  Since we know the dimension of the space of solutions, it suffices to understand two things:   How to produce a basis for .    How to write a given solution in terms of that basis.     Consider a geometric sequence, of the form . If this sequence satisfies the recursion , then (with ) , or . That is, is a root of the associated polynomial .  Thus, if the associated polynomial has roots , we know that the sequences satisfy our recursion. The remaining difficulty is what to do when has repeated roots. We will not prove it here, but if is a factor of , then the sequences all satisfy the recursion.  If we can factor completely over the reals as , then a basis for the space of solutions is given by .  Once we have a basis, we can apply the given coefficients to determine how to write a particular sequence as a linear combination of the basis vectors.      Find a basis for the space of sequences satisfying the recurrence .  Then find a formula for the sequence satisfying the initial conditions .   To solve this problem, you may use Python code, as outlined below. To get started, load the functions you'll need from the SymPy library.   First, determine the associated polynomial for the recurrence.  (Input your polynomial in the cell below. To get proper formatting, wrap your math in $ delimiters, and can use ^ to enter exponents.)   Next, factor the polynomial. You can do this using the factor() command. In Python, you will need to enter ** for the exponents.     In the cell below, list the roots of the polynomial, and the resulting basis for the space of solutions. Recall that if is a root of the polynomial, then will be a basis vector for the vector space of solutions. You may wish to confirm that each of your basis sequences indeed satisfies our recursion.   Next, let be the recursion that satisfies the given initial conditions. We want to write in terms of the basis we just found. Since our basis has three elements, there is an isomorphism , where is equal to the sequence in that satisfies the initial conditions . Thus, our desired sequence is given by .  Let be the vectors such that . (That is, write out the first three terms in each sequence in your basis to get three vectors.) We then need to find scalars such that . We will then have , and we recall that the sequences are the sequences in our basis .  Set up this system, and then use the computer to solve. Let A be the coefficient matrix for the system, which you will need to input into the cell below, and let B be the column vector containing the initial conditions.   Using the solution above, state the answer to this exercise.   Now, we leave you with a few more exercises. Recall that if the associated polynomial for your recursion has a repeated root , then your basis will include the sequences .     Find a basis for the space of sequences satisfying the recurrence . Then find a formula for the sequence satisfying the initial conditions .     Find a basis for the space of sequences satisfying the recurrence . Then find a formula for the sequence satisfying the initial conditions .     "
 },
 {
-  "id": "exercise-110",
+  "id": "ex-recurrence-1",
   "level": "2",
-  "url": "worksheet-recurrence.html#exercise-110",
+  "url": "worksheet-recurrence.html#ex-recurrence-1",
   "type": "Worksheet Exercise",
   "number": "2.5.1",
   "title": "",
   "body": " Find a basis for the space of sequences satisfying the recurrence .  Then find a formula for the sequence satisfying the initial conditions .  "
 },
 {
-  "id": "exercise-111",
+  "id": "ex-recurrence-2",
   "level": "2",
-  "url": "worksheet-recurrence.html#exercise-111",
+  "url": "worksheet-recurrence.html#ex-recurrence-2",
   "type": "Worksheet Exercise",
   "number": "2.5.2",
   "title": "",
   "body": " Find a basis for the space of sequences satisfying the recurrence . Then find a formula for the sequence satisfying the initial conditions .  "
 },
 {
-  "id": "exercise-112",
+  "id": "ex-recurrence-3",
   "level": "2",
-  "url": "worksheet-recurrence.html#exercise-112",
+  "url": "worksheet-recurrence.html#ex-recurrence-3",
   "type": "Worksheet Exercise",
   "number": "2.5.3",
   "title": "",
@@ -2503,36 +2503,36 @@ var ptx_lunr_docs = [
   "body": "dual basis "
 },
 {
-  "id": "exercise-143",
+  "id": "ex-dual-basis1",
   "level": "2",
-  "url": "worksheet-dual-basis.html#exercise-143",
+  "url": "worksheet-dual-basis.html#ex-dual-basis1",
   "type": "Worksheet Exercise",
   "number": "3.4.1",
   "title": "",
   "body": " Show that the dual basis is indeed a basis for .   We know that . Since there are vectors in the dual basis, it's enough to show that they're linearly independent. Suppose that for some scalars .  This means that for all ; in particular, this must be true for the basis vectors .  By the definition of the dual basis, for each we have . Thus, for each , and therefore, the are linearly independent.  "
 },
 {
-  "id": "exercise-144",
+  "id": "ex-dual-basis2",
   "level": "2",
-  "url": "worksheet-dual-basis.html#exercise-144",
+  "url": "worksheet-dual-basis.html#ex-dual-basis2",
   "type": "Worksheet Exercise",
   "number": "3.4.2",
   "title": "",
   "body": " Confirm that (a) does indeed define an element of ; that is, a linear map from to , and (b) that is linear.   There are two things to check. First, we show that for each . Since and , it follows that is a map from to . But we must also show that it's linear.  Given , we have . Similarly, for any scalar , . This shows that .  Next, we need to show that is a linear map. Let , and let be a scalar. We have: , and . This follows from the vector space structure on any space of functions. For a vector , we have .  "
 },
 {
-  "id": "exercise-145",
+  "id": "ex-dual-basis3",
   "level": "2",
-  "url": "worksheet-dual-basis.html#exercise-145",
+  "url": "worksheet-dual-basis.html#ex-dual-basis3",
   "type": "Worksheet Exercise",
   "number": "3.4.3",
   "title": "",
   "body": " Let be the space of all polynomials, and let be the derivative transformation . Let be the linear functional defined by .  What is the linear functional ?   Let be a polynomial. Then . By the Fundamental Theorem of Calculus (or a tedious calculation, if you prefer), we get .  "
 },
 {
-  "id": "exercise-146",
+  "id": "ex-dual-basis4",
   "level": "2",
-  "url": "worksheet-dual-basis.html#exercise-146",
+  "url": "worksheet-dual-basis.html#ex-dual-basis4",
   "type": "Worksheet Exercise",
   "number": "3.4.4",
   "title": "",
@@ -2548,9 +2548,9 @@ var ptx_lunr_docs = [
   "body": "annihilator "
 },
 {
-  "id": "exercise-147",
+  "id": "ex-dual-basis5",
   "level": "2",
-  "url": "worksheet-dual-basis.html#exercise-147",
+  "url": "worksheet-dual-basis.html#ex-dual-basis5",
   "type": "Worksheet Exercise",
   "number": "3.4.5",
   "title": "",
@@ -2602,36 +2602,36 @@ var ptx_lunr_docs = [
   "body": " Confirm that the system has no solution.  "
 },
 {
-  "id": "exercise-149",
+  "id": "ex-least-sq1",
   "level": "2",
-  "url": "worksheet-least-squares.html#exercise-149",
+  "url": "worksheet-least-squares.html#ex-least-sq1",
   "type": "Worksheet Exercise",
   "number": "3.5.2",
   "title": "",
   "body": " Find an orthogonal basis for the column space of .  "
 },
 {
-  "id": "exercise-150",
+  "id": "ex-least-sq2",
   "level": "2",
-  "url": "worksheet-least-squares.html#exercise-150",
+  "url": "worksheet-least-squares.html#ex-least-sq2",
   "type": "Worksheet Exercise",
   "number": "3.5.3",
   "title": "",
   "body": " Compute the projection of onto the column space of .  "
 },
 {
-  "id": "exercise-151",
+  "id": "ex-least-sq3",
   "level": "2",
-  "url": "worksheet-least-squares.html#exercise-151",
+  "url": "worksheet-least-squares.html#ex-least-sq3",
   "type": "Worksheet Exercise",
   "number": "3.5.4",
   "title": "",
   "body": " Solve the system for .  "
 },
 {
-  "id": "exercise-152",
+  "id": "ex-least-sq4",
   "level": "2",
-  "url": "worksheet-least-squares.html#exercise-152",
+  "url": "worksheet-least-squares.html#ex-least-sq4",
   "type": "Worksheet Exercise",
   "number": "3.5.5",
   "title": "",
@@ -2647,18 +2647,18 @@ var ptx_lunr_docs = [
   "body": "residuals "
 },
 {
-  "id": "exercise-153",
+  "id": "ex-least-sq5",
   "level": "2",
-  "url": "worksheet-least-squares.html#exercise-153",
+  "url": "worksheet-least-squares.html#ex-least-sq5",
   "type": "Worksheet Exercise",
   "number": "3.5.6",
   "title": "",
   "body": " Find the equation of the best fit line for the following set of data points: .  "
 },
 {
-  "id": "exercise-154",
+  "id": "ex-least-sq6",
   "level": "2",
-  "url": "worksheet-least-squares.html#exercise-154",
+  "url": "worksheet-least-squares.html#ex-least-sq6",
   "type": "Worksheet Exercise",
   "number": "3.5.7",
   "title": "",
@@ -2926,9 +2926,9 @@ var ptx_lunr_docs = [
   "body": "symmetric "
 },
 {
-  "id": "exercise-166",
+  "id": "ex-diagonal-prove-symmetric",
   "level": "2",
-  "url": "subsec-ortho-diag.html#exercise-166",
+  "url": "subsec-ortho-diag.html#ex-diagonal-prove-symmetric",
   "type": "Exercise",
   "number": "4.2.1",
   "title": "",
@@ -2980,9 +2980,9 @@ var ptx_lunr_docs = [
   "body": " Real Spectral Theorem   The following are equivalent for a real matrix :    is symmetric.    There is an orthonormal basis for consisting of eigenvectors of .     is orthogonally diagonalizable.      "
 },
 {
-  "id": "exercise-167",
+  "id": "ex-diagonal-orthogonal",
   "level": "2",
-  "url": "subsec-ortho-diag.html#exercise-167",
+  "url": "subsec-ortho-diag.html#ex-diagonal-orthogonal",
   "type": "Exercise",
   "number": "4.2.7",
   "title": "",
@@ -3061,9 +3061,9 @@ var ptx_lunr_docs = [
   "body": "  The standard inner product on is defined as follows: given and , .   "
 },
 {
-  "id": "exercise-171",
+  "id": "ex-complex-compute-dot",
   "level": "2",
-  "url": "sec-complex.html#exercise-171",
+  "url": "sec-complex.html#ex-complex-compute-dot",
   "type": "Exercise",
   "number": "4.4.2",
   "title": "",
@@ -3124,9 +3124,9 @@ var ptx_lunr_docs = [
   "body": "  An matrix is called hermitian if , and unitary if . (A matrix is skew-hermitian if .)   "
 },
 {
-  "id": "exercise-173",
+  "id": "ex-complex-check-props",
   "level": "2",
-  "url": "sec-complex.html#exercise-173",
+  "url": "sec-complex.html#ex-complex-check-props",
   "type": "Exercise",
   "number": "4.4.8",
   "title": "",
@@ -3160,9 +3160,9 @@ var ptx_lunr_docs = [
   "body": " Spectral Theorem   If is an hermitian matrix, then there exists an orthonormal basis of consisting of eigenvectors of . Moreover, the matrix whose columns consist of those eigenvectors is unitary, and the matrix is diagonal.   "
 },
 {
-  "id": "exercise-174",
+  "id": "ex-complex-diagonalize",
   "level": "2",
-  "url": "sec-complex.html#exercise-174",
+  "url": "sec-complex.html#ex-complex-diagonalize",
   "type": "Exercise",
   "number": "4.4.12",
   "title": "",
@@ -3286,63 +3286,63 @@ var ptx_lunr_docs = [
   "body": "linear dynamical system "
 },
 {
-  "id": "exercise-183",
+  "id": "ex-dynamical-recurrence-2",
   "level": "2",
-  "url": "worksheet-dynamical.html#exercise-183",
+  "url": "worksheet-dynamical.html#ex-dynamical-recurrence-2",
   "type": "Worksheet Exercise",
   "number": "4.5.1",
   "title": "",
   "body": " Consider a recurrence of length 2, of the form .   According to , what is the polynomial associated to this recurrence?   Let , for each , and let . Show that .   Compute the characteristic polynomial of . What do you observe?  "
 },
 {
-  "id": "exercise-184",
+  "id": "ex-dynamical-recurrence-3",
   "level": "2",
-  "url": "worksheet-dynamical.html#exercise-184",
+  "url": "worksheet-dynamical.html#ex-dynamical-recurrence-3",
   "type": "Worksheet Exercise",
   "number": "4.5.2",
   "title": "",
   "body": " For a recurrence of length 3, given by :   Determine a matrix such that , where .   Compute the characteristic polynomial of , and compare it to the associated polynomial of the recurrence.   Show that if is an eigenvalue of , then is an associated eigenvector.  "
 },
 {
-  "id": "exercise-185",
+  "id": "ex-dynamical-fibonacci",
   "level": "2",
-  "url": "worksheet-dynamical.html#exercise-185",
+  "url": "worksheet-dynamical.html#ex-dynamical-fibonacci",
   "type": "Worksheet Exercise",
   "number": "4.5.3",
   "title": "",
   "body": " Consider the Fibonacci sequence, defined by , and . Let be the matrix associated to this sequence.   State the matrix , and show that has eigenvalues , with associated eigenvectors .   Let , let , and let , where gives the initial values of the sequence.  Show that .   Note that tells us that although the Fibonacci sequence is not a geometric sequence, it is the sum of two geometric sequences!  By considering the numerical values of the eigenvalues and , explain why we can nonetheless treat the Fibonacci sequence as approximately geometric when is large.  (This is true more generally: if a matrix has one eigenvalue that is larger in absolute value than all the others, this eigenvalue is called the dominant eigenvalue . If is the matrix of some linear recurrence, and is diagonalizable, then we can consider the sequence as a sum of geometric sequences that will become approximately geometric in the long run.)  "
 },
 {
-  "id": "exercise-186",
+  "id": "ex-dynamical-predator",
   "level": "2",
-  "url": "worksheet-dynamical.html#exercise-186",
+  "url": "worksheet-dynamical.html#ex-dynamical-predator",
   "type": "Worksheet Exercise",
   "number": "4.5.4",
   "title": "",
   "body": " As a more practical example, consider the following (over-simplified) predator-prey system. It is based on an example in Interactive Linear Algebra , by Margalit, Rabinoff, and Williams, but adapted to the wildlife here in Lethbridge. An ecosystem contains both coyotes and deer. Initially, there is a population of coyotes, and deer.  We assume the following:   the share of the deer population eaten by a typical coyote in a year is deer    in the absence of the coyotes, the deer population would increase by % per year     % of the coyote population dies each year of natural causes    the growth rate of the coyote population depends on the number of deer: for each 100 deer, coyote pups will survive to adulthood.     If we let denote the number of deer after years, and the number of coyotes, then we have , or, in matrix form, , where and .  After years, the two populations will be given by , where gives the initial populations of the two species. If possible, we would like to be able to find a closed-form formula for , which would allow us to analyze the long-term predictions of our model.   Analyze the eigenvalues of this matrix, and diagonalize. The sympy library won't be up to the task. Instead, some combination of numpy and scipy , as described by Patrick Walls on his website , will be needed.   The eigenvalues turn out to be complex! What does that tell you about the nature of the system? What is the long-term behaviour of this system?   Remember that those complex terms can be combined using sine and cosine functions: since is a real matrix, the eigenvalues will have the form , where and are real. In polar form, for some and , and by de Moivre's Theorem, .   What if you adjust the parameters? Can you come up with a system where both species flourish? Or one where they both disappear? Or one where the populations oscillate regularly?   Referring to the hint from , note that the size of the populations will depend on the modulus of the eigenvalues. For what values of will the populations decline\/increase\/remain steady?   You may have read this while wondering, Does Sean actually know anything about ecology and population dynamics? Did he just make up those numbers?   The answers are, respectively, no, and yes. Can you come up with numbers that are based on a realistic example? What does our model predict in that case? Is it accurate?  "
 },
 {
-  "id": "exercise-187",
+  "id": "ex-dynamical-markov",
   "level": "2",
-  "url": "worksheet-dynamical.html#exercise-187",
+  "url": "worksheet-dynamical.html#ex-dynamical-markov",
   "type": "Worksheet Exercise",
   "number": "4.5.5",
   "title": "",
   "body": " A special type of linear dynamical system occurs when the matrix is stochastic . A stochastic matrix is one where each entry of the matrix is between and , and all of the columns of the matrix sum to .  The reason for these conditions is that the entries of a stochastic matrix represent probabilities; in particular, they are transition probabilities . That is, each number represents the probability of one state changing to another.  If a system can be in one of possible states, we represent the system by an vector , whose entries indicate the probability that the system is in a given state at time . If we know that the system starts out in a particular state, then will have a in one of its entries, and everywhere else.  A Markov chain is given by such an initial vector, and a stochastic matrix. As an example, we will consider the following scenario, described in the book Shape , by Jordan Ellenberg:  A mosquito is born in a swamp, which we will call Swamp A. There is another nearby swamp, called Swamp B. Observational data suggests that when a mosquito is at Swamp A, there is a 40% chance that it will remain there, and a 60% chance that it will move to Swamp B. When the mosquito is at Swamp B, there is a 70% chance that it will remain, and a 30% chance that it will return to Swamp A.   Give a stochastic matrix and a vector that represent the transition probabilities and initial state given above.   By diagonalizing the matrix , determine the long-term probability that the mosquito will be found in either swamp.   You should have found that one of the eigenvalues of was . The corresponding eigenvector satisfies . This is known as a steady-state vector : if our system begins with state , it will remain there forever.  Confirm that if the eigenvector is rescaled so that its entries sum to 1, the resulting values agree with the long-term probabilities found in the previous part.  "
 },
 {
-  "id": "exercise-188",
+  "id": "ex-dynamical-stochastic",
   "level": "2",
-  "url": "worksheet-dynamical.html#exercise-188",
+  "url": "worksheet-dynamical.html#ex-dynamical-stochastic",
   "type": "Worksheet Exercise",
   "number": "4.5.6",
   "title": "",
   "body": " A stochastic matrix is called regular some power has all positive entries. It is a theorem that every regular stochastic matrix has a steady-state vector.   Prove that if is a stochastic matrix with no entry equal to zero, then is an eigenvalue of .   Prove that the product of two stochastic matrices is stochastic. Conclude that if is stochastic, so is for each .   Also prove that if has positive entries for some , then is an eigenvalue of .   You have already proved that a stochastic matrix with positive entries has eigenvalue , and that a power of a stochastic matrix is stochastic. If has positive entries for some , what eigenvalue must it have? You may assume (it is true, but you do not have to prove it) that will also have positive entries.  "
 },
 {
-  "id": "exercise-189",
+  "id": "ex-dynamical-markov-example",
   "level": "2",
-  "url": "worksheet-dynamical.html#exercise-189",
+  "url": "worksheet-dynamical.html#ex-dynamical-markov-example",
   "type": "Worksheet Exercise",
   "number": "4.5.7",
   "title": "",
@@ -3520,9 +3520,9 @@ var ptx_lunr_docs = [
   "body": " The matrix of a linear transformation  Recall from Example in Chapter that given any matrix , we can define the matrix transformation by , where we view as an column vector.  Conversely, given any linear map , if we let denote the standard basis of , then the matrix is such that .  We have already discussed the fact that this idea generalizes: given a linear transformation , where and are finite-dimensional vector spaces, it is possible to represent as a matrix transformation.  The representation depends on choices of bases for both and . Recall the definition of the coefficient isomorphism, from Definition in Section . If and , this gives us isomorphisms and depending on the choice of a basis for and a basis for . These isomorphisms define a matrix transformation according to the diagram we gave in Figure .   What is the size of the matrix used for the matrix transformation ?          Correct! We need to be able to multiply on the right by an column vector, and get an column vector as output.           The domain of is , and the product is only defined if the number of columns ( ) is equal to the dimension of the domain.           The domain of is , and the product is only defined if the number of columns ( ) is equal to the dimension of the domain.           Although the product would be defined in this case, the result would be a vector in , and we want a vector in .     We should stress one important point about the coefficient isomorphism, however. It depends on the choice of basis, but also on the order of the basis elements. Thus, we generally will work with an ordered basis in this chapter. That is, rather than simply thinking of our basis as a set, we will think of it as an ordered list. Order matters, since given a basis , we rely on the fact that we can write any vector uniquely as in order to make the assignment .   Show that the coefficient isomorphism is, indeed, a linear isomorphism from to .   It's clear that , since the only way to write the zero vector in in terms of (or, indeed, any independent set) is to set all the scalars equal to zero.  If we have two vectors given by , then , so .  Finally, for any scalar , we have .  This shows that is linear. To see that is an isomorphism, we can simply note that takes the basis to the standard basis of . Alternatively, we can give the inverse: is given by .   Given and coefficient isomorphisms , the map is a linear transformation, and the matrix of this transformation gives a representation of . Explicitly, let be an ordered basis for , and let be an ordered basis for . Since for each , there exist unique scalars , with and such that for . This gives us the matrix . Notice that the first column of is , the second column is , and so on.  Given , write , so that . Then .  On the other hand, . Therefore, . Thus, we see that , or , as expected.   The matrix of a linear map   Let and be finite-dimensional vector spaces, and let be a linear map. Let and be ordered bases for and , respectively. Then the matrix  of with respect to the bases and is defined by .    In other words, is the unique matrix such that . This gives the defining property , as was demonstrated above.   Suppose is given by . Compute the matrix of with respect to the bases of and of .   We have . Thus, . To confirm, note that , while on the other hand, .   When we compute the matrix of a transformation with respect to a non-standard basis, we don't have to worry about how to write vectors in the domain in terms of that basis. Instead, we simply plug the basis vectors into the transformation, and then determine how to write the output in terms of the basis of the codomain. However, if we want to use this matrix to compute values of , then we need a systematic way of writing elements of in terms of the given basis.   Working with the matrix of a transformation   Let be a linear transformation whose matrix is given by with respect to the ordered bases of and of . Find the value of .    We need to write the input in terms of the basis . This amounts to solving the system of equations given by . Of course, we can easily set up and solve this system, but let's try to be systematic, and obtain a more useful result for future problems. Since we can easily determine how to write any polynomial in terms of the standard basis , it suffices to know how to write these three polynomials in terms of our basis.  At first, this seems like more work. After all, we now have three systems to solve: . However, all three systems have the same coefficient matrix, so we can solve them simultaneously, by adding three constants columns to our augmented matrix.  We get the matrix . But this is exactly the augmented matrix we'd right down if we were trying to find the inverse of the matrix whose columns are the coefficient representations of our given basis vectors in terms of the standard basis.  To compute , we use the computer:   Next, we find :   This matrix first converts the coefficient vector for a polynomial with respect to the standard basis into the coefficient vector for our given basis , and then multiplies by the matrix representing our transformation. The result will be the coefficient vector for with respect to the basis .  The polynomial has coefficient vector with respect to the standard basis. We find that :   The coefficients and are the coefficients of with repsect to the basis . Thus, . Note that in the last step we gave the simplified answer , which is simplified primarily in that it is expressed with respect to the standard basis.  Note that we can also introduce the matrix whose columns are the coefficient vectors of the vectors in the basis with respect to the standard basis. The effect of multiplying by is to convert from coefficients with respect to into a coefficient vector with respect to the standard basis. We can then write a new matrix ; this new matrix is now the matrix representation of with respect to the standard bases of and .   We check that , as before.   We find that . This lets us determine that for a general polynomial , , and therefore, our original transformation must have been .    The previous example illustrated some important observations that are true in general. We won't give the general proof, but we sum up the results in a theorem.    Suppose is a linear transformation, and suppose is the matrix of with respect to bases of and of . Let and be any other choice of basis for and , respectively. Let be matrices whose columns are the coefficient vectors of the vectors in with respect to . Then the matrix of with respect to the bases and is .    The relationship between the different maps is illustrated in below. In this figure, the maps and are the identity maps, corresponding to representing the same vector with respect to two different bases. The vertical arrows are the coefficient isomorphisms .  In the HTML version of the book, you can click and drag to rotate the figure below.   Diagramming matrix of a transformation with respect to two different choices of basis        We generally apply in the case that are the standard bases for , since in this case, the matrices are easy to determine, and we can use a computer to calculate and the product .   Suppose has the matrix with respect to the bases of and of . Determine a formula for in terms of a general input .   We must first write our general input in terms of the given basis. With respect to the standard basis , we have the matrix , representing the change from the basis the basis . The basis of is already the standard basis, so we need the matrix :   For a matrix we find . But this is equal to , so .   In textbooks such as Sheldon Axler's Linear Algebra Done Right that focus primarily on linear transformations, the above construction of the matrix of a transformation with respect to choices of bases can be used as a primary motivation for introducing matrices, and determining their algebraic properties. In particular, the rule for matrix multiplication, which can seem peculiar at first, can be seen as a consequence of the composition of linear maps.    Let be finite-dimensional vectors spaces, with ordered bases , respectively. Let and be linear maps. Then .    Let . Then . On the other hand, . Since is invertible, the result follows.    Being able to express a general linear transformation in terms of a matrix is useful, since questions about linear transformations can be converted into questions about matrices that we already know how to solve. In particular,    is an isomorphism if and only if is invertible for some (and hence, all) choice of bases of and of .    The rank of is equal to the rank of (and this does not depend on the choice of basis).    The kernel of is isomorphic to the nullspace of .     Next, we will want to look at two topics in particular. First, if is a linear operator, then it makes sense to consider the matrix obtained by using the same basis for both domain and codomain. Second, we will want to know how this matrix changes if we change the choice of basis.     Let be the vector space of all polynomials of degree or less in the variable .  Let be the linear transformation defined by . That is, ( D ) is the derivative transformation. Let be ordered bases for and , respectively. Find the matrix for relative to the basis in the domain and in the codomain.              Let be the vector space of all polynomials of degree or less in the variable . Let be the linear transformation defined by . That is, is the derivative transformation.  Let be ordered bases for and , respectively. Find the matrix for relative to the bases in the domain and in the codomain.              Let be the vector space of all polynomials of degree or less in the variable . Let be the linear transformation defined by . That is, is the derivative transformation.  Let be ordered bases for and , respectively. Find the matrix for relative to the bases in the domain and in the codomain.              Let be the linear transformation defined by Let be bases for and , respectively. Find the matrix for relative to the bases in the domain and in the codomain.              Let be the linear transformation defined by Let be bases for and , respectively. Find the matrix for relative to the bases in the domain and in the codomain.             "
 },
 {
-  "id": "exercise-198",
+  "id": "ex-mc-transf-matrix1",
   "level": "2",
-  "url": "sec-matrix-of-transformation.html#exercise-198",
+  "url": "sec-matrix-of-transformation.html#ex-mc-transf-matrix1",
   "type": "Exercise",
   "number": "5.1.1",
   "title": "",
@@ -3691,9 +3691,9 @@ var ptx_lunr_docs = [
   "body": "  Find the -matrix of the operator given by , with respect to the ordered basis .    We compute . We now need to write each of these in terms of the basis . We can do this by working out how to write each polynomial above in terms of . Or we can be systematic.  Let be the matrix whose columns are given by the coefficient representations of the polynomials in with respect to the standard basis  . For we need to solve the equation for scalars . But this is equivalent to the system , which, in turn, is equivalent to the matrix equation ; that is, . Thus, . Similarly, , and . Using the computer, we find:   That is, .  Let's confirm that this works. Suppose we have . Then , and we find . On the other hand, . The results agree, but possibly leave us a little confused.   "
 },
 {
-  "id": "exercise-207",
+  "id": "ex-op-matrix-compute",
   "level": "2",
-  "url": "sec-matrix-operator.html#exercise-207",
+  "url": "sec-matrix-operator.html#ex-op-matrix-compute",
   "type": "Exercise",
   "number": "5.2.4",
   "title": "",
@@ -3718,9 +3718,9 @@ var ptx_lunr_docs = [
   "body": "  Let and be two ordered bases of . Then , and satisfies for all .  The matrix is invertible, and . Moreover, if is a third ordered basis, then .   "
 },
 {
-  "id": "exercise-208",
+  "id": "ex-proof-change-matrix",
   "level": "2",
-  "url": "sec-matrix-operator.html#exercise-208",
+  "url": "sec-matrix-operator.html#ex-proof-change-matrix",
   "type": "Exercise",
   "number": "5.2.7",
   "title": "",
@@ -3772,9 +3772,9 @@ var ptx_lunr_docs = [
   "body": "  Given an operator , we say that a subspace is - invariant if for all .   "
 },
 {
-  "id": "exercise-211",
+  "id": "ex-ker-im-invariant",
   "level": "2",
-  "url": "sec-direct-sum.html#exercise-211",
+  "url": "sec-direct-sum.html#ex-ker-im-invariant",
   "type": "Exercise",
   "number": "5.3.2",
   "title": "",
