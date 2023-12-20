@@ -19,6 +19,9 @@
         In particular, if <m>A</m> is <m>m\times n</m>,
         the matrix <m>\Sigma_A</m> defined in <xref ref="section-matrix-factor"/> will also be <m>m\times n</m>,
         but it will contain some rows or columns of zeros that are added to get the desired size.
+      </p>
+
+      <p>
         The matrix <m>Q</m> is an orthogonal <m>n\times n</m> matrix whose columns are an orthonormal basis of eigenvectors for <m>A^TA</m>.
         The matrix <m>P</m> is an orthogonal <m>m\times m</m> matrix whose columns are an orthonormal basis of <m>\R^m</m>.
         (The first <m>r</m> columns of <m>P</m> are given by <m>A\vecq_i</m>, where <m>\vecq_i</m> is the eigenvector of <m>A^TA</m> corresponding to the positive singular value <m>\sigma_i</m>.)
@@ -105,7 +108,7 @@
 
     <p>
       We've made the matrix <m>Q</m>! Next, we construct <m>\Sigma_A</m>.
-      This we will do by hand.
+      This we will do by hand. (Can you think of a way to do it automatically?)
     </p>
 
     <sage>
@@ -201,7 +204,7 @@
         <p>
           By making some very minor changes in the matrices in <xref ref="ex-worksheet-svd1"/>,
           convince yourself that (a) those matrices were chosen very carefully,
-          and (b) there's a reason why most people do SVD numerically.
+          and (b) there's a reason why most people do <init>SVD</init> numerically.
         </p>
       </statement>
     </exercise>

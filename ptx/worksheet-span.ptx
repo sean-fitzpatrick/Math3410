@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <worksheet xml:id="worksheet-span">
-  <title>Worksheet: understanding span</title>
-  <introduction>
+  <title>Worksheet: working with span</title>
+  <page>
     <p>
       In this worksheet, we will attempt to understand the concept of span.
       Recall from <xref ref="sec-span"/> that the span of a set of vectors
@@ -11,26 +11,87 @@
     </p>
 
     <p>
-      Therefore, the question <q>Does the vector <m>\ww</m> belong to the span of <m>\vv_1, \vv_2,\ldots, \vv_k</m>?</q>
-      is equivalent to asking, <q>Can I write <m>\ww</m> as a linear combination of the <m>\vv_i</m>?</q>,
-      which, in turn, is equivalent to asking:
+      Recall the following fact: given a matrix <m>A</m> and vector <m>\xx</m>,
+      <m>A\xx</m> is a linear combination of the columns of <m>A</m>.
     </p>
 
     <p>
-      Do there exist scalars <m>c_1,c_2,\ldots, c_k</m> such that
+      In particular, if we write <m>A</m> in terms of its columns as <m>A = \bbm \vv_1 \amp \vv_2 \amp  \cdots \amp \vv_n\ebm</m>
+      then
       <me>
-        \ww=c_1\vv_1+c_2\vv_2+\cdots +c_k\vv_k
+        A\xx = x_1\vv_1+x_2\vv_2+\cdots + x_n\vv_n
+      </me>,
+      where <m>x_1,x_2,\ldots, x_n</m> are the components of <m>\xx</m>.
+    </p>
+
+    <p>
+      Let's confirm this for the matrix <m>A = \bbm 2\amp 3\amp -5\amp 6\\-7\amp 20\amp -11\amp 6\\43 \amp -6\amp 31\amp 2\ebm</m>
+      and vector <m>\xx = \bbm 7\\-9\\3\\14\ebm</m>.
+    </p>
+
+    <p>
+      Input the matrix and vector in the cell below.
+    </p>
+
+    <sage>
+      <input>
+        from sympy import Matrix, init_printing
+        init_printing()
+      </input>
+    </sage>
+
+    <p>
+      See <xref ref="sec-sympy"/> for details on how to enter your matrix and vector,
+      and how to compute the following.
+    </p>
+
+    <p>
+      Next, compute <m>A\xx</m>:
+    </p>
+
+    <sage>
+      <input>
+        
+      </input>
+      
+    </sage>
+    
+    <p>
+      Finally, compute the corresponding linear combination of the columns of <m>A</m>,
+      and confirm that you get the same answer.
+    </p>
+
+    <sage>
+      <input>
+        
+      </input>
+      
+    </sage>
+    
+  </page>
+
+  <page>
+    <p>
+      The question <q>Does the vector <m>\ww</m> belong to the span of <m>\vv_1, \vv_2,\ldots, \vv_k</m>?</q>
+      is equivalent to asking, <q>Can I write <m>\ww</m> as a linear combination of the <m>\vv_i</m>?</q>
+      This, in turn, is equivalent to asking:
+    </p>
+
+    <p>
+      Do there exist scalars <m>x_1,x_2,\ldots, x_k</m> such that
+      <me>
+        \ww=x_1\vv_1+x_2\vv_2+\cdots +x_k\vv_k
       </me>?
     </p>
 
     <p>
-      In any finite-dimensional vector space, this last question can be turned into a system of equations.
-      If that system has a solution, then yes <mdash /> your vector is in the span.
-      If the system is inconsistent, then the answer is no.
+      If the above vectors are vectors in <m>\R^n</m>,
+      then we just saw that the right-hand side of the above equation is <m>A\xx</m>,
+      where <m>\vv_1,\vv_2,\ldots, \vv_k</m> are the columns of <m>A</m>.
+      So the question of whether <m>\ww</m> is in the span of the <m>\vv_i</m>
+      is equivalent to determining whether the equation <m>A\xx=\ww</m> has a solution.
     </p>
-  </introduction>
 
-  <page>
     <exercise workspace="1.6in" label="ex-ws-span-1">
       <statement>
         <p>
@@ -47,17 +108,24 @@
     <p>
       To assist with solving this problem, a code cell is provided below.
       Once you have determined the augmented matrix of your system of equations,
-      see <xref ref="sec-sympy"/> for details on how to enter your matrix,
+      enter the matrix,
       and then compute its reduced row-echelon form.
+    </p>
+
+    <p>
+      (Do you recall how to tell if a system has a solution from the <init>RREF</init>?)
     </p>
 
     <sage>
       <input>
-        from sympy import Matrix, init_printing
-        init_printing()
+        
       </input>
     </sage>
 
+    <p>
+      If our vector space is not <m>\R^n</m>, we can still apply the above technique,
+      but we first have to turn our span equation into a system of linear equations.
+    </p>
 
     <exercise workspace="1.6in" label="ex-ws-span-2">
       <statement>
@@ -75,99 +143,61 @@
 
     </sage>
 
-    <p></p>
   </page>
 
   <page>
-    <p>
-      For our next activity, we are going to look at <init>RGB</init> colours.
-      Here, <init>RGB</init> stands for Red, Green, Blue.
-      All colours displayed by your computer monitor can be expressed in terms of these colours.
-    </p>
-
-    <p>
-      First, we load some Python libraries we'll need.
-      These are intended for use in a Jupyter notebook and won't run properly if you are using Sagecell in the <init>HTML</init> textbook.
-    </p>
-
-    <sage>
-      <input>
-        import ipywidgets as wid
-        import matplotlib.pyplot as plt
-      </input>
-    </sage>
-
-    <p>
-      Next, we will create a widget that lets us select values for red, green, and blue.
-      The <init>RGB</init> colour system assigns 8-bit values to each colour.
-      Possible values for each range from 0 to 255;
-      this indicates how much of each colour will be blended to create the colour you want.
-      Extensive information on the <init>RGB</init> colour system can be found
-      <url href="https://en.wikipedia.org/wiki/RGB_color_model" visual="en.wikipedia.org/wiki/RGB_color_model">on wikipedia</url>,
-      and there are a number of good online resources about the use of <init>RGB</init> in web design,
-      <url href="https://www.w3schools.com/colors/colors_rgb.asp" visual="www.w3schools.com/colors/colors_rgb.asp">such as this one from w3schools</url>.
-    </p>
-
-    <sage>
-      <input>
-        r=wid.IntSlider(
-            value=155,
-            min=0,
-            max=255,
-            step=1,
-            description='Red:'
-        )
-        g=wid.IntSlider(
-            value=155,
-            min=0,
-            max=255,
-            step=1,
-            description='Green:'
-        )
-        b=wid.IntSlider(
-            value=155,
-            min=0,
-            max=255,
-            step=1,
-            description='Blue:'
-        )
-        display(r,g,b)
-      </input>
-    </sage>
-
-    <p>
-      By moving the sliders generated above, you can create different colours.
-      To see what colour you've created by moving the sliders, run the code below.
-    </p>
-
-    <sage>
-      <input>
-        plt.imshow([[(r.value/255, g.value/255, b.value/255)]])
-      </input>
-    </sage>
-  </page>
-
-  <page>
-    <exercise workspace="3in" label="ex-ws-span-3">
+    <exercise workspace="1.6in" label="ex-ws-span-3">
       <statement>
         <p>
-          In what ways can you explain the <init>RGB</init> colour system in terms of span?
+          Determine whether or not the matrix <m>B = \bbm 4\amp -1 \amp 7\\-5\amp 6\amp 2\ebm</m>
+          belongs to the span of the matrices
+          <me>
+            A_1 = \bbm 1\amp 2\amp 0\\-3\amp 2\amp 4\ebm, A_2 = \bbm 3\amp 2\amp -7\\0\amp 1\amp 3\ebm,
+            A_3 = \bbm 0\amp 1\amp 3\\2\amp 0\amp -4\ebm, A_4 = \bbm -1\amp 1\amp 3\\2\amp 0\amp 1\ebm
+          </me>.          
         </p>
       </statement>
-      <response/>
     </exercise>
-
-    <sage language="html"></sage>
-
-    <exercise workspace="4in" label="ex-ws-span-4">
-      <statement>
-        <p>
-          Why would it nonetheless be inappropriate to describe the set of all <init>RGB</init> colours as a vector space?
-        </p>
-      </statement>
-      <response/>
-    </exercise>
-
-    <sage language="html"></sage>
   </page>
+  
+  <p>
+    The above problems all answer the same basic question: given a <em>particular</em> vector <m>\ww</m>, 
+    is it in the span of given vectors <m>\vv_1,\vv_2,\ldots,\vv_k</m>?
+  </p>
+
+  <p>
+    A more interesting problem is the following: 
+    iven the vectors <m>\vv_1,\vv_2,\ldots, \vv_k</m>, what are <em>all</em> the vectors in their span? 
+    That is, how can we describe the span of a set of vectors more directly?
+  </p>
+
+  <p>
+    We can answer this question as follows: let <m>\ww</m> be an <em>arbitrary</em> vector in <m>V</m>, 
+    and write it in terms of its (unknown) coefficients. For example, in question 1 above, 
+    we might let <m>\ww = \langle a, b, c, d\rangle</m>.
+  </p>
+
+  <exercise workspace="2in" label="ex-ws-span-4">
+    <statement>
+      <p>
+        For each problem above, define symbolic variables using the <c>symobols</c> command.
+        For example, you can enter
+        <cd>
+          <cline>a, b, c = symbols('a b c')</cline>
+        </cd>
+        to create three undetermined symbols.
+      </p>
+
+      <p>
+        Then replace the last column in each augmeted matrix from the previous problems with a column of symbols,
+        and instead of using the <c>rref()</c> command, use the <c>echelon_form()</c> command to reduce the matrix.
+      </p>
+
+      <p>
+        By looking at the reduced form of hte matrix, determine a relationship (or relationships)
+        between the variables that must hold for the system to be consistent.
+        You can then use this to define the set of vectors in the span.
+      </p>
+    </statement>
+  </exercise>
 </worksheet>
