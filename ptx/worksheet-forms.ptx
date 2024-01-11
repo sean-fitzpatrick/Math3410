@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<worksheet xml:id="worksheet-forms">
+  <title>Worksheet: bilinear forms</title>
+
+  <page>
+    <introduction>
+      <p>
+        Let <m>V</m> be a finite-dimensional vector space over <m>\R</m>.
+        (We will use a real vector space for simplicity, but most of this works just as well for complex vector spaces.)
+        Recall from <xref ref="worksheet-dual-basis"/> that a <term>linear functional</term> on <m>V</m>
+        is a linear map <m>\phi:V\to \R</m>.
+      </p>
+
+      <p>
+        We can extend the idea of a linear functional to functions with more than one argument.
+      </p>
+
+      <definition xml:id="def-bilinear">
+        <statement>
+            <p>
+              A <term>bilinear form</term> on a vector space <m>V</m> is a function
+              <me>
+                \phi:V\times V\to \R
+              </me>
+              that is linear in each variable: for all scalars <m>a,b\in\R</m> and vectors <m>\uu,\vv,\ww\in V</m>,
+              <md>
+                <mrow>\phi(a\uu+b\vv,\ww) \amp = a\phi(\uu,\ww)+b\phi(\vv,\ww)</mrow>
+                <mrow>\phi(\uu,a\vv+b\ww) \amp = a\phi(\uu,\vv)+b\phi(\uu,\ww)</mrow>
+              </md>.
+            </p>
+        </statement>
+      </definition>
+
+      <p>
+        Another way to put this is as follows: <m>\phi</m> is bilinear if,
+        for each <m>\vv\in V</m>, the functions
+        <md>
+          <mrow>\eta(\ww) \amp =\phi(\vv,\ww)</mrow>
+          <mrow>\psi(\ww) \amp = \phi(\ww,\vv)</mrow>
+        </md>
+        are both linear functionals on <m>V</m>.
+
+      </p>
+
+      <p>
+        <alert>Caution:</alert> the bilinear form <m>\phi</m> is <em>not</em> assumed to be symmetric,
+        so the linear functionals <m>\eta</m> and <m>\psi</m> defined above are (in general) different functions.
+      </p>
+
+      <p>
+        A <term>multilinear form</term> is defined similarly, as a function of two, three, or more vector variables,
+        that is linear in each variable.
+      </p>
+
+      <p>
+        An example of a bilinear form is the dot product on <m>\R^n</m>.
+        Given <m>\vv,\ww\in\R^n</m>, the function <m>\phi(\vv,\ww) = \vv\dotp\ww</m> defines a bilinear form.
+      </p>
+
+      <p>
+        More generally, given any <m>n\times n</m> matrix <m>A</m>, the function
+        <md>
+          <mrow>\phi_A: \R^n\times\R^n \amp \to \R</mrow>
+          <mrow>\phi_A(\vv,\ww) \amp = \vv^T A\ww</mrow>
+        </md>
+        is a bilinear form.
+      </p>
+
+      <p>
+        An important example of a multilinear form is the determinant.
+        Given <m>\vv_1,\ldots, \vv_n\in \R^n</m>, the function
+        <md>
+          <mrow>\Omega: \R^n\times\cdots \times\R^n \amp \to \R</mrow>
+          <mrow>\Omega(\vv_1,\ldots, \vv_n) \amp = \det\bbm \vv_1\amp\cdots\amp \vv_n\ebm</mrow>
+        </md>
+        is an <m>n</m>-linear form.
+      </p>
+    </introduction>
+  </page>
+
+  <page>
+    <p>
+      For bilinear forms, the example <m>\phi_A</m> given above can be  viewed as prototypical.
+    </p>
+
+    <exercise workspace="3.5in" label="ex-forms-1">
+      <statement>
+        <p>
+          Let <m>V</m> be a finite-dimensional vector space, and let <m>B=\basis{e}{n}</m>
+          be an ordered basis for <m>V</m>.
+          Let <m>\phi:V\times V\to \R</m> be a bilinear form on <m>V</m>.
+        </p>
+  
+        <p>
+          Show that there exists an <m>n\times n</m> matrix <m>A_\phi</m> such that
+          <me>
+            \phi(\vv,\ww) = (C_B(\vv))^TA_\phi C_B(\ww),
+          </me>
+          where <m>C_B</m> denotes the coordinate isomorphism from <m>V</m> to <m>\R^n</m>.
+        </p>
+      </statement>
+    </exercise>
+
+    <p>
+      The above exercise tells us that we can study bilinear forms on a vector space by studying their matrix representations.
+      This depends on a choice of basis, but, as one might expect, matrix representations with respect to different bases are similar.
+    </p>
+
+    <exercise workspace="2.5in" label="ex-forms-2">
+      <statement>
+        <p>
+          Let <m>B_1,B_2</m> be two ordered bases for a finite-dimensional vector space <m>V</m>,
+          and let <m>P=P_{B_1\leftarrow B_2}</m> be the change of basis matrix for these bases.
+          Let <m>\phi:V\times V\to \R</m> be a linear functional on <m>V</m>.
+        </p>
+
+        <p>
+          If <m>A_\phi</m> is the matrix of <m>\phi</m> with respect to the basis <m>B_1</m>,
+          show that the matrix of <m>\phi</m> with respect to <m>B_2</m> is equal to <m>P^TA_\phi P</m>.
+        </p>
+      </statement>
+    </exercise>
+  </page>
+
+  <page>
+
+    <p>
+      Bilinear forms also transform with respect to linear transformations in a manner similar to linear functionals.
+    </p>
+
+    <exercise workspace="2.25in" label="ex-forms-3">
+      <statement>
+        <p>
+          Let <m>V</m> and <m>W</m> be finite-dimensional vector spaces,
+          and let <m>T:V\to W</m> be a linear transformation.
+        </p>
+
+        <p>
+          If <m>\phi:W\times W\to\R</m> is a bilinar form on <m>W</m>,
+          show that the map <m>T^*\phi:V\times V\to \R</m> defined by
+          <me>
+            T^*\phi(\vv,\ww) = \phi(T(\vv),T(\ww))
+          </me>
+          is a bilinear form on <m>V</m>, called the <term>pullback</term> of <m>\phi</m> by <m>T</m>.
+        </p>
+      </statement>
+    </exercise>
+
+    <p>
+      A bilinear form <m>\phi</m> on <m>V</m> is <term>symmetric</term> if <m>\phi(\vv,\ww)=\phi(\ww,\vv)</m> for all <m>\vv,\ww\in V</m>,
+      and <term>antisymmetric</term> (or <term>alternating</term>) if <m>\phi(\vv,\ww)=-\phi(\ww,\vv)</m> for all <m>\vv,\ww</m> in <m>V</m>.
+    </p>
+
+    <p>
+      A bilinear form is <term>nondegenerate</term> if, for each nonzero vector <m>\vv\in V</m>, there exists a vector <m>\ww\in V</m> such that <m>\phi(\vv,\ww)\neq 0</m>.
+      (Alternatively, for each nonzero <m>\vv\in V</m>, the linear functional <m>\alpha(\ww)=\phi(\vv,\ww)</m> is nonzero.)
+    </p>
+
+    <p>
+      Two types of bilinear forms are of particular importance: a symmetric, nondegenerate bilinear form on <m>V</m> is called an <term>inner product</term> on <m>V</m>,
+      if it is also <term>positive-definite</term>: for each <m>\vv\in V</m>, <m>\phi(\vv,\vv)\geq 0</m>, with equality only if <m>\vv=\mathbf{0}</m>.
+      Inner products are a generalization of the dot product from <xref ref="ch-orthogonality"/>.
+      A future version of this book may take the time to study inner products in more detail, but for now we will look at another type of bilinear form.
+    </p>
+
+    <p>
+      A nondegenerate, antisymmetric bilinear form <m>\omega</m> on <m>V</m> is called a <term>linear symplectic structure</term> on <m>V</m>,
+      and we call the pair <m>(V,\omega)</m> a <term>symplectic vector space</term>.
+      Symplectic structures are important in differential geometry and mathematical physics. (They can be used to encode <em>Hamilton's equations</em> in classical mechanics.)
+    </p>
+
+    <p>
+      An example of a symplectic form on <m>\R^2</m> is given as follows: for vectors <m>\vv = (v_1,v_2)</m> and <m>\ww = (\ww_1,\ww_2)</m>,
+      <me>
+        \omega(\vv,\ww) = v_1w_2-v_2w_1
+      </me>.
+      If this looks familiar, it's because this is precisely the determinant of the <m>2\times 2</m> matrix <m>\bbm \vv\amp \ww\ebm</m>.
+    </p>
+
+    <p>
+      A more general example is given by <m>V=\R^{2n}</m>. If we write <m>\vv = \langle a_1,b_1,\ldots, a_n,b_n\rangle</m>, <m>\ww = \langle c_1,d_1,\ldots, c_n,d_n\rangle</m>,
+      then the <term>standard symplectic structure</term> on <m>\R^{2n}</m> is given by
+      <me>
+        \omega(\vv,\ww) = a_1d_1-b_1c_1 + \cdots + a_nd_n-b_nc_n
+      </me>.
+      Note how this resembles a sum of <m>2\times 2</m> determinants.
+    </p>
+
+    <remark xml:id="rem-std-symplectic">
+      <p>
+        A theorem that you will not be asked to prove (it's a long proof...) is that if a vector space <m>V</m> has a linear symplectic structure <m>\omega</m>,
+        then the dimension of <m>V</m> is even, and <m>V</m> has a basis <m>\{\mathbf{e}_1,\mathbf{f}_1,\ldots, \mathbf{e}_n,\mathbf{f}_n\}</m>
+        with respect to which the matrix representation of <m>\omega</m> is equivalent to the standard symplectic structure on <m>\R^{2n}</m>.
+      </p>
+    </remark>
+
+    
+  </page>
+
+  <page>
+    <p>
+      We conclude with some interesting connections between complex vector spaces and symplectic and inner product structures.
+    </p>
+
+    <p>
+      Here is an observation you may have made before: to any complex number <m>a+ib</m> we can associate the matrix
+      <me>
+        \bbm a\amp -b\\b\amp a\ebm = a\bbm 1\amp 0\\0\amp 1\ebm + b\bbm 0\amp -1\\1\amp 0\ebm = aI+bJ
+      </me>,
+      where <m>I</m> is the <m>2\times 2</m> identity matrix, and <m>J^2=-I</m>.
+    </p>
+
+    <p>
+      You can even check that multiplying two complex numbers is the same as multiplying the corresponding matrices, as given above!
+    </p>
+
+    <exercise workspace="5in" label="ex-forms-4">
+      <statement>
+        <p>
+          For the symplectic structure <m>\omega(\vv,\ww) = v_1w_2-v_2w_1</m> on <m>\R^2</m>,
+          as given above, show that the matrix of <m>\omega</m> with respect to the standard basis is the matrix
+          <m>J_1 = \bbm 0\amp -1\\ 1\amp 0\ebm</m>.
+        </p>
+
+        <p>
+          Then, for any symplectic vector space <m>(V,\omega)</m>, show that,
+          with respect to the basis <m>\{\mathbf{e}_1,\mathbf{f}_1,\ldots, \mathbf{e}_n,\mathbf{f}_n\}</m>
+          described in <xref ref="rem-std-symplectic"/> above, the matrix of <m>\omega</m> has the block form
+          <me>
+            J = \bbm J_1 \amp 0 \amp \cdots \amp 0\\ 0\amp J_1\amp \cdots \amp 0\\ \vdots\amp \vdots \amp \ddots\amp \cdots\\0\amp 0\amp \cdots \amp J_1\ebm
+          </me>.
+          
+        </p>
+      </statement>
+      
+    </exercise>
+  </page>
+
+  <page>
+    <p>
+      There are also interesting relationships between complex inner products, real inner products, and symplectic structures.
+    </p>
+
+    <exercise workspace="7in" label="ex-forms-5">
+      <statement>
+        <p>
+          Let <m>\langle \vv,\ww\rangle</m> denote the standard complex inner product on <m>\C^n</m>.
+          (Recall that such an inner product is complex linear in the second argument,
+          but for any complex scalar <m>c</m>, <m>\langle c\vv,\ww\rangle = \overline{c}\langle \vv,\ww\rangle</m>.)
+        </p>
+
+        <p>
+          Write <m>\vv = \mathbf{a}+i\mathbf{b}</m> and <m>\ww = \mathbf{c}+i\mathbf{d}</m>,
+          where <m>\mathbf{a} = \langle a_1, a_2,\ldots, a_n\rangle\in\R^n</m> (with similar statements for <m>\mathbf{b},\mathbf{c},\mathbf{d}</m>).
+          Let <m>\xx = \langle a_1,b_1,\ldots, a_n,b_n\rangle, \yy = \langle c_1,d_1,\ldots, c_n,d_n\rangle\in \R^{2n}</m>.
+        </p>
+
+        <p>
+          Show that
+          <me>
+            \langle \vv,\ww\rangle = \xx\cdot \yy + i\phi(\xx,\yy)
+          </me>,
+          where <m>\phi</m> denotes the standard symplectic structure on <m>\R^{2n}</m>.
+        </p>
+      </statement>
+    </exercise>
+
+    <p>
+      For more reading on multilinear forms and determinants, see the 4th edition of <em>Linear Algebra Done Right</em>, by Sheldon Axler.
+      For more reading on linear symplectic structures, see <em>First Steps in Differential Geometry</em>, by Andrew McInerney.
+    </p>
+  </page>
+</worksheet>
