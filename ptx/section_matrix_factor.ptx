@@ -623,13 +623,13 @@
       </p>
 
       <p>
-        We start with some initial guess <m>x_0</m> for a dominant eigenvector.
-        We then set <m>x_{k+1} = Ax_k</m> for each <m>k\geq 0</m>, giving a sequence
+        We start with some initial guess <m>\xx_0</m> for a dominant eigenvector.
+        We then set <m>\xx_{k+1} = A\xx_k</m> for each <m>k\geq 0</m>, giving a sequence
         <me>
-          x_0, Ax_0, A^2x_0, A^3x_0,\ldots
+          \xx_0, A\xx_0, A^2\xx_0, A^3\xx_0,\ldots
         </me>.
-        We expect (for reasons we'll explain) that <m>\lVert x_k-x\rVert \to 0</m> as <m>k\to\infty</m>,
-        where <m>x</m> is a dominant eigenvector. Let's try an example.
+        We expect (for reasons we'll explain) that <m>\lVert \xx_k-\xx\rVert \to 0</m> as <m>k\to\infty</m>,
+        where <m>\xx</m> is a dominant eigenvector. Let's try an example.
       </p>
 
       <sage>
@@ -644,7 +644,7 @@
 
       <p>
         The dominant eigenvalue is <m>\lambda = 7</m>. Let's try an initial guess of
-        <m>x_0=\begin{bmatrix}1\\0\end{bmatrix}</m> and see what happens.
+        <m>\xx_0=\begin{bmatrix}1\\0\end{bmatrix}</m> and see what happens.
       </p>
 
       <sage>
@@ -683,13 +683,13 @@
       </p>
 
       <p>
-        For the eigenvalue, we note that if <m>Ax=\lambda x</m>, then
+        For the eigenvalue, we note that if <m>A\xx=\lambda \xx</m>, then
         <me>
-          \frac{x\cdot Ax}{\lVert x\rVert^2} = \frac{x\cdot (\lambda x)}{\lVert x\rVert^2} = \lambda
+          \frac{\xx\cdot A\xx}{\lVert \xx\rVert^2} = \frac{\xx\cdot (\lambda x)}{\lVert \xx\rVert^2} = \lambda
         </me>.
         This leads us to consider the Rayleigh quotients
         <me>
-          r_k = \frac{x_k\cdot x_{k+1}}{\lVert x_k\rVert^2}
+          r_k = \frac{\xx_k\cdot \xx_{k+1}}{\lVert \xx_k\rVert^2}
         </me>.
       </p>
 
@@ -725,6 +725,57 @@
           \end{align*}
         </output>
       </sage>
+
+      <p>
+        So why does this work? Suppose <m>A</m> is diagonalizable,
+        so that there is a basis of eigenvectors <m>B = \{\vv_1,\ldots, \vv_n\}</m> for <m>\R^n</m>.
+        Suppose also that <m>A</m> has dominant eigenvalue <m>\lambda_1</m>,
+        with corresponding eigenvector <m>\vv_1</m>.
+        Then our initial guess <m>\xx_0</m> can be written in terms of this basis:
+        <me>
+          \xx_0 = c_1\vv_1+c_2\vv_2+\cdots + c_n\vv_n
+        </me>,
+        for scalars <m>c_1,c_2,\ldots, c_n</m>.
+      </p>
+
+      <p>
+        For each natural number <m>k</m> we have
+        <md>
+          <mrow>A^k\xx_0 \amp = c_1A^k\vv_1 + c_2A^k\vv_2 + \cdots + c_nA^k\vv_n</mrow>
+          <mrow>\xx_k \amp = c_1\lambda_1^k\vv_1+c_2\lambda_2^k\vv_2+\cdots + c_n\lambda_n^k\vv_n</mrow>
+        </md>.
+        Dividing by <m>\lambda_1^k</m> we get
+        <me>
+          \frac{1}{\lambda_1^k}\xx_k = c_1\vv_1 + c_2\left(\frac{\lambda_2}{\lambda_1}\right)^k\vv_2+\cdots + c_n\left(\frac{\lambda_n}{\lambda_1}\right)^k
+        </me>,
+        and since <m>\lambda_1</m> is larger than all the other eigenvalues in absolute value,
+        the powers <m>\left(\frac{\lambda_m}{\lambda_1}\right)^k</m> will be very small when <m>k</m> is large.
+      </p>
+
+      <p>
+        If <m>\vv_1</m> is an eigenvector corresponding to the dominant eigenvalue <m>\lambda_1</m>,
+        then so is the scalar multiple <m>c_1\lambda_1^k\vv_1</m>, so <m>\xx_k</m> is approximately equal to an eigenvector.
+      </p>
+
+      <p>
+        Two things are worth noting:
+        <ol>
+          <li>
+            <p>
+              The result does not depend on the initial guess <m>\xx_0</m>,
+              unless we choose an <m>\xx_0</m> for which the coefficient <m>c_1</m> is 0.
+              If this turns out to be the case, we must choose another initial guess.
+            </p>
+          </li>
+          
+          <li>
+            <p>
+              If <m>A</m> is not diagonalizable, we can still use this method,
+              but we must choose <m>\xx_0</m> from the subspace spanned by a set of eigenvectors for <m>A</m>.
+            </p>
+          </li>
+        </ol>
+      </p>
     </subsubsection>
 
     <subsubsection xml:id="pars-qr-algorithm">
