@@ -173,7 +173,7 @@
       Since our basis has three elements, there is an isomorphism
       <m>T:\R^3\to V</m>, where <m>T(a,b,c)</m> is equal to the sequence <m>(x_n)</m> in <m>V</m>
       that satisfies the initial conditions <m>x_0=a, x_1=b, x_2=c</m>.
-      Thus, our desired sequence is given by <m>s=T(1,2,1)</m>.
+      Thus, our desired sequence is given by <m>s=T(3,-2,4)</m>.
     </p>
 
     <p>
@@ -182,11 +182,11 @@
       (That is, write out the first three terms in each sequence in your basis to get three vectors.)
       We then need to find scalars <m>c_1,c_2,c_3</m> such that
       <me>
-        c_1\vv_1+c_2\vv_2+c_3\vv_3=(1,2,1)
+        c_1\vv_1+c_2\vv_2+c_3\vv_3=(3,-2,4)
       </me>.
       We will then have
       <md>
-        <mrow>s \amp = T(1,2,1)</mrow>
+        <mrow>s \amp = T(3,-2,4)</mrow>
         <mrow> \amp = c_1T(\vv_1)+c_2T(\vv_2)+c_3T(\vv_3)</mrow>
       </md>,
       and we recall that the sequences <m>T(\vv_i)</m> are the sequences in our basis <m>B</m>.
@@ -202,7 +202,7 @@
       <input>
         from sympy import Matrix
         A = Matrix()
-        B = Matrix((1,2,1])
+        B = Matrix()
         X = A**(-1)*B
         X
       </input>
