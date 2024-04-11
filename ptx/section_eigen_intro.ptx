@@ -175,7 +175,7 @@
   </theorem>
 
   <p>
-    The polynomial <m>p_A(x)=\det(xI_n -A)</m> is called the <term>characteristic polynomial</term> of <m>A</m>.
+    The polynomial <m>c_A(x)=\det(xI_n -A)</m> is called the <term>characteristic polynomial</term> of <m>A</m>.
     (Note that <m>\det(x I_n-A) = (-1)^n\det(A-x I_n)</m>. We choose this order so that the coefficient of <m>x^n</m> is always 1.)
     The equation
     <men xml:id="eq-characteristic">
@@ -285,7 +285,7 @@
         The first two follow directly from properties of the determinant and trace.
         For the last, note that if <m>B = P^{-1}AP</m>, then
         <me>
-          P^{-1}(xI_n-A)P = P^{-1}(xI_n)P-P^{-1}AP = xI_n B
+          P^{-1}(xI_n-A)P = P^{-1}(xI_n)P-P^{-1}AP = xI_n - B
         </me>,
         so <m>xI_n-B\sim xI_n-A</m>, and therefore <m>\det(xI_n-B)=\det(xI_n-A)</m>.
       </p>
@@ -354,7 +354,7 @@
   <p>
     In general, if the characteristic polynomial can be factored as
     <me>
-      p_A(x)=(x-\lambda)^mq(x)
+      c_A(x)=(x-\lambda)^mq(x)
     </me>,
     where <m>q(x)</m> is not divisible by <m>x-\lambda</m>, then we say that <m>\lambda</m>
     is an eigenvalue of <term>multiplicity</term> <m>m</m>.
@@ -449,7 +449,7 @@
        P^{-1}AP = \bbm \lambda I_k \amp B\\0\amp A_1\ebm
      </me>.
      Let <m>\tilde{A}=P^{-1}AP</m>. On the one hand, since <m>\tilde{A}\sim A</m>,
-     we have <m>c_A(x)=c_{\tilde{A}}(x)</m>.
+     we have <m>c_A(x)=p_{\tilde{A}}(x)</m>.
      On the other hand,
      <me>
        \det(xI_n-\tilde{A}) = \det\bbm (x-\lambda)I_k \amp -B\\0 \amp xI_{n-k}-A_1\ebm = (x-\lambda)^k\det(xI_{n-k}-A_1)
@@ -488,10 +488,9 @@
         </me>,
         for scalars <m>c_1,\ldots, c_k</m>. Multiplying both sides by the matrix <m>A</m>, we have
         <mdn>
-          <mrow>\zer \amp = A\zer</mrow>
-          <mrow> A(c_1\vv_1+c_2\vv_2+\cdots +c_k\vv_k)</mrow>
-          <mrow> \amp =c_1A\vv_1+c_2A\vv_2+\cdots + c_kA\vv_k</mrow>
-          <mrow xml:id="eqn-eigen-indep1"> \amp =c_1\lambda_1\vv_1+c_2\lambda_2\vv_2+\cdots + c_k\lambda_k\vv_k</mrow>
+          <mrow> A(c_1\vv_1+c_2\vv_2+\cdots +c_k\vv_k) \amp = A\zer</mrow>
+          <mrow> c_1A\vv_1+c_2A\vv_2+\cdots + c_kA\vv_k \amp = \zer</mrow>
+          <mrow xml:id="eqn-eigen-indep1"> c_1\lambda_1\vv_1+c_2\lambda_2\vv_2+\cdots + c_k\lambda_k\vv_k \amp =\zer</mrow>
         </mdn>.
       </p>
 
