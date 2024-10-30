@@ -1,70 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-    This file provides the overall configuration for your PreTeXt
-    project. To edit the content of your document, open `source/main.ptx`
-    (default location).
--->
-<project>
+<project ptx-version="2" source="ptx" asy-method="local">
   <targets>
-    <target name="html">
-      <format>html</format>
-      <source>ptx/3410notes.ptx</source>
-      <publication>publication/publication.ptx</publication>
-      <output-dir>output/html</output-dir>
-      <stringparam key="html.annotation" value="hypothesis"/>
-      <asy-method>local</asy-method>
+    <target name="html" format="html" source="3410notes.ptx" publication="publication.ptx">
+      <stringparams key="html.annotation" value="hypothesis"/>
     </target>
-    <target name="runestone">
-      <format>html</format>
-      <source>ptx/3410notes.ptx</source>
-      <publication>publication/publication-runestone.ptx</publication>
-      <output-dir>published/linearpython</output-dir>
-      <stringparam key="html.annotation" value="hypothesis"/>
-      <asy-method>local</asy-method>
+    <target name="runestone" format="html" source="3410notes.ptx" publication="publication-runestone.ptx" output-dir="../published/linearpython">
+      <stringparams key="html.annotation" value="hypothesis"/>
     </target>
-    <target name="latex">
-      <format>latex</format>
-      <source>ptx/3410notes.ptx</source>
-      <publication>publication/publication.ptx</publication>
-      <output-dir>output/latex</output-dir>
-      <xsl>style/3410-latex-style.xsl</xsl>
-    </target>
-    <target name="latex-print">
-      <format>latex</format>
-      <source>ptx/3410notes.ptx</source>
-      <publication>publication/publication-print.ptx</publication>
-      <output-dir>output/latex-print</output-dir>
-      <xsl>style/3410-latex-print-style.xsl</xsl>
-    </target>
-    <target name="pdf" pdf-method="xelatex">
-      <format>pdf</format>
-      <source>ptx/3410notes.ptx</source>
-      <publication>publication/publication.ptx</publication>
-      <output-dir>output/pdf</output-dir>
-      <xsl>style/3410-latex-style.xsl</xsl>
-    </target>
-    <target name="subset">
-      <format>html</format>
-      <source>ptx/3410notes.ptx</source>
-      <publication>publication/publication.ptx</publication>
-      <output-dir>output/subset</output-dir>
-      <stringparam key="debug.skip-knowls" value="yes"/>
-      <!-- edit this to change the section/chapter/etc. to build -->
-      <xmlid-root>ch-first</xmlid-root>
-    </target>
+    <target name="latex" format="latex" source="3410notes.ptx" publication="publication.ptx" xsl="3410-latex-style.xsl"/>
+    <target name="latex-print" format="latex" source="3410notes.ptx" publication="publication-print.ptx" xsl="3410-latex-print-style.xsl"/>
   </targets>
-  <executables>
-      <latex>latex</latex>
-      <pdflatex>pdflatex</pdflatex>
-      <xelatex>xelatex</xelatex>
-      <pdfsvg>pdf2svg</pdfsvg>
-      <asy>asy</asy>
-      <sage>sage</sage>
-      <pdfpng>convert</pdfpng>
-      <pdfeps>pdftops</pdfeps>
-      <pdfcrop>pdf-crop-margins</pdfcrop>
-      <pageres>pageres</pageres>
-      <node>node</node>
-      <liblouis>file2brl</liblouis>
-    </executables>
 </project>
