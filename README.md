@@ -16,3 +16,6 @@ I haven't yet included the modified versions on GitHub; I want to check licensin
 If you find these notes useful (perhaps because you're a member of the Math & CS faculty at U of L assigned to teach Math 3410)
 but you would like to make changes (adding exercises, perhaps)
 the easiest way to do so is to (a) fork this repository, (b) work on a new branch, and (c) send me a pull request.
+
+## License
+Source code and published output formats licensed under a Creative Commons Attribution-ShareAlike 4.0 International License
