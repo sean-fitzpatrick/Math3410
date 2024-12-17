@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<worksheet xml:id="worksheet-svd">
-  <title>Worksheet: Singular Value Decomposition</title>
+<section xml:id="project-svd">
+  <title>Project: Singular Value Decomposition</title>
   <introduction>
     <p>
       For this worksheet, the reader is directed to <xref ref="section-matrix-factor"/>.
@@ -174,7 +174,7 @@
     </input>
   </program>
   
-  <exercise workspace="2.5in" xml:id="ex-worksheet-svd1" label="ex-worksheet-svd1">
+  <exercise xml:id="ex-project-svd1" label="ex-project-svd1">
     <statement>
       <p>
         Compute the SVD for the matrices
@@ -193,10 +193,10 @@
 
   </sage>
 
-  <exercise workspace="3.5in" xml:id="ex-worksheet-svd2" label="ex-worksheet-svd2">
+  <exercise xml:id="ex-project-svd2" label="ex-project-svd2">
     <statement>
       <p>
-        By making some very minor changes in the matrices in <xref ref="ex-worksheet-svd1"/>,
+        By making some very minor changes in the matrices in <xref ref="ex-project-svd1"/>,
         convince yourself that (a) those matrices were chosen very carefully,
         and (b) there's a reason why most people do <init>SVD</init> numerically.
       </p>
@@ -207,10 +207,10 @@
 
   </sage>
 
-  <exercise xml:id="ex-worksheet-svd3" label="ex-worksheet-svd3">
+  <exercise xml:id="ex-project-svd3" label="ex-project-svd3">
     <introduction>
       <p>
-        Recall from <xref ref="worksheet-least-squares"/> that for an inconsistent system <m>A\xx = \mathbf{b}</m>,
+        Recall from <xref ref="project-least-squares"/> that for an inconsistent system <m>A\xx = \mathbf{b}</m>,
         we wish to find a vector <m>\yy</m> so that <m>A\xx=\yy</m> is consistent,
         with <m>\yy</m> as close to <m>\mathbf{b}</m> as possible.
       </p>
@@ -220,7 +220,7 @@
       </p>
     </introduction>
 
-    <task workspace="2.5in" label="ex-worksheet-svd3a">
+    <task label="ex-project-svd3a">
       <statement>
         <p>
           Let <m>A = P\Sigma_A Q^T</m> be the singular value decomposition of <m>A</m>.
@@ -238,7 +238,7 @@
         </input>
       </sage>
     </task>
-    <task workspace="2.5in" label="ex-worksheet-svd3b">
+    <task label="ex-project-svd3b">
       <statement>
         <p>
           Show that setting <m>\yy_i = \begin{cases}\zz_i/\sigma_i, \amp \text{ if } \sigma_i\neq 0\\
@@ -253,7 +253,7 @@
         </input>
       </sage>
     </task>
-    <task workspace="2.5in" label="ex-worksheet-svd3c">
+    <task label="ex-project-svd3c">
       <statement>
         <p>
           Recall that we set <m>\Sigma_A = \bbm D_A \amp 0\\ 0 \amp 0\ebm</m>,
@@ -275,4 +275,4 @@
       </statement>
     </task>
   </exercise>
-</worksheet>
+</section>
