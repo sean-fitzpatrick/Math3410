@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<worksheet xml:id="worksheet-orthogonal">
+  <title>Worksheet: Orthogonal bases</title>
+  
+    <p>
+      This worksheet will give you an opportunity to work with orthogonal sets of vectors in <m>\R^n</m>, 
+      and explore some of the related results. First, we will look at the construction of an orthogonal complement.
+    </p>
+
+    <exercise label="ex-ws-orthogonal-1">
+      <introduction>
+        <p>
+          Let <m>T:\R^7\to\R^4</m> be given by <m>T(\xx)=A\xx</m>, where
+          <me>
+            A = \bbm 3\amp -4\amp 2\amp 0 \amp 1\amp 7\amp -5\\
+                    -4\amp 7\amp 0\amp -3\amp 2 \amp 0\amp 1\\
+                    0\amp 5\amp 8\amp -9\amp 10\amp 27\amp -19\\
+                    2\amp 7\amp -3\amp 1\amp 5\amp 12\amp -9\ebm
+          </me>.          
+        </p>
+      </introduction>
+      <task workspace="1in" label="ex-ws-orthogonal-1a">
+        <statement>
+          <p>
+            Find a basis for the kernel of <m>T</m> (that is, the nullspace of <m>A</m>).
+          </p>
+
+          <sage>
+            <input>
+              from sympy import Matrix, init_printing
+              init_printing()
+            </input>
+            <output>
+              
+            </output>
+          </sage>
+        </statement>
+      </task>
+      <task workspace="1in" label="ex-ws-orthogonal-1b">
+        <statement>
+          <p>
+            Extend the basis from part (a) to a basis of <m>\R^7</m>.
+          </p>
+
+          <p>
+            <em>Suggestion</em>: recall that you can extend to a basis by adding elements of the standard basis for <m>\R^7</m>.
+          </p>
+
+          <p>
+            Use the code cell below to enter a matrix you can use to confirm that your basis is, in fact, a basis.
+          </p>
+
+          <sage>
+            <input>
+              
+            </input>
+            <output>
+              
+            </output>
+          </sage>
+
+          <p>
+            Once your testing indicates that you have successfully found a basis, input your basis vectors below.
+          </p>
+
+          <p>
+            <em>Suggestion</em>: in part (a), you probably used the command <c>A.nullspace()</c>
+            to find the basis for <m>\ker(T)</m>. If you enter this as
+            <cd>
+              <cline>B1 = A.nullspace()</cline>
+              <cline>B1</cline>
+            </cd>
+            then you can use the name <c>B1</c> to recall those vectors, so you don't have to input them manually.
+            The object <c>B1</c> is a list of vectors, and you can call elements of that list as
+            <c>B1[0]</c>, <c>B1[1]</c>, <etc/>.
+          </p>
+
+          <p>
+            First, input the vectors that you added to <c>B1</c> to get a basis of <m>\R^7</m>.
+            (For example, you might enter <c>e1 = Matrix([1,0,0,0,0,0,0])</c>.)
+            Then define your basis as a list <c>B</c>.
+            For example, you might enter <c>B = (B1[0],B1[1],B1[2],e1,e2,e3,e4)</c>,
+            if you found that there were three vectors in the list <c>B1</c>,
+            and that the first 4 standard basis vectors were sufficient to get you a basis for <m>\R^7</m>.
+            (This may not be what you find, of course.)
+          </p>
+
+          <sage>
+            <input>
+              
+            </input>
+            <output>
+              
+            </output>
+          </sage>
+        </statement>
+      </task>
+
+      <task workspace="1in" label="ex-ws-orthogonal-1c">
+        <statement>
+          <p>
+            Use the Gram-Schmidt algorithm to create an orthogonal basis for <m>\R^7</m> from the basis <m>B</m>.
+            You will want to give your basis a new name, so that you can reference its elements later.
+          </p>
+
+          <sage>
+            <input>
+              from sympy import GramSchmidt
+            </input>
+            <output>
+              
+            </output>
+          </sage>
+        </statement>
+      </task>
+
+      <task workspace="1in" label="ex-ws-orthogonal-1d">
+        <statement>
+          <p>
+            Let <m>U = \ker(T)</m>. If <m>\dim U = k</m>, then the first <m>k</m> vectors of your orthogonal basis from
+            <m>\R^7</m> form an orthogonal basis for <m>U</m>, according to the Gram-Schmidt theorem.
+            Confirm that each of the remaining vectors in this basis are orthogonal to the vectors in the basis <c>B1</c>.
+          </p>
+
+          <p>
+            <em>Note</em>: you can compute the dot product of vectors <c>X</c> and <c>Y</c> using the syntax <c>X.dot(Y)</c>.
+          </p>
+
+          <sage>
+            <input>
+              
+            </input>
+            <output>
+              
+            </output>
+          </sage>
+
+          <p>
+            It follows that the remaining vectors are elements of <m>U^\bot</m>.
+            In fact, they form a basis. we know they are independent, because they are part of a basis for <m>\R^7</m>.
+            And since <m>\dim U+\dim U^\bot = \dim \R^7</m>, we know we have the right number.
+          </p>
+        </statement>
+      </task>
+
+      <task workspace="1in" label="ex-ws-orthogonal-1e">
+        <statement>
+          <p>
+            Given the vector <m>\xx = (4,-1,6,3,8,2,5)\in\R^7</m>, find a vector <m>\mathbf{p}\in U=\ker(T)</m>
+            such that <m>\len{\xx-\mathbf{p}}</m> is as small as possible.
+          </p>
+
+          <sage>
+            <input>
+              
+            </input>
+            <output>
+              
+            </output>
+          </sage>
+        </statement>
+      </task>
+    </exercise>
+
+    <exercise label="ex-ws-orthogonal-2">
+      <introduction>
+        <p>
+          <xref ref="thm-complement-matrix"/> states the following:
+          given a subspace <m>U\subseteq \R^n</m> with basis <m>B = \{\uu_1,\ldots,\uu_k\}</m>
+          (not necessarily an orthogonal basis), let <m>A</m> be the <m>n\times k</m> matrix whose columns are the vectors in <m>B</m>.
+          Then <m>U^\bot = \nll(A^T)</m>.
+        </p>
+      </introduction>
+
+      <task workspace="1in" label="ex-ws-orthogonal-2a">
+        <statement>
+          <p>
+            Put another way, this theorem states that <m>\xx\in U^\bot</m> if and only if <m>A^T\xx = \zer</m>.
+            Give a proof (or at least, a convincing explanation) of this fact.
+          </p>
+
+          <sage>
+            <input>
+              # If you are in a Jupyter notebook, change this cell to Markdown, and then type in your answer.
+            </input>
+            <output>
+              
+            </output>
+          </sage>
+        </statement>
+      </task>
+
+      <task workspace="1in" label="ex-ws-orthogonal-2b">
+        <statement>
+          <p>
+            Let <m>U = \{(4a-3b+2c, a-7b+5c,9a-5c,-3b-7c,-3a+2b-5c,4a-7b)\}\in \R^6</m>.
+            Determine a basis for <m>U</m>, and input the vectors below.
+          </p>
+
+          <sage>
+            <input>
+              
+            </input>
+            <output>
+              
+            </output>
+          </sage>
+        </statement>
+      </task>
+
+      <task workspace="1in" label="ex-ws-orthogonal-2c">
+        <statement>
+          <p>
+            Use Theorem 3.3.11 to find a basis for <m>U^\bot</m>.
+          </p>
+        </statement>
+
+        <sage>
+          <input>
+            
+          </input>
+          <output>
+            
+          </output>
+        </sage>
+      </task>
+    </exercise>
+    </worksheet>
