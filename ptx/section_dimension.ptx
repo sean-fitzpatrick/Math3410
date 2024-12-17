@@ -258,9 +258,9 @@
 
         <sage>
           <input>
-            from sympy import Matrix,init_printing
-            init_printing()
-            A = Matrix([[1,1,0],[1,0,1],[0,1,1]])
+            import sympy as sy
+            sy.init_printing()
+            A = sy.Matrix([[1,1,0],[1,0,1],[0,1,1]])
             A.rref(), A.det()
           </input>
           <output>
@@ -305,7 +305,7 @@
 
         <sage>
           <input>
-            A = Matrix([[-1,1,1],[1,-1,1],[1,1,-1]])
+            A = sy.Matrix([[-1,1,1],[1,-1,1],[1,1,-1]])
             A.det()
           </input>
           <output>

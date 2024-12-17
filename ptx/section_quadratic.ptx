@@ -81,11 +81,11 @@
 
   <sage>
     <input>
-      from sympy import Matrix, init_printing, factor
-      init_printing()
-      A1 = Matrix(2,2,[4,-2,-2,4])
+      import sympy as sy
+      sy.init_printing()
+      A1 = sy.Matrix(2,2,[4,-2,-2,4])
       p = A1.charpoly().as_expr()
-      factor(p)
+      sy.factor(p)
     </input>
     <output>
       \[(\lambda-6)(\lambda-2)\]

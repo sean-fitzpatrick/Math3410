@@ -98,9 +98,9 @@
 
       <sage>
         <input>
-          from sympy import Matrix,init_printing
-          init_printing()
-          B = Matrix([[3,7,-4],[5,-9,2],[-3,0,6]])
+          import sympy as sy
+          sy.init_printing()
+          B = sy.Matrix([[3,7,-4],[5,-9,2],[-3,0,6]])
           A = B*B.T
           A
         </input>
@@ -177,7 +177,7 @@
 
       <sage>
         <input>
-          A = Matrix([[1,2,3],[4,5,6]])
+          A = sy.Matrix([[1,2,3],[4,5,6]])
           A.singular_values()
         </input>
         <output>
@@ -192,9 +192,8 @@
 
       <sage>
         <input>
-          from sympy import Symbol
-          x = Symbol('x', real=True)
-          M = Matrix([[0,1,0],[0,x,0],[-1,0,0]])
+          x = sy.Symbol('x', real=True)
+          M = sy.Matrix([[0,1,0],[0,x,0],[-1,0,0]])
           M,M.singular_values()
         </input>
         <output>
@@ -305,9 +304,7 @@
 
           <sage>
             <input>
-              from sympy import Matrix, init_printing
-              init_printing()
-              A = Matrix([[1,1,1],[1,0,-1]])
+              A = sy.Matrix([[1,1,1],[1,0,-1]])
               A.singular_values()
             </input>
             <output>
@@ -363,10 +360,10 @@
 
           <sage>
             <input>
-              Q = Matrix([
-                  [sqrt(3)/3,sqrt(2)/2,sqrt(6)/6],
-                  [sqrt(3)/3,0,-sqrt(6)/3],
-                  [sqrt(3)/3,-sqrt(2)/2,sqrt(6)/6]])
+              Q = sy.Matrix([
+                  [sy.sqrt(3)/3,sy.sqrt(2)/2,sy.sqrt(6)/6],
+                  [sy.sqrt(3)/3,0,-sy.sqrt(6)/3],
+                  [sy.sqrt(3)/3,-sy.sqrt(2)/2,sy.sqrt(6)/6]])
               Q*Q.T
             </input>
             <output>
@@ -385,7 +382,7 @@
 
           <sage>
             <input>
-              S = Matrix([[sqrt(3),0,0],[0,sqrt(2),0]])
+              S = sy.Matrix([[sy.sqrt(3),0,0],[0,sy.sqrt(2),0]])
               S*Q.T
             </input>
             <output>
@@ -561,9 +558,7 @@
 
       <sage>
         <input>
-          from sympy import Matrix,init_printing
-          init_printing()
-          A = Matrix(3,3,[1,-2,3,3,-1,2,4,2,5])
+          A = sy.Matrix(3,3,[1,-2,3,3,-1,2,4,2,5])
           Q, R = A.QRdecomposition()
           A, Q, R
         </input>
@@ -634,7 +629,7 @@
 
       <sage>
         <input>
-          A = Matrix(2,2,[1,-4,-3,5])
+          A = sy.Matrix(2,2,[1,-4,-3,5])
           A,A.eigenvects()
         </input>
         <output>
@@ -649,7 +644,7 @@
 
       <sage>
         <input>
-          x0 = Matrix(2,1,[1,0])
+          x0 = sy.Matrix(2,1,[1,0])
           L = list()
           for k in range(10):
               L.append(A**k*x0)
@@ -810,7 +805,7 @@
 
       <sage>
         <input>
-          A = Matrix(3,3,[5,-2,3,0,4,0,0,-1,3])
+          A = sy.Matrix(3,3,[5,-2,3,0,4,0,0,-1,3])
           A.eigenvals()
         </input>
         <output>

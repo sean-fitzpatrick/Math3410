@@ -203,11 +203,11 @@
 
       <sage>
         <input>
-          from sympy import Matrix,init_printing,factor
-          init_printing()
-          A = Matrix(3,3,[5,-2,-4,-2,8,-2,-4,-2,5])
+          import sympy as sy
+          sy.init_printing()
+          A = sy.Matrix(3,3,[5,-2,-4,-2,8,-2,-4,-2,5])
           p=A.charpoly().as_expr()
-          factor(p)
+          sy.factor(p)
         </input>
         <output>
           \[\lambda(\lambda-9)^2\]
@@ -234,8 +234,7 @@
 
       <sage>
         <input>
-          from sympy import eye
-          B=A-9*eye(3)
+          B=A-9*sy.eye(3)
           B.nullspace()
         </input>
         <output>
@@ -269,9 +268,8 @@
 
       <sage>
         <input>
-          from sympy import GramSchmidt
           L=B.nullspace()
-          GramSchmidt(L)
+          sy.GramSchmidt(L)
         </input>
         <output>
           \[\left[\bbm -\frac12\\1\\0\ebm, \bbm -\frac45\\-\frac25\\1\ebm\right]\]
@@ -290,8 +288,8 @@
 
       <sage>
         <input>
-          L=[Matrix(3,1,[-1,0,1]),Matrix(3,1,[-1,2,0])]
-          GramSchmidt(L)
+          L=[sy.Matrix(3,1,[-1,0,1]),sy.Matrix(3,1,[-1,2,0])]
+          sy.GramSchmidt(L)
         </input>
         <output>
           \[\left[\bbm -1\\0\\1\ebm, \bbm -\frac12\\2\\-\frac12\ebm\right]\]
@@ -313,7 +311,7 @@
 
       <sage>
         <input>
-          P=Matrix(3,3,[2/3, -1/sqrt(2),1/sqrt(18), 1/3,0,-4/sqrt(18),2/3,1/sqrt(2),1/sqrt(18)])
+          P=sy.Matrix(3,3,[2/3, -1/sy.sqrt(2),1/sy.sqrt(18), 1/3,0,-4/sy.sqrt(18),2/3,1/sy.sqrt(2),1/sy.sqrt(18)])
           P,P*P.transpose()
         </input>
         <output>

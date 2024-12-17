@@ -303,9 +303,9 @@
 
   <sage>
     <input>
-      from sympy import Matrix,init_printing
-      init_printing()
-      A = Matrix(3,3,[1,0,4,-1,2,0,4,-3,-3])
+      import sympy as sy
+      sy.init_printing()
+      A = sy.Matrix(3,3,[1,0,4,-1,2,0,4,-3,-3])
       A.rref()
     </input>
     <output>
@@ -343,9 +343,7 @@
 
       <sage>
         <input>
-          from sympy import Matrix,init_printing
-          init_printing()
-          A = Matrix(3,3,[1,-1,-1,2,0,4,0,3,9])
+          A = sy.Matrix(3,3,[1,-1,-1,2,0,4,0,3,9])
           A.rref()
         </input>
         <output>
@@ -417,9 +415,7 @@
 
       <sage>
         <input>
-          from sympy import Matrix,init_printing
-          init_printing()
-          A = Matrix(3,3,[1,2,1,-1,1,5,3,5,1])
+          A = sy.Matrix(3,3,[1,2,1,-1,1,5,3,5,1])
           A.rref()
         </input>
         <output>

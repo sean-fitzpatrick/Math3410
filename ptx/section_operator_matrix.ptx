@@ -104,10 +104,10 @@
 
       <sage>
         <input>
-          from sympy import Matrix, init_printing
-          init_printing()
-          P = Matrix(3,3,[1,0,2,-1,1,0,0,3,-1])
-          M = Matrix(3,3,[1,0,2,0,4,1,1,0,2])
+          import sympy as sy
+          sy.init_printing()
+          P = sy.Matrix(3,3,[1,0,2,-1,1,0,0,3,-1])
+          M = sy.Matrix(3,3,[1,0,2,0,4,1,1,0,2])
           P**-1, P**-1*M
         </input>
         <output>
@@ -195,9 +195,7 @@
 
   <sage>
     <input>
-      from sympy import Matrix, init_printing
-      init_printing()
-      M0 = Matrix(3,3,[1,0,0,1,1,1,1,0,0])
+      M0 = sy.Matrix(3,3,[1,0,0,1,1,1,1,0,0])
       P**-1*M0*P
     </input>
     <output>

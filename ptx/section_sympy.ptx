@@ -12,7 +12,7 @@
 
     <p>
       Another advantage of SymPy is sophisticated <q>pretty-printing</q>.
-      In fact, we can enable MathJax within SymPy,
+      In fact, we can enable MathJax (a tool for rendering math on the web) within SymPy,
       so that output is rendered in the same way as when LaTeX is entered in a markdown cell.
     </p>
   </introduction>
@@ -21,39 +21,31 @@
     <title>SymPy basics</title>
     <p>
       Running the following Sage cell will load the SymPy library and turn on MathJax.
+      Note that functions from SymPy will need to be prefixed with <c>sy.</c> to indicate that they're from SymPy.
+      One can also use a command like <c>from sympy import Matrix</c> to import the needed functions,
+      but we have found that this can lead to conflicts when running code in the Sage cells used in the web verion of the book.
+    </p>
+
+    <p>
+      Using prefixes is also best practice, since it will keep you out of trouble once you are doing more sophisticated work,
+      where more than one Python library is needed at a time.
     </p>
 
     <sage>
       <input>
-        from sympy import *
-        init_printing()
+        import sympy as sy
+        sy.init_printing()
       </input>
     </sage>
 
     <p>
-      <alert>Note:</alert> the command <c>from sympy import *</c>
-      given above is <em>not</em> best practice.
-      It can be convenient when you want to do a quick calculation
-      (for example, on a test), but can have unintended consequences.
-      It is better to only load those parts of a library you are going to use;
-      for example, <c>from sympy import Matrix, init_printing</c>.
-    </p>
-
-    <p>
-      If you are going to be working with multiple libraries,
-      and more than one of them defines a certain command,
-      you can use prefixes to indicate what library you want to use.
-      For example, if you enter <c>import sympy as sy</c>,
-      each SymPy command will need to be appended with <c>sy</c>; for example,
-      you might write <c>sy.Matrix</c> instead of simply <c>Matrix</c>.
       Let's use SymPy to create a <m>2\times 3</m> matrix.
+      Make sure you've run the cell above before proceeding!
     </p>
 
     <sage>
       <input>
-        from sympy import Matrix, init_printing
-        init_printing()
-        A = Matrix(2,3,[1,2,3,4,5,6])
+        A = sy.Matrix(2,3,[1,2,3,4,5,6])
         A
       </input>
     </sage>
@@ -90,14 +82,12 @@
 
     <p>
       But we often do linear algebra over the rational numbers,
-      and so SymPy will let you specify this.
-      First, you'll need to load the <c>Rational</c> function.
+      and so SymPy will let you specify this, using the <c>Rational</c> function.
     </p>
 
     <sage>
       <input>
-        from sympy import Rational
-        Rational(2,7)
+        sy.Rational(2,7)
       </input>
     </sage>
 
@@ -108,7 +98,7 @@
 
     <sage>
       <input>
-        Rational(2/7)
+        sy.Rational(2/7)
       </input>
     </sage>
 
@@ -124,8 +114,7 @@
 
     <sage>
       <input>
-        from sympy import S
-        S(2)/7
+        sy.S(2)/7
       </input>
     </sage>
 
@@ -141,14 +130,13 @@
 
     <sage>
       <input>
-        from sympy import Float
-        Float(2.5)
+        sy.Float(2.5)
       </input>
     </sage>
 
     <sage>
       <input>
-        Float(2.5e10)
+        sy.Float(2.5e10)
       </input>
     </sage>
 
@@ -159,7 +147,7 @@
 
     <sage>
       <input>
-        Rational(0.75)
+        sy.Rational(0.75)
       </input>
     </sage>
 
@@ -170,7 +158,7 @@
 
     <sage>
       <input>
-        Rational(0.2)
+        sy.Rational(0.2)
       </input>
     </sage>
 
@@ -180,7 +168,7 @@
 
     <sage>
       <input>
-        Rational('0.2')
+        sy.Rational('0.2')
       </input>
     </sage>
 
@@ -190,7 +178,7 @@
 
     <sage>
       <input>
-        Rational(0.2).limit_denominator(10**12)
+        sy.Rational(0.2).limit_denominator(10**12)
       </input>
     </sage>
 
@@ -205,7 +193,7 @@
 
     <sage>
       <input>
-        S('0.[1]')
+        sy.S('0.[1]')
       </input>
     </sage>
 
@@ -217,24 +205,24 @@
 
     <sage>
       <input>
+        I = sy.I
         I*I
       </input>
     </sage>
     <sage>
       <input>
-        I-sqrt(-1)
+        I-sy.sqrt(-1)
       </input>
     </sage>
     <sage>
       <input>
-        from sympy import pi
-        pi.is_irrational
+        sy.pi.is_irrational
       </input>
     </sage>
 
     <p>
       Finally, from time to time you may need to include parameters (variables) in an expression.
-      Typical code for this is of the form <c>a, b, c = symbols('a b c', real = True, constant = True)</c>.
+      Typical code for this is of the form <c>a, b, c = sy.symbols('a b c', real = True, constant = True)</c>.
       Here, we introduce the symbols <c>a,b,c</c> with the specification that they represent real-valued constants.
     </p>
   </subsection>
@@ -246,33 +234,33 @@
       <url href="https://docs.sympy.org/latest/modules/matrices/matrices.html" visual="docs.sympy.org/latest/modules/matrices/matrices.html">online documentation</url>.
     </p>
     <p>
-      To create a <m>2\times 3</m> matrix, we can write either <c>A=Matrix(2,3,[1,2,3,4,5,6])</c>
-      or <c>A=Matrix([[1,2,3],[4,5,6]])</c>, where of course the size and entries can be changed to whatever you want.
+      To create a <m>2\times 3</m> matrix, we can write either <c>A=sy.Matrix(2,3,[1,2,3,4,5,6])</c>
+      or <c>A=sy.Matrix([[1,2,3],[4,5,6]])</c>, where of course the size and entries can be changed to whatever you want.
       The former method is a bit faster, but once your matrices get a bit bigger, the latter method is less prone to typos.
     </p>
 
     <sage>
       <input>
-        A=Matrix(2,3,[1,2,3,4,5,6])
-        B=Matrix([[1,2,3],[4,5,6]])
+        A=sy.Matrix(2,3,[1,2,3,4,5,6])
+        B=sy.Matrix([[1,2,3],[4,5,6]])
         A,B
       </input>
     </sage>
 
     <p>
-      Also of note: a column vector <m>\bbm 1\\2\\3\ebm</m> can be entered using <c>Matrix([1,2,3])</c>.
+      Also of note: a column vector <m>\bbm 1\\2\\3\ebm</m> can be entered using <c>sy.Matrix([1,2,3])</c>.
       There are also certain built in special matrices.
-      To get an <m>n\times n</m> identity matrix, use <c>eye(n)</c>.
-      To get an <m>m\times n</m> zero matrix, use <c>zeros(m,n)</c>, or <c>zeros(n)</c> for a square matrix.
-      There is also syntax for diagonal matrices, such as <c>diag(1,2,3)</c>.
+      To get an <m>n\times n</m> identity matrix, use <c>sy.eye(n)</c>.
+      To get an <m>m\times n</m> zero matrix, use <c>sy.zeros(m,n)</c>, or <c>sy.zeros(n)</c> for a square matrix.
+      There is also syntax for diagonal matrices, such as <c>sy.diag(1,2,3)</c>.
       What's cool is that you can even use this for block diagonal matrices:
     </p>
 
     <sage>
       <input>
-        A=Matrix(2,2,[1,2,3,4])
-        B=Matrix(2,2,[5,6,7,8])
-        D=diag(A,B)
+        A=sy.Matrix(2,2,[1,2,3,4])
+        B=sy.Matrix(2,2,[5,6,7,8])
+        D=sy.diag(A,B)
         D
       </input>
     </sage>
@@ -301,10 +289,9 @@
 
     <sage>
       <input>
-        from sympy import Symbol
-        a = Symbol('a')
-        b = Symbol('b')
-        A = Matrix(3,3,[a,2,b,2,1,a,2*a,b,3])
+        a = sy.Symbol('a')
+        b = sy.Symbol('b')
+        A = sy.Matrix(3,3,[a,2,b,2,1,a,2*a,b,3])
         A, A.rref(), A.echelon_form()
       </input>
     </sage>
@@ -404,13 +391,13 @@
     <p>
       Once you get to orthogonality, you'll want to be able to compute things like dot products, and transpose.
       These are simple enough. The dot product of vectors <c>X,Y</c> is simply <c>X.dot(Y)</c>.
-      The transpose of a matrix <c>A</c> is <c>A.T</c>. As we should expect, <c>X\dotp Y = X^TY</c>.
+      The transpose of a matrix <c>A</c> is <c>A.T</c>. As we should expect, <m>X\dotp Y = X^TY</m>.
     </p>
 
     <sage>
       <input>
-        X=Matrix(3,1,[1,2,3])
-        Y=Matrix(3,1,[4,5,6])
+        X = sy.Matrix(3,1,[1,2,3])
+        Y = sy.Matrix(3,1,[4,5,6])
         X.dot(Y),(X.T)*Y
       </input>
     </sage>
@@ -419,9 +406,9 @@
       Of course, nobody wants to do things like the Gram Schmidt algorithm by hand.
       Fortunately, there's a function for that.
       If we have vectors <c>X,Y,Z</c>, we can make a list <c>L=[X,Y,Z]</c>,
-      and perform Gram Schmidt with <c>GramSchmidt(L)</c>.
+      and perform Gram Schmidt with <c>sy.GramSchmidt(L)</c>.
       If you want your output to be an orthonormal basis (and not merely orthogonal),
-      then you can use <c>GramSchmidt(L,true)</c>.
+      then you can use <c>sy.GramSchmidt(L,true)</c>.
     </p>
 
     <p>
@@ -431,10 +418,9 @@
 
     <sage>
       <input>
-        from sympy import GramSchmidt
-        A=Matrix(2,3,[1,0,3,2,-1,4])
-        L=A.nullspace()
-        GramSchmidt(L)
+        A = sy.Matrix(2,3,[1,0,3,2,-1,4])
+        L = A.nullspace()
+        sy.GramSchmidt(L)
       </input>
     </sage>
 
@@ -503,16 +489,14 @@
 
     <sage>
       <input>
-        from sympy import Matrix,init_printing,simplify
-        init_printing()
-        A = Matrix(2,2,[4,3-I,3+I,1])
+        A = sy.Matrix(2,2,[4,3-I,3+I,1])
         L = A.eigenvects()
         v = ((L[0])[2])[0]
         w = ((L[1])[2])[0]
         u1 = (1/v.norm())*v
         u2 = (1/w.norm())*w
         U = u1.row_join(u2)
-        u1, u2, U, simplify(U.H*A*U)
+        u1, u2, U, sy.simplify(U.H*A*U)
       </input>
     </sage>
 

@@ -420,9 +420,9 @@
 
         <sage>
           <input>
-            from sympy import Matrix, init_printing
-            init_printing()
-            A=Matrix(3,4,[1,0,1,0,-1,0,1,1,1,1,-1,2])
+            import sympy as sy
+            sy.init_printing()
+            A = sy.Matrix(3,4,[1,0,1,0,-1,0,1,1,1,1,-1,2])
             A.rref()
           </input>
           <output>

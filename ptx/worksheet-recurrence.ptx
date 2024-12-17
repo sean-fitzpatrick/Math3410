@@ -127,9 +127,9 @@
 
     <sage>
       <input>
-        from sympy import symbols,factor,init_printing
-        x = symbols('x')
-        init_printing()
+        import sympy as sy
+        x = sy.symbols('x')
+        sy.init_printing()
       </input>
     </sage>
 
@@ -143,7 +143,9 @@
     </p>
 
     <sage language="html">
-
+      <input>
+        # If you are in a Jupyter notebook, change this cell to Markdown, and then type in your answer.
+      </input>
     </sage>
 
     <p>
@@ -165,7 +167,11 @@
       You may wish to confirm that each of your basis sequences indeed satisfies our recursion.
     </p>
 
-    <sage language="html"></sage>
+    <sage language="html">
+      <input>
+        # If you are in a Jupyter notebook, change this cell to Markdown, and then type in your answer.
+      </input>
+    </sage>
 
     <p>
       Next, let <m>s=(x_n)</m> be the recursion that satisfies the given initial conditions.
@@ -200,9 +206,8 @@
     </p>
     <sage>
       <input>
-        from sympy import Matrix
-        A = Matrix()
-        B = Matrix()
+        A = sy.Matrix()
+        B = sy.Matrix()
         X = A**(-1)*B
         X
       </input>
@@ -213,7 +218,9 @@
     </p>
 
     <sage language="html">
-
+      <input>
+        # If you are in a Jupyter notebook, change this cell to Markdown, and then type in your answer.
+      </input>
     </sage>
 
     <p>

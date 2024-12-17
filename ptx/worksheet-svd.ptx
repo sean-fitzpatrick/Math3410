@@ -51,9 +51,9 @@
 
     <sage>
       <input>
-        from sympy import Matrix,init_printing
-        init_printing()
-        A = Matrix([[1,1,1],[1,0,-1]])
+        import sympy as sy
+        sy.init_printing()
+        A = sy.Matrix([[1,1,1],[1,0,-1]])
         L0=A.singular_values()
         L0
       </input>
@@ -82,9 +82,9 @@
 
     <sage>
       <input>
-        R1=Matrix(L1[2][2])
-        R2=Matrix(L1[1][2])
-        R3=Matrix(L1[0][2])
+        R1 = sy.Matrix(L1[2][2])
+        R2 = sy.Matrix(L1[1][2])
+        R3 = sy.Matrix(L1[0][2])
         Q1 = (1/R1.norm())*R1
         Q2 = (1/R2.norm())*R2
         Q3 = (1/R3.norm())*R3
@@ -100,8 +100,7 @@
 
     <sage>
       <input>
-        from sympy import BlockMatrix
-        Q = Matrix(BlockMatrix([Q1,Q2,Q3]))
+        Q = sy.Matrix(sy.BlockMatrix([Q1,Q2,Q3]))
         Q,Q*Q.T
       </input>
     </sage>
@@ -113,13 +112,13 @@
 
     <sage>
       <input>
-        SigA = Matrix([[L0[0],0,0],[0,L0[1],0]])
+        SigA = sy.Matrix([[L0[0],0,0],[0,L0[1],0]])
         SigA
       </input>
     </sage>
 
     <p>
-      Alternatively, you could do <c>SigA = diag(L0[0],L0[1]).row_join(Matrix([0,0]))</c>.
+      Alternatively, you could do <c>SigA = sy.diag(L0[0],L0[1]).row_join(sy.Matrix([0,0]))</c>.
       Finally, we need to make the matrix <m>P</m>.
       First, we find the vectors <m>A\vecq_1, A\vecq_2</m> and normalize.
       (Note that <m>A\vecq_3=\zer</m>, so this vector is unneeded, as expected.)
@@ -131,7 +130,7 @@
         S2 = A*Q2
         P1 = (1/S1.norm())*S1
         P2 = (1/S2.norm())*S2
-        P = Matrix(BlockMatrix([P1,P2]))
+        P = sy.Matrix(sy.BlockMatrix([P1,P2]))
         P
       </input>
     </sage>
@@ -155,25 +154,25 @@
 
     <program>
       <input>
-        from sympy import Matrix,BlockMatrix,init_printing
-        init_printing()
-        A = Matrix([[1,1,1],[1,0,-1]])
-        B=(A.T)*A
-        L0=A.singular_values()
-        L1=B.eigenvects()
-        R1=Matrix(L1[2][2])
-        R2=Matrix(L1[1][2])
-        R3=Matrix(L1[0][2])
+        import sympy as sy
+        sy.init_printing()
+        A = sy.Matrix([[1,1,1],[1,0,-1]])
+        B = (A.T)*A
+        L0 = A.singular_values()
+        L1 = B.eigenvects()
+        R1 = sy.Matrix(L1[2][2])
+        R2 = sy.Matrix(L1[1][2])
+        R3 = sy.Matrix(L1[0][2])
         Q1 = (1/R1.norm())*R1
         Q2 = (1/R2.norm())*R2
         Q3 = (1/R3.norm())*R3
-        Q = Matrix(BlockMatrix([Q1,Q2,Q3]))
-        SigA = diag(L0[0],L0[1]).row_join(Matrix([0,0]))
+        Q = sy.Matrix(sy.BlockMatrix([Q1,Q2,Q3]))
+        SigA = sy.diag(L0[0],L0[1]).row_join(sy.Matrix([0,0]))
         S1 = A*Q1
         S2 = A*Q2
         P1 = (1/S1.norm())*S1
         P2 = (1/S2.norm())*S2
-        P = Matrix(BlockMatrix([P1,P2]))
+        P = sy.Matrix(sy.BlockMatrix([P1,P2]))
         P,SigA,Q,P*SigA*Q.T
       </input>
     </program>
@@ -242,7 +241,9 @@
         </statement>
 
         <sage language="html">
-
+          <input>
+            # If you are in a Jupyter notebook, change this cell to Markdown, and then type in your answer.
+          </input>
         </sage>
       </task>
       <task workspace="2.5in" label="ex-worksheet-svd3b">
@@ -255,7 +256,9 @@
         </statement>
 
         <sage language="html">
-
+          <input>
+            # If you are in a Jupyter notebook, change this cell to Markdown, and then type in your answer.
+          </input>
         </sage>
       </task>
       <task workspace="2.5in" label="ex-worksheet-svd3c">
@@ -273,7 +276,9 @@
           </p>
 
           <sage language="html">
-
+            <input>
+            # If you are in a Jupyter notebook, change this cell to Markdown, and then type in your answer.
+          </input>
           </sage>
         </statement>
       </task>

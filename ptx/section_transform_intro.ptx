@@ -506,10 +506,10 @@
 
       <sage>
         <input>
-          from sympy import Matrix,init_printing
-          init_printing()
-          A = Matrix(2,2,[3,2,1,-5])
-          B = Matrix(2,1,[4,3])
+          import sympy as sy
+          sy.init_printing()
+          A = sy.Matrix(2,2,[3,2,1,-5])
+          B = sy.Matrix(2,1,[4,3])
           (A**-1)*B
         </input>
         <output>
@@ -591,11 +591,9 @@
 
       <sage>
         <input>
-          from sympy import Matrix, init_printing, symbols
-          init_printing()
-          a, b = symbols('a b', real = True, constant = True)
-          A = Matrix(2,2,[1,-1,2,1])
-          B = Matrix(2,1,[a,b])
+          a, b = sy.symbols('a b', real = True, constant = True)
+          A = sy.Matrix(2,2,[1,-1,2,1])
+          B = sy.Matrix(2,1,[a,b])
           (A**-1)*B
         </input>
         <output>

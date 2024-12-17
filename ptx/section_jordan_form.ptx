@@ -230,15 +230,15 @@
 
       <sage>
         <input>
-          from sympy import Matrix,init_printing,factor
-          init_printing()
-          A = Matrix([[7,1,-3,2,1],
+          import sympy as sy
+          sy.init_printing()
+          A = sy.Matrix([[7,1,-3,2,1],
                       [-6,2,4,-2,-2],
                       [0,1,3,1,-1],
                       [-8,-1,6,0,-3],
                       [-4,0,3,-1,1]])
           p = A.charpoly().as_expr()
-          factor(p)
+          sy.factor(p)
         </input>
         <output>
           \[(\lambda-3)^3(\lambda-2)^2\]
@@ -257,8 +257,7 @@
 
       <sage>
         <input>
-          from sympy import eye
-          N2 = A-2*eye(5)
+          N2 = A-2*sy.eye(5)
           E2 = N2.nullspace()
           E2
         </input>
@@ -310,7 +309,7 @@
 
       <sage>
         <input>
-          N3 = A-3*eye(5)
+          N3 = A-3*sy.eye(5)
           E3 = N3.nullspace()
           E3
         </input>
@@ -360,9 +359,8 @@
 
       <sage>
         <input>
-          from sympy import Symbol
-          a = Symbol('a')
-          b = Symbol('b')
+          a = sy.Symbol('a')
+          b = sy.Symbol('b')
           C3 = N3.col_insert(5,a*E3[0]+b*E3[1])
           C3.echelon_form()
         </input>
@@ -413,7 +411,7 @@
 
       <sage>
         <input>
-          Z3 = Matrix(5,1,[1,2,2,0,0])
+          Z3 = sy.Matrix(5,1,[1,2,2,0,0])
           A*Z3-3*Z3-2*(E3[0]+E3[1])
         </input>
         <output>

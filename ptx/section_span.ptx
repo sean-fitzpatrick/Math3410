@@ -187,9 +187,9 @@
     
       <sage>
         <input>
-          from sympy import Matrix, init_printing
-          init_printing()
-          A = Matrix(2,3,[1,-1,2,1,2,3])
+          import sympy as sy
+          sy.init_printing()
+          A = sy.Matrix(2,3,[1,-1,2,1,2,3])
           A.rref()
         </input>
         <output>
@@ -207,7 +207,7 @@
     
       <sage>
         <input>
-          B = Matrix(2,2,[1,-1,1,2])
+          B = sy.Matrix(2,2,[1,-1,1,2])
           B
         </input>
         <output>
@@ -217,7 +217,7 @@
     
       <sage>
         <input>
-          C = Matrix(2,1,[2,3])
+          C = sy.Matrix(2,1,[2,3])
           X = (B**-1)*C
           X
         </input>
@@ -283,9 +283,7 @@
       </p>
       <sage>
         <input>
-          from sympy import Matrix, init_printing
-          init_printing()
-          M = Matrix(3,3,[1,3,1,2,5,1,-2,2,4])
+          M = sy.Matrix(3,3,[1,3,1,2,5,1,-2,2,4])
           M.rref()
         </input>
         <output>
@@ -310,10 +308,8 @@
 
     <sage>
       <input>
-        from sympy import symbols, Matrix, init_printing
-        init_printing()
-        a, b, c = symbols('a b c', real = True, constant = True)
-        N = Matrix(3,3,[1,3,a,2,5,b,-2,2,c])
+        a, b, c = sy.symbols('a b c', real = True, constant = True)
+        N = sy.Matrix(3,3,[1,3,a,2,5,b,-2,2,c])
         N
       </input>
       <output>
@@ -358,8 +354,8 @@
 
     <sage>
       <input>
-        a, b, c = symbols('a b c', real = True, constant = True)
-        N = Matrix(3,3,[1,3,a,2,5,b,-2,2,c])
+        a, b, c = sy.symbols('a b c', real = True, constant = True)
+        N = sy.Matrix(3,3,[1,3,a,2,5,b,-2,2,c])
         N.echelon_form()
       </input>
       <output>
