@@ -2,284 +2,274 @@
 
 <worksheet xml:id="worksheet-least-squares">
   <title>Worksheet: Least squares approximation</title>
-  <page>
-    <introduction>
+  <introduction>
+    <p>
+      In many applied scenarios, it is not practical (or even, perhaps, possible)
+      to find an exact solution to a problem.
+      Sometimes we may be working with imperfect data.
+      Other times, we may be dealing with a problem that is <term>overdetermined</term>,
+      <fn>The term <q>overdetermined</q> is common in statistics. In other areas, such as physics, the term <q>over-constrained</q> is used instead.</fn>
+      such as a system of linear equations with more equations than variables.
+      (Quite often, both of these issues may be present.)
+    </p>
+
+    <p>
+      An overdetermined system is quite likely to be inconsistent.
+      That is, our problem requires finding a solution to a system <m>A\xx=\mathbf{b}</m>,
+      where no such solution exists!
+      When no solution is possible, we can ask whether it is instead possible to find a <em>best approximation</em>.
+    </p>
+
+    <p>
+      What would a best approximation look like in this case?
+      Let <m>U=\csp(A)</m> denote the column space of <m>A</m>,
+      which we know is a subspace of <m>\R^n</m> (assuming <m>A</m> is an <m>m\times n</m> matrix).
+      The subspace <m>U</m> is precisely the set of all vectors <m>\yy</m> such that <m>A\xx=\yy</m> has a solution.
+      Among these vectors, we would like to find the one that is <em>closest</em> to <m>\mathbf{b}</m>,
+      in the sense that <m>\len{\yy-\mathbf{b}}</m> is as small as possible.
+    </p>
+
+    <p>
+      But we know exactly what this vector <m>\yy</m> should be:
+      the orthogonal projection of <m>\mathbf{b}</m> onto <m>U</m>.
+    </p>
+  </introduction>
+
+  <p>
+    The presentation in this worksheet is based on the one given in the text by Nicholson (see Section 5.6).
+    Further details may be found there, or, for the more statistically inclined,
+    on <url href="https://en.wikipedia.org/wiki/Least_squares" visual="en.wikipedia.org/wiki/Least_squares">Wikipedia</url>.
+  </p>
+
+  <p>
+    Given an inconsistent system <m>A\xx = \mathbf{b}</m>,
+    we have two problems to solve:
+    <ol>
+      <li>
+        <p>
+          Find the vector <m>\yy = \proj{U}{\mathbf{b}}</m>, where <m>U=\csp(A)</m>
+        </p>
+      </li>
+      <li>
+        <p>
+          Find a vector <m>\zz</m> such that <m>A\zz=\yy</m>
+        </p>
+      </li>
+    </ol>
+    The vector <m>\zz</m> is then our approximate solution.
+  </p>
+
+  <p>
+    This can be done directly, of course:
+    <ol>
+      <li>
+        <p>
+          Find a basis for <m>U</m>
+        </p>
+      </li>
+      <li>
+        <p>
+          Use the <xref ref="thm-gram-schmidt" text="title"/> to construct an orthogonal basis for <m>U</m>
+        </p>
+      </li>
+      <li>
+        <p>
+          Use this orthogonal basis to compute <m>\yy=\proj{U}{\mathbf{b}}</m>
+        </p>
+      </li>
+      <li>
+        <p>
+          Solve the system <m>A\zz=\yy</m>.
+        </p>
+      </li>
+    </ol>
+  </p>
+
+  <p>
+    But there is another way to proceed: we know that <m>\mathbf{b}-\yy=\mathbf{b}-A\zz\in U^\bot</m>,
+    so for any vector <m>A\xx\in U</m>, <m>(A\xx)\dotp (\mathbf{b}-A\zz)=0</m>. Therefore,
+    <md>
+      <mrow>(A\xx)\dotp (\mathbf{b}-A\zz) \amp =0</mrow>
+      <mrow>(A\xx)^T(\mathbf{b}-A\zz) \amp =0</mrow>
+      <mrow> \xx^TA^T(\mathbf{b}-A\zz) \amp =0</mrow>
+      <mrow> \xx^T(A^T\mathbf{b}-A^TA\zz) \amp =0</mrow>
+    </md>,
+    for any vector <m>\xx\in\R^n</m>.
+  </p>
+
+  <p>
+    Therefore, <m>A^T\mathbf{b}-A^TA\zz=0</m>, or
+    <men xml:id="eqn-normal-approximation">
+      A^TA\zz = A^T\mathbf{b}
+    </men>.
+    Solving this system, called the <term>normal equations</term> for <m>\zz</m>,
+    will yield our approximate solution.
+  </p>
+
+  <p>
+    To begin, let's compare the two methods discussed above for finding an approximate solution.
+    Consider the system of equations <m>A\xx=\mathbf{b}</m>, where
+    <me>
+      A = \bbm 3\amp -1 \amp 0\amp 5\\
+              -2\amp 7\amp -3\amp 0\\
+              4\amp -1\amp 2\amp 3\\
+              0\amp 3\amp 9\amp -1\\
+              7\amp -2\amp 4\amp -5\\
+              1\amp 0\amp 3\amp -8\ebm \text{ and } \mathbf{b} = \bbm 4\\0\\1\\2\\-5\\-1\ebm
+    </me>.
+  </p>
+
+  <exercise workspace="1.5in">
+    <statement>
       <p>
-        In many applied scenarios, it is not practical (or even, perhaps, possible)
-        to find an exact solution to a problem.
-        Sometimes we may be working with imperfect data.
-        Other times, we may be dealing with a problem that is <term>overdetermined</term>,
-        <fn>The term <q>overdetermined</q> is common in statistics. In other areas, such as physics, the term <q>over-constrained</q> is used instead.</fn>
-        such as a system of linear equations with more equations than variables.
-        (Quite often, both of these issues may be present.)
+        Confirm that the system has no solution.
+      </p>
+    </statement>
+  </exercise>
+
+  <sage>
+    <input>
+      import sympy as sy
+      sy.init_printing()
+    </input>
+  </sage>
+
+  <sage language="html">
+    <input>
+      # If you are in a Jupyter notebook, change this cell to Markdown, and then type in your answer.
+    </input>
+  </sage>
+
+  <exercise workspace="3in" label="ex-least-sq1">
+    <statement>
+      <p>
+        Find an orthogonal basis for the column space of <m>A</m>.
       </p>
 
       <p>
-        An overdetermined system is quite likely to be inconsistent.
-        That is, our problem requires finding a solution to a system <m>A\xx=\mathbf{b}</m>,
-        where no such solution exists!
-        When no solution is possible, we can ask whether it is instead possible to find a <em>best approximation</em>.
+        (Recall that SymPy has a <c>GramSchmidt</c> function.)
       </p>
+    </statement>
+    <response/>
+  </exercise>
 
+  <sage>
+    <input>
+      
+    </input>
+  </sage>
+
+  <exercise workspace="1.9in"  label="ex-least-sq2">
+    <statement>
       <p>
-        What would a best approximation look like in this case?
-        Let <m>U=\csp(A)</m> denote the column space of <m>A</m>,
-        which we know is a subspace of <m>\R^n</m> (assuming <m>A</m> is an <m>m\times n</m> matrix).
-        The subspace <m>U</m> is precisely the set of all vectors <m>\yy</m> such that <m>A\xx=\yy</m> has a solution.
-        Among these vectors, we would like to find the one that is <em>closest</em> to <m>\mathbf{b}</m>,
-        in the sense that <m>\len{\yy-\mathbf{b}}</m> is as small as possible.
+        Compute the projection <m>\yy</m> of <m>\mathbf{b}</m> onto the column space of <m>A</m>.
       </p>
+    </statement>
+    <response/>
+  </exercise>
 
+  <sage>
+
+  </sage>
+  <exercise workspace="1.9in"  label="ex-least-sq3">
+    <statement>
       <p>
-        But we know exactly what this vector <m>\yy</m> should be:
-        the orthogonal projection of <m>\mathbf{b}</m> onto <m>U</m>.
+        Solve the system <m>A\zz=\yy</m> for <m>\zz</m>.
       </p>
-    </introduction>
+    </statement>
+    <response/>
+  </exercise>
 
-    <p>
-      The presentation in this worksheet is based on the one given in the text by Nicholson (see Section 5.6).
-      Further details may be found there, or, for the more statistically inclined,
-      on <url href="https://en.wikipedia.org/wiki/Least_squares" visual="en.wikipedia.org/wiki/Least_squares">Wikipedia</url>.
-    </p>
+  <sage>
 
-    <p>
-      Given an inconsistent system <m>A\xx = \mathbf{b}</m>,
-      we have two problems to solve:
-      <ol>
-        <li>
-          <p>
-            Find the vector <m>\yy = \proj{U}{\mathbf{b}}</m>, where <m>U=\csp(A)</m>
-          </p>
-        </li>
-        <li>
-          <p>
-            Find a vector <m>\zz</m> such that <m>A\zz=\yy</m>
-          </p>
-        </li>
-      </ol>
-      The vector <m>\zz</m> is then our approximate solution.
-    </p>
+  </sage>
 
-    <p>
-      This can be done directly, of course:
-      <ol>
-        <li>
-          <p>
-            Find a basis for <m>U</m>
-          </p>
-        </li>
-        <li>
-          <p>
-            Use the <xref ref="thm-gram-schmidt" text="title"/> to construct an orthogonal basis for <m>U</m>
-          </p>
-        </li>
-        <li>
-          <p>
-            Use this orthogonal basis to compute <m>\yy=\proj{U}{\mathbf{b}}</m>
-          </p>
-        </li>
-        <li>
-          <p>
-            Solve the system <m>A\zz=\yy</m>.
-          </p>
-        </li>
-      </ol>
-    </p>
+  <exercise workspace="1.9in"  label="ex-least-sq4">
+    <statement>
+      <p>
+        Solve the normal equations <xref ref="eqn-normal-approximation"/> for <m>\zz</m>.
+      </p>
+    </statement>
+    <response/>
+  </exercise>
 
-    <p>
-      But there is another way to proceed: we know that <m>\mathbf{b}-\yy=\mathbf{b}-A\zz\in U^\bot</m>,
-      so for any vector <m>A\xx\in U</m>, <m>(A\xx)\dotp (\mathbf{b}-A\zz)=0</m>. Therefore,
-      <md>
-        <mrow>(A\xx)\dotp (\mathbf{b}-A\zz) \amp =0</mrow>
-        <mrow>(A\xx)^T(\mathbf{b}-A\zz) \amp =0</mrow>
-        <mrow> \xx^TA^T(\mathbf{b}-A\zz) \amp =0</mrow>
-        <mrow> \xx^T(A^T\mathbf{b}-A^TA\zz) \amp =0</mrow>
-      </md>,
-      for any vector <m>\xx\in\R^n</m>.
-    </p>
+  <sage>
 
-    <p>
-      Therefore, <m>A^T\mathbf{b}-A^TA\zz=0</m>, or
-      <men xml:id="eqn-normal-approximation">
-        A^TA\zz = A^T\mathbf{b}
-      </men>.
-      Solving this system, called the <term>normal equations</term> for <m>\zz</m>,
-      will yield our approximate solution.
-    </p>
-  </page>
-  <page>
-    <p>
-      To begin, let's compare the two methods discussed above for finding an approximate solution.
-      Consider the system of equations <m>A\xx=\mathbf{b}</m>, where
-      <me>
-        A = \bbm 3\amp -1 \amp 0\amp 5\\
-                -2\amp 7\amp -3\amp 0\\
-                4\amp -1\amp 2\amp 3\\
-                0\amp 3\amp 9\amp -1\\
-                7\amp -2\amp 4\amp -5\\
-                1\amp 0\amp 3\amp -8\ebm \text{ and } \mathbf{b} = \bbm 4\\0\\1\\2\\-5\\-1\ebm
-      </me>.
-    </p>
+  </sage>
 
-    <exercise workspace="1.5in">
-      <statement>
-        <p>
-          Confirm that the system has no solution.
-        </p>
-      </statement>
-    </exercise>
+  <p>
+    Next, we want to consider a problem found in many introductory science labs:
+    finding a line of <em>best fit</em>. The situation is as follows:
+    in some experiment, data points <m>(x_1,y_1), (x_2,y_2),\ldots, (x_n,y_n)</m>
+    have been found.
+    We would like to find a function <m>y=f(x)=ax+b</m> such that for each <m>i=1,2,\ldots, n</m>,
+    the value of <m>f(x_i)</m> is as close as possible to <m>y_i</m>.
+  </p>
 
-    <sage>
-      <input>
-        import sympy as sy
-        sy.init_printing()
-      </input>
-    </sage>
+  <p>
+    Note that we have only two parameters available to tune: <m>a</m> and <m>b</m>.
+    We assume that some reasoning or experimental evidence has led us to conclude that a linear fit is reasonable.
+    The challenge here is to make precise what we mean by <q>as close as possible</q>.
+    We have <m>n</m> differences (sometimes called <term>residuals</term>) <m>r_i=y_i-f(x_i)</m>
+    that we want to make small, by adjusting <m>a</m> and <m>b</m>.
+    But making one of the <m>r_i</m> smaller might make another one larger!
+  </p>
 
-    <sage language="html">
-      <input>
-        # If you are in a Jupyter notebook, change this cell to Markdown, and then type in your answer.
-      </input>
-    </sage>
+  <p>
+    A measure of the overall error in the fit of the line is given by the sum of squares
+    <me>
+      S = r_1^2+r_2^2+\cdots + r_n^2
+    </me>,
+    and this is the quantity that we want to minimize. (Hence the name, <q>least squares</q>.)
+  </p>
 
-    <exercise workspace="3in" label="ex-least-sq1">
-      <statement>
-        <p>
-          Find an orthogonal basis for the column space of <m>A</m>.
-        </p>
+  <p>
+    Let <m>\vv=\bbm a\\b\ebm</m>, and note that <m>f(x)=a+bx = \bbm 1\amp x\ebm\vv</m>.
+    Set <m>\yy = \bbm y_1\\y_2\\\vdots\\y_n\ebm</m> and <m>\mathbf{r}=\bbm r_1\\r_2\\\vdots\\r_n\ebm</m>.
+    Then
+    <me>
+      \mathbf{r}=\yy - A\vv
+    </me>,
+    where <m>A = \bbm 1\amp x_1\\1\amp x_2\\\vdots \amp \vdots \\1\amp x_n\ebm</m>.
+    (Note that we are using <m>\yy</m> to denote a different sort of vector than on the previous page.)
+  </p>
 
-        <p>
-          (Recall that SymPy has a <c>GramSchmidt</c> function.)
-        </p>
-      </statement>
-      <response/>
-    </exercise>
+  <p>
+    We can safely assume that an exact solution <m>A\vv=\yy</m> is impossible,
+    so we search for an approximate one, with <m>\mathbf{r}</m> as small as possible.
+    (Note that the magnitude of <m>\mathbf{r}</m> satisfies <m>\len{\mathbf{r}}^2=S</m>.)
+    But a solution <m>\zz</m> that makes <m>\yy-A\zz</m>
+    as small as possible is exactly the sort of approximate solution that we just learned to calculate!
+    Solving the normal equations for <m>\zz=\bbm a\\b\ebm</m>, we find that
+    <me>
+      \zz = (A^TA)^{-1}(A^T\yy)
+    </me>.
+  </p>
 
-    <sage>
-      <input>
-        
-      </input>
-    </sage>
+  <exercise workspace="3in" label="ex-least-sq5">
+    <statement>
+      <p>
+        Find the equation of the best fit line for the following set of data points:
+        <me>
+          (1,2.03), (2, 2.37), (3, 2.91), (4, 3.58), (5, 4.11), (6, 4.55), (7, 4.93), (8, 5.44), (9, 6.18)
+        </me>.
+      </p>
+    </statement>
+    <response/>
+  </exercise>
 
-  </page>
+  <sage>
 
-  <page>
-    <exercise workspace="1.9in"  label="ex-least-sq2">
-      <statement>
-        <p>
-          Compute the projection <m>\yy</m> of <m>\mathbf{b}</m> onto the column space of <m>A</m>.
-        </p>
-      </statement>
-      <response/>
-    </exercise>
+  </sage>
 
-    <sage>
-
-    </sage>
-    <exercise workspace="1.9in"  label="ex-least-sq3">
-      <statement>
-        <p>
-          Solve the system <m>A\zz=\yy</m> for <m>\zz</m>.
-        </p>
-      </statement>
-      <response/>
-    </exercise>
-
-    <sage>
-
-    </sage>
-
-    <exercise workspace="1.9in"  label="ex-least-sq4">
-      <statement>
-        <p>
-          Solve the normal equations <xref ref="eqn-normal-approximation"/> for <m>\zz</m>.
-        </p>
-      </statement>
-      <response/>
-    </exercise>
-
-    <sage>
-
-    </sage>
-  </page>
-
-  <page>
-    <p>
-      Next, we want to consider a problem found in many introductory science labs:
-      finding a line of <em>best fit</em>. The situation is as follows:
-      in some experiment, data points <m>(x_1,y_1), (x_2,y_2),\ldots, (x_n,y_n)</m>
-      have been found.
-      We would like to find a function <m>y=f(x)=ax+b</m> such that for each <m>i=1,2,\ldots, n</m>,
-      the value of <m>f(x_i)</m> is as close as possible to <m>y_i</m>.
-    </p>
-
-    <p>
-      Note that we have only two parameters available to tune: <m>a</m> and <m>b</m>.
-      We assume that some reasoning or experimental evidence has led us to conclude that a linear fit is reasonable.
-      The challenge here is to make precise what we mean by <q>as close as possible</q>.
-      We have <m>n</m> differences (sometimes called <term>residuals</term>) <m>r_i=y_i-f(x_i)</m>
-      that we want to make small, by adjusting <m>a</m> and <m>b</m>.
-      But making one of the <m>r_i</m> smaller might make another one larger!
-    </p>
-
-    <p>
-      A measure of the overall error in the fit of the line is given by the sum of squares
-      <me>
-        S = r_1^2+r_2^2+\cdots + r_n^2
-      </me>,
-      and this is the quantity that we want to minimize. (Hence the name, <q>least squares</q>.)
-    </p>
-
-    <p>
-      Let <m>\vv=\bbm a\\b\ebm</m>, and note that <m>f(x)=a+bx = \bbm 1\amp x\ebm\vv</m>.
-      Set <m>\yy = \bbm y_1\\y_2\\\vdots\\y_n\ebm</m> and <m>\mathbf{r}=\bbm r_1\\r_2\\\vdots\\r_n\ebm</m>.
-      Then
-      <me>
-        \mathbf{r}=\yy - A\vv
-      </me>,
-      where <m>A = \bbm 1\amp x_1\\1\amp x_2\\\vdots \amp \vdots \\1\amp x_n\ebm</m>.
-      (Note that we are using <m>\yy</m> to denote a different sort of vector than on the previous page.)
-    </p>
-
-    <p>
-      We can safely assume that an exact solution <m>A\vv=\yy</m> is impossible,
-      so we search for an approximate one, with <m>\mathbf{r}</m> as small as possible.
-      (Note that the magnitude of <m>\mathbf{r}</m> satisfies <m>\len{\mathbf{r}}^2=S</m>.)
-      But a solution <m>\zz</m> that makes <m>\yy-A\zz</m>
-      as small as possible is exactly the sort of approximate solution that we just learned to calculate!
-      Solving the normal equations for <m>\zz=\bbm a\\b\ebm</m>, we find that
-      <me>
-        \zz = (A^TA)^{-1}(A^T\yy)
-      </me>.
-    </p>
-  </page>
-
-  <page>
-    <exercise workspace="3in" label="ex-least-sq5">
-      <statement>
-        <p>
-          Find the equation of the best fit line for the following set of data points:
-          <me>
-            (1,2.03), (2, 2.37), (3, 2.91), (4, 3.58), (5, 4.11), (6, 4.55), (7, 4.93), (8, 5.44), (9, 6.18)
-          </me>.
-        </p>
-      </statement>
-      <response/>
-    </exercise>
-
-    <sage>
-
-    </sage>
-
-    <exercise workspace="4in" label="ex-least-sq6">
-      <statement>
-        <p>
-          Suppose we were instead trying to find the best <em>quadratic</em> fit for a dataset.
-          What would our parameters be? What would the matrix <m>A</m> look like?
-          Illustrate with an example of your own.
-        </p>
-      </statement>
-      <response/>
-    </exercise>
-  </page>
+  <exercise workspace="4in" label="ex-least-sq6">
+    <statement>
+      <p>
+        Suppose we were instead trying to find the best <em>quadratic</em> fit for a dataset.
+        What would our parameters be? What would the matrix <m>A</m> look like?
+        Illustrate with an example of your own.
+      </p>
+    </statement>
+    <response/>
+  </exercise>
 </worksheet>

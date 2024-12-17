@@ -2,242 +2,233 @@
 
 <worksheet xml:id="worksheet-transformations">
   <title>Worksheet: matrix transformations</title>
-  <page>
-    <introduction>
-      <p>
-        This worksheet deals with matrix transformations, and in particular,
-        kernel and image.
-        The goal is to understand these important subspaces in a familiar context.
-      </p>
-
-      <p>
-        Let <m>A</m> be an <m>m\times n</m> matrix.
-        We can use <m>A</m> to define a transformation <m>T_A:\R^n\to \R^m</m>
-        given by <m>T_A(\xx)=A\xx</m>, where we view <m>\xx</m>
-        as an <m>n\times 1</m> column vector.
-      </p>
-
-      <p>
-        The <term>kernel</term> of <m>T_A</m> is the set of vectors <m>\xx</m>
-        such that <m>T_A(\xx)=\zer</m>.
-        That is, <m>\ker T_A</m> is the set of solutions to the homogeneous system <m>A\xx = \zer</m>.
-      </p>
-
-      <p>
-        The <term>image</term> of <m>T_A</m> (also known as the range of <m>T_A</m>)
-        is the set of vectors <m>\yy\in \R^m</m> such that <m>\yy = A\xx</m>
-        for some <m>\xx\in\R^n</m>.
-        In other words, <m>\im(T_A)</m> is the set of vectors <m>\yy</m>
-        for which the non-homogeneous system <m>A\xx=\yy</m> is consistent.
-      </p>
-
-      <p>
-        Because <m>T_A</m> is a linear transformation,
-        we can compute it as long as we're given its values on a basis.
-        If <m>\{\vv_1, \vv_2,\ldots, \vv_n\}</m> is a basis for <m>\R^n</m>,
-        then for any <m>\xx\in\R^n</m> there exist unique scalars <m>c_1,c_2,\ldots, c_n</m>
-        such that
-        <me>
-          \xx = c_1\vv_1+c_2\vv_2+\cdots + c_n\vv_n
-        </me>,
-        and since <m>T_A</m> is linear, we have
-        <me>
-          T_A(\xx)=c_1T_A(\vv_1)+c_2T_A(\vv_2)+\cdots +c_nT_A(\vv_n)
-        </me>.
-      </p>
-
-      <p>
-        The main challenge, computationally speaking, is that if our basis is not the standard basis,
-        some effort will be required to write <m>\xx</m> in terms of the given basis.
-      </p>
-    </introduction>
-
-    <exercise workspace="3in" label="ex-ws-transf-1">
-      <statement>
-        <p>
-          Confirm that
-          <me>
-            B=\left\{\begin{bmatrix}1\\0\\2\\3\end{bmatrix},\begin{bmatrix}4\\2\\0\\-3\end{bmatrix},
-            \begin{bmatrix}0\\4\\-3\\2\end{bmatrix}, \begin{bmatrix}3\\5\\-2\\1\end{bmatrix}\right\}
-          </me>
-          is a basis for <m>\R^4</m>.
-        </p>
-      </statement>
-      <response/>
-    </exercise>
-
+  <introduction>
     <p>
-      To assist with solving this problem, a code cell is provided below.
-      Recall that you can enter the matrix <m>\begin{bmatrix}a\amp b\amp c\\d\amp e\amp f\\g\amp h\amp i\end{bmatrix}</m>
-      as <c>Matrix([[a,b,c],[d,e,f],[g,h,i]])</c> or as <c>Matrix(3,3,[a,b,c,d,e,f,g,h,i])</c>.
-    </p>
-  </page>
-
-  <page>
-    <p>
-      The reduced row-echeleon form of <c>A</c> is given by <c>A.rref()</c>.
-      The product of matrices <c>A</c> and <c>B</c> is simply <c>A*B</c>.
-      The inverse of a matrix <c>A</c> can be found using <c>A.inv()</c> or simply <c>A**(-1)</c>.
+      This worksheet deals with matrix transformations, and in particular,
+      kernel and image.
+      The goal is to understand these important subspaces in a familiar context.
     </p>
 
     <p>
-      One note of caution: in the <init>HTML</init> worksheet,
-      if you don't import <c>sympy</c> as your first line of code,
-      you'll instead use Sage syntax. Sage uses <c>A.inverse()</c> instead of <c>A.inv()</c>.
+      Let <m>A</m> be an <m>m\times n</m> matrix.
+      We can use <m>A</m> to define a transformation <m>T_A:\R^n\to \R^m</m>
+      given by <m>T_A(\xx)=A\xx</m>, where we view <m>\xx</m>
+      as an <m>n\times 1</m> column vector.
     </p>
 
     <p>
-      In a Jupyter notebook, remember you can generate additional code cells by clicking on the <c>+</c> button.
+      The <term>kernel</term> of <m>T_A</m> is the set of vectors <m>\xx</m>
+      such that <m>T_A(\xx)=\zer</m>.
+      That is, <m>\ker T_A</m> is the set of solutions to the homogeneous system <m>A\xx = \zer</m>.
     </p>
 
-    <sage>
-      <input>
-        import sympy as sy
-        sy.init_printing()
-      </input>
-    </sage>
-
     <p>
-      You can also use the cell below to write down any necessary explanation.
+      The <term>image</term> of <m>T_A</m> (also known as the range of <m>T_A</m>)
+      is the set of vectors <m>\yy\in \R^m</m> such that <m>\yy = A\xx</m>
+      for some <m>\xx\in\R^n</m>.
+      In other words, <m>\im(T_A)</m> is the set of vectors <m>\yy</m>
+      for which the non-homogeneous system <m>A\xx=\yy</m> is consistent.
     </p>
 
-    <sage language="html">
-      <input>
-        # If you are in a Jupyter notebook, change this cell to Markdown, and then type in your answer.
-      </input>
-    </sage>
-
-    <exercise workspace="4.3in"  label="ex-ws-transf-2">
-      <statement>
-        <p>
-          Write each of the standard basis vectors in terms of this basis.
-        </p>
-        <p>
-          <em>Suggestion:</em> in each case, this can be done by solving a matrix equation,
-          using the inverse of an appropriate matrix.
-        </p>
-      </statement>
-      <response/>
-    </exercise>
-
-    <sage>
-
-    </sage>
-  </page>
-
-  <page>
     <p>
-      A linear transformation <m>T:\R^4\to \R^4</m> is now defined as follows:
+      Because <m>T_A</m> is a linear transformation,
+      we can compute it as long as we're given its values on a basis.
+      If <m>\{\vv_1, \vv_2,\ldots, \vv_n\}</m> is a basis for <m>\R^n</m>,
+      then for any <m>\xx\in\R^n</m> there exist unique scalars <m>c_1,c_2,\ldots, c_n</m>
+      such that
       <me>
-        T\left(\begin{bmatrix}1\\0\\2\\3\end{bmatrix}\right)=\begin{bmatrix}3\\0\\2\\-1\end{bmatrix},
-        T\left(\begin{bmatrix}4\\2\\0\\-3\end{bmatrix}\right)=\begin{bmatrix}1\\2\\0\\5\end{bmatrix},
-        T\left(\begin{bmatrix}0\\4\\-3\\2\end{bmatrix}\right)=\begin{bmatrix}4\\2\\2\\4\end{bmatrix},
-        T\left(\begin{bmatrix}3\\5\\-2\\1\end{bmatrix}\right)=\begin{bmatrix}2\\4\\0\\10\end{bmatrix}
+        \xx = c_1\vv_1+c_2\vv_2+\cdots + c_n\vv_n
+      </me>,
+      and since <m>T_A</m> is linear, we have
+      <me>
+        T_A(\xx)=c_1T_A(\vv_1)+c_2T_A(\vv_2)+\cdots +c_nT_A(\vv_n)
       </me>.
     </p>
 
     <p>
-      Let <m>\{\vece_1,\vece_2,\vece_3, \vece_4\}</m> denote the standard basis for <m>\R^4</m>.
+      The main challenge, computationally speaking, is that if our basis is not the standard basis,
+      some effort will be required to write <m>\xx</m> in terms of the given basis.
     </p>
+  </introduction>
 
-    <exercise workspace="2.5in" label="ex-ws-transf-3">
-      <statement>
-        <p>
-          Determine <m>T(\vece_i)</m> for <m>i=1,2,3,4</m>,
-          and in so doing, determine the matrix <m>A</m> such that <m>T=T_A</m>.
-        </p>
+  <exercise workspace="3in" label="ex-ws-transf-1">
+    <statement>
+      <p>
+        Confirm that
+        <me>
+          B=\left\{\begin{bmatrix}1\\0\\2\\3\end{bmatrix},\begin{bmatrix}4\\2\\0\\-3\end{bmatrix},
+          \begin{bmatrix}0\\4\\-3\\2\end{bmatrix}, \begin{bmatrix}3\\5\\-2\\1\end{bmatrix}\right\}
+        </me>
+        is a basis for <m>\R^4</m>.
+      </p>
+    </statement>
+    <response/>
+  </exercise>
+
+  <p>
+    To assist with solving this problem, a code cell is provided below.
+    Recall that you can enter the matrix <m>\begin{bmatrix}a\amp b\amp c\\d\amp e\amp f\\g\amp h\amp i\end{bmatrix}</m>
+    as <c>Matrix([[a,b,c],[d,e,f],[g,h,i]])</c> or as <c>Matrix(3,3,[a,b,c,d,e,f,g,h,i])</c>.
+  </p>
+
+  <p>
+    The reduced row-echeleon form of <c>A</c> is given by <c>A.rref()</c>.
+    The product of matrices <c>A</c> and <c>B</c> is simply <c>A*B</c>.
+    The inverse of a matrix <c>A</c> can be found using <c>A.inv()</c> or simply <c>A**(-1)</c>.
+  </p>
+
+  <p>
+    One note of caution: in the <init>HTML</init> worksheet,
+    if you don't import <c>sympy</c> as your first line of code,
+    you'll instead use Sage syntax. Sage uses <c>A.inverse()</c> instead of <c>A.inv()</c>.
+  </p>
+
+  <p>
+    In a Jupyter notebook, remember you can generate additional code cells by clicking on the <c>+</c> button.
+  </p>
+
+  <sage>
+    <input>
+      import sympy as sy
+      sy.init_printing()
+    </input>
+  </sage>
+
+  <p>
+    You can also use the cell below to write down any necessary explanation.
+  </p>
+
+  <sage language="html">
+    <input>
+      # If you are in a Jupyter notebook, change this cell to Markdown, and then type in your answer.
+    </input>
+  </sage>
+
+  <exercise workspace="4.3in"  label="ex-ws-transf-2">
+    <statement>
+      <p>
+        Write each of the standard basis vectors in terms of this basis.
+      </p>
+      <p>
+        <em>Suggestion:</em> in each case, this can be done by solving a matrix equation,
+        using the inverse of an appropriate matrix.
+      </p>
+    </statement>
+    <response/>
+  </exercise>
+
+  <sage>
+
+  </sage>
+
+  <p>
+    A linear transformation <m>T:\R^4\to \R^4</m> is now defined as follows:
+    <me>
+      T\left(\begin{bmatrix}1\\0\\2\\3\end{bmatrix}\right)=\begin{bmatrix}3\\0\\2\\-1\end{bmatrix},
+      T\left(\begin{bmatrix}4\\2\\0\\-3\end{bmatrix}\right)=\begin{bmatrix}1\\2\\0\\5\end{bmatrix},
+      T\left(\begin{bmatrix}0\\4\\-3\\2\end{bmatrix}\right)=\begin{bmatrix}4\\2\\2\\4\end{bmatrix},
+      T\left(\begin{bmatrix}3\\5\\-2\\1\end{bmatrix}\right)=\begin{bmatrix}2\\4\\0\\10\end{bmatrix}
+    </me>.
+  </p>
+
+  <p>
+    Let <m>\{\vece_1,\vece_2,\vece_3, \vece_4\}</m> denote the standard basis for <m>\R^4</m>.
+  </p>
+
+  <exercise workspace="2.5in" label="ex-ws-transf-3">
+    <statement>
+      <p>
+        Determine <m>T(\vece_i)</m> for <m>i=1,2,3,4</m>,
+        and in so doing, determine the matrix <m>A</m> such that <m>T=T_A</m>.
+      </p>
+    </statement>
+    <response/>
+  </exercise>
+
+  <sage>
+
+  </sage>
+
+  <exercise workspace="2.5in" label="ex-ws-transf-4">
+    <statement>
+      <p>
+        Let <m>M</m> be the matrix whose columns are given by the values of <m>T</m> on the basis <m>B</m>.
+        (This would be the matrix of <m>T</m> if <m>B</m> was actually the standard basis.)
+        Let <m>N</m> be the matrix whose inverse you used to solve part (b).
+        Can you find a way to combine these matrices to obtain the matrix <m>A</m>?
+        If so, explain why your result makes sense.
+      </p>
       </statement>
       <response/>
-    </exercise>
+  </exercise>
 
-    <sage>
+  <sage>
 
-    </sage>
+  </sage>
 
-    <exercise workspace="2.5in" label="ex-ws-transf-4">
-      <statement>
-        <p>
-          Let <m>M</m> be the matrix whose columns are given by the values of <m>T</m> on the basis <m>B</m>.
-          (This would be the matrix of <m>T</m> if <m>B</m> was actually the standard basis.)
-          Let <m>N</m> be the matrix whose inverse you used to solve part (b).
-          Can you find a way to combine these matrices to obtain the matrix <m>A</m>?
-          If so, explain why your result makes sense.
-        </p>
-        </statement>
-        <response/>
-    </exercise>
+  <p>
+    Next we will compute the kernel and image of the transformation from the previous exercises.
+    Recall that when solving a homogeneous system <m>A\xx = \zer</m>,
+    we find the <init>RREF</init> of <m>A</m>,
+    and any variables whose columns do not contain a leading 1 are assigned as parameters.
+    We then express the general solution <m>x</m> in terms of those parameters.
+  </p>
 
-    <sage>
+  <p>
+    The image of a matrix transformation <m>T_A</m> is also known as the <term>column space</term>
+    of <m>A</m>, because the range of <m>T_A</m> is precisely the span of the columns of <m>A</m>.
+    The <init>RREF</init> of <m>A</m> tells us which columns to keep:
+    the columns of <m>A</m> that correspond to the columns in the <init>RREF</init> of <m>A</m> with a leading 1.
+  </p>
 
-    </sage>
-  </page>
+  <p>
+    Let <m>T</m> be the linear transformation given in the previous exercises.
+  </p>
 
-  <page>
-    <p>
-      Next we will compute the kernel and image of the transformation from the previous exercises.
-      Recall that when solving a homogeneous system <m>A\xx = \zer</m>,
-      we find the <init>RREF</init> of <m>A</m>,
-      and any variables whose columns do not contain a leading 1 are assigned as parameters.
-      We then express the general solution <m>x</m> in terms of those parameters.
-    </p>
+  <exercise workspace="1.25in" label="ex-ws-transf-5">
+    <statement>
+      <p>
+        Determine the kernel of <m>T</m>.
+      </p>
+    </statement>
+    <response/>
+  </exercise>
 
-    <p>
-      The image of a matrix transformation <m>T_A</m> is also known as the <term>column space</term>
-      of <m>A</m>, because the range of <m>T_A</m> is precisely the span of the columns of <m>A</m>.
-      The <init>RREF</init> of <m>A</m> tells us which columns to keep:
-      the columns of <m>A</m> that correspond to the columns in the <init>RREF</init> of <m>A</m> with a leading 1.
-    </p>
+  <sage>
 
-    <p>
-      Let <m>T</m> be the linear transformation given in the previous exercises.
-    </p>
+  </sage>
 
-    <exercise workspace="1.25in" label="ex-ws-transf-5">
-      <statement>
-        <p>
-          Determine the kernel of <m>T</m>.
-        </p>
-      </statement>
-      <response/>
-    </exercise>
+  <exercise workspace="1.25in" label="ex-ws-transf-6">
+    <statement>
+      <p>
+        Determine the image of <m>T</m>.
+      </p>
+    </statement>
+    <response/>
+  </exercise>
 
-    <sage>
+  <sage>
 
-    </sage>
-
-    <exercise workspace="1.25in" label="ex-ws-transf-6">
-      <statement>
-        <p>
-          Determine the image of <m>T</m>.
-        </p>
-      </statement>
-      <response/>
-    </exercise>
-
-    <sage>
-
-    </sage>
+  </sage>
 
 
-    <exercise workspace="1in" label="ex-ws-transf-7">
-      <statement>
-        <p>
-          The <term>Dimension Theorem</term> states that for a linear transformation
-          <m>T:V\to W</m>, where <m>V</m> is finite-dimensional,
-          <me>
-            \dim V = \dim\ker(T)+ \dim\im(T)
-          </me>.
-          Confirm that your results on this worksheet agree with this theorem.
-        </p>
-      </statement>
-      <response/>
-    </exercise>
+  <exercise workspace="1in" label="ex-ws-transf-7">
+    <statement>
+      <p>
+        The <term>Dimension Theorem</term> states that for a linear transformation
+        <m>T:V\to W</m>, where <m>V</m> is finite-dimensional,
+        <me>
+          \dim V = \dim\ker(T)+ \dim\im(T)
+        </me>.
+        Confirm that your results on this worksheet agree with this theorem.
+      </p>
+    </statement>
+    <response/>
+  </exercise>
 
-    <sage language="html">
-      <input>
-        # If you are in a Jupyter notebook, change this cell to Markdown, and then type in your answer.
-      </input>
-    </sage>
-  </page>
-
+  <sage language="html">
+    <input>
+      # If you are in a Jupyter notebook, change this cell to Markdown, and then type in your answer.
+    </input>
+  </sage>
 </worksheet>

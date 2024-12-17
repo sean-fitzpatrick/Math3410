@@ -2,269 +2,260 @@
 
 <worksheet xml:id="worksheet-recurrence">
   <title>Worksheet: linear recurrences</title>
-  <page>
-    <introduction>
-      <p>
-        In this worksheet, we will sketch some of the basic ideas related to linear recurrence.
-        For further reading, and more information, the reader is directed to Section 7.5 of
-        <em>Linear Algebra with Applications</em>, by Keith Nicholson.
-      </p>
-
-      <p>
-        A <em>linear recurrence</em> of length <m>k</m> is a sequence <m>(x_n)</m> that is recursively defined,
-        with successive terms in the sequence defined in terms of the previous <m>k</m> terms,
-        via a linear recursion formula of the form
-        <me>
-          x_{n+k} = a_0x_k + a_1x_{k+1}+\cdots + a_{k-1}x_{n+k-1}
-        </me>.
-        (Here we assume <m>a_0\neq 0</m> to have the appropriate length.)
-        The most famous example of a linear recurrence is, of course, the Fibonacci sequence,
-        which is defined by <m>x_0=1, x_1=1</m>, and <m>x_{n+2}=x_n+x_{n+1}</m> for all <m>n\geq 0</m>.
-      </p>
-
-      <p>
-        Recall from <xref ref="ex-vector-spaces"/> that the set of all sequences of real numbers
-        <m>(x_n)=(x_0,x_1,x_2,\ldots)</m> is a vector space, denoted by <m>\R^\infty</m>.
-      </p>
-
-      <p>
-        The set of all sequences satisfying a linear recursion of length <m>k</m>
-        form a subspace <m>V</m> of the vector space <m>\mathbb{R}^\infty</m>
-        of all real-valued sequences. (Can you prove this?)
-        Since each sequence is determined by the <m>k</m> initial conditions <m>x_0, x_1, \ldots, x_{k-1}</m>,
-        each such subspace <m>V</m> is isomorphic to <m>\mathbb{R}^k</m>.
-      </p>
-
-      <p>
-        The goal of this worksheeet is to understand how to obtain <em>closed form</em>
-        expressions for a recursively defined sequence using linear algebra.
-        That is, rather than having to generate terms of the sequence one-by-one using the recursion formula,
-        we want a function of <m>n</m> that will produce each term <m>x_n</m> in the sequence.
-      </p>
-
-      <p>
-        Since we know the dimension of the space <m>V</m> of solutions, it suffices to understand two things:
-        <ul>
-          <li>
-            <p>
-              How to produce a basis for <m>V</m>.
-            </p>
-          </li>
-          <li>
-            <p>
-              How to write a given solution in terms of that basis.
-            </p>
-          </li>
-        </ul>
-      </p>
-
-      <p>
-        Consider a geometric sequence, of the form <m>x_n=c\lambda^n</m>.
-        If this sequence satisfies the recursion
-        <me>
-          x_{n+k} = a_0x_n + a_1x_{n+1}+\cdots + a_{k-1}x_{n+k-1}
-        </me>,
-        then (with <m>n=0</m>)
-        <me>
-          c\lambda^k=a_0c+a_1c\lambda+\cdots+a_{k-1}\lambda^{k-1}
-        </me>,
-        or <m>c(\lambda^k-a_{k-1}\lambda^{k-1}-\cdots - a_1\lambda-a_0)=0</m>.
-        That is, <m>\lambda</m> is a root of the associated polynomial
-        <me>
-          p(x) = x^k - a_{k-1}x^{k-1}-\cdots -a_1x-a_0
-        </me>.
-      </p>
-
-      <p>
-        Thus, if the associated polynomial <m>p(x)</m> has roots <m>\lambda_1,\ldots, \lambda_m</m>,
-        we know that the sequences <m>(\lambda_1^n),\ldots, (\lambda_m^n)</m> satisfy our recursion.
-        The remaining difficulty is what to do when <m>p(x)</m> has repeated roots.
-        We will not prove it here, but if <m>(x-\lambda)^r</m> is a factor of <m>p(x)</m>,
-        then the sequences <m>(\lambda^n),(n\lambda^n),\ldots, (n^{r-1}\lambda^n)</m>
-        all satisfy the recursion.
-      </p>
-
-      <p>
-        If we can factor <m>p(x)</m> completely over the reals as
-        <me>
-          p(x) = (x-\lambda_1)^{m_1}(x-\lambda_2)^{m_2}\cdots (x-\lambda_p)^{m_p}
-        </me>,
-        then a basis for the space of solutions is given by
-        <md>
-          <mrow>\left(\lambda_1^n\right), \amp \left(n\lambda_1^n\right),\ldots, \left(n^{m_1-1}\lambda_1^n\right)</mrow>
-          <mrow>\left(\lambda_2^n\right), \amp \left(n\lambda_2^n\right),\ldots, \left(n^{m_2-1}\lambda_2^n\right)</mrow>
-          <mrow>\amp \vdots </mrow>
-          <mrow>\left(\lambda_p^n\right), \amp \left(n\lambda_p^n\right),\ldots, \left(n^{m_p-1}\lambda_p^n\right)</mrow>
-        </md>.
-      </p>
-
-      <p>
-        Once we have a basis, we can apply the given coefficients to determine how
-        to write a particular sequence as a linear combination of the basis vectors.
-      </p>
-    </introduction>
-  </page>
-  <page>
-    <exercise workspace="3.75in" label="ex-recurrence-1">
-      <statement>
-        <p>
-          Find a basis for the space <m>V</m> of sequences <m>(x_n)</m> satisfying the recurrence
-          <me>
-            x_{n+3}=-2x_n+x_{n+1}+2x_{n+2}
-          </me>.
-        </p>
-        <p>
-          Then find a formula for the sequence satisfying the initial conditions <m>x_0=3, x_1=-2, x_2=4</m>.
-        </p>
-      </statement>
-      <response/>
-    </exercise>
-
+  <introduction>
     <p>
-      To solve this problem, you may use Python code, as outlined below.
-      To get started, load the functions you'll need from the SymPy library.
-    </p>
-
-    <sage>
-      <input>
-        import sympy as sy
-        x = sy.symbols('x')
-        sy.init_printing()
-      </input>
-    </sage>
-
-    <p>
-      First, determine the associated polynomial for the recurrence.
+      In this worksheet, we will sketch some of the basic ideas related to linear recurrence.
+      For further reading, and more information, the reader is directed to Section 7.5 of
+      <em>Linear Algebra with Applications</em>, by Keith Nicholson.
     </p>
 
     <p>
-      (Input your polynomial in the cell below. To get proper formatting, wrap your math in <c>$</c> delimiters,
-      and can use <c>^</c> to enter exponents.)
-    </p>
-
-    <sage language="html">
-      <input>
-        # If you are in a Jupyter notebook, change this cell to Markdown, and then type in your answer.
-      </input>
-    </sage>
-
-    <p>
-      Next, factor the polynomial. You can do this using the <c>factor()</c> command.
-      In Python, you will need to enter <c>**</c> for the exponents.
-    </p>
-
-    <sage>
-
-    </sage>
-  </page>
-
-  <page>
-    <p>
-      In the cell below, list the roots of the polynomial,
-      and the resulting basis <m>B</m> for the space <m>V</m> of solutions.
-      Recall that if <m>\lambda</m> is a root of the polynomial,
-      then <m>(\lambda^n)</m> will be a basis vector for the vector space <m>V</m> of solutions.
-      You may wish to confirm that each of your basis sequences indeed satisfies our recursion.
-    </p>
-
-    <sage language="html">
-      <input>
-        # If you are in a Jupyter notebook, change this cell to Markdown, and then type in your answer.
-      </input>
-    </sage>
-
-    <p>
-      Next, let <m>s=(x_n)</m> be the recursion that satisfies the given initial conditions.
-      We want to write <m>(x_n)</m> in terms of the basis we just found.
-      Since our basis has three elements, there is an isomorphism
-      <m>T:\R^3\to V</m>, where <m>T(a,b,c)</m> is equal to the sequence <m>(x_n)</m> in <m>V</m>
-      that satisfies the initial conditions <m>x_0=a, x_1=b, x_2=c</m>.
-      Thus, our desired sequence is given by <m>s=T(3,-2,4)</m>.
-    </p>
-
-    <p>
-      Let <m>\vv_1, \vv_2, \vv_3\in\R^3</m> be the vectors such that
-      <m>B=\{T(\vv_1), T(\vv_2), T(\vv_3)\}</m>.
-      (That is, write out the first three terms in each sequence in your basis to get three vectors.)
-      We then need to find scalars <m>c_1,c_2,c_3</m> such that
+      A <em>linear recurrence</em> of length <m>k</m> is a sequence <m>(x_n)</m> that is recursively defined,
+      with successive terms in the sequence defined in terms of the previous <m>k</m> terms,
+      via a linear recursion formula of the form
       <me>
-        c_1\vv_1+c_2\vv_2+c_3\vv_3=(3,-2,4)
+        x_{n+k} = a_0x_k + a_1x_{k+1}+\cdots + a_{k-1}x_{n+k-1}
       </me>.
-      We will then have
+      (Here we assume <m>a_0\neq 0</m> to have the appropriate length.)
+      The most famous example of a linear recurrence is, of course, the Fibonacci sequence,
+      which is defined by <m>x_0=1, x_1=1</m>, and <m>x_{n+2}=x_n+x_{n+1}</m> for all <m>n\geq 0</m>.
+    </p>
+
+    <p>
+      Recall from <xref ref="ex-vector-spaces"/> that the set of all sequences of real numbers
+      <m>(x_n)=(x_0,x_1,x_2,\ldots)</m> is a vector space, denoted by <m>\R^\infty</m>.
+    </p>
+
+    <p>
+      The set of all sequences satisfying a linear recursion of length <m>k</m>
+      form a subspace <m>V</m> of the vector space <m>\mathbb{R}^\infty</m>
+      of all real-valued sequences. (Can you prove this?)
+      Since each sequence is determined by the <m>k</m> initial conditions <m>x_0, x_1, \ldots, x_{k-1}</m>,
+      each such subspace <m>V</m> is isomorphic to <m>\mathbb{R}^k</m>.
+    </p>
+
+    <p>
+      The goal of this worksheeet is to understand how to obtain <em>closed form</em>
+      expressions for a recursively defined sequence using linear algebra.
+      That is, rather than having to generate terms of the sequence one-by-one using the recursion formula,
+      we want a function of <m>n</m> that will produce each term <m>x_n</m> in the sequence.
+    </p>
+
+    <p>
+      Since we know the dimension of the space <m>V</m> of solutions, it suffices to understand two things:
+      <ul>
+        <li>
+          <p>
+            How to produce a basis for <m>V</m>.
+          </p>
+        </li>
+        <li>
+          <p>
+            How to write a given solution in terms of that basis.
+          </p>
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      Consider a geometric sequence, of the form <m>x_n=c\lambda^n</m>.
+      If this sequence satisfies the recursion
+      <me>
+        x_{n+k} = a_0x_n + a_1x_{n+1}+\cdots + a_{k-1}x_{n+k-1}
+      </me>,
+      then (with <m>n=0</m>)
+      <me>
+        c\lambda^k=a_0c+a_1c\lambda+\cdots+a_{k-1}\lambda^{k-1}
+      </me>,
+      or <m>c(\lambda^k-a_{k-1}\lambda^{k-1}-\cdots - a_1\lambda-a_0)=0</m>.
+      That is, <m>\lambda</m> is a root of the associated polynomial
+      <me>
+        p(x) = x^k - a_{k-1}x^{k-1}-\cdots -a_1x-a_0
+      </me>.
+    </p>
+
+    <p>
+      Thus, if the associated polynomial <m>p(x)</m> has roots <m>\lambda_1,\ldots, \lambda_m</m>,
+      we know that the sequences <m>(\lambda_1^n),\ldots, (\lambda_m^n)</m> satisfy our recursion.
+      The remaining difficulty is what to do when <m>p(x)</m> has repeated roots.
+      We will not prove it here, but if <m>(x-\lambda)^r</m> is a factor of <m>p(x)</m>,
+      then the sequences <m>(\lambda^n),(n\lambda^n),\ldots, (n^{r-1}\lambda^n)</m>
+      all satisfy the recursion.
+    </p>
+
+    <p>
+      If we can factor <m>p(x)</m> completely over the reals as
+      <me>
+        p(x) = (x-\lambda_1)^{m_1}(x-\lambda_2)^{m_2}\cdots (x-\lambda_p)^{m_p}
+      </me>,
+      then a basis for the space of solutions is given by
       <md>
-        <mrow>s \amp = T(3,-2,4)</mrow>
-        <mrow> \amp = c_1T(\vv_1)+c_2T(\vv_2)+c_3T(\vv_3)</mrow>
-      </md>,
-      and we recall that the sequences <m>T(\vv_i)</m> are the sequences in our basis <m>B</m>.
+        <mrow>\left(\lambda_1^n\right), \amp \left(n\lambda_1^n\right),\ldots, \left(n^{m_1-1}\lambda_1^n\right)</mrow>
+        <mrow>\left(\lambda_2^n\right), \amp \left(n\lambda_2^n\right),\ldots, \left(n^{m_2-1}\lambda_2^n\right)</mrow>
+        <mrow>\amp \vdots </mrow>
+        <mrow>\left(\lambda_p^n\right), \amp \left(n\lambda_p^n\right),\ldots, \left(n^{m_p-1}\lambda_p^n\right)</mrow>
+      </md>.
     </p>
 
     <p>
-      Set up this system, and then use the computer to solve.
-      Let <c>A</c> be the coefficient matrix for the system,
-      which you will need to input into the cell below,
-      and let <c>B</c> be the column vector containing the initial conditions.
+      Once we have a basis, we can apply the given coefficients to determine how
+      to write a particular sequence as a linear combination of the basis vectors.
     </p>
-    <sage>
-      <input>
-        A = sy.Matrix()
-        B = sy.Matrix()
-        X = A**(-1)*B
-        X
-      </input>
-    </sage>
+  </introduction>
 
-    <p>
-      Using the solution above, state the answer to this exercise.
-    </p>
+  <exercise workspace="3.75in" label="ex-recurrence-1">
+    <statement>
+      <p>
+        Find a basis for the space <m>V</m> of sequences <m>(x_n)</m> satisfying the recurrence
+        <me>
+          x_{n+3}=-2x_n+x_{n+1}+2x_{n+2}
+        </me>.
+      </p>
+      <p>
+        Then find a formula for the sequence satisfying the initial conditions <m>x_0=3, x_1=-2, x_2=4</m>.
+      </p>
+    </statement>
+    <response/>
+  </exercise>
 
-    <sage language="html">
-      <input>
-        # If you are in a Jupyter notebook, change this cell to Markdown, and then type in your answer.
-      </input>
-    </sage>
+  <p>
+    To solve this problem, you may use Python code, as outlined below.
+    To get started, load the functions you'll need from the SymPy library.
+  </p>
 
-    <p>
-      Now, we leave you with a few more exercises.
-      Recall that if the associated polynomial for your recursion has a repeated root <m>(x-\lambda)^k</m>,
-      then your basis will include the sequences <m>(\lambda^n), (n\lambda^n), \ldots, (n^{k-1}\lambda^n)</m>.
-    </p>
-  </page>
+  <sage>
+    <input>
+      import sympy as sy
+      x = sy.symbols('x')
+      sy.init_printing()
+    </input>
+  </sage>
 
-  <page>
-    <exercise workspace="3in" label="ex-recurrence-2">
-      <statement>
-        <p>
-          Find a basis for the space <m>V</m> of sequences <m>(x_n)</m> satisfying the recurrence
-          <me>
-            x_{n+3} = 8x_n-12x_{n+1}+6x_{n+2}
-          </me>.
-          Then find a formula for the sequence satisfying the initial conditions <m>x_0=2, x_1=-5, x_2=3</m>.
-        </p>
-      </statement>
-      <response/>
-    </exercise>
+  <p>
+    First, determine the associated polynomial for the recurrence.
+  </p>
 
-    <sage>
+  <p>
+    (Input your polynomial in the cell below. To get proper formatting, wrap your math in <c>$</c> delimiters,
+    and can use <c>^</c> to enter exponents.)
+  </p>
 
-    </sage>
+  <sage language="html">
+    <input>
+      # If you are in a Jupyter notebook, change this cell to Markdown, and then type in your answer.
+    </input>
+  </sage>
 
-    <exercise workspace="3in" label="ex-recurrence-3">
-      <statement>
-        <p>
-          Find a basis for the space <m>V</m> of sequences <m>(x_n)</m> satisfying the recurrence
-          <me>
-            x_{n+6} = 72x_n+12x_{n+1}-70x_{n+2}+5x_{n+3}+15x_{n+4}-x_{n+5}
-          </me>.
-          Then find a formula for the sequence satisfying the initial conditions <m>x_0=1, x_1=-2, x_2=1,x_3=2,x_4=-3,x_5=4</m>.
-        </p>
-      </statement>
-      <response/>
-    </exercise>
+  <p>
+    Next, factor the polynomial. You can do this using the <c>factor()</c> command.
+    In Python, you will need to enter <c>**</c> for the exponents.
+  </p>
 
-    <sage>
+  <sage>
 
-    </sage>
+  </sage>
 
-  </page>
+  <p>
+    In the cell below, list the roots of the polynomial,
+    and the resulting basis <m>B</m> for the space <m>V</m> of solutions.
+    Recall that if <m>\lambda</m> is a root of the polynomial,
+    then <m>(\lambda^n)</m> will be a basis vector for the vector space <m>V</m> of solutions.
+    You may wish to confirm that each of your basis sequences indeed satisfies our recursion.
+  </p>
 
+  <sage language="html">
+    <input>
+      # If you are in a Jupyter notebook, change this cell to Markdown, and then type in your answer.
+    </input>
+  </sage>
+
+  <p>
+    Next, let <m>s=(x_n)</m> be the recursion that satisfies the given initial conditions.
+    We want to write <m>(x_n)</m> in terms of the basis we just found.
+    Since our basis has three elements, there is an isomorphism
+    <m>T:\R^3\to V</m>, where <m>T(a,b,c)</m> is equal to the sequence <m>(x_n)</m> in <m>V</m>
+    that satisfies the initial conditions <m>x_0=a, x_1=b, x_2=c</m>.
+    Thus, our desired sequence is given by <m>s=T(3,-2,4)</m>.
+  </p>
+
+  <p>
+    Let <m>\vv_1, \vv_2, \vv_3\in\R^3</m> be the vectors such that
+    <m>B=\{T(\vv_1), T(\vv_2), T(\vv_3)\}</m>.
+    (That is, write out the first three terms in each sequence in your basis to get three vectors.)
+    We then need to find scalars <m>c_1,c_2,c_3</m> such that
+    <me>
+      c_1\vv_1+c_2\vv_2+c_3\vv_3=(3,-2,4)
+    </me>.
+    We will then have
+    <md>
+      <mrow>s \amp = T(3,-2,4)</mrow>
+      <mrow> \amp = c_1T(\vv_1)+c_2T(\vv_2)+c_3T(\vv_3)</mrow>
+    </md>,
+    and we recall that the sequences <m>T(\vv_i)</m> are the sequences in our basis <m>B</m>.
+  </p>
+
+  <p>
+    Set up this system, and then use the computer to solve.
+    Let <c>A</c> be the coefficient matrix for the system,
+    which you will need to input into the cell below,
+    and let <c>B</c> be the column vector containing the initial conditions.
+  </p>
+  <sage>
+    <input>
+      A = sy.Matrix()
+      B = sy.Matrix()
+      X = A**(-1)*B
+      X
+    </input>
+  </sage>
+
+  <p>
+    Using the solution above, state the answer to this exercise.
+  </p>
+
+  <sage language="html">
+    <input>
+      # If you are in a Jupyter notebook, change this cell to Markdown, and then type in your answer.
+    </input>
+  </sage>
+
+  <p>
+    Now, we leave you with a few more exercises.
+    Recall that if the associated polynomial for your recursion has a repeated root <m>(x-\lambda)^k</m>,
+    then your basis will include the sequences <m>(\lambda^n), (n\lambda^n), \ldots, (n^{k-1}\lambda^n)</m>.
+  </p>
+
+  <exercise workspace="3in" label="ex-recurrence-2">
+    <statement>
+      <p>
+        Find a basis for the space <m>V</m> of sequences <m>(x_n)</m> satisfying the recurrence
+        <me>
+          x_{n+3} = 8x_n-12x_{n+1}+6x_{n+2}
+        </me>.
+        Then find a formula for the sequence satisfying the initial conditions <m>x_0=2, x_1=-5, x_2=3</m>.
+      </p>
+    </statement>
+    <response/>
+  </exercise>
+
+  <sage>
+
+  </sage>
+
+  <exercise workspace="3in" label="ex-recurrence-3">
+    <statement>
+      <p>
+        Find a basis for the space <m>V</m> of sequences <m>(x_n)</m> satisfying the recurrence
+        <me>
+          x_{n+6} = 72x_n+12x_{n+1}-70x_{n+2}+5x_{n+3}+15x_{n+4}-x_{n+5}
+        </me>.
+        Then find a formula for the sequence satisfying the initial conditions <m>x_0=1, x_1=-2, x_2=1,x_3=2,x_4=-3,x_5=4</m>.
+      </p>
+    </statement>
+    <response/>
+  </exercise>
+
+  <sage>
+
+  </sage>
 </worksheet>

@@ -2,286 +2,277 @@
 
 <worksheet xml:id="worksheet-svd">
   <title>Worksheet: Singular Value Decomposition</title>
-  <page>
+  <introduction>
+    <p>
+      For this worksheet, the reader is directed to <xref ref="section-matrix-factor"/>.
+      Further details may be found in Section 8.6 of
+      <em>Linear Algebra with Applications</em>, by Keith Nicholson.
+      (See also <url href="https://www.juanklopper.com/wp-content/uploads/2015/03/III_05_Singular_value_decomposition.html" visual="www.juanklopper.com/wp-content/uploads/2015/03/III_05_Singular_value_decomposition.html">notebook by Dr. Juan H Klopper</url>.)
+    </p>
+
+    <p>
+      In <xref ref="section-matrix-factor"/> we saw that the <c>singular_value_decomposition</c>
+      algorithm in SymPy does things a little bit differently than in <xref ref="section-matrix-factor"/>.
+      If we start with a square matrix <m>A</m>, the results are the same,
+      but if <m>A</m> is not square, the decomposition <m>A = P\Sigma_A Q^T</m> looks a little different.
+      In particular, if <m>A</m> is <m>m\times n</m>,
+      the matrix <m>\Sigma_A</m> defined in <xref ref="section-matrix-factor"/> will also be <m>m\times n</m>,
+      but it will contain some rows or columns of zeros that are added to get the desired size.
+    </p>
+
+    <p>
+      The matrix <m>Q</m> is an orthogonal <m>n\times n</m> matrix whose columns are an orthonormal basis of eigenvectors for <m>A^TA</m>.
+      The matrix <m>P</m> is an orthogonal <m>m\times m</m> matrix whose columns are an orthonormal basis of <m>\R^m</m>.
+      (The first <m>r</m> columns of <m>P</m> are given by <m>A\vecq_i</m>, where <m>\vecq_i</m> is the eigenvector of <m>A^TA</m> corresponding to the positive singular value <m>\sigma_i</m>.)
+    </p>
+
+    <p>
+      The algorithm provided by SymPy replaces <m>\Sigma_A</m> by the <m>r\times r</m> diagonal matrix of nonzero singular values.
+      (This is common in most algorithms, since we don't want to bother storing data we don't need.)
+      The matrix <m>Q</m> is replaced by the <m>n\times r</m> matrix whose columns are the first <m>r</m> eigenvectors of <m>A^TA</m>,
+      and the matrix <m>P</m> is replaced by the <m>m\times r</m> matrix whose columns are the orthonormal basis for the column space of <m>A</m>.
+      (Note that the rank of <m>A^TA</m> is equal to the rank of <m>A</m>,
+      which is equal to the number <m>r</m> of nonzero eigenvectors of <m>A^TA</m> (counted with multiplicity).)
+    </p>
+
+    <p>
+      The product <m>P\Sigma_A Q^T</m> will be the same in both cases, and the matrix <m>P</m> is the same as well.
+    </p>
+  </introduction>
+
+  <p>
+    This time, rather than using the SymPy algorithm,
+    we will work through the process outlined in <xref ref="section-matrix-factor"/> step-by-step.
+    Let's revisit <xref ref="example-svd"/>.
+    Let <m>A = \bbm 1\amp 1\amp 1\\1\amp 0\amp -1\ebm</m>.
+    First, we get the singular values:
+  </p>
+
+  <sage>
+    <input>
+      import sympy as sy
+      sy.init_printing()
+      A = sy.Matrix([[1,1,1],[1,0,-1]])
+      L0=A.singular_values()
+      L0
+    </input>
+  </sage>
+
+  <p>
+    Next, we get the eigenvalues and eigenvectors of <m>A^TA</m>:
+  </p>
+
+  <sage>
+    <input>
+      B = (A.T)*A
+      L1=B.eigenvects()
+      L1
+    </input>
+  </sage>
+
+  <p>
+    Now we need to normalize the eigenvectors, in the correct order.
+    Note that the eigenvectors were listed in <em>increasing</em> order of eigenvalue,
+    so we need to reverse the order. Note that <c>L1</c> is a list of lists.
+    The eigenvector is the third entry (index 2) in the list (eigenvalue, multiplicity, eigenvector).
+    We also need to turn list elements into matrices.
+    So, for example the second eigenvector is <c>Matrix(L1[1][2])</c>.
+  </p>
+
+  <sage>
+    <input>
+      R1 = sy.Matrix(L1[2][2])
+      R2 = sy.Matrix(L1[1][2])
+      R3 = sy.Matrix(L1[0][2])
+      Q1 = (1/R1.norm())*R1
+      Q2 = (1/R2.norm())*R2
+      Q3 = (1/R3.norm())*R3
+      Q1,Q2,Q3
+    </input>
+  </sage>
+
+  <p>
+    Next, we can assemble these vectors into a matrix, and confirm that it's orthogonal.
+  </p>
+
+  <sage>
+    <input>
+      Q = sy.Matrix(sy.BlockMatrix([Q1,Q2,Q3]))
+      Q,Q*Q.T
+    </input>
+  </sage>
+
+  <p>
+    We've made the matrix <m>Q</m>! Next, we construct <m>\Sigma_A</m>.
+    This we will do by hand. (Can you think of a way to do it automatically?)
+  </p>
+
+  <sage>
+    <input>
+      SigA = sy.Matrix([[L0[0],0,0],[0,L0[1],0]])
+      SigA
+    </input>
+  </sage>
+
+  <p>
+    Alternatively, you could do <c>SigA = sy.diag(L0[0],L0[1]).row_join(sy.Matrix([0,0]))</c>.
+    Finally, we need to make the matrix <m>P</m>.
+    First, we find the vectors <m>A\vecq_1, A\vecq_2</m> and normalize.
+    (Note that <m>A\vecq_3=\zer</m>, so this vector is unneeded, as expected.)
+  </p>
+
+  <sage>
+    <input>
+      S1 = A*Q1
+      S2 = A*Q2
+      P1 = (1/S1.norm())*S1
+      P2 = (1/S2.norm())*S2
+      P = sy.Matrix(sy.BlockMatrix([P1,P2]))
+      P
+    </input>
+  </sage>
+
+  <p>
+    Note that the matrix <m>P</m> is already the correct size, because <m>\rank(A)=2\dim(\R^2)</m>.
+    In general, for an <m>m\times n</m> matrix <m>A</m>, if <m>\rank(A)=r\lt m</m>,
+    we would have to extend the set <m>\{\vecp_1,\ldots, \vecp_r\}</m> to a basis for <m>\R^m</m>.
+    Finally, we check that our matrices work as advertised.
+  </p>
+
+  <sage>
+    <input>
+      P*SigA*(Q.T)
+    </input>
+  </sage>
+
+  <p>
+    For convenience, here is all of the above code, with all print commands (except the last one) removed.
+  </p>
+
+  <program>
+    <input>
+      import sympy as sy
+      sy.init_printing()
+      A = sy.Matrix([[1,1,1],[1,0,-1]])
+      B = (A.T)*A
+      L0 = A.singular_values()
+      L1 = B.eigenvects()
+      R1 = sy.Matrix(L1[2][2])
+      R2 = sy.Matrix(L1[1][2])
+      R3 = sy.Matrix(L1[0][2])
+      Q1 = (1/R1.norm())*R1
+      Q2 = (1/R2.norm())*R2
+      Q3 = (1/R3.norm())*R3
+      Q = sy.Matrix(sy.BlockMatrix([Q1,Q2,Q3]))
+      SigA = sy.diag(L0[0],L0[1]).row_join(sy.Matrix([0,0]))
+      S1 = A*Q1
+      S2 = A*Q2
+      P1 = (1/S1.norm())*S1
+      P2 = (1/S2.norm())*S2
+      P = sy.Matrix(sy.BlockMatrix([P1,P2]))
+      P,SigA,Q,P*SigA*Q.T
+    </input>
+  </program>
+  
+  <exercise workspace="2.5in" xml:id="ex-worksheet-svd1" label="ex-worksheet-svd1">
+    <statement>
+      <p>
+        Compute the SVD for the matrices
+        <me>
+          \bbm 2\amp -1 \amp 1\\1\amp 0 \amp -2\ebm \quad \quad \bbm 2\amp -1\\-1\amp 3\\1\amp -1\ebm
+          \quad \quad \bbm 1\amp 1\amp 0\\ 0\amp 1\amp 2\\1\amp 0 \amp -2\ebm
+        </me>.
+          Note that for these matrices, you may need to do some additional work to extend the <m>\vecp_i</m>
+          vectors to an orthonormal basis. You can adapt the code above,
+          but you will have to think about how to implement additional code to construct any extra vectors you need.
+      </p>
+    </statement>
+  </exercise>
+
+  <sage>
+
+  </sage>
+
+  <exercise workspace="3.5in" xml:id="ex-worksheet-svd2" label="ex-worksheet-svd2">
+    <statement>
+      <p>
+        By making some very minor changes in the matrices in <xref ref="ex-worksheet-svd1"/>,
+        convince yourself that (a) those matrices were chosen very carefully,
+        and (b) there's a reason why most people do <init>SVD</init> numerically.
+      </p>
+    </statement>
+  </exercise>
+
+  <sage>
+
+  </sage>
+
+  <exercise xml:id="ex-worksheet-svd3" label="ex-worksheet-svd3">
     <introduction>
       <p>
-        For this worksheet, the reader is directed to <xref ref="section-matrix-factor"/>.
-        Further details may be found in Section 8.6 of
-        <em>Linear Algebra with Applications</em>, by Keith Nicholson.
-        (See also <url href="https://www.juanklopper.com/wp-content/uploads/2015/03/III_05_Singular_value_decomposition.html" visual="www.juanklopper.com/wp-content/uploads/2015/03/III_05_Singular_value_decomposition.html">notebook by Dr. Juan H Klopper</url>.)
+        Recall from <xref ref="worksheet-least-squares"/> that for an inconsistent system <m>A\xx = \mathbf{b}</m>,
+        we wish to find a vector <m>\yy</m> so that <m>A\xx=\yy</m> is consistent,
+        with <m>\yy</m> as close to <m>\mathbf{b}</m> as possible.
       </p>
 
       <p>
-        In <xref ref="section-matrix-factor"/> we saw that the <c>singular_value_decomposition</c>
-        algorithm in SymPy does things a little bit differently than in <xref ref="section-matrix-factor"/>.
-        If we start with a square matrix <m>A</m>, the results are the same,
-        but if <m>A</m> is not square, the decomposition <m>A = P\Sigma_A Q^T</m> looks a little different.
-        In particular, if <m>A</m> is <m>m\times n</m>,
-        the matrix <m>\Sigma_A</m> defined in <xref ref="section-matrix-factor"/> will also be <m>m\times n</m>,
-        but it will contain some rows or columns of zeros that are added to get the desired size.
-      </p>
-
-      <p>
-        The matrix <m>Q</m> is an orthogonal <m>n\times n</m> matrix whose columns are an orthonormal basis of eigenvectors for <m>A^TA</m>.
-        The matrix <m>P</m> is an orthogonal <m>m\times m</m> matrix whose columns are an orthonormal basis of <m>\R^m</m>.
-        (The first <m>r</m> columns of <m>P</m> are given by <m>A\vecq_i</m>, where <m>\vecq_i</m> is the eigenvector of <m>A^TA</m> corresponding to the positive singular value <m>\sigma_i</m>.)
-      </p>
-
-      <p>
-        The algorithm provided by SymPy replaces <m>\Sigma_A</m> by the <m>r\times r</m> diagonal matrix of nonzero singular values.
-        (This is common in most algorithms, since we don't want to bother storing data we don't need.)
-        The matrix <m>Q</m> is replaced by the <m>n\times r</m> matrix whose columns are the first <m>r</m> eigenvectors of <m>A^TA</m>,
-        and the matrix <m>P</m> is replaced by the <m>m\times r</m> matrix whose columns are the orthonormal basis for the column space of <m>A</m>.
-        (Note that the rank of <m>A^TA</m> is equal to the rank of <m>A</m>,
-        which is equal to the number <m>r</m> of nonzero eigenvectors of <m>A^TA</m> (counted with multiplicity).)
-      </p>
-
-      <p>
-        The product <m>P\Sigma_A Q^T</m> will be the same in both cases, and the matrix <m>P</m> is the same as well.
+        In other words, we want to minimize <m>\len{A\xx-\mathbf{b}}</m>, or equivialently, <m>\len{A\xx-\mathbf{b}}^2</m>.
       </p>
     </introduction>
 
-    <p>
-      This time, rather than using the SymPy algorithm,
-      we will work through the process outlined in <xref ref="section-matrix-factor"/> step-by-step.
-      Let's revisit <xref ref="example-svd"/>.
-      Let <m>A = \bbm 1\amp 1\amp 1\\1\amp 0\amp -1\ebm</m>.
-      First, we get the singular values:
-    </p>
-
-    <sage>
-      <input>
-        import sympy as sy
-        sy.init_printing()
-        A = sy.Matrix([[1,1,1],[1,0,-1]])
-        L0=A.singular_values()
-        L0
-      </input>
-    </sage>
-
-    <p>
-      Next, we get the eigenvalues and eigenvectors of <m>A^TA</m>:
-    </p>
-
-    <sage>
-      <input>
-        B = (A.T)*A
-        L1=B.eigenvects()
-        L1
-      </input>
-    </sage>
-
-    <p>
-      Now we need to normalize the eigenvectors, in the correct order.
-      Note that the eigenvectors were listed in <em>increasing</em> order of eigenvalue,
-      so we need to reverse the order. Note that <c>L1</c> is a list of lists.
-      The eigenvector is the third entry (index 2) in the list (eigenvalue, multiplicity, eigenvector).
-      We also need to turn list elements into matrices.
-      So, for example the second eigenvector is <c>Matrix(L1[1][2])</c>.
-    </p>
-
-    <sage>
-      <input>
-        R1 = sy.Matrix(L1[2][2])
-        R2 = sy.Matrix(L1[1][2])
-        R3 = sy.Matrix(L1[0][2])
-        Q1 = (1/R1.norm())*R1
-        Q2 = (1/R2.norm())*R2
-        Q3 = (1/R3.norm())*R3
-        Q1,Q2,Q3
-      </input>
-    </sage>
-  </page>
-
-  <page>
-    <p>
-      Next, we can assemble these vectors into a matrix, and confirm that it's orthogonal.
-    </p>
-
-    <sage>
-      <input>
-        Q = sy.Matrix(sy.BlockMatrix([Q1,Q2,Q3]))
-        Q,Q*Q.T
-      </input>
-    </sage>
-
-    <p>
-      We've made the matrix <m>Q</m>! Next, we construct <m>\Sigma_A</m>.
-      This we will do by hand. (Can you think of a way to do it automatically?)
-    </p>
-
-    <sage>
-      <input>
-        SigA = sy.Matrix([[L0[0],0,0],[0,L0[1],0]])
-        SigA
-      </input>
-    </sage>
-
-    <p>
-      Alternatively, you could do <c>SigA = sy.diag(L0[0],L0[1]).row_join(sy.Matrix([0,0]))</c>.
-      Finally, we need to make the matrix <m>P</m>.
-      First, we find the vectors <m>A\vecq_1, A\vecq_2</m> and normalize.
-      (Note that <m>A\vecq_3=\zer</m>, so this vector is unneeded, as expected.)
-    </p>
-
-    <sage>
-      <input>
-        S1 = A*Q1
-        S2 = A*Q2
-        P1 = (1/S1.norm())*S1
-        P2 = (1/S2.norm())*S2
-        P = sy.Matrix(sy.BlockMatrix([P1,P2]))
-        P
-      </input>
-    </sage>
-
-    <p>
-      Note that the matrix <m>P</m> is already the correct size, because <m>\rank(A)=2\dim(\R^2)</m>.
-      In general, for an <m>m\times n</m> matrix <m>A</m>, if <m>\rank(A)=r\lt m</m>,
-      we would have to extend the set <m>\{\vecp_1,\ldots, \vecp_r\}</m> to a basis for <m>\R^m</m>.
-      Finally, we check that our matrices work as advertised.
-    </p>
-
-    <sage>
-      <input>
-        P*SigA*(Q.T)
-      </input>
-    </sage>
-
-    <p>
-      For convenience, here is all of the above code, with all print commands (except the last one) removed.
-    </p>
-
-    <program>
-      <input>
-        import sympy as sy
-        sy.init_printing()
-        A = sy.Matrix([[1,1,1],[1,0,-1]])
-        B = (A.T)*A
-        L0 = A.singular_values()
-        L1 = B.eigenvects()
-        R1 = sy.Matrix(L1[2][2])
-        R2 = sy.Matrix(L1[1][2])
-        R3 = sy.Matrix(L1[0][2])
-        Q1 = (1/R1.norm())*R1
-        Q2 = (1/R2.norm())*R2
-        Q3 = (1/R3.norm())*R3
-        Q = sy.Matrix(sy.BlockMatrix([Q1,Q2,Q3]))
-        SigA = sy.diag(L0[0],L0[1]).row_join(sy.Matrix([0,0]))
-        S1 = A*Q1
-        S2 = A*Q2
-        P1 = (1/S1.norm())*S1
-        P2 = (1/S2.norm())*S2
-        P = sy.Matrix(sy.BlockMatrix([P1,P2]))
-        P,SigA,Q,P*SigA*Q.T
-      </input>
-    </program>
-  </page>
-
-  <page>
-    <exercise workspace="2.5in" xml:id="ex-worksheet-svd1" label="ex-worksheet-svd1">
+    <task workspace="2.5in" label="ex-worksheet-svd3a">
       <statement>
         <p>
-          Compute the SVD for the matrices
+          Let <m>A = P\Sigma_A Q^T</m> be the singular value decomposition of <m>A</m>.
+          Show that
           <me>
-            \bbm 2\amp -1 \amp 1\\1\amp 0 \amp -2\ebm \quad \quad \bbm 2\amp -1\\-1\amp 3\\1\amp -1\ebm
-            \quad \quad \bbm 1\amp 1\amp 0\\ 0\amp 1\amp 2\\1\amp 0 \amp -2\ebm
-          </me>.
-           Note that for these matrices, you may need to do some additional work to extend the <m>\vecp_i</m>
-           vectors to an orthonormal basis. You can adapt the code above,
-           but you will have to think about how to implement additional code to construct any extra vectors you need.
+            \len{A\xx-\mathbf{b}} = \len{\Sigma_A\yy-\zz}
+          </me>,
+          where <m>\yy = Q^T\xx</m>, and <m>\zz = P^T\mathbf{b}</m>.
         </p>
       </statement>
-    </exercise>
 
-    <sage>
-
-    </sage>
-
-    <exercise workspace="3.5in" xml:id="ex-worksheet-svd2" label="ex-worksheet-svd2">
+      <sage language="html">
+        <input>
+          # If you are in a Jupyter notebook, change this cell to Markdown, and then type in your answer.
+        </input>
+      </sage>
+    </task>
+    <task workspace="2.5in" label="ex-worksheet-svd3b">
       <statement>
         <p>
-          By making some very minor changes in the matrices in <xref ref="ex-worksheet-svd1"/>,
-          convince yourself that (a) those matrices were chosen very carefully,
-          and (b) there's a reason why most people do <init>SVD</init> numerically.
+          Show that setting <m>\yy_i = \begin{cases}\zz_i/\sigma_i, \amp \text{ if } \sigma_i\neq 0\\
+                                                      0, \amp \text{ if } \sigma_i=0\end{cases}</m>
+          minimizes the value of <m>\len{\Sigma_A\yy-\zz}</m>.
         </p>
       </statement>
-    </exercise>
 
-    <sage>
-
-    </sage>
-
-  </page>
-
-  <page>
-    <exercise xml:id="ex-worksheet-svd3" label="ex-worksheet-svd3">
-      <introduction>
+      <sage language="html">
+        <input>
+          # If you are in a Jupyter notebook, change this cell to Markdown, and then type in your answer.
+        </input>
+      </sage>
+    </task>
+    <task workspace="2.5in" label="ex-worksheet-svd3c">
+      <statement>
         <p>
-          Recall from <xref ref="worksheet-least-squares"/> that for an inconsistent system <m>A\xx = \mathbf{b}</m>,
-          we wish to find a vector <m>\yy</m> so that <m>A\xx=\yy</m> is consistent,
-          with <m>\yy</m> as close to <m>\mathbf{b}</m> as possible.
+          Recall that we set <m>\Sigma_A = \bbm D_A \amp 0\\ 0 \amp 0\ebm</m>,
+          where <m>D_A</m> is the diagonal matrix of nonzero singular values.
+          Let us define the <term>pseudo-inverse</term> of <m>\Sigma_A</m> to be the matrix
+          <m>\Sigma_A^+ = \bbm D_A^{-1}\amp 0\\0\amp 0\ebm</m>.
         </p>
 
         <p>
-          In other words, we want to minimize <m>\len{A\xx-\mathbf{b}}</m>, or equivialently, <m>\len{A\xx-\mathbf{b}}^2</m>.
+          Show that the solution to the least squares problem is given by <m>\xx = A^+\mathbf{b}</m>,
+          where <m>A^+ = Q\Sigma_A^+ P^T</m>.
         </p>
-      </introduction>
-
-      <task workspace="2.5in" label="ex-worksheet-svd3a">
-        <statement>
-          <p>
-            Let <m>A = P\Sigma_A Q^T</m> be the singular value decomposition of <m>A</m>.
-            Show that
-            <me>
-              \len{A\xx-\mathbf{b}} = \len{\Sigma_A\yy-\zz}
-            </me>,
-            where <m>\yy = Q^T\xx</m>, and <m>\zz = P^T\mathbf{b}</m>.
-          </p>
-        </statement>
 
         <sage language="html">
           <input>
-            # If you are in a Jupyter notebook, change this cell to Markdown, and then type in your answer.
-          </input>
+          # If you are in a Jupyter notebook, change this cell to Markdown, and then type in your answer.
+        </input>
         </sage>
-      </task>
-      <task workspace="2.5in" label="ex-worksheet-svd3b">
-        <statement>
-          <p>
-            Show that setting <m>\yy_i = \begin{cases}\zz_i/\sigma_i, \amp \text{ if } \sigma_i\neq 0\\
-                                                       0, \amp \text{ if } \sigma_i=0\end{cases}</m>
-            minimizes the value of <m>\len{\Sigma_A\yy-\zz}</m>.
-          </p>
-        </statement>
-
-        <sage language="html">
-          <input>
-            # If you are in a Jupyter notebook, change this cell to Markdown, and then type in your answer.
-          </input>
-        </sage>
-      </task>
-      <task workspace="2.5in" label="ex-worksheet-svd3c">
-        <statement>
-          <p>
-            Recall that we set <m>\Sigma_A = \bbm D_A \amp 0\\ 0 \amp 0\ebm</m>,
-            where <m>D_A</m> is the diagonal matrix of nonzero singular values.
-            Let us define the <term>pseudo-inverse</term> of <m>\Sigma_A</m> to be the matrix
-            <m>\Sigma_A^+ = \bbm D_A^{-1}\amp 0\\0\amp 0\ebm</m>.
-          </p>
-
-          <p>
-            Show that the solution to the least squares problem is given by <m>\xx = A^+\mathbf{b}</m>,
-            where <m>A^+ = Q\Sigma_A^+ P^T</m>.
-          </p>
-
-          <sage language="html">
-            <input>
-            # If you are in a Jupyter notebook, change this cell to Markdown, and then type in your answer.
-          </input>
-          </sage>
-        </statement>
-      </task>
-    </exercise>
-  </page>
+      </statement>
+    </task>
+  </exercise>
 </worksheet>

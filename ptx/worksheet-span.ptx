@@ -2,165 +2,157 @@
 
 <worksheet xml:id="worksheet-span">
   <title>Worksheet: working with span</title>
-  <page>
-    <p>
-      In this worksheet, we will attempt to understand the concept of span.
-      Recall from <xref ref="sec-span"/> that the span of a set of vectors
-      <m>\vv_1, \vv_2,\ldots, \vv_k</m> in a vector space <m>V</m>
-      is the set of all linear combinations that can be generated from those vectors.
-    </p>
+  <p>
+    In this worksheet, we will attempt to understand the concept of span.
+    Recall from <xref ref="sec-span"/> that the span of a set of vectors
+    <m>\vv_1, \vv_2,\ldots, \vv_k</m> in a vector space <m>V</m>
+    is the set of all linear combinations that can be generated from those vectors.
+  </p>
 
-    <p>
-      Recall the following fact: given a matrix <m>A</m> and vector <m>\xx</m>,
-      <m>A\xx</m> is a linear combination of the columns of <m>A</m>.
-    </p>
+  <p>
+    Recall the following fact: given a matrix <m>A</m> and vector <m>\xx</m>,
+    <m>A\xx</m> is a linear combination of the columns of <m>A</m>.
+  </p>
 
-    <p>
-      In particular, if we write <m>A</m> in terms of its columns as <m>A = \bbm \vv_1 \amp \vv_2 \amp  \cdots \amp \vv_n\ebm</m>
-      then
-      <me>
-        A\xx = x_1\vv_1+x_2\vv_2+\cdots + x_n\vv_n
-      </me>,
-      where <m>x_1,x_2,\ldots, x_n</m> are the components of <m>\xx</m>.
-    </p>
+  <p>
+    In particular, if we write <m>A</m> in terms of its columns as <m>A = \bbm \vv_1 \amp \vv_2 \amp  \cdots \amp \vv_n\ebm</m>
+    then
+    <me>
+      A\xx = x_1\vv_1+x_2\vv_2+\cdots + x_n\vv_n
+    </me>,
+    where <m>x_1,x_2,\ldots, x_n</m> are the components of <m>\xx</m>.
+  </p>
 
-    <p>
-      Let's confirm this for the matrix <m>A = \bbm 2\amp 3\amp -5\amp 6\\-7\amp 20\amp -11\amp 6\\43 \amp -6\amp 31\amp 2\ebm</m>
-      and vector <m>\xx = \bbm 7\\-9\\3\\14\ebm</m>.
-    </p>
+  <p>
+    Let's confirm this for the matrix <m>A = \bbm 2\amp 3\amp -5\amp 6\\-7\amp 20\amp -11\amp 6\\43 \amp -6\amp 31\amp 2\ebm</m>
+    and vector <m>\xx = \bbm 7\\-9\\3\\14\ebm</m>.
+  </p>
 
-    <p>
-      Input the matrix and vector in the cell below.
-    </p>
+  <p>
+    Input the matrix and vector in the cell below.
+  </p>
 
-    <sage>
-      <input>
-        import sympy as sy
-        sy.init_printing()
-      </input>
-    </sage>
+  <sage>
+    <input>
+      import sympy as sy
+      sy.init_printing()
+    </input>
+  </sage>
 
-    <p>
-      See <xref ref="sec-sympy"/> for details on how to enter your matrix and vector,
-      and how to compute the following.
-    </p>
+  <p>
+    See <xref ref="sec-sympy"/> for details on how to enter your matrix and vector,
+    and how to compute the following.
+  </p>
 
-    <p>
-      Next, compute <m>A\xx</m>:
-    </p>
+  <p>
+    Next, compute <m>A\xx</m>:
+  </p>
 
-    <sage>
-      <input>
-        
-      </input>
+  <sage>
+    <input>
       
-    </sage>
+    </input>
     
-    <p>
-      Finally, compute the corresponding linear combination of the columns of <m>A</m>,
-      and confirm that you get the same answer.
-    </p>
+  </sage>
+  
+  <p>
+    Finally, compute the corresponding linear combination of the columns of <m>A</m>,
+    and confirm that you get the same answer.
+  </p>
 
-    <sage>
-      <input>
-        
-      </input>
+  <sage>
+    <input>
       
-    </sage>
+    </input>
     
-  </page>
+  </sage>
 
-  <page>
-    <p>
-      The question <q>Does the vector <m>\ww</m> belong to the span of <m>\vv_1, \vv_2,\ldots, \vv_k</m>?</q>
-      is equivalent to asking, <q>Can I write <m>\ww</m> as a linear combination of the <m>\vv_i</m>?</q>
-      This, in turn, is equivalent to asking:
-    </p>
+  <p>
+    The question <q>Does the vector <m>\ww</m> belong to the span of <m>\vv_1, \vv_2,\ldots, \vv_k</m>?</q>
+    is equivalent to asking, <q>Can I write <m>\ww</m> as a linear combination of the <m>\vv_i</m>?</q>
+    This, in turn, is equivalent to asking:
+  </p>
 
-    <p>
-      Do there exist scalars <m>x_1,x_2,\ldots, x_k</m> such that
-      <me>
-        \ww=x_1\vv_1+x_2\vv_2+\cdots +x_k\vv_k
-      </me>?
-    </p>
+  <p>
+    Do there exist scalars <m>x_1,x_2,\ldots, x_k</m> such that
+    <me>
+      \ww=x_1\vv_1+x_2\vv_2+\cdots +x_k\vv_k
+    </me>?
+  </p>
 
-    <p>
-      If the above vectors are vectors in <m>\R^n</m>,
-      then we just saw that the right-hand side of the above equation is <m>A\xx</m>,
-      where <m>\vv_1,\vv_2,\ldots, \vv_k</m> are the columns of <m>A</m>.
-      So the question of whether <m>\ww</m> is in the span of the <m>\vv_i</m>
-      is equivalent to determining whether the equation <m>A\xx=\ww</m> has a solution.
-    </p>
+  <p>
+    If the above vectors are vectors in <m>\R^n</m>,
+    then we just saw that the right-hand side of the above equation is <m>A\xx</m>,
+    where <m>\vv_1,\vv_2,\ldots, \vv_k</m> are the columns of <m>A</m>.
+    So the question of whether <m>\ww</m> is in the span of the <m>\vv_i</m>
+    is equivalent to determining whether the equation <m>A\xx=\ww</m> has a solution.
+  </p>
 
-    <exercise workspace="1.6in" label="ex-ws-span-1">
-      <statement>
-        <p>
-          Determine whether or not the vector <m>\ww=\langle 3,-1, 4, 2\rangle</m> in <m>\R^4</m>
-          belongs to the span of the vectors
-          <me>
-            \langle 2, 1, 4, -3\rangle, \langle 0, 2, 1, 4\rangle, \langle -1, 1, 0, 2\rangle
-          </me>.
-        </p>
-      </statement>
-      <response/>
-    </exercise>
+  <exercise workspace="1.6in" label="ex-ws-span-1">
+    <statement>
+      <p>
+        Determine whether or not the vector <m>\ww=\langle 3,-1, 4, 2\rangle</m> in <m>\R^4</m>
+        belongs to the span of the vectors
+        <me>
+          \langle 2, 1, 4, -3\rangle, \langle 0, 2, 1, 4\rangle, \langle -1, 1, 0, 2\rangle
+        </me>.
+      </p>
+    </statement>
+    <response/>
+  </exercise>
 
-    <p>
-      To assist with solving this problem, a code cell is provided below.
-      Once you have determined the augmented matrix of your system of equations,
-      enter the matrix,
-      and then compute its reduced row-echelon form.
-    </p>
+  <p>
+    To assist with solving this problem, a code cell is provided below.
+    Once you have determined the augmented matrix of your system of equations,
+    enter the matrix,
+    and then compute its reduced row-echelon form.
+  </p>
 
-    <p>
-      (Do you recall how to tell if a system has a solution from the <init>RREF</init>?)
-    </p>
+  <p>
+    (Do you recall how to tell if a system has a solution from the <init>RREF</init>?)
+  </p>
 
-    <sage>
-      <input>
-        
-      </input>
-    </sage>
-
-    <p>
-      If our vector space is not <m>\R^n</m>, we can still apply the above technique,
-      but we first have to turn our span equation into a system of linear equations.
-    </p>
-
-    <exercise workspace="1.6in" label="ex-ws-span-2">
-      <statement>
-        <p>
-          Determine whether or not the polynomial <m>q(x) = 4-6x-11x^2</m> belongs to the span of the polynomials
-          <me>
-            p_1(x) = x-3x^2, p_2(x)=2-x, p_3(x) = -1+4x+x^2
-          </me>.
-        </p>
-      </statement>
-      <response/>
-    </exercise>
-
-    <sage>
-      <input>
+  <sage>
+    <input>
       
-      </input>
-    </sage>
+    </input>
+  </sage>
 
-  </page>
+  <p>
+    If our vector space is not <m>\R^n</m>, we can still apply the above technique,
+    but we first have to turn our span equation into a system of linear equations.
+  </p>
 
-  <page>
-    <exercise workspace="1.6in" label="ex-ws-span-3">
-      <statement>
-        <p>
-          Determine whether or not the matrix <m>B = \bbm 4\amp -1 \amp 7\\-5\amp 6\amp 2\ebm</m>
-          belongs to the span of the matrices
-          <me>
-            A_1 = \bbm 1\amp 2\amp 0\\-3\amp 2\amp 4\ebm, A_2 = \bbm 3\amp 2\amp -7\\0\amp 1\amp 3\ebm,
-            A_3 = \bbm 0\amp 1\amp 3\\2\amp 0\amp -4\ebm, A_4 = \bbm -1\amp 1\amp 3\\2\amp 0\amp 1\ebm
-          </me>.          
-        </p>
-      </statement>
-    </exercise>
-  </page>
+  <exercise workspace="1.6in" label="ex-ws-span-2">
+    <statement>
+      <p>
+        Determine whether or not the polynomial <m>q(x) = 4-6x-11x^2</m> belongs to the span of the polynomials
+        <me>
+          p_1(x) = x-3x^2, p_2(x)=2-x, p_3(x) = -1+4x+x^2
+        </me>.
+      </p>
+    </statement>
+    <response/>
+  </exercise>
+
+  <sage>
+    <input>
+
+    </input>
+  </sage>
+
+  <exercise workspace="1.6in" label="ex-ws-span-3">
+    <statement>
+      <p>
+        Determine whether or not the matrix <m>B = \bbm 4\amp -1 \amp 7\\-5\amp 6\amp 2\ebm</m>
+        belongs to the span of the matrices
+        <me>
+          A_1 = \bbm 1\amp 2\amp 0\\-3\amp 2\amp 4\ebm, A_2 = \bbm 3\amp 2\amp -7\\0\amp 1\amp 3\ebm,
+          A_3 = \bbm 0\amp 1\amp 3\\2\amp 0\amp -4\ebm, A_4 = \bbm -1\amp 1\amp 3\\2\amp 0\amp 1\ebm
+        </me>.          
+      </p>
+    </statement>
+  </exercise>
   
   <p>
     The above problems all answer the same basic question: given a <em>particular</em> vector <m>\ww</m>, 
