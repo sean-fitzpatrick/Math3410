@@ -119,62 +119,6 @@
       </p>
     </remark>
 
-    <exercise xml:id="ex-norm-sum-square" label="ex-norm-sum-square">
-      <statement>
-        <p>
-          Show that for any vectors <m>\xx,\yy\in\R^n</m>, we have
-          <me>
-            \len{\xx+\yy}^2 = \len{\xx}^2+2\xx\dotp\yy+\len{\yy}^2
-          </me>.
-        </p>
-      </statement>
-      <response/>
-      <hint>
-        <p>
-          Use properties of the dot product to expand and simplify.
-        </p>
-      </hint>
-      <solution>
-        <p>
-          This is simply an exercise in properties of the dot product. We have
-          <md>
-            <mrow>\len{\xx+\yy}^2 \amp = (\xx+\yy)\dotp (\xx+\yy) </mrow>
-            <mrow> \amp = \xx\dotp \xx+\xx\dotp\yy+\yy\dotp\xx+\yy\dotp\yy</mrow>
-            <mrow>  \amp =\len{\xx}^2+2\xx\dotp\yy+\len{\yy}^2</mrow>
-          </md>.
-        </p>
-      </solution>
-    </exercise>
-
-    <exercise xml:id="ex-ortho-span1" label="ex-ortho-span1">
-      <statement>
-        <p>
-          Suppose <m>\mathbb{R}^n=\spn\{\vv_1,\vv_2,\ldots, \vv_k\}</m>.
-          Prove that <m>\xx=\zer</m> if and only if <m>\xx\dotp \vv_i=0</m> for each <m>i=1,2,\ldots, k</m>.
-        </p>
-      </statement>
-      <response/>
-      <hint>
-        <p>
-          Don't forget to prove both directions!
-          Note that the hypothesis allows you to write <m>\xx</m> as a linear combination of the <m>\vv_i</m>.
-        </p>
-      </hint>
-      <solution>
-        <p>
-          If <m>\xx=\zer</m>, then the result follows immediately from the dot product formula in <xref ref="def-dot-prod-norm"/>.
-          Conversely, suppose <m>\xx\dotp \vv_i=0</m> for each <m>i</m>.
-          Since the <m>\vv_i</m> span <m>\R^n</m>, there must exist scalars <m>c_1,c_2,\ldots, c_k</m>
-          such that <m>\xx=c_1\vv_1+c_2\vv_2+\cdots+c_k\vv_k</m>. But then
-          <md>
-            <mrow>\xx\dotp\xx \amp = \xx\dotp (c_1\vv_1+c_2\vv_2+\cdots+c_k\vv_k) </mrow>
-            <mrow> \amp = c_1(\xx\dotp \vv_1)+ c_2(\xx\dotp \vv_2)+\cdots +c_k(\xx\dotp \vv_k)</mrow>
-            <mrow>  \amp = c_1(0)+c_2(0)+\cdots + c_k(0)=0</mrow>
-          </md>.
-        </p>
-      </solution>
-    </exercise>
-
     <p>
       There are two important inequalities associated to the dot product and norm.
       We state them both in the following theorem, without proof.
@@ -377,66 +321,6 @@
       </statement>
     </definition>
 
-    <exercise xml:id="ex-orthogonal-set" label="ex-orthogonal-set">
-      <statement>
-        <p>
-          Show that the following is an orthogonal subset of <m>\R^4</m>.
-          <me>
-            \{(1,0,1,0), (-1,0,1,1), (1,1,-1,2)\}
-          </me>
-          Can you find a fourth vector that is orthogonal to each vector in this set?
-        </p>
-      </statement>
-      <response/>
-      <hint>
-        <p>
-          The dot product of the fourth vector with each vector above must be zero.
-          Can you turn this requirement into a system of equations?
-        </p>
-      </hint>
-      <solution>
-        <p>
-          Clearly, all three vectors are nonzero. To confirm the set is orthogonal, we simply compute dot products:
-          <md>
-            <mrow> (1,0,1,0)\dotp (-1,0,1,1)\amp =-1+0+1+0=0</mrow>
-            <mrow> (-1,0,1,1)\dotp (1,1,-1,2)\amp =-1+0-1+2=0</mrow>
-            <mrow> (1,0,1,0)\dotp (1,1,-1,2) \amp = 1+0-1+0=0</mrow>
-          </md>.
-        </p>
-
-        <p>
-          To find a fourth vector, we proceed as follows. Let <m>\xx=(a,b,c,d)</m>.
-          We want <m>\xx</m> to be orthogonal to the three vectors in our set.
-          Computing dot products, we must have:
-          <md>
-            <mrow>(a,b,c,d)\dotp (1,0,1,0) \amp = a+c=0 </mrow>
-            <mrow>(a,b,c,d)\dotp (-1,0,1,1) \amp = -a+c+d=0 </mrow>
-            <mrow>(a,b,c,d)\dotp (1,1,-1,2) \amp = a+b-c+2d=0</mrow>
-          </md>.
-          This is simply a homogeneous system of three equations in four variables.
-          Using the Sage cell below, we find that our vector must satisfy
-          <m>a=\frac12 d, b = -3d, c=-\frac12 d</m>.
-        </p>
-
-        <sage>
-          <input>
-            import sympy as sy
-            sy.init_printing()
-            A = sy.Matrix(3,4,[1,0,1,0,-1,0,1,1,1,1,-1,2])
-            A.rref()
-          </input>
-          <output>
-            \[\bbm 1\amp 0\amp 0\amp -\frac12\\ 0\amp 1\amp 0\amp 3\\ 0\amp 0\amp 1\amp \frac12\ebm, (0,1,2)\]
-          </output>
-        </sage>
-
-        <p>
-          One possible nonzero solution is to take <m>d=2</m>, giving <m>\xx=(1,-6,-1,2)</m>.
-          We'll leave the verification that this vector works as an exercise.
-        </p>
-      </solution>
-    </exercise>
-
     <exercise xml:id="ex-tf-ortho-vect2" label="ex-tf-ortho-vect2">
       <statement correct="no">
         <p>
@@ -582,51 +466,6 @@
       Therefore, if we compute the right hand side of the above formula and do not get our original vector, then that vector must not be in the span.
     </p>
 
-    <exercise xml:id="ex-test-span" label="ex-test-span">
-      <statement>
-        <p>
-          Determine whether or not the vectors <m>\vv=(1,-4,3,-11), \ww=(3,1,-4,2)</m>
-          belong to the span of the vectors <m>\xx_1=(1,0,1,0), \xx_2=(-1,0,1,1), \xx_3=(1,1,-1,2)</m>.
-        </p>
-
-        <p>
-          (We confirmed that <m>\{\xx_1,\xx_2,\xx_3\}</m> is an orthogonal set in <xref ref="ex-orthogonal-set"/>.)
-        </p>
-      </statement>
-      <response/>
-      <solution>
-        <p>
-          We compute
-          <md>
-            <mrow>\left(\frac{\vv\dotp\xx_1}{\len{\xx_1}^2}\right)\xx_1
-              \amp +\left(\frac{\vv\dotp\xx_2}{\len{\xx_2}^2}\right)\xx_2
-              +\left(\frac{\vv\dotp\xx_3}{\len{\xx_3}^2}\right)\xx_3</mrow>
-            <mrow> \amp = \frac{4}{2}\xx_1+\frac{-9}{3}\xx_2+\frac{-28}{7}\xx_3</mrow>
-            <mrow> \amp = 2(1,0,1,0)-3(-1,0,1,1)-4(1,1,-1,2)</mrow>
-            <mrow> \amp = (1,-4,3,-11) = \vv</mrow>
-          </md>,
-          so <m>\vv\in\spn\{\xx_1,\xx_2,\xx_3\}</m>.
-        </p>
-
-        <p>
-          On the other hand, repeating the same calculation with <m>\ww</m>, we find
-          <md>
-            <mrow>\left(\frac{\vv\dotp\xx_1}{\len{\xx_1}^2}\right)\xx_1
-              \amp +\left(\frac{\vv\dotp\xx_2}{\len{\xx_2}^2}\right)\xx_2
-              +\left(\frac{\vv\dotp\xx_3}{\len{\xx_3}^2}\right)\xx_3</mrow>
-            <mrow> \amp =\frac12 (1,0,1,0)-\frac53 (-1,0,1,1) +\frac47 (1,1,-1,2)</mrow>
-            <mrow> \amp = \left(\frac{73}{42},\frac47,-\frac{115}{42},-\frac{11}{21}\right)\neq \ww</mrow>
-          </md>,
-          so <m>\ww\notin\spn\{\xx_1,\xx_2,\xx_3\}</m>.
-        </p>
-
-        <p>
-          Soon, we'll see that the quantity we computed when showing that <m>\ww\notin\spn\{\xx_1,\xx_2,\xx_3\}</m>
-          is, in fact, the <em>orthogonal projection</em> of <m>\ww</m> onto the subspace <m>\spn\{\xx_1,\xx_2,\xx_3\}</m>.
-        </p>
-      </solution>
-    </exercise>
-
     <p>
       The Fourier expansion is especially simple if our basis vectors have norm one,
       since the denominators in each coefficient disappear.
@@ -721,6 +560,167 @@
   </subsection>
 
   <exercises>
+    <exercise xml:id="ex-norm-sum-square" label="ex-norm-sum-square">
+      <statement>
+        <p>
+          Show that for any vectors <m>\xx,\yy\in\R^n</m>, we have
+          <me>
+            \len{\xx+\yy}^2 = \len{\xx}^2+2\xx\dotp\yy+\len{\yy}^2
+          </me>.
+        </p>
+      </statement>
+      <response/>
+      <hint>
+        <p>
+          Use properties of the dot product to expand and simplify.
+        </p>
+      </hint>
+      <solution>
+        <p>
+          This is an exercise in properties of the dot product. We have
+          <md>
+            <mrow>\len{\xx+\yy}^2 \amp = (\xx+\yy)\dotp (\xx+\yy) </mrow>
+            <mrow> \amp = \xx\dotp \xx+\xx\dotp\yy+\yy\dotp\xx+\yy\dotp\yy</mrow>
+            <mrow>  \amp =\len{\xx}^2+2\xx\dotp\yy+\len{\yy}^2</mrow>
+          </md>.
+        </p>
+      </solution>
+    </exercise>
+
+    <exercise xml:id="ex-ortho-span1" label="ex-ortho-span1">
+      <statement>
+        <p>
+          Suppose <m>\mathbb{R}^n=\spn\{\vv_1,\vv_2,\ldots, \vv_k\}</m>.
+          Prove that <m>\xx=\zer</m> if and only if <m>\xx\dotp \vv_i=0</m> for each <m>i=1,2,\ldots, k</m>.
+        </p>
+      </statement>
+      <response/>
+      <hint>
+        <p>
+          Don't forget to prove both directions!
+          Note that the hypothesis allows you to write <m>\xx</m> as a linear combination of the <m>\vv_i</m>.
+        </p>
+      </hint>
+      <solution>
+        <p>
+          If <m>\xx=\zer</m>, then the result follows immediately from the dot product formula in <xref ref="def-dot-prod-norm"/>.
+          Conversely, suppose <m>\xx\dotp \vv_i=0</m> for each <m>i</m>.
+          Since the <m>\vv_i</m> span <m>\R^n</m>, there must exist scalars <m>c_1,c_2,\ldots, c_k</m>
+          such that <m>\xx=c_1\vv_1+c_2\vv_2+\cdots+c_k\vv_k</m>. But then
+          <md>
+            <mrow>\xx\dotp\xx \amp = \xx\dotp (c_1\vv_1+c_2\vv_2+\cdots+c_k\vv_k) </mrow>
+            <mrow> \amp = c_1(\xx\dotp \vv_1)+ c_2(\xx\dotp \vv_2)+\cdots +c_k(\xx\dotp \vv_k)</mrow>
+            <mrow>  \amp = c_1(0)+c_2(0)+\cdots + c_k(0)=0</mrow>
+          </md>.
+        </p>
+      </solution>
+    </exercise>
+
+        <exercise xml:id="ex-orthogonal-set" label="ex-orthogonal-set">
+      <statement>
+        <p>
+          Show that the following is an orthogonal subset of <m>\R^4</m>.
+          <me>
+            \{(1,0,1,0), (-1,0,1,1), (1,1,-1,2)\}
+          </me>
+          Can you find a fourth vector that is orthogonal to each vector in this set?
+        </p>
+      </statement>
+      <response/>
+      <hint>
+        <p>
+          The dot product of the fourth vector with each vector above must be zero.
+          Can you turn this requirement into a system of equations?
+        </p>
+      </hint>
+      <solution>
+        <p>
+          Clearly, all three vectors are nonzero. To confirm the set is orthogonal, we simply compute dot products:
+          <md>
+            <mrow> (1,0,1,0)\dotp (-1,0,1,1)\amp =-1+0+1+0=0</mrow>
+            <mrow> (-1,0,1,1)\dotp (1,1,-1,2)\amp =-1+0-1+2=0</mrow>
+            <mrow> (1,0,1,0)\dotp (1,1,-1,2) \amp = 1+0-1+0=0</mrow>
+          </md>.
+        </p>
+
+        <p>
+          To find a fourth vector, we proceed as follows. Let <m>\xx=(a,b,c,d)</m>.
+          We want <m>\xx</m> to be orthogonal to the three vectors in our set.
+          Computing dot products, we must have:
+          <md>
+            <mrow>(a,b,c,d)\dotp (1,0,1,0) \amp = a+c=0 </mrow>
+            <mrow>(a,b,c,d)\dotp (-1,0,1,1) \amp = -a+c+d=0 </mrow>
+            <mrow>(a,b,c,d)\dotp (1,1,-1,2) \amp = a+b-c+2d=0</mrow>
+          </md>.
+          This is simply a homogeneous system of three equations in four variables.
+          Using the Sage cell below, we find that our vector must satisfy
+          <m>a=\frac12 d, b = -3d, c=-\frac12 d</m>.
+        </p>
+
+        <sage>
+          <input>
+            import sympy as sy
+            sy.init_printing()
+            A = sy.Matrix(3,4,[1,0,1,0,-1,0,1,1,1,1,-1,2])
+            A.rref()
+          </input>
+          <output>
+            \[\bbm 1\amp 0\amp 0\amp -\frac12\\ 0\amp 1\amp 0\amp 3\\ 0\amp 0\amp 1\amp \frac12\ebm, (0,1,2)\]
+          </output>
+        </sage>
+
+        <p>
+          One possible nonzero solution is to take <m>d=2</m>, giving <m>\xx=(1,-6,-1,2)</m>.
+          We'll leave the verification that this vector works as an exercise.
+        </p>
+      </solution>
+    </exercise>
+
+    <exercise xml:id="ex-test-span" label="ex-test-span">
+      <statement>
+        <p>
+          Determine whether or not the vectors <m>\vv=(1,-4,3,-11), \ww=(3,1,-4,2)</m>
+          belong to the span of the vectors <m>\xx_1=(1,0,1,0), \xx_2=(-1,0,1,1), \xx_3=(1,1,-1,2)</m>.
+        </p>
+
+        <p>
+          (We confirmed that <m>\{\xx_1,\xx_2,\xx_3\}</m> is an orthogonal set in <xref ref="ex-orthogonal-set"/>.)
+        </p>
+      </statement>
+      <response/>
+      <solution>
+        <p>
+          We compute
+          <md>
+            <mrow>\left(\frac{\vv\dotp\xx_1}{\len{\xx_1}^2}\right)\xx_1
+              \amp +\left(\frac{\vv\dotp\xx_2}{\len{\xx_2}^2}\right)\xx_2
+              +\left(\frac{\vv\dotp\xx_3}{\len{\xx_3}^2}\right)\xx_3</mrow>
+            <mrow> \amp = \frac{4}{2}\xx_1+\frac{-9}{3}\xx_2+\frac{-28}{7}\xx_3</mrow>
+            <mrow> \amp = 2(1,0,1,0)-3(-1,0,1,1)-4(1,1,-1,2)</mrow>
+            <mrow> \amp = (1,-4,3,-11) = \vv</mrow>
+          </md>,
+          so <m>\vv\in\spn\{\xx_1,\xx_2,\xx_3\}</m>.
+        </p>
+
+        <p>
+          On the other hand, repeating the same calculation with <m>\ww</m>, we find
+          <md>
+            <mrow>\left(\frac{\vv\dotp\xx_1}{\len{\xx_1}^2}\right)\xx_1
+              \amp +\left(\frac{\vv\dotp\xx_2}{\len{\xx_2}^2}\right)\xx_2
+              +\left(\frac{\vv\dotp\xx_3}{\len{\xx_3}^2}\right)\xx_3</mrow>
+            <mrow> \amp =\frac12 (1,0,1,0)-\frac53 (-1,0,1,1) +\frac47 (1,1,-1,2)</mrow>
+            <mrow> \amp = \left(\frac{73}{42},\frac47,-\frac{115}{42},-\frac{11}{21}\right)\neq \ww</mrow>
+          </md>,
+          so <m>\ww\notin\spn\{\xx_1,\xx_2,\xx_3\}</m>.
+        </p>
+
+        <p>
+          Soon, we'll see that the quantity we computed when showing that <m>\ww\notin\spn\{\xx_1,\xx_2,\xx_3\}</m>
+          is, in fact, the <em>orthogonal projection</em> of <m>\ww</m> onto the subspace <m>\spn\{\xx_1,\xx_2,\xx_3\}</m>.
+        </p>
+      </solution>
+    </exercise>
+
     <exercise xml:id="ex-ww-ortho3" label="ex-ww-ortho3">
       <webwork source="local/Library/Rochester/setLinearAlgebra17DotProductRn/ur_la_17_11.pg" />
     </exercise>

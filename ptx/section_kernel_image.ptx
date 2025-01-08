@@ -363,95 +363,6 @@
   </p>
 
   <p>
-    Knowing that the kernel and image of an operator are subspaces gives us an easy way to define subspaces.
-    From the textbook, we have the following nice example.
-  </p>
-
-  <exercise xml:id="ex-ker-im-transpose" label="ex-ker-im-transpose">
-    <introduction>
-      <p>
-        Let <m>T:M_{nn}\to M_{nn}</m> be defined by <m>T(A)=A-A^T</m>. Show that:
-      </p>
-    </introduction>
-
-    <task label="ker-im-trans-a">
-      <statement>
-        <p>
-          <m>T</m> is a linear map.
-        </p>
-      </statement>
-      <response/>
-      <hint>
-        <p>
-          You can use the fact that the transpose is linear: <m>(A+B)^T=A^T+B^T</m> and <m>(cA)^T=cA^T</m>.
-        </p>
-      </hint>
-      <solution>
-        <p>
-          We have <m>T(0)=0</m> since <m>0^T=0</m>.
-          Using proerties of the transpose and matrix algebra, we have
-          <me>
-            T(A+B) = (A+B)-(A+B)^T = (A-A^T)+(B-B^T) = T(A)+T(B)
-          </me>
-          and
-          <me>
-            T(kA) = (kA) - (kA)^T = kA-kA^T = k(A-A^T) = kT(A)
-          </me>.
-        </p>
-      </solution>
-    </task>
-
-    <task label="ker-im-trans-b">
-      <statement>
-        <p>
-          <m>\ker T</m> is equal to the set of all symmetric matrices.
-        </p>
-      </statement>
-      <response/>
-      <hint>
-        <p>
-          A matrix is symmetric if <m>A^T=A</m>, or in other words, <m>A-A^T=0</m>.
-        </p>
-      </hint>
-      <solution>
-        <p>
-          It's clear that if <m>A^T=A</m>, then <m>T(A)=0</m>.
-          On the other hand, if <m>T(A)=0</m>, then <m>A-A^T=0</m>, so <m>A=A^T</m>.
-          Thus, the kernel consists of all symmetric matrices.
-        </p>
-      </solution>
-    </task>
-
-    <task label="ker-im-trans-c">
-      <statement>
-        <p>
-          <m>\im T</m> is equal to the set of all skew-symmetric matrices.
-        </p>
-      </statement>
-      <response/>
-      <hint>
-        <p>
-          A matrix is skew-symmetric if <m>A^T=-A</m>.
-        </p>
-      </hint>
-      <solution>
-        <p>
-          If <m>B=T(A)=A-A^T</m>, then
-          <me>
-            B^T = (A-A^T)^T = A^T-A = -B
-          </me>,
-          so certainly every matrix in <m>\im A</m> is skew-symmetric.
-          On the other hand, if <m>B</m> is skew-symmetric, then <m>B=T(\frac12 B)</m>,
-          since
-          <me>
-            T\Bigl(\frac12 B\Bigr) = \frac12 T(B) = \frac12(B-B^T) = \frac12(B-(-B))= B
-          </me>.
-        </p>
-      </solution>
-    </task>
-  </exercise>
-
-  <p>
     Recall that a function <m>f:A\to B</m> is <term>injective</term> (or one-to-one)
     if for any <m>x_1,x_2\in A</m>, <m>f(x_1)=f(x_2)</m> implies that <m>x_1=x_2</m>.
     (In other words, no two different inputs give the same output.)
@@ -868,13 +779,149 @@
     This once again has consequences for the existence and uniqueness of solutions for linear systems with the coefficient matrix <m>A</m>.
   </p>
 
-  <p>
-    We end with an exercise that is both challenging and useful.
-    Do your best to come up with a proof before looking at the solution.
-  </p>
+  <exercises>
+    <exercise xml:id="ex-ker-im-transpose" label="ex-ker-im-transpose">
+      <introduction>
+        <p>
+          Knowing that the kernel and image of an operator are subspaces gives us a convenient way to define certain subspaces.
+          Here is a nice example of this.
+        </p>
+
+        <p>
+          Let <m>T:M_{nn}\to M_{nn}</m> be defined by <m>T(A)=A-A^T</m>. Show that:
+        </p>
+      </introduction>
+
+      <task label="ker-im-trans-a">
+        <statement>
+          <p>
+            <m>T</m> is a linear map.
+          </p>
+        </statement>
+        <response/>
+        <hint>
+          <p>
+            You can use the fact that the transpose is linear: <m>(A+B)^T=A^T+B^T</m> and <m>(cA)^T=cA^T</m>.
+          </p>
+        </hint>
+        <solution>
+          <p>
+            We have <m>T(0)=0</m> since <m>0^T=0</m>.
+            Using proerties of the transpose and matrix algebra, we have
+            <me>
+              T(A+B) = (A+B)-(A+B)^T = (A-A^T)+(B-B^T) = T(A)+T(B)
+            </me>
+            and
+            <me>
+              T(kA) = (kA) - (kA)^T = kA-kA^T = k(A-A^T) = kT(A)
+            </me>.
+          </p>
+        </solution>
+      </task>
+
+      <task label="ker-im-trans-b">
+        <statement>
+          <p>
+            <m>\ker T</m> is equal to the set of all symmetric matrices.
+          </p>
+        </statement>
+        <response/>
+        <hint>
+          <p>
+            A matrix is symmetric if <m>A^T=A</m>, or in other words, <m>A-A^T=0</m>.
+          </p>
+        </hint>
+        <solution>
+          <p>
+            It's clear that if <m>A^T=A</m>, then <m>T(A)=0</m>.
+            On the other hand, if <m>T(A)=0</m>, then <m>A-A^T=0</m>, so <m>A=A^T</m>.
+            Thus, the kernel consists of all symmetric matrices.
+          </p>
+        </solution>
+      </task>
+
+      <task label="ker-im-trans-c">
+        <statement>
+          <p>
+            <m>\im T</m> is equal to the set of all skew-symmetric matrices.
+          </p>
+        </statement>
+        <response/>
+        <hint>
+          <p>
+            A matrix is skew-symmetric if <m>A^T=-A</m>.
+          </p>
+        </hint>
+        <solution>
+          <p>
+            If <m>B=T(A)=A-A^T</m>, then
+            <me>
+              B^T = (A-A^T)^T = A^T-A = -B
+            </me>,
+            so certainly every matrix in <m>\im A</m> is skew-symmetric.
+            On the other hand, if <m>B</m> is skew-symmetric, then <m>B=T(\frac12 B)</m>,
+            since
+            <me>
+              T\Bigl(\frac12 B\Bigr) = \frac12 T(B) = \frac12(B-B^T) = \frac12(B-(-B))= B
+            </me>.
+          </p>
+        </solution>
+      </task>
+    </exercise>
+
+    <exercise xml:id="ex-ww-ki10" label="ex-ww-ki10">
+      <webwork source="local/Library/Rochester/setLinearAlgebra10Bases/ur_la_10_14.pg" />
+    </exercise>
+
+    <exercise xml:id="ex-ww-ki11" label="ex-ww-ki11">
+      <webwork source="local/Library/Rochester/setLinearAlgebra10Bases/ur_la_10_22.pg" />
+    </exercise>
+    
+    <exercise xml:id="ex-ww-ki4" label="ex-ww-ki4">
+      <webwork source="local/Library/TCNJ/TCNJ_IntroLinearTransformations/problem22.pg" />
+    </exercise>
+
+    <exercise xml:id="ex-ww-ki2" label="ex-ww-ki2">
+      <webwork source="local/Library/Hope/Multi1/04-02-Kernel-image/Ker_im_15.pg" />
+    </exercise>
+
+    <exercise xml:id="ex-ww-ki3" label="ex-ww-ki3">
+      <webwork source="local/Library/Hope/Multi1/04-02-Kernel-image/Ker_im_16.pg" />
+    </exercise>
+
+    <exercise xml:id="ex-ww-ki5" label="ex-ww-ki5">
+      <webwork source="local/Library/Hope/Multi1/04-02-Kernel-image/Ker_im_06.pg" />
+    </exercise>
+
+    <exercise xml:id="ex-ww-ki6" label="ex-ww-ki6">
+      <webwork source="local/Library/Hope/Multi1/04-02-Kernel-image/Ker_im_07.pg" />
+    </exercise>
+
+    <exercise xml:id="ex-ww-ki7" label="ex-ww-ki7">
+      <webwork source="local/Library/Hope/Multi1/04-02-Kernel-image/Ker_im_08.pg" />
+    </exercise>
+
+    <exercise xml:id="ex-ww-ki8" label="ex-ww-ki8">
+      <webwork source="local/Library/Rochester/setLinearAlgebra14TransfOfRn/ur_la_14_6.pg" />
+    </exercise>
+
+    <exercise xml:id="ex-ww-ki9" label="ex-ww-ki9">
+      <webwork source="local/Library/Mizzou/Matrix_Theory/HW_4/prob_3.pg" />
+    </exercise>
+
+    <exercise xml:id="ex-ww-ki12" label="ex-ww-ki12">
+      <webwork source="local/Library/Hope/Multi1/04-02-Kernel-image/Ker_im_14.pg" />
+    </exercise>
+  </exercises>
 
   <exercise xml:id="ex-dimension-injection-surjection" label="ex-dimension-injection-surjection">
     <introduction>
+      <p>
+        The following exercise is both challenging, and useful.
+        A solution can be found at the end of the book,
+        but do your best to come up with a proof before looking at the solution.
+      </p>
+
       <p>
         Let <m>V</m> and <m>W</m> be finite-dimensional vector spaces. Prove the following:
       </p>
@@ -969,49 +1016,4 @@
       </solution>
     </task>
   </exercise>
-  <exercises>
-    <exercise xml:id="ex-ww-ki10" label="ex-ww-ki10">
-      <webwork source="local/Library/Rochester/setLinearAlgebra10Bases/ur_la_10_14.pg" />
-    </exercise>
-
-    <exercise xml:id="ex-ww-ki11" label="ex-ww-ki11">
-      <webwork source="local/Library/Rochester/setLinearAlgebra10Bases/ur_la_10_22.pg" />
-    </exercise>
-    
-    <exercise xml:id="ex-ww-ki4" label="ex-ww-ki4">
-      <webwork source="local/Library/TCNJ/TCNJ_IntroLinearTransformations/problem22.pg" />
-    </exercise>
-
-    <exercise xml:id="ex-ww-ki2" label="ex-ww-ki2">
-      <webwork source="local/Library/Hope/Multi1/04-02-Kernel-image/Ker_im_15.pg" />
-    </exercise>
-
-    <exercise xml:id="ex-ww-ki3" label="ex-ww-ki3">
-      <webwork source="local/Library/Hope/Multi1/04-02-Kernel-image/Ker_im_16.pg" />
-    </exercise>
-
-    <exercise xml:id="ex-ww-ki5" label="ex-ww-ki5">
-      <webwork source="local/Library/Hope/Multi1/04-02-Kernel-image/Ker_im_06.pg" />
-    </exercise>
-
-    <exercise xml:id="ex-ww-ki6" label="ex-ww-ki6">
-      <webwork source="local/Library/Hope/Multi1/04-02-Kernel-image/Ker_im_07.pg" />
-    </exercise>
-
-    <exercise xml:id="ex-ww-ki7" label="ex-ww-ki7">
-      <webwork source="local/Library/Hope/Multi1/04-02-Kernel-image/Ker_im_08.pg" />
-    </exercise>
-
-    <exercise xml:id="ex-ww-ki8" label="ex-ww-ki8">
-      <webwork source="local/Library/Rochester/setLinearAlgebra14TransfOfRn/ur_la_14_6.pg" />
-    </exercise>
-
-    <exercise xml:id="ex-ww-ki9" label="ex-ww-ki9">
-      <webwork source="local/Library/Mizzou/Matrix_Theory/HW_4/prob_3.pg" />
-    </exercise>
-
-    <exercise xml:id="ex-ww-ki12" label="ex-ww-ki12">
-      <webwork source="local/Library/Hope/Multi1/04-02-Kernel-image/Ker_im_14.pg" />
-    </exercise>
-  </exercises>
 </section>

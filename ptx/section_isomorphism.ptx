@@ -212,9 +212,10 @@
       But if we want to keep everything under the umbrella of linear algebra,
       there are two things we should check: that the composition of two linear transformations is another linear transformation,
       and that the inverse of a linear transformation is a linear transformation.
+      The first of these we do below as an example; the second is left as <xref ref="ex-iso-inverse-linear" text="custom">an exercise</xref>.
     </p>
 
-    <exercise label="ex-iso-composition">
+    <example label="ex-iso-composition">
       <statement>
         <p>
           Show that the composition of two linear maps is again a linear map.
@@ -238,66 +239,9 @@
 
         </p>
       </solution>
-    </exercise>
+    </example>
 
-    <exercise label="ex-iso-ker-im">
-      <statement>
-        <p>
-          Given transformations <m>S:V\to W</m> and <m>T:U\to V</m>, show that:
-          <ol>
-            <li>
-              <p>
-                <m>\ker T\subseteq \ker ST</m>
-              </p>
-            </li>
-            <li>
-              <p>
-                <m>\im ST\subseteq \im S</m>
-              </p>
-            </li>
-          </ol>
-        </p>
-      </statement>
-      <response/>
-      <hint>
-        <p>
-          This is simpler than it looks!
-          It's mostly a matter of chasing the definitions: see <xref ref="rem-using-ker-im"/>.
-        </p>
-      </hint>
-    </exercise>
-
-    <exercise label="ex-iso-inverse-linear">
-      <statement>
-        <p>
-          Let <m>T:V\to W</m> be a bijective linear transformation.
-          Show that <m>T^{-1}:W\to V</m> is a linear transformation.
-        </p>
-      </statement>
-      <response/>
-      <hint>
-        <p>
-          Since <m>T</m> is a bijection, every <m>\ww\in W</m> can be associated with some <m>\vv\in V</m>.
-        </p>
-      </hint>
-      <solution>
-        <p>
-          Let <m>\ww_1,\ww_2\in W</m>.
-          Then there exist <m>\vv_1,\vv_2\in V</m>  with <m>\ww_1=T(\vv_1), \ww_2=T(\vv_2)</m>.
-          We then have
-          <md>
-            <mrow>T^{-1}(\ww_1+\ww_2) \amp = T^{-1}(T(\vv_1)+T(\vv_2)) </mrow>
-            <mrow> \amp = T^{-1}(T(\vv_1+\vv_2))</mrow>
-            <mrow>  \amp = \vv_1+\vv_2</mrow>
-            <mrow>  \amp = T^{-1}(\ww_1)+T^{-1}(\ww_2)</mrow>
-          </md>.
-          For any scalar <m>c</m>, we similarly have
-          <me>
-            T^{-1}(c\ww_1) = T^{-1}(cT(\vv_1))=T^{-1}(T(c\vv_1)) = c\vv_1 = cT^{-1}(\ww_1)
-          </me>.
-        </p>
-      </solution>
-    </exercise>
+    
 
     <remark xml:id="rem-composition-product">
       <p>
@@ -338,22 +282,6 @@
         for matrix transformations.
       </p>
     </aside>
-
-    <exercise xml:id="ex-inverse-identity">
-      <statement>
-        <p>
-          Show that if <m>ST=1_V</m>, then <m>S</m> is surjective and <m>T</m> is injective.
-          Conclude that if <m>ST=1_V</m> and <m>TS=1_W</m>, then <m>S</m> and <m>T</m> are both bijections.
-        </p>
-      </statement>
-      <response/>
-      <hint>
-        <p>
-          This is true even if the functions aren't linear.
-          In fact, you've probably seen the proof in an earlier course!
-        </p>
-      </hint>
-    </exercise>
 
     <p>
       <xref ref="thm-iso-dimension"/> also tells us why we can only consider invertibility for square matrices:
@@ -414,6 +342,81 @@
     </remark>
 
     <exercises>
+      <exercise label="ex-iso-ker-im">
+        <statement>
+          <p>
+            Given transformations <m>S:V\to W</m> and <m>T:U\to V</m>, show that:
+            <ol>
+              <li>
+                <p>
+                  <m>\ker T\subseteq \ker ST</m>
+                </p>
+              </li>
+              <li>
+                <p>
+                  <m>\im ST\subseteq \im S</m>
+                </p>
+              </li>
+            </ol>
+          </p>
+        </statement>
+        <response/>
+        <hint>
+          <p>
+            This is simpler than it looks!
+            It's mostly a matter of chasing the definitions: see <xref ref="rem-using-ker-im"/>.
+          </p>
+        </hint>
+      </exercise>
+
+      <exercise label="ex-iso-inverse-linear">
+        <statement>
+          <p>
+            Let <m>T:V\to W</m> be a bijective linear transformation.
+            Show that <m>T^{-1}:W\to V</m> is a linear transformation.
+          </p>
+        </statement>
+        <response/>
+        <hint>
+          <p>
+            Since <m>T</m> is a bijection, every <m>\ww\in W</m> can be associated with some <m>\vv\in V</m>.
+          </p>
+        </hint>
+        <solution>
+          <p>
+            Let <m>\ww_1,\ww_2\in W</m>.
+            Then there exist <m>\vv_1,\vv_2\in V</m>  with <m>\ww_1=T(\vv_1), \ww_2=T(\vv_2)</m>.
+            We then have
+            <md>
+              <mrow>T^{-1}(\ww_1+\ww_2) \amp = T^{-1}(T(\vv_1)+T(\vv_2)) </mrow>
+              <mrow> \amp = T^{-1}(T(\vv_1+\vv_2))</mrow>
+              <mrow>  \amp = \vv_1+\vv_2</mrow>
+              <mrow>  \amp = T^{-1}(\ww_1)+T^{-1}(\ww_2)</mrow>
+            </md>.
+            For any scalar <m>c</m>, we similarly have
+            <me>
+              T^{-1}(c\ww_1) = T^{-1}(cT(\vv_1))=T^{-1}(T(c\vv_1)) = c\vv_1 = cT^{-1}(\ww_1)
+            </me>.
+          </p>
+        </solution>
+      </exercise>
+        
+      <exercise xml:id="ex-inverse-identity">
+        <statement>
+          <p>
+            Show that if <m>ST=1_V</m>, then <m>S</m> is surjective and <m>T</m> is injective.
+            Conclude that if <m>ST=1_V</m> and <m>TS=1_W</m>, then <m>S</m> and <m>T</m> are both bijections.
+          </p>
+        </statement>
+        <response/>
+        <hint>
+          <p>
+            This is true even if the functions aren't linear.
+            In fact, you've probably seen the proof in an earlier course!
+          </p>
+        </hint>
+      </exercise>
+
       <exercise xml:id="ex-ww-iso1" label="ex-ww-ios1">
         <webwork source="local/Library/Rochester/setLinearAlgebra15TransfOfLinSpaces/ur_la_15_19.pg" />
       </exercise>

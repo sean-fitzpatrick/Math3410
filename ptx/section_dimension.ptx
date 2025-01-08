@@ -142,10 +142,10 @@
     </statement>
   </definition>
 
-  <exercise xml:id="ex-basis-m22" label="ex-basis-m22">
+  <example xml:id="ex-basis-m22" label="ex-basis-m22">
     <statement>
       <p>
-        Find a basis for <m>U=\{X\in M_{22} \,|\, XA = AX\}</m>, if <m>A = \bbm 1\amp 1\\0\amp 0\ebm</m>
+        Find a basis for <m>U=\{X\in M_{22} \,|\, XA = AX\}</m>, if <m>A = \bbm 1\amp 1\\0\amp 0\ebm</m>.
       </p>
     </statement>
     <solution>
@@ -173,7 +173,7 @@
         (Why do we know these matrices span <m>U</m>?)
       </p>
     </solution>
-  </exercise>
+  </example>
 
   <example xml:id="ex-standard-bases">
     <title>Standard bases</title>
@@ -216,7 +216,7 @@
     </statement>
   </example>
 
-  <exercise xml:id="ex-basis-r3" label="ex-basis-r3">
+  <example xml:id="ex-basis-r3" label="ex-basis-r3">
     <introduction>
       <p>
         Show that the following sets are bases of <m>\R^3</m>.
@@ -318,7 +318,7 @@
         </p>
       </solution>
     </task>
-  </exercise>
+  </example>
 
   <p>
     The next two exercises are left to the reader to solve.
@@ -376,82 +376,6 @@
   <sage>
 
   </sage>
-
-  <exercise xml:id="ex-basis-p2" label="ex-basis-p2">
-    <introduction>
-      <p>
-        Find a basis and dimension for the following subspaces of <m>P_2</m>:
-      </p>
-    </introduction>
-    <task label="basis-p2a">
-      <statement>
-        <p>
-          <m>U_1 = \{a(1+x)+b(x+x^2)\,|\, a,b\in\R\}</m>
-        </p>
-      </statement>
-      <response/>
-      <solution>
-        <p>
-          By definition, <m>U_1 = \spn \{1+x,x+x^2\}</m>,
-          and these vectors are independent, since neither is a scalar multiple of the other.
-          Since there are two vectors in this basis, <m>\dim U_1 = 2</m>.
-        </p>
-      </solution>
-    </task>
-    <task label="basis-p2b">
-      <statement>
-        <p>
-          <m>U_2=\{p(x)\in P_2 \,|\, p(1)=0\}</m>
-        </p>
-      </statement>
-      <response/>
-      <solution>
-        <p>
-          If <m>p(1)=0</m>, then <m>p(x)=(x-1)q(x)</m> for some polynomial <m>q</m>.
-          Since <m>U_2</m> is a subspace of <m>P_2</m>, the degree of <m>q</m> is at most 2.
-          Therefore, <m>q(x)=ax+b</m> for some <m>a,b\in\R</m>, and
-          <me>
-            p(x) = (x-1)(ax+b) = a(x^2-x)+b(x-1)
-          </me>.
-          Since <m>p</m> was arbitrary, this shows that <m>U_2 = \spn\{x^2-x,x-1\}</m>.
-        </p>
-
-        <p>
-          The set <m>\{x^2-x,x-1\}</m> is also independent,
-          since neither vector is a scalar multiple of the other.
-          Therefore, this set is a basis, and <m>\dim U_2=2</m>.
-        </p>
-      </solution>
-    </task>
-    <task label="basis-p2c">
-      <statement>
-        <p>
-          <m>U_3 = \{p(x)\in P_2 \,|\, p(x)=p(-x)\}</m>
-        </p>
-      </statement>
-      <response/>
-      <solution>
-        <p>
-          If <m>p(x)=p(-x)</m>, then <m>p(x)</m> is an even polynomial,
-          and therefore <m>p(x)=a+bx^2</m> for <m>a,b\in\R</m>.
-          (If you didn't know this it's easily verified: if
-          <me>
-            a+bx+cx^2 = a+b(-x)+c(-x)^2
-          </me>,
-          we can immediately cancel <m>a</m> from each side,
-          and since <m>(-x)^2=x^2</m>, we can cancel <m>cx^2</m> as well.
-          This leaves <m>bx=-bx</m>, or <m>2bx=0</m>, which implies that <m>b=0</m>.)
-        </p>
-
-        <p>
-          It follows that the set <m>\{1,x^2\}</m> spans <m>U_3</m>,
-          and since this is a subset of the standard basis <m>\{1,x,x^2\}</m> of <m>P_2</m>,
-          it must be independent, and is therefore a basis of <m>U_3</m>,
-          letting us conclude that <m>\dim U_3=2</m>.
-        </p>
-      </solution>
-    </task>
-  </exercise>
 
   <p>
     We've noted a few times now that if <m>\ww\in\spn\{\vv_1,\ldots, \vv_n\}</m>,
@@ -640,7 +564,7 @@
 
 
 
-  <exercise xml:id="ex-basis-extend-m22" label="ex-basis-extend-m22">
+  <example xml:id="ex-basis-extend-m22" label="ex-basis-extend-m22">
     <statement>
       <p>
         Find a basis of <m>M_{22}(\R)</m> that contains the vectors
@@ -663,32 +587,7 @@
         and adding it gives us our basis.
       </p>
     </solution>
-  </exercise>
-
-  <exercise xml:id="ex-basis-extend-p3" label="ex-basis-extend-p3">
-    <statement>
-      <p>
-        Extend the set <m>\{1+x,x+x^2,x-x^3\}</m> to a basis of <m>P_3(\R)</m>.
-      </p>
-    </statement>
-    <response/>
-    <solution>
-      <p>
-        Again, we only need to add one vector from the standard basis
-        <m>\{1,x,x^2,x^3\}</m>, and it's not too hard to check that any of them will do.
-      </p>
-    </solution>
-  </exercise>
-
-  <exercise xml:id="ex-dim-inf" label="ex-dim-inf">
-    <statement>
-      <p>
-        Give two examples of infinite-dimensional vector spaces.
-        Support your answer.
-      </p>
-    </statement>
-    <response/>
-  </exercise>
+  </example>
 
   <exercise xml:id="ex-basis-tf" label="ex-basis-tf">
     <introduction>
@@ -896,6 +795,107 @@
   </p>
 
   <exercises>
+    <exercise xml:id="ex-basis-p2" label="ex-basis-p2">
+      <introduction>
+        <p>
+          Find a basis and dimension for the following subspaces of <m>P_2</m>:
+        </p>
+      </introduction>
+      <task label="basis-p2a">
+        <statement>
+          <p>
+            <m>U_1 = \{a(1+x)+b(x+x^2)\,|\, a,b\in\R\}</m>
+          </p>
+        </statement>
+        <response/>
+        <solution>
+          <p>
+            By definition, <m>U_1 = \spn \{1+x,x+x^2\}</m>,
+            and these vectors are independent, since neither is a scalar multiple of the other.
+            Since there are two vectors in this basis, <m>\dim U_1 = 2</m>.
+          </p>
+        </solution>
+      </task>
+      <task label="basis-p2b">
+        <statement>
+          <p>
+            <m>U_2=\{p(x)\in P_2 \,|\, p(1)=0\}</m>
+          </p>
+        </statement>
+        <response/>
+        <solution>
+          <p>
+            If <m>p(1)=0</m>, then <m>p(x)=(x-1)q(x)</m> for some polynomial <m>q</m>.
+            Since <m>U_2</m> is a subspace of <m>P_2</m>, the degree of <m>q</m> is at most 2.
+            Therefore, <m>q(x)=ax+b</m> for some <m>a,b\in\R</m>, and
+            <me>
+              p(x) = (x-1)(ax+b) = a(x^2-x)+b(x-1)
+            </me>.
+            Since <m>p</m> was arbitrary, this shows that <m>U_2 = \spn\{x^2-x,x-1\}</m>.
+          </p>
+
+          <p>
+            The set <m>\{x^2-x,x-1\}</m> is also independent,
+            since neither vector is a scalar multiple of the other.
+            Therefore, this set is a basis, and <m>\dim U_2=2</m>.
+          </p>
+        </solution>
+      </task>
+      <task label="basis-p2c">
+        <statement>
+          <p>
+            <m>U_3 = \{p(x)\in P_2 \,|\, p(x)=p(-x)\}</m>
+          </p>
+        </statement>
+        <response/>
+        <solution>
+          <p>
+            If <m>p(x)=p(-x)</m>, then <m>p(x)</m> is an even polynomial,
+            and therefore <m>p(x)=a+bx^2</m> for <m>a,b\in\R</m>.
+            (If you didn't know this it's easily verified: if
+            <me>
+              a+bx+cx^2 = a+b(-x)+c(-x)^2
+            </me>,
+            we can immediately cancel <m>a</m> from each side,
+            and since <m>(-x)^2=x^2</m>, we can cancel <m>cx^2</m> as well.
+            This leaves <m>bx=-bx</m>, or <m>2bx=0</m>, which implies that <m>b=0</m>.)
+          </p>
+
+          <p>
+            It follows that the set <m>\{1,x^2\}</m> spans <m>U_3</m>,
+            and since this is a subset of the standard basis <m>\{1,x,x^2\}</m> of <m>P_2</m>,
+            it must be independent, and is therefore a basis of <m>U_3</m>,
+            letting us conclude that <m>\dim U_3=2</m>.
+          </p>
+        </solution>
+      </task>
+    </exercise>
+
+    <exercise xml:id="ex-basis-extend-p3" label="ex-basis-extend-p3">
+      <statement>
+        <p>
+          Extend the set <m>\{1+x,x+x^2,x-x^3\}</m> to a basis of <m>P_3(\R)</m>.
+        </p>
+      </statement>
+      <response/>
+      <solution>
+        <p>
+          Again, we only need to add one vector from the standard basis
+          <m>\{1,x,x^2,x^3\}</m>, and it's not too hard to check that any of them will do.
+        </p>
+      </solution>
+    </exercise>
+
+    <exercise xml:id="ex-dim-inf" label="ex-dim-inf">
+      <statement>
+        <p>
+          Give two examples of infinite-dimensional vector spaces.
+          Support your answer.
+        </p>
+      </statement>
+      <response/>
+    </exercise>
+
     <exercise xml:id="ex-ww-basis1" label="ex-ww-basis1">
       <webwork source="local/Library/NAU/setLinearAlgebra/P3subspaceBasis.pg" />
     </exercise>

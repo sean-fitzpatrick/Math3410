@@ -526,45 +526,6 @@
     </solution>
   </example>
 
-
-
-  <exercise xml:id="ex-lt-poly" label="ex-lt-poly">
-    <statement>
-      <p>
-        Suppose <m>T:P_2(\R)\to \R</m> is defined by
-        <me>
-          T(x+2)=1, T(1)=5, T(x^2+x)=0.
-        </me>
-        Find <m>T(2-x+3x^2)</m>.
-      </p>
-    </statement>
-    <response/>
-    <solution>
-      <p>
-        We need to find scalars <m>a,b,c</m> such that
-        <me>
-          2-x+3x^2 = a(x+2)+b(1)+c(x^2+x)
-        </me>.
-        We could set up a system and solve, but this time it's easy enough to just work our way through.
-        We must have <m>c=3</m>, to get the correct coefficient for <m>x^2</m>. This gives
-        <me>
-          2-x+3x^2=a(x+2)+b(1)+3x^2+3x
-        </me>.
-        Now, we have to have <m>3x+ax=-x</m>, so <m>a=-4</m>.
-        Putting this in, we get
-        <me>
-          2-x+3x^2=-4x-8+b+3x^2+3x
-        </me>.
-        Simiplifying this leaves us with <m>b=10</m>. Finally, we find:
-        <md>
-          <mrow>T(2-x+3x^2) \amp = T(-4(x+2)+10(1)+3(x^2+x)) </mrow>
-          <mrow> \amp = -4T(x+2)+10T(1)+3T(x^2+x)</mrow>
-          <mrow> \amp = -4(1)+10(5)+3(0) = 46</mrow>
-        </md>.
-      </p>
-    </solution>
-  </exercise>
-
   <example>
     <statement>
       <p>
@@ -626,6 +587,43 @@
 
 
   <exercises>
+    <exercise xml:id="ex-lt-poly" label="ex-lt-poly">
+      <statement>
+        <p>
+          Suppose <m>T:P_2(\R)\to \R</m> is defined by
+          <me>
+            T(x+2)=1, T(1)=5, T(x^2+x)=0.
+          </me>
+          Find <m>T(2-x+3x^2)</m>.
+        </p>
+      </statement>
+      <response/>
+      <solution>
+        <p>
+          We need to find scalars <m>a,b,c</m> such that
+          <me>
+            2-x+3x^2 = a(x+2)+b(1)+c(x^2+x)
+          </me>.
+          We could set up a system and solve, but this time it's easy enough to just work our way through.
+          We must have <m>c=3</m>, to get the correct coefficient for <m>x^2</m>. This gives
+          <me>
+            2-x+3x^2=a(x+2)+b(1)+3x^2+3x
+          </me>.
+          Now, we have to have <m>3x+ax=-x</m>, so <m>a=-4</m>.
+          Putting this in, we get
+          <me>
+            2-x+3x^2=-4x-8+b+3x^2+3x
+          </me>.
+          Simiplifying this leaves us with <m>b=10</m>. Finally, we find:
+          <md>
+            <mrow>T(2-x+3x^2) \amp = T(-4(x+2)+10(1)+3(x^2+x)) </mrow>
+            <mrow> \amp = -4T(x+2)+10T(1)+3T(x^2+x)</mrow>
+            <mrow> \amp = -4(1)+10(5)+3(0) = 46</mrow>
+          </md>.
+        </p>
+      </solution>
+    </exercise>
+
     <exercise xml:id="ex_lintrans-indep" label="ex-parsons-lintrans">
       <statement>
         <p>

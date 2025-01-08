@@ -243,7 +243,7 @@
     as was demonstrated above.
   </p>
 
-  <exercise label="ex-transf-matrix-compute">
+  <example label="ex-transf-matrix-compute">
     <statement>
       <p>
         Suppose <m>T:P_2(\R)\to \R^2</m> is given by
@@ -285,7 +285,7 @@
 
       </p>
     </solution>
-  </exercise>
+  </example>
 
   <p>
     When we compute the matrix of a transformation with respect to a non-standard basis,
@@ -555,61 +555,6 @@
     and we can use a computer to calculate <m>P^{-1}</m> and the product <m>QM_0P^{-1}</m>.
   </p>
 
-  <exercise label="ex-find-transf-from-matrix">
-    <statement>
-      <p>
-        Suppose <m>T:M_{22}(\R)\to P_2(\R)</m> has the matrix
-        <me>
-          M_{DB}(T) = \bbm 2\amp -1\amp 0\amp 3\\0\amp 4\amp -5\amp 1\\-1\amp 0\amp 3\amp -2\ebm
-        </me>
-        with respect to the bases
-        <me>
-          B = \left\{\bbm 1\amp 0\\0\amp 0\ebm, \bbm 0\amp 1\\0\amp 1\ebm, \bbm 0\amp 1\\1\amp 0\ebm, \bbm 1\amp 0\\0\amp 1\ebm\right\}
-        </me>
-        of <m>M_{22}(\R)</m> and <m>D=\{1,x,x^2\}</m> of <m>P_2(\R)</m>.
-        Determine a formula for <m>T</m> in terms of a general input <m>X=\bbm a\amp b\\c\amp d\ebm</m>.
-      </p>
-    </statement>
-    <response/>
-    <solution>
-      <p>
-        We must first write our general input in terms of the given basis.
-        With respect to the standard basis
-        <me>
-          B_0 = \left\{\bbm 1\amp 0\\0\amp 0\ebm, \bbm 0\amp 1\\0\amp 0\ebm, \bbm 0\amp 0\\1\amp 0\ebm, \bbm 0\amp 0\\0\amp 1\ebm\right\}
-        </me>,
-        we have the matrix <m>P = \bbm 1\amp 0\amp 0\amp 1\\0\amp 1\amp 1\amp 0\\0\amp 0\amp 1\amp 0\\0\amp 1\amp 0\amp 1\ebm</m>,
-        representing the change from the basis <m>B</m> the basis <m>B_0</m>.
-        The basis <m>D</m> of <m>P_2(\R)</m> is already the standard basis,
-        so we need the matrix <m>M_{DB}(T)P^{-1}</m>:
-      </p>
-
-      <sage>
-        <input>
-          M = sy.Matrix(3,4,[2,-1,0,3,0,4,-5,1,-1,0,3,-2])
-          P = sy.Matrix(4,4,[1,0,0,1,0,1,1,0,0,0,1,0,0,1,0,1])
-          M*P**-1
-        </input>
-        <output>
-          \[\bbm 2\amp -2\amp 2\amp 1\\0\amp 3\amp -8\amp 1\\-1\amp 1\amp 2\amp -1\ebm\]
-        </output>
-      </sage>
-
-      <p>
-        For a matrix <m>X = \bbm a\amp b\\c\amp d\ebm</m> we find
-        <me>
-          M_{DB}(T)P^{-1}C_{B_0}(X)=\bbm 2\amp -2\amp 2\amp 1\\0\amp 3\amp -8\amp 1\\-1\amp 1\amp 2\amp -1\ebm\bbm a\\b\\c\\d\ebm =
-          \bbm 2a-2b+2c+d\\3b-8c+d\\-a+b+2c-d\ebm
-        </me>.
-        But this is equal to <m>C_D(T(X))</m>, so
-        <md>
-          <mrow>T\left(\bbm a\amp b\\c\amp d\ebm\right) \amp = C_D^{-1}\bbm 2a-2b+2c+d\\3b-8c+d\\-a+b+2c-d\ebm</mrow>
-          <mrow>\amp = (2a-2b+2c+d)+(3b-8c+d)x+(-a+b+2c-d)x^2</mrow>
-        </md>.
-      </p>
-    </solution>
-  </exercise>
-
   <p>
     In textbooks such as Sheldon Axler's <em>Linear Algebra Done Right</em> that focus primarily on linear transformations,
     the above construction of the matrix of a transformation with respect to choices of bases can be used as a primary motivation for introducing matrices,
@@ -676,6 +621,61 @@
   </p>
 
   <exercises>
+      <exercise label="ex-find-transf-from-matrix">
+      <statement>
+        <p>
+          Suppose <m>T:M_{22}(\R)\to P_2(\R)</m> has the matrix
+          <me>
+            M_{DB}(T) = \bbm 2\amp -1\amp 0\amp 3\\0\amp 4\amp -5\amp 1\\-1\amp 0\amp 3\amp -2\ebm
+          </me>
+          with respect to the bases
+          <me>
+            B = \left\{\bbm 1\amp 0\\0\amp 0\ebm, \bbm 0\amp 1\\0\amp 1\ebm, \bbm 0\amp 1\\1\amp 0\ebm, \bbm 1\amp 0\\0\amp 1\ebm\right\}
+          </me>
+          of <m>M_{22}(\R)</m> and <m>D=\{1,x,x^2\}</m> of <m>P_2(\R)</m>.
+          Determine a formula for <m>T</m> in terms of a general input <m>X=\bbm a\amp b\\c\amp d\ebm</m>.
+        </p>
+      </statement>
+      <response/>
+      <solution>
+        <p>
+          We must first write our general input in terms of the given basis.
+          With respect to the standard basis
+          <me>
+            B_0 = \left\{\bbm 1\amp 0\\0\amp 0\ebm, \bbm 0\amp 1\\0\amp 0\ebm, \bbm 0\amp 0\\1\amp 0\ebm, \bbm 0\amp 0\\0\amp 1\ebm\right\}
+          </me>,
+          we have the matrix <m>P = \bbm 1\amp 0\amp 0\amp 1\\0\amp 1\amp 1\amp 0\\0\amp 0\amp 1\amp 0\\0\amp 1\amp 0\amp 1\ebm</m>,
+          representing the change from the basis <m>B</m> the basis <m>B_0</m>.
+          The basis <m>D</m> of <m>P_2(\R)</m> is already the standard basis,
+          so we need the matrix <m>M_{DB}(T)P^{-1}</m>:
+        </p>
+
+        <sage>
+          <input>
+            M = sy.Matrix(3,4,[2,-1,0,3,0,4,-5,1,-1,0,3,-2])
+            P = sy.Matrix(4,4,[1,0,0,1,0,1,1,0,0,0,1,0,0,1,0,1])
+            M*P**-1
+          </input>
+          <output>
+            \[\bbm 2\amp -2\amp 2\amp 1\\0\amp 3\amp -8\amp 1\\-1\amp 1\amp 2\amp -1\ebm\]
+          </output>
+        </sage>
+
+        <p>
+          For a matrix <m>X = \bbm a\amp b\\c\amp d\ebm</m> we find
+          <me>
+            M_{DB}(T)P^{-1}C_{B_0}(X)=\bbm 2\amp -2\amp 2\amp 1\\0\amp 3\amp -8\amp 1\\-1\amp 1\amp 2\amp -1\ebm\bbm a\\b\\c\\d\ebm =
+            \bbm 2a-2b+2c+d\\3b-8c+d\\-a+b+2c-d\ebm
+          </me>.
+          But this is equal to <m>C_D(T(X))</m>, so
+          <md>
+            <mrow>T\left(\bbm a\amp b\\c\amp d\ebm\right) \amp = C_D^{-1}\bbm 2a-2b+2c+d\\3b-8c+d\\-a+b+2c-d\ebm</mrow>
+            <mrow>\amp = (2a-2b+2c+d)+(3b-8c+d)x+(-a+b+2c-d)x^2</mrow>
+          </md>.
+        </p>
+      </solution>
+    </exercise>
+
     <exercise label="ex-ww-transf-mat1">
       <webwork source="local/Library/Hope/Multi1/04-04-Basis-and-functions/Matrix_rep_06.pg"/>
     </exercise>

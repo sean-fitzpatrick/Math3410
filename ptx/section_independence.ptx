@@ -323,161 +323,156 @@
   <p>
     The largest set of linearly independent vectors possible in <m>\mathbb{R}^3</m> contains three vectors.
     You might have also observed that the smallest number of vectors needed to span <m>\mathbb{R}^3</m> is 3.
-    Hmm. Seems like there's something interesting going on here. But first, some more computation.
-    (For the first two exercises, once you've tried it yourself, 
-    you can find a solution using a Sage cell for computation at the <xref ref="solutions-backmatter" text="custom">end of the book</xref>.)
+    Hmm. Seems like there's something interesting going on here. But first, some more practice.
   </p>
-
-  <exercise xml:id="ex-li-r3" label="ex-li-r3">
-    <statement>
-      <p>
-        Determine whether the set <m>\left\{\bbm 1\\2\\0\ebm, \bbm -1\\0\\3\ebm,\bbm -1\\4\\9\ebm\right\}</m>
-        is linearly independent in <m>\R^3</m>.
-      </p>
-    </statement>
-    <response/>
-    <solution>
-      <p>
-        We set up a matrix and reduce:
-      </p>
-
-      <sage>
-        <input>
-          A = sy.Matrix(3,3,[1,-1,-1,2,0,4,0,3,9])
-          A.rref()
-        </input>
-        <output>
-          \[\bbm 1\amp 0\amp 2\\0\amp 1\amp 3\\0\amp 0\amp 0\ebm, (0,1)\]
-        </output>
-      </sage>
-
-      <p>
-        Notice that this time we don't get a unique solution, so we can conclude that these vectors are <em>not</em> independent.
-        Furthermore, you can probably deduce from the above that we have <m>2\vv_1+3\vv_2-\vv_3=\zer</m>.
-        Now suppose that <m>\ww\in\spn\{\vv_1,\vv_2,\vv_3\}</m>.
-        In how many ways can we write <m>\ww</m> as a linear combination of these vectors?
-      </p>
-    </solution>
-  </exercise>
-
-
-
-  <exercise xml:id="ex-li-p2" label="ex-li-p2">
-    <statement>
-      <p>
-        Which of the following subsets of <m>P_2(\mathbb{R})</m> are independent?
-        <md>
-          <mrow>\text{(a) } S_1 = \{x^2+1, x+1, x\}</mrow>
-          <mrow>\text{(b) } S_2 = \{x^2-x+3, 2x^2+x+5, x^2+5x+1\}</mrow>
-        </md>
-      </p>
-    </statement>
-    <response/>
-    <solution>
-      <p>
-        In each case, we set up the defining equation for independence, collect terms,
-        and then analyze the resulting system of equations.
-        (If you work with polynomials often enough,
-        you can probably jump straight to the matrix.
-        For now, let's work out the details.)
-      </p>
-
-      <p>
-        Suppose
-        <me>
-          r(x^2+1)+s(x+1)+tx = 0
-        </me>.
-        Then <m>rx^2+(s+t)x+(r+s)=0=0x^2+0x+0</m>, so
-        <md>
-          <mrow>r \amp =0</mrow>
-          <mrow>s+t \amp =0</mrow>
-          <mrow>r+s\amp =0</mrow>
-        </md>.
-      </p>
-      <p>
-        And in this case, we don't even need to ask the computer.
-        The first equation gives <m>r=0</m> right away,
-        and putting that into the third equation gives <m>s=0</m>,
-        and the second equation then gives <m>t=0</m>.
-      </p>
-
-      <p>
-        Since <m>r=s=t=0</m> is the only solution, the set is independent.
-      </p>
-
-      <p>
-        Repeating for <m>S_2</m> leads to the equation
-        <me>
-          (r+2s+t)x^2+(-r+s+5t)x+(3r+5s+t)1=0.
-        </me>
-        This gives us:
-      </p>
-
-      <sage>
-        <input>
-          A = sy.Matrix(3,3,[1,2,1,-1,1,5,3,5,1])
-          A.rref()
-        </input>
-        <output>
-          \[\bbm 1\amp 0\amp -3\\0\amp 1\amp 2\\0\amp 0\amp 0\ebm, (0,1)\]
-        </output>
-      </sage>
-    </solution>
-  </exercise>
-
-
-
-  <exercise xml:id="ex-li-m22" label="ex-li-m22">
-    <statement>
-      <p>
-        Determine whether or not the set
-        <me>
-          \left\{\bbm -1\amp 0\\0\amp -1\ebm, \bbm 1\amp -1\\ -1\amp 1\ebm,
-                 \bbm 1\amp 1\\1\amp 1\ebm, \bbm 0\amp -1\\-1\amp 0\ebm\right\}
-        </me>
-        is linearly independent in <m>M_2(\mathbb{R})</m>.
-      </p>
-    </statement>
-    <response/>
-    <solution>
-      <p>
-        We set a linear combination equal to the zero vector, and combine:
-        <md>
-          <mrow>a\bbm -1\amp 0\\0\amp -1\ebm +b\bbm 1\amp -1\\ -1\amp 1\ebm
-            +c\bbm 1\amp 1\\1\amp 1\ebm +d \bbm 0\amp -1\\-1\amp 0\ebm = \bbm 0\amp 0\\ 0\amp 0\ebm</mrow>
-          <mrow>\bbm -a+b+c\amp -b+c-d\\-b+c-d\amp -a+b+c\ebm = \bbm 0\amp 0\\0\amp 0\ebm</mrow>
-        </md>.
-      </p>
-
-      <p>
-        We could proceed, but we might instead notice right away that equations 1 and 4 are identical,
-        and so are equations 2 and 3.
-        With only two distinct equations and 4 unknowns, we're certain to find nontrivial solutions.
-      </p>
-    </solution>
-  </exercise>
 
   <p>
-    We end with one last exercise, which provides a result that often comes in handy.
+    For the first two exercises below, once you've tried it yourself, 
+    you can find a solution using a Sage cell for computation at the <xref ref="solutions-backmatter" text="custom">end of the book</xref>.
   </p>
 
-  <exercise xml:id="ex-independent-subset" label="ex-li-subset">
-    <statement>
-      <p>
-        Prove that any nonempty subset of a linearly independent set is linearly independent.
-      </p>
-    </statement>
-    <response/>
-    <hint>
-      <p>
-        Start by assigning labels: let the larger set be <m>\{\vv_1,\vv_2,\ldots, \vv_n\}</m>,
-        and let the smaller set be <m>\{\vv_1, \ldots, \vv_m\}</m>, where <m>m\leq n</m>.
-        What happens if the smaller set is not independent?
-      </p>
-    </hint>
-  </exercise>
-
   <exercises>
+    <exercise xml:id="ex-li-r3" label="ex-li-r3">
+      <statement>
+        <p>
+          Determine whether the set <m>\left\{\bbm 1\\2\\0\ebm, \bbm -1\\0\\3\ebm,\bbm -1\\4\\9\ebm\right\}</m>
+          is linearly independent in <m>\R^3</m>.
+        </p>
+      </statement>
+      <response/>
+      <solution>
+        <p>
+          We set up a matrix and reduce:
+        </p>
+
+        <sage>
+          <input>
+            A = sy.Matrix(3,3,[1,-1,-1,2,0,4,0,3,9])
+            A.rref()
+          </input>
+          <output>
+            \[\bbm 1\amp 0\amp 2\\0\amp 1\amp 3\\0\amp 0\amp 0\ebm, (0,1)\]
+          </output>
+        </sage>
+
+        <p>
+          Notice that this time we don't get a unique solution, so we can conclude that these vectors are <em>not</em> independent.
+          Furthermore, you can probably deduce from the above that we have <m>2\vv_1+3\vv_2-\vv_3=\zer</m>.
+          Now suppose that <m>\ww\in\spn\{\vv_1,\vv_2,\vv_3\}</m>.
+          In how many ways can we write <m>\ww</m> as a linear combination of these vectors?
+        </p>
+      </solution>
+    </exercise>
+
+    <exercise xml:id="ex-li-p2" label="ex-li-p2">
+      <statement>
+        <p>
+          Which of the following subsets of <m>P_2(\mathbb{R})</m> are independent?
+          <md>
+            <mrow>\text{(a) } S_1 = \{x^2+1, x+1, x\}</mrow>
+            <mrow>\text{(b) } S_2 = \{x^2-x+3, 2x^2+x+5, x^2+5x+1\}</mrow>
+          </md>
+        </p>
+      </statement>
+      <response/>
+      <solution>
+        <p>
+          In each case, we set up the defining equation for independence, collect terms,
+          and then analyze the resulting system of equations.
+          (If you work with polynomials often enough,
+          you can probably jump straight to the matrix.
+          For now, let's work out the details.)
+        </p>
+
+        <p>
+          Suppose
+          <me>
+            r(x^2+1)+s(x+1)+tx = 0
+          </me>.
+          Then <m>rx^2+(s+t)x+(r+s)=0=0x^2+0x+0</m>, so
+          <md>
+            <mrow>r \amp =0</mrow>
+            <mrow>s+t \amp =0</mrow>
+            <mrow>r+s\amp =0</mrow>
+          </md>.
+        </p>
+        <p>
+          And in this case, we don't even need to ask the computer.
+          The first equation gives <m>r=0</m> right away,
+          and putting that into the third equation gives <m>s=0</m>,
+          and the second equation then gives <m>t=0</m>.
+        </p>
+
+        <p>
+          Since <m>r=s=t=0</m> is the only solution, the set is independent.
+        </p>
+
+        <p>
+          Repeating for <m>S_2</m> leads to the equation
+          <me>
+            (r+2s+t)x^2+(-r+s+5t)x+(3r+5s+t)1=0.
+          </me>
+          This gives us:
+        </p>
+
+        <sage>
+          <input>
+            A = sy.Matrix(3,3,[1,2,1,-1,1,5,3,5,1])
+            A.rref()
+          </input>
+          <output>
+            \[\bbm 1\amp 0\amp -3\\0\amp 1\amp 2\\0\amp 0\amp 0\ebm, (0,1)\]
+          </output>
+        </sage>
+      </solution>
+    </exercise>
+
+    <exercise xml:id="ex-li-m22" label="ex-li-m22">
+      <statement>
+        <p>
+          Determine whether or not the set
+          <me>
+            \left\{\bbm -1\amp 0\\0\amp -1\ebm, \bbm 1\amp -1\\ -1\amp 1\ebm,
+                  \bbm 1\amp 1\\1\amp 1\ebm, \bbm 0\amp -1\\-1\amp 0\ebm\right\}
+          </me>
+          is linearly independent in <m>M_2(\mathbb{R})</m>.
+        </p>
+      </statement>
+      <response/>
+      <solution>
+        <p>
+          We set a linear combination equal to the zero vector, and combine:
+          <md>
+            <mrow>a\bbm -1\amp 0\\0\amp -1\ebm +b\bbm 1\amp -1\\ -1\amp 1\ebm
+              +c\bbm 1\amp 1\\1\amp 1\ebm +d \bbm 0\amp -1\\-1\amp 0\ebm = \bbm 0\amp 0\\ 0\amp 0\ebm</mrow>
+            <mrow>\bbm -a+b+c\amp -b+c-d\\-b+c-d\amp -a+b+c\ebm = \bbm 0\amp 0\\0\amp 0\ebm</mrow>
+          </md>.
+        </p>
+
+        <p>
+          We could proceed, but we might instead notice right away that equations 1 and 4 are identical,
+          and so are equations 2 and 3.
+          With only two distinct equations and 4 unknowns, we're certain to find nontrivial solutions.
+        </p>
+      </solution>
+    </exercise>
+
+    <exercise xml:id="ex-independent-subset" label="ex-li-subset">
+      <statement>
+        <p>
+          Prove that any nonempty subset of a linearly independent set is linearly independent.
+        </p>
+      </statement>
+      <response/>
+      <hint>
+        <p>
+          Start by assigning labels: let the larger set be <m>\{\vv_1,\vv_2,\ldots, \vv_n\}</m>,
+          and let the smaller set be <m>\{\vv_1, \ldots, \vv_m\}</m>, where <m>m\leq n</m>.
+          What happens if the smaller set is not independent?
+        </p>
+      </hint>
+    </exercise>
+    
     <!-- Based on OPL problem at Library/WHFreeman/Holt_linear_algebra/Chaps_1-4/2.3.47.pg -->
     <exercise xml:id="ex-ww-li1" label="ex-ww-li1">
       <statement>
