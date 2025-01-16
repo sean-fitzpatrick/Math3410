@@ -250,29 +250,30 @@
       <p>
         We seek scalars <m>s,t</m> such that
         <me>
-          s(1+2x-2x^2)+t(3+5x+2x^2)=1+x+4x^2
+          s(1+2x-x^2)+t(3+5x+2x^2)=1+2x+4x^2
         </me>.
         On the left-hand side, we expand and gather terms:
         <me>
-          (s+3t)+(2s+5t)x+(-2s+2t)x^2 = 1+x+4x^2
+          (s+3t)+(2s+5t)x+(-s+2t)x^2 = 1+2x+4x^2
         </me>.
         These two polynomials are equal if and only if we can solve the system
         <md>
           <mrow>s+3t \amp = 1 </mrow>
-          <mrow>2s+5t \amp =1</mrow>
-          <mrow> -2s+2t \amp =4</mrow>
+          <mrow>2s+5t \amp =2</mrow>
+          <mrow> -s+2t \amp =4</mrow>
         </md>.
       </p>
 
       <p>
-        Adding the second and third equations gives <m>7t=5</m>, so <m>t=\frac57</m>.
-        The third equation then gives <m>s = t-2=-\frac97</m>.
+        Adding the first and third equations gives <m>5t=5</m>, so <m>t=1</m>.
+        The first equation then gives <m>s = 1-3t=-2</m>.
         With three equations and two unknowns, there is a risk that our system could be inconsistent.
         (In fact, this is the point: if the system is consistent, then <m>p(x)</m> is in the span.
         If the system is inconsistent, <m>p(x)</m> is not in the span.)
-        We still need to check if our values work in the first equation:
+        We used the first and third equations to find <m>s=-2, t=1</m>,
+        but we need to check if these values work in the second equation.
         <me>
-          s+3t = -\frac97+3\left(\frac57\right)=\frac67\neq 1
+          2s+5t = 2(-2)+5(1)=1 \neq 2
         </me>,
         which shows that our system is inconsistent, and therefore, 
         <m>p(x)</m> does not belong to the span of the other two polynomials.
@@ -283,7 +284,9 @@
       </p>
       <sage>
         <input>
-          M = sy.Matrix(3,3,[1,3,1,2,5,1,-2,2,4])
+          import sympy as sy
+          sy.init_printing()
+          M = sy.Matrix(3,3,[1,3,1,2,5,2,-1,2,4])
           M.rref()
         </input>
         <output>
@@ -308,6 +311,8 @@
 
     <sage>
       <input>
+        import sympy as sy
+        sy.init_printing()
         a, b, c = sy.symbols('a b c', real = True, constant = True)
         N = sy.Matrix(3,3,[1,3,a,2,5,b,-2,2,c])
         N
