@@ -585,6 +585,107 @@
     </solution>
   </example>
 
+  <exercise xml:id="ex_lintrans-indep" label="ex-parsons-lintrans">
+    <statement>
+      <p>
+        Let <m>T:V\to W</m> be a linear transformation.
+        Rearrange the blocks below to create a proof of the following statement:
+      </p>
+      <p>
+        For any vectors <m>\vv_1,\ldots, \vv_n\in V</m>,
+        if <m>\{T(\vv_1),\ldots, T(\vv_n)\}</m> is linearly independent in <m>W</m>,
+        then <m>\{\vv_1,\ldots, \vv_n\}</m> is linearly independent in <m>V</m>.
+      </p>
+    </statement>
+    <blocks>
+      <block order="6">
+        <p>
+          Suppose that <m>\{T(\vv_1),\ldots, T(\vv_n)\}</m> is linearly independent.
+        </p>
+      </block>
+      <block order="3">
+        <p>
+          We want to show that <m>\{\vv_1,\ldots, \vv_n\}</m>
+          is linearly independent, so suppose that we have
+          <me>
+            c_1\vv_1+\cdots + c_n\vv_n=\zer
+          </me>
+          for some scalars <m>c_1,\ldots, c_n</m>.
+        </p>
+      </block>
+      <block order="5">
+        <p>
+          We apply <m>T</m> to both sides of the equation above, giving us:
+          <me>
+            T(c_1\vv_1+\cdots + c_n\vv_n)=T(\zer)
+          </me>.
+        </p>
+      </block>
+      <block order="2">
+        <p>
+          Now we make use of both parts of <xref ref="thm-lt-props">Theorem</xref> to get
+          <me>
+            c_1T(\vv_1)+\cdots +c_nT(\vv_n) = \zer
+          </me>.
+        </p>
+      </block>
+      <block order="1">
+        <p>
+          By hypothesis, the vectors <m>T(\vv_i)</m> are linearly independent,
+          so we must have <m>c_1=0,c_2=0,\ldots, c_n=0</m>.
+        </p>
+      </block>
+      <block order="4">
+        <p>
+          Since the only solution to <m>c_1\vv_1+\cdots + c_n\vv_n=\zer</m>
+          is <m>c_1=0,\ldots, c_n=0</m>, the set <m>\{\vv_1,\ldots, \vv_n\}</m>
+          is linearly independent.
+        </p>
+      </block>
+    </blocks>
+    <hint>
+      <p>
+        This is mostly a matter of using <xref ref="thm-lt-props">Theorem</xref>,
+        but it's important to get the logic correct.
+        We have a conditional statement of the form <m>P\Rightarrow Q</m>,
+        where both <m>P</m> (<q>the set <m>\{T(\vv_1),\ldots, T(\vv_n)\}</m> is independent</q>)
+        and <m>Q</m> (<q>the set <m>\{\vv_1,\ldots, \vv_n\}</m> is independent</q>)
+        are themselves conditional statements.
+      </p>
+      <p>
+        The overall structure therefore looks like <m>(A\Rightarrow B)\Rightarrow (C\Rightarrow D)</m>.
+        A direct proof should be structured as follows:
+        <ol>
+          <li>
+            <p>
+              Assume the main hypothesis: <m>A\Rightarrow B</m>.
+            </p>
+          </li>
+          <li>
+            <p>
+              Assume the <q>sub</q>-hypothesis <m>C</m>.
+            </p>
+          </li>
+          <li>
+            <p>
+              Figure out how to show that <m>C\Rightarrow A</m>.
+              (This is the <q>apply <m>T</m> to both sides</q> step.)
+            </p>
+          </li>
+          <li>
+            <p>
+              If we know <m>A</m>, and we've assumed <m>A\Rightarrow B</m>, we know <m>B</m>.
+            </p>
+          </li>
+          <li>
+            <p>
+              Realize that <m>B\Rightarrow D</m>.
+            </p>
+          </li>
+        </ol>
+      </p>
+    </hint>
+  </exercise>
 
   <exercises>
     <exercise xml:id="ex-lt-poly" label="ex-lt-poly">
@@ -622,108 +723,6 @@
           </md>.
         </p>
       </solution>
-    </exercise>
-
-    <exercise xml:id="ex_lintrans-indep" label="ex-parsons-lintrans">
-      <statement>
-        <p>
-          Let <m>T:V\to W</m> be a linear transformation.
-          Rearrange the blocks below to create a proof of the following statement:
-        </p>
-        <p>
-          For any vectors <m>\vv_1,\ldots, \vv_n\in V</m>,
-          if <m>\{T(\vv_1),\ldots, T(\vv_n)\}</m> is linearly independent in <m>W</m>,
-          then <m>\{\vv_1,\ldots, \vv_n\}</m> is linearly independent in <m>V</m>.
-        </p>
-      </statement>
-      <blocks>
-        <block order="6">
-          <p>
-            Suppose that <m>\{T(\vv_1),\ldots, T(\vv_n)\}</m> is linearly independent.
-          </p>
-        </block>
-        <block order="3">
-          <p>
-            We want to show that <m>\{\vv_1,\ldots, \vv_n\}</m>
-            is linearly independent, so suppose that we have
-            <me>
-              c_1\vv_1+\cdots + c_n\vv_n=\zer
-            </me>
-            for some scalars <m>c_1,\ldots, c_n</m>.
-          </p>
-        </block>
-        <block order="5">
-          <p>
-            We apply <m>T</m> to both sides of the equation above, giving us:
-            <me>
-              T(c_1\vv_1+\cdots + c_n\vv_n)=T(\zer)
-            </me>.
-          </p>
-        </block>
-        <block order="2">
-          <p>
-            Now we make use of both parts of <xref ref="thm-lt-props">Theorem</xref> to get
-            <me>
-              c_1T(\vv_1)+\cdots +c_nT(\vv_n) = \zer
-            </me>.
-          </p>
-        </block>
-        <block order="1">
-          <p>
-            By hypothesis, the vectors <m>T(\vv_i)</m> are linearly independent,
-            so we must have <m>c_1=0,c_2=0,\ldots, c_n=0</m>.
-          </p>
-        </block>
-        <block order="4">
-          <p>
-            Since the only solution to <m>c_1\vv_1+\cdots + c_n\vv_n=\zer</m>
-            is <m>c_1=0,\ldots, c_n=0</m>, the set <m>\{\vv_1,\ldots, \vv_n\}</m>
-            is linearly independent.
-          </p>
-        </block>
-      </blocks>
-      <hint>
-        <p>
-          This is mostly a matter of using <xref ref="thm-lt-props">Theorem</xref>,
-          but it's important to get the logic correct.
-          We have a conditional statement of the form <m>P\Rightarrow Q</m>,
-          where both <m>P</m> (<q>the set <m>\{T(\vv_1),\ldots, T(\vv_n)\}</m> is independent</q>)
-          and <m>Q</m> (<q>the set <m>\{\vv_1,\ldots, \vv_n\}</m> is independent</q>)
-          are themselves conditional statements.
-        </p>
-        <p>
-          The overall structure therefore looks like <m>(A\Rightarrow B)\Rightarrow (C\Rightarrow D)</m>.
-          A direct proof should be structured as follows:
-          <ol>
-            <li>
-              <p>
-                Assume the main hypothesis: <m>A\Rightarrow B</m>.
-              </p>
-            </li>
-            <li>
-              <p>
-                Assume the <q>sub</q>-hypothesis <m>C</m>.
-              </p>
-            </li>
-            <li>
-              <p>
-                Figure out how to show that <m>C\Rightarrow A</m>.
-                (This is the <q>apply <m>T</m> to both sides</q> step.)
-              </p>
-            </li>
-            <li>
-              <p>
-                If we know <m>A</m>, and we've assumed <m>A\Rightarrow B</m>, we know <m>B</m>.
-              </p>
-            </li>
-            <li>
-              <p>
-                Realize that <m>B\Rightarrow D</m>.
-              </p>
-            </li>
-          </ol>
-        </p>
-      </hint>
     </exercise>
 
     <exercise xml:id="ex-ww-lt1" label="ex-ww-lt1">
