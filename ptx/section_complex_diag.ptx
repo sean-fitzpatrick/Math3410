@@ -342,8 +342,7 @@
     </sage>
 
     <p>
-      Hmm... That doesn't look like the identity on the right. Maybe try replacing <c>B*B.H</c> with <c>simplify(B*B.H)</c>.
-      (You will want to add <c>from sympy import simplify</c> at the top of the cell.)
+      Hmm... That doesn't look like the identity on the right. Maybe try replacing <c>B*B.H</c> with <c>sy.simplify(B*B.H)</c>.
       Or you could try <c>B.H, B**-1</c> to compare results.
       Actually, what's interesting is that in a Sage cell, <c>B.H == B**-1</c> yields <c>False</c>,
       but <c>B.H == simplify(B**-1)</c> yields <c>True</c>!
@@ -751,7 +750,7 @@
     </p>
 
     <p>
-      Given a polynomial <m>p(x) = a_0+a_1x+\cdots + a_nx_n</m>, we define <m>p(A)</m> as
+      Given a polynomial <m>p(x) = a_0+a_1x+\cdots + a_nx^n</m>, we define <m>p(A)</m> as
       <me>
         p(A) = a_0I+a_1A+\cdots + a_nA^n
       </me>.
