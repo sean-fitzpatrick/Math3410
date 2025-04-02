@@ -228,17 +228,39 @@
         First, we need the characteristic polynomial.
       </p>
 
+      <aside>
+        <p>
+          Programming note: it is generally not considered good practice to use a wildcard when importing a library.
+          The command <c>from sympy import *</c> imports <em>everything</em>.
+          This can lead to clashes when working with multiple libraries with functions of the same name.
+        </p>
+
+        <p>
+          Unfortunately, our usual method (using <c>import sympy as sy</c>) runs into some trouble here,
+          since we are using Sage cells rather than pure Python.
+          In a Jupyter notebook, things will work just fine, but we need to clobber some pre-defined Sage functions.
+          So although it is usually a bad thing to use the biggest available hammer to clobber everything,
+          it turns out to be necessary here.
+        </p>
+
+        <p>
+          The other option would be to force the Sage cells to use Python instead of Sage,
+          but then we would need to use the Python <c>print</c> command to display results,
+          and we'd lose the nice formatting we get from SymPy.
+        </p>
+      </aside>
+
       <sage>
         <input>
-          import sympy as sy
-          sy.init_printing()
-          A = sy.Matrix([[7,1,-3,2,1],
+          from sympy import *
+          init_printing()
+          A = Matrix([[7,1,-3,2,1],
                       [-6,2,4,-2,-2],
                       [0,1,3,1,-1],
                       [-8,-1,6,0,-3],
                       [-4,0,3,-1,1]])
           p = A.charpoly().as_expr()
-          sy.factor(p)
+          factor(p)
         </input>
         <output>
           \[(\lambda-3)^3(\lambda-2)^2\]
@@ -257,7 +279,7 @@
 
       <sage>
         <input>
-          N2 = A-2*sy.eye(5)
+          N2 = A-2*eye(5)
           E2 = N2.nullspace()
           E2
         </input>
@@ -309,7 +331,7 @@
 
       <sage>
         <input>
-          N3 = A-3*sy.eye(5)
+          N3 = A-3*eye(5)
           E3 = N3.nullspace()
           E3
         </input>
@@ -359,8 +381,7 @@
 
       <sage>
         <input>
-          a = sy.Symbol('a')
-          b = sy.Symbol('b')
+          a, b = symbols('a b')
           C3 = N3.col_insert(5,a*E3[0]+b*E3[1])
           C3.echelon_form()
         </input>
@@ -411,7 +432,7 @@
 
       <sage>
         <input>
-          Z3 = sy.Matrix(5,1,[1,2,2,0,0])
+          Z3 = Matrix(5,1,[1,2,2,0,0])
           A*Z3-3*Z3-2*(E3[0]+E3[1])
         </input>
         <output>
