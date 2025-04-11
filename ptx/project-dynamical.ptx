@@ -532,7 +532,6 @@
       <statement>
         <p>
           Prove that every stochastic matrix has 1 as an eigenvalue.
-          (It is also possible to show that 1 is the dominant eigenvalue, but we will not attempt to do so.)
         </p>
       </statement>
       <hint>
@@ -559,7 +558,7 @@
       </statement>
       <hint>
         <p>
-          Suppose <m>M\xx = \lambda \xx</m> for <m>\lambda\neq 1</m> and  some <m>\xx\neq \mathbf{0}</m>.
+          Suppose <m>M^T\xx = \lambda \xx</m> for <m>\lambda\neq 1</m> and  some <m>\xx\neq \mathbf{0}</m>.
           The entries of <m>\xx</m> are not all equal (or <m>\xx</m> is the eigenvector for <m>\lambda =1</m>).
           Let <m>x_j</m> be the <em>largest</em> entry in <m>\xx</m>.
         </p>
@@ -569,7 +568,7 @@
         </p>
 
         <p>
-          (Note that the <m>j</m>th entry of the eigenvalue equation <m>M\xx = \lambda \xx</m> is <m>\lambda x_j = \sum_{k=1}^n m_{jk}x_k</m>.)
+          (Note that the <m>j</m>th entry of the eigenvalue equation <m>M\xx = \lambda \xx</m> is <m>\lambda x_j = \sum_{k=1}^n m_{kj}x_k</m>.)
         </p>
       </hint>
       <solution>
@@ -618,7 +617,7 @@
       <statement>
         <p>
           Prove that if <m>M</m> is a regular stochastic matrix,
-          then the eigenvector <m>\vv</m> with eigenvalue 1 is unique.
+          then the eigenvector <m>\vv</m> with eigenvalue 1 is unique (up to scalar multiplication).
         </p>
       </statement>
       <hint>
@@ -628,17 +627,17 @@
         </p>
         
         <p>
-          We know that 1 is an eigenvalue of <m>M^T</m>, with eigenvector <m>\xx= \bbm 1/n\\ 1/n\\\vdots \\ 1/n\ebm</m>
-          (rescaled so that its entries sum to 1). We want to that the dimension of the 1-eigenspace of <m>M^T</m> is 1. 
+          We know that 1 is an eigenvalue of <m>M^T</m>, with eigenvector <m>\vv = \bbm 1/n\\ 1/n\\\vdots \\ 1/n\ebm</m>
+          (rescaled so that its entries sum to 1). We want to show that the dimension of the 1-eigenspace of <m>M^T</m> is 1. 
           That is, any <m>\yy</m> whose entries are not all equal cannot satisfy <m>M^T\yy = \yy</m>.
         </p>
         
         <p>
-          To show this, let <m>y_i</m> be respectively, the smallest entry in <m>\yy</m>.
+          To show this, let <m>y_i</m> be the smallest entry in <m>\yy</m>.
           Since the entries of <m>\yy</m> are not all equal, <m>y_i\lt y_k</m> for some <m>k</m>.
         </p>
         <p>
-          Show that if <m>M^T\yy = \yy</m>, then you obtain the contradition <m>y_j\gt y_j</m>.
+          Show that if <m>M^T\yy = \yy</m>, then you obtain the contradition <m>y_i\gt y_i</m>.
         </p>
       </hint>
       <solution>
@@ -662,7 +661,7 @@
     <task label="ex-dynamical-stochastic-e">
       <statement>
         <p>
-          Let <m>M</m> be a regular stochastic matrix.
+          Let <m>M</m> be a regular stochastic matrix with steady-state vector <m>\vv</m>.
           Prove that for any initial state <m>\vv_0</m> whose entries sum to 1,
           the Markov chain <m>\vv_n = M^n\vv_0</m> satisfies <m>\lim_{n\to\infty}\vv_n = \vv</m>.
           (You may assume that <m>\vv_0</m> is a linear combination of eigenvectors of <m>M</m>,
@@ -679,6 +678,7 @@
           <me>
             \vv_0 = c\vv + a_1\xx_1+\cdots + a_k\xx_k
           </me>,
+          where <m>\xx_1,\ldots, \xx_k</m> are the other eigenvectors of <m>M</m>,
           and apply <m>M^n</m> to both sides of the equation. Then, use what you know about the size of the eigenvalues.
         </p>
       </hint>
