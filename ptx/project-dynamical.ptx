@@ -48,18 +48,32 @@
           According to <xref ref="project-recurrence"/>, what is the polynomial associated to this recurrence?
         </p>
       </statement>
+      <solution>
+        <p>
+          The polynomial is given by <m>p(x)=x^2-bx-a</m>.
+        </p>
+      </solution>
     </task>
 
     <task label="ex-dynamical-recurrence-2b">
       <statement>
         <p>
-          Let <m>\vv_k = \begin{bmatrix}x_k\\x_{k+1}\end{bmatrix}</m>, for each <m>k\geq 0</m>,
-          and let <m>A=\begin{bmatrix}0\amp 1\\a \amp b\end{bmatrix}</m>. Show that
+          Let <m>\vv_k = \begin{bmatrix}x_k\\ x_{k+1}\end{bmatrix}</m>, for each <m>k\geq 0</m>,
+          and let <m>A=\begin{bmatrix}0\amp 1\\ a \amp b\end{bmatrix}</m>. Show that
           <me>
             \vv_{k+1}=A\vv_k, \text{ for each } k\geq 0
           </me>.
         </p>
       </statement>
+      <solution>
+        <p>
+          Computing the right-hand side, we find
+          <me>
+            A\vv_k = \bbm 0\amp 1\\ a\amp b\ebm\bbm x_k\\ x_{k+1}\ebm = \bbm x_{k+1}\\ ax_k + bx_{k+1}\ebm = \bbm x_{k+1}\\ x_{k+2}\ebm = \vv_{k+1}
+          </me>,
+          since <m>ax_k+bx_{k+1} = x_{k+2}</m>.
+        </p>
+      </solution>
     </task>
 
     <task label="ex-dynamical-recurrence-2c">
@@ -68,6 +82,15 @@
           Compute the characteristic polynomial of <m>A</m>. What do you observe?
         </p>
       </statement>
+      <solution>
+        <p>
+          We find
+          <me>
+            c_A(x) = \det\bbm x\amp -1 \\ -a \amp x-b\ebm = x^2-bx-a
+          </me>.
+          This is the same as the polynomial found in part (a).
+        </p>
+      </solution>
     </task>
   </exercise>
 
@@ -88,6 +111,16 @@
           where <m>\vv_k = \begin{bmatrix}x_k\\x_{k+1}\\x_{k+2}\end{bmatrix}</m>.
         </p>
       </statement>
+      <solution>
+        <p>
+          We want <m>A\bbm x_k\\ x_{k+1}\\ x_{k+2}\ebm = \bbm x_{k+1}\\ x_{k+2}\\ x_{k+3}\ebm</m>,
+          where <m>x_{k+3} = ax_k + bx_{k+1} + cx_{k+2}</m>.
+        </p>
+
+        <p>
+          This suggests that we take <m>A = \bbm 0 \amp 1\amp 0\\ 0\amp 0\amp 1\\ a\amp b\amp c\ebm</m>.
+        </p>
+      </solution>
     </task>
 
     <task label="ex-dynamical-recurrence-3b">
@@ -97,6 +130,17 @@
           and compare it to the associated polynomial of the recurrence.
         </p>
       </statement>
+      <solution>
+        <p>
+          We find
+          <md>
+            <mrow>c_A(x) \amp = \det\bbm x \amp -1\amp 0\\ 0\amp x\amp -1\\ -a\amp -b\amp x-c\ebm</mrow>
+            <mrow> \amp = x\bvm x\amp -1\\ -b\amp x-c\evm + 1\bvm 0\amp -1\\-a\amp x-c\evm</mrow>
+            <mrow> \amp x(x^2-cx-b) - a = x^3-cx^2-ba-a</mrow>
+          </md>.
+          This is the same as the associated polynomial of the linear recurrence.
+        </p>
+      </solution>
     </task>
 
     <task label="ex-dynamical-recurrence-3c">
@@ -106,6 +150,16 @@
           then <m>\xx = \begin{bmatrix}1\\ \lambda\\ \lambda^2\end{bmatrix}</m> is an associated eigenvector.
         </p>
       </statement>
+      <solution>
+        <p>
+          By direct computation, we find
+          <me>
+            A\xx = \bbm 0 \amp 1\amp 0\\ 0\amp 0\amp 1\\ a\amp b\amp c\ebm\bbm 1\\ \lambda\\ \lambda^2\ebm = \bbm \lambda\\ \lambda^2\\ a+b\lambda+c\lambda^2\ebm
+          </me>.
+          But <m>\lambda</m> is an eigenvalue of <m>A</m>, so <m>c_A(\lambda) = \lambda^3-c\lambda^2-b\lambda -a = 0</m>.
+          Therefore, <m>a+b\lambda+c\lambda^2=\lambda^3</m>, and <m>A\xx = \bbm \lambda\\ \lambda^2\\ \lambda^3\ebm = \lambda\xx</m>.
+        </p>
+      </solution>
     </task>
   </exercise>
 
@@ -124,6 +178,32 @@
           with associated eigenvectors <m>\xx_\pm = \begin{bmatrix}1\\ \lambda_\pm\end{bmatrix}</m>.
         </p>
       </statement>
+      <solution>
+        <p>
+          We use the matrix from question 1(b), with <m>a=b=1</m>, giving <m>A = \bbm 0\amp 1\\ 1\amp 1\ebm</m>.
+          The characteristic polynomial is <m>c_A(x) = x^2-x-1</m> (the same as the associated polynomial of the recurrence),
+          and by the quadratic formula, <m>c_A(x)=0</m> if
+          <me>
+            x = \dfrac{-(-1)\pm\sqrt{1^2-4(1)(-1)}}{2(1)} = \dfrac{1\pm\sqrt{5}}{2}
+          </me>.          
+        </p>
+
+        <p>
+          We can then check that
+          <me>
+            A\xx_+ = \bbm 0\amp 1\\1\amp 1\ebm\bbm 1\\ \lambda_+\ebm = \bbm \lambda_+\\1+\lambda_+\ebm
+          </me>,
+          and
+          <me>
+            \lambda_+^2 = \frac14 + \frac{\sqrt{5}}{2} + \frac54 = \frac32+\frac{\sqrt{5}}{2} = 1+\lambda_+
+          </me>,
+          so that <m>A\xx_+ = \bbm \lambda_+\\ \lambda_+^2\ebm = \lambda_+\xx_+</m>.
+        </p>
+
+        <p>
+          A similar calculation shows that <m>A\xx_- = \lambda_-\xx_-</m>.
+        </p>
+      </solution>
     </task>
 
     <task xml:id="part-dynamical"  label="ex-dynamical-fibonacci-b">
@@ -143,6 +223,18 @@
           </md>.
         </p>
       </statement>
+      <solution>
+        <p>
+          Letting <m>P^{-1}\vv_0 = \bbm a_0\\ a_1\ebm</m>, we have
+          <md>
+            <mrow>PD^nP^{-1}\vv_0 \amp = \bbm 1\amp 1\\ \lambda_+\amp \lambda_-\ebm\bbm \lambda_+^n\amp 0\\ 0\amp \lambda_-^n\ebm\bbm a_0\\a_1\ebm</mrow>
+            <mrow> \amp = \bbm 1\amp 1\\ \lambda_+\amp \lambda_-\ebm\bbm a_0\lambda_+^n\\ a_1\lambda_-^n\ebm</mrow>
+            <mrow> \amp = \bbm a_0\lambda_+^n + a_1\lambda_-^n\\ a_0\lambda_+^{n+1}+a_1\lambda_-^{n+1}</mrow>
+            <mrow> \amp = a_0\lambda_+^n\xx_+ + a_1 \lambda_-^n\xx_-</mrow>
+          </md>.
+          
+        </p>
+      </solution>
     </task>
 
     <task label="ex-dynamical-fibonacci-c">
@@ -165,12 +257,19 @@
           then we can consider the sequence as a sum of geometric sequences that will become approximately geometric in the long run.)
         </p>
       </statement>
+      <solution>
+        <p>
+          We find that <m>\lambda_+ \approx 1.618</m>, while <m>\lambda_- \approx -0.618</m>.
+          Since <m>\abs{\lambda_+}\gt 1</m>, the value of <m>\lambda_+^n</m> will grow arbitrarily large as <m>n</m> gets large,
+          while the value of <m>\lambda_-^n</m> will get closer and closer to 0, since <m>\abs{\lambda_-}\lt 1</m>.
+        </p>
+      </solution>
     </task>
   </exercise>
 
 
   <exercise label="ex-dynamical-predator">
-    <title>Challenge/Project Problem: Predator-Prey Systems</title>
+    <title>Predator-Prey Systems</title>
     <introduction>
       <p>
         As a more practical example, consider the following (over-simplified) predator-prey system.
@@ -300,7 +399,7 @@
   
   
   <exercise label="ex-dynamical-markov">
-    <title>Challenge/Project Problem: Markov Chains</title>
+    <title>Markov Chains</title>
     <introduction>
       <p>
         A special type of linear dynamical system occurs when the matrix <m>A</m>
@@ -347,15 +446,48 @@
           that represent the transition probabilities and initial state given above.
         </p>
       </statement>
+      <solution>
+        <p>
+          The matrix is <m>M = \bbm 0.4\amp 0.3\\0.6\amp 0.7\ebm</m>, and the initial state is <m>\vv_0 = \bbm 1\amp 0\ebm</m>.
+        </p>
+      </solution>
     </task>
 
     <task label="ex-dynamical-markov-b">
       <statement>
         <p>
           By diagonalizing the matrix <m>M</m>,
-          determine the long-term probability that the mosquito will be found in either swamp.
+          find a formula for <m>\vv_n = M^n\vv_0</m>. 
+          Use this to determine the long-term probability that the mosquito will be found in either swamp.
         </p>
       </statement>
+      <solution>
+        <p>
+          We find 
+          <me>
+            c_A(x) = \bvm x-0.4 \amp -0.3\\ -0.6 \amp x-0.7\evm = x^2-1.1x+0.1 = (x-1)(x-0.1)
+          </me>,
+          so the eigenvalues are <m>\lambda_1 = 1</m> and <m>\lambda_2 = 0.1</m>.
+        </p>
+
+        <p>
+          An eigenvector associated to <m>\lambda_1</m> is <m>\xx_1 = \bbm 1\\2\ebm</m>,
+          and an eigenvector associated to <m>\lambda_2</m> is <m>\xx_2 = \bbm 1\\-1\ebm</m>.
+          If we let <m>P = \bbm 1\amp 1\\ 2\amp -1\ebm</m>, then we find
+          <md>
+            <mrow>\vv_n \amp = M^n\vv_0</mrow>
+            <mrow> \amp = \bbm 1\amp 1\\ 2\amp -1\ebm\bbm 1\amp 0\\0\amp (0.1)^n\ebm\bbm 1/3\amp 1/3\\ 2/3\amp -1/3\ebm\bbm 1\\ 0\ebm</mrow>
+            <mrow> \amp \bbm 1\amp 1\\ 2\amp -1\ebm\bbm 1\amp 0\\0\amp (0.1)^n\ebm\bbm 1/3\\2/3\ebm</mrow>
+            <mrow> \amp \bbm 1\amp 1\\ 2\amp -1\ebm\bbm 1/3\\(0.1)^n(2/3)\ebm</mrow>
+            <mrow> \amp \bbm 1/3 + 2/3(0.1)^n\\ 2/3-(0.1)^n\ebm</mrow>
+          </md>
+        </p>
+
+        <p>
+          Based on this, we see that as <m>n\to \infty</m>, <m>\vv_n</m> approaches the vector <m>\bbm 1/3\\2/3\ebm</m>.
+          So there is a 1 in 3 chance of finding the mosquito in swamp A, and a 2 in 3 chance of finding it in swamp B.
+        </p>
+      </solution>
     </task>
 
     <task label="ex-dynamical-markov-c">
@@ -363,70 +495,214 @@
         <p>
           You should have found that one of the eigenvalues of <m>M</m> was <m>\lambda=1</m>.
           The corresponding eigenvector <m>\vv</m> satisfies <m>M\vv=\vv</m>.
-          This is known as a <term>steady-state vector</term>: if our system begins with state <m>\vv</m>,
+          When we normalize so that the entires of <m>\vv</m> sum to 1,
+          we call <m>\vv</m> a <term>steady-state vector</term>: if our system begins with state <m>\vv</m>,
           it will remain there forever.
         </p>
 
         <p>
           Confirm that if the eigenvector <m>\vv</m> is rescaled so that its entries sum to 1,
           the resulting values agree with the long-term probabilities found in the previous part.
+          (The system tends toward the steady-state solution, even if it begins in another state.)
         </p>
       </statement>
+      <solution>
+        <p>
+          We found that this vector is <m>\vv = \bbm 1\\2\ebm</m>. If we divide by <m>1+2=3</m>,
+          we get <m>\bbm 1/3\\2/\3\ebm</m>, which is the same as before.
+        </p>
+      </solution>
     </task>
+
   </exercise>
 
   <exercise label="ex-dynamical-stochastic">
+    <title>Properties of stochastic matrices</title>
     <introduction>
       <p>
         A stochastic matrix <m>M</m> is called <term>regular</term>
         some power <m>M^k</m> has all positive entries.
-        It is a theorem that every regular stochastic matrix has a steady-state vector.
+        It is a theorem that every regular stochastic matrix has a unique steady-state vector.
+        That is, there is a unique vector <m>\vv</m> whose entries are positive, and sum to 1,
+        such that <m>M\vv = \vv</m>.
       </p>
     </introduction>
+    
     <task label="ex-dynamical-stochastic-a">
       <statement>
         <p>
-          Prove that if <m>M</m> is a <m>2\times 2</m> stochastic matrix with no entry equal to zero,
-          then <m>1</m> is an eigenvalue of <m>M</m>.
+          Prove that every stochastic matrix has 1 as an eigenvalue.
+          (It is also possible to show that 1 is the dominant eigenvalue, but we will not attempt to do so.)
         </p>
       </statement>
+      <hint>
+        <p>
+          The eigenvalues of <m>M</m> are the same as the eigenvalues of <m>M^T</m>.
+          Since the columns of <m>M</m> sum to 1, the rows of <m>M^T</m> sum to 1.
+          Does this suggest a possible eigenvector for <m>M^T</m>?
+        </p>
+      </hint>
+      <solution>
+        <p>
+          Since the rows of <m>M^T</m> sum to 1, if <m>\xx = \bbm 1\\1\\ \vdots \\ 1\ebm</m>,
+          we find that <m>M^T\xx = \xx</m>. Therefore, 1 is an eigenvalue of <m>M^T</m>, and therefore of <m>M</m>.
+        </p>
+      </solution>
     </task>
 
     <task label="ex-dynamical-stochastic-b">
+      <statement>
+        <p>
+          Prove that if <m>M</m> is a stochastic matrix and <m>\lambda</m> is any eigenvalue of <m>M</m>,
+          then <m>\abs{\lambda}\leq 1</m>.
+        </p>
+      </statement>
+      <hint>
+        <p>
+          Suppose <m>M\xx = \lambda \xx</m> for <m>\lambda\neq 1</m> and  some <m>\xx\neq \mathbf{0}</m>.
+          The entries of <m>\xx</m> are not all equal (or <m>\xx</m> is the eigenvector for <m>\lambda =1</m>).
+          Let <m>x_j</m> be the <em>largest</em> entry in <m>\xx</m>.
+        </p>
+
+        <p>
+          Show that <m>\abs{\lambda}\abs{x_j} \leq 1\abs{x_j}</m>.
+        </p>
+
+        <p>
+          (Note that the <m>j</m>th entry of the eigenvalue equation <m>M\xx = \lambda \xx</m> is <m>\lambda x_j = \sum_{k=1}^n m_{jk}x_k</m>.)
+        </p>
+      </hint>
+      <solution>
+        <p>
+          Suppose that <m>M\xx = \lambda \xx</m> for some <m>\lambda\neq 1</m> and some <m>\xx\neq \mathbf{0}</m>.
+          Let <m>x_j</m> be the largest entry of <m>\xx</m>.
+          (We know that the entries of <m>\xx</m> are not all the same, since <m>\lambda\neq 1</m>.)
+          Then we have
+          <me>
+            \abs{\lambda}\abs{x_j} = \abs{\lambda x_j} = \abs{\sum_{k=1}^n m_{jk} x_k} \leq \abs{\sum_{k=1}^n m_{jk}x_j} = \abs{1\cdot x_j}
+          </me>.
+          Therefore, <m>\abs{\lambda}\leq 1</m>.
+        </p>
+      </solution>
+    </task>
+
+    <task label="ex-dynamical-stochastic-c">
       <statement>
         <p>
           Prove that the product of two <m>2\times 2</m> stochastic matrices is stochastic.
           Conclude that if <m>M</m> is stochastic, so is <m>M^k</m> for each <m>k=1,2,3,\ldots</m>.
         </p>
       </statement>
+      <solution>
+        <p>
+          Let <m>M_i = \bbm a_i\amp b_i\\c_i\amp d_i\ebm</m>, where <m>a_i+c_i=1</m> and <m>b_i+d_i=1</m>, for <m>i=1,2</m>.
+          Then
+          <md>
+            <mrow>M_1M_2  \amp = \bbm a_1\amp b_1\\ c_1\amp d_1\ebm\bbm a_2\amp b_2\\ c_2\amp d_2\ebm</mrow>
+            <mrow> \amp = \bbm a_1a_2+b_1c_2 \amp a_1b_2+b_1d_2\\c_1a_2+d_1c_2\amp c_1b_2+d_1d_2\ebm</mrow>
+          </md>.
+          Now we check:
+          <me>
+            (a_1a_2+b_1c_2)+(c_1a_2+d_1c_2) = (a_1+c_1)a_2+(b_1+d_1)c_2 = a_2+c_2 = 1
+          </me>,
+          and
+          <me>
+            (a_1b_2+b_1d_2)+(c_1b_2+d_1d_2) = (a_1+c_1)b_2+(b_1+d_2)d_2 = b_2+d_1 = 1
+          </me>,
+          so <m>M_1M_2</m> is stochastic.
+        </p>
+      </solution>
     </task>
 
-    <task label="ex-dynamical-stochastic-c">
+    <task label="ex-dynamical-stochastic-d">
       <statement>
         <p>
-          Also prove that if <m>M^k</m> has positive entries for some <m>k</m>,
-          then <m>1</m> is an eigenvalue of <m>M</m>.
+          Prove that if <m>M</m> is a regular stochastic matrix,
+          then the eigenvector <m>\vv</m> with eigenvalue 1 is unique.
         </p>
       </statement>
       <hint>
         <p>
-          You have already proved that a stochastic matrix with positive entries has eigenvalue <m>1</m>,
-          and that a power of a stochastic matrix is stochastic.
-          If <m>M^k</m> has positive entries for some <m>k</m>, what eigenvalue must it have?
-          You may assume (it is true, but you do not have to prove it)
-          that <m>M^{k+1}</m> will also have positive entries.
+          You may assume that the entries of <m>M</m> are positive,
+          since <m>M\vv = \vv</m> implies <m>M^k\vv = \vv</m> for any <m>k\in\mathbb{N}</m>.
+        </p>
+        
+        <p>
+          We know that 1 is an eigenvalue of <m>M^T</m>, with eigenvector <m>\xx= \bbm 1/n\\ 1/n\\\vdots \\ 1/n\ebm</m>
+          (rescaled so that its entries sum to 1). We want to that the dimension of the 1-eigenspace of <m>M^T</m> is 1. 
+          That is, any <m>\yy</m> whose entries are not all equal cannot satisfy <m>M^T\yy = \yy</m>.
+        </p>
+        
+        <p>
+          To show this, let <m>y_i</m> be respectively, the smallest entry in <m>\yy</m>.
+          Since the entries of <m>\yy</m> are not all equal, <m>y_i\lt y_k</m> for some <m>k</m>.
+        </p>
+        <p>
+          Show that if <m>M^T\yy = \yy</m>, then you obtain the contradition <m>y_j\gt y_j</m>.
+        </p>
+      </hint>
+      <solution>
+        <p>
+          Suppose <m>\yy</m> is an eigenvector of <m>M^T</m> corresponding to the eigenvalue 1,
+          such that <m>\yy</m> is not a multiple of <m>\vv</m>.
+          Then the entries of <m>\yy</m> cannot all be equal. Let <m>y_i</m> be the smallest entry of <m>y_i</m>,
+          and note that we must have <m>y_i \lt y_k</m> for some <m>k</m>.
+        </p>
+
+        <p>
+          If <m>M^T\yy = \yy</m>, then the <m>i</m> entry of this equation is
+          <me>
+            y_i = \sum_{j=1}^n m_{ji}y_j \gt \sum_{j=i}^n m_{ji}y_i = y_i \sum_{j=1}^n m_{ji} = y_i(1)
+          </me>,
+          which is a contradiction. Thus, <m>\vv</m> must span the <m>\lambda=1</m> eigenspace.
+        </p>        
+      </solution>
+    </task>
+
+    <task label="ex-dynamical-stochastic-e">
+      <statement>
+        <p>
+          Let <m>M</m> be a regular stochastic matrix.
+          Prove that for any initial state <m>\vv_0</m> whose entries sum to 1,
+          the Markov chain <m>\vv_n = M^n\vv_0</m> satisfies <m>\lim_{n\to\infty}\vv_n = \vv</m>.
+          (You may assume that <m>\vv_0</m> is a linear combination of eigenvectors of <m>M</m>,
+          and that <m>\abs{\lambda}\lt 1</m> for each eigenvalue <m>\lambda \neq 1</m>.)
+        </p>
+      </statement>
+      <hint>
+        <p>
+          We want to show that <m>\lim_{n\to\infty}M^n\vv_0 = \vv</m>, where <m>\vv</m> is the steady-state solution.
+        </p>
+        <p>
+          We are told that we can write <m>\vv_0</m> as a linear combination of eigenvectors.
+          To that end, write
+          <me>
+            \vv_0 = c\vv + a_1\xx_1+\cdots + a_k\xx_k
+          </me>,
+          and apply <m>M^n</m> to both sides of the equation. Then, use what you know about the size of the eigenvalues.
         </p>
       </hint>
     </task>
-  </exercise>
 
-  <exercise label="ex-dynamical-markov-example">
-    <statement>
-      <p>
-        By searching online or in other textbooks,
-        find and state a more interesting/complicated example of a Markov chain problem,
-        and show how to solve it.
-      </p>
-    </statement>
+    <task label="ex-dynamical-stochastic-f">
+      <statement>
+        <p>
+          Explain why the stochastic matrix <m>M = \bbm 0\amp 1\\1\amp 0\ebm</m> is not regular,
+          and why it does not reach a steady-state solution.
+        </p>
+      </statement>
+      <solution>
+        <p>
+          The eigenvalues of <m>M</m> are <m>\pm 1</m>, and we have <m>M^n = \bbm 1\amp 0\\ 0\amp 1\ebm</m> when <m>M</m> is even,
+          while <m>M^n = M</m> when <m>n</m> is odd.
+        </p>
+
+        <p>
+          For any initial condition <m>\vv_0 = \bbm a\\b\ebm \neq \bbm 0.5\\0.5\ebm</m>,
+          we find that <m>M^n\vv_0</m> is either <m>\bbm a\\b\ebm</m> or <m>\bbm b\\a\ebm</m>,
+          depending on whether <m>n</m> is even or odd.
+        </p>
+      </solution>
+    </task>
   </exercise>
 </section>
