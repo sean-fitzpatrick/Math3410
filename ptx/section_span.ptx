@@ -5,9 +5,9 @@
   <p>
     Recall that a <term>linear combination</term> of a set of vectors
     <m>\vv_1,\ldots, \vv_k</m> is a vector expression of the form
-    <me>
+    <md>
       \ww=c_1\vv_1+c_2\vv_2+\cdots +c_k\vv_k,
-    </me>
+    </md>
     where <m>c_1,\ldots, c_k</m> are scalars.
   </p>
 
@@ -24,9 +24,9 @@
       <p>
         In <m>\R^3</m>, let <m>\uu = \bbm 1\\0\\3\ebm</m>, <m>\vv = \bbm -1\\2\\1\ebm</m>, and <m>\ww = \bbm 0\\3\\1\ebm</m>.
         With scalars <m>3,-2,4</m> we can form the linear combination
-        <me>
+        <md>
           3\uu-2\vv+4\ww = \bbm 3\\0\\9\ebm+\bbm 2\\-4\\-2\ebm + \bbm 0\\12\\4\ebm = \bbm 5\\8\\11\ebm
-        </me>.
+        </md>.
         Notice how the end result is a single vector, and we've lost all information regarding the vectors it came from.
         Sometimes we want the end result, but often we are more interested in details of the linear combination itself.
       </p>
@@ -50,9 +50,9 @@
       <p>
         Let <m>\vv_1,\ldots, \vv_k</m> be a set of vectors in a vector space <m>V</m>.
         The <term>span</term> of this set of vectors is the subset of <m>V</m> defined by
-        <me>
+        <md>
           \spn\{\vv_1,\ldots, \vv_k\} = \{c_1\vv_1+ \cdots + c_k\vv_k \,|\, c_1,\ldots, c_k \in \mathbb{F}\}
-        </me>.
+        </md>.
       </p>
     </statement>
   </definition>
@@ -163,18 +163,18 @@
     <solution>
       <p>
         This is really asking: are there scalars <m>s,t</m> such that
-        <me>
+        <md>
           s\bbm 1\\1\ebm + t\bbm -1\\2\ebm = \bbm 2\\3\ebm
-        </me>?
+        </md>?
         And this, in turn, is equivalent to the system
         <md>
           <mrow>s -t \amp=2 </mrow>
           <mrow>s+2t \amp=3 </mrow>
         </md>,
         which is the same as the matrix equation
-        <me>
+        <md>
           \bbm 1\amp -1\\1\amp 2\ebm\bbm s\\t\ebm = \bbm 2\\3\ebm.
-        </me>
+        </md>
         Solving the system confirms that there is indeed a solution, so the answer to our original question is yes.
       </p>
 
@@ -249,13 +249,13 @@
     <solution>
       <p>
         We seek scalars <m>s,t</m> such that
-        <me>
+        <md>
           s(1+2x-x^2)+t(3+5x+2x^2)=1+2x+4x^2
-        </me>.
+        </md>.
         On the left-hand side, we expand and gather terms:
-        <me>
+        <md>
           (s+3t)+(2s+5t)x+(-s+2t)x^2 = 1+2x+4x^2
-        </me>.
+        </md>.
         These two polynomials are equal if and only if we can solve the system
         <md>
           <mrow>s+3t \amp = 1 </mrow>
@@ -272,9 +272,9 @@
         If the system is inconsistent, <m>p(x)</m> is not in the span.)
         We used the first and third equations to find <m>s=-2, t=1</m>,
         but we need to check if these values work in the second equation.
-        <me>
+        <md>
           2s+5t = 2(-2)+5(1)=1 \neq 2
-        </me>,
+        </md>,
         which shows that our system is inconsistent, and therefore, 
         <m>p(x)</m> does not belong to the span of the other two polynomials.
       </p>
@@ -370,9 +370,9 @@
 
     <p>
       For a consistent system, we need <m>c=14a-8b</m>. Therefore,
-      <me>
+      <md>
         \spn\{1+2x-x^2,3+5x+2x^2\} = \{a+bx+cx^2 \,|\, c=14a-8b\}
-      </me>.      
+      </md>.      
     </p>
   </remark>
 
@@ -478,9 +478,9 @@
       <p>
         Let <m>V</m> be a vector space, and let <m>\vv_1,\ldots, \vv_k\in V</m>.
         If <m>\uu\in \spn\{\vv_1,\ldots, \vv_k\}</m>, then
-        <me>
+        <md>
           \spn\{\uu,\vv_1,\ldots, \vv_k\} = \spn\{\vv_1,\ldots, \vv_k\}
-        </me>.
+        </md>.
       </p>
     </statement>
     <proof>
@@ -506,14 +506,14 @@
         Suppose that <m>\uu\in \spn\{\vv_1,\ldots, \vv_k\}</m>.
         This means that <m>\uu</m> can be written as a linear combination of the vectors <m>\vv_1,\ldots, \vv_k</m>,
         so there must exist scalars <m>a_1,\ldots, a_k</m> such that
-        <men xml:id="eq-u-in-span">
+        <md numer="yes" xml:id="eq-u-in-span">
           \uu=a_1\vv_1+a_2\vv_2+\cdots + a_k\vv_k
-        </men>.
+        </md>.
         Now, let <m>\ww\in \uu\in \spn\{\uu,\vv_1,\ldots, \vv_k\}</m>.
         Then we must have
-        <me>
+        <md>
           \ww = b\uu+c_1\vv_1+\cdots+c_k\vv_k
-        </me>
+        </md>
         for scalars <m>b,c_1,\ldots, c_k</m>. From our hypothesis (using <xref ref="eq-u-in-span"/>), we get
         <md>
           <mrow>\ww \amp = b(a_1\vv_1+a_2\vv_2+\cdots + a_k\vv_k) +c_1\vv_1+\cdots +c_k\vv_k</mrow>

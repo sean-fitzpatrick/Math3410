@@ -6,9 +6,9 @@
     <p>
       Suppose we have a sequence <m>(x_n)</m> defined by a linear recurrence of length <m>k</m>,
       as in <xref ref="project-recurrence"/>:
-      <me>
+      <md>
         x_{n+k} = a_0x_k + a_1x_{k+1}+\cdots + a_{k-1}x_{n-k+1}
-      </me>.
+      </md>.
     </p>
 
     <p>
@@ -21,9 +21,9 @@
 
     <p>
       To determine the long term evolution of the system, we would like to be able to compute
-      <me>
+      <md>
         \vv_n  = A^n \vv_0
-      </me>
+      </md>
       without first finding all the intermediate states,
       so this is a situation where we would like to be able to efficiently compute powers of a matrix.
       Fortunately, we know how to do this when <m>A</m> is diagonalizable:
@@ -36,9 +36,9 @@
     <introduction>
       <p>
         Consider a recurrence of length 2, of the form
-        <me>
+        <md>
           x_{k+2} = ax_k+bx_{k+1}
-        </me>.
+        </md>.
       </p>
     </introduction>
 
@@ -60,17 +60,17 @@
         <p>
           Let <m>\vv_k = \begin{bmatrix}x_k\\ x_{k+1}\end{bmatrix}</m>, for each <m>k\geq 0</m>,
           and let <m>A=\begin{bmatrix}0\amp 1\\ a \amp b\end{bmatrix}</m>. Show that
-          <me>
+          <md>
             \vv_{k+1}=A\vv_k, \text{ for each } k\geq 0
-          </me>.
+          </md>.
         </p>
       </statement>
       <solution>
         <p>
           Computing the right-hand side, we find
-          <me>
+          <md>
             A\vv_k = \bbm 0\amp 1\\ a\amp b\ebm\bbm x_k\\ x_{k+1}\ebm = \bbm x_{k+1}\\ ax_k + bx_{k+1}\ebm = \bbm x_{k+1}\\ x_{k+2}\ebm = \vv_{k+1}
-          </me>,
+          </md>,
           since <m>ax_k+bx_{k+1} = x_{k+2}</m>.
         </p>
       </solution>
@@ -85,9 +85,9 @@
       <solution>
         <p>
           We find
-          <me>
+          <md>
             c_A(x) = \det\bbm x\amp -1 \\ -a \amp x-b\ebm = x^2-bx-a
-          </me>.
+          </md>.
           This is the same as the polynomial found in part (a).
         </p>
       </solution>
@@ -98,9 +98,9 @@
     <introduction>
       <p>
         For a recurrence of length 3, given by
-        <me>
+        <md>
           x_{k+3} = ax_k+bx_{k+1}+cx_{k+2}
-        </me>:
+        </md>:
       </p>
     </introduction>
 
@@ -153,9 +153,9 @@
       <solution>
         <p>
           By direct computation, we find
-          <me>
+          <md>
             A\xx = \bbm 0 \amp 1\amp 0\\ 0\amp 0\amp 1\\ a\amp b\amp c\ebm\bbm 1\\ \lambda\\ \lambda^2\ebm = \bbm \lambda\\ \lambda^2\\ a+b\lambda+c\lambda^2\ebm
-          </me>.
+          </md>.
           But <m>\lambda</m> is an eigenvalue of <m>A</m>, so <m>c_A(\lambda) = \lambda^3-c\lambda^2-b\lambda -a = 0</m>.
           Therefore, <m>a+b\lambda+c\lambda^2=\lambda^3</m>, and <m>A\xx = \bbm \lambda\\ \lambda^2\\ \lambda^3\ebm = \lambda\xx</m>.
         </p>
@@ -183,20 +183,20 @@
           We use the matrix from question 1(b), with <m>a=b=1</m>, giving <m>A = \bbm 0\amp 1\\ 1\amp 1\ebm</m>.
           The characteristic polynomial is <m>c_A(x) = x^2-x-1</m> (the same as the associated polynomial of the recurrence),
           and by the quadratic formula, <m>c_A(x)=0</m> if
-          <me>
+          <md>
             x = \dfrac{-(-1)\pm\sqrt{1^2-4(1)(-1)}}{2(1)} = \dfrac{1\pm\sqrt{5}}{2}
-          </me>.          
+          </md>.          
         </p>
 
         <p>
           We can then check that
-          <me>
+          <md>
             A\xx_+ = \bbm 0\amp 1\\1\amp 1\ebm\bbm 1\\ \lambda_+\ebm = \bbm \lambda_+\\1+\lambda_+\ebm
-          </me>,
+          </md>,
           and
-          <me>
+          <md>
             \lambda_+^2 = \frac14 + \frac{\sqrt{5}}{2} + \frac54 = \frac32+\frac{\sqrt{5}}{2} = 1+\lambda_+
-          </me>,
+          </md>,
           so that <m>A\xx_+ = \bbm \lambda_+\\ \lambda_+^2\ebm = \lambda_+\xx_+</m>.
         </p>
 
@@ -314,9 +314,9 @@
           <mrow>c_{t+1} \amp = 0.1d_t + 0.8c_t</mrow>
         </md>,
         or, in matrix form,
-        <me>
+        <md>
           \mathbf{p}_{t+1} = A\mathbf{p}_t
-        </me>,
+        </md>,
         where <m>\mathbf{p}_t=\bbm d_t\\c_t\ebm</m> and <m>A = \bbm 1.5 \amp -10\\0.1 \amp 0.8\ebm</m>.
       </p>
 
@@ -351,14 +351,14 @@
         <p>
           Remember that those complex terms can be combined using sine and cosine functions:
           since <m>A</m> is a real matrix, the eigenvalues will have the form
-          <me>
+          <md>
             \lambda_\pm = a\pm bi
-          </me>,
+          </md>,
           where <m>a</m> and <m>b</m> are real. In polar form, <m>\lambda_\pm = re^{\pm i\theta}</m>
           for some <m>r</m> and <m>\theta</m>, and by de Moivre's Theorem,
-          <me>
+          <md>
             \lambda_\pm^n = r^n e^{\pm in\theta} = r^n(\cos(n\theta)+i\sin(n\theta))
-          </me>.
+          </md>.
         </p>
       </hint>
     </task>
@@ -464,9 +464,9 @@
       <solution>
         <p>
           We find 
-          <me>
+          <md>
             c_A(x) = \bvm x-0.4 \amp -0.3\\ -0.6 \amp x-0.7\evm = x^2-1.1x+0.1 = (x-1)(x-0.1)
-          </me>,
+          </md>,
           so the eigenvalues are <m>\lambda_1 = 1</m> and <m>\lambda_2 = 0.1</m>.
         </p>
 
@@ -577,9 +577,9 @@
           Let <m>x_j</m> be the largest entry of <m>\xx</m>.
           (We know that the entries of <m>\xx</m> are not all the same, since <m>\lambda\neq 1</m>.)
           Then we have
-          <me>
+          <md>
             \abs{\lambda}\abs{x_j} = \abs{\lambda x_j} = \abs{\sum_{k=1}^n m_{jk} x_k} \leq \abs{\sum_{k=1}^n m_{jk}x_j} = \abs{1\cdot x_j}
-          </me>.
+          </md>.
           Therefore, <m>\abs{\lambda}\leq 1</m>.
         </p>
       </solution>
@@ -601,13 +601,13 @@
             <mrow> \amp = \bbm a_1a_2+b_1c_2 \amp a_1b_2+b_1d_2\\c_1a_2+d_1c_2\amp c_1b_2+d_1d_2\ebm</mrow>
           </md>.
           Now we check:
-          <me>
+          <md>
             (a_1a_2+b_1c_2)+(c_1a_2+d_1c_2) = (a_1+c_1)a_2+(b_1+d_1)c_2 = a_2+c_2 = 1
-          </me>,
+          </md>,
           and
-          <me>
+          <md>
             (a_1b_2+b_1d_2)+(c_1b_2+d_1d_2) = (a_1+c_1)b_2+(b_1+d_2)d_2 = b_2+d_1 = 1
-          </me>,
+          </md>,
           so <m>M_1M_2</m> is stochastic.
         </p>
       </solution>
@@ -650,9 +650,9 @@
 
         <p>
           If <m>M^T\yy = \yy</m>, then the <m>i</m> entry of this equation is
-          <me>
+          <md>
             y_i = \sum_{j=1}^n m_{ji}y_j \gt \sum_{j=i}^n m_{ji}y_i = y_i \sum_{j=1}^n m_{ji} = y_i(1)
-          </me>,
+          </md>,
           which is a contradiction. Thus, <m>\vv</m> must span the <m>\lambda=1</m> eigenspace.
         </p>        
       </solution>
@@ -675,9 +675,9 @@
         <p>
           We are told that we can write <m>\vv_0</m> as a linear combination of eigenvectors.
           To that end, write
-          <me>
+          <md>
             \vv_0 = c\vv + a_1\xx_1+\cdots + a_k\xx_k
-          </me>,
+          </md>,
           where <m>\xx_1,\ldots, \xx_k</m> are the other eigenvectors of <m>M</m>,
           and apply <m>M^n</m> to both sides of the equation. Then, use what you know about the size of the eigenvalues.
         </p>

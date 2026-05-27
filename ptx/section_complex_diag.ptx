@@ -44,9 +44,9 @@
     <p>
       We'll write elements of <m>\C^n</m> as <m>\zz = (z_1,z_2,\ldots, z_n)</m>.
       The complex conjugate of <m>\zz</m> is given by
-      <me>
+      <md>
         \bar{\zz} = (\bz_1,\bz_2,\ldots, \bz_n)
-      </me>.
+      </md>.
     </p>
 
     <p>
@@ -59,9 +59,9 @@
         <p>
           The <term>standard inner product</term> on <m>\C^n</m> is defined as follows:
           given <m>\zz=(z_1,z_2,\ldots, z_n)</m> and <m>\ww=(w_1,w_2,\ldots, w_n)</m>,
-          <me>
+          <md>
             \langle \zz,\ww\rangle = \zz\dotp\bar{\ww} = z_1\bar{w}_1+z_2\bar{w}_2+\cdots + z_n\bar{w}_n
-          </me>.
+          </md>.
         </p>
       </statement>
     </definition>
@@ -69,9 +69,9 @@
     <p>
       If <m>\zz,\ww</m> are real, this is just the usual dot product.
       The reason for using the complex conjugate is to ensure that we still have a positive-definite inner product on <m>\C^n</m>:
-      <me>
+      <md>
         \langle \zz,\zz\rangle = z_1\bz_1+z_2\bz_2+\cdots + z_n\bz_n = \abs{z_1}^2+\abs{z_2}^2+\cdots + \abs{z_n}^2
-      </me>,
+      </md>,
       which shows that <m>\langle \zz,\zz\rangle \geq 0</m>,
       and <m>\langle \zz,\zz\rangle = 0</m> if and only if <m>\zz=\zer</m>.
     </p>
@@ -168,13 +168,13 @@
             <li>
               <p>
                 These again follow from writing the inner product as a matrix product.
-                <me>
+                <md>
                   \langle \alpha\zz_1,\zz_2\rangle = (\alpha \zz_1)^T\bar{\zz_2} = \alpha(\zz_1^T\bar{\zz_2}) = \alpha\langle\zz_1,\zz_2\rangle
-                </me>,
+                </md>,
                 and
-                <me>
+                <md>
                   \langle \zz_1,\alpha\zz_2\rangle = \zz_1^T\overline{\alpha \zz_2} = \zz_1^T(\bar{\alpha}\bar{\zz_2}) = \bar{\alpha}(\zz_1^T\zz_2)=\alpha\langle \zz_1,\zz_2\rangle
-                </me>.
+                </md>.
               </p>
             </li>
 
@@ -183,9 +183,9 @@
                 Note that for any vectors <m>\zz,\ww</m>, <m>\zz^T\ww</m> is a number,
                 and therefore equal to its own transpose.
                 Thus, we have <m>\zz^T\ww = (\zz^T\ww)^T=\ww^T\zz</m>, and
-                <me>
+                <md>
                   \overline{\langle \zz_1,\zz_2\rangle} = \overline{\zz_1^T\bar{\zz_2}} = \overline{\bar{\zz_2}^T\zz_1} = \zz_2^T\overline{\zz_1}=\langle \zz_2,\zz_1\rangle
-                </me>.
+                </md>.
               </p>
             </li>
             <li>
@@ -203,9 +203,9 @@
       <statement>
         <p>
           The <term>norm</term> of a vector <m>\zz = (z_1,z_2,\ldots, z_n)</m> in <m>\C^n</m> is given by
-          <me>
+          <md>
             \len{\zz} = \sqrt{\langle \zz,\zz\rangle} = \sqrt{\abs{z_1}^2+\abs{z_2}^2+\cdots +\abs{z_n}^2}
-          </me>.
+          </md>.
         </p>
       </statement>
     </definition>
@@ -248,9 +248,9 @@
           is the matrix <m>\bar{A}=[\bar{a}_{ij}]</m>.
           The <term>conjugate transpose</term> of <m>A</m> is the matrix <m>A^H</m>
           defined by
-          <me>
+          <md>
             A^H = (\bar{A})^T=\overline{(A^T)}
-          </me>.
+          </md>.
         </p>
       </statement>
     </definition>
@@ -291,9 +291,9 @@
         <p>
           We have <m>\bar{A}=\bbm 4\amp 1+i\amp -2-3i\\1-i\amp 5 \amp -7i\\-2+3i\amp 7i\amp -4\ebm</m>,
           so
-          <me>
+          <md>
             A^H = (\bar{A})^T = \bbm 4\amp 1-i\amp -2+3i\\1+i\amp 5\amp 7i\\-2-3i\amp -7i\amp -4\ebm = A
-          </me>,
+          </md>,
           and
           <md>
             <mrow>BB^H \amp =\frac14\bbm 1+i\amp \sqrt{2}\\1-i\amp\sqrt{2}i\ebm\bbm 1-i\amp 1+i\\\sqrt{2}\amp-\sqrt{2}i\ebm </mrow>
@@ -359,9 +359,9 @@
       <statement>
         <p>
           An <m>n\times n</m> complex matrix <m>A</m> is hermitian if and only if
-          <me>
+          <md>
             \langle A\zz,\ww\rangle = \langle \zz, A\ww\rangle
-          </me>
+          </md>
           for any <m>\zz,\ww\in\C^n</m>
         </p>
       </statement>
@@ -369,14 +369,14 @@
         <p>
           Note that the property <m>A^H=A</m> is equivalent to <m>A^T=\bar{A}</m>.
           This gives us
-          <me>
+          <md>
             \langle A\zz,\ww\rangle = (A\zz)^T\bar{\ww} = (\zz^TA^T)\bar{\ww} = (\zz^T\bar{A})\bar{\ww}=\zz^T(\overline{A\ww}) = \langle \zz,\ww\rangle
-          </me>.
+          </md>.
           Conversely, suppose <m>\langle A\zz,\ww\rangle = \langle \zz, A\ww\rangle</m> for all <m>\zz,\ww\in \C^n</m>,
           and let <m>\basis{e}{n}</m> denote the standard basis for <m>\C^n</m>. Then
-          <me>
+          <md>
             a_{ji}=\langle A\mathbf{e}_i,\mathbf{e}_j\rangle = \langle \mathbf{e}_i,A\mathbf{e}_j\rangle = \overline{a_{ij}}
-          </me>,
+          </md>,
           which shows that <m>A^T=\bar{A}</m>.
         </p>
       </proof>
@@ -413,9 +413,9 @@
               <p>
                 Suppose <m>A\zz = \lambda\zz</m> for some <m>\lambda\in\C</m> and <m>\zz\neq \zer</m>.
                 Then
-                <me>
+                <md>
                   \lambda \langle \zz,\zz\rangle  = \langle \lambda\zz,\zz\rangle = \langle A\zz,\zz \rangle = \langle \zz, A\zz\rangle = \langle \zz,\lambda\zz\rangle = \bar{\lambda}\langle \zz,\zz\rangle
-                </me>.
+                </md>.
                 Thus, <m>(\lambda-\bar{\lambda})\len{\zz}^2=0</m>, and since <m>\len{z}\neq 0</m>, we must have <m>\bar{\lambda}=\lambda</m>, which means <m>\lambda\in\R</m>.
               </p>
             </li>
@@ -424,9 +424,9 @@
               <p>
                 Similarly, suppose <m>\lambda_1,\lambda_2</m> are eigenvalues of <m>A</m>,
                 with corresponding eigenvectors <m>\zz,\ww</m>. Then
-                <me>
+                <md>
                   \lambda_1\langle \zz,\ww\rangle = \langle \lambda_1\zz,\ww\rangle = \langle A\zz,\ww\rangle =\langle \zz,A\ww\rangle = \langle \zz,\lambda_2\ww\rangle = \bar{\lambda_2}\langle\zz,\ww\rangle
-                </me>.
+                </md>.
                 This gives us <m>(\lambda_1-\bar{\lambda_2})\langle \zz,\ww\rangle=0</m>.
                 And since we already know <m>\lambda_2</m> must be real,
                 and <m>\lambda_1\neq \lambda_2</m>, we must have <m>\langle \zz,\ww\rangle = 0</m>.
@@ -490,9 +490,9 @@
 
         <p>
           For <m>\lambda_1=-1</m>, we have
-          <me>
+          <md>
             A + I =\bbm 5 \amp 3-i\\3+i\amp 2\ebm
-          </me>.
+          </md>.
           There are two ways one can proceed from here.
           We could use row operations to get to the reduced row-echelon form of <m>A</m>.
           If we take this approach, we multiply row 1 by <m>\frac15</m>,
@@ -503,50 +503,50 @@
           Easier is to realize that if we haven't made a mistake calculating our eigenvalues,
           then the above matrix can't be invertible, so there must be some nonzero vector in the kernel.
           If <m>(A+I)\bbm a\\b\ebm=\bbm0\\0\ebm</m>, then we must have
-          <me>
+          <md>
             5a+(3-i)b=0
-          </me>,
+          </md>,
           when we multiply by the first row of <m>A</m>.
           This suggests that we take <m>a=3-i</m> and <m>b=-5</m>,
           to get <m>\zz = \bbm 3-i\\-5\ebm</m> as our first eigenvector.
           To make sure we've done things correctly, we multiply by the second row of <m>A+I</m>:
-          <me>
+          <md>
             (3+i)(3-i)+2(-5) = 10-10 = 0
-          </me>.
+          </md>.
           Success! Now we move onto the second eigenvalue.
         </p>
 
         <p>
           For <m>\lambda_2=6</m>, we get
-          <me>
+          <md>
             A-6I = \bbm -2\amp 3-i\\3+i\amp -5\ebm
-          </me>.
+          </md>.
           If we attempt to read off the answer like last time,
           the first row of <m>A-6I</m> suggests the vector <m>\ww = \bbm 3-i\\2\ebm</m>.
           Checking the second row to confirm, we find:
-          <me>
+          <md>
             (3+i)(3-i)-5(2) = 10-10=0
-          </me>,
+          </md>,
           as before.
         </p>
 
         <p>
           Finally, we note that
-          <me>
+          <md>
             \langle \zz, \ww\rangle = (3-i)\overline{(3-i)}+(-5)(2) = (3-i)(3+i)-10 = 0
-          </me>,
+          </md>,
           so the two eigenvectors are orthogonal, as expected. We have
-          <me>
+          <md>
             \len{\zz}=\sqrt{10+25}=\sqrt{35} \quad \text{ and } \quad \len{\ww}=\sqrt{10+4}=\sqrt{14}
-          </me>,
+          </md>,
           so our orthogonal matrix is
-          <me>
+          <md>
             U = \bbm \frac{3-i}{\sqrt{35}}\amp \frac{3-i}{\sqrt{14}}\\-\frac{5}{\sqrt{35}}\amp \frac{2}{\sqrt{14}}\ebm
-          </me>.
+          </md>.
           With a bit of effort, we can finally confirm that
-          <me>
+          <md>
             U^HAU = \bbm -1\amp 0\\0\amp 6\ebm
-          </me>,
+          </md>,
           as expected.
         </p>
       </solution>
@@ -605,9 +605,9 @@
     <p>
       Try the above modifications, in sequence.
       First, replacing the second line by <c>L[0]</c> will give the first list item, which is another list:
-      <me>
+      <md>
         \left(-1,1,\left[\bbm -\frac35+\frac{i}{5}\ebm\right]\right)
-      </me>.
+      </md>.
       We want the third item in the list, so try <c>(L[0])[2]</c>.
       But note the extra set of brackets! There could (in theory) be more than one eigenvector,
       so this is a list with one item. To finally get the vector out, try <c>((L[0])[2])[0]</c>.
@@ -751,9 +751,9 @@
 
     <p>
       Given a polynomial <m>p(x) = a_0+a_1x+\cdots + a_nx^n</m>, we define <m>p(A)</m> as
-      <me>
+      <md>
         p(A) = a_0I+a_1A+\cdots + a_nA^n
-      </me>.
+      </md>.
       (Note the presence of the identity matrix in the first term, since it does not make sense to add a scalar to a matrix.)
       Note further that since <m>(P^{-1}AP)^n = P^{-1}A^nP</m> for any invertible matrix <m>P</m> and positive integer <m>n</m>,
       we have <m>p(U^HAU)=U^Hp(A)U</m> for any polynomial <m>p</m> and unitary matrix <m>U</m>.
@@ -776,13 +776,13 @@
           (If you like, we are showing that <m>C_T(T)=0</m>, and deducing that <m>c_A(A)=0</m>.)
           But if <m>A</m> is upper-triangular, so is <m>xI_A</m>,
           and therefore, <m>\det(xI-A)</m> is just the product of the diagonal entries. That is,
-          <me>
+          <md>
             c_A(x) = (x-\lambda_1)(x-\lambda_2)\cdots (x-\lambda_n)
-          </me>,
+          </md>,
           so
-          <me>
+          <md>
             c_A(A) = (A-\lambda_1I)(A-\lambda_2I)\cdots (A-\lambda_nI)
-          </me>.
+          </md>.
         </p>
 
         <p>

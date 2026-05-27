@@ -137,9 +137,9 @@
           and let <m>B=\{\mathbf{e}_1,\ldots, \mathbf{e}_n\}</m> be an ordered basis for <m>V</m>.
           The <term>coefficient isomorphism</term> associated to <m>B</m>
           is the map <m>C_B:V\to \R^n</m> defined by
-          <me>
+          <md>
             C_B(c_1\mathbf{e}_1+c_2\mathbf{e}_2+\cdots +c_n\mathbf{e}_n)=\bbm c_1\\c_2\\\vdots \\c_n\ebm
-          </me>.
+          </md>.
 
         </p>
       </statement>
@@ -157,14 +157,14 @@
       Let us choose bases <m>B=\{\vv_1,\ldots, \vv_n\}</m> of <m>V</m>
       and <m>B' = \{\ww_1,\ldots, \ww_m\}</m> of <m>W</m>.
       The choice of these two bases determines scalars <m>a_{ij}, 1\leq i\leq n, 1\leq j\leq m</m>, such that
-      <me>
+      <md>
         T(\vv_j) = a_{1j}\ww_1+a_{2j}\ww_2+\cdots + a_{mj}\ww_j,
-      </me>
+      </md>
       for each <m>i=1,2,\ldots, n</m>. The resulting matrix <m>A=[a_{ij}]</m>
       defines a matrix transformation <m>T_A:\R^n\to \R^m</m> such that
-      <me>
+      <md>
         T_A\circ C_B = C_{B'}\circ T
-      </me>.
+      </md>.
       The relationship among the four maps used here is best captured by the <q>commutative diagram</q>
       in <xref ref="fig_transformation_matrix"/>.
     </p>
@@ -238,9 +238,9 @@
             <mrow>  \amp = ST(\uu_1)+ST(\uu_2)</mrow>
           </md>,
           and for any scalar <m>c</m>,
-          <me>
+          <md>
             ST(c\uu_1) = S(T(c\uu_1))=S(cT(\uu_1)) = cS(T(\uu_1))=c(ST(\uu_1))
-          </me>.
+          </md>.
 
         </p>
       </solution>
@@ -265,13 +265,13 @@
       <p>
         Let <m>A</m> be an <m>m\times n</m>
         matrix, and let <m>B</m> be an <m>n\times k</m> matrix. Then we have linear maps
-        <me>
+        <md>
           \R^k \xrightarrow{T_B} \R^n\xrightarrow{T_A} \R^m
-        </me>,
+        </md>,
         and the composition <m>T_A\circ T_B:\R^k\to \R^m</m> satisfies
-        <me>
+        <md>
           T_A\circ T_B(\xx) = T_A(T_B(\xx)) = T_A(B\xx)=A(B\xx)=(AB)\xx=T_{AB}(\xx)
-        </me>.
+        </md>.
         Note that the rules given in elementary linear algebra, for the relative sizes of matrices that can be multiplied,
         are simply a manifestation of the fact that to compose functions,
         the range of the first must be contained in the domain of the second.
@@ -293,9 +293,9 @@
       we know that invertible linear maps are only defined between spaces of equal dimension.
       In analogy with matrices, some texts will define a linear map <m>T:V\to W</m>
       to be invertible if there exists a linear map <m>S:W\to V</m> such that
-      <me>
+      <md>
         ST = 1_V \quad \text{ and } \quad TS = 1_W
-      </me>.
+      </md>.
       By <xref ref="ex-inverse-identity"/>, this implies that <m>S</m> and <m>T</m> are bijections,
       and therefore <m>S</m> and <m>T</m> are invertible, with <m>S=T^{-1}</m>.
     </p>
@@ -399,9 +399,9 @@
               <mrow>  \amp = T^{-1}(\ww_1)+T^{-1}(\ww_2)</mrow>
             </md>.
             For any scalar <m>c</m>, we similarly have
-            <me>
+            <md>
               T^{-1}(c\ww_1) = T^{-1}(cT(\vv_1))=T^{-1}(T(c\vv_1)) = c\vv_1 = cT^{-1}(\ww_1)
-            </me>.
+            </md>.
           </p>
         </solution>
       </exercise>

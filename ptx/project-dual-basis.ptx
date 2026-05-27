@@ -37,9 +37,9 @@
       Note that for any vector spaces <m>V,W</m>,
       the set <m>\mathcal{L}(V,W)</m> of linear transformations from <m>V</m> to <m>W</m>
       is itself a vector space, if we define
-      <me>
+      <md>
       (S+T)(v) = S(v)+T(v),\quad \text{ and } \quad (kT)(v)=k(T(v))
-      </me>.
+      </md>.
       In particular, given a vector space <m>V</m>,
       we denote the set of all linear functionals on <m>V</m> by <m>V^*=\mathcal{L}(V,\R)</m>,
       and call this the <em>dual space</em> of <m>V</m>.
@@ -78,9 +78,9 @@
     <p>
       One way to think about this: if we write <m>v\in V</m> as a column vector <m>\bbm v_1\\v_2\\v_3\ebm</m>,
       then we can identify <m>\phi_{v}</m> with <m>v^T</m>, where the action is via multiplication:
-      <me>
+      <md>
       \phi_{v}(w) = \bbm v_1\amp v_2\amp v_3\ebm\bbm w_1\\w_2\\w_3\ebm = v_1w_1+v_2w_2+v_3w_3
-      </me>.
+      </md>.
       It turns out that this example can be generalized,
       but the definition of <m>\phi_v</m> involves the dot product, which is particular to <m>\R^n</m>.
     </p>
@@ -100,9 +100,9 @@
     <p>
       Given a basis <m>\{v_1,v_2,\ldots, v_n\}</m> of <m>V</m>,
       we define the corresponding <term>dual basis</term> <m>\{\phi_1,\phi_2,\ldots, \phi_n\}</m> of <m>V^*</m> by
-      <me>
+      <md>
       \phi_i(v_j) = \begin{cases} 1, \amp \text{ if } i=j\\ 0, \amp \text{ if } i\neq j\end{cases}
-      </me>.
+      </md>.
       Note that each <m>\phi_j</m> is well-defined,
       since any linear transformation can be defined by giving its values on a basis.
     </p>
@@ -110,9 +110,9 @@
     <p>
       For the standard basis on <m>\R^n</m>,
       note that the corresponding dual basis functionals are given by
-      <me>
+      <md>
       \phi_j(x_1,x_2,\ldots, x_n) = x_j
-      </me>.
+      </md>.
       That is, these are the <em>coordinate functions</em> on <m>\R^n</m>.
     </p>
   </introduction>
@@ -129,9 +129,9 @@
         We know that <m>\dim V^* = \dim V=n</m>.
         Since there are <m>n</m> vectors in the dual basis,
         it's enough to show that they're linearly independent. Suppose that
-        <me>
+        <md>
           c_1\phi_1+c_2\phi_2+\cdots c_n\phi_n=0
-        </me>
+        </md>
         for some scalars <m>c_1,c_2,\ldots, c_n</m>.
       </p>
 
@@ -142,9 +142,9 @@
 
       <p>
         By the definition of the dual basis, for each <m>i=1,2,\ldots, n</m> we have
-        <me>
+        <md>
           (c_1\phi_1+c_2\phi_2+\cdots c_n\phi_n)(v_i) = 0+\cdots + 0 +c_i(1)+0+\cdots + 0 = c_i = 0
-        </me>.
+        </md>.
         Thus, <m>c_i=0</m> for each <m>i</m>, and therefore, the <m>\phi_i</m> are linearly independent.
       </p>
     </solution>
@@ -181,27 +181,27 @@
           <mrow>\amp =(T^*\phi)(v_1)+(T^*\phi)(v_2)</mrow>
         </md>.
         Similarly, for any scalar <m>c</m>,
-        <me>
+        <md>
           (T^*\phi)(cv) = \phi(T(cv))=\phi(cT(v))=c(\phi(T(v)))=c((T^*\phi)(v))
-        </me>.
+        </md>.
         This shows that <m>T^*\phi\in V^*</m>.
       </p>
 
       <p>
         Next, we need to show that <m>T^*:W^*\to V^*</m> is a linear map.
         Let <m>\phi,\psi\in W^*</m>, and let <m>c</m> be a scalar. We have:
-        <me>
+        <md>
           T^*(\phi+\psi) = (\phi+\psi)\circ T = \phi\circ T+\psi\circ T = T^*\phi+T^*\psi
-        </me>,
+        </md>,
         and
-        <me>
+        <md>
           T^*(c\phi) = (c\phi)\circ T = c(\phi\circ T) = cT^*\phi
-        </me>.
+        </md>.
         This follows from the vector space structure on any space of functions.
         For a vector <m>v\in V</m>, we have
-        <me>
+        <md>
           (T^*(c\phi))(v) = (c\phi(T(v)))=c(\phi(T(v)))=c((T^*\phi)(v))
-        </me>.
+        </md>.
       </p>
     </solution>
   </exercise>
@@ -222,13 +222,13 @@
     <solution>
       <p>
         Let <m>p</m> be a polynomial. Then
-        <me>
+        <md>
           (D^*\phi)(p) = \phi(D(p))=\phi(p') = \int_0^1 p'(x)\,dx
-        </me>.
+        </md>.
         By the Fundamental Theorem of Calculus (or a tedious calculation, if you prefer), we get
-        <me>
+        <md>
           (D^*\phi)(p) = p(1)-p(0)
-        </me>.
+        </md>.
       </p>
     </solution>
   </exercise>
@@ -255,17 +255,17 @@
     <solution>
       <p>
         Let <m>\phi\in W^*</m>. We have
-        <me>
+        <md>
           (S+T)^*(\phi) = \phi\circ(S+T) = \phi\circ S+\phi\circ T = S^*\phi+T^*\phi
-        </me>,
+        </md>,
         since <m>\phi</m> is linear. Similarly,
-        <me>
+        <md>
           (kS)^*(\phi) = \phi\circ (kS) = k(\phi\circ S) = k(S^*\phi)
-        </me>.
+        </md>.
         Finally, we have
-        <me>
+        <md>
           (ST)^*\phi = \phi\circ(ST) = \phi\circ(S\circ T) = (\phi\circ S)\circ T = T^*(\phi\circ S) = T^*(S^*\phi) = (T^*S^*)(\phi),
-        </me>.
+        </md>.
         since composition is associative.
       </p>
     </solution>
@@ -277,9 +277,9 @@
     Let <m>V</m> be a vector space, and let <m>U</m> be a subspace of <m>V</m>.
     Any such subspace determines an important subspace of <m>V^*</m>:
     the <term>annihilator</term> of <m>U</m>, denoted by <m>U^0</m> and defined by
-    <me>
+    <md>
       U^0 = \{\phi\in V^* \,|\, \phi(u)=0 \text{ for all } u\in U\}
-    </me>.
+    </md>.
   </p>
 
   <exercise label="ex-dual-basis5">
@@ -287,9 +287,9 @@
       <p>
         Determine a basis (in terms of the standard dual basis for <m>(\R^4)^*</m>)
         for the annihilator <m>U^0</m> of the subspace <m>U\subseteq \R^4</m> given by
-        <me>
+        <md>
           U = \{(2a+b,3b,a,a-2b)\,|\, a,b\in\R\}
-        </me>.
+        </md>.
       </p>
     </statement>
     <response/>
@@ -324,9 +324,9 @@
           <mrow>\amp  = c_3\left(-\frac12 \phi_1 + \frac16 \phi_2+\phi_3\right)+c_4\left(-\frac12\phi_1+\frac56 \phi_2 + \phi_4\right)</mrow>
         </md>.
         This gives us the following basis for <m>U^0</m>:
-        <me>
+        <md>
           \left\{\phi_3-\frac12 \phi_1+\frac16 \phi_2, \phi_4-\frac12\phi_1+\frac56\phi_3\right\}
-        </me>.
+        </md>.
       </p>
     </solution>
   </exercise>
@@ -340,9 +340,9 @@
       <statement>
         <p>
           Let <m>V</m> be a finite dimensional vector space. For any subspace <m>U</m> of <m>V</m>,
-          <me>
+          <md>
           \dim U + \dim U^0 = \dim V
-          </me>.
+          </md>.
         </p>
       </statement>
     </theorem>
@@ -357,9 +357,9 @@
     <p>
       Then <m>i^*</m> is a map from <m>V^*</m> to <m>U^*</m>.
       Moreover, note that for any <m>\phi\in V^*</m>, <m>i^*(\phi)\in U^*</m> satisfies, for any <m>u\in U</m>,
-      <me>
+      <md>
         i^*(\phi)(u) = \phi(i(u))=\phi(u)
-      </me>.
+      </md>.
       Thus, <m>\phi\in \ker i^*</m> if and only if <m>i^*(\phi)=0</m>,
       which is if and only if <m>\phi(u)=0</m> for all <m>u\in U</m>,
       which is if and only if <m>\phi\in U^0</m>. Therefore, <m>\ker i^* = U^0</m>.
@@ -367,9 +367,9 @@
 
     <p>
       By the dimension theorem, we have:
-      <me>
+      <md>
         \dim V^* = \dim \ker i^* + \dim \operatorname{im} i^*
-      </me>.
+      </md>.
       With a bit of work, one can show that <m>\operatorname{im} i^* = U^*</m>,
       and we get the result from the fact that <m>\dim V^*=\dim V</m> and <m>\dim U^* = \dim U</m>.
     </p>

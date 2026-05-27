@@ -28,9 +28,9 @@
 
     <p>
       For any operator <m>T:V\to V</m>, there are four subspaces that are always <m>T</m>-invariant:
-      <me>
+      <md>
         \{\zer\}, V, \ker T, \text{ and } \im T
-      </me>.
+      </md>.
       Of course, some of these subspaces might be the same; for example,
       if <m>T</m> is invertible, then <m>\ker T = \{\zer\}</m> and <m>\im T = V</m>.
     </p>
@@ -95,13 +95,13 @@
         <p>
           Let <m>T:V\to V</m> be a linear operator, and let <m>U</m> be a <m>T</m>-invariant subspace.
           Let <m>B_U = \basis{u}{k}</m> be a basis of <m>U</m>, and extend this to a basis
-          <me>
+          <md>
             B = \{\uu_1,\ldots, \uu_k,\ww_1,\ldots, \ww_{n-k}\}
-          </me>
+          </md>
           of <m>V</m>. Then the matrix <m>M_B(T)</m> with respect to this basis has the block-triangular form
-          <me>
+          <md>
             M_B(T) = \bbm M_{B_U}(T_U) \amp P\\0 \amp Q\ebm
-          </me>
+          </md>
           for some <m>(n-k)\times (n-k)</m> matrix <m>Q</m>.
         </p>
       </statement>
@@ -112,12 +112,12 @@
       because it simplifies computations such as determinants and eigenvalues
       (and determinants and eigenvalues are computationally expensive).
       In particular, if a matrix <m>A</m> has the block form
-      <me>
+      <md>
         A = \bbm A_{11} \amp A_{12} \amp \cdots \amp A_{1n}\\
                  0\amp A_{22} \amp \cdots \amp A_{2n}\\
                  \vdots \amp \vdots \amp \ddots \amp \vdots\\
                  0 \amp 0 \amp \cdots \amp A_{nn}\ebm
-      </me>,
+      </md>,
       where the diagonal blocks are square matrices,
       then <m>\det(A) = \det(A_{11})\det(A_{22})\cdots \det(A_{nn})</m>
       and <m>c_A(x) = c_{A_{11}}(x)c_{A_{22}}(x)\cdots c_{A_{nn}}(x)</m>.
@@ -130,9 +130,9 @@
       An important source of invariant subspaces is eigenspaces.
       Recall that for any real number <m>\lambda</m>,
       and any operator <m>T:V\to V</m>, we define
-      <me>
+      <md>
         E_\lambda(T) = \ker(T-\lambda 1_V) = \{\vv\in V \,|\, T(\vv) = \lambda\vv\}
-      </me>.
+      </md>.
       For most values of <m>\lambda</m>, we'll have <m>E_\lambda(T)=\{\zer\}</m>.
       The values of <m>\lambda</m> for which <m>E_\lambda(T)</m> is non-trivial are precisely the eigenvalues of <m>T</m>.
       Note that since similar matrices have the same characteristic polynomial, any matrix representation <m>M_B(T)</m>
@@ -147,9 +147,9 @@
           the eigenspace <m>E_\lambda(T)</m> is <m>T</m>-invariant.
           Moreover, for any ordered basis <m>B</m> of <m>V</m>,
           the coefficient isomorphism <m>C_B:V\to \R^n</m> induces an isomorphism
-          <me>
+          <md>
             C_B|_{E_\lambda(T)}:E_\lambda(T)\to E_{\lambda}(M_B(T))
-          </me>.
+          </md>.
         </p>
       </statement>
     </theorem>
@@ -208,36 +208,36 @@
           The easiest way to determine a direct sum decomposition (or equivalently, a complement)
           is through the use of a basis. Suppose <m>U</m> is a subspace of <m>V</m> with basis
           <m>\basis{e}{k}</m>, and extend this to a basis
-          <me>
+          <md>
             B = \{\mathbf{e}_1,\ldots, \mathbf{e}_k,\mathbf{e}_{k+1},\ldots, \mathbf{e}_n\}
-          </me>
+          </md>
           of <m>V</m>. Let <m>W = \spn\{\mathbf{e}_{k+1},\ldots, \mathbf{e}_n\}</m>.
           Then <m>U+W=V</m>, since the first <m>k</m> vectors in <m>B</m> belong to <m>U</m>,
           and the remaining vectors in <m>B</m> belong to <m>W</m>. 
           And <m>U\cap W=\{\zer\}</m>,
           since if <m>\vv\in U\cap W</m>, then <m>\vv\in U</m> and <m>\vv\in W</m>, so we have
-          <me>
+          <md>
             \vv = a_1\mathbf{e}_1+\cdots + a_k\mathbf{e_k} = b_1\mathbf{e}_{k+1}+\cdots+b_{n-k}e_{n}
-          </me>,
+          </md>,
           which gives
-          <me>
+          <md>
             a_1\mathbf{e}_1+\cdots + a_k\mathbf{e}_k-b_1\mathbf{e}_{k+1}-\cdots - b_{n-k}\mathbf{e}_n=\zer
-          </me>,
+          </md>,
           so <m>a_1=\cdots b_{n-k}=0</m> by the linear independence of <m>B</m>, showing that <m>\vv=\zer</m>.
         </p>
 
         <p>
           Conversely, if <m>V=U\oplus W</m>, and we have bases <m>\basis{u}{k}</m> of <m>U</m>
           and <m>\basis{v}{l}</m> of <m>W</m>, then
-          <me>
+          <md>
             B = \{\uu_1,\ldots, \uu_k,\ww_1,\ldots, \ww_l\}
-          </me>
+          </md>
           is a basis for <m>V</m>. Indeed, <m>B</m> spans <m>V</m>,
           since every element of <m>V</m> can be written as <m>\vv=\uu+\ww</m> with <m>\uu\in U,\ww\in W</m>.
           Independence follows by reversing the argument above: if
-          <me>
+          <md>
             a_1\uu_1+\cdots + a_k\uu_k+b_1\ww_1+\cdots b_l\ww_l=\zer
-          </me>
+          </md>
           then <m>a_1\uu_1+\cdots + a_k\uu_k = -b_1\ww_1-\cdots -b_l\ww_l</m>,
           and equality is only possible if both sides belong to <m>U\cap W = \{\zer\}</m>.
           Since <m>\basis{u}{k}</m> is independent, the <m>a_i</m> have to be zero,
@@ -285,9 +285,9 @@
           </md>
           for some scalars <m>a_{ij},b_{ij}</m>. If we set <m>A = [a_{ij}]_{m\times m}</m>
           and <m>B = [b_{ij}]_{n\times n}</m>, then we have
-          <me>
+          <md>
             M_B(T) = \bbm A \amp 0\\0\amp B\ebm
-          </me>.
+          </md>.
           Moreover, we can also see that <m>A = M_{B_U}(T|_U)</m>, and <m>B = M_{B_W}(T|_W)</m>.
         </p>
       </solution>

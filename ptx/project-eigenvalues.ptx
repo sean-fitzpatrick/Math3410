@@ -24,13 +24,13 @@
     <title>Orthogonal diagonalization</title>
     <p>
       Consider the following <m>5\times 5</m> matrix <m>A</m>:
-      <me>
+      <md>
         A = \bbm 97\amp -23 \amp -23\amp -3\amp -46\\
                 -23\amp 49\amp 1\amp 21\amp 2\\
                 -23\amp 1\amp 49\amp 21\amp 2\\
                 -3\amp 21\amp 21\amp 9\amp 42\\
                 -46\amp 2\amp 2\amp 42\amp 52\ebm
-      </me>.        
+      </md>.        
     </p>
     <exercise label="ex-ws-eigenvalue-1">     
 
@@ -297,9 +297,9 @@
     <p>
       The power method states that, given an initial state vector <m>\xx_0</m>, 
       the sequence of vectors
-      <me>
+      <md>
         \xx_0, A\xx_0, A^2\xx_0,\ldots, A^k\xx_0,\ldots
-      </me>
+      </md>
       will converge to an eigenvector for the dominant eigenvalue.
     </p>
     
@@ -368,16 +368,16 @@
             Finally, suppose we didn't know what the dominant eigenvalue was, and we wanted to find it.
             Note that if <m>\xx</m> is a dominant eigenvector, 
             then <m>A\xx = \lambda\xx</m>, where <m>\lambda</m> is the dominant eigenvalue. Then
-            <me>
+            <md>
               \lambda = \frac{\xx\cdot (\lambda\xx)}{\xx\cdot \xx} = \frac{\xx\cdot A\xx}{\xx\cdot \xx}
-            </me>.
+            </md>.
           </p>
 
           <p>
             It seems reasonable, then, that if <m>\xx_k</m> is <em>approximately</em> equal to a dominant eigenvector, then the numbers
-            <me>
+            <md>
               r_k = \frac{\xx_k\cdot A\xx_k}{\xx_k\cdot \xx_k}=\frac{\xx_k\cdot \xx_{k+1}}{\lVert \xx_k\rVert^2}
-            </me>
+            </md>
             should be approximately equal to the dominant eigenvalue. (These numbers are the so-called <term>Rayliegh quotients</term>.)
           </p>
 

@@ -66,9 +66,9 @@
           <li>
             <p>
               For any scalars <m>c_1,\ldots, c_n</m> and vectors <m>\vv_1,\ldots, \vv_n\in V</m>,
-              <me>
+              <md>
                 T(c_1\vv_1+c_2\vv_2+\cdots + c_n\vv_n) = c_1T(\vv_1)+c_2T(\vv_2)+\cdots + c_nT(\vv_n)
-              </me>.
+              </md>.
             </p>
           </li>
         </ol>
@@ -93,9 +93,9 @@
           <li>
             <p>
               Since <m>\zer_V+\zer_V = \zer_V</m>, we have
-              <me>
+              <md>
                 T(\zer_V) = T(\zer_V+\zer_V) = T(\zer_V)+T(\zer_V)
-              </me>.
+              </md>.
               Adding <m>-T(\zer_V)</m> to both sides of the above gives us <m>\zer_W = T(\zer_V)</m>.
             </p>
           </li>
@@ -137,9 +137,9 @@
       For an abitrary number of vectors <m>n\geq 3</m>,
       we can assume that distribution over addition works for <m>n-1</m> vectors,
       and then use associativity to write
-      <me>
+      <md>
         \vv_1+\vv_2+\cdots +\vv_n = \vv_1+(\vv_2+\cdots +\vv_n)
-      </me>.
+      </md>.
       The right-hand side is technically a sum of two vectors,
       so we can apply the definition of a linear transformation directly,
       and then apply our induction hypothesis to <m>T(\vv_2+\cdots + \vv_n)</m>.
@@ -151,9 +151,9 @@
       <p>
         Let <m>V=\R^n</m> and let <m>W=\R^m</m>.
         For any <m>m\times n</m> matrix <m>A</m>, the map <m>T_A:\R^n\to \R^m</m> defined by
-        <me>
+        <md>
           T_A(\xx) = A\xx
-        </me>
+        </md>
         is a linear transformation. (This follows immediately from properties of matrix multiplication.)
       </p>
 
@@ -164,18 +164,18 @@
         that <m>A\mathbf{e}_i</m> is equal to the <m>i</m>th column of <m>A</m>.
         Thus, if we know the value of a linear transformation <m>T:\R^n\to \R^m</m> on each basis vector,
         we can immediately determine the matrix <m>A</m> such that <m>T=T_A</m>:
-        <me>
+        <md>
           A = \bbm T(\mathbf{e}_1) \amp T(\mathbf{e}_2) \amp \cdots \amp T(\mathbf{e}_n)\ebm
-        </me>.
+        </md>.
         This is true because <m>T</m> and <m>T_A</m> agree on the standard basis: for each <m>i=1,2,\ldots, n</m>,
-        <me>
+        <md>
           T_A(\mathbf{e}_i) = A\mathbf{e}_i = T(\mathbf{e}_i)
-        </me>.
+        </md>.
         Moreover, if two linear transformations agree on a basis, they must be equal.
         Given any <m>\xx\in \R^n</m>, we can write <m>\xx</m> uniquely as a linear combination
-        <me>
+        <md>
           \xx=c_1\mathbf{e}_1+c_2\mathbf{e}_2+\cdots + c_n\mathbf{e}_n.
-        </me>
+        </md>
         If <m>T(\mathbf{e}_i)=T_A(\mathbf{e}_i)</m> for each <m>i</m>, then by <xref ref="thm-lt-props"/> we have
         <md>
           <mrow>T(\xx) \amp = T(c_1\mathbf{e}_1+c_2\mathbf{e}_2+\cdots + c_n\mathbf{e}_n) </mrow>
@@ -214,13 +214,13 @@
           To see that this is linear, note that <m>E_a(0)=\zer(a)=0</m>,
           where <m>\zer</m> denotes the zero function;
           for any <m>f,g\in V</m>,
-          <me>
+          <md>
             E_a(f+g)=(f+g)(a)=f(a)+g(a)=E_a(f)+E_a(g)
-          </me>,
+          </md>,
            and for any scalar <m>c\in \R</m>,
-           <me>
+           <md>
              E_a(cf) = (cf)(a) = c(f(a))=cE_a(f)
-           </me>.
+           </md>.
         </p>
 
         <p>
@@ -419,9 +419,9 @@
       for a vector space <m>V</m>, we can define a transformation <m>T:V\to W</m>
       by setting <m>T(\vv_i)=\ww_i</m> for some choice of vectors <m>\ww_1,\ldots, \ww_n</m>
       and defining
-      <me>
+      <md>
         T(c_1\vv_1+\cdots +c_n\vv_n)=c_1T(\vv_1)+\cdots + c_nT(\vv_n)
-      </me>.
+      </md>.
       Because each vector <m>\vv\in V</m> can be written <em>uniquely</em> in terms of a basis,
       we know that our transformation is well-defined.
     </p>
@@ -445,9 +445,9 @@
         <m>T(\mathbf{b}_i)=\ww_i</m> for each <m>i=1,2,\ldots, n</m>; indeed,
         we can define <m>T</m> as follows:
         given <m>\vv\in V</m>, write <m>\vv=c_1\mathbf{b}_1+\cdots +c_n\mathbf{b}_n</m>. Then
-        <me>
+        <md>
           T(\vv)=T(c_1\mathbf{b}_1+\cdots + c_n\mathbf{b}_n) = c_1\ww_1+\cdots +c_n\ww_n
-        </me>.
+        </md>.
       </p>
     </statement>
   </theorem>
@@ -498,9 +498,9 @@
       <p>
         Suppose we have <m>a\bbm 3\\1\ebm+b\bbm 2\\-5\ebm = \bbm 4\\3\ebm</m>
         for scalars <m>a,b</m>. This is equivalent to the matrix equation
-        <me>
+        <md>
           \bbm 3\amp 2\\1\amp -5\ebm\bbm a\\b\ebm = \bbm 4\\3\ebm.
-        </me>
+        </md>
         Solving (perhaps using the code cell below), we get <m>a=\frac{26}{17}, b = -\frac{5}{17}</m>.
       </p>
 
@@ -519,9 +519,9 @@
 
       <p>
         Therefore,
-        <me>
+        <md>
           T\bbm 4\\3\ebm = \frac{26}{17}\bbm 1\\4\ebm -\frac{5}{17}\bbm 2\\-1\ebm = \bbm 16/17\\109/17\ebm
-        </me>.
+        </md>.
       </p>
     </solution>
   </example>
@@ -530,9 +530,9 @@
     <statement>
       <p>
         Find a linear transformation <m>T:\R^2\to \R^3</m> such that
-        <me>
+        <md>
           T(1,2)=(1,1,0) \quad \text{ and } \quad T(-1,1) = (0,2,-1)
-        </me>.
+        </md>.
         Then, determine the value of <m>T(3,2)</m>.
       </p>
     </statement>
@@ -542,9 +542,9 @@
         (the vectors are not parallel and there are two of them),
         it suffices to determine how to write a general vector in terms of this basis.
         Suppose
-        <me>
+        <md>
           x(1,2)+y(-1,1)=(a,b)
-        </me>
+        </md>
         for a general element <m>(a,b)\in \R^2</m>.
         This is equivalent to the matrix equation <m>\bbm 1\amp -1\\2\amp 1\ebm\bbm x\\y\ebm = \bbm a\\b\ebm</m>,
         which we can solve as <m>\bbm x\\y\ebm = \bbm 1\amp -1\\2\amp 1\ebm^{-1}\bbm a\\b\ebm</m>:
@@ -564,9 +564,9 @@
 
       <p>
         This gives us the result
-        <me>
+        <md>
           (a,b) = \frac13(a+b)\cdot (1,2)+\frac13(-2a+b)\cdot (-1,1).
-        </me>
+        </md>
         Thus,
         <md>
           <mrow>T(a,b) \amp = \frac13(a+b)\cdot T(1,2)+\frac13(-2a+b)\cdot T(-1,1) </mrow>
@@ -578,9 +578,9 @@
 
       <p>
         We conclude that
-        <me>
+        <md>
           T(3,2) = \left(\frac53, -1, \frac43\right)
-        </me>.
+        </md>.
       </p>
     </solution>
   </example>
@@ -607,26 +607,26 @@
         <p>
           We want to show that <m>\{\vv_1,\ldots, \vv_n\}</m>
           is linearly independent, so suppose that we have
-          <me>
+          <md>
             c_1\vv_1+\cdots + c_n\vv_n=\zer
-          </me>
+          </md>
           for some scalars <m>c_1,\ldots, c_n</m>.
         </p>
       </block>
       <block order="5">
         <p>
           We apply <m>T</m> to both sides of the equation above, giving us:
-          <me>
+          <md>
             T(c_1\vv_1+\cdots + c_n\vv_n)=T(\zer)
-          </me>.
+          </md>.
         </p>
       </block>
       <block order="2">
         <p>
           Now we make use of both parts of <xref ref="thm-lt-props">Theorem</xref> to get
-          <me>
+          <md>
             c_1T(\vv_1)+\cdots +c_nT(\vv_n) = \zer
-          </me>.
+          </md>.
         </p>
       </block>
       <block order="1">
@@ -692,9 +692,9 @@
       <statement>
         <p>
           Suppose <m>T:P_2(\R)\to \R</m> is defined by
-          <me>
+          <md>
             T(x+2)=1, T(1)=5, T(x^2+x)=0.
-          </me>
+          </md>
           Find <m>T(2-x+3x^2)</m>.
         </p>
       </statement>
@@ -702,19 +702,19 @@
       <solution>
         <p>
           We need to find scalars <m>a,b,c</m> such that
-          <me>
+          <md>
             2-x+3x^2 = a(x+2)+b(1)+c(x^2+x)
-          </me>.
+          </md>.
           We could set up a system and solve, but this time it's easy enough to just work our way through.
           We must have <m>c=3</m>, to get the correct coefficient for <m>x^2</m>. This gives
-          <me>
+          <md>
             2-x+3x^2=a(x+2)+b(1)+3x^2+3x
-          </me>.
+          </md>.
           Now, we have to have <m>3x+ax=-x</m>, so <m>a=-4</m>.
           Putting this in, we get
-          <me>
+          <md>
             2-x+3x^2=-4x-8+b+3x^2+3x
-          </me>.
+          </md>.
           Simiplifying this leaves us with <m>b=10</m>. Finally, we find:
           <md>
             <mrow>T(2-x+3x^2) \amp = T(-4(x+2)+10(1)+3(x^2+x)) </mrow>

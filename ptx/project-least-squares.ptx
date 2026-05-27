@@ -99,9 +99,9 @@
 
   <p>
     Therefore, <m>A^T\mathbf{b}-A^TA\zz=0</m>, or
-    <men xml:id="eqn-normal-approximation">
+    <md numer="yes" xml:id="eqn-normal-approximation">
       A^TA\zz = A^T\mathbf{b}
-    </men>.
+    </md>.
     Solving this system, called the <term>normal equations</term> for <m>\zz</m>,
     will yield our approximate solution.
   </p>
@@ -109,14 +109,14 @@
   <p>
     To begin, let's compare the two methods discussed above for finding an approximate solution.
     Consider the system of equations <m>A\xx=\mathbf{b}</m>, where
-    <me>
+    <md>
       A = \bbm 3\amp -1 \amp 0\amp 5\\
               -2\amp 7\amp -3\amp 0\\
               4\amp -1\amp 2\amp 3\\
               0\amp 3\amp 9\amp -1\\
               7\amp -2\amp 4\amp -5\\
               1\amp 0\amp 3\amp -8\ebm \text{ and } \mathbf{b} = \bbm 4\\0\\1\\2\\-5\\-1\ebm
-    </me>.
+    </md>.
   </p>
 
   <exercise workspace="1.5in">
@@ -217,9 +217,9 @@
 
   <p>
     A measure of the overall error in the fit of the line is given by the sum of squares
-    <me>
+    <md>
       S = r_1^2+r_2^2+\cdots + r_n^2
-    </me>,
+    </md>,
     and this is the quantity that we want to minimize. (Hence the name, <q>least squares</q>.)
   </p>
 
@@ -227,9 +227,9 @@
     Let <m>\vv=\bbm a\\b\ebm</m>, and note that <m>f(x)=a+bx = \bbm 1\amp x\ebm\vv</m>.
     Set <m>\yy = \bbm y_1\\y_2\\\vdots\\y_n\ebm</m> and <m>\mathbf{r}=\bbm r_1\\r_2\\\vdots\\r_n\ebm</m>.
     Then
-    <me>
+    <md>
       \mathbf{r}=\yy - A\vv
-    </me>,
+    </md>,
     where <m>A = \bbm 1\amp x_1\\1\amp x_2\\\vdots \amp \vdots \\1\amp x_n\ebm</m>.
     (Note that we are using <m>\yy</m> to denote a different sort of vector than on the previous page.)
   </p>
@@ -241,18 +241,18 @@
     But a solution <m>\zz</m> that makes <m>\yy-A\zz</m>
     as small as possible is exactly the sort of approximate solution that we just learned to calculate!
     Solving the normal equations for <m>\zz=\bbm a\\b\ebm</m>, we find that
-    <me>
+    <md>
       \zz = (A^TA)^{-1}(A^T\yy)
-    </me>.
+    </md>.
   </p>
 
   <exercise label="ex-least-sq5">
     <statement>
       <p>
         Find the equation of the best fit line for the following set of data points:
-        <me>
+        <md>
           (1,2.03), (2, 2.37), (3, 2.91), (4, 3.58), (5, 4.11), (6, 4.55), (7, 4.93), (8, 5.44), (9, 6.18)
-        </me>.
+        </md>.
       </p>
     </statement>
     <response/>

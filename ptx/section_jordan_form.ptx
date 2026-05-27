@@ -6,9 +6,9 @@
     The results of <xref ref="thm-nullspace-power"/> and <xref ref="thm-gen-eigen-decomp"/>
     tell us that for an eigenvalue <m>\lambda</m> of <m>T:V\to V</m> with multiplicity <m>m</m>,
     we have a sequence of subspace inclusions
-    <me>
+    <md>
       E_\lambda(T) = \ker (T-\lambda I)\subseteq \ker (T-\lambda I)^2 \subseteq \cdots \subseteq \ker (T-\lambda I)^m = G_\lambda(T)
-    </me>.
+    </md>.
     Not all subspaces in this sequence are necessarily distinct.
     Indeed, it is entirely possible that <m>\dim E_\lambda(T)=m</m>,
     in which case <m>E_\lambda(T)=G_\lambda(T)</m>.
@@ -54,9 +54,9 @@
     <statement>
       <p>
         Let <m>T:V\to V</m> be a linear operator. If the characteristic polynomial of <m>T</m> is given by
-        <me>
+        <md>
           c_T(x) = (x-\lambda_1)^{m_1}(x-\lambda_2)^{m_2}\cdots (x-\lambda_k)^{m_k}
-        </me>,
+        </md>,
         then <m>\dim G_{\lambda_j}(T)=m_j</m> for each <m>j=1,\ldots, k</m>.
       </p>
 
@@ -65,12 +65,12 @@
         where <m>B_j</m> is any basis for <m>G_{\lambda_j}(T)</m> for <m>j=1,\ldots, k</m>,
         then <m>B</m> is a basis for <m>V</m> (this follows immediately from <xref ref="thm-gen-eigen-props"/>)
         and the matrix of <m>T</m> with respect to this basis has the block-diagonal form
-        <me>
+        <md>
           M_B(T) = \bbm A_1 \amp 0 \amp \cdots \amp 0\\
                         0 \amp A_2 \amp \cdots \amp 0\\
                         \vdots\amp\vdots\amp\ddots\amp\vdots\\
                         0 \amp 0 \amp \cdots \amp A_k\ebm
-        </me>,
+        </md>,
         where each <m>A_j</m> has size <m>m_j\times m_j</m>.
       </p>
     </statement>
@@ -98,12 +98,12 @@
         <p>
           If the previous point wasn't clear, note that with an appropriate choice of basis,
           the block <m>A_i</m> in <xref ref="thm-block-eigen"/> has the form
-          <me>
+          <md>
             A_i = \bbm \lambda_i \amp \ast \amp \cdots \amp \ast\\
                        0 \amp \lambda_i \amp \cdots \amp \ast\\
                        \vdots \amp \vdots \amp \ddots\amp \vdots\\
                        0 \amp 0 \amp \cdots \amp \lambda_i\ebm
-          </me>.
+          </md>.
           Thus, <m>M_B(T)-\lambda_j I</m> will have blocks that are upper triangular,
           with diagonal entries <m>\lambda_i-\lambda_j\neq 0</m> when <m>i\neq j</m>,
           but when <m>i=j</m> we get a matrix that is strictly upper triangular,
@@ -147,13 +147,13 @@
     <statement>
       <p>
         Let <m>\lambda</m> be a scalar. A <term>Jordan block</term> is an <m>m\times m</m> matrix of the form
-        <me>
+        <md>
           J(m,\lambda) = \bbm \lambda \amp 1 \amp 0 \amp \cdots \amp 0\\
                               0 \amp \lambda \amp 1 \amp \cdots \amp 0\\
                               \vdots \amp \vdots \amp \ddots \amp \ddots \amp \vdots\\
                               0 \amp 0 \amp \cdots \amp \lambda \amp 1\\
                               0 \amp 0 \amp 0 \amp \cdots \amp \lambda\ebm
-        </me>.
+        </md>.
         That is <m>J(m,\lambda)</m> has each diagonal entry equal to <m>\lambda</m>,
         and each <q>superdiagonal</q> entry (those just above the diagonal) equal to 1,
         with all other entries equal to zero.
@@ -165,10 +165,10 @@
     <statement>
       <p>
         The following are examples of Jordan blocks:
-        <me>
+        <md>
           J(2,4)=\bbm 4 \amp 1\\ 0\amp 4\ebm, J(3,\sqrt{2})=\bbm \sqrt{2} \amp 1\amp 0\\0\amp \sqrt{2}\amp 1\\0\amp 0\amp \sqrt{2}\ebm,
           J(4,2i)=\bbm 2i \amp 1\amp 0\amp 0\\0\amp 2i\amp 1\amp 0\\0\amp 0\amp 2i\amp 1\\0\amp 0\amp 0\amp 2i\ebm
-        </me>.
+        </md>.
       </p>
     </statement>
   </example>
@@ -183,20 +183,20 @@
         <mrow>T(\vv_3) \amp = \vv_2+\lambda \vv_3</mrow>
       </md>,
       and so on. Notice that <m>\vv_1</m> is an eigenvector, and for each <m>j=2,\ldots, m</m>,
-      <me>
+      <md>
         (T-\lambda I)\vv_{j} = \vv_{j-1}
-      </me>.
+      </md>.
     </p>
 
     <p>
       Notice also that if we set <m>N=T-\lambda I</m>, then
-      <me>
+      <md>
         \vv_1 = N\vv_2, \vv_2 = N\vv_3, \ldots, \vv_{m-1} = N\vv_m
-      </me>
+      </md>
       so our basis for <m>G_\lambda(T)</m> is of the form
-      <me>
+      <md>
         \vv, N\vv, N^2\vv, \ldots, N^{m-1}\vv
-      </me>,
+      </md>,
       where <m>\vv = \vv_m</m>, and <m>\vv_1=N^{m-1}\vv</m> is an eigenvector.
       (Note that <m>N^m\vv = (T-\lambda I)\vv_1=\zer</m>,
       and indeed <m>N^m\vv_j=\zer</m> for each <m>j=1,\ldots, m</m>.)
@@ -214,13 +214,13 @@
       <p>
         Determine a Jordan basis for the operator <m>T:\R^5\to \R^5</m>
         whose matrix with respect to the standard basis is given by
-        <me>
+        <md>
           A = \bbm 7\amp 1 \amp -3\amp 2\amp 1\\
                   -6\amp 2\amp 4\amp -2\amp -2\\
                   0 \amp 1\amp 3 \amp 1\amp -1\\
                   -8\amp -1\amp 6\amp 0 \amp-3\\
                   -4\amp 0\amp 3\amp -1\amp 1\ebm
-        </me>
+        </md>
       </p>
     </statement>
     <solution>
@@ -269,9 +269,9 @@
 
       <p>
         The characteristic polynomial of <m>A</m> is given by
-        <me>
+        <md>
           c_A(x)=(x-2)^2(x-3)^3
-        </me>.
+        </md>.
         We thus have two eigenvalues: <m>2</m>, of multiplicity <m>2</m>,
         and <m>3</m>, of multiplicity <m>3</m>.
         We next find the <m>E_2(A)</m> eigenspace.
@@ -290,18 +290,18 @@
 
       <p>
         The computer gives us
-        <me>
+        <md>
           E_2(A)=\nll(A-2I) = \spn\{\xx_1\}, \text{ where } \xx_1=\bbm -1\\0\\-1\\1\\0\ebm
-        </me>,
+        </md>,
         so we have only one independent eigenvector, which means that <m>G_2(A)=\nll(A-2I)^2</m>.
       </p>
 
       <p>
         Following <xref ref="jordan-chain-basis"/>, we extend <m>\{\xx_1\}</m>
         to a basis of <m>G_2(A)</m> by solving the system
-        <me>
+        <md>
           (A-2I)\xx = \xx_1
-        </me>.
+        </md>.
       </p>
 
       <sage>
@@ -317,9 +317,9 @@
 
       <p>
         Using the results above from the computer (or Gaussian elimination), we find a general solution
-        <me>
+        <md>
           \xx = \bbm -t\\-1\\-t\\t\\0\ebm = t\bbm -1\\0\\-1\\1\\0\ebm + \bbm 0\\-1\\0\\0\\0\ebm
-        </me>.
+        </md>.
         Note that our solution is of the form <m>\xx = t\xx_1+\xx_2</m>.
         We set <m>t=0</m>, and get <m>\xx_2 = \bbm 0\amp -1\amp 0\amp 0\amp 0\ebm^T</m>.
       </p>
@@ -342,9 +342,9 @@
 
       <p>
          Rescaling to remove fractions, we find
-        <me>
+        <md>
           E_3(A) = \nll(A-3I) = \spn\{\yy_1,\yy_2\}, \text{ where } \yy_1 = \bbm 1\\-2\\2\\2\\0\ebm, \yy_2 = \bbm -1\\2\\0\\0\\2\ebm
-        </me>.
+        </md>.
         Again, we're one eigenvector short of the multiplicity, so we need to consider <m>G_3(A)=\nll(A-3I)^3</m>.
       </p>
 
@@ -396,9 +396,9 @@
 
       <p>
         We find that <m>a=b</m> does the job, so we set
-        <me>
+        <md>
           \zz_2 = \yy_1+\yy_2 = \bbm 0\\0\\2\\2\\2\ebm
-        </me>.
+        </md>.
       </p>
 
       <sage>
@@ -424,9 +424,9 @@
 
       <p>
         We let <m>\zz_3 = \bbm 1 \\ 2 \\ 2 \\ 0 \\ 0\ebm</m>, and check that
-        <me>
+        <md>
           A\zz_3 = 3\zz_3+\zz_2
-        </me>,
+        </md>,
         as required:
       </p>
 
@@ -443,13 +443,13 @@
       <p>
         This gives us the basis <m>B = \{\xx_1,\xx_2,\yy_1,\zz_2,\zz_3\}</m> for <m>\R^5</m>,
         and with respect to this basis, we have the Jordan canonical form
-        <me>
+        <md>
           M_B(T) = \bbm 2 \amp 1\amp 0\amp 0 \amp 0\\
                         0 \amp 2\amp 0\amp 0 \amp 0\\
                         0 \amp 0\amp 3\amp 0 \amp 0\\
                         0 \amp 0\amp 0\amp 3 \amp 1\\
                         0 \amp 0\amp 0\amp 0 \amp 3\ebm
-        </me>.
+        </md>.
       </p>
 
       <p>
@@ -487,40 +487,40 @@
       <p>
         Determine a Jordan basis for the linear operator <m>T:\R^4\to\R^4</m>
         given by
-        <me>
+        <md>
           T(w,x,y,z)=(w+x,x,-x+2y,w-x+y+z)
-        </me>.
+        </md>.
         A code cell is given below in case you want to try performing the operations demonstrated in <xref ref="ex-jordan-form1"/>.
       </p>
     </statement>
     <solution>
       <p>
         With respect to the standard basis of <m>\R^4</m>, the matrix of <m>T</m> is
-        <me>
+        <md>
           M = \bbm 1\amp 1\amp 0\amp 0\\0\amp 1\amp 0\amp 0\\0\amp -1\amp 2\amp 0\\1\amp -1\amp 1\amp 1\ebm
-        </me>.
+        </md>.
         We find (perhaps using the Sage cell provided below, and the code from the example above) that
-        <me>
+        <md>
           c_T(x)=(x-1)^3(x-2)
-        </me>,
+        </md>,
         so <m>T</m> has eigenvalues <m>1</m> (of multiplicity <m>3</m>), and <m>2</m> (of multiplicity <m>1</m>).
       </p>
 
       <p>
         We tackle the repeated eigenvalue first. The reduced row-echelon form of <m>M-I</m> is given by
-        <me>
+        <md>
           R_1 = \bbm 1\amp 0\amp 0\amp 0\\0\amp 1\amp 0\amp 0\\0\amp 0\amp 1\amp 0\\0\amp 0\amp 0\amp 0\ebm
-        </me>,
+        </md>,
         so
-        <me>
+        <md>
           E_1(M) = \spn\{\xx_1\}, \text{ where } \xx_1 = \bbm 0\\0\\0\\1\ebm
-        </me>.
+        </md>.
         We now attempt to solve <m>(M-I)\xx=\xx_1</m>. We find
-        <me>
+        <md>
           \left(\begin{matrix}0\amp 1\amp 0\amp 0\\0\amp 0\amp 0\amp 0\\0\amp -1\amp 1\amp 0\\1\amp -1\amp 1\amp 0\end{matrix}\right|\left.\begin{matrix}0\\0\\0\\1\end{matrix}\right)
           \xrightarrow{\text{RREF}}
           \left(\begin{matrix} 1\amp 0\amp 0\amp 0\\0\amp 1\amp 0\amp 0\\0\amp 0\amp 1\amp 0\\0\amp 0\amp 0\amp 0\end{matrix}\right|\left.\begin{matrix}1\\0\\0\\0\end{matrix}\right)
-        </me>,
+        </md>,
         so <m>\xx = t\xx_1+\xx_2</m>, where <m>\xx_2 = \bbm 1\\0\\0\\0\ebm</m>.
         We take <m>\xx_2</m> as our first generalized eigenvector.
         Note that <m>(M-I)^2\xx_2 = (M-I)\xx_1=\zer</m>, so <m>\xx_2\in \nll (M-I)^2</m>, as expected.
@@ -529,23 +529,23 @@
       <p>
         Finally, we look for an element of <m>\nll (M-I)^3</m> of the form <m>\xx_3</m>,
         where <m>(M-I)\xx_3=\xx_2</m>. We set up and solve the system <m>(M-I)\xx=\xx_2</m> as follows:
-        <me>
+        <md>
           \left(\begin{matrix}0\amp 1\amp 0\amp 0\\0\amp 0\amp 0\amp 0\\0\amp -1\amp 1\amp 0\\1\amp -1\amp 1\amp 0\end{matrix}\right|\left.\begin{matrix}1\\0\\0\\0\end{matrix}\right)
           \xrightarrow{\text{RREF}}
           \left(\begin{matrix} 1\amp 0\amp 0\amp 0\\0\amp 1\amp 0\amp 0\\0\amp 0\amp 1\amp 0\\0\amp 0\amp 0\amp 0\end{matrix}\right|\left.\begin{matrix}0\\1\\1\\0\end{matrix}\right)
-        </me>,
+        </md>,
         so <m>\xx = t\xx_1+\xx_3</m>, where <m>\xx_3 =\bbm 0\\1\\1\\0\ebm</m>.
       </p>
 
       <p>
         Finally, we deal with the eigenvalue <m>2</m>. The reduced row-echelon form of <m>M-2I</m> is
-        <me>
+        <md>
           R_2 = \bbm 1\amp 0\amp 0\amp 0\\0\amp 1\amp 0\amp 0\\0\amp 0\amp 1\amp -1\\0\amp 0\amp 0\amp 0\ebm
-        </me>,
+        </md>,
         so
-        <me>
+        <md>
           E_2(M) = \spn\{\yy\}, \text{ where } \yy = \bbm 0\\0\\1\\1\ebm
-        </me>.
+        </md>.
       </p>
 
       <p>
@@ -558,16 +558,16 @@
           <mrow>M\yy \amp = 2\yy</mrow>
         </md>.
         The corresponding Jordan basis for <m>\R^4</m> is
-        <me>
+        <md>
           \{(0,0,0,1),(1,0,0,0),(0,1,1,0),(0,0,1,1)\}
-        </me>,
+        </md>,
         and with respect to this basis, we have
-        <me>
+        <md>
           M_B(T) = \bbm 1\amp 1\amp 0\amp 0\\
                         0\amp 1\amp 1\amp 0\\
                         0\amp 0\amp 1\amp 0\\
                         0\amp 0\amp 0\amp 2\ebm
-        </me>.
+        </md>.
       </p>
     </solution>
   </exercise>
@@ -578,9 +578,9 @@
 
   <p>
     One final note: we mentioned above that the minimal polynomial of an operator has the form
-    <me>
+    <md>
       m_T(x)=(x-\lambda_1)^{l_1}(x-\lambda_2)^{l_2}\cdots (x-\lambda_k)^{l_k}
-    </me>,
+    </md>,
     where for each <m>j=1,2,\ldots, k</m>, <m>l_j</m> is the size of the largest Jordan block corresponding to <m>\lambda_j</m>.
     Knowing the minimal polynomial therefore tells as a lot about the Jordan canonical form, but not everything.
     Of course, if <m>l_j=1</m> for all <m>j</m>, then our operator can be diagaonalized.
@@ -591,7 +591,7 @@
     In <xref ref="ex-jordan-form2"/>, the minimal polynomial is <m>m_T(x)=(x-1)^3(x-2)</m>,
     the same as the characteristic polynomial. If we knew this in advance,
     then the only possible Jordan canonical forms would be
-    <me>
+    <md>
       \bbm 1\amp 1\amp 0\amp 0\\
            0\amp 1\amp 1\amp 0\\
            0\amp 0\amp 1\amp 0\\
@@ -599,13 +599,13 @@
                                                     0\amp 1\amp 1\amp 0\\
                                                     0\amp 0\amp 1\amp 1\\
                                                     0\amp 0\amp 0\amp 1\ebm
-    </me>.
+    </md>.
     If instead the minimal polynomial had turned out to be <m>(x-1)^2(x-2)</m>
     (with the same characteristic polynomial), then, up to permutation of the Jordan blocks,
     our Jordan canonical form would be
-    <me>
+    <md>
       \bbm 1\amp 0\amp 0\amp 0\\0\amp 1\amp 1\amp 0\\0\amp 0\amp 1\amp 0\\0\amp 0\amp 0\amp 2\ebm
-    </me>.
+    </md>.
   </p>
 
   <p>

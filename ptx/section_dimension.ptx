@@ -24,9 +24,9 @@
         Since <m>\{\vv_1,\ldots, \vv_k\}</m> is a spanning set,
         each of the vectors in our independent set can be written as a linear combination of <m>\vv_1,\ldots, \vv_k</m>.
         In particular, we can write
-        <me>
+        <md>
           \ww_1 = a_1\vv_1+a_2\vv_2+\cdots + a_n\vv_n
-        </me>
+        </md>
         for scalars <m>a_1,\ldots, a_n</m>, and these scalars can't all be zero.
         (Why? And why is this important?)
       </p>
@@ -42,9 +42,9 @@
       <p>
         Next, we similarly replace <m>\vv_2</m> with <m>\ww_2</m>.
         Note that we can write
-        <me>
+        <md>
           \ww_2=a\ww_1+b_2\vv_2+\cdots + b_n\vv_n
-        </me>,
+        </md>,
         and at least one of the <m>b_i</m> must be nonzero.
         (Why can't they all be zero? What does <xref ref="ex-independent-subset"/> tell you about <m>\{\ww_1,\ww_2\}</m>?)
       </p>
@@ -133,9 +133,9 @@
         If <m>V</m> is finite-dimensional (and non-trivial), and <m>\{\mathbf{e}_1,\ldots, \mathbf{e}_n\}</m>
         is a basis of <m>V</m>, we say that <m>V</m> has <term>dimension</term> <m>n</m>,
         and write
-        <me>
+        <md>
           \dim V = n
-        </me>.
+        </md>.
         If <m>V</m> cannot be spanned by finitely many vectors, we say that <m>V</m>
         is <term>infinite-dimensional</term>.
       </p>
@@ -165,9 +165,9 @@
         So <m>c=0</m>, in which case the first equation <m>a=a</m> is trivial,
         and we are left with the single equation <m>a=b+d</m>. Thus, our matrix <m>X</m>
         must be of the form
-        <me>
+        <md>
           X = \bbm b+d \amp b\\0\amp d\ebm = b\bbm 1\amp 1\\0\amp 0\ebm + d\bbm 1\amp 0\\0\amp 1\ebm
-        </me>.
+        </md>.
         Since the matrices <m>\bbm 1\amp 1\\0\amp 0\ebm</m> and <m>\bbm 1\amp 0\\0\amp 1\ebm</m>
         are not scalar multiples of each other, they must be independent, and therefore, they form a basis for <m>U</m>.
         (Why do we know these matrices span <m>U</m>?)
@@ -184,22 +184,22 @@
         For example, we write an element of <m>\R^3</m> as <m>(x,y,z)</m> (or <m>\langle x,y,z\rangle</m>,
         or <m>\begin{bmatrix}x\amp y\amp z\end{bmatrix}</m>, or <m>\begin{bmatrix}x\\y\\z\end{bmatrix}</m><ellipsis/>).
         We can also write
-        <me>
+        <md>
           (x,y,z)=x(1,0,0)+y(0,1,0)+z(0,0,1)
-        </me>.
+        </md>.
         The set <m>\{(1,0,0),(0,1,0),(0,0,1)\}</m> is the standard basis for <m>\R^3</m>.
         In general, the vector space <m>\R^n</m> (written this time as column vectors) has standard basis
-        <me>
+        <md>
           \vece_1=\bbm 1\\0\\ \vdots \\0\ebm, \vece_2 = \bbm 0\\1\\ \vdots \\0\ebm, \ldots, \vece_n=\bbm 0\\0\\ \vdots \\1\ebm
-        </me>.
+        </md>.
         From this, we can conclude (unsurprisingly) that <m>\dim \R^n = n</m>.
       </p>
 
       <p>
         Similarly, a polynomial <m>p(x)\in P_n(\R)</m> is usually written as
-        <me>
+        <md>
           p(x) = a_0+a_1x+a_2x^2+\cdots + a_nx^n
-        </me>,
+        </md>,
         suggesting the standard basis <m>\{1,x,x^2,\ldots, x^n\}</m>.
         As a result, we see that <m>\dim P_n(\R)=n+1</m>.
       </p>
@@ -207,9 +207,9 @@
       <p>
         For one more example, we note that a <m>2\times 2</m> matrix <m>A\in M_{22}(\R)</m>
         can be written as
-        <me>
+        <md>
           \bbm a\amp b\\c\amp d\ebm = a\bbm 1\amp 0\\0\amp 0\ebm+b\bbm 0\amp 1\\0\amp 0\ebm +c\bbm 0\amp 0\\1\amp 0\ebm + d\bbm 0\amp 0\\0\amp 1\ebm
-        </me>,
+        </md>,
         which suggests a standard basis for <m>M_{22}(\R)</m>, with similar results for any other matrix space.
         From this, we can conclude (exercise) that <m>\dim M_{mn}(\R)=mn</m>.
       </p>
@@ -234,9 +234,9 @@
         </p>
         <p>
           The set is independent if the equation
-          <me>
+          <md>
             x(1,1,0)+y(1,0,1)+z(0,1,1)=(0,0,0)
-          </me>
+          </md>
           has <m>x=y=z=0</m> as its only solution.
           This equation is equivalent to the system
           <md>
@@ -272,9 +272,9 @@
           Our set of vectors is therefore linearly independent.
           Now, to show that it spans, we need to show that for any vector <m>(a,b,c)</m>,
           the equation
-          <me>
+          <md>
             x(1,1,0)+y(1,0,1)+z(0,1,1)=(a,b,c)
-          </me>
+          </md>
           has a solution. But we know that this system has the same coefficient matrix as the one above,
           and that existence of a solution again follows from invertibility of <m>A</m>,
           which we have already established.
@@ -297,9 +297,9 @@
           determining whether or not this set is a basis is equivalent to determining whether or not the matrix
           <m>A</m> whose columns consist of the vectors in the set is invertible.
           We form the matrix
-          <me>
+          <md>
             A = \bbm -1\amp 1\amp 1\\1\amp -1\amp 1\\1\amp 1\amp -1\ebm
-          </me>
+          </md>
           and then check invertibility using the computer.
         </p>
 
@@ -330,18 +330,18 @@
     <statement>
       <p>
         Show that the following is a basis of <m>M_{22}</m>:
-        <me>
+        <md>
           \left\{\bbm 1\amp 0\\0\amp 1\ebm, \bbm 0\amp 1\\1\amp 0\ebm, \bbm 1\amp 1\\0\amp 1\ebm, \bbm 1\amp 0\\0\amp 0\ebm\right\}
-        </me>.
+        </md>.
       </p>
     </statement>
     <response/>
     <hint>
       <p>
         For independence, consider the linear combination
-        <me>
+        <md>
           w\bbm 1\amp 0\\0\amp 1\ebm + x\bbm 0\amp 1\\1\amp 0\ebm +y\bbm 1\amp 1\\0\amp 1\ebm +z\bbm 1\amp 0\\0\amp 0\ebm=\bbm 1\amp 0\\0\amp 1\ebm
-        </me>.
+        </md>.
         Combine the left-hand side, and then equate entries of the matrices on either side to obtain a system of equations.
       </p>
     </hint>
@@ -361,13 +361,13 @@
     <hint>
       <p>
         For independence, consider the linear combination
-        <me>
+        <md>
           a(1+x)+b(x+x^2)+c(x^2+x^3)+dx^3=0
-        </me>.
+        </md>.
         When dealing with polynomials, we need to collect like terms and equate coefficients:
-        <me>
+        <md>
           a\cdot 1 +(a+b)x+(b+c)x^2+(c+d)x^3=0
-        </me>,
+        </md>,
         so the coefficients <m>a, a+b, b+c, c+d</m> must all equal zero.
       </p>
     </hint>
@@ -380,9 +380,9 @@
   <p>
     We've noted a few times now that if <m>\ww\in\spn\{\vv_1,\ldots, \vv_n\}</m>,
     then
-    <me>
+    <md>
       \spn\{\ww,\vv_1,\ldots, \vv_n\}=\spn\{\vv_1,\ldots, \vv_n\}
-    </me>
+    </md>
     If <m>\ww</m> is not in the span, we can make another useful observation:
   </p>
 
@@ -419,22 +419,22 @@
       <p>
         Suppose <m>S=\{\vv_1,\ldots, \vv_n\}</m> is independent,
         and that <m>\uu\notin\spn S</m>. Suppose we have
-        <me>
+        <md>
           a\uu+c_1\vv_1+c_2\vv_2+\cdots +c_n\mathbf{b}_n=\zer
-        </me>
+        </md>
         for scalars <m>a,c_1,\ldots, c_n</m>. We must have <m>a=0</m>;
         otherwise, we can multiply by <m>\frac1a</m> and rearrange to obtain
-        <me>
+        <md>
           \uu = -\frac{c_1}{a}\vv_1-\cdots -\frac{c_n}{a}\vv_n
-        </me>,
+        </md>,
         but this would mean that <m>\uu\in \spn S</m>, contradicting our assumption.
       </p>
 
       <p>
         With <m>a=0</m> we're left with
-        <me>
+        <md>
           c_1\vv_1+c_2\vv_2+\cdots +c_n\mathbf{b}_n=\zer
-        </me>,
+        </md>,
         and since we assumed that the set <m>S</m> is independent,
         we must have <m>c_1=c_2=\cdots=c_n=0</m>. Since we already showed <m>a=0</m>,
         this shows that <m>\{\uu,\vv_1,\ldots, \vv_n\}</m> is independent.
@@ -568,18 +568,18 @@
     <statement>
       <p>
         Find a basis of <m>M_{22}(\R)</m> that contains the vectors
-        <me>
+        <md>
           \vv=\bbm 1\amp 1\\0\amp 0\ebm, \ww=\bbm 0\amp 1\\0\amp 1\ebm
-        </me>.
+        </md>.
       </p>
     </statement>
     <response/>
     <solution>
       <p>
         By the previous theorem, we can form a basis by adding vectors from the standard basis
-        <me>
+        <md>
           \left\{\bbm 1\amp 0\\0\amp 0\ebm, \bbm 0\amp 1\\0\amp 0\ebm, \bbm 0\amp 0\\1\amp 0\ebm, \bbm 0\amp 0\\0\amp 1\ebm\right\}
-        </me>.
+        </md>.
         It's easy to check that <m>\bbm 1\amp 0\\0\amp 0\ebm</m> is not in the span of <m>\{\vv,\ww\}</m>.
         To get a basis, we need one more vector.
         Observe that all three of our vectors so far have a zero in the <m>(2,1)</m>-entry.
@@ -828,9 +828,9 @@
             If <m>p(1)=0</m>, then <m>p(x)=(x-1)q(x)</m> for some polynomial <m>q</m>.
             Since <m>U_2</m> is a subspace of <m>P_2</m>, the degree of <m>q</m> is at most 2.
             Therefore, <m>q(x)=ax+b</m> for some <m>a,b\in\R</m>, and
-            <me>
+            <md>
               p(x) = (x-1)(ax+b) = a(x^2-x)+b(x-1)
-            </me>.
+            </md>.
             Since <m>p</m> was arbitrary, this shows that <m>U_2 = \spn\{x^2-x,x-1\}</m>.
           </p>
 
@@ -853,9 +853,9 @@
             If <m>p(x)=p(-x)</m>, then <m>p(x)</m> is an even polynomial,
             and therefore <m>p(x)=a+bx^2</m> for <m>a,b\in\R</m>.
             (If you didn't know this it's easily verified: if
-            <me>
+            <md>
               a+bx+cx^2 = a+b(-x)+c(-x)^2
-            </me>,
+            </md>,
             we can immediately cancel <m>a</m> from each side,
             and since <m>(-x)^2=x^2</m>, we can cancel <m>cx^2</m> as well.
             This leaves <m>bx=-bx</m>, or <m>2bx=0</m>, which implies that <m>b=0</m>.)

@@ -111,9 +111,9 @@
         If <m>\uu+\ww\in U\cup W</m>, then <m>\uu+\ww\in U</m>, or <m>\uu+\ww\in W</m>.
         Suppose <m>\uu+\ww\in U</m>. Since <m>\uu \in U</m> and <m>U</m> is a subspace, <m>-\uu\in U</m>.
         Since <m>-\uu, \uu+\ww\in U</m> and <m>U</m> is a subspace,
-        <me>
+        <md>
           -\uu+(\uu+\ww)=(-\uu+\uu)+\ww=\zer+\ww=\ww \in U
-        </me>.
+        </md>.
         But we assumed that <m>\ww\notin U</m>, so it must be that <m>\uu+\ww\notin U</m>.
       </p>
 
@@ -176,9 +176,9 @@
       <p>
         Let <m>U</m> and <m>W</m> be subspaces of a vector space <m>V</m>.
         We define the sum <m>U+W</m> of these subspaces by
-        <me>
+        <md>
           U+W = \{\uu+\ww \,|\, \uu\in U \text{ and } \ww\in W\}
-        </me>.
+        </md>.
       </p>
     </statement>
   </definition>
@@ -224,9 +224,9 @@
         Suppose that <m>\xx,\yy\in U+W</m>. Then there exist <m>\uu_1,\uu_2\in U</m>,
         and <m>\ww_1,\ww_2\in W</m>, with <m>\uu_1+\ww_1=\xx</m>, and <m>\uu_2+\ww_2=\yy</m>.
         Then
-        <me>
+        <md>
           \xx+\yy = (\uu_1+\ww_1)+(\uu_2+\ww_2)=(\uu_1+\uu_2)+(\ww_1+\ww_2)
-        </me>,
+        </md>,
         and we know that <m>\uu_1+\uu_2\in U</m>, and <m>\ww_1+\ww_2\in W</m>,
         since <m>U</m> and <m>W</m> are subspaces.
         Since <m>\xx+\yy</m> can be written as the sum of an element of <m>U</m>
@@ -235,9 +235,9 @@
 
       <p>
         If <m>c</m> is any scalar, then
-        <me>
+        <md>
           c\xx=c(\uu_1+\ww_1)=c\uu_1+c\ww_1\in U+W
-        </me>,
+        </md>,
         since <m>c\uu_1\in U</m> and <m>c\ww_1\in W</m>.
       </p>
 
@@ -267,9 +267,9 @@
       <p>
         Let <m>U</m> and <m>W</m> be subspaces of a finite-dimensional vector space <m>V</m>.
         Then <m>U+W</m> is finite-dimensional, and
-        <me>
+        <md>
           \dim(U+W)=\dim U + \dim W - \dim(U\cap W)
-        </me>.
+        </md>.
       </p>
     </statement>
     <proof>
@@ -324,24 +324,24 @@
         Next, we need to show that <m>\spn B = U+W</m>.
         Let <m>\vv\in U+W</m>; then <m>\vv=\uu+\ww</m> for some <m>\uu\in U</m> and <m>\ww\in W</m>.
         Since <m>\uu\in U</m>, there exist scalars <m>a_1,\ldots, a_k, b_1,\ldots, b_m</m> such that
-        <me>
+        <md>
           \uu=a_1\xx_1+\cdots + a_k\xx_k+b_1\uu_1+\cdots+b_m\uu_m
-        </me>,
+        </md>,
         and since <m>\ww\in W</m>, there exist scalars <m>c_1,\ldots, c_k,d_1,\ldots, d_n</m> such that
-        <me>
+        <md>
           \ww=c_1\xx_1+\cdots +c_k\xx_k+d_1\ww_1+\cdots +d_n\ww_n
-        </me>.
+        </md>.
         Thus,
-        <me>
+        <md>
           \vv = \uu+\ww = (a_1+c_1)\xx_1+\cdots+(a_k+c_k)\xx_k+b_1\uu_1+\cdots +b_m\uu_m+d_1\ww_1+\cdots + d_n\ww_n
-        </me>,
+        </md>,
         which shows that <m>\vv\in \spn B</m>.
       </p>
       <p>
         Finally, we check that this gives the dimension as claimed. We have
-        <me>
+        <md>
           \dim U + \dim W - \dim (U\cap W) = (k+m)+(k+n)-k=k+m+n=\dim(U+W)
-        </me>,
+        </md>,
         since there are <m>k</m> vectors in <m>B_1</m>, <m>k+m</m> vectors in <m>B_2</m>,
         <m>k+n</m> vectors in <m>B_3</m>, and <m>k+m+n</m> vectors in <m>B</m>.
       </p>
@@ -432,9 +432,9 @@
         for <m>\uu_1,\uu_2\in U,\ww_1,\ww_2\in W</m>.
         Then <m>\zer=(\uu_1-\uu_2)+(\ww_1-\ww_2)</m>,
         which implies that
-        <me>
+        <md>
           \ww_1-\ww_2 = -(\uu_1-\uu_2)
-        </me>.
+        </md>.
         Now, <m>\uu=\uu_1-\uu_2\in U</m>,
         since <m>U</m> is a subspace, and similarly,
         <m>\ww=\ww_1-\ww_2\in W</m>.
@@ -479,9 +479,9 @@
         is a linearly independent subset of <m>V</m>.
         Since any linearly independent set can be extended to a basis of <m>V</m>,
         there exist vectors <m>\ww_1,\ldots,\ww_n</m> such that
-        <me>
+        <md>
           \{\uu_1,\ldots, \uu_m,\ww_1,\ldots, \ww_n\}
-        </me>
+        </md>
         is a basis of <m>V</m>.
       </p>
 
@@ -496,17 +496,17 @@
         To show the sum is direct, it suffices to show that <m>U\cap W = \{\zer\}</m>.
         To that end, suppose that <m>\vv\in U\cap W</m>.
         Since <m>\vv\in U</m>, we have
-        <me>
+        <md>
           \vv=a_1\uu_1+\cdots +a_m\uu_m
-        </me>
+        </md>
         for scalars <m>a_1,\ldots, a_m</m>. Since <m>\vv\in W</m>, we can write
-        <me>
+        <md>
           \vv=b_1\ww_1+\cdots + b_n\ww_n
-        </me>
+        </md>
         for scalars <m>b_1,\ldots, b_n</m>. But then
-        <me>
+        <md>
           \zer=\vv-\vv=a_1\uu_1+\cdots a_m\uu_m-b_1\ww_1-\cdots -b_n\ww_n.
-        </me>
+        </md>
         Since <m>\{\uu_1,\ldots, \uu_m,\ww_1,\ldots, \ww_n\}</m> is a basis for <m>V</m>,
         it's independent, and therefore, all of the <m>a_i,b_j</m> must be zero, and therefore, <m>\vv=\zer</m>.
 
@@ -601,9 +601,9 @@
       <introduction>
         <p>
           Let <m>U</m> be the subspace of <m>\R^5</m> define by
-          <me>
+          <md>
             U = \{(x_1,x_2,x_3,x_4,x_5)\,|\, x_1=3x_3, \text{ and } 3x_2-5x_4=x_5\}
-          </me>.
+          </md>.
         </p>
       </introduction>
       <task label="part-subs-basis">

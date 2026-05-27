@@ -14,13 +14,13 @@
       <p>
         Let <m>T:V\to W</m> be a linear transformation. The <term>kernel</term> of <m>T</m>,
         denoted <m>\ker T</m>, is defined by
-        <me>
+        <md>
           \ker T = \{\vv\in V \,|\, T(\vv)=\zer\}
-        </me>.
+        </md>.
         The <term>image</term> of <m>T</m>, denoted <m>\im T</m>, is defined by
-        <me>
+        <md>
           \im T = \{T(\vv) \,|\, \vv\in V\}
-        </me>.
+        </md>.
       </p>
     </statement>
   </definition>
@@ -139,13 +139,13 @@
               since <m>T(\zer)=\zer</m> for any linear transformation <m>T</m>.
               Now, suppose that <m>\vv,\ww\in \ker T</m>; this means that <m>T(\vv)=\zer</m>
               and <m>T(\ww)=0</m>, and therefore,
-              <me>
+              <md>
                 T(\vv+\ww)=T(\vv)+T(\ww)=\zer+\zer=\zer
-              </me>.
+              </md>.
               Similarly, for any scalar <m>c</m>, if <m>\vv\in \ker T</m> then <m>T(\vv)=\zer</m>, so
-              <me>
+              <md>
                 T(c\vv)=cT(\vv)=c\zer=\zer
-              </me>.
+              </md>.
               By the subspace test, <m>\ker T</m> is a subspace.
             </p>
           </li>
@@ -157,15 +157,15 @@
               Now suppose that <m>\ww_1,\ww_2\in \im T</m>. This means that there exist <m>\vv_1,\vv_2\in V</m>
               such that <m>T(\vv_1)=\ww_1</m> and <m>T(\vv_2)=\ww_2</m>.
               It follows that
-              <me>
+              <md>
                 \ww_1+\ww_2 = T(\vv_1)+T(\vv_2) = T(\vv_1+\vv_2)
-              </me>,
+              </md>,
               so <m>\ww_1+\ww_2\in \im T</m>, since it's the image of <m>\vv_1+\vv_2</m>.
               Similarly, if <m>c</m> is any scalar and <m>\ww=T(\vv)\in\im T</m>,
               then
-              <me>
+              <md>
                 c\ww=cT(\vv)=T(c\vv)
-              </me>,
+              </md>,
               so <m>c\ww\in \im T</m>.
             </p>
           </li>
@@ -184,23 +184,23 @@
         Let <m>A</m> be an <m>m\times n</m> matrix. Then we can define <m>T:\R^n\to \R^m</m>
         by <m>T(\xx)=A\xx</m>, where elements of <m>\R^n,\R^m</m> are considered as column vectors.
         We then have
-        <me>
+        <md>
           \ker T = \nll(A) = \{\xx\in \R^n \,|\, A\xx=\zer\}
-        </me>
+        </md>
         and
-        <me>
+        <md>
           \im T = \csp(A) = \{A\xx\,|\, \xx\in \R^n\}
-        </me>,
+        </md>,
         where <m>\csp(A)</m> denotes the <term>column space</term> of <m>A</m>.
         Recall further that if we write <m>A</m> in terms of its columns as
-        <me>
+        <md>
           A = \bbm C_1 \amp C_2 \amp \cdots \amp C_n\ebm
-        </me>
+        </md>
         and a vector <m>\xx\in \R^n</m> as <m>\xx=\bbm x_1\\x_2\\\vdots \\x_n\ebm</m>,
         then
-        <me>
+        <md>
           A\xx = x_1C_1+x_2C_2+\cdots +x_nC_n
-        </me>.
+        </md>.
         Thus, any element of <m>\csp(A)</m> is a linear combination of its columns,
         explaining the name <em>column space</em>.
       </p>
@@ -220,9 +220,9 @@
         Let <m>A</m> be an <m>m\times n</m> matrix with columns <m>C_1,C_2,\ldots, C_n</m>.
         If the reduced row-echelon form of <m>A</m> has leading ones in columns <m>j_1,j_2,\ldots, j_k</m>,
         then
-        <me>
+        <md>
           \{C_{j_1},C_{j_2},\ldots, C_{j_k}\}
-        </me>
+        </md>
         is a basis for <m>\csp(A)</m>.
       </p>
     </statement>
@@ -237,11 +237,11 @@
     <statement>
       <p>
         Consider the linear transformation <m>T:\R^4\to \R^3</m> defined by the matrix
-        <me>
+        <md>
           A = \bbm 1 \amp 3 \amp 0 \amp -2\\
                   -2 \amp -1 \amp 2 \amp 0\\
                    1 \amp 8 \amp 2 \amp -6\ebm
-        </me>.
+        </md>.
         Let's determine the <init>RREF</init> of <m>A</m>:
       </p>
 
@@ -261,13 +261,13 @@
         We see that there are leading ones in the first and second column.
         Therefore, <m>\csp(A) = \im(T) = \spn\left\{\bbm 1\\-2\\1\ebm, \bbm 3\\-1\\8\ebm\right\}</m>.
         Indeed, note that
-        <me>
+        <md>
           \bbm 0\\2\\2\ebm = -\frac65\bbm 1\\-2\\1\ebm + \frac25\bbm 3\\-1\\8\ebm
-        </me>
+        </md>
         and
-        <me>
+        <md>
           \bbm -2\\0\\-6\ebm = \frac25\bbm 1\\-2\\1\ebm -\frac45\bbm 3\\-1\\8\ebm
-        </me>,
+        </md>,
         so that indeed, the third and fourth columns are in the span of the first and second.
       </p>
 
@@ -279,9 +279,9 @@
           <mrow>x_2 \amp =-\frac25 x_3+\frac 45 x_4</mrow>
         </md>,
         so
-        <me>
+        <md>
           \xx = \bbm \frac65x_3-\frac25x_4\\ -\frac25x_3+\frac45x_4\\x_3\\x_4\ebm = \frac{x_3}{5}\bbm 6\\-2\\5\\0\ebm + \frac{x_4}{5}\bbm -2\\4\\0\\5\ebm
-        </me>.
+        </md>.
         It follows that a basis for <m>\nll(A)=\ker T</m> is <m>\left\{\bbm 6\\-2\\5\\0\ebm, \bbm -2\\4\\0\\5\ebm\right\}</m>.
       </p>
     </statement>
@@ -340,13 +340,13 @@
       <p>
         Let <m>T:V\to W</m> be a linear transformation.
         Then the <term>rank</term> of <m>T</m> is defined by
-        <me>
+        <md>
           \operatorname{rank} T = \dim \im T
-        </me>,
+        </md>,
         and the <term>nullity</term> of <m>T</m> is defined by
-        <me>
+        <md>
           \operatorname{nullity} T = \dim \ker T
-        </me>,
+        </md>,
         provided that the kernel and image of <m>T</m> are finite-dimensional.
       </p>
     </statement>
@@ -407,9 +407,9 @@
 
         Conversely, suppose that <m>\ker T = \{0\}</m> and that <m>T(\vv_1)=T(\vv_2)</m>
         for some <m>\vv_1,\vv_2\in V</m>. Then
-        <me>
+        <md>
           \zer = T(\vv_1)-T(\vv_2) = T(\vv_1-\vv_2)
-        </me>,
+        </md>,
         so <m>\vv_1-\vv_2\in \ker T</m>.
         Therefore, we must have <m>\vv_1-\vv_2=\zer</m>,
         so <m>\vv_1=\vv_2</m>, and it follows that <m>T</m> is injective.
@@ -589,9 +589,9 @@
         Let <m>T:V\to W</m> be any linear transformation such that
         <m>\ker T</m> and <m>\im T</m> are finite-dimensional.
         Then <m>V</m> is finite-dimensional, and
-        <me>
+        <md>
           \dim V = \dim \ker T + \dim \im T
-        </me>.
+        </md>.
       </p>
     </statement>
     <proof>
@@ -622,19 +622,19 @@
 
       <p>
         To see that it's independent, suppose that
-        <me>
+        <md>
           a_1\uu_1+\cdots + a_n\uu_n+b_1\vv_1+\cdots +b_m\vv_m=\zer
-        </me>.
+        </md>.
         Applying <m>T</m> to this equation, and noting that <m>T(\uu_i)=\zer</m>
         for each <m>i</m>, by definition of the <m>\uu_i</m>, we get
-        <me>
+        <md>
           b_1T(\vv_1)+\cdots +b_mT(\vv_m)=\zer
-        </me>.
+        </md>.
         We assumed that the vectors <m>T(\vv_i)</m> were independent,
         so all the <m>b_i</m> must be zero. But then we get
-        <me>
+        <md>
           a_1\uu_1+\cdots +a_n\uu_n=\zer
-        </me>,
+        </md>,
         and since the <m>\uu_i</m> are independent, all the <m>a_i</m> must be zero.
       </p>
 
@@ -642,9 +642,9 @@
         To see that these vectors span, choose any <m>\xx\in V</m>.
         Since <m>T(\xx)\in \im T</m>, there exist scalars <m>c_1,\ldots, c_m</m>
         such that
-        <men xml:id="eqn-almost-span">
+        <md numer="yes" xml:id="eqn-almost-span">
           T(\xx)=c_1T(\vv_1)+\cdots +c_mT(\vv_m)
-        </men>.
+        </md>.
         We'd like to be able to conclude from this that <m>\xx=c_1\vv_1+\cdots +c_m\vv_m</m>,
         but this would be false, unless <m>T</m> was known to be injective (which it isn't).
         Failure to be injective involves the kernel -- how do we bring that into the picture?
@@ -654,18 +654,18 @@
         The trick is to realize that the reason we might have <m>\xx\neq c_1\vv_1+\cdots +c_m\vv_m</m>
         is that we're off by something in the kernel.
         Indeed, <xref ref="eqn-almost-span"/> can be re-written as
-        <me>
+        <md>
           T(\xx-c_1\vv_1-\cdots -c_m\vv_m) = \zer
-        </me>,
+        </md>,
         so <m>\xx-c_1\vv_1-\cdots -c_m\vv_m\in\ker T</m>.
         But we have a basis for <m>\ker T</m>, so we can write
-        <me>
+        <md>
           \xx-c_1\vv_1-\cdots -c_m\vv_m=t_1\uu_1+\cdots +t_n\uu_n
-        </me>
+        </md>
         for some scalars <m>t_1,\ldots, t_n</m>, and this can be rearanged to give
-        <me>
+        <md>
           \xx=t_1\uu_1+\cdots +t_n\uu_n+c_1\vv_1+\cdots + c_m\vv_m
-        </me>,
+        </md>,
         which completes the proof.
       </p>
     </proof>
@@ -674,9 +674,9 @@
   <p>
     This is sometimes known as the <em>Rank-Nullity Theorem</em>,
     since it can be stated in the form
-    <me>
+    <md>
       \dim V = \rank T + \operatorname{nullity} T
-    </me>.
+    </md>.
     We will see that this result is frequently useful for providing simple arguments that establish otherwise difficult results.
     A basic situation where the theorem is useful is as follows:
     we are given <m>T:V\to W</m>, where the dimensions of <m>V</m> and <m>W</m> are known.
@@ -769,9 +769,9 @@
 
   <p>
     Another consequence of the dimension theorem is that we must have
-    <me>
+    <md>
       \dim \ker T\leq \dim V \quad \text{ and } \quad \dim \im T\leq \dim V
-    </me>.
+    </md>.
     Of course, we must also have <m>\dim\im T\leq \dim W</m>,
     since <m>\im T</m> is a subspace of <m>W</m>.
     In the case of a matrix transformation <m>T_A</m>,
@@ -808,13 +808,13 @@
           <p>
             We have <m>T(0)=0</m> since <m>0^T=0</m>.
             Using proerties of the transpose and matrix algebra, we have
-            <me>
+            <md>
               T(A+B) = (A+B)-(A+B)^T = (A-A^T)+(B-B^T) = T(A)+T(B)
-            </me>
+            </md>
             and
-            <me>
+            <md>
               T(kA) = (kA) - (kA)^T = kA-kA^T = k(A-A^T) = kT(A)
-            </me>.
+            </md>.
           </p>
         </solution>
       </task>
@@ -855,15 +855,15 @@
         <solution>
           <p>
             If <m>B=T(A)=A-A^T</m>, then
-            <me>
+            <md>
               B^T = (A-A^T)^T = A^T-A = -B
-            </me>,
+            </md>,
             so certainly every matrix in <m>\im A</m> is skew-symmetric.
             On the other hand, if <m>B</m> is skew-symmetric, then <m>B=T(\frac12 B)</m>,
             since
-            <me>
+            <md>
               T\Bigl(\frac12 B\Bigr) = \frac12 T(B) = \frac12(B-B^T) = \frac12(B-(-B))= B
-            </me>.
+            </md>.
           </p>
         </solution>
       </task>
@@ -948,9 +948,9 @@
         <solution>
           <p>
             Suppose <m>T:V\to W</m> is injective. Then <m>\ker T = \{0\}</m>, so
-            <me>
+            <md>
               \dim V = 0 + \dim \im T \leq \dim W
-            </me>,
+            </md>,
             since <m>\im T</m> is a subspace of <m>W</m>.
           </p>
 
@@ -991,17 +991,17 @@
         <solution>
           <p>
             Suppose <m>T:V\to W</m> is surjective. Then <m>\dim \im T = \dim W</m>, so
-            <me>
+            <md>
               \dim V = \dim \ker T + \dim W \geq  \dim W
-            </me>.
+            </md>.
             Conversely, suppose <m>\dim V\geq \dim W</m>. Again,
             choose a basis <m>\{\vv_1,\ldots, \vv_m\}</m> of <m>V</m>,
             and a basis <m>\{\ww_1,\ldots, \ww_n\}</m> of <m>W</m>,
             where this time, <m>m\geq n</m>.
             We can define a linear transformation as follows:
-            <me>
+            <md>
               T(\vv_1)=\ww_1,\ldots, T(\vv_n)=\ww_n, \text{ and } T(\vv_j) = \zer \text{ for } j>n.
-            </me>
+            </md>
             It's easy to check that this map is a surjection:
             given <m>\ww\in W</m>, we can write it in terms of our basis as <m>\ww=c_1\ww_1+\cdots + c_n\ww_n</m>.
             Using these same scalars, we can define <m>\vv=c_1\vv_1+\cdots + c_n\vv_n\in V</m> such that <m>T(\vv)=\ww</m>.

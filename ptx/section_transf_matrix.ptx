@@ -13,9 +13,9 @@
     Conversely, given any linear map <m>T:\R^n\to \R^m</m>,
     if we let <m>\basis{e}{n}</m> denote the standard basis of <m>\R^n</m>,
     then the matrix
-    <me>
+    <md>
       A = \bbm T(\mathbf{e}_1) \amp T(\mathbf{e}_2) \amp \cdots \amp T(\mathbf{e}_n)\ebm
-    </me>
+    </md>
     is such that <m>T=T_A</m>.
   </p>
 
@@ -109,9 +109,9 @@
     we will think of it as an ordered list.
     Order matters, since given a basis <m>B=\basis{e}{n}</m>,
     we rely on the fact that we can write any vector <m>\vv</m> uniquely as
-    <me>
+    <md>
       \vv = c_1\mathbf{e}_1+\cdots +c_n\mathbf{e}_n
-    </me>
+    </md>
     in order to make the assignment <m>C_B(\vv) = \bbm c_1\\\vdots \\c_n\ebm</m>.
   </p>
 
@@ -137,9 +137,9 @@
           <mrow>\ww \amp = b_1\mathbf{e}_1+\cdots + b_n\mathbf{e}_n</mrow>
         </md>,
         then
-        <me>
+        <md>
           \vv+\ww = (a_1+b_1)\mathbf{e}_1+\cdots + (a_n+b_n)\mathbf{e}_n
-        </me>,
+        </md>,
         so
         <md>
           <mrow>C_B(\vv+\ww) \amp = \bbm a_1+b_1\\\vdots \\ a_n+b_n\ebm </mrow>
@@ -163,9 +163,9 @@
         To see that <m>C_B</m> is an isomorphism, we can simply note that <m>C_B</m>
         takes the basis <m>B</m> to the standard basis of <m>\R^n</m>.
         Alternatively, we can give the inverse: <m>C_B^{-1}:\R^n\to V</m> is given by
-        <me>
+        <md>
           C_B^{-1}\bbm c_1\\\vdots \\c_n\ebm = c_1\mathbf{e}_1+\cdots +c_n\mathbf{e}_n
-        </me>.
+        </md>.
       </p>
     </solution>
   </exercise>
@@ -179,9 +179,9 @@
     Since <m>T(\vv_i)\in W</m> for each <m>\vv_i\in B</m>,
     there exist unique scalars <m>a_{ij}</m>, with <m>1\leq i\leq m</m>
     and <m>1\leq j\leq n</m> such that
-    <me>
+    <md>
       T(\vv_j) = a_{1j}\ww_1+a_{2j}\ww_2+\cdots + a_{mj}\ww_m
-    </me>
+    </md>
     for <m>j=1,\ldots, n</m>. This gives us the <m>m\times n</m> matrix <m>A = [a_{ij}]</m>.
     Notice that the first column of <m>A</m> is <m>C_D(T(\vv_1))</m>,
     the second column is <m>C_D(T(\vv_2))</m>, and so on.
@@ -190,7 +190,7 @@
   <p>
     Given <m>\xx\in V</m>, write <m>\xx = c_1\vv_1+\cdots + c_n\vv_n</m>,
     so that <m>C_B(\xx) = \bbm c_1\\\vdots \\c_n\ebm</m>. Then
-    <me>
+    <md>
       T_A(C_B(\xx)) = \bbm a_{11}\amp a_{12} \amp \cdots \amp a_{1n}\\
                            a_{21}\amp a_{22} \amp \cdots \amp a_{2n}\\
                            \vdots \amp \vdots \amp \ddots \amp \vdots\\
@@ -199,7 +199,7 @@
                                   a_{21}c_1+a_{22}c_2+\cdots +a_{2n}c_n\\
                                   \vdots\\
                                   a_{m1}c_1+a_{m2}c_2+\cdots +a_{mn}c_n\ebm
-    </me>.
+    </md>.
   </p>
 
   <p>
@@ -211,9 +211,9 @@
       <mrow> \amp = (c_1a_{11}+\cdots + c_na_{1n})\ww_1 + \cdots + (c_1a_{m1}+\cdots + c_na_{mn})\ww_m</mrow>
     </md>.
     Therefore,
-    <me>
+    <md>
       C_D(T(\xx)) = \bbm c_1a_{11}+\cdots + c_na_{1n}\\ \vdots \\ c_1a_{m1}+\cdots + c_na_{mn}\ebm = T_A(C_B(\xx))
-    </me>.
+    </md>.
     Thus, we see that <m>C_DT = T_AC_B</m>, or <m>T_A = C_DTC_B^{-1}</m>, as expected.
   </p>
 
@@ -227,9 +227,9 @@
         Let <m>B=\basis{v}{n}</m> and <m>D=\basis{w}{m}</m> be ordered bases for <m>V</m> and <m>W</m>,
         respectively. Then the <term>matrix</term> <m>M_{DB}(T)</m> of <m>T</m> with respect to the bases <m>B</m> and <m>D</m>
         is defined by
-        <me>
+        <md>
           M_{DB}(T) = \bbm C_D(T(\vv_1)) \amp C_D(T(\vv_2)) \amp \cdots \amp C_D(T(\vv_n))\ebm
-        </me>.
+        </md>.
       </p>
     </statement>
   </definition>
@@ -237,9 +237,9 @@
   <p>
     In other words, <m>A=M_{DB}(T)</m> is the unique <m>m\times n</m> matrix such that <m>C_DT = T_AC_B</m>.
     This gives the defining property
-    <me>
+    <md>
       C_D(T(\vv)) = M_{DB}(T)C_B(\vv)  \text{ for all } \vv\in V
-    </me>,
+    </md>,
     as was demonstrated above.
   </p>
 
@@ -247,9 +247,9 @@
     <statement>
       <p>
         Suppose <m>T:P_2(\R)\to \R^2</m> is given by
-        <me>
+        <md>
           T(a+bx+cx^2) = (a+c,2b)
-        </me>.
+        </md>.
         Compute the matrix of <m>T</m> with respect to the bases
         <m>B = \{1,1-x,(1-x)^2\}</m> of <m>P_2(\R)</m> and
         <m>D = \{(1,0),(1,-1)\}</m> of <m>\R^2</m>.
@@ -303,9 +303,9 @@
     <statement>
       <p>
         Let <m>T:P_2(\R)\to \R^2</m> be a linear transformation whose matrix is given by
-        <me>
+        <md>
           M(T) = \bbm 3\amp 0 \amp 3\\-1\amp -2\amp 2\ebm
-        </me>
+        </md>
         with respect to the ordered bases <m>B = \{1+x, 2-x, 2x+x^2\}</m> of  <m>P_2(\R)</m>
         and <m>D = \{(0,1),(-1,1)\}</m> of <m>\R^2</m>. Find the value of <m>T(2+3x-4x^2)</m>.
       </p>
@@ -314,9 +314,9 @@
       <p>
         We need to write the input <m>2+3x-4x^2</m> in terms of the basis <m>B</m>.
         This amounts to solving the system of equations given by
-        <me>
+        <md>
           a(1+x)+b(2-x)+c(2x+x^2)=2+3x-4x^2
-        </me>.
+        </md>.
         Of course, we can easily set up and solve this system,
         but let's try to be systematic, and obtain a more useful result for future problems.
         Since we can easily determine how to write any polynomial in terms of the standard basis <m>\{1,x,x^2\}</m>,
@@ -337,14 +337,14 @@
 
       <p>
         We get the matrix
-        <me>
+        <md>
           \left[\begin{matrix}1\amp 2\amp 0\\1\amp -1\amp 2\\0\amp 0\amp 1\end{matrix}
           \right\rvert\left.\begin{matrix}1\amp 0\amp 0\\0\amp 1\amp 0\\0\amp 0\amp 1\end{matrix}\right]
-        </me>.
+        </md>.
         But this is exactly the augmented matrix we'd right down if we were trying to find the inverse of the matrix
-        <me>
+        <md>
           P=\bbm 1\amp 2\amp 0\\1\amp -1\amp 2\\0\amp 0\amp 1\ebm
-        </me>
+        </md>
         whose columns are the coefficient representations of our given basis vectors in terms of the standard basis.
       </p>
 
@@ -405,9 +405,9 @@
       <p>
         The coefficients <m>12</m> and <m>-10</m> are the coefficients of <m>T(p(x))</m>
         with repsect to the basis <m>D</m>. Thus,
-        <me>
+        <md>
           T(2+3x-4x^2) = 12(0,1)-10(-1,1) = (10,2)
-        </me>.
+        </md>.
         Note that in the last step we gave the <q>simplified</q> answer <m>(10,2)</m>,
         which is simplified primarily in that it is expressed with respect to the standard basis.
       </p>
@@ -435,9 +435,9 @@
 
       <p>
         We check that
-        <me>
+        <md>
           \hat{M}(T)\bbm 2\\3\\-4\ebm = \bbm 10\\2\ebm
-        </me>,
+        </md>,
         as before.
       </p>
 
@@ -453,13 +453,13 @@
       <p>
         We find that <m>\tilde{M}(T) = \bbm 1\amp 0\amp -2\\0\amp 2\amp 1\ebm</m>.
         This lets us determine that for a general polynomial <m>p(x) = a+bx+cx^2</m>,
-        <me>
+        <md>
           \hat{M}(T)\bbm a\\b\\c\ebm = \bbm a-2c\\2b+c\ebm
-        </me>,
+        </md>,
         and therefore, our original transformation must have been
-        <me>
+        <md>
           T(a+bx+cx^2)=(a-2c,2b+c)
-        </me>.
+        </md>.
 
       </p>
     </solution>
@@ -483,9 +483,9 @@
         </md>
         be matrices whose columns are the coefficient vectors of the vectors in <m>B_1,D_1</m> with respect to <m>B_0,D_0</m>.
         Then the matrix of <m>T</m> with respect to the bases <m>B_1</m> and <m>D_1</m> is
-        <me>
+        <md>
           M_{D_0B_0}(T) = QM_{D_1B_1}(T)P^{-1}
-        </me>.
+        </md>.
       </p>
     </statement>
   </theorem>
@@ -568,9 +568,9 @@
         Let <m>U,V,W</m> be finite-dimensional vectors spaces,
         with ordered bases <m>B_1,B_2,B_3</m>, respectively.
         Let <m>T:U\to V</m> and <m>S:V\to W</m> be linear maps. Then
-        <me>
+        <md>
           M_{B_3B_1}(ST) = M_{B_3B_2}(S)M_{B_2B_1}(T)
-        </me>.
+        </md>.
       </p>
     </statement>
     <proof>
@@ -625,13 +625,13 @@
       <statement>
         <p>
           Suppose <m>T:M_{22}(\R)\to P_2(\R)</m> has the matrix
-          <me>
+          <md>
             M_{DB}(T) = \bbm 2\amp -1\amp 0\amp 3\\0\amp 4\amp -5\amp 1\\-1\amp 0\amp 3\amp -2\ebm
-          </me>
+          </md>
           with respect to the bases
-          <me>
+          <md>
             B = \left\{\bbm 1\amp 0\\0\amp 0\ebm, \bbm 0\amp 1\\0\amp 1\ebm, \bbm 0\amp 1\\1\amp 0\ebm, \bbm 1\amp 0\\0\amp 1\ebm\right\}
-          </me>
+          </md>
           of <m>M_{22}(\R)</m> and <m>D=\{1,x,x^2\}</m> of <m>P_2(\R)</m>.
           Determine a formula for <m>T</m> in terms of a general input <m>X=\bbm a\amp b\\c\amp d\ebm</m>.
         </p>
@@ -641,9 +641,9 @@
         <p>
           We must first write our general input in terms of the given basis.
           With respect to the standard basis
-          <me>
+          <md>
             B_0 = \left\{\bbm 1\amp 0\\0\amp 0\ebm, \bbm 0\amp 1\\0\amp 0\ebm, \bbm 0\amp 0\\1\amp 0\ebm, \bbm 0\amp 0\\0\amp 1\ebm\right\}
-          </me>,
+          </md>,
           we have the matrix <m>P = \bbm 1\amp 0\amp 0\amp 1\\0\amp 1\amp 1\amp 0\\0\amp 0\amp 1\amp 0\\0\amp 1\amp 0\amp 1\ebm</m>,
           representing the change from the basis <m>B</m> the basis <m>B_0</m>.
           The basis <m>D</m> of <m>P_2(\R)</m> is already the standard basis,
@@ -663,10 +663,10 @@
 
         <p>
           For a matrix <m>X = \bbm a\amp b\\c\amp d\ebm</m> we find
-          <me>
+          <md>
             M_{DB}(T)P^{-1}C_{B_0}(X)=\bbm 2\amp -2\amp 2\amp 1\\0\amp 3\amp -8\amp 1\\-1\amp 1\amp 2\amp -1\ebm\bbm a\\b\\c\\d\ebm =
             \bbm 2a-2b+2c+d\\3b-8c+d\\-a+b+2c-d\ebm
-          </me>.
+          </md>.
           But this is equal to <m>C_D(T(X))</m>, so
           <md>
             <mrow>T\left(\bbm a\amp b\\c\amp d\ebm\right) \amp = C_D^{-1}\bbm 2a-2b+2c+d\\3b-8c+d\\-a+b+2c-d\ebm</mrow>

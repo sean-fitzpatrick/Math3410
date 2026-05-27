@@ -25,9 +25,9 @@
     A similar thing happens if we consider a set <m>U=\{a\vv+b\ww\,|\, a,b\in\R\}</m>,
     where <m>\vv,\ww</m> are two vectors in a vector space <m>V</m>.
     Given two elements <m>a_1\vv+a_2\ww,b_1\vv+b_2\ww</m>, we have
-    <me>
+    <md>
       (a_1\vv+a_2\ww)+(b_1\vv+b_2\ww) = (a_1+b_1)\vv+(a_2+b_2)\ww
-    </me>,
+    </md>,
     which is again an element of <m>U</m>, and the addition rule looks an awful lot like the addition rule
     <m>(a_1,a_2)+(b_1,b_2)=(a_1+b_1,a_2+b_2)</m> in <m>\R^2</m>.
     Scalar multiplication follows a similar pattern.
@@ -124,9 +124,9 @@
       <p>
         In <m>\R^n</m>, we can define a subspace using one or more homogeneous linear equations.
         For example, the set
-        <me>
+        <md>
           \{(x,y,z)\,|\, 2x-3y+4z=0\}
-        </me>
+        </md>
         is a subspace of <m>\R^3</m>. A non-homogeneous equation won't work, however, since it would exclude the zero vector.
         Of course, we should expect that any non-linear equation fails to define a subspace,
         although one is still expected to verify this by confirming the failure of one of the axioms.
@@ -165,9 +165,9 @@
             <p>
               Note that we must insist that <m>\vv</m> is not parallel to <m>\ww</m>.
               If <m>\ww = c\vv</m> for some scalar <m>c</m>, then
-              <me>
+              <md>
                 s\vv+t\ww = s\vv+t(c\vv) = s\vv+(tc)\vv = (s+tc)\vv
-              </me>,
+              </md>,
               and every vector in our set would be a multiple of <m>\vv</m>;
               in other words, we'd once again have a line.
             </p>
@@ -318,9 +318,9 @@
           To check closure under addition, suppose <m>(x_1,y_1,z_1)</m> and <m>(x_2,y_2,z_2)</m> are in the set.
           This means that <m>x_1+y_1=z_1</m>, and <m>x_2+y_2=z_2</m>.
           For the sum <m>(x_1+x_2,y_1+y_2,z_1+z_2)</m>, we have
-          <me>
+          <md>
             (x_1+x_2)+(y_1+y_2) = (x_1+y_1)+(x_2+y_2)=z_1+z_2
-          </me>,
+          </md>,
           so the sum is in the set. And for any scalar <m>c</m>,
           <m>cx_1+cy_1=c(x_1+y_1)=cz_1</m>, so <m>(cx_1,cy_1,cz_1)=c(x_1y_1z_1)</m> is in the set as well.
         </p>
@@ -381,9 +381,9 @@
           At first glance, it may not be clear whether the condition <m>p(1)=p(2)</m> is linear.
           One approach is to write out our polynomial in terms of coefficients.
           If <m>p(x)=ax^3+bx^2+cx+d</m>, then <m>p(1)=p(2)</m> implies
-          <me>
+          <md>
             a+b+c+d=8a+4b+2c+d
-          </me>,
+          </md>,
           or <m>7a+3b+c=0</m>, which is a homogeneous linear equation.
           This isn't yet a proof <mdash/> we still have to apply the subspace test!
         </p>
@@ -394,9 +394,9 @@
           First, the zero polynomial <m>\zer</m> satisfies <m>\zer(1)=\zer(2)</m>, since it's equal to zero everywhere.
           Next, suppose we have polynomials <m>p(x),q(x)</m> with <m>p(1)=p(2)</m> and <m>q(1)=q(2)</m>.
           Then
-          <me>
+          <md>
             (p+q)(1)=p(1)+q(1)=p(2)+q(2)=(p+q)(2)
-          </me>,
+          </md>,
           and for any scalar <m>c</m>, <m>(cp)(1)=c(p(1))=c(p(2))=(cp)(2)</m>.
           This shows that the set is closed under both addition and scalar multiplication.
         </p>
@@ -436,9 +436,9 @@
   <p>
     For example, in the last part of <xref ref="ex-subspace-check"/> above,
     if the vector <m>(x,y,z)</m> satisfies <m>x+y=z</m>, then we have
-    <me>
+    <md>
       (x,y,z)=(x,y,x+y)=(x,0,x)+(0,y,y)=x(1,0,1)+y(0,1,1)
-    </me>,
+    </md>,
     so every vector in the set is a linear combination of the vectors <m>(1,0,1)</m> and <m>(0,1,1)</m>.
   </p>
 

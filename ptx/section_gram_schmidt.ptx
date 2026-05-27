@@ -6,9 +6,9 @@
   <p>
     Given an nonzero vector <m>\uu</m> and a vector <m>\vv</m>,
     the <em>projection</em> of <m>\vv</m> onto <m>\uu</m> is given by
-    <men xml:id="eqn-proj-single">
+    <md numer="yes" xml:id="eqn-proj-single">
       \proj{\uu}{\vv} = \left(\frac{\vv\dotp\uu}{\len{\uu}^2}\right)\uu
-    </men>.
+    </md>.
     Note that this looks just like one of the terms in <xref ref="thm-fourier-expansion" text="title"/>.
   </p>
 
@@ -133,9 +133,9 @@
       <p>
         Let <m>\{\vv_1,\vv_2,\ldots, \vv_m\}</m> be an orthogonal set of vectors in <m>\R^n</m>,
         and let <m>\xx</m> be any vector in <m>\R^n</m>. Define the vector <m>\vv_{m+1}</m> by
-        <me>
+        <md>
           \vv_{m+1} = \xx-\left(\frac{\xx\dotp\vv_1}{\len{\vv_1}^2}\vv_1+\cdots + \frac{\xx\dotp\vv_m}{\len{\vv_m}^2}\vv_m\right)
-        </me>.
+        </md>.
         Then:
         <ol>
           <li>
@@ -172,9 +172,9 @@
           <li>
             <p>
               For any <m>i=1,\ldots m</m>, we have
-              <me>
+              <md>
                 \vv_{m+1}\dotp\vv_i = \xx\dotp\vv_i - \frac{\xx\dotp\vv_i}{\len{\vv_i}^2}(\vv_i\dotp\vv_i)=0
-              </me>,
+              </md>,
               since <m>\vv_i\dotp\vv_j = 0</m> for <m>i\neq j</m>.
             </p>
           </li>
@@ -205,9 +205,9 @@
     Start with a single nonzero vector <m>\xx_1\in U</m>, which we'll also call <m>\vv_1</m>.
     If <m>U\neq \spn\{\vv_1\}</m>, choose a vector <m>\xx_2\in U</m> with <m>\xx_2\notin\spn\{\vv_1\}</m>.
     The <xref ref="thm-orthogonal-lemma" text="title"/> then provides us with a vector
-    <me>
+    <md>
       \vv_2 = \xx_2-\frac{\xx_2\dotp\vv_1}{\len{\vv_1}^2}\vv_1
-    </me>
+    </md>
     such that <m>\{\vv_1,\vv_2\}</m> is orthogonal.
     If <m>U=\spn\{\vv_1,\vv_2\}</m>, we're done.
     Otherwise, we repeat the process, choosing <m>\xx_3\notin\spn\{\vv_1,\vv_2\}</m>,
@@ -237,9 +237,9 @@
         </md>.
         Then <m>\{\vv_1,\ldots, \vv_m\}</m> is an orthogonal basis for <m>U</m>.
         Moreover, for each <m>k=1,2,\ldots, m</m>, we have
-        <me>
+        <md>
           \spn\{\vv_1,\ldots, \vv_k\} = \spn\{\xx_1,\ldots, \xx_k\}
-        </me>.
+        </md>.
       </p>
     </statement>
   </theorem>
@@ -250,9 +250,9 @@
     The Gram-Schmidt algorithm is ideal when we know how to find <em>a</em> basis for a subspace,
     but we need to know an orthogonal basis.
     For example, suppose we want an orthonormal basis for the nullspace of the matrix
-    <me>
+    <md>
       A = \bbm 2 \amp -1 \amp 3 \amp 0 \amp 5\\0 \amp 2 \amp -3  \amp 1 \amp 4\\ -4 \amp 2 \amp -6 \amp 0 \amp -10\\ 2 \amp 1 \amp 0 \amp 1 \amp 9\ebm
-    </me>.
+    </md>.
     First, we find <em>any</em> basis for the nullspace.
   </p>
 
@@ -273,18 +273,18 @@
 
   <p>
     Let's make that basis look a little nicer by using some scalar multiplication to clear fractions.
-    <me>
+    <md>
       B=\left\{\xx_1=\bbm 3\\-6\\-4\\0\\0\ebm, \xx_2=\bbm 1\\2\\0\\-4\\0\ebm, \xx_3=\bbm 7\\4\\0\\0\\-2\ebm\right\}
-    </me>
+    </md>
     This is definitely not an orthogonal basis. So we take <m>\vv_1=\xx_1</m>, and
     <md>
       <mrow>\vv_2 \amp = \xx_2-\left(\frac{\xx_2\dotp\vv_1}{\len{\vv_1}^2}\right)\vv_1</mrow>
       <mrow> \amp = \bbm 1\\2\\0\\-4\\0\ebm -\frac{-9}{61}\bbm 3\\-6\\-4\\-0\\0\ebm </mrow>
     </md>,
     which equals something we probably don't want to try to simplify. Finally, we find
-    <me>
+    <md>
       \vv_3 = \xx_3-\left(\frac{\xx_3\dotp \vv_1}{\len{\vv_1}^2}\right)\vv_1-\left(\frac{\xx_3\dotp\vv_2}{\len{\vv_2}^2}\right)\vv_2
-    </me>.
+    </md>.
     And now we probably get about five minutes into the fractions and say something that shouldn't appear in print.
     This sounds like a job for the computer.
   </p>

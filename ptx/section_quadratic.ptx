@@ -13,17 +13,17 @@
   <p>
     A basic fact about orthogonal matrices is that they <em>preserve length</em>.
     Indeed, for any vector <m>\xx</m> in <m>\R^n</m> and any orthogonal matrix <m>P</m>,
-    <me>
+    <md>
       \len{P\xx}^2 = (P\xx)\dotp (P\xx) = (P\xx)^T(P\xx) = (\xx^TP^T)(P\xx) = \xx^T\xx=\len{\xx}^2
-    </me>,
+    </md>,
     since <m>P^TP=I_n</m>.
   </p>
 
   <p>
     Note also that since <m>P^TP=I_n</m> and <m>\det P^T=\det P</m>, we have
-    <me>
+    <md>
       \det(P)^2=\det(P^TP)=\det(I_n)=1
-    </me>,
+    </md>,
     so <m>\det(P)=\pm 1</m>. If <m>\det P=1</m>, we have what is called a <em>special orthogonal matrix</em>.
     In <m>\R^2</m> or <m>\R^3</m>, multiplication by a special orthogonal matrix is simply a rotation.
     (If <m>\det P=-1</m>, there is also a reflection.)
@@ -43,9 +43,9 @@
       <p>
         A <term>quadratic form</term> on variables <m>x_1, x_2,\ldots, x_n</m>
         is any expression of the form
-        <me>
+        <md>
           q(x_1,\ldots, x_n) = \sum_{i\leq j}a_{ij}x_ix_j
-        </me>.
+        </md>.
       </p>
     </statement>
   </definition>
@@ -61,17 +61,17 @@
 
   <p>
     For example the two quadratic forms given above have the following associated matrices:
-    <me>
+    <md>
       A_1 = \bbm 4 \amp -2\\-2\amp 4\ebm \text{ and } A_2 = \bbm 9 \amp -2 \amp -1\\-2\amp 4\amp 0\\-1\amp 0\amp 1\ebm
-    </me>.
+    </md>.
     The reason for this is that we can then write
-    <me>
+    <md>
       q_1(x,y)=\bbm x\amp y\ebm\bbm 4 \amp -1\\-1\amp 1\ebm\bbm x\\y\ebm
-    </me>
+    </md>
     and
-    <me>
+    <md>
       q_2(x,y,z)=\bbm x\amp y\amp z\ebm\bbm 9 \amp -2 \amp -1\\-2\amp 4\amp 0\\-1\amp 0\amp 1\ebm\bbm x\\y\\z\ebm
-    </me>.
+    </md>.
   </p>
 
   <p>
@@ -109,13 +109,13 @@
   <p>
     The resulting orthogonal matrix is <m>P=\frac{1}{\sqrt{2}}\bbm 1\amp -1\\1\amp 1\ebm</m>,
     and we find
-    <me>
+    <md>
       P^TAP = \bbm 2\amp 0\\0\amp 6\ebm, \text{ or } A = PDP^T,
-    </me>
+    </md>
     where <m>D = \bbm 2\amp 0\\0\amp 6\ebm</m>. If we define new variables <m>y_1,y_2</m> by
-    <me>
+    <md>
       \bbm y_1\\y_2\ebm = P^T\bbm x_1\\x_2\ebm
-    </me>,
+    </md>,
     then we find that
     <md>
       <mrow>\bbm x_1\amp x_2\ebm A\bbm x_1\\x_2\ebm \amp = (\bbm x_1\amp x_2\ebm P)D\left(P^T\bbm x_1\\x_2\ebm\right) </mrow>
@@ -164,9 +164,9 @@
 
     <p>
       The Hessian matrix at a point <m>(a,b)</m> is
-      <me>
+      <md>
         H_f(a,b) = \bbm f_{xx}(a,b) \amp f_{xy}(a,b)\\f_{yx}(a,b) \amp f_{yy}(a,b)\ebm
-      </me>.
+      </md>.
       As long as the second-order partial derivatives are <em>continuous</em> at <m>(a,b)</m>,
       it is guaranteed that the Hessian matrix is <em>symmetric</em>!
       That means that there is a corresponding quadratic form,

@@ -14,9 +14,9 @@
     We hinted above that the calculations we've been doing have a lot to do with projection.
     Since any single nonzero vector forms an orthogonal basis for its span,
     the projection
-    <me>
+    <md>
       \proj{\uu}{\vv}=\left(\frac{\uu\dotp\vv}{\len{\uu}^2}\right)\uu
-    </me>
+    </md>
     can be viewed as the orthogonal projection of the vector <m>\vv</m>,
     not onto the vector <m>\uu</m>, but onto the subspace <m>\spn\{\uu\}</m>.
     This is, after all, how we viewed projections in elementary linear algebra:
@@ -35,9 +35,9 @@
         <m>\{\uu_1,\ldots, \uu_k\}</m>.
         For any vector <m>\vv\in \R^n</m>, we define the <term>orthogonal projection</term>
         of <m>\vv</m> onto <m>U</m> by
-        <me>
+        <md>
           \proj{U}{\vv} = \sum_{i=1}^k\left(\frac{\uu_i\dotp\vv}{\len{\uu_i}^2}\right)\uu_i
-        </me>.
+        </md>.
       </p>
     </statement>
   </definition>
@@ -78,27 +78,27 @@
         In an elementary linear algebra (or calculus) course, we would solve this problem as follows.
         First, we would need two vectors parallel to the plane.
         If <m>\bbm x\\y\\z\ebm</m> lies in the plane, then <m>x-2y+4z=0</m>, so <m>x=2y-4z</m>, and
-        <me>
+        <md>
           \bbm x\\y\\z\ebm = \bbm 2y-4z\\y\\z\ebm = y\bbm 2\\1\\0\ebm + z\bbm -4\\0\\1\ebm
-        </me>,
+        </md>,
         so <m>\uu=\bbm 2\\1\\0\ebm</m> and <m>\vv\bbm -4\\0\\1\ebm</m> are parallel to the plane.
         We then compute the normal vector
-        <me>
+        <md>
           \mathbf{n}=\uu\times\vv=\bbm 1\\-2\\4\ebm
-        </me>,
+        </md>,
         and compute the projection of the position vector <m>\mathbf{p}=\bbm 3,1,-2\ebm</m> for the point <m>P=(3,1,-2)</m> onto <m>\mathbf{n}</m>.
         This gives the vector
-        <me>
+        <md>
           \xx = \left(\frac{\mathbf{p}\dotp\mathbf{n}}{\len{\mathbf{n}}^2}\right)\mathbf{n} = \frac{-7}{21}\bbm 1\\-2\\4\ebm =\bbm-1/3\\2/3\\-4/3\ebm
-        </me>.
+        </md>.
       </p>
 
       <p>
         Now, this vector is <em>parallel</em> to <m>\mathbf{n}</m>, so it's perpendicular to the plane.
         Subtracting it from <m>\mathbf{p}</m> gives a vector parallel to the plane, and this is the position vector for the point we seek.
-        <me>
+        <md>
           \mathbf{q}=\mathbf{p}-\xx=\bbm 3\\1\\-2\ebm-\bbm -1/3\\-2/3\\-4/3\ebm = \bbm 10/3\\1/3\\-2/3\ebm
-        </me>
+        </md>
         so the closest point is <m>Q=\bigl(\frac{10}{3},\frac13,-\frac{2}{3}\bigr)</m>.
         We weren't asked for it, but note that if we wanted the distance from the point <m>P</m> to the plane,
         this is given by <m>\len{\xx}=\frac13\sqrt{21}</m>.
@@ -111,9 +111,9 @@
         Let's solve the same problem using orthogonal projection.
         First, we have to deal with the fact that the vectors <m>\uu</m> and <m>\vv</m> are probably not orthogonal.
         To get around this, we replace <m>\vv</m> with
-        <me>
+        <md>
           \ww = \vv-\left(\frac{\vv\dotp\uu}{\len{\uu}^2}\right)\uu = \bbm -4\\0\\1\ebm+\frac 85\bbm 2\\1\\0\ebm = \bbm -4/5\\8/5\\1\ebm
-        </me>.
+        </md>.
         We now set
         <md>
           <mrow>\mathbf{q} \amp =\left(\frac{\mathbf{p}\dotp\uu}{\len{\uu}^2}\right)\uu-\left(\frac{\mathbf{p}\dotp\ww}{\len{\ww}^2}\right)\ww</mrow>
@@ -136,9 +136,9 @@
         For any subspace <m>U</m> of <m>\R^n</m>,
         we define the <term>orthogonal complement</term> of <m>U</m>, denoted <m>U^\bot</m>,
         by
-        <me>
+        <md>
           U^\bot = \{\xx\in\R^n \,|\, \xx\dotp\yy = 0 \text{ for all } \yy\in U\}
-        </me>.
+        </md>.
       </p>
     </statement>
   </definition>
@@ -186,9 +186,9 @@
               <m>\mathbf{p}</m> is the <em>closest</em> vector in <m>U</m> to the vector <m>\xx</m>,
               in the sense that the distance <m>d(\mathbf{p},\xx)</m> is minimal among all vectors in <m>U</m>.
               That is, for all <m>\uu\neq \mathbf{p}\in U</m>, we have
-              <me>
+              <md>
                 \len{\xx-\mathbf{p}}\lt\len{\xx-\uu}
-              </me>.
+              </md>.
             </p>
           </li>
         </ol>
@@ -214,14 +214,14 @@
 
       <p>
         Choose any <m>\uu\in U</m> with <m>\uu \neq \mathbf{p}</m>, and write
-        <me>
+        <md>
           \xx-\uu = (\xx-\mathbf{p})+(\mathbf{p}-\uu)
-        </me>.
+        </md>.
         Since <m>\mathbf{p}-\uu\in U</m> and <m>\xx-\mathbf{p}\in U^\bot</m>,
         we know that these two vectors are orthogonal, and therefore,
-        <me>
+        <md>
           \len{\xx-\uu}^2=\len{\xx-\mathbf{p}}^2+\len{\mathbf{p}-\uu}^2\gt \len{\xx-\mathbf{p}}^2
-        </me>,
+        </md>,
         by the <xref ref="thm-pythagoras" text="title"/>.
       </p>
     </proof>
@@ -236,9 +236,9 @@
     <statement>
       <p>
         Let <m>U</m> be a subspace of <m>\R^n</m>, and define a function <m>P_U:\R^n\to \R^n</m> by
-        <me>
+        <md>
           P_U(\xx) = \proj{U}{\xx} \text{ for any } \xx\in\R^n
-        </me>.
+        </md>.
         Then <m>P_U</m> is a linear operator such that <m>U=\im P_U</m> and <m>U^\bot = \ker P_U</m>.
       </p>
     </statement>
@@ -262,17 +262,17 @@
   <remark xml:id="rem-orth-comp-dim">
     <p>
       It follows from this result and the <xref ref="thm-dimension-lintrans" text="title"/> that
-      <me>
+      <md>
         \dim U + \dim U^\bot = n
-      </me>,
+      </md>,
       and since <m>U\cap U^\bot = \{\zer\}</m>, <m>U^\bot</m> is indeed a complement of <m>U</m>
       in the sense introduced in <xref ref="thm-construct-complement">Theorem</xref>.
       It's also fairly easy to see that <m>\dim U + \dim U^\bot = n</m> directly.
       If <m>\ww\in U^\bot</m>, and <m>\{\uu_1,\ldots, \uu_k\}</m>
       is a basis for <m>U</m>, then we have
-      <me>
+      <md>
         \ww\dotp \uu_1= 0, \ldots, \ww\dotp \uu_k=0
-      </me>,
+      </md>,
       and for an unknown <m>\ww</m>, this is simply a homogeneous system of <m>k</m> equations with <m>n</m> variables.
       Moreover, they are <em>independent</em> equations, since the <m>\uu_i</m> form a basis.
       We thus expect <m>n-k</m> free parameters in the general solution.
@@ -283,9 +283,9 @@
     <statement>
       <p>
         For any subspace <m>U</m> of <m>\R^n</m>, we have
-        <me>
+        <md>
           U\oplus U^\bot = \R^n
-        </me>.
+        </md>.
       </p>
     </statement>
   </theorem>
@@ -342,9 +342,9 @@
     <solution>
       <p>
         First, we note that for a general element of <m>U</m>, we have
-        <me>
+        <md>
           (a-b+3c, 2a+b, 3c, 4a-b+3c,a-4c) = a(1,2,0,4,1)+b(-1,1,0,-1,0)+c(3,0,3,3,-4)
-        </me>,
+        </md>,
         so <m>\{(1,2,0,4,1),(-1,1,0,-1,0),(3,0,3,3,-4)\}</m> is a basis for <m>U</m>.
         (We have just shown that this set spans <m>U</m>;
         it is independent since the first two vectors are not parallel,
@@ -386,9 +386,9 @@
         <p>
           Suppose we find vectors <m>\mathbf{p}</m> and <m>\mathbf{p}'</m> using basis <m>B</m> and <m>B'</m>.
           Note that <m>\mathbf{p}-\mathbf{p}'\in U</m>, but also that
-          <me>
+          <md>
             \mathbf{p}-\mathbf{p}' = (\mathbf{p}-\xx)-(\mathbf{p}'-\xx)
-          </me>
+          </md>
           Now use <xref ref="thm-projection"/>.
         </p>
       </hint>

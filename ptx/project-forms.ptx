@@ -18,9 +18,9 @@
       <statement>
           <p>
             A <term>bilinear form</term> on a vector space <m>V</m> is a function
-            <me>
+            <md>
               \phi:V\times V\to \R
-            </me>
+            </md>
             that is linear in each variable: for all scalars <m>a,b\in\R</m> and vectors <m>\uu,\vv,\ww\in V</m>,
             <md>
               <mrow>\phi(a\uu+b\vv,\ww) \amp = a\phi(\uu,\ww)+b\phi(\vv,\ww)</mrow>
@@ -90,9 +90,9 @@
 
       <p>
         Show that there exists an <m>n\times n</m> matrix <m>A_\phi</m> such that
-        <me>
+        <md>
           \phi(\vv,\ww) = (C_B(\vv))^TA_\phi C_B(\ww),
-        </me>
+        </md>
         where <m>C_B</m> denotes the coordinate isomorphism from <m>V</m> to <m>\R^n</m>.
       </p>
     </statement>
@@ -132,9 +132,9 @@
       <p>
         If <m>\phi:W\times W\to\R</m> is a bilinar form on <m>W</m>,
         show that the map <m>T^*\phi:V\times V\to \R</m> defined by
-        <me>
+        <md>
           T^*\phi(\vv,\ww) = \phi(T(\vv),T(\ww))
-        </me>
+        </md>
         is a bilinear form on <m>V</m>, called the <term>pullback</term> of <m>\phi</m> by <m>T</m>.
       </p>
     </statement>
@@ -165,18 +165,18 @@
 
   <p>
     An example of a symplectic form on <m>\R^2</m> is given as follows: for vectors <m>\vv = (v_1,v_2)</m> and <m>\ww = (\ww_1,\ww_2)</m>,
-    <me>
+    <md>
       \omega(\vv,\ww) = v_1w_2-v_2w_1
-    </me>.
+    </md>.
     If this looks familiar, it's because this is precisely the determinant of the <m>2\times 2</m> matrix <m>\bbm \vv\amp \ww\ebm</m>.
   </p>
 
   <p>
     A more general example is given by <m>V=\R^{2n}</m>. If we write <m>\vv = \langle a_1,b_1,\ldots, a_n,b_n\rangle</m>, <m>\ww = \langle c_1,d_1,\ldots, c_n,d_n\rangle</m>,
     then the <term>standard symplectic structure</term> on <m>\R^{2n}</m> is given by
-    <me>
+    <md>
       \omega(\vv,\ww) = a_1d_1-b_1c_1 + \cdots + a_nd_n-b_nc_n
-    </me>.
+    </md>.
     Note how this resembles a sum of <m>2\times 2</m> determinants.
   </p>
 
@@ -195,9 +195,9 @@
 
   <p>
     Here is an observation you may have made before: to any complex number <m>a+ib</m> we can associate the matrix
-    <me>
+    <md>
       \bbm a\amp -b\\b\amp a\ebm = a\bbm 1\amp 0\\0\amp 1\ebm + b\bbm 0\amp -1\\1\amp 0\ebm = aI+bJ
-    </me>,
+    </md>,
     where <m>I</m> is the <m>2\times 2</m> identity matrix, and <m>J^2=-I</m>.
   </p>
 
@@ -217,9 +217,9 @@
         Then, for any symplectic vector space <m>(V,\omega)</m>, show that,
         with respect to the basis <m>\{\mathbf{e}_1,\mathbf{f}_1,\ldots, \mathbf{e}_n,\mathbf{f}_n\}</m>
         described in <xref ref="rem-std-symplectic"/> above, the matrix of <m>\omega</m> has the block form
-        <me>
+        <md>
           J = \bbm J_1 \amp 0 \amp \cdots \amp 0\\ 0\amp J_1\amp \cdots \amp 0\\ \vdots\amp \vdots \amp \ddots\amp \cdots\\0\amp 0\amp \cdots \amp J_1\ebm
-        </me>.
+        </md>.
         
       </p>
     </statement>
@@ -246,9 +246,9 @@
 
       <p>
         Show that
-        <me>
+        <md>
           \langle \vv,\ww\rangle = \xx\cdot \yy + i\phi(\xx,\yy)
-        </me>,
+        </md>,
         where <m>\phi</m> denotes the standard symplectic structure on <m>\R^{2n}</m>.
       </p>
     </statement>

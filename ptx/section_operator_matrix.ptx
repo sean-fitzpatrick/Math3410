@@ -57,9 +57,9 @@
       <p>
         Find the <m>B</m>-matrix of the operator <m>T:P_2(\R)\to P_2(\R)</m> given by
         <m>T(p(x))=p(0)(1+x^2)+p(1)x</m>, with respect to the ordered basis
-        <me>
+        <md>
           B = \{1-x, x+3x^2, 2-x^2\}
-        </me>.
+        </md>.
       </p>
     </statement>
     <solution>
@@ -80,9 +80,9 @@
         be the matrix whose columns are given by the coefficient representations of the polynomials in <m>B</m>
         with respect to the <em>standard basis</em> <m>B_0=\{1,x,x^2\}</m>.
         For <m>T(1-x)=1+x^2</m> we need to solve the equation
-        <me>
+        <md>
           a(1-x)+b(x+3x^2)+c(2-x^2)=1+x^2
-        </me>
+        </md>
         for scalars <m>a,b,c</m>. But this is equivalent to the system
         <md>
           <mrow>a+2c \amp =1</mrow>
@@ -90,13 +90,13 @@
           <mrow>3b-c \amp =1</mrow>
         </md>,
         which, in turn, is equivalent to the matrix equation
-        <me>
+        <md>
           \bbm 1\amp 0\amp 2\\-1\amp 1\amp 0\\0\amp 3\amp -1\ebm\bbm a\\b\\c\ebm = \bbm 1\\0\\1\ebm
-        </me>;
+        </md>;
         that is, <m>PC_B(1+x^2) = C_{B_0}(1+x^2)</m>. Thus,
-        <me>
+        <md>
           C_B(1+x^2) = \bbm a\\b\\c\ebm = P^{-1}C_{B_0}(1+x^2) = P^{-1}\bbm 1\\0\\1\ebm
-        </me>.
+        </md>.
         Similarly, <m>C_B(4x)=P^{-1}\bbm 0\\4\\0\ebm = P^{-1}C_{B_0}(4x)</m>, and
         <m>C_B(2+x+2x^2)=P^{-1}\bbm 2\\1\\2\ebm = P^{-1}C_{B_0}(2+x+2x^2)</m>.
         Using the computer, we find:
@@ -134,13 +134,13 @@
           <mrow>\amp = (a+2c)+(-a+b)x+(3b-c)x^2</mrow>
         </md>.
         Then <m>T(p(x))=(a+2c)(1+x^2)+(4b+c)x</m>, and we find
-        <me>
+        <md>
           C_B(T(p(x))) = P^{-1}\bbm a+2c\\4b+c\\a+2c\ebm = \bbm \frac37 a-\frac{24}{7}b\\\frac37 a+\frac47 b+c\\\frac27 a+\frac{12}{7}b+c\ebm
-        </me>.
+        </md>.
         On the other hand,
-        <me>
+        <md>
           M_B(T) = \bbm 3/7\amp -24/7\amp 0\\3/7\amp 4/7\amp 1\\2/7\amp 12/7\amp 1\ebm\bbm a\\b\\c\ebm = \bbm \frac37 a-\frac{24}{7}b\\\frac37 a+\frac47 b+c\\\frac27 a+\frac{12}{7}b+c\ebm
-        </me>.
+        </md>.
         The results agree, but possibly leave us a little confused.
       </p>
     </solution>
@@ -149,9 +149,9 @@
   <p>
     In general, given an ordered basis <m>B=\basis{b}{n}</m> for a vector space <m>V</m>
     with standard basis <m>B_0 = \basis{e}{n}</m>, if we let
-    <me>
+    <md>
       P = \bbm C_{B_0}(\mathbf{b}_1) \amp \cdots \amp C_{B_0}(\mathbf{b}_n)\ebm
-    </me>,
+    </md>,
     then
     <md>
       <mrow>M_B(T) \amp = \bbm C_B(T(\mathbf{b}_1)) \amp \cdots \amp C_B(T(\mathbf{b_n})\ebm</mrow>
@@ -166,18 +166,18 @@
     Let's revisit the problem. Instead of using the given basis <m>B</m>,
     let's use the standard basis <m>B_0 = \{1,x,x^2\}</m>.
     We quickly find
-    <me>
+    <md>
       T(1)=1+x+x^2, T(x) = x, \text{ and } T(x^2)=x
-    </me>,
+    </md>,
     so with respect to the standard basis, <m>M_{B_0}(T) = \bbm 1\amp 0\amp 0\\1\amp 1\amp 1\\1\amp 0\amp 0\ebm</m>.
     Now, recall that
-    <me>
+    <md>
       M_{B}(T)=P^{-1}\bbm C_{B_0}T(1-x)\amp C_{B_0}(T(x+3x^2)\amp C_{B_0}(T(2-x^2))\ebm
-    </me>
+    </md>
     and note that for any polynomial <m>p(x)</m>, <m>C_{B_0}(T(p(x))) = M_{B_0}(T)C_{B_0}(p(x))</m>. But
-    <me>
+    <md>
       \bbm C_{B_0}(1-x) \amp C_{B_0}(x+3x^2)\amp C_{B_0}(2-x^2)\ebm = P
-    </me>,
+    </md>,
     so we get
     <md>
       <mrow>M_B(T) \amp = P^{-1}\bbm C_{B_0}T(1-x)\amp C_{B_0}(T(x+3x^2)\amp C_{B_0}(T(2-x^2))\ebm</mrow>
@@ -207,13 +207,13 @@
     <statement>
       <p>
         Determine the matrix of the operator <m>T:\R^3\to \R^3</m> given by
-        <me>
+        <md>
           T(x,y,z) = (3x-2y+4z,x-5y,2y-7z)
-        </me>
+        </md>
         with respect to the ordered basis
-        <me>
+        <md>
           B = \{(1,2,0),(0,-1,2),(1,2,1)\}
-        </me>.
+        </md>.
         (You may want to use the Sage cell below for computational assistance.)
       </p>
     </statement>
@@ -221,14 +221,14 @@
     <solution>
       <p>
         With respect to the standard basis, we have
-        <me>
+        <md>
           M_0=M_{B_0}(T) = \bbm 3\amp -2\amp 4\\1\amp -5\amp 0\\0\amp 2\amp -7\ebm
-        </me>,
+        </md>,
         and the matrix <m>P</m> is given by <m>P = \bbm 1\amp 3\amp 1\\2\amp -1\amp 2\\0\amp 2\amp-5\ebm</m>.
         Thus, we find
-        <me>
+        <md>
           M_B(T)=P^{-1}M_0P=\bbm 9\amp 56\amp 36\\7\amp 15\amp 15\\-10\amp -46\amp -33\ebm
-        </me>.
+        </md>.
       </p>
     </solution>
   </exercise>
@@ -255,9 +255,9 @@
       <p>
         The <term>change matrix</term> with respect to ordered bases <m>B,D</m> of <m>V</m>
         is denoted <m>P_{D\leftarrow B}</m>, and defined by
-        <me>
+        <md>
           P_{D\leftarrow B} = M_{DB}(1_V)
-        </me>.
+        </md>.
       </p>
     </statement>
   </definition>
@@ -267,18 +267,18 @@
       <p>
         Let <m>B=\basis{b}{n}</m> and <m>D</m> be two ordered bases of <m>V</m>.
         Then
-        <me>
+        <md>
           P_{D\leftarrow B} = \bbm C_D(\mathbf{b}_1)\amp \cdots \amp C_D(\mathbf{b}_n)\ebm
-        </me>,
+        </md>,
         and satisfies <m>C_D(\vv) = P_{D\leftarrow B}C_B(\vv)</m> for all <m>\vv\in V</m>.
       </p>
 
       <p>
         The matrix <m>P_{D\leftarrow B}</m> is invertible, and <m>(P_{D\leftarrow B})^{-1} = P_{B\leftarrow D}</m>.
         Moreover, if <m>E</m> is a third ordered basis, then
-        <me>
+        <md>
           P_{E\leftarrow D}P_{D\leftarrow B} = P_{E\leftarrow B}
-        </me>.
+        </md>.
       </p>
     </statement>
   </theorem>
@@ -309,13 +309,13 @@
       <p>
         Finding this matrix requires us to first write the vectors in <m>B</m> in terms of the vectors in <m>D</m>.
         However, it's much easier to do this the other way around. We easily find
-        <me>
+        <md>
           P_{B\leftarrow D} = \bbm 1\amp 0\amp 2\\1\amp 1\amp -3\\0\amp 1\amp 1\ebm
-        </me>,
+        </md>,
         and by <xref ref="thm-change-matrix"/>, we have
-        <me>
+        <md>
           P_{D\leftarrow B} = (P_{B\leftarrow D})^{-1} = \frac16\bbm 4\amp 2\amp -2\\-1\amp 1\amp 5\\1\amp -1\amp 1\ebm
-        </me>.
+        </md>.
       </p>
     </solution>
   </example>
@@ -323,14 +323,14 @@
   <p>
     Note that the change matrix notation is useful for linear transformations between different vector spaces as well.
     Recall <xref ref="thm-change-basis-transformation"/>, which gave the result
-    <me>
+    <md>
       M_{D_0B_0}(T) = QM_{D_1B_1}P^{-1}
-    </me>,
+    </md>,
     where (using our new notation) <m>P=P_{B_0\leftarrow B_1}</m> and <m>Q=P_{D_0\leftarrow D_1}</m>.
     In this notation, we have
-    <me>
+    <md>
       M_{D_0B_0}(T) = P_{D_0\leftarrow D_1}M_{D_1B_1}(T)P_{B_1\leftarrow B_0}
-    </me>,
+    </md>,
     which seems more intiutive.
   </p>
 
@@ -340,9 +340,9 @@
     The importance of these results is not just their computational simplicity, however.
     The most important outcome of the above is that if <m>M_B(T)</m> and <m>M_D(T)</m>
     give the matrix of <m>T</m> with respect to two different bases, then
-    <me>
+    <md>
       M_B(T) = (P_{D\leftarrow B})^{-1}M_D(T)P_{D\leftarrow B}
-    </me>,
+    </md>,
     so that the two matrices are <em>similar</em>.
   </p>
 

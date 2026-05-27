@@ -14,9 +14,9 @@
         Let <m>A</m> be an <m>n\times n</m> matrix.
         A number <m>\lambda</m> is called an <term>eigenvalue</term> of <m>A</m>
         if there exists a nonzero vector <m>\xx</m> such that
-        <me>
+        <md>
           A\xx = \lambda\xx
-        </me>.
+        </md>.
         Any such vector <m>\xx</m> is called an <term>eigenvector</term>
         associated to the eigenvalue <m>\lambda</m>.
       </p>
@@ -66,9 +66,9 @@
       A subspace <m>U\subseteq V</m> is <em>invariant</em> with respect to <m>T</m> if <m>T(\uu)\in U</m> for all <m>\uu\in U</m>.
       Note that if <m>\xx</m> is an eigenvector of <m>T</m>, then <m>\spn\{\xx\}</m> is an invariant subspace.
       To see this, note that if <m>T(\xx)=\lambda \xx</m> and <m>\yy=k\xx</m>, then
-      <me>
+      <md>
         T(\yy)=T(k\xx)=kT(\xx)=k(\lambda \xx)=\lambda(k\xx)=\lambda\yy
-      </me>.
+      </md>.
     </p>
   </remark>
 
@@ -107,9 +107,9 @@
 
   <p>
     Note that if <m>\xx</m> is an eigenvector of the matrix <m>A</m>, then we have
-    <men xml:id="eq-eigen-null">
+    <md numer="yes" xml:id="eq-eigen-null">
       (A-\lambda I_n)\xx=\zer
-    </men>,
+    </md>,
     where <m>I_n</m> denotes the <m>n\times n</m> identity matrix.
     Thus, if <m>\lambda</m> is an eigenvalue of <m>A</m>,
     any corresponding eigenvector is an element of <m>\nll(A-\lambda I_n)</m>.
@@ -120,9 +120,9 @@
       <p>
         For any real number <m>\lambda</m> and <m>n\times n</m> matrix <m>A</m>,
         we define the <term>eigenspace</term> <m>E_\lambda(A)</m> by
-        <me>
+        <md>
           E_\lambda(A) = \nll (A-\lambda I_n)
-        </me>.
+        </md>.
       </p>
     </statement>
   </definition>
@@ -178,9 +178,9 @@
     The polynomial <m>c_A(x)=\det(xI_n -A)</m> is called the <term>characteristic polynomial</term> of <m>A</m>.
     (Note that <m>\det(x I_n-A) = (-1)^n\det(A-x I_n)</m>. We choose this order so that the coefficient of <m>x^n</m> is always 1.)
     The equation
-    <men xml:id="eq-characteristic">
+    <md numer="yes" xml:id="eq-characteristic">
       \det(xI_n - A) = 0
-    </men>
+    </md>
     is called the <term>characteristic equation</term> of <m>A</m>.
     The solutions to this equation are precisely the eigenvalues of <m>A</m>.
   </p>
@@ -191,9 +191,9 @@
       An interesting fact is that we can plug any square matrix into a polynomial!
       Given the polynomial <m>p(x) = a_0+a_1x+a_2 x^2 + \cdots + a_nx^n</m>
       and an <m>n\times n</m> matrix <m>A</m>, we define
-      <me>
+      <md>
         p(A) = a_0I_n+a_1A+a_2A^2+\cdots+a_nA^n
-      </me>.
+      </md>.
       Note the use of the identity matrix in the first term,
       since it doesn't make sense to add a scalar to a matrix.
     </p>
@@ -284,9 +284,9 @@
       <p>
         The first two follow directly from properties of the determinant and trace.
         For the last, note that if <m>B = P^{-1}AP</m>, then
-        <me>
+        <md>
           P^{-1}(xI_n-A)P = P^{-1}(xI_n)P-P^{-1}AP = xI_n - B
-        </me>,
+        </md>,
         so <m>xI_n-B\sim xI_n-A</m>, and therefore <m>\det(xI_n-B)=\det(xI_n-A)</m>.
       </p>
     </proof>
@@ -331,31 +331,31 @@
         We find that <m>A-(-1)I_n = \bbm 1\amp 1\amp 1\\1\amp 1\amp 1\\1\amp 1\amp 1\ebm</m>,
         which has reduced row-echelon form <m>\bbm 1\amp 1\amp 1\\0\amp 0\amp 0\\0\amp 0\amp 0\ebm</m>.
         Solving for the nullspace, we find that there are two independent eigenvectors:
-        <me>
+        <md>
           \xx_{1,1}=\bbm 1\\-1\\0\ebm, \quad \text{ and } \quad \xx_{1,2}=\bbm 1\\0\\-1\ebm
-        </me>,
+        </md>,
         so
-        <me>
+        <md>
           E_{-1}(A) = \spn\left\{\bbm 1\\-1\\0\ebm, \bbm 1\\0\\-1\ebm\right\}
-        </me>.
+        </md>.
       </p>
 
       <p>
         For the second eigenvector, we have <m>A-2I = \bbm -2\amp 1\amp 1\\1\amp -2\amp 1\\1\amp 1\amp -2\ebm</m>,
         which has reduced row-echelon form <m>\bbm 1\amp 0\amp -1\\0\amp 1\amp -1\\0\amp 0\amp 0\ebm</m>.
         An eigenvector in this case is given by
-        <me>
+        <md>
           \xx_2 = \bbm 1\\1\\1\ebm
-        </me>.
+        </md>.
       </p>
     </solution>
   </example>
 
   <p>
     In general, if the characteristic polynomial can be factored as
-    <me>
+    <md>
       c_A(x)=(x-\lambda)^mq(x)
-    </me>,
+    </md>,
     where <m>q(x)</m> is not divisible by <m>x-\lambda</m>, then we say that <m>\lambda</m>
     is an eigenvalue of <term>multiplicity</term> <m>m</m>.
     In the example above, <m>\lambda_1=-1</m> has multiplicty 2,
@@ -417,9 +417,9 @@
         and let <m>P=\bbm \xx_1\amp \cdots \amp \xx_n\ebm</m>
         be the matrix whose columns are the basis vectors. (Note that <m>P</m> is necessarily invertible.)
         Then
-        <me>
+        <md>
           P^{-1}AP = \bbm \diag(\lambda_1,\ldots, \lambda_k) \amp B\\0\amp A_1\ebm
-        </me>,
+        </md>,
         where <m>B</m> has size <m>k\times (n-k)</m>, and <m>A_1</m> has size <m>(n-k)\times (n-k)</m>.
       </p>
     </statement>
@@ -431,9 +431,9 @@
           <mrow> \amp =\bbm (P^{-1}A)\xx_1\amp \cdots \amp (P^{-1}A)\xx_n\ebm</mrow>
         </md>.
         For <m>1\leq i\leq k</m>, we have
-        <me>
+        <md>
           (P^{-1}A)(\xx_i) = P^{-1}(A\xx_i) = P^{-1}(\lambda_i\xx_i)=\lambda_i(P^{-1}\xx_i)
-        </me>.
+        </md>.
         But <m>P^{-1}\xx_i</m> is the <m>i</m>th column of <m>P^{-1}P = I_n</m>,
         which proves the result.
       </p>
@@ -445,15 +445,15 @@
     Suppose <m>\{\xx_1,\ldots, \xx_k\}</m> is a basis for <m>E_\lambda(A)</m>.
     Then this is a linearly independent set of eigenvectors, so our lemma guarantees the existence of a matrix <m>P</m>
      such that
-     <me>
+     <md>
        P^{-1}AP = \bbm \lambda I_k \amp B\\0\amp A_1\ebm
-     </me>.
+     </md>.
      Let <m>\tilde{A}=P^{-1}AP</m>. On the one hand, since <m>\tilde{A}\sim A</m>,
      we have <m>c_A(x)=p_{\tilde{A}}(x)</m>.
      On the other hand,
-     <me>
+     <md>
        \det(xI_n-\tilde{A}) = \det\bbm (x-\lambda)I_k \amp -B\\0 \amp xI_{n-k}-A_1\ebm = (x-\lambda)^k\det(xI_{n-k}-A_1)
-     </me>.
+     </md>.
      This shows that <m>c_A(x)</m> is divisible by <m>(x-\lambda)^k</m>.
      Since <m>m</m> is the largest integer such that <m>c_A(x)</m> is divisible by <m>(x-\lambda)^m</m>,
      we must have <m>\dim E_\lambda(A)=k\leq m</m>.
@@ -483,27 +483,27 @@
 
       <p>
         Consider the equation
-        <me>
+        <md>
           c_1\vv_1+c_2\vv_2+\cdots +c_k\vv_k=\zer
-        </me>,
+        </md>,
         for scalars <m>c_1,\ldots, c_k</m>. Multiplying both sides by the matrix <m>A</m>, we have
-        <mdn>
+        <md>
           <mrow> A(c_1\vv_1+c_2\vv_2+\cdots +c_k\vv_k) \amp = A\zer</mrow>
           <mrow> c_1A\vv_1+c_2A\vv_2+\cdots + c_kA\vv_k \amp = \zer</mrow>
-          <mrow xml:id="eqn-eigen-indep1"> c_1\lambda_1\vv_1+c_2\lambda_2\vv_2+\cdots + c_k\lambda_k\vv_k \amp =\zer</mrow>
-        </mdn>.
+          <mrow number="yes" xml:id="eqn-eigen-indep1"> c_1\lambda_1\vv_1+c_2\lambda_2\vv_2+\cdots + c_k\lambda_k\vv_k \amp =\zer</mrow>
+        </md>.
       </p>
 
       <p>
         On the other hand, we can also multiply both sides by the eigenvalue <m>\lambda_1</m>, giving
-        <men xml:id="eqn-eigen-indep2">
+        <md numer="yes" xml:id="eqn-eigen-indep2">
           \zer = c_1\lambda_1\vv_1 + c_2\lambda_1\vv_2+\cdots + c_k\lambda_1\vv_k
-        </men>.
+        </md>.
         Subtracting <xref ref="eqn-eigen-indep2"/> from <xref ref="eqn-eigen-indep1"/>,
         the first temrs cancel, and we get
-        <me>
+        <md>
           c_2(\lambda_2-\lambda_1)\vv_2+\cdots + c_k(\lambda_k-\lambda_1)\vv_k=\zer
-        </me>.
+        </md>.
       </p>
 
       <p>

@@ -13,9 +13,9 @@
       A <em>linear recurrence</em> of length <m>k</m> is a sequence <m>(x_n)</m> that is recursively defined,
       with successive terms in the sequence defined in terms of the previous <m>k</m> terms,
       via a linear recursion formula of the form
-      <me>
+      <md>
         x_{n+k} = a_0x_k + a_1x_{k+1}+\cdots + a_{k-1}x_{n+k-1}
-      </me>.
+      </md>.
       (Here we assume <m>a_0\neq 0</m> to have the appropriate length.)
       The most famous example of a linear recurrence is, of course, the Fibonacci sequence,
       which is defined by <m>x_0=1, x_1=1</m>, and <m>x_{n+2}=x_n+x_{n+1}</m> for all <m>n\geq 0</m>.
@@ -60,18 +60,18 @@
     <p>
       Consider a geometric sequence, of the form <m>x_n=c\lambda^n</m>.
       If this sequence satisfies the recursion
-      <me>
+      <md>
         x_{n+k} = a_0x_n + a_1x_{n+1}+\cdots + a_{k-1}x_{n+k-1}
-      </me>,
+      </md>,
       then (with <m>n=0</m>)
-      <me>
+      <md>
         c\lambda^k=a_0c+a_1c\lambda+\cdots+a_{k-1}\lambda^{k-1}
-      </me>,
+      </md>,
       or <m>c(\lambda^k-a_{k-1}\lambda^{k-1}-\cdots - a_1\lambda-a_0)=0</m>.
       That is, <m>\lambda</m> is a root of the associated polynomial
-      <me>
+      <md>
         p(x) = x^k - a_{k-1}x^{k-1}-\cdots -a_1x-a_0
-      </me>.
+      </md>.
     </p>
 
     <p>
@@ -85,9 +85,9 @@
 
     <p>
       If we can factor <m>p(x)</m> completely over the reals as
-      <me>
+      <md>
         p(x) = (x-\lambda_1)^{m_1}(x-\lambda_2)^{m_2}\cdots (x-\lambda_p)^{m_p}
-      </me>,
+      </md>,
       then a basis for the space of solutions is given by
       <md>
         <mrow>\left(\lambda_1^n\right), \amp \left(n\lambda_1^n\right),\ldots, \left(n^{m_1-1}\lambda_1^n\right)</mrow>
@@ -107,9 +107,9 @@
     <statement>
       <p>
         Find a basis for the space <m>V</m> of sequences <m>(x_n)</m> satisfying the recurrence
-        <me>
+        <md>
           x_{n+3}=-2x_n+x_{n+1}+2x_{n+2}
-        </me>.
+        </md>.
       </p>
       <p>
         Then find a formula for the sequence satisfying the initial conditions <m>x_0=3, x_1=-2, x_2=4</m>.
@@ -183,9 +183,9 @@
     <m>B=\{T(\vv_1), T(\vv_2), T(\vv_3)\}</m>.
     (That is, write out the first three terms in each sequence in your basis to get three vectors.)
     We then need to find scalars <m>c_1,c_2,c_3</m> such that
-    <me>
+    <md>
       c_1\vv_1+c_2\vv_2+c_3\vv_3=(3,-2,4)
-    </me>.
+    </md>.
     We will then have
     <md>
       <mrow>s \amp = T(3,-2,4)</mrow>
@@ -229,9 +229,9 @@
     <statement>
       <p>
         Find a basis for the space <m>V</m> of sequences <m>(x_n)</m> satisfying the recurrence
-        <me>
+        <md>
           x_{n+3} = 8x_n-12x_{n+1}+6x_{n+2}
-        </me>.
+        </md>.
         Then find a formula for the sequence satisfying the initial conditions <m>x_0=2, x_1=-5, x_2=3</m>.
       </p>
     </statement>
@@ -246,9 +246,9 @@
     <statement>
       <p>
         Find a basis for the space <m>V</m> of sequences <m>(x_n)</m> satisfying the recurrence
-        <me>
+        <md>
           x_{n+6} = 72x_n+12x_{n+1}-70x_{n+2}+5x_{n+3}+15x_{n+4}-x_{n+5}
-        </me>.
+        </md>.
         Then find a formula for the sequence satisfying the initial conditions <m>x_0=1, x_1=-2, x_2=1,x_3=2,x_4=-3,x_5=4</m>.
       </p>
     </statement>

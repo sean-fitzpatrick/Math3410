@@ -14,12 +14,12 @@
     where each subspace <m>U_j</m> is <m>T</m>-invariant,
     then with respect to a basis <m>B</m> consisting of basis vectors for each subspace,
     we will have
-    <me>
+    <md>
       M_B(T)=\bbm A_1 \amp 0 \amp \cdots \amp 0\\
                   0 \amp A_2 \amp \cdots \amp 0\\
                   \vdots \amp \vdots \amp \ddots \amp \vdots\\
                   0 \amp 0 \amp \cdots \amp A_k\ebm
-    </me>,
+    </md>,
     where each <m>A_j</m> is the matrix of <m>T|_{U_j}</m> with respect to some basis of <m>U_j</m>.
   </p>
 
@@ -34,9 +34,9 @@
   <p>
     Recall from <xref ref="sec-eigen-basics">Section</xref> that if the characteristic polynomial of <m>T</m>
     (or equivalently, any matrix representation <m>A</m> of <m>T</m>) is
-    <me>
+    <md>
       c_T(x) = (x-\lambda_1)^{m_1}(x-\lambda_2)^{m_2}\cdots (x-\lambda_k)^{m_k}
-    </me>,
+    </md>,
     then <m>\dim E_{\lambda_j}(T)\leq m_j</m> for each <m>j=1,\ldots, k</m>,
     and <m>T</m> is diagonalizable if and only if we have equality for each <m>j</m>.
     (This guarantees that we have sufficiently many independent eigenvectors to form a basis of <m>V</m>.)
@@ -44,9 +44,9 @@
 
   <p>
     Since eigenspaces are <m>T</m>-invariant, we see that being able to diagonalize <m>T</m> is equivalent to having the direct sum decomposition
-    <me>
+    <md>
       V = E_{\lambda_1}(T)\oplus E_{\lambda_2}(T)\oplus \cdots \oplus E_{\lambda_k}(T)
-    </me>.
+    </md>.
     If <m>T</m> cannot be diagonalized, it's because we came up short on the number of eigenvectors,
     and the direct sum of all eigenspaces only produces some subspace of <m>V</m> of lower dimension.
     We now consider how one might enlarge a set of independent eigenvectors in some standard,
@@ -108,9 +108,9 @@
         Let <m>T:V\to V</m> be a linear operator, and let <m>\lambda</m> be an eigenvalue of <m>T</m>.
         The <term>generalized eigenspace</term> of <m>T</m> associated to the eigenvalue <m>\lambda</m>
         is denoted <m>G_\lambda(T)</m>, and defined as
-        <me>
+        <md>
           G_\lambda(T) = \ker (T-\lambda I)^n
-        </me>,
+        </md>,
         where <m>n=\dim V</m>.
       </p>
     </statement>
@@ -139,9 +139,9 @@
         Let <m>\lambda_1,\ldots, \lambda_k</m> be the distinct eigenvalues of <m>T</m>.
         Then each generalized eigenspace <m>G_{\lambda_j}(T)</m> is <m>T</m>-invariant,
         and we have the direct sum decomposition
-        <me>
+        <md>
           V = G_{\lambda_1}(T)\oplus G_{\lambda_2}(T)\oplus \cdots \oplus G_{\lambda_k}(T)
-        </me>.
+        </md>.
       </p>
     </statement>
   </theorem>
