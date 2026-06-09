@@ -129,7 +129,7 @@
 <!-- this is now controlled in the publisher file -->
 
 <!-- apply exercise geometry -->
-<xsl:template match="exercises|appendix|solutions" mode="latex-division-heading">
+<xsl:template match="exercises|solutions" mode="latex-division-heading">
     <!-- \newgeometry includes a \clearpage -->
     <xsl:apply-templates select="." mode="new-geometry"/>
     <xsl:text>\begin{</xsl:text>
